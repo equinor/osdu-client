@@ -1,59 +1,67 @@
 {
   "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
-  "pull-request-title-pattern": "chore: release ${version}",
-  "extra-files": [
+  "release-type": "simple",
+  "changelog-sections": [
     {
-      "type": "xml",
-      "path": "src/OsduClient/OsduClient.csproj",
-      "xpath": "/Project/PropertyGroup/Version"
+      "type": "feat",
+      "section": "Features"
+    },
+    {
+      "type": "fix",
+      "section": "Bug Fixes"
+    },
+    {
+      "type": "deps",
+      "section": "Dependencies"
+    },
+    {
+      "type": "revert",
+      "section": "Reverts"
+    },
+    {
+      "type": "docs",
+      "section": "Documentation",
+      "hidden": true
+    },
+    {
+      "type": "style",
+      "section": "Styles",
+      "hidden": true
+    },
+    {
+      "type": "chore",
+      "section": "Miscellaneous Chores",
+      "hidden": true
+    },
+    {
+      "type": "refactor",
+      "section": "Code Refactoring",
+      "hidden": true
+    },
+    {
+      "type": "ci",
+      "section": "Continuous Integration",
+      "hidden": true
     }
   ],
   "packages": {
-    ".": {
-      "package-name": "OsduClient",
-      "release-type": "simple",
-      "include-component-in-tag": false,
-      "changelog-sections": [
+    "source/Osdu.Client": {
+      "package-name": "Osdu.Client",
+      "extra-files": [
         {
-          "type": "feat",
-          "section": "Features"
-        },
+          "type": "xml",
+          "path": "source/Osdu.Client/Osdu.Client.csproj",
+          "xpath": "/Project/PropertyGroup/Version"
+        }
+      ]
+    },
+    "source/Osdu.Client.Extensions": {
+      "package-name": "Osdu.Client.Extensions",
+      "extra-files": [
         {
-          "type": "fix",
-          "section": "Bug Fixes"
-        },
-        {
-          "type": "deps",
-          "section": "Dependencies"
-        },
-        {
-          "type": "revert",
-          "section": "Reverts"
-        },
-        {
-          "type": "docs",
-          "section": "Documentation",
-          "hidden": true
-        },
-        {
-          "type": "style",
-          "section": "Styles",
-          "hidden": true
-        },
-        {
-          "type": "chore",
-          "section": "Miscellaneous Chores",
-          "hidden": true
-        },
-        {
-          "type": "refactor",
-          "section": "Code Refactoring",
-          "hidden": true
-        },
-        {
-          "type": "ci",
-          "section": "Continuous Integration",
-          "hidden": true
+          "type": "xml",
+          "path": "source/Osdu.Client.Extensions/Osdu.Client.Extensions.csproj",
+          "xpath": "/Project/PropertyGroup/Version"
         }
       ]
     }

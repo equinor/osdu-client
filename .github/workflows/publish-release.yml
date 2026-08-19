@@ -1,0 +1,75 @@
+name: Publish Release
+
+on:
+  release:
+    types: [released]
+  workflow_dispatch:
+    inputs:
+      package:
+        description: Package to build and publish
+        required: true
+        type: choice
+        options:
+          - Osdu.Client
+          - Osdu.Client.Extensions
+
+permissions: {}
+
+jobs:
+  get-release-info:
+    name: Get Release Info
+    runs-on: ubuntu-latest
+    outputs:
+      package: ${{ steps.get-release.outputs.package }}
+    steps:
+      - name: Determine package from release tag
+        id: get-release
+        env:
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+          INPUT_PACKAGE: ${{ inputs.package }}
+        run: |
+          if [[ "${GITHUB_EVENT_NAME}" == "release" ]]; then
+            # release-please tags releases as "<package-name>-v<version>",
+            # e.g. "Osdu.Client-v1.0.0" or "Osdu.Client.Extensions-v1.0.0".
+            package="${RELEASE_TAG%%-v*}"
+          else
+            package="${INPUT_PACKAGE}"
+          fi
+          echo "package=${package}" >> "$GITHUB_OUTPUT"
+
+  build-and-publish:
+    name: Build and publish (${{ needs.get-release-info.outputs.package }})
+    needs: get-release-info
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read # Required to read the repository contents
+      packages: write # Required to publish packages to GitHub Packages
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          dotnet-version: "10.x"
+
+      - name: Run Osdu.Client Generator
+        working-directory: source/Osdu.Client.Generator.ConsoleApp
+        run: dotnet run --configuration Release < /dev/null
+
+      - name: Build
+        run: dotnet build "source/${{ needs.get-release-info.outputs.package }}/${{ needs.get-release-info.outputs.package }}.csproj" --configuration Release
+
+      - name: Pack
+        run: dotnet pack "source/${{ needs.get-release-info.outputs.package }}/${{ needs.get-release-info.outputs.package }}.csproj" --configuration Release --no-build --output nupkgs
+
+      - name: Publish to GitHub Packages
+        run: |
+          dotnet nuget push nupkgs/*.nupkg \
+            --source "https://nuget.pkg.github.com/equinor/index.json" \
+            --api-key "${GITHUB_TOKEN}" \
+            --skip-duplicate
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
