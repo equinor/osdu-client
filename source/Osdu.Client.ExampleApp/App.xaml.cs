@@ -1,13 +1,14 @@
-using System.Reflection;
-using System.Windows;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Osdu.Client.Authentication;
+using Osdu.Client.Data.ReferenceData;
 using Osdu.Client.ExampleApp.Examples;
 using Osdu.Client.Extensions;
 using Osdu.Client.Extensions.Caching;
 using Osdu.Client.Extensions.Querying;
-using Osdu.Client.Schemas.ReferenceData;
+using System.Reflection;
+using System.Windows;
+
 
 namespace Osdu.Client.ExampleApp;
 

@@ -1,11 +1,11 @@
-using System.Text.Json;
-using System.Windows;
 using Osdu.Client.Apis.Search;
+using Osdu.Client.Data.WorkProductComponent;
 using Osdu.Client.ExampleApp.Controls;
 using Osdu.Client.ExampleApp.ExamplesBuilder;
 using Osdu.Client.ExampleApp.Extensions;
 using Osdu.Client.Extensions;
-using Osdu.Client.Schemas.WorkProductComponent;
+using System.Text.Json;
+using System.Windows;
 
 namespace Osdu.Client.ExampleApp.Examples;
 

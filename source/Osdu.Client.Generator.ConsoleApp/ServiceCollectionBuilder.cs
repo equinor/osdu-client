@@ -44,7 +44,7 @@ internal class ServiceCollectionBuilder
 
         _services.AddSingleton(configuration);
         _services.AddSingleton(configuration.Api);
-        _services.AddSingleton(configuration.Schema);
+        _services.AddSingleton(configuration.Data);
 
         return this;
     }

@@ -11,9 +11,7 @@ public class AppConfiguration
 
     public ExtensionConfiguration Extension { get; init; }
 
-    public ConverterConfiguration Converter { get; init; }
-
-    public SchemaConfiguration Schema { get; init; }
+    public DataConfiguration Data { get; init; }
 
     public void ResolvePaths()
     {
@@ -28,10 +26,8 @@ public class AppConfiguration
 
         Extension.OutputDir = Path.Combine(OutputBaseDir, Extension.OutputDir);
 
-        Converter.OutputDir = Path.Combine(OutputBaseDir, Converter.OutputDir);
-
-        Schema.DefinitionsDir = Path.Combine(appDir, Schema.DefinitionsDir);
-        Schema.OutputDir = Path.Combine(OutputBaseDir, Schema.OutputDir);
+        Data.DefinitionsDir = Path.Combine(appDir, Data.DefinitionsDir);
+        Data.OutputDir = Path.Combine(OutputBaseDir, Data.OutputDir);
     }
 
     static string GetAppDirectory([CallerFilePath] string sourceFilePath = "")
@@ -49,7 +45,7 @@ public class ApiConfiguration
     public required string Namespace { get; set; }
 }
 
-public class SchemaConfiguration
+public class DataConfiguration
 {
     public required string DefinitionsDir { get; set; }
 
@@ -59,13 +55,6 @@ public class SchemaConfiguration
 }
 
 public class ExtensionConfiguration
-{
-    public required string OutputDir { get; set; }
-
-    public required string Namespace { get; set; }
-}
-
-public class ConverterConfiguration
 {
     public required string OutputDir { get; set; }
 

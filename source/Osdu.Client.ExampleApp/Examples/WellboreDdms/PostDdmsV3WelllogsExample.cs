@@ -1,9 +1,8 @@
-using System.Text.Json;
-using Osdu.Client.Apis;
 using Osdu.Client.Apis.WellboreDdms;
+using Osdu.Client.Data.WorkProductComponent;
 using Osdu.Client.ExampleApp.ExamplesBuilder;
 using Osdu.Client.ExampleApp.Extensions;
-using Osdu.Client.Schemas.WorkProductComponent;
+using System.Text.Json;
 
 namespace Osdu.Client.ExampleApp.Examples.WellboreDdms;
 

@@ -1,11 +1,8 @@
-using System.Collections;
 using Microsoft.Extensions.DependencyInjection;
 using Osdu.Client.Apis.CrsConversion;
 using Osdu.Client.Apis.Search;
+using Osdu.Client.Data.MasterData;
 using Osdu.Client.Extensions;
-using Osdu.Client.Schemas.MasterData;
-
-//using Osdu.Client.Schemas.MasterData;
 
 namespace Osdu.Client.Generator.Tests;
 

@@ -94,14 +94,14 @@ public class CodeGenerator
     {
         _logger.LogInformation("Generating data schemas...");
 
-        if (!Directory.Exists(_configuration.Schema.DefinitionsDir))
+        if (!Directory.Exists(_configuration.Data.DefinitionsDir))
         {
-            _logger.LogError($"No data schemas generated because data schema definitions directory not found: {_configuration.Schema.DefinitionsDir}");
+            _logger.LogError($"No data schemas generated because data schema definitions directory not found: {_configuration.Data.DefinitionsDir}");
             return;
         }
 
-        _logger.LogInformation($"  Reading data schema definitions from directory: {_configuration.Schema.DefinitionsDir}");
-        string[] jsonFiles = Directory.GetFiles(_configuration.Schema.DefinitionsDir, "*.json", SearchOption.AllDirectories);
+        _logger.LogInformation($"  Reading data schema definitions from directory: {_configuration.Data.DefinitionsDir}");
+        string[] jsonFiles = Directory.GetFiles(_configuration.Data.DefinitionsDir, "*.json", SearchOption.AllDirectories);
 
         _logger.LogInformation($"  Found {jsonFiles.Length} data schema definitions");
 
@@ -110,10 +110,10 @@ public class CodeGenerator
         {
             _logger.LogInformation($"  Building data schema from definition file: {jsonFile}");
 
-            string relativePath = Path.GetRelativePath(_configuration.Schema.DefinitionsDir, jsonFile);
+            string relativePath = Path.GetRelativePath(_configuration.Data.DefinitionsDir, jsonFile);
             string relativeDir = Path.GetDirectoryName(relativePath).ToPascalCase() ?? string.Empty;
-            string outputDir = Path.Combine(_configuration.Schema.OutputDir, relativeDir);
-            string schemaNamespace = $"{_configuration.Schema.Namespace}" + (relativeDir == "" ? "" : $".{relativeDir}");
+            string outputDir = Path.Combine(_configuration.Data.OutputDir, relativeDir);
+            string schemaNamespace = $"{_configuration.Data.Namespace}" + (relativeDir == "" ? "" : $".{relativeDir}");
 
             // Generate data schema
             _schemaGenerator.GenerateNew(jsonFile, outputDir, schemaNamespace, false);

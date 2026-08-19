@@ -4,8 +4,8 @@ using Osdu.Client.Apis;
 using Osdu.Client.Apis.Search;
 using Osdu.Client.Apis.WellboreDdms;
 using Osdu.Client.Extensions;
-using Osdu.Client.Schemas.MasterData;
-using Osdu.Client.Schemas.WorkProductComponent;
+using Osdu.Client.Data.MasterData;
+using Osdu.Client.Data.WorkProductComponent;
 
 namespace Osdu.Client.ExampleApp;
 

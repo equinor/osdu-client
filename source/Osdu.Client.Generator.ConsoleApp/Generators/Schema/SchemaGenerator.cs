@@ -293,15 +293,15 @@ public class SchemaGenerator
         {
             string currentDir = Path.GetDirectoryName(_context.JsonFilePath) ?? string.Empty;
             string fullRefPath = Path.GetFullPath(Path.Combine(currentDir, refPath));
-            string definitionsDir = _configuration.Schema.DefinitionsDir;
+            string definitionsDir = _configuration.Data.DefinitionsDir;
 
             string relativePath = Path.GetRelativePath(definitionsDir, fullRefPath);
             string relativeDir = Path.GetDirectoryName(relativePath)?.ToPascalCase() ?? string.Empty;
 
             if (string.IsNullOrEmpty(relativeDir))
-                return _configuration.Schema.Namespace;
+                return _configuration.Data.Namespace;
 
-            return $"{_configuration.Schema.Namespace}.{relativeDir}";
+            return $"{_configuration.Data.Namespace}.{relativeDir}";
         }
         catch
         {

@@ -15,7 +15,7 @@ internal class Program
                           A tool for generating C# API clients and Domain Data models classes from OSDU Api & Domain Data OpenApi specification files (*.json)
                           
                           - API definitions are used to generate strongly-typed api clients with related request/response model classes,
-                          - Schema definitions are used to generate strongly-typed Domain data model classes
+                          - Data definitions are used to generate strongly-typed Domain data model classes
                           
                           The output will be placed in the Osdu.Client project.
                           ========================================================================================================================================
