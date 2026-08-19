@@ -9,8 +9,6 @@ public class AppConfiguration
 
     public ApiConfiguration Api { get; init; }
 
-    public ExtensionConfiguration Extension { get; init; }
-
     public DataConfiguration Data { get; init; }
 
     public void ResolvePaths()
@@ -23,8 +21,6 @@ public class AppConfiguration
 
         Api.DefinitionsDir = Path.Combine(appDir, Api.DefinitionsDir);
         Api.OutputDir = Path.Combine(OutputBaseDir, Api.OutputDir);
-
-        Extension.OutputDir = Path.Combine(OutputBaseDir, Extension.OutputDir);
 
         Data.DefinitionsDir = Path.Combine(appDir, Data.DefinitionsDir);
         Data.OutputDir = Path.Combine(OutputBaseDir, Data.OutputDir);
@@ -49,13 +45,6 @@ public class DataConfiguration
 {
     public required string DefinitionsDir { get; set; }
 
-    public required string OutputDir { get; set; }
-
-    public required string Namespace { get; set; }
-}
-
-public class ExtensionConfiguration
-{
     public required string OutputDir { get; set; }
 
     public required string Namespace { get; set; }

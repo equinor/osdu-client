@@ -1,5 +1,6 @@
 using System.Linq.Expressions;
 using Osdu.Client.Apis.Search;
+using Osdu.Client.Extensions.Extensions;
 
 namespace Osdu.Client.Extensions.Querying;
 

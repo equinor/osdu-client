@@ -29,7 +29,7 @@ using Osdu.Client.Apis.Storage;
 using Osdu.Client.Apis.Unit;
 using Osdu.Client.Apis.WellboreDdms;
 
-namespace Osdu.Client.Extensions;
+namespace Osdu.Client.Apis;
 
 /// <summary>
 /// Extension methods for registering OSDU API clients with dependency injection.

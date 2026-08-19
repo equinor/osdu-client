@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Osdu.Client.Extensions\Osdu.Client.Extensions.csproj" />
     <ProjectReference Include="..\Osdu.Client\Osdu.Client.csproj" />
   </ItemGroup>
 

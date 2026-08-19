@@ -1,9 +1,9 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Osdu.Client.Apis;
 using Osdu.Client.Authentication;
 using Osdu.Client.Data.ReferenceData;
 using Osdu.Client.ExampleApp.Examples;
-using Osdu.Client.Extensions;
 using Osdu.Client.Extensions.Caching;
 using Osdu.Client.Extensions.Querying;
 using System.Reflection;

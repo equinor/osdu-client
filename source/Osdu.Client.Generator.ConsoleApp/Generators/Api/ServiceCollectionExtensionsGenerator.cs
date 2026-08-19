@@ -23,8 +23,7 @@ public class ServiceCollectionExtensionsGenerator
     /// <param name="apiClientNames">List of PascalCase API client names (e.g., "Dataset", "Search", "Storage").</param>
     public void Generate(IReadOnlyList<string> apiClientNames)
     {
-        string outputDir = _configuration.Extension.OutputDir;
-        string extensionNamespace = _configuration.Extension.Namespace;
+        string outputDir = _configuration.Api.OutputDir;
         string apiBaseNamespace = _configuration.Api.Namespace;
 
         Directory.CreateDirectory(outputDir);
@@ -40,7 +39,7 @@ public class ServiceCollectionExtensionsGenerator
         }
 
         sb.AppendLine();
-        sb.AppendLine($"namespace {extensionNamespace};");
+        sb.AppendLine($"namespace {apiBaseNamespace};");
         sb.AppendLine();
         sb.AppendLine("""
                       /// <summary>
