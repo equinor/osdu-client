@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="CodeGenerator - Copy.cs" />
+    <Compile Remove="Generators\ApiGenerator.cs" />
+    <Compile Remove="Generators\Api\ObjectExtensionsGenerator.cs" />
+    <Compile Remove="Generators\Api\OsduApiExceptionGenerator.cs" />
+    <Compile Remove="Generators\SchemaGenerator - Copy %282%29.cs" />
+    <Compile Remove="Generators\SchemaGenerator - Copy %283%29.cs" />
+    <Compile Remove="Generators\SchemaGenerator - Copy.cs" />
+    <Compile Remove="Generators\SchemaGenerator.cs" />
+    <Compile Remove="Generators\Schema\ConvertersGenerator.cs" />
+    <Compile Remove="Program - Copy.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="appsettings.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.10" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.10" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.10" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.10" />
+    <PackageReference Include="Microsoft.OpenApi" Version="3.9.0" />
+    <PackageReference Include="Serilog.Extensions.Hosting" Version="10.0.0" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="10.0.1" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="6.1.1" />
+    <PackageReference Include="Serilog.Sinks.File" Version="7.0.0" />
+  </ItemGroup>
+
+</Project>

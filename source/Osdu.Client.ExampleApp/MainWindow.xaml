@@ -1,0 +1,30 @@
+<Window x:Class="Osdu.Client.ExampleApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Osdu.Client.ExampleApp"
+        mc:Ignorable="d"
+        Title="Osdu Example Application" Height="450" Width="800">
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <TextBox x:Name="KindTextBox" Width="400" VerticalContentAlignment="Center"
+                     Text="osdu:wks:master-data--Wellbore:1.3.0" Margin="0,0,8,0"/>
+            <Button x:Name="SearchButton" Content="Search" Padding="16,6" Click="SearchButton_Click"/>
+        </StackPanel>
+
+        <TextBlock x:Name="StatusText" Grid.Row="1" Margin="0,8" Foreground="Gray"/>
+
+        <TextBox x:Name="ResultsTextBox" Grid.Row="2" Margin="0,8,0,0"
+                 IsReadOnly="True" VerticalScrollBarVisibility="Auto"
+                 HorizontalScrollBarVisibility="Auto" TextWrapping="Wrap"
+                 FontFamily="Consolas" FontSize="12"
+                 AcceptsReturn="True"/>
+    </Grid>
+</Window>

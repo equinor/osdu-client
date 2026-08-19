@@ -1,0 +1,160 @@
+<UserControl x:Class="Osdu.Client.ExampleApp.RecordBrowserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignWidth="1400" d:DesignHeight="850">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="280" MinWidth="200"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="300" MinWidth="200"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Sidebar: Kind List -->
+        <Border x:Name="SidebarBorder" Grid.Column="0" BorderThickness="0,0,1,0">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Top" Margin="14,14,14,8">
+                    <TextBlock x:Name="SidebarTitle" Text="📂 OSDU Kinds" FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/>
+                    <TextBox x:Name="KindFilterBox" Margin="0,10,0,0" Padding="8,6"
+                             FontSize="12" BorderThickness="1"
+                             TextChanged="KindFilter_TextChanged">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="Tag" Value="🔍 Filter kinds..."/>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                </StackPanel>
+
+                <ListBox x:Name="KindListBox" BorderThickness="0" Padding="4"
+                         SelectionChanged="KindListBox_SelectionChanged"
+                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
+            </DockPanel>
+        </Border>
+
+        <GridSplitter Grid.Column="1" Width="3" HorizontalAlignment="Center"
+                      VerticalAlignment="Stretch" Background="#DADCE6"/>
+
+        <!-- Middle: Records List -->
+        <Border x:Name="RecordsPanel" Grid.Column="2" BorderThickness="0,0,1,0">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Top" Margin="12,12,12,8">
+                    <TextBlock x:Name="RecordsPanelTitle" Text="📋 Records" FontSize="14" FontWeight="SemiBold"/>
+                    <TextBlock x:Name="StatusText" Text="Select a kind to browse records" FontSize="11" Margin="0,4,0,0"/>
+
+                    <TextBlock x:Name="RecordQueryLabel" Text="Lucene query (e.g. data.WellName:&quot;Aker&quot;)" FontSize="9.5" Margin="0,8,0,3"/>
+                    <DockPanel Margin="0,0,0,0">
+                        <Button x:Name="RecordFilterClearButton" DockPanel.Dock="Right" Content="✕"
+                                Click="RecordFilterClear_Click" Padding="6,4" Margin="4,0,0,0"
+                                BorderThickness="0" FontSize="11" FontWeight="Bold" Cursor="Hand"
+                                VerticalAlignment="Center"/>
+                        <Button x:Name="RecordFilterApplyButton" DockPanel.Dock="Right" Content="🔍"
+                                Click="RecordFilterApply_Click" Padding="8,4" Margin="4,0,0,0"
+                                BorderThickness="0" FontSize="11" FontWeight="SemiBold" Cursor="Hand"
+                                VerticalAlignment="Center"/>
+                        <TextBox x:Name="RecordQueryBox" Padding="6,5" FontSize="11.5" BorderThickness="1"
+                                 KeyDown="RecordQueryBox_KeyDown"
+                                 ToolTip="Lucene query syntax. Press Enter or click 🔍 to apply. Examples:&#x0a;  *&#x0a;  data.WellName:&quot;Aker BP&quot;&#x0a;  data.Country:Norway AND data.Status:Active"/>
+                    </DockPanel>
+
+                    <DockPanel Margin="0,8,0,0">
+                        <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                            <TextBlock x:Name="PageSizeLabel" Text="Page:" FontSize="11" VerticalAlignment="Center" Margin="0,0,4,0"/>
+                            <ComboBox x:Name="PageSizeCombo" Width="58" FontSize="11" SelectedIndex="1"
+                                      VerticalAlignment="Center"
+                                      SelectionChanged="PageSizeCombo_SelectionChanged">
+                                <ComboBoxItem Content="10"/>
+                                <ComboBoxItem Content="50"/>
+                                <ComboBoxItem Content="100"/>
+                                <ComboBoxItem Content="200"/>
+                                <ComboBoxItem Content="500"/>
+                                <ComboBoxItem Content="1000"/>
+                            </ComboBox>
+                        </StackPanel>
+                        <StackPanel x:Name="PaginationButtonsPanel" Orientation="Horizontal"
+                                    HorizontalAlignment="Right" Visibility="Collapsed">
+                            <Button x:Name="LoadMoreButton" Content="▼ More" Click="LoadMore_Click"
+                                    Padding="8,4" Margin="0,0,4,0" BorderThickness="0" FontSize="10.5"
+                                    FontWeight="SemiBold" Cursor="Hand" VerticalAlignment="Center"/>
+                            <Button x:Name="ShowAllButton" Content="⤓ All" Click="ShowAll_Click"
+                                    Padding="8,4" BorderThickness="0" FontSize="10.5"
+                                    FontWeight="SemiBold" Cursor="Hand" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </DockPanel>
+
+                    <Button x:Name="DeleteSelectedButton"
+                            Content="🗑 Delete" Click="DeleteSelected_Click"
+                            Visibility="Collapsed" IsEnabled="False"
+                            Padding="8,5" Margin="0,6,0,0" BorderThickness="0"
+                            FontSize="11" FontWeight="SemiBold" Cursor="Hand"
+                            HorizontalAlignment="Left"/>
+
+                    <TextBlock x:Name="PaginationStatusText" FontSize="10" Margin="0,4,0,0"
+                               Visibility="Collapsed"/>
+                </StackPanel>
+
+                <ListBox x:Name="RecordsListBox" BorderThickness="0" Padding="4"
+                         SelectionMode="Extended"
+                         SelectionChanged="RecordsListBox_SelectionChanged"
+                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
+            </DockPanel>
+        </Border>
+
+        <GridSplitter Grid.Column="3" Width="3" HorizontalAlignment="Center"
+                      VerticalAlignment="Stretch" Background="#DADCE6"/>
+
+        <!-- Right: Record Detail with Tabs -->
+        <Border x:Name="DetailBorder" Grid.Column="4">
+            <DockPanel Margin="12">
+                <TextBlock x:Name="DetailTitle" DockPanel.Dock="Top" Text="📄 Record Detail"
+                           FontSize="14" FontWeight="SemiBold" Margin="0,0,0,8"/>
+
+                <DockPanel DockPanel.Dock="Top" Margin="0,0,0,8">
+                    <StackPanel x:Name="DetailTabBar" Orientation="Horizontal" DockPanel.Dock="Left">
+                        <Button x:Name="TabJsonButton" Content="📝 Raw JSON" Click="TabJson_Click"
+                                Padding="10,6" Margin="0,0,6,0" BorderThickness="0" FontSize="11.5"
+                                FontWeight="SemiBold" Cursor="Hand"/>
+                        <Button x:Name="TabDataGridButton" Content="📊 DataGrid" Click="TabDataGrid_Click"
+                                Padding="10,6" Margin="0,0,6,0" BorderThickness="0" FontSize="11.5"
+                                FontWeight="SemiBold" Cursor="Hand"/>
+                        <Button x:Name="TabTreeButton" Content="🌳 Tree" Click="TabTree_Click"
+                                Padding="10,6" Margin="0,0,6,0" BorderThickness="0" FontSize="11.5"
+                                FontWeight="SemiBold" Cursor="Hand"/>
+                    </StackPanel>
+
+                    <StackPanel x:Name="TreeOptionsPanel" Orientation="Horizontal"
+                                HorizontalAlignment="Right" VerticalAlignment="Center"
+                                Visibility="Collapsed">
+                        <CheckBox x:Name="ShowNullsCheckBox" VerticalAlignment="Center"
+                                  IsChecked="False" Click="ShowNullsCheckBox_Click"/>
+                        <TextBlock x:Name="ShowNullsLabel" Text="Show nulls" FontSize="11"
+                                   VerticalAlignment="Center" Margin="4,0,0,0"/>
+                    </StackPanel>
+                </DockPanel>
+
+                <Grid>
+                    <TextBox x:Name="RecordJsonBox" IsReadOnly="True" AcceptsReturn="True"
+                             VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
+                             FontFamily="Cascadia Code, Consolas, Courier New" FontSize="12"
+                             TextWrapping="Wrap" BorderThickness="1" Padding="10"/>
+
+                    <DataGrid x:Name="RecordDataGrid" Visibility="Collapsed"
+                              AutoGenerateColumns="True" IsReadOnly="True"
+                              CanUserSortColumns="True" CanUserReorderColumns="True"
+                              HeadersVisibility="Column" GridLinesVisibility="Horizontal"
+                              BorderThickness="1" FontSize="11.5"
+                              VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"/>
+
+                    <TreeView x:Name="RecordTreeView" Visibility="Collapsed"
+                              BorderThickness="1" Padding="6"
+                              FontFamily="Cascadia Code, Consolas, Courier New" FontSize="12"/>
+                </Grid>
+            </DockPanel>
+        </Border>
+    </Grid>
+</UserControl>

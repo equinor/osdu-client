@@ -1,0 +1,28 @@
+# .NET build artifacts
+bin/
+obj/
+*.user
+
+# NuGet
+*.nupkg
+*.snupkg
+
+# Generated client code (re-run generate_all.py to regenerate)
+src/OsduCsharpClient/Generated/
+
+# Temporary files created during generation
+openapi_specs/*.temp.json
+
+# Secrets and local config
+.env
+.msal_token_cache.bin
+appsettings.local.json
+
+# IDE
+.vs/
+.idea/
+*.suo
+*.DS_Store
+
+# Local AI-assistant context (not part of the published repo)
+.github/copilot-instructions.md

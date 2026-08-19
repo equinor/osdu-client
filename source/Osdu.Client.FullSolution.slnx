@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="Osdu.Client.ExampleApp/Osdu.Client.ExampleApp.csproj" Id="99c53f5f-849a-44cb-bf58-139a2cc09f53" />
+  <Project Path="Osdu.Client.Extensions/Osdu.Client.Extensions.csproj" Id="60bd28d6-5667-4880-9e4e-977ded10ce78" />
+  <Project Path="Osdu.Client.Generator.ConsoleApp/Osdu.Client.Generator.ConsoleApp.csproj" Id="ff36f7ee-3149-4682-a194-471e4e41314f" />
+  <Project Path="Osdu.Client.Generator.Tests/Osdu.Client.Generator.Tests.csproj" Id="0f9909eb-9c99-4246-ae71-a51db3c314d6" />
+  <Project Path="Osdu.Client/Osdu.Client.csproj" Id="aae144ff-35fd-4a5e-927f-a93ae2f8bebb" />
+</Solution>
