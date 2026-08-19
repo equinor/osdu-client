@@ -25,7 +25,7 @@ public class Risk_1_1_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Risk:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class Risk_1_1_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class Risk_1_1_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class Risk_1_1_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class Risk_1_1_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class Risk_1_1_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public Risk_1_1_0_Data? Data { get; set; }
@@ -101,13 +101,13 @@ public class Risk_1_1_0_Data : AbstractCommonResources_1_0_0 // Also composes: A
     /// Alternative names, including historical, by which this master data is/has been known (it should include all the identifiers).
     /// </summary>
     [JsonPropertyName("NameAliases")]
-    public List<AbstractAliasNames_1_0_0> NameAliases { get; set; }
+    public List<AbstractAliasNames_1_0_0>? NameAliases { get; set; }
 
     /// <summary>
     /// List of geographic entities which provide context to the master data. This may include multiple types or multiple values of the same type.
     /// </summary>
     [JsonPropertyName("GeoContexts")]
-    public List<AbstractGeoContext_1_0_0> GeoContexts { get; set; }
+    public List<AbstractGeoContext_1_0_0>? GeoContexts { get; set; }
 
     [JsonPropertyName("SpatialLocation")]
     public AbstractSpatialLocation_1_1_0? SpatialLocation { get; set; }
@@ -116,52 +116,52 @@ public class Risk_1_1_0_Data : AbstractCommonResources_1_0_0 // Also composes: A
     /// This describes the reason that caused the creation of a new version of this master data.
     /// </summary>
     [JsonPropertyName("VersionCreationReason")]
-    public string VersionCreationReason { get; set; }
+    public string? VersionCreationReason { get; set; }
 
     /// <summary>
     /// DEPRECATED: (in favor of more nuanced TechnicalAssurances[] array) Describes a master-data record's overall suitability for general business consumption based on data quality. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TechnicalAssuranceType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TechnicalAssuranceTypeID")]
-    public string TechnicalAssuranceTypeID { get; set; }
+    public string? TechnicalAssuranceTypeID { get; set; }
 
     /// <summary>
     /// Describes a record's overall suitability for general business consumption in context of one or more workflows/personas based on data quality and reviewer's decisions. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [JsonPropertyName("TechnicalAssurances")]
-    public List<AbstractTechnicalAssurance_1_2_0> TechnicalAssurances { get; set; }
+    public List<AbstractTechnicalAssurance_1_2_0>? TechnicalAssurances { get; set; }
 
     /// <summary>
     /// A textual description of the steps to prevent this risk
     /// </summary>
     [JsonPropertyName("Preventions")]
-    public List<Risk_1_1_0_Data_Preventions> Preventions { get; set; }
+    public List<Risk_1_1_0_Data_Preventions>? Preventions { get; set; }
 
     /// <summary>
     /// A textual description of the cause of this risk
     /// </summary>
     [JsonPropertyName("Cause")]
-    public string Cause { get; set; }
+    public string? Cause { get; set; }
 
     /// <summary>
     /// A textual description of the consequence of this risk occurring
     /// </summary>
     [JsonPropertyName("Consequence")]
-    public string Consequence { get; set; }
+    public string? Consequence { get; set; }
 
     /// <summary>
     /// Reference to the name of the category of the loss - equivalent to the "ConsequenceCategory" as defined in Bow Tie.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-RiskConsequenceCategory:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ConsequenceCategoryID")]
-    public string ConsequenceCategoryID { get; set; }
+    public string? ConsequenceCategoryID { get; set; }
 
     /// <summary>
     /// References the consequence sub-category of the risk. Possible effects arising were a risk event to occur.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-RiskConsequenceSubCategory:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ConsequenceSubCategoryID")]
-    public string ConsequenceSubCategoryID { get; set; }
+    public string? ConsequenceSubCategoryID { get; set; }
 
     /// <summary>
     /// Severity Level of the Risk.
@@ -181,7 +181,7 @@ public class Risk_1_1_0_Data : AbstractCommonResources_1_0_0 // Also composes: A
     /// Array of identifiers from the risk to related objects or documents (such as BHA, Mud design, Activity plans...)
     /// </summary>
     [JsonPropertyName("RiskAssociatedObjectIDs")]
-    public List<string> RiskAssociatedObjectIDs { get; set; }
+    public List<string>? RiskAssociatedObjectIDs { get; set; }
 
     /// <summary>
     /// Date a resource is formed outside of OSDU before loading
@@ -225,90 +225,90 @@ public class Risk_1_1_0_Data : AbstractCommonResources_1_0_0 // Also composes: A
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-RiskHierarchyLevel:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("RiskHierarchyLevelID")]
-    public string RiskHierarchyLevelID { get; set; }
+    public string? RiskHierarchyLevelID { get; set; }
 
     /// <summary>
     /// General category of the described risk such as "Reservoir", "Overburden", "Life of Well", "Drilling", "Completion" or "Opportunity"
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-RiskCategory:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("RiskCategoryID")]
-    public string RiskCategoryID { get; set; }
+    public string? RiskCategoryID { get; set; }
 
     /// <summary>
     /// Detailed category of the described risk such as "BOP", "Casing", "Cementing", "Riserless"
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-RiskSubCategory:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("RiskSubCategoryID")]
-    public string RiskSubCategoryID { get; set; }
+    public string? RiskSubCategoryID { get; set; }
 
     /// <summary>
     /// Describes the "discipline" that may be affected by the risk
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-RiskDiscipline:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("RiskDisciplineID")]
-    public string RiskDisciplineID { get; set; }
+    public string? RiskDisciplineID { get; set; }
 
     /// <summary>
     /// Describes the measure or measures that may be applied to the risk to mitigate its consequences
     /// </summary>
     [JsonPropertyName("Mitigations")]
-    public List<Risk_1_1_0_Data_Mitigations> Mitigations { get; set; }
+    public List<Risk_1_1_0_Data_Mitigations>? Mitigations { get; set; }
 
     /// <summary>
     /// The common or preferred name for a risk
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// Description of the risk
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// Short description of the risk
     /// </summary>
     [JsonPropertyName("Summary")]
-    public string Summary { get; set; }
+    public string? Summary { get; set; }
 
     /// <summary>
     /// Date and time that activities started.
     /// </summary>
     [JsonPropertyName("EffectiveDateTime")]
-    public string EffectiveDateTime { get; set; }
+    public string? EffectiveDateTime { get; set; }
 
     /// <summary>
     /// Date and time that activities were completed.
     /// </summary>
     [JsonPropertyName("TerminationDateTime")]
-    public string TerminationDateTime { get; set; }
+    public string? TerminationDateTime { get; set; }
 
     /// <summary>
     /// The type of risk.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-RiskType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TypeID")]
-    public string TypeID { get; set; }
+    public string? TypeID { get; set; }
 
     /// <summary>
     /// Describes the entity that may be affected by the risk
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("AffectedPersonnel")]
-    public string AffectedPersonnel { get; set; }
+    public string? AffectedPersonnel { get; set; }
 
     /// <summary>
     /// Describes the responsibles (person/role/entity) for managing the risk
     /// </summary>
     [JsonPropertyName("RiskResponsibles")]
-    public List<AbstractContact_1_1_0> RiskResponsibles { get; set; }
+    public List<AbstractContact_1_1_0>? RiskResponsibles { get; set; }
 
     /// <summary>
     /// Custom string to further extend the risk categorization
     /// </summary>
     [JsonPropertyName("ExtendedRiskCategory")]
-    public string ExtendedRiskCategory { get; set; }
+    public string? ExtendedRiskCategory { get; set; }
 
     /// <summary>
     /// Assumes PREVENTION AND MITIGATION barriers are in place to manage the risk event
@@ -334,14 +334,14 @@ public class Risk_1_1_0_Data : AbstractCommonResources_1_0_0 // Also composes: A
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-PersistedCollection:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("RelatedRiskSetID")]
-    public string RelatedRiskSetID { get; set; }
+    public string? RelatedRiskSetID { get; set; }
 
     /// <summary>
     /// Identifier of the planned Wellbore
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Wellbore:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellboreID")]
-    public string WellboreID { get; set; }
+    public string? WellboreID { get; set; }
 
     /// <summary>
     /// start depth of the risk interval. Depth relative to Planned wellbore ZDP. Navigate via WellboreID to the side-car WellPlanningWellbore, which holds the depth reference in data.VerticalMeasurement.
@@ -370,14 +370,14 @@ public class Risk_1_1_0_Data_Preventions
     /// </summary>
     [Required]
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public required string Name { get; set; }
 
     /// <summary>
     /// General description of the response
     /// </summary>
     [Required]
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public required string Description { get; set; }
 
     /// <summary>
     /// Describes the status of the action such as (progress, done, canceled)
@@ -385,14 +385,14 @@ public class Risk_1_1_0_Data_Preventions
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-RiskResponseStatus:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("Status")]
-    public string Status { get; set; }
+    public required string Status { get; set; }
 
     /// <summary>
     /// List of the staff responsible to proceed with the response
     /// </summary>
     [Required]
     [JsonPropertyName("Responsibles")]
-    public List<AbstractContact_1_1_0> Responsibles { get; set; }
+    public required List<AbstractContact_1_1_0> Responsibles { get; set; }
 
     /// <summary>
     /// Date the response must be completed
@@ -418,14 +418,14 @@ public class Risk_1_1_0_Data_Mitigations
     /// </summary>
     [Required]
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public required string Name { get; set; }
 
     /// <summary>
     /// General description of the response
     /// </summary>
     [Required]
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public required string Description { get; set; }
 
     /// <summary>
     /// Describes the status of the action such as (progress, done, canceled)
@@ -433,14 +433,14 @@ public class Risk_1_1_0_Data_Mitigations
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-RiskResponseStatus:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("Status")]
-    public string Status { get; set; }
+    public required string Status { get; set; }
 
     /// <summary>
     /// List of the staff responsible to proceed with the response
     /// </summary>
     [Required]
     [JsonPropertyName("Responsibles")]
-    public List<AbstractContact_1_1_0> Responsibles { get; set; }
+    public required List<AbstractContact_1_1_0> Responsibles { get; set; }
 
     /// <summary>
     /// Date the response must be completed

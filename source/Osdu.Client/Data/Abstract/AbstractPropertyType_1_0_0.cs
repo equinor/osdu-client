@@ -24,12 +24,12 @@ public class AbstractPropertyType_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-PropertyType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("PropertyTypeID")]
-    public string PropertyTypeID { get; set; }
+    public string? PropertyTypeID { get; set; }
 
     /// <summary>
     /// The name of the PropertyType, de-normalized, derived from the record referenced in PropertyTypeID.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
 }

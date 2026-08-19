@@ -25,7 +25,7 @@ public class Sample_3_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Sample:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class Sample_3_0_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class Sample_3_0_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class Sample_3_0_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class Sample_3_0_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class Sample_3_0_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public Sample_3_0_0_Data? Data { get; set; }
@@ -101,13 +101,13 @@ public class Sample_3_0_0_Data : AbstractCommonResources_1_0_0 // Also composes:
     /// Alternative names, including historical, by which this master data is/has been known (it should include all the identifiers).
     /// </summary>
     [JsonPropertyName("NameAliases")]
-    public List<AbstractAliasNames_1_0_0> NameAliases { get; set; }
+    public List<AbstractAliasNames_1_0_0>? NameAliases { get; set; }
 
     /// <summary>
     /// List of geographic entities which provide context to the master data. This may include multiple types or multiple values of the same type.
     /// </summary>
     [JsonPropertyName("GeoContexts")]
-    public List<AbstractGeoContext_1_0_0> GeoContexts { get; set; }
+    public List<AbstractGeoContext_1_0_0>? GeoContexts { get; set; }
 
     [JsonPropertyName("SpatialLocation")]
     public AbstractSpatialLocation_1_1_0? SpatialLocation { get; set; }
@@ -116,53 +116,53 @@ public class Sample_3_0_0_Data : AbstractCommonResources_1_0_0 // Also composes:
     /// This describes the reason that caused the creation of a new version of this master data.
     /// </summary>
     [JsonPropertyName("VersionCreationReason")]
-    public string VersionCreationReason { get; set; }
+    public string? VersionCreationReason { get; set; }
 
     /// <summary>
     /// DEPRECATED: (in favor of more nuanced TechnicalAssurances[] array) Describes a master-data record's overall suitability for general business consumption based on data quality. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TechnicalAssuranceType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TechnicalAssuranceTypeID")]
-    public string TechnicalAssuranceTypeID { get; set; }
+    public string? TechnicalAssuranceTypeID { get; set; }
 
     /// <summary>
     /// Describes a record's overall suitability for general business consumption in context of one or more workflows/personas based on data quality and reviewer's decisions. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [JsonPropertyName("TechnicalAssurances")]
-    public List<AbstractTechnicalAssurance_1_2_0> TechnicalAssurances { get; set; }
+    public List<AbstractTechnicalAssurance_1_2_0>? TechnicalAssurances { get; set; }
 
     /// <summary>
     /// Identifier from a Master Data Management System or other trusted source external to OSDU - stored here in order to allow for multi-system connection and synchronization. If used, the "Source" property in AbstractCommonResources schema should identify that source system. i.e. this item is optional.
     /// </summary>
     [JsonPropertyName("SampleIdentifier")]
-    public string SampleIdentifier { get; set; }
+    public string? SampleIdentifier { get; set; }
 
     /// <summary>
     /// This provides the name of the sample. If there are other names that need to be stored , leverage the Aliases available in the Abstract objects.
     /// </summary>
     [JsonPropertyName("SampleName")]
-    public string SampleName { get; set; }
+    public string? SampleName { get; set; }
 
     /// <summary>
     /// This provides information about the type of the origin of the sample. It can be used to determine if the sample was acquired from an original source location, result of recombination, subsampling or derived from some laboratory process.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-SampleOriginType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SampleOriginTypeID")]
-    public string SampleOriginTypeID { get; set; }
+    public string? SampleOriginTypeID { get; set; }
 
     /// <summary>
     /// The classification of the type of specimen/sample (e.g. whole core, cuttings, rock chip, oil extract, headspace gas), which is identified for the purpose of analysing the specimen or a subsample of it. In partnership with other reference data, the sample type may indicate the general substance type, size, shape, general source, and in certain cases, the retrieval method. In rare cases, the special purpose of a specimen might contribute to its sample type classification.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:(reference-data\-\-SampleType|reference-data\-\-WellFluidType|reference-data\-\-StimJobFluidType):[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SampleTypeID")]
-    public string SampleTypeID { get; set; }
+    public string? SampleTypeID { get; set; }
 
     /// <summary>
     /// This is an OSDU Record ID referencing a document that contains instructions on how the sample should be disposed.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-Document:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SampleDisposalInstructionID")]
-    public string SampleDisposalInstructionID { get; set; }
+    public string? SampleDisposalInstructionID { get; set; }
 
     /// <summary>
     /// This captures the acquisition parameters obtained during  the sample acquisition event associated with this sample. Note that this attribute should only be used when associating the sample with an acquisition event from its original source and not for sub-sampling or derivative sources.
@@ -177,7 +177,7 @@ public class Sample_3_0_0_Data : AbstractCommonResources_1_0_0 // Also composes:
     /// An array containing operational or quality comments about the sample.
     /// </summary>
     [JsonPropertyName("Remarks")]
-    public List<AbstractRemark_1_0_0> Remarks { get; set; }
+    public List<AbstractRemark_1_0_0>? Remarks { get; set; }
 
     /// <summary>
     /// For a sample that has been recombined from separate samples, e.g. liquid sample and vapor sample, this object records the specified: recombination conditions (pressure and temperature), recombination ratio, the saturation pressure and  target recombined sample composition, whichever of these are appropriate for this recombination effort.
@@ -189,13 +189,13 @@ public class Sample_3_0_0_Data : AbstractCommonResources_1_0_0 // Also composes:
     /// This attribute stores the array of OSDU record IDs for the parent samples used in creating this sample. Creation of this sample could be achieved through through extractions, sub sampling, derived sampling or recombination.
     /// </summary>
     [JsonPropertyName("ParentSampleIDs")]
-    public List<string> ParentSampleIDs { get; set; }
+    public List<string>? ParentSampleIDs { get; set; }
 
     /// <summary>
     /// This captures information about the preparation process executed after the sample acquisition event.
     /// </summary>
     [JsonPropertyName("SamplePreparation")]
-    public List<Sample_3_0_0_Data_SamplePreparation> SamplePreparation { get; set; }
+    public List<Sample_3_0_0_Data_SamplePreparation>? SamplePreparation { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
@@ -212,7 +212,7 @@ public class Sample_3_0_0_Data_SampleAcquisition
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-SampleAcquisitionJob:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SampleAcquisitionJobID")]
-    public string SampleAcquisitionJobID { get; set; }
+    public string? SampleAcquisitionJobID { get; set; }
 
     /// <summary>
     /// This attribute provides information about the acquisition parameters and process used in acquiring the target sample. Other information about the sample itself can be found in the Sample object.
@@ -225,14 +225,14 @@ public class Sample_3_0_0_Data_SampleAcquisition
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-SampleAcquisitionType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SampleAcquisitionTypeID")]
-    public string SampleAcquisitionTypeID { get; set; }
+    public string? SampleAcquisitionTypeID { get; set; }
 
     /// <summary>
     /// This is the OSDU Record ID for the original sample container used in the acquired sample. This is only for the initial sample acquisition. Only populate this for the original sample.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-SampleContainer:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SampleAcquisitionContainerID")]
-    public string SampleAcquisitionContainerID { get; set; }
+    public string? SampleAcquisitionContainerID { get; set; }
 
     /// <summary>
     /// The start date and time of the acquisition event.
@@ -252,21 +252,21 @@ public class Sample_3_0_0_Data_SampleAcquisition
     /// A remark object, pairing a remark text with a source, e.g. an author, and a date, which is typically included in an array.
     /// </summary>
     [JsonPropertyName("Remarks")]
-    public List<AbstractRemark_1_0_0> Remarks { get; set; }
+    public List<AbstractRemark_1_0_0>? Remarks { get; set; }
 
     /// <summary>
     /// The company that managed the collection of the sample from its original / source environment.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("CollectionServiceCompanyID")]
-    public string CollectionServiceCompanyID { get; set; }
+    public string? CollectionServiceCompanyID { get; set; }
 
     /// <summary>
     /// The company that handled the sample on site after the it was collected/extracted. For example, the company that applied field preservation methods, and prepared the sample for shipping.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("HandlingServiceCompanyID")]
-    public string HandlingServiceCompanyID { get; set; }
+    public string? HandlingServiceCompanyID { get; set; }
 
 }
 
@@ -300,13 +300,13 @@ public class Sample_3_0_0_Data_SampleAcquisition_SampleAcquisitionDetail
     /// ToolKind=PRODML:2.1:FluidSampleAcquisitionJob.FluidSampleAcquisition&lt;DownholeSampleAcquisition&gt;[].Item.ToolKind.
     /// </summary>
     [JsonPropertyName("ToolKind")]
-    public string ToolKind { get; set; }
+    public string? ToolKind { get; set; }
 
     /// <summary>
     /// This refers to the different runs performed during the sample acquisition event and is typically identified using integers. It mostly applies to acquisition events acquired from the subsurface like downhole, coring, etc. The property is always used except with WellheadSampleAcquisition, SeparatorSampleAcquisition, FormationTestSampleAcquisition, FacilitySampleAcquisition
     /// </summary>
     [JsonPropertyName("RunNumber")]
-    public string RunNumber { get; set; }
+    public string? RunNumber { get; set; }
 
     /// <summary>
     /// This refers to the OSDU record ID of the wellbore object from which the sample was acquired. It typically applies in scenarios where the acquisition event only pertains to a single wellbore object. The property is always used except with FacilitySampleAcquisition, Outcrop, SeparatorSampleAcquisition
@@ -315,7 +315,7 @@ public class Sample_3_0_0_Data_SampleAcquisition_SampleAcquisitionDetail
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Wellbore:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellboreID")]
-    public string WellboreID { get; set; }
+    public string? WellboreID { get; set; }
 
     [JsonPropertyName("WellheadOperatingCondition")]
     public AbstractPTCondition_1_0_0? WellheadOperatingCondition { get; set; }
@@ -326,7 +326,7 @@ public class Sample_3_0_0_Data_SampleAcquisition_SampleAcquisitionDetail
     /// WellboreOpeningIDs[0]=PRODML:2.1:FluidSampleAcquisitionJob.FluidSampleAcquisition&lt;WellheadSampleAcquisition | SeparatorSampleAcquisition&gt;[].Item.WellboreCompletion
     /// </summary>
     [JsonPropertyName("ContributingWellboreOpeningIDs")]
-    public List<string> ContributingWellboreOpeningIDs { get; set; }
+    public List<string>? ContributingWellboreOpeningIDs { get; set; }
 
     [JsonPropertyName("SeparatorOperatingCondition")]
     public AbstractPTCondition_1_0_0? SeparatorOperatingCondition { get; set; }
@@ -399,7 +399,7 @@ public class Sample_3_0_0_Data_SampleAcquisition_SampleAcquisitionDetail
     /// SampleCarrierSlotName=PRODML:2.1:FluidSampleAcquisitionJob.FluidSampleAcquisition&lt;FormationTestSampleAcquisition&gt;[].Item.SampleCarrierSlotName
     /// </summary>
     [JsonPropertyName("SampleCarrierSlotName")]
-    public string SampleCarrierSlotName { get; set; }
+    public string? SampleCarrierSlotName { get; set; }
 
     /// <summary>
     /// The name of the formation tester tool section that was used in acquiring the sample. The property is only used in conjunction with FormationTestSampleAcquisition, ConventionalCore, Sidewall Core, Cuttings
@@ -407,7 +407,7 @@ public class Sample_3_0_0_Data_SampleAcquisition_SampleAcquisitionDetail
     /// ToolSectionName=PRODML:2.1:FluidSampleAcquisitionJob.FluidSampleAcquisition&lt;FormationTestSampleAcquisition&gt;[].Item.ToolSectionName
     /// </summary>
     [JsonPropertyName("ToolSectionName")]
-    public string ToolSectionName { get; set; }
+    public string? ToolSectionName { get; set; }
 
     /// <summary>
     /// The pressure used in charging the sample container. The property is only used in conjunction with FormationTestSampleAcquisition
@@ -424,7 +424,7 @@ public class Sample_3_0_0_Data_SampleAcquisition_SampleAcquisitionDetail
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WellProductType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("GrossFluidKindID")]
-    public string GrossFluidKindID { get; set; }
+    public string? GrossFluidKindID { get; set; }
 
     [JsonPropertyName("FacilityEquipmentOperatingCondition")]
     public AbstractPTCondition_1_0_0? FacilityEquipmentOperatingCondition { get; set; }
@@ -434,7 +434,7 @@ public class Sample_3_0_0_Data_SampleAcquisition_SampleAcquisitionDetail
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:(master-data\-\-GenericFacility|master-data\-\-GenericSite):[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SiteID")]
-    public string SiteID { get; set; }
+    public string? SiteID { get; set; }
 
     /// <summary>
     /// Actual length of recovered sample, usually a core The property is only used in conjunction with ConventionalCore, Sidewall Core, Outcrop
@@ -447,7 +447,7 @@ public class Sample_3_0_0_Data_SampleAcquisition_SampleAcquisitionDetail
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CorePreservationType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("PreservationTypeID")]
-    public string PreservationTypeID { get; set; }
+    public string? PreservationTypeID { get; set; }
 
     /// <summary>
     /// Planned length of sample to be recovered, usually a core The property is only used in conjunction with ConventionalCore, Sidewall Core, Cuttings, Outcrop
@@ -471,35 +471,35 @@ public class Sample_3_0_0_Data_SampleAcquisition_SampleAcquisitionDetail
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-MudBaseType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("MudBaseTypeID")]
-    public string MudBaseTypeID { get; set; }
+    public string? MudBaseTypeID { get; set; }
 
     /// <summary>
     /// Identifies the type of tracer used during the sample acquisition event.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-MudTracerType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("MudTracerTypeID")]
-    public string MudTracerTypeID { get; set; }
+    public string? MudTracerTypeID { get; set; }
 
     /// <summary>
     /// Identifies the category of the tool type used to acquire the sample/specimen, such as rotary or percussive sidewall tooling, or the inner barrel type for conventional coring. Note that other relevant facets of tool identification are captured by other reference lists, such as core catcher type, inner sleeve material type, drill bit, and sample container.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-SampleAcquisitionToolFamily:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("AcquisitionToolFamilyID")]
-    public string AcquisitionToolFamilyID { get; set; }
+    public string? AcquisitionToolFamilyID { get; set; }
 
     /// <summary>
     /// Identifies the category of material of the cylindrical sleeve that lines the inside of the inner core barrel during coring operations.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ConventionalCoreInnerSleeveMaterial:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ConventionalCoreInnerSleeveMaterialID")]
-    public string ConventionalCoreInnerSleeveMaterialID { get; set; }
+    public string? ConventionalCoreInnerSleeveMaterialID { get; set; }
 
     /// <summary>
     /// Identifies the category of the core catcher used in core acquisition. A core catcher is a device located in the core barrel of drilling tools that securely retains the core sample during its extraction from the subsurface.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ConventionalCoreCatcherType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ConventionalCoreCatcherTypeID")]
-    public string ConventionalCoreCatcherTypeID { get; set; }
+    public string? ConventionalCoreCatcherTypeID { get; set; }
 
     /// <summary>
     /// Indicates whether the rock was cryogenically frozen when it was acquired. In this process, the drilling fluid is pushed aside from the coring zone, liquid nitrogen or similar cryogenic agent is injected through a specialized cryogenic coring tool, and then a core barrel retrieves the stabilized core sample.
@@ -529,13 +529,13 @@ public class Sample_3_0_0_Data_SampleAcquisition_SampleAcquisitionDetail_Samplin
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-SamplingPointType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SamplingPointTypeID")]
-    public string SamplingPointTypeID { get; set; }
+    public string? SamplingPointTypeID { get; set; }
 
     /// <summary>
     /// This is a description of the name of the  component or equipment used in capturing the sample. It can be used in storing the P &amp; ID of the equipment or its component as defined within the Organisations Facility SOR / Repository.
     /// </summary>
     [JsonPropertyName("SamplingPointName")]
-    public string SamplingPointName { get; set; }
+    public string? SamplingPointName { get; set; }
 
 }
 
@@ -546,7 +546,7 @@ public class Sample_3_0_0_Data_RecombinationSpecification
 {
     [Required]
     [JsonPropertyName("RecombinationCondition")]
-    public AbstractPTCondition_1_0_0 RecombinationCondition { get; set; }
+    public required AbstractPTCondition_1_0_0 RecombinationCondition { get; set; }
 
     /// <summary>
     /// The gas-oil ratio recorded for this sample recombination process as well as the volumetric reference conditions for both the oil and gas phases. This is typically required for fluid sample types.
@@ -564,20 +564,20 @@ public class Sample_3_0_0_Data_RecombinationSpecification
     /// This provides an array of components and their fraction contribution to the overall expected composition of the  sample generated by the recombination process. This is typically required for fluid sample types.
     /// </summary>
     [JsonPropertyName("TargetSampleComposition")]
-    public List<Sample_3_0_0_Data_RecombinationSpecification_TargetSampleComposition> TargetSampleComposition { get; set; }
+    public List<Sample_3_0_0_Data_RecombinationSpecification_TargetSampleComposition>? TargetSampleComposition { get; set; }
 
     /// <summary>
     /// Pertinent information about the sample recombination specification stored alongside the other attributes.
     /// </summary>
     [JsonPropertyName("Remarks")]
-    public List<AbstractRemark_1_0_0> Remarks { get; set; }
+    public List<AbstractRemark_1_0_0>? Remarks { get; set; }
 
     /// <summary>
     /// Object capturing the mixture and contributions from multiple samples.
     /// </summary>
     [Required]
     [JsonPropertyName("RecombinedSampleFraction")]
-    public List<Sample_3_0_0_Data_RecombinationSpecification_RecombinedSampleFraction> RecombinedSampleFraction { get; set; }
+    public required List<Sample_3_0_0_Data_RecombinationSpecification_RecombinedSampleFraction> RecombinedSampleFraction { get; set; }
 
 }
 
@@ -591,15 +591,15 @@ public class Sample_3_0_0_Data_RecombinationSpecification_RecombinationGasOilRat
     /// </summary>
     [Required]
     [JsonPropertyName("GasOilRatio")]
-    public double GasOilRatio { get; set; }
+    public required double GasOilRatio { get; set; }
 
     [Required]
     [JsonPropertyName("VolumeReferenceConditionGas")]
-    public AbstractPTCondition_1_0_0 VolumeReferenceConditionGas { get; set; }
+    public required AbstractPTCondition_1_0_0 VolumeReferenceConditionGas { get; set; }
 
     [Required]
     [JsonPropertyName("VolumeReferenceConditionOil")]
-    public AbstractPTCondition_1_0_0 VolumeReferenceConditionOil { get; set; }
+    public required AbstractPTCondition_1_0_0 VolumeReferenceConditionOil { get; set; }
 
 }
 
@@ -614,7 +614,7 @@ public class Sample_3_0_0_Data_RecombinationSpecification_TargetSampleCompositio
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-SampleCompositionComponent:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SampleCompositionComponentID")]
-    public string SampleCompositionComponentID { get; set; }
+    public required string SampleCompositionComponentID { get; set; }
 
     /// <summary>
     /// The volume fraction contribution of this component to the sample composition.
@@ -647,7 +647,7 @@ public class Sample_3_0_0_Data_RecombinationSpecification_RecombinedSampleFracti
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-SampleCompositionComponent:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SampleCompositionComponentID")]
-    public string SampleCompositionComponentID { get; set; }
+    public required string SampleCompositionComponentID { get; set; }
 
     /// <summary>
     /// The volume fraction contribution of this component to the sample composition.
@@ -679,14 +679,14 @@ public class Sample_3_0_0_Data_SamplePreparation
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-SamplePreparationType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SamplePreparationTypeID")]
-    public string SamplePreparationTypeID { get; set; }
+    public string? SamplePreparationTypeID { get; set; }
 
     /// <summary>
     /// Provide additional details on which industrial/lab method used to conduct the sample preparation
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-SamplePreparationMethod:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SamplePreparationMethodID")]
-    public string SamplePreparationMethodID { get; set; }
+    public string? SamplePreparationMethodID { get; set; }
 
     [JsonPropertyName("SamplePreparationCondition")]
     public AbstractPTCondition_1_0_0? SamplePreparationCondition { get; set; }
@@ -709,6 +709,6 @@ public class Sample_3_0_0_Data_SamplePreparation
     /// This captures other pertinent information regarding the sample preparation process.
     /// </summary>
     [JsonPropertyName("Remarks")]
-    public List<AbstractRemark_1_0_0> Remarks { get; set; }
+    public List<AbstractRemark_1_0_0>? Remarks { get; set; }
 
 }

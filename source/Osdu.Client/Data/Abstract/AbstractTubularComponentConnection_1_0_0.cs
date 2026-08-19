@@ -48,7 +48,7 @@ public class AbstractTubularComponentConnection_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TubularComponentConnectionType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ThreadTypeID")]
-    public string ThreadTypeID { get; set; }
+    public string? ThreadTypeID { get; set; }
 
     /// <summary>
     /// Thread size/diameter.
@@ -73,7 +73,7 @@ public class AbstractTubularComponentConnection_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TubularComponentCXNPosition:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("PositionID")]
-    public string PositionID { get; set; }
+    public string? PositionID { get; set; }
 
     /// <summary>
     /// Critical Cross Section Area (for bending stiffness ratio).

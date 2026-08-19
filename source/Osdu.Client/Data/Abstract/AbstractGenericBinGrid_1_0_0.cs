@@ -23,7 +23,7 @@ public class AbstractGenericBinGrid_1_0_0
     /// Name of bin grid
     /// </summary>
     [JsonPropertyName("BinGridName")]
-    public string BinGridName { get; set; }
+    public string? BinGridName { get; set; }
 
     [JsonPropertyName("ABCDBinGridSpatialLocation")]
     public AbstractSpatialLocation_1_1_0? ABCDBinGridSpatialLocation { get; set; }

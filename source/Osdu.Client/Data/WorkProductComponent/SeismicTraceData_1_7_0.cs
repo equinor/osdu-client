@@ -25,7 +25,7 @@ public class SeismicTraceData_1_7_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-SeismicTraceData:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class SeismicTraceData_1_7_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class SeismicTraceData_1_7_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class SeismicTraceData_1_7_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class SeismicTraceData_1_7_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class SeismicTraceData_1_7_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public SeismicTraceData_1_7_0_Data? Data { get; set; }
@@ -101,19 +101,19 @@ public class SeismicTraceData_1_7_0_Data : AbstractCommonResources_1_0_1 // Also
     /// The record id, which identifies this OSDU File or dataset resource.
     /// </summary>
     [JsonPropertyName("Datasets")]
-    public List<string> Datasets { get; set; }
+    public List<string>? Datasets { get; set; }
 
     /// <summary>
     /// An array of references to content in Domain Data Management Services represented by this work-product-component. The references are formed as URI following https://www.rfc-editor.org/rfc/rfc3986#page-16. This property is exclusively populated by DDMSs. If a work-product-component is represented in more than one DDMS, DDMSs are obliged to find the specific reference by inspecting the URI's authority values matching the DDMS id.
     /// </summary>
     [JsonPropertyName("DDMSDatasets")]
-    public List<string> DDMSDatasets { get; set; }
+    public List<string>? DDMSDatasets { get; set; }
 
     /// <summary>
     /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
     /// </summary>
     [JsonPropertyName("Artefacts")]
-    public List<SeismicTraceData_1_7_0_Data_Artefacts> Artefacts { get; set; }
+    public List<SeismicTraceData_1_7_0_Data_Artefacts>? Artefacts { get; set; }
 
     /// <summary>
     /// A flag that indicates if the work product component is undergoing an extended load.  It reflects the fact that the work product component is in an early stage and may be updated before finalization.
@@ -133,25 +133,25 @@ public class SeismicTraceData_1_7_0_Data : AbstractCommonResources_1_0_1 // Also
     /// Describes a record's overall suitability for general business consumption based on data quality. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [JsonPropertyName("TechnicalAssurances")]
-    public List<AbstractTechnicalAssurance_1_2_0> TechnicalAssurances { get; set; }
+    public List<AbstractTechnicalAssurance_1_2_0>? TechnicalAssurances { get; set; }
 
     /// <summary>
     /// Alternative names, including historical, by which this work-product-component is/has been known (it should include all the identifiers).
     /// </summary>
     [JsonPropertyName("NameAliases")]
-    public List<AbstractAliasNames_1_0_0> NameAliases { get; set; }
+    public List<AbstractAliasNames_1_0_0>? NameAliases { get; set; }
 
     /// <summary>
     /// Name
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// Description.  Summary of the work product component.  Not the same as Remark which captures thoughts of creator about the wpc.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// Date that a resource (work  product component here) is formed outside of OSDU before loading (e.g. publication date).
@@ -164,7 +164,7 @@ public class SeismicTraceData_1_7_0_Data : AbstractCommonResources_1_0_1 // Also
     /// Array of key words to identify the work product, especially to help in search.
     /// </summary>
     [JsonPropertyName("Tags")]
-    public List<string> Tags { get; set; }
+    public List<string>? Tags { get; set; }
 
     [JsonPropertyName("SpatialPoint")]
     public AbstractSpatialLocation_1_1_0? SpatialPoint { get; set; }
@@ -176,31 +176,31 @@ public class SeismicTraceData_1_7_0_Data : AbstractCommonResources_1_0_1 // Also
     /// List of geographic entities which provide context to the WPC.  This may include multiple types or multiple values of the same type.
     /// </summary>
     [JsonPropertyName("GeoContexts")]
-    public List<AbstractGeoContext_1_0_0> GeoContexts { get; set; }
+    public List<AbstractGeoContext_1_0_0>? GeoContexts { get; set; }
 
     /// <summary>
     /// Name of the person that first submitted the work product component to OSDU.
     /// </summary>
     [JsonPropertyName("SubmitterName")]
-    public string SubmitterName { get; set; }
+    public string? SubmitterName { get; set; }
 
     /// <summary>
     /// Array of business processes/workflows that the work product component has been through (ex. well planning, exploration).
     /// </summary>
     [JsonPropertyName("BusinessActivities")]
-    public List<string> BusinessActivities { get; set; }
+    public List<string>? BusinessActivities { get; set; }
 
     /// <summary>
     /// Array of Authors' names of the work product component.  Could be a person or company entity.
     /// </summary>
     [JsonPropertyName("AuthorIDs")]
-    public List<string> AuthorIDs { get; set; }
+    public List<string>? AuthorIDs { get; set; }
 
     /// <summary>
     /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
     /// </summary>
     [JsonPropertyName("LineageAssertions")]
-    public List<SeismicTraceData_1_7_0_Data_LineageAssertions> LineageAssertions { get; set; }
+    public List<SeismicTraceData_1_7_0_Data_LineageAssertions>? LineageAssertions { get; set; }
 
     [JsonPropertyName("LiveTraceOutline")]
     public AbstractSpatialLocation_1_1_0? LiveTraceOutline { get; set; }
@@ -210,137 +210,137 @@ public class SeismicTraceData_1_7_0_Data : AbstractCommonResources_1_0_1 // Also
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-SeismicBinGrid:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("BinGridID")]
-    public string BinGridID { get; set; }
+    public string? BinGridID { get; set; }
 
     /// <summary>
     /// Coordinate reference system of positions in trace header, which matches what is described in BinGrid but is repeated here for convenience and in case bin grid is not defined.  In case of conflict with Bin Grid, this value applies to the coordinates as written into CMPX, CMPY headers. Nevertheless, Bin Grid should be used for mapping purposes.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CoordinateReferenceSystem:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("HorizontalCRSID")]
-    public string HorizontalCRSID { get; set; }
+    public string? HorizontalCRSID { get; set; }
 
     /// <summary>
     /// Reference to Seismic Line Geometry for 2D seismic processing which describes the node positions of the processed bin centers.  These are indexed from the trace file using CMP (not trace number).
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-SeismicLineGeometry:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SeismicLineGeometryID")]
-    public string SeismicLineGeometryID { get; set; }
+    public string? SeismicLineGeometryID { get; set; }
 
     /// <summary>
     /// The SRN of a file within the WPC that shows the relationship between trace index and CMP number if the trace data file CMP header is unreliable (for 2D).
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:dataset\-\-[\w\-\.]+:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TraceRelationFileID")]
-    public string TraceRelationFileID { get; set; }
+    public string? TraceRelationFileID { get; set; }
 
     /// <summary>
     /// For most datasets, the acquisition project that generated the underlying field data.  For merges, probably absent (see processing project for set of acquisition projects used in processing this dataset).
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-SeismicAcquisitionSurvey:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("PrincipalAcquisitionProjectID")]
-    public string PrincipalAcquisitionProjectID { get; set; }
+    public string? PrincipalAcquisitionProjectID { get; set; }
 
     /// <summary>
     /// The processing project from which this trace dataset was produced.  Absent for field data.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-SeismicProcessingProject:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ProcessingProjectID")]
-    public string ProcessingProjectID { get; set; }
+    public string? ProcessingProjectID { get; set; }
 
     /// <summary>
     /// For a 3D volume (including linear subsets), the id of the Seismic3DInterpretationSet which can be considered the master for the area and of which this trace dataset is a privileged member.  It defines the set of trace datasets of a particular bin grid that form the best set for interpretation (not an acquisition survey).
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Seismic3DInterpretationSet:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("Preferred3DInterpretationSetID")]
-    public string Preferred3DInterpretationSetID { get; set; }
+    public string? Preferred3DInterpretationSetID { get; set; }
 
     /// <summary>
     /// For a 2D line section, SRN of the Seismic2DInterpretationSet which can be considered the master for the area and of which this trace dataset is a privileged member.  It defines the set of trace datasets of a particular cohesive set of 2D processing geometries in a survey area that form the best set for interpretation (not an acquisition survey).
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Seismic2DInterpretationSet:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("Preferred2DInterpretationSetID")]
-    public string Preferred2DInterpretationSetID { get; set; }
+    public string? Preferred2DInterpretationSetID { get; set; }
 
     /// <summary>
     /// The dimensionality of trace data sets (not as acquired but as in the dataset), such as 2D, 3D, 4D.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-SeismicTraceDataDimensionalityType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SeismicTraceDataDimensionalityTypeID")]
-    public string SeismicTraceDataDimensionalityTypeID { get; set; }
+    public string? SeismicTraceDataDimensionalityTypeID { get; set; }
 
     /// <summary>
     /// DEPRECATED: Use the "DomainType" property instead. ID of the nature of the vertical axis in the trace data set, usually Depth or Time.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-SeismicDomainType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SeismicDomainTypeID")]
-    public string SeismicDomainTypeID { get; set; }
+    public string? SeismicDomainTypeID { get; set; }
 
     /// <summary>
     /// 2D line name or survey name for the 2D group
     /// </summary>
     [JsonPropertyName("Seismic2DName")]
-    public string Seismic2DName { get; set; }
+    public string? Seismic2DName { get; set; }
 
     /// <summary>
     /// ID of the Seismic Migration Data Type
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-SeismicMigrationType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SeismicMigrationTypeID")]
-    public string SeismicMigrationTypeID { get; set; }
+    public string? SeismicMigrationTypeID { get; set; }
 
     /// <summary>
     /// ID of the Seismic Stacking Type
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-SeismicStackingType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SeismicStackingTypeID")]
-    public string SeismicStackingTypeID { get; set; }
+    public string? SeismicStackingTypeID { get; set; }
 
     /// <summary>
     /// ID of the Seismic Trace Data Type
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-SeismicAttributeType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SeismicAttributeTypeID")]
-    public string SeismicAttributeTypeID { get; set; }
+    public string? SeismicAttributeTypeID { get; set; }
 
     /// <summary>
     /// ID of the Seismic Filtering Type
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-SeismicFilteringType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SeismicFilteringTypeID")]
-    public string SeismicFilteringTypeID { get; set; }
+    public string? SeismicFilteringTypeID { get; set; }
 
     /// <summary>
     /// DEPRECATED: Please use SeismicPhaseID for better interoperability. Amount of phase rotation applied to data
     /// </summary>
     [JsonPropertyName("Phase")]
-    public string Phase { get; set; }
+    public string? Phase { get; set; }
 
     /// <summary>
     /// DEPRECATED: Please use SeismicPolarityID for better interoperability.  Reflection polarity of embedded wavelet.  Normal, Reverse, Plus 90, Minus 90 according to SEG standard.
     /// </summary>
     [JsonPropertyName("Polarity")]
-    public string Polarity { get; set; }
+    public string? Polarity { get; set; }
 
     /// <summary>
     /// Reference to the reference-data--SeismicPhase value describing the wavelet phase as estimated/processed for this SeismicTraceData instance.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-SeismicPhase:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SeismicPhaseID")]
-    public string SeismicPhaseID { get; set; }
+    public string? SeismicPhaseID { get; set; }
 
     /// <summary>
     /// Reference to the reference-data--SeismicPolarity value describing the polarity for this SeismicTraceData instance.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-SeismicPolarity:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SeismicPolarityID")]
-    public string SeismicPolarityID { get; set; }
+    public string? SeismicPolarityID { get; set; }
 
     /// <summary>
     /// It specifies if the seismic is as acquired, or has been manipulated by a process or workflow before arriving at its current state.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-SeismicProcessingStageType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SeismicProcessingStageTypeID")]
-    public string SeismicProcessingStageTypeID { get; set; }
+    public string? SeismicProcessingStageTypeID { get; set; }
 
     /// <summary>
     /// Vertical sampling interval of data.
@@ -402,7 +402,7 @@ public class SeismicTraceData_1_7_0_Data : AbstractCommonResources_1_0_1 // Also
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TraceDomainUOM")]
-    public string TraceDomainUOM { get; set; }
+    public string? TraceDomainUOM { get; set; }
 
     /// <summary>
     /// The shotpoint that came before all others
@@ -475,7 +475,7 @@ public class SeismicTraceData_1_7_0_Data : AbstractCommonResources_1_0_1 // Also
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-VerticalMeasurementType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("VerticalMeasurementTypeID")]
-    public string VerticalMeasurementTypeID { get; set; }
+    public string? VerticalMeasurementTypeID { get; set; }
 
     /// <summary>
     /// Value used to produce vertical static shifts in data
@@ -499,7 +499,7 @@ public class SeismicTraceData_1_7_0_Data : AbstractCommonResources_1_0_1 // Also
     /// Processing Parameters to simply capture process history until full provenance model can be implemented.
     /// </summary>
     [JsonPropertyName("ProcessingParameters")]
-    public List<SeismicTraceData_1_7_0_Data_ProcessingParameters> ProcessingParameters { get; set; }
+    public List<SeismicTraceData_1_7_0_Data_ProcessingParameters>? ProcessingParameters { get; set; }
 
     /// <summary>
     /// Actual nominal fold of the trace data set as processed, expressed as the mode in percentage points (60 fold = 6000%).
@@ -511,7 +511,7 @@ public class SeismicTraceData_1_7_0_Data : AbstractCommonResources_1_0_1 // Also
     /// Character metadata from headers inside file, such as the EBCDIC header of SEGY.  This is an array to capture each stanza separately.
     /// </summary>
     [JsonPropertyName("TextualFileHeader")]
-    public List<string> TextualFileHeader { get; set; }
+    public List<string>? TextualFileHeader { get; set; }
 
     /// <summary>
     /// The actual maximum amplitude value found in the dataset.
@@ -566,39 +566,39 @@ public class SeismicTraceData_1_7_0_Data : AbstractCommonResources_1_0_1 // Also
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-SeismicWaveType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SeismicWaveTypeID")]
-    public string SeismicWaveTypeID { get; set; }
+    public string? SeismicWaveTypeID { get; set; }
 
     /// <summary>
     /// Pre-stack: Sets of trace angle ranges contained within this data set.
     /// </summary>
     [JsonPropertyName("StackAngleRanges")]
-    public List<SeismicTraceData_1_7_0_Data_StackAngleRanges> StackAngleRanges { get; set; }
+    public List<SeismicTraceData_1_7_0_Data_StackAngleRanges>? StackAngleRanges { get; set; }
 
     /// <summary>
     /// Pre-stack: Sets of trace azimuth ranges contained within this data set.
     /// </summary>
     [JsonPropertyName("StackAzimuthRanges")]
-    public List<SeismicTraceData_1_7_0_Data_StackAzimuthRanges> StackAzimuthRanges { get; set; }
+    public List<SeismicTraceData_1_7_0_Data_StackAzimuthRanges>? StackAzimuthRanges { get; set; }
 
     /// <summary>
     /// Pre-stack: Sets of trace offset ranges contained within this data set.
     /// </summary>
     [JsonPropertyName("StackOffsetRanges")]
-    public List<SeismicTraceData_1_7_0_Data_StackOffsetRanges> StackOffsetRanges { get; set; }
+    public List<SeismicTraceData_1_7_0_Data_StackOffsetRanges>? StackOffsetRanges { get; set; }
 
     /// <summary>
     /// Defines the sorting order of the trace data as stored in the file(s).
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-SeismicTraceSortOrder:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SortOrderID")]
-    public string SortOrderID { get; set; }
+    public string? SortOrderID { get; set; }
 
     /// <summary>
     /// Pre-stack: the type of gathers in this dataset.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-SeismicGatherType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("GatherTypeID")]
-    public string GatherTypeID { get; set; }
+    public string? GatherTypeID { get; set; }
 
     /// <summary>
     /// DEPRECATED: Use  the "TimeLapseAssociations" property instead. The contents positions the SeismicTraceData record in context of a time series. This is to be used for time lapse or 4D SeismicTraceData. This structure is optional and absent for SeismicTraceData not part of a time series.
@@ -610,14 +610,14 @@ public class SeismicTraceData_1_7_0_Data : AbstractCommonResources_1_0_1 // Also
     /// The contents positions the SeismicTraceData record in context of one or more time series. This is to be used for time lapse or 4D SeismicTraceData. This structure is optional and absent for SeismicTraceData not part of a time series.
     /// </summary>
     [JsonPropertyName("TimeLapseAssociations")]
-    public List<AbstractTimeSeriesLink_1_0_0> TimeLapseAssociations { get; set; }
+    public List<AbstractTimeSeriesLink_1_0_0>? TimeLapseAssociations { get; set; }
 
     /// <summary>
     /// Bundling concept used to tie multiple Seismic Trace Datas that are related to the same seismic processing output.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-NotionalSeismicProcessingProduct:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("NotionalSeismicProcessingProductID")]
-    public string NotionalSeismicProcessingProductID { get; set; }
+    public string? NotionalSeismicProcessingProductID { get; set; }
 
     /// <summary>
     /// Indicates if the volume has not been stacked
@@ -631,7 +631,7 @@ public class SeismicTraceData_1_7_0_Data : AbstractCommonResources_1_0_1 // Also
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-DomainType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("DomainTypeID")]
-    public string DomainTypeID { get; set; }
+    public string? DomainTypeID { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
@@ -648,21 +648,21 @@ public class SeismicTraceData_1_7_0_Data_Artefacts
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ArtefactRole:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("RoleID")]
-    public string RoleID { get; set; }
+    public string? RoleID { get; set; }
 
     /// <summary>
     /// The kind or schema ID of the artefact. Resolvable with the Schema Service.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("ResourceKind")]
-    public string ResourceKind { get; set; }
+    public string? ResourceKind { get; set; }
 
     /// <summary>
     /// The SRN which identifies this OSDU Artefact resource.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:dataset\-\-[\w\-\.]+:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ResourceID")]
-    public string ResourceID { get; set; }
+    public string? ResourceID { get; set; }
 
 }
 
@@ -676,14 +676,14 @@ public class SeismicTraceData_1_7_0_Data_LineageAssertions
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ID")]
-    public string ID { get; set; }
+    public string? ID { get; set; }
 
     /// <summary>
     /// Used by LineageAssertion to describe the nature of the line of descent of a work product component from a prior Resource, such as DIRECT, INDIRECT, REFERENCE.  It is not for proximity (number of nodes away), it is not to cover all the relationships in a full ontology or graph, and it is not to describe the type of activity that created the asserting WPC.  LineageAssertion does not encompass a full provenance, process history, or activity model.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-LineageRelationshipType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("LineageRelationshipType")]
-    public string LineageRelationshipType { get; set; }
+    public string? LineageRelationshipType { get; set; }
 
 }
 
@@ -697,7 +697,7 @@ public class SeismicTraceData_1_7_0_Data_Precision
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WordFormatType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WordFormat")]
-    public string WordFormat { get; set; }
+    public string? WordFormat { get; set; }
 
     /// <summary>
     /// Size of the word in bytes.
@@ -717,13 +717,13 @@ public class SeismicTraceData_1_7_0_Data_ProcessingParameters
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ProcessingParameterType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ProcessingParameterTypeID")]
-    public string ProcessingParameterTypeID { get; set; }
+    public string? ProcessingParameterTypeID { get; set; }
 
     /// <summary>
     /// The quantity for the processing parameter. May include units, ordering, and other descriptions.
     /// </summary>
     [JsonPropertyName("ProcessingParameterValue")]
-    public string ProcessingParameterValue { get; set; }
+    public string? ProcessingParameterValue { get; set; }
 
 }
 
@@ -794,7 +794,7 @@ public class SeismicTraceData_1_7_0_Data_TimeLapse
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-TimeSeries:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TimeSeriesID")]
-    public string TimeSeriesID { get; set; }
+    public string? TimeSeriesID { get; set; }
 
     /// <summary>
     /// The index into the TimeSeriesID's data.UTCDateTimeValues[] or data.GeologicTimeValues[] arrays.

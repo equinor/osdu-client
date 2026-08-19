@@ -23,13 +23,13 @@ public class AbstractColumnBasedTable_1_2_0
     /// A column whose values are considered as keys/indices. Do not use this attribute if you want to follow a given ColumnBasedTableType.
     /// </summary>
     [JsonPropertyName("KeyColumns")]
-    public List<AbstractReferencePropertyType_1_2_0> KeyColumns { get; set; }
+    public List<AbstractReferencePropertyType_1_2_0>? KeyColumns { get; set; }
 
     /// <summary>
     /// A common column storing values of a particular property kind. Do not use this attribute if you want to follow a given ColumnBasedTableType.
     /// </summary>
     [JsonPropertyName("Columns")]
-    public List<AbstractReferencePropertyType_1_2_0> Columns { get; set; }
+    public List<AbstractReferencePropertyType_1_2_0>? Columns { get; set; }
 
     /// <summary>
     /// The count of elements in each column, i.e. the number of rows in the ColumnBasedTable. All columns must have the same size, including placeholder values for the undefined cells identified by ColumnValues[].UndefinedValueRows[].
@@ -42,21 +42,21 @@ public class AbstractColumnBasedTable_1_2_0
     /// Column values at index KeyColumns count are related to first (non key) column, Column values at index KeyColumns count + 1 are related to second (non key) column, etc...
     /// </summary>
     [JsonPropertyName("ColumnValues")]
-    public List<AbstractColumnBasedTable_1_2_0_ColumnValues> ColumnValues { get; set; }
+    public List<AbstractColumnBasedTable_1_2_0_ColumnValues>? ColumnValues { get; set; }
 
     /// <summary>
     /// Quickly indicate the type of the column based table (KrPc, PVT, Facies, ...) and its standard columns definition. It is supposed to be used when you don't use KeyColumns neither Columns as attributes of this WPC.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ColumnBasedTableType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ColumnBasedTableType")]
-    public string ColumnBasedTableType { get; set; }
+    public string? ColumnBasedTableType { get; set; }
 
     /// <summary>
     /// Optional relationship to a ColumnBasedTableTemplate record, which defines the KeyColumn and Column definitions. Some columns defined in the template may be omitted if not contained in the ColumnValues, but the ones used must be exactly identical to the template's column definitions. If the ColumnBasedTableTemplateID is populated, the ColumnBasedTableType is expected to be ColumnBasedTableTemplateControlled.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-ColumnBasedTableTemplate:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ColumnBasedTableTemplateID")]
-    public string ColumnBasedTableTemplateID { get; set; }
+    public string? ColumnBasedTableTemplateID { get; set; }
 
 }
 
@@ -69,32 +69,32 @@ public class AbstractColumnBasedTable_1_2_0_ColumnValues
     /// A column of only boolean values
     /// </summary>
     [JsonPropertyName("BooleanColumn")]
-    public List<bool> BooleanColumn { get; set; }
+    public List<bool>? BooleanColumn { get; set; }
 
     /// <summary>
     /// A column of only integer values
     /// </summary>
     [RegularExpression(@"^[0-9]+$")]
     [JsonPropertyName("IntegerColumn")]
-    public List<int> IntegerColumn { get; set; }
+    public List<int>? IntegerColumn { get; set; }
 
     /// <summary>
     /// A column of only number values
     /// </summary>
     [JsonPropertyName("NumberColumn")]
-    public List<double> NumberColumn { get; set; }
+    public List<double>? NumberColumn { get; set; }
 
     /// <summary>
     /// A column of only string values
     /// </summary>
     [JsonPropertyName("StringColumn")]
-    public List<string> StringColumn { get; set; }
+    public List<string>? StringColumn { get; set; }
 
     /// <summary>
     /// The row indexes for which the values are flagged as undefined. The first element has index 0.
     /// </summary>
     [RegularExpression(@"^[0-9]+$")]
     [JsonPropertyName("UndefinedValueRows")]
-    public List<int> UndefinedValueRows { get; set; }
+    public List<int>? UndefinedValueRows { get; set; }
 
 }

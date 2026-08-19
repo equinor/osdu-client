@@ -30,7 +30,7 @@ public class AbstractReferenceLevel_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CoordinateReferenceSystem:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("VerticalCoordinateReferenceSystemID")]
-    public string VerticalCoordinateReferenceSystemID { get; set; }
+    public string? VerticalCoordinateReferenceSystemID { get; set; }
 
     /// <summary>
     /// The date and time at which this reference level instance becomes effective.
@@ -51,28 +51,28 @@ public class AbstractReferenceLevel_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-VerticalMeasurementType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("VerticalMeasurementTypeID")]
-    public string VerticalMeasurementTypeID { get; set; }
+    public string? VerticalMeasurementTypeID { get; set; }
 
     /// <summary>
     /// When used in context of a Wellbore, this specifies Measured Depth, True Vertical Depth, or Elevation.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-VerticalMeasurementPath:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("VerticalMeasurementPathID")]
-    public string VerticalMeasurementPathID { get; set; }
+    public string? VerticalMeasurementPathID { get; set; }
 
     /// <summary>
     /// When used in context of a Wellbore this specifies Driller vs Logger measurements.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-VerticalMeasurementSource:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("VerticalMeasurementSourceID")]
-    public string VerticalMeasurementSourceID { get; set; }
+    public string? VerticalMeasurementSourceID { get; set; }
 
     /// <summary>
     /// When used in context of a Wellbore this specifies what directional survey or wellpath was used to calculate the TVD.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-WellboreTrajectory:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellboreTVDTrajectoryID")]
-    public string WellboreTVDTrajectoryID { get; set; }
+    public string? WellboreTVDTrajectoryID { get; set; }
 
     /// <summary>
     /// The positional uncertainty in the vertical direction.

@@ -27,28 +27,28 @@ public class CommitSessionResponse
     /// </summary>
     [Required]
     [JsonPropertyName("id")]
-    public Guid Id { get; set; }
+    public required Guid Id { get; set; }
 
     /// <summary>
     /// identifier of the record of which the session is attached to.
     /// </summary>
     [Required]
     [JsonPropertyName("recordId")]
-    public string RecordId { get; set; }
+    public required string RecordId { get; set; }
 
     /// <summary>
     /// record version on top of which the session is based.
     /// </summary>
     [Required]
     [JsonPropertyName("fromVersion")]
-    public long FromVersion { get; set; }
+    public required long FromVersion { get; set; }
 
     /// <summary>
     /// merge mode at commit. If 'update', existing data will be merged with the data sent during the session. If 'overrride', existing data will be ignored, the final result will only contains data sent within the session.
     /// </summary>
     [Required]
     [JsonPropertyName("mode")]
-    public SessionUpdateMode Mode { get; set; }
+    public required SessionUpdateMode Mode { get; set; }
 
     /// <summary>
     /// If the session is not committed before this dead line, session is automatically abandoned.
@@ -56,7 +56,7 @@ public class CommitSessionResponse
     [Required]
     [JsonPropertyName("expiry")]
     [JsonConverter(typeof(NullableDateTimeOffsetConverter))]
-    public DateTimeOffset Expiry { get; set; }
+    public required DateTimeOffset Expiry { get; set; }
 
     /// <summary>
     /// creation date
@@ -64,7 +64,7 @@ public class CommitSessionResponse
     [Required]
     [JsonPropertyName("createdTime")]
     [JsonConverter(typeof(NullableDateTimeOffsetConverter))]
-    public DateTimeOffset CreatedTime { get; set; }
+    public required DateTimeOffset CreatedTime { get; set; }
 
     /// <summary>
     /// updated date
@@ -72,11 +72,11 @@ public class CommitSessionResponse
     [Required]
     [JsonPropertyName("updatedTime")]
     [JsonConverter(typeof(NullableDateTimeOffsetConverter))]
-    public DateTimeOffset UpdatedTime { get; set; }
+    public required DateTimeOffset UpdatedTime { get; set; }
 
     [Required]
     [JsonPropertyName("state")]
-    public SessionState State { get; set; }
+    public required SessionState State { get; set; }
 
     /// <summary>
     /// Record version in case of successful commit

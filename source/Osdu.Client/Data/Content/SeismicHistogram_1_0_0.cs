@@ -25,7 +25,7 @@ public class SeismicHistogram_1_0_0 : AbstractContent_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:(work-product-component\-\-SeismicTraceData|work-product-component\-\-SeismicFieldTraceData):[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SeismicRecordID")]
-    public string SeismicRecordID { get; set; }
+    public string? SeismicRecordID { get; set; }
 
     /// <summary>
     /// The minimum value of the trace dataset's amplitude range.
@@ -56,7 +56,7 @@ public class SeismicHistogram_1_0_0 : AbstractContent_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("AmplitudeUnitOfMeasureID")]
-    public string AmplitudeUnitOfMeasureID { get; set; }
+    public string? AmplitudeUnitOfMeasureID { get; set; }
 
     /// <summary>
     /// For 3D datasets, the theoretical maximum number of traces in the bin grid, i.e., crossline trace count * inline trace count. Not required for 2D datasets.
@@ -80,7 +80,7 @@ public class SeismicHistogram_1_0_0 : AbstractContent_1_0_0
     /// One or more histograms associated with the trace data amplitude distribution.
     /// </summary>
     [JsonPropertyName("Histograms")]
-    public List<SeismicHistogram_1_0_0_Histograms> Histograms { get; set; }
+    public List<SeismicHistogram_1_0_0_Histograms>? Histograms { get; set; }
 
 }
 
@@ -93,13 +93,13 @@ public class SeismicHistogram_1_0_0_Histograms
     /// Optional name of this histogram.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// An optional description or remark about this histogram.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// The minimum bucket value of the trace dataset's histogram. The difference between BucketMin and BucketMax is BucketCount*BucketSize.
@@ -129,6 +129,6 @@ public class SeismicHistogram_1_0_0_Histograms
     /// The array of sample counts per bucket.
     /// </summary>
     [JsonPropertyName("Buckets")]
-    public List<double> Buckets { get; set; }
+    public List<double>? Buckets { get; set; }
 
 }

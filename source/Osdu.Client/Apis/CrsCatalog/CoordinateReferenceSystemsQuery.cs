@@ -23,49 +23,49 @@ public class CoordinateReferenceSystemsQuery
     /// Corresponds to CodeSpace field on CRS records
     /// </summary>
     [JsonPropertyName("codeSpace")]
-    public string CodeSpace { get; set; }
+    public string? CodeSpace { get; set; }
 
     /// <summary>
     /// Corresponds to Code field on CRS records
     /// </summary>
     [JsonPropertyName("code")]
-    public string Code { get; set; }
+    public string? Code { get; set; }
 
     /// <summary>
     /// Corresponds to Code field on CRS records
     /// </summary>
     [JsonPropertyName("name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// Corresponds to ID field on CRS records
     /// </summary>
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// Corresponds to Kind field on CRS records
     /// </summary>
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public string? Kind { get; set; }
 
     /// <summary>
     /// Type of CRS, e.g., BoundCRS, ProjectedCRS, GeodeticCRS, VerticalCRS
     /// </summary>
     [JsonPropertyName("coordinateReferenceSystemType")]
-    public string CoordinateReferenceSystemType { get; set; }
+    public string? CoordinateReferenceSystemType { get; set; }
 
     /// <summary>
     /// Whether or not to only return bound projected type or projected type based on wgs84. If true, it only returns CRS 1. with Kind as "BoundProjected" or 2. with Kind as "projected" and BaseCRS.AuthorityCode.Code as 4326
     /// </summary>
     [JsonPropertyName("returnBoundProjectedAndProjectedBasedOnWgs84")]
-    public string ReturnBoundProjectedAndProjectedBasedOnWgs84 { get; set; }
+    public string? ReturnBoundProjectedAndProjectedBasedOnWgs84 { get; set; }
 
     /// <summary>
     /// Whether or not to only return bound geopraphic 2d type. If true, it only returns CRS 1. with Kind as "BoundGeographic2D" or 2. with Kind as "geographic 2D" and Code as 4326 and CodeSpace as "EPSG"
     /// </summary>
     [JsonPropertyName("returnBoundGeographic2DAndWgs84")]
-    public string ReturnBoundGeographic2DAndWgs84 { get; set; }
+    public string? ReturnBoundGeographic2DAndWgs84 { get; set; }
 
     /// <summary>
     /// BaseCRS
@@ -83,66 +83,66 @@ public class CoordinateReferenceSystemsQuery
     /// Description of extent. Corresponds to PreferredUsage.Extent.Description in the record. All entities with PreferredUsage.Extent.Description containing the search string will be returned. Wildcard is not supported.
     /// </summary>
     [JsonPropertyName("extent")]
-    public string Extent { get; set; }
+    public string? Extent { get; set; }
 
     /// <summary>
     /// Corresponds to PersistableReference field on CRS records. All entities with PersistableReference containing the search string will be returned.
     /// </summary>
     [JsonPropertyName("persistableReferenceSearch")]
-    public string PersistableReferenceSearch { get; set; }
+    public string? PersistableReferenceSearch { get; set; }
 
     /// <summary>
     /// Corresponds to CoordinateSystem.HorizontalAxisUnitID field on CRS records, e.g., "osdu:reference-data--UnitOfMeasure:dega:".
     /// </summary>
     [JsonPropertyName("horizontalAxisUnitId")]
-    public string HorizontalAxisUnitId { get; set; }
+    public string? HorizontalAxisUnitId { get; set; }
 
     /// <summary>
     /// Corresponds to CoordinateSystem.VerticalAxisUnitID field on CRS records
     /// </summary>
     [JsonPropertyName("verticalAxisUnitId")]
-    public string VerticalAxisUnitId { get; set; }
+    public string? VerticalAxisUnitId { get; set; }
 
     /// <summary>
     /// Latitude point for searching on CRS bounding box
     /// </summary>
     [JsonPropertyName("latitude")]
-    public string Latitude { get; set; }
+    public string? Latitude { get; set; }
 
     /// <summary>
     /// Longitude point for searching on CRS bounding box
     /// </summary>
     [JsonPropertyName("longitude")]
-    public string Longitude { get; set; }
+    public string? Longitude { get; set; }
 
     /// <summary>
     /// Whether to return deprecated records marked with InactiveIndicator=true. Default is false
     /// </summary>
     [JsonPropertyName("includeDeprecated")]
-    public string IncludeDeprecated { get; set; }
+    public string? IncludeDeprecated { get; set; }
 
     /// <summary>
     /// Corresponds to offset on search service
     /// </summary>
     [JsonPropertyName("offset")]
-    public string Offset { get; set; }
+    public string? Offset { get; set; }
 
     /// <summary>
     /// Corresponds to limit on search service. Default is to return all found entities.
     /// </summary>
     [JsonPropertyName("limit")]
-    public string Limit { get; set; }
+    public string? Limit { get; set; }
 
     /// <summary>
     /// Whether to return all fields in the record. Default is false and only a subset is returned
     /// </summary>
     [JsonPropertyName("returnAllFields")]
-    public string ReturnAllFields { get; set; }
+    public string? ReturnAllFields { get; set; }
 
     /// <summary>
     /// Return all fields in the record
     /// </summary>
     [JsonPropertyName("returnedFields")]
-    public List<string> ReturnedFields { get; set; }
+    public List<string>? ReturnedFields { get; set; }
 
 }

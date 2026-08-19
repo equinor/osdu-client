@@ -25,7 +25,7 @@ public class StimulationStage_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-StimulationStage:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class StimulationStage_1_0_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class StimulationStage_1_0_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class StimulationStage_1_0_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class StimulationStage_1_0_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class StimulationStage_1_0_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public StimulationStage_1_0_0_Data? Data { get; set; }
@@ -101,19 +101,19 @@ public class StimulationStage_1_0_0_Data : AbstractCommonResources_1_0_0 // Also
     /// The record id, which identifies this OSDU File or dataset resource.
     /// </summary>
     [JsonPropertyName("Datasets")]
-    public List<string> Datasets { get; set; }
+    public List<string>? Datasets { get; set; }
 
     /// <summary>
     /// An array of references to content in Domain Data Management Services represented by this work-product-component. The references are formed as URI following https://www.rfc-editor.org/rfc/rfc3986#page-16. This property is exclusively populated by DDMSs. If a work-product-component is represented in more than one DDMS, DDMSs are obliged to find the specific reference by inspecting the URI's authority values matching the DDMS id.
     /// </summary>
     [JsonPropertyName("DDMSDatasets")]
-    public List<string> DDMSDatasets { get; set; }
+    public List<string>? DDMSDatasets { get; set; }
 
     /// <summary>
     /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
     /// </summary>
     [JsonPropertyName("Artefacts")]
-    public List<StimulationStage_1_0_0_Data_Artefacts> Artefacts { get; set; }
+    public List<StimulationStage_1_0_0_Data_Artefacts>? Artefacts { get; set; }
 
     /// <summary>
     /// A flag that indicates if the work product component is undergoing an extended load.  It reflects the fact that the work product component is in an early stage and may be updated before finalization.
@@ -133,25 +133,25 @@ public class StimulationStage_1_0_0_Data : AbstractCommonResources_1_0_0 // Also
     /// Describes a record's overall suitability for general business consumption based on data quality. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [JsonPropertyName("TechnicalAssurances")]
-    public List<AbstractTechnicalAssurance_1_2_0> TechnicalAssurances { get; set; }
+    public List<AbstractTechnicalAssurance_1_2_0>? TechnicalAssurances { get; set; }
 
     /// <summary>
     /// Alternative names, including historical, by which this work-product-component is/has been known (it should include all the identifiers).
     /// </summary>
     [JsonPropertyName("NameAliases")]
-    public List<AbstractAliasNames_1_0_0> NameAliases { get; set; }
+    public List<AbstractAliasNames_1_0_0>? NameAliases { get; set; }
 
     /// <summary>
     /// Name
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// Description.  Summary of the work product component.  Not the same as Remark which captures thoughts of creator about the wpc.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// Date that a resource (work  product component here) is formed outside of OSDU before loading (e.g. publication date).
@@ -164,7 +164,7 @@ public class StimulationStage_1_0_0_Data : AbstractCommonResources_1_0_0 // Also
     /// Array of key words to identify the work product, especially to help in search.
     /// </summary>
     [JsonPropertyName("Tags")]
-    public List<string> Tags { get; set; }
+    public List<string>? Tags { get; set; }
 
     [JsonPropertyName("SpatialPoint")]
     public AbstractSpatialLocation_1_1_0? SpatialPoint { get; set; }
@@ -176,52 +176,52 @@ public class StimulationStage_1_0_0_Data : AbstractCommonResources_1_0_0 // Also
     /// List of geographic entities which provide context to the WPC.  This may include multiple types or multiple values of the same type.
     /// </summary>
     [JsonPropertyName("GeoContexts")]
-    public List<AbstractGeoContext_1_0_0> GeoContexts { get; set; }
+    public List<AbstractGeoContext_1_0_0>? GeoContexts { get; set; }
 
     /// <summary>
     /// Name of the person that first submitted the work product component to OSDU.
     /// </summary>
     [JsonPropertyName("SubmitterName")]
-    public string SubmitterName { get; set; }
+    public string? SubmitterName { get; set; }
 
     /// <summary>
     /// Array of business processes/workflows that the work product component has been through (ex. well planning, exploration).
     /// </summary>
     [JsonPropertyName("BusinessActivities")]
-    public List<string> BusinessActivities { get; set; }
+    public List<string>? BusinessActivities { get; set; }
 
     /// <summary>
     /// Array of Authors' names of the work product component.  Could be a person or company entity.
     /// </summary>
     [JsonPropertyName("AuthorIDs")]
-    public List<string> AuthorIDs { get; set; }
+    public List<string>? AuthorIDs { get; set; }
 
     /// <summary>
     /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
     /// </summary>
     [JsonPropertyName("LineageAssertions")]
-    public List<StimulationStage_1_0_0_Data_LineageAssertions> LineageAssertions { get; set; }
+    public List<StimulationStage_1_0_0_Data_LineageAssertions>? LineageAssertions { get; set; }
 
     /// <summary>
     /// A link to the Wellbore in which the stimulation took place.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Wellbore:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellboreID")]
-    public string WellboreID { get; set; }
+    public string? WellboreID { get; set; }
 
     /// <summary>
     /// A link to the Well Activity to which this stimulation job was performed.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-WellActivity:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellActivityID")]
-    public string WellActivityID { get; set; }
+    public string? WellActivityID { get; set; }
 
     /// <summary>
     /// The SRN of the parent Stimulation Job in which the Stage was performed.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-StimulationJob:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("StimulationJobID")]
-    public string StimulationJobID { get; set; }
+    public string? StimulationJobID { get; set; }
 
     /// <summary>
     /// The number associated with the stage.
@@ -278,19 +278,19 @@ public class StimulationStage_1_0_0_Data : AbstractCommonResources_1_0_0 // Also
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-HoleSection:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("HoleSectionID")]
-    public string HoleSectionID { get; set; }
+    public string? HoleSectionID { get; set; }
 
     /// <summary>
     /// Timed comments for this job stage of the stim job.
     /// </summary>
     [JsonPropertyName("JobEvent")]
-    public List<StimulationStage_1_0_0_Data_JobEvent> JobEvent { get; set; }
+    public List<StimulationStage_1_0_0_Data_JobEvent>? JobEvent { get; set; }
 
     /// <summary>
     /// Job Step array
     /// </summary>
     [JsonPropertyName("JobStep")]
-    public List<StimulationStage_1_0_0_Data_JobStep> JobStep { get; set; }
+    public List<StimulationStage_1_0_0_Data_JobStep>? JobStep { get; set; }
 
     /// <summary>
     /// Diversion details for the stimulated interval.
@@ -410,41 +410,41 @@ public class StimulationStage_1_0_0_Data : AbstractCommonResources_1_0_0 // Also
     /// The name of the formation being stimulated in this job stage.
     /// </summary>
     [JsonPropertyName("FormationName")]
-    public string FormationName { get; set; }
+    public string? FormationName { get; set; }
 
     /// <summary>
     /// Lithostratigraphic (Formation Top name) Identifier
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-LithoStratigraphy:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("LithostratigraphicID")]
-    public string LithostratigraphicID { get; set; }
+    public string? LithostratigraphicID { get; set; }
 
     /// <summary>
     /// ID to the Wellbore Marker Set containing the Marker (Formation Top) that is stimulated in the Job Stage
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-WellboreMarkerSet:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellboreMarketSetID")]
-    public string WellboreMarketSetID { get; set; }
+    public string? WellboreMarketSetID { get; set; }
 
     /// <summary>
     /// ID to the Wellbore Marker within the Wellbore Marker Set that is stimulated in the Job Stage
     /// </summary>
     [JsonPropertyName("WellboreMarkerID")]
-    public string WellboreMarkerID { get; set; }
+    public string? WellboreMarkerID { get; set; }
 
     /// <summary>
     /// Identifier to the Reservoir stimulated in the Job Stage
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Reservoir:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ReservoirID")]
-    public string ReservoirID { get; set; }
+    public string? ReservoirID { get; set; }
 
     /// <summary>
     /// Identifier to the Reservoir Segment stimulated in the Job Stage
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-ReservoirSegment:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ReservoirSegmentID")]
-    public string ReservoirSegmentID { get; set; }
+    public string? ReservoirSegmentID { get; set; }
 
     /// <summary>
     /// Measured depth of the top of the formation.
@@ -553,13 +553,13 @@ public class StimulationStage_1_0_0_Data : AbstractCommonResources_1_0_0 // Also
     /// Usage and maximum mass or volume flow rates for a material for this job stage.
     /// </summary>
     [JsonPropertyName("MaterialUsageRateMax")]
-    public List<AbstractStimMaterialQuantity_1_0_0> MaterialUsageRateMax { get; set; }
+    public List<AbstractStimMaterialQuantity_1_0_0>? MaterialUsageRateMax { get; set; }
 
     /// <summary>
     /// Material used during this job stage. For example, proppant or gel (additive).
     /// </summary>
     [JsonPropertyName("MaterialUsage")]
-    public List<AbstractStimMaterialQuantity_1_0_0> MaterialUsage { get; set; }
+    public List<AbstractStimMaterialQuantity_1_0_0>? MaterialUsage { get; set; }
 
     /// <summary>
     /// The difference between the pressure which holds a fracture closed (minimal principal stress) and that pressure which is necessary to open the fracture.
@@ -577,7 +577,7 @@ public class StimulationStage_1_0_0_Data : AbstractCommonResources_1_0_0 // Also
     /// A name for the open hole. To be used for open hole completions.
     /// </summary>
     [JsonPropertyName("OpenHoleName")]
-    public string OpenHoleName { get; set; }
+    public string? OpenHoleName { get; set; }
 
     /// <summary>
     /// The percentage of volume pumped used for the pad.
@@ -595,7 +595,7 @@ public class StimulationStage_1_0_0_Data : AbstractCommonResources_1_0_0 // Also
     /// A pumping diagnostics session for this job stage.
     /// </summary>
     [JsonPropertyName("PumpDiagnosticSession")]
-    public List<StimulationStage_1_0_0_Data_PumpDiagnosticSession> PumpDiagnosticSession { get; set; }
+    public List<StimulationStage_1_0_0_Data_PumpDiagnosticSession>? PumpDiagnosticSession { get; set; }
 
     /// <summary>
     /// Total number of perforation balls used while treating the stage.
@@ -691,7 +691,7 @@ public class StimulationStage_1_0_0_Data : AbstractCommonResources_1_0_0 // Also
     /// Shut in pressure data for this job stage.
     /// </summary>
     [JsonPropertyName("ShutInPressure")]
-    public List<StimulationStage_1_0_0_Data_ShutInPressure> ShutInPressure { get; set; }
+    public List<StimulationStage_1_0_0_Data_ShutInPressure>? ShutInPressure { get; set; }
 
     /// <summary>
     /// The initial shut-in pressure.
@@ -721,7 +721,7 @@ public class StimulationStage_1_0_0_Data : AbstractCommonResources_1_0_0 // Also
     /// Text describing the technology used while pumping the stage.
     /// </summary>
     [JsonPropertyName("TechnologyDescription")]
-    public string TechnologyDescription { get; set; }
+    public string? TechnologyDescription { get; set; }
 
     /// <summary>
     /// The average measured or calculated bottom hole temperature whilst pumping with well fluid injection or circulation of the wellbore at the point of interest. Point of interest is generally the injection point or region of interest for the test or treatment.
@@ -757,13 +757,13 @@ public class StimulationStage_1_0_0_Data : AbstractCommonResources_1_0_0 // Also
     /// Water source description for fluid pumped during stage.
     /// </summary>
     [JsonPropertyName("WaterSource")]
-    public string WaterSource { get; set; }
+    public string? WaterSource { get; set; }
 
     /// <summary>
     /// Set of Perforation Intervals stimulated in this stage.
     /// </summary>
     [JsonPropertyName("PerforationSet")]
-    public List<string> PerforationSet { get; set; }
+    public List<string>? PerforationSet { get; set; }
 
     /// <summary>
     /// Perforation Set Friction Factor
@@ -787,13 +787,13 @@ public class StimulationStage_1_0_0_Data : AbstractCommonResources_1_0_0 // Also
     /// Log(s) associated to the Stimulation Stage
     /// </summary>
     [JsonPropertyName("WellLog")]
-    public List<string> WellLog { get; set; }
+    public List<string>? WellLog { get; set; }
 
     /// <summary>
     /// General remarks about this Stage of the Stim Job.
     /// </summary>
     [JsonPropertyName("Remarks")]
-    public string Remarks { get; set; }
+    public string? Remarks { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
@@ -810,21 +810,21 @@ public class StimulationStage_1_0_0_Data_Artefacts
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ArtefactRole:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("RoleID")]
-    public string RoleID { get; set; }
+    public string? RoleID { get; set; }
 
     /// <summary>
     /// The kind or schema ID of the artefact. Resolvable with the Schema Service.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("ResourceKind")]
-    public string ResourceKind { get; set; }
+    public string? ResourceKind { get; set; }
 
     /// <summary>
     /// The SRN which identifies this OSDU Artefact resource.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:dataset\-\-[\w\-\.]+:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ResourceID")]
-    public string ResourceID { get; set; }
+    public string? ResourceID { get; set; }
 
 }
 
@@ -838,14 +838,14 @@ public class StimulationStage_1_0_0_Data_LineageAssertions
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ID")]
-    public string ID { get; set; }
+    public string? ID { get; set; }
 
     /// <summary>
     /// Used by LineageAssertion to describe the nature of the line of descent of a work product component from a prior Resource, such as DIRECT, INDIRECT, REFERENCE.  It is not for proximity (number of nodes away), it is not to cover all the relationships in a full ontology or graph, and it is not to describe the type of activity that created the asserting WPC.  LineageAssertion does not encompass a full provenance, process history, or activity model.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-LineageRelationshipType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("LineageRelationshipType")]
-    public string LineageRelationshipType { get; set; }
+    public string? LineageRelationshipType { get; set; }
 
 }
 
@@ -877,7 +877,7 @@ public class StimulationStage_1_0_0_Data_JobEvent
     /// A short description of the event.
     /// </summary>
     [JsonPropertyName("Comment")]
-    public string Comment { get; set; }
+    public string? Comment { get; set; }
 
 }
 
@@ -897,20 +897,20 @@ public class StimulationStage_1_0_0_Data_JobStep
     /// A human readable name for this job step.
     /// </summary>
     [JsonPropertyName("StepName")]
-    public string StepName { get; set; }
+    public string? StepName { get; set; }
 
     /// <summary>
     /// The type of  job step.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-StimJobStepType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("JobStepTypeID")]
-    public string JobStepTypeID { get; set; }
+    public string? JobStepTypeID { get; set; }
 
     /// <summary>
     /// A short description of the job step.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// Date and time the step started.
@@ -937,7 +937,7 @@ public class StimulationStage_1_0_0_Data_JobStep
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-WellFluidsReport:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("FluidReportID")]
-    public string FluidReportID { get; set; }
+    public string? FluidReportID { get; set; }
 
     /// <summary>
     /// Balls used during execution of the step.
@@ -1093,49 +1093,49 @@ public class StimulationStage_1_0_0_Data_JobStep
     /// Material used during the step
     /// </summary>
     [JsonPropertyName("MaterialUsed")]
-    public List<AbstractStimMaterialQuantity_1_0_0> MaterialUsed { get; set; }
+    public List<AbstractStimMaterialQuantity_1_0_0>? MaterialUsed { get; set; }
 
     /// <summary>
     /// Starting quantity of material used per minute entering the flow stream.
     /// </summary>
     [JsonPropertyName("MaterialUsedRateStart")]
-    public List<AbstractStimMaterialQuantity_1_0_0> MaterialUsedRateStart { get; set; }
+    public List<AbstractStimMaterialQuantity_1_0_0>? MaterialUsedRateStart { get; set; }
 
     /// <summary>
     /// Ending quantity of material used per minute entering the flow stream.
     /// </summary>
     [JsonPropertyName("MaterialUsedRateEnd")]
-    public List<AbstractStimMaterialQuantity_1_0_0> MaterialUsedRateEnd { get; set; }
+    public List<AbstractStimMaterialQuantity_1_0_0>? MaterialUsedRateEnd { get; set; }
 
     /// <summary>
     /// Maximum rate of material used per minute entering the flow stream.
     /// </summary>
     [JsonPropertyName("MaterialUsedRateMax")]
-    public List<AbstractStimMaterialQuantity_1_0_0> MaterialUsedRateMax { get; set; }
+    public List<AbstractStimMaterialQuantity_1_0_0>? MaterialUsedRateMax { get; set; }
 
     /// <summary>
     /// Average material used per minute entering the flow stream.
     /// </summary>
     [JsonPropertyName("MaterialUsedRateAvg")]
-    public List<AbstractStimMaterialQuantity_1_0_0> MaterialUsedRateAvg { get; set; }
+    public List<AbstractStimMaterialQuantity_1_0_0>? MaterialUsedRateAvg { get; set; }
 
     /// <summary>
     /// Bottomhole material usage rate start.
     /// </summary>
     [JsonPropertyName("BHMaterialUsedRateStart")]
-    public List<AbstractStimMaterialQuantity_1_0_0> BHMaterialUsedRateStart { get; set; }
+    public List<AbstractStimMaterialQuantity_1_0_0>? BHMaterialUsedRateStart { get; set; }
 
     /// <summary>
     /// Bottomhole material usage rate end.
     /// </summary>
     [JsonPropertyName("BHMaterialUsedRateEnd")]
-    public List<AbstractStimMaterialQuantity_1_0_0> BHMaterialUsedRateEnd { get; set; }
+    public List<AbstractStimMaterialQuantity_1_0_0>? BHMaterialUsedRateEnd { get; set; }
 
     /// <summary>
     /// Bottomhole material usage rate average.
     /// </summary>
     [JsonPropertyName("BHMaterialUsedRateAvg")]
-    public List<AbstractStimMaterialQuantity_1_0_0> BHMaterialUsedRateAvg { get; set; }
+    public List<AbstractStimMaterialQuantity_1_0_0>? BHMaterialUsedRateAvg { get; set; }
 
     /// <summary>
     /// Nitrogen base quality percentage of foam.
@@ -1285,7 +1285,7 @@ public class StimulationStage_1_0_0_Data_JobStep
     /// General remarks about this job step.
     /// </summary>
     [JsonPropertyName("Remarks")]
-    public string Remarks { get; set; }
+    public string? Remarks { get; set; }
 
 }
 
@@ -1298,26 +1298,26 @@ public class StimulationStage_1_0_0_Data_JobStep_Fluid
     /// The name of the fluid.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// The fluid type.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-StimJobFluidType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("FluidTypeID")]
-    public string FluidTypeID { get; set; }
+    public string? FluidTypeID { get; set; }
 
     /// <summary>
     /// The description of the fluid.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// Concentrations of additives in the fluid for this job step.
     /// </summary>
     [JsonPropertyName("AdditiveConcentration")]
-    public List<AbstractStimMaterialQuantity_1_0_0> AdditiveConcentration { get; set; }
+    public List<AbstractStimMaterialQuantity_1_0_0>? AdditiveConcentration { get; set; }
 
     /// <summary>
     /// The density of the fluid.
@@ -1335,7 +1335,7 @@ public class StimulationStage_1_0_0_Data_JobStep_Fluid
     /// The type of fluid filter used for this job step.
     /// </summary>
     [JsonPropertyName("FilterType")]
-    public string FilterType { get; set; }
+    public string? FilterType { get; set; }
 
     /// <summary>
     /// Filter Cake
@@ -1390,7 +1390,7 @@ public class StimulationStage_1_0_0_Data_JobStep_Fluid
     /// The purpose of the fluid.
     /// </summary>
     [JsonPropertyName("Purpose")]
-    public string Purpose { get; set; }
+    public string? Purpose { get; set; }
 
     /// <summary>
     /// The specific gravity of the fluid at surface.
@@ -1402,14 +1402,14 @@ public class StimulationStage_1_0_0_Data_JobStep_Fluid
     /// The name of the fluid supplier for this job step.
     /// </summary>
     [JsonPropertyName("Supplier")]
-    public string Supplier { get; set; }
+    public string? Supplier { get; set; }
 
     /// <summary>
     /// The supplier of the fluid.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SupplierID")]
-    public string SupplierID { get; set; }
+    public string? SupplierID { get; set; }
 
     /// <summary>
     /// Viscosity of the stimulation fluid for this job step.
@@ -1421,7 +1421,7 @@ public class StimulationStage_1_0_0_Data_JobStep_Fluid
     /// Remarks
     /// </summary>
     [JsonPropertyName("Remarks")]
-    public string Remarks { get; set; }
+    public string? Remarks { get; set; }
 
 }
 
@@ -1434,7 +1434,7 @@ public class StimulationStage_1_0_0_Data_Diversion
     /// Name of the diversion contractor.
     /// </summary>
     [JsonPropertyName("ContractorName")]
-    public string ContractorName { get; set; }
+    public string? ContractorName { get; set; }
 
     /// <summary>
     /// Length between packer elements.
@@ -1447,19 +1447,19 @@ public class StimulationStage_1_0_0_Data_Diversion
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-StimJobDiversionMethod:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("DiversionMethodID")]
-    public string DiversionMethodID { get; set; }
+    public string? DiversionMethodID { get; set; }
 
     /// <summary>
     /// A supplier description of the diversion tool, such as its commercial name.
     /// </summary>
     [JsonPropertyName("ToolDescription")]
-    public string ToolDescription { get; set; }
+    public string? ToolDescription { get; set; }
 
     /// <summary>
     /// Remarks on the diversion method.
     /// </summary>
     [JsonPropertyName("Remarks")]
-    public string Remarks { get; set; }
+    public string? Remarks { get; set; }
 
 }
 
@@ -1504,7 +1504,7 @@ public class StimulationStage_1_0_0_Data_FlowPath
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-StimFlowPathType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("FlowPathTypeID")]
-    public string FlowPathTypeID { get; set; }
+    public string? FlowPathTypeID { get; set; }
 
     /// <summary>
     /// The friction factor used to compute openhole pressure loss.
@@ -1552,7 +1552,7 @@ public class StimulationStage_1_0_0_Data_FlowPath
     /// General remarks about the flow path for this job stage.
     /// </summary>
     [JsonPropertyName("Remarks")]
-    public string Remarks { get; set; }
+    public string? Remarks { get; set; }
 
 }
 
@@ -1577,25 +1577,25 @@ public class StimulationStage_1_0_0_Data_PumpDiagnosticSession
     /// The name of this pumping diagnostic session.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// A description of this pumping diagnostic session.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// An injection test involving multiple steps of injection rate and pressure, where a curve deflection and change of slope indicates the fracture breakdown pressure. An injection test involving multiple steps of injection rate and pressure, where a curve deflection and change of slope indicates the fracture breakdown pressure.
     /// </summary>
     [JsonPropertyName("StepDownTest")]
-    public List<StimulationStage_1_0_0_Data_PumpDiagnosticSession_StepDownTest> StepDownTest { get; set; }
+    public List<StimulationStage_1_0_0_Data_PumpDiagnosticSession_StepDownTest>? StepDownTest { get; set; }
 
     /// <summary>
     /// An injection test, plotted pressure against injection rate, where a curve deflection and change of slope indicates the fracture breakdown pressure.
     /// </summary>
     [JsonPropertyName("StepRateTest")]
-    public List<StimulationStage_1_0_0_Data_PumpDiagnosticSession_StepRateTest> StepRateTest { get; set; }
+    public List<StimulationStage_1_0_0_Data_PumpDiagnosticSession_StepRateTest>? StepRateTest { get; set; }
 
     /// <summary>
     /// Base fluid volume entering the pumping equipment.
@@ -1655,7 +1655,7 @@ public class StimulationStage_1_0_0_Data_PumpDiagnosticSession
     /// A diagnostic test determining fluid efficiency.
     /// </summary>
     [JsonPropertyName("FluidEfficiencyTest")]
-    public List<StimulationStage_1_0_0_Data_PumpDiagnosticSession_FluidEfficiencyTest> FluidEfficiencyTest { get; set; }
+    public List<StimulationStage_1_0_0_Data_PumpDiagnosticSession_FluidEfficiencyTest>? FluidEfficiencyTest { get; set; }
 
     /// <summary>
     /// The consistency index K is the shear stress or viscosity of the fluid at one sec-1 shear rate. An increasing K raises the effective viscosity.
@@ -1753,7 +1753,7 @@ public class StimulationStage_1_0_0_Data_PumpDiagnosticSession
     /// A diagnostic test involving flowing a well back after treatment.
     /// </summary>
     [JsonPropertyName("PumpFlowBackTest")]
-    public List<StimulationStage_1_0_0_Data_PumpDiagnosticSession_PumpFlowBackTest> PumpFlowBackTest { get; set; }
+    public List<StimulationStage_1_0_0_Data_PumpDiagnosticSession_PumpFlowBackTest>? PumpFlowBackTest { get; set; }
 
     /// <summary>
     /// The date and time pumping ended.
@@ -1828,7 +1828,7 @@ public class StimulationStage_1_0_0_Data_PumpDiagnosticSession
     /// Remarks
     /// </summary>
     [JsonPropertyName("Remarks")]
-    public string Remarks { get; set; }
+    public string? Remarks { get; set; }
 
 }
 
@@ -1841,7 +1841,7 @@ public class StimulationStage_1_0_0_Data_PumpDiagnosticSession_StepDownTest
     /// The data related to a particular step in the step-down test.
     /// </summary>
     [JsonPropertyName("FlowBackTestStep")]
-    public List<StimulationStage_1_0_0_Data_PumpDiagnosticSession_StepDownTest_FlowBackTestStep> FlowBackTestStep { get; set; }
+    public List<StimulationStage_1_0_0_Data_PumpDiagnosticSession_StepDownTest_FlowBackTestStep>? FlowBackTestStep { get; set; }
 
     /// <summary>
     /// The density of the fluid at the bottom of the hole adjusting for bottomhole temperature and pressure during the step-down test.
@@ -1883,7 +1883,7 @@ public class StimulationStage_1_0_0_Data_PumpDiagnosticSession_StepDownTest
     /// General remarks about this Stim Step Down Test.
     /// </summary>
     [JsonPropertyName("Remarks")]
-    public string Remarks { get; set; }
+    public string? Remarks { get; set; }
 
 }
 
@@ -1976,7 +1976,7 @@ public class StimulationStage_1_0_0_Data_PumpDiagnosticSession_StepRateTest
     /// A pressure and fluid flow rate data set.
     /// </summary>
     [JsonPropertyName("PressureMeasurement")]
-    public List<StimulationStage_1_0_0_Data_PumpDiagnosticSession_StepRateTest_PressureMeasurement> PressureMeasurement { get; set; }
+    public List<StimulationStage_1_0_0_Data_PumpDiagnosticSession_StepRateTest_PressureMeasurement>? PressureMeasurement { get; set; }
 
 }
 
@@ -2023,7 +2023,7 @@ public class StimulationStage_1_0_0_Data_PumpDiagnosticSession_FluidEfficiencyTe
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-StimFETestAnalysisMethod:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("AnalysisMethodID")]
-    public string AnalysisMethodID { get; set; }
+    public string? AnalysisMethodID { get; set; }
 
     /// <summary>
     /// A measurement, derived from a data frac, of the efficiency of a particular fluid in creating fracture area on a particular formation at a set of conditions.
@@ -2128,7 +2128,7 @@ public class StimulationStage_1_0_0_Data_PumpDiagnosticSession_PumpFlowBackTest
     /// Step
     /// </summary>
     [JsonPropertyName("Step")]
-    public List<StimulationStage_1_0_0_Data_PumpDiagnosticSession_PumpFlowBackTest_Step> Step { get; set; }
+    public List<StimulationStage_1_0_0_Data_PumpDiagnosticSession_PumpFlowBackTest_Step>? Step { get; set; }
 
     /// <summary>
     /// Casing pressure.
@@ -2164,7 +2164,7 @@ public class StimulationStage_1_0_0_Data_PumpDiagnosticSession_PumpFlowBackTest
     /// General remarks for this stim pump flow back test.
     /// </summary>
     [JsonPropertyName("Remarks")]
-    public string Remarks { get; set; }
+    public string? Remarks { get; set; }
 
 }
 

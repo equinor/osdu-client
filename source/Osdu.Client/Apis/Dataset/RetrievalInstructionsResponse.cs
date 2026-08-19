@@ -17,6 +17,6 @@ namespace Osdu.Client.Apis.Dataset;
 public class RetrievalInstructionsResponse
 {
     [JsonPropertyName("datasets")]
-    public List<DatasetRetrievalProperties> Datasets { get; set; }
+    public List<DatasetRetrievalProperties>? Datasets { get; set; }
 
 }

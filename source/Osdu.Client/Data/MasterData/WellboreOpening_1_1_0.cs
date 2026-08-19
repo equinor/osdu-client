@@ -25,7 +25,7 @@ public class WellboreOpening_1_1_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-WellboreOpening:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class WellboreOpening_1_1_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class WellboreOpening_1_1_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class WellboreOpening_1_1_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class WellboreOpening_1_1_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class WellboreOpening_1_1_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public WellboreOpening_1_1_0_Data? Data { get; set; }
@@ -101,13 +101,13 @@ public class WellboreOpening_1_1_0_Data : AbstractCommonResources_1_0_0 // Also 
     /// Alternative names, including historical, by which this master data is/has been known (it should include all the identifiers).
     /// </summary>
     [JsonPropertyName("NameAliases")]
-    public List<AbstractAliasNames_1_0_0> NameAliases { get; set; }
+    public List<AbstractAliasNames_1_0_0>? NameAliases { get; set; }
 
     /// <summary>
     /// List of geographic entities which provide context to the master data. This may include multiple types or multiple values of the same type.
     /// </summary>
     [JsonPropertyName("GeoContexts")]
-    public List<AbstractGeoContext_1_0_0> GeoContexts { get; set; }
+    public List<AbstractGeoContext_1_0_0>? GeoContexts { get; set; }
 
     [JsonPropertyName("SpatialLocation")]
     public AbstractSpatialLocation_1_1_0? SpatialLocation { get; set; }
@@ -116,39 +116,39 @@ public class WellboreOpening_1_1_0_Data : AbstractCommonResources_1_0_0 // Also 
     /// This describes the reason that caused the creation of a new version of this master data.
     /// </summary>
     [JsonPropertyName("VersionCreationReason")]
-    public string VersionCreationReason { get; set; }
+    public string? VersionCreationReason { get; set; }
 
     /// <summary>
     /// Describes a master-data record's overall suitability for general business consumption based on data quality. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TechnicalAssuranceType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TechnicalAssuranceTypeID")]
-    public string TechnicalAssuranceTypeID { get; set; }
+    public string? TechnicalAssuranceTypeID { get; set; }
 
     /// <summary>
     /// Business natural key or code of the Wellbore to which this record belongs
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Wellbore:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellboreID")]
-    public string WellboreID { get; set; }
+    public string? WellboreID { get; set; }
 
     /// <summary>
     /// Name/Label for WellboreOpening i.e. for display on log
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// A remark, comment or generic description.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// The history of life cycle states this WellboreOpening has been through.
     /// </summary>
     [JsonPropertyName("WellboreOpeningStates")]
-    public List<WellboreOpening_1_1_0_Data_WellboreOpeningStates> WellboreOpeningStates { get; set; }
+    public List<WellboreOpening_1_1_0_Data_WellboreOpeningStates>? WellboreOpeningStates { get; set; }
 
     [JsonPropertyName("VerticalMeasurement")]
     public AbstractFacilityVerticalMeasurement_1_0_0? VerticalMeasurement { get; set; }
@@ -158,7 +158,7 @@ public class WellboreOpening_1_1_0_Data : AbstractCommonResources_1_0_0 // Also 
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WellboreOpeningType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellboreOpeningTypeID")]
-    public string WellboreOpeningTypeID { get; set; }
+    public string? WellboreOpeningTypeID { get; set; }
 
     /// <summary>
     /// Has the wellbore opening interval been gravel-packed.
@@ -184,25 +184,25 @@ public class WellboreOpening_1_1_0_Data : AbstractCommonResources_1_0_0 // Also 
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-PerforationInterval:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("PerforationIntervalID")]
-    public string PerforationIntervalID { get; set; }
+    public string? PerforationIntervalID { get; set; }
 
     /// <summary>
     /// A list of Associated Isolated Interval IDs
     /// </summary>
     [JsonPropertyName("IsolatedIntervalIDs")]
-    public List<string> IsolatedIntervalIDs { get; set; }
+    public List<string>? IsolatedIntervalIDs { get; set; }
 
     /// <summary>
     /// The relationships to reservoirs, to which this WellboreOpening connects. In the most common cases this will be a single reservoir. This array can be left empty when the ReservoirSegmentIDs property is populated since each ReservoirSegment will identify a unique Reservoir.
     /// </summary>
     [JsonPropertyName("ReservoirIDs")]
-    public List<string> ReservoirIDs { get; set; }
+    public List<string>? ReservoirIDs { get; set; }
 
     /// <summary>
     /// The relationship to the ReservoirSegments, to which this WellboreOpening connects. ReservoirSegments offer a finer granularity of connection. ReservoirSegmentIDs may stay empty in case of reservoirs not sub-divided into ReservoirSegments.
     /// </summary>
     [JsonPropertyName("ReservoirSegmentIDs")]
-    public List<string> ReservoirSegmentIDs { get; set; }
+    public List<string>? ReservoirSegmentIDs { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
@@ -233,12 +233,12 @@ public class WellboreOpening_1_1_0_Data_WellboreOpeningStates
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WellboreOpeningStateType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellboreOpeningStateTypeID")]
-    public string WellboreOpeningStateTypeID { get; set; }
+    public string? WellboreOpeningStateTypeID { get; set; }
 
     /// <summary>
     /// A comment or remark attributed to the state.
     /// </summary>
     [JsonPropertyName("Remark")]
-    public string Remark { get; set; }
+    public string? Remark { get; set; }
 
 }

@@ -24,13 +24,13 @@ public class AbstractGeoJson_PropertiesBinGridCorners_1_0_0
     /// </summary>
     [Required]
     [JsonPropertyName("Kind")]
-    public AbstractGeoJson_PropertiesBinGridCorners_1_0_0_Kind Kind { get; set; }
+    public required AbstractGeoJson_PropertiesBinGridCorners_1_0_0_Kind Kind { get; set; }
 
     /// <summary>
     /// Corner point information for each point in the Feature/AnyCrsFeature.
     /// </summary>
     [JsonPropertyName("PointProperties")]
-    public List<AbstractGeoJson_PropertiesBinGridCorners_1_0_0_PointProperties> PointProperties { get; set; }
+    public List<AbstractGeoJson_PropertiesBinGridCorners_1_0_0_PointProperties>? PointProperties { get; set; }
 
 }
 
@@ -63,6 +63,6 @@ public class AbstractGeoJson_PropertiesBinGridCorners_1_0_0_PointProperties
     /// An optional label string associated to the corner point.
     /// </summary>
     [JsonPropertyName("Label")]
-    public string Label { get; set; }
+    public string? Label { get; set; }
 
 }

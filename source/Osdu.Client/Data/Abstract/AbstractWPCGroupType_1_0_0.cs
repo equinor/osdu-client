@@ -23,13 +23,13 @@ public class AbstractWPCGroupType_1_0_0
     /// The record id, which identifies this OSDU File or dataset resource.
     /// </summary>
     [JsonPropertyName("Datasets")]
-    public List<string> Datasets { get; set; }
+    public List<string>? Datasets { get; set; }
 
     /// <summary>
     /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
     /// </summary>
     [JsonPropertyName("Artefacts")]
-    public List<AbstractWPCGroupType_1_0_0_Artefacts> Artefacts { get; set; }
+    public List<AbstractWPCGroupType_1_0_0_Artefacts>? Artefacts { get; set; }
 
     /// <summary>
     /// A flag that indicates if the work product component is undergoing an extended load.  It reflects the fact that the work product component is in an early stage and may be updated before finalization.
@@ -49,7 +49,7 @@ public class AbstractWPCGroupType_1_0_0
     /// Describes a record's overall suitability for general business consumption based on data quality. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [JsonPropertyName("TechnicalAssurances")]
-    public List<AbstractTechnicalAssurance_1_0_0> TechnicalAssurances { get; set; }
+    public List<AbstractTechnicalAssurance_1_0_0>? TechnicalAssurances { get; set; }
 
 }
 
@@ -63,20 +63,20 @@ public class AbstractWPCGroupType_1_0_0_Artefacts
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ArtefactRole:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("RoleID")]
-    public string RoleID { get; set; }
+    public string? RoleID { get; set; }
 
     /// <summary>
     /// The kind or schema ID of the artefact. Resolvable with the Schema Service.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("ResourceKind")]
-    public string ResourceKind { get; set; }
+    public string? ResourceKind { get; set; }
 
     /// <summary>
     /// The SRN which identifies this OSDU Artefact resource.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:dataset\-\-[\w\-\.]+:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ResourceID")]
-    public string ResourceID { get; set; }
+    public string? ResourceID { get; set; }
 
 }

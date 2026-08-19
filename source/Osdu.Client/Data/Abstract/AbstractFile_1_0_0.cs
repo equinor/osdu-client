@@ -24,14 +24,14 @@ public class AbstractFile_1_0_0
     /// </summary>
     [Required]
     [JsonPropertyName("DatasetProperties")]
-    public AbstractFile_1_0_0_DatasetProperties DatasetProperties { get; set; }
+    public required AbstractFile_1_0_0_DatasetProperties DatasetProperties { get; set; }
 
     /// <summary>
     /// MD5 checksum of file bytes - a 32 byte hexadecimal number.
     /// </summary>
     [RegularExpression(@"^[0-9a-fA-F]{32}")]
     [JsonPropertyName("Checksum")]
-    public string Checksum { get; set; }
+    public string? Checksum { get; set; }
 
 }
 

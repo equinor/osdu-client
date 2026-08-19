@@ -23,7 +23,7 @@ public class AbstractTubularComponentBitRecord_1_1_0
     /// Bit number and rerun number e.g. "4.1" for the first rerun of bit 4.
     /// </summary>
     [JsonPropertyName("NumBit")]
-    public string NumBit { get; set; }
+    public string? NumBit { get; set; }
 
     /// <summary>
     /// Diameter of drilled hole.
@@ -48,7 +48,7 @@ public class AbstractTubularComponentBitRecord_1_1_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-BitType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TypeBitID")]
-    public string TypeBitID { get; set; }
+    public string? TypeBitID { get; set; }
 
     /// <summary>
     /// Bit cost in local currency.
@@ -60,156 +60,156 @@ public class AbstractTubularComponentBitRecord_1_1_0
     /// The manufacturer's code for the bit e.g. model number
     /// </summary>
     [JsonPropertyName("MfgCode")]
-    public string MfgCode { get; set; }
+    public string? MfgCode { get; set; }
 
     /// <summary>
     /// IADC bit code for PDC/Roller Cone Bits
     /// </summary>
     [JsonPropertyName("IADCCode")]
-    public string IADCCode { get; set; }
+    public string? IADCCode { get; set; }
 
     /// <summary>
     /// As run bit IADC Dull Grade (I) Condition of Inner tooth rows (inner 2/3 of bit) (0-8).
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-BitDullInnerOuter:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("InitialConditionInnerID")]
-    public string InitialConditionInnerID { get; set; }
+    public string? InitialConditionInnerID { get; set; }
 
     /// <summary>
     /// As run bit IADC Dull Grade (O) Condition of Outer tooth rows (outer 1/3 of bit) (0-8).
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-BitDullInnerOuter:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("InitialConditionOuterID")]
-    public string InitialConditionOuterID { get; set; }
+    public string? InitialConditionOuterID { get; set; }
 
     /// <summary>
     /// As run bit IADC Dull Grade (D) Overall dull condition from IADC bit wear 2 character codes.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-BitDullCode:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("InitialConditionDullID")]
-    public string InitialConditionDullID { get; set; }
+    public string? InitialConditionDullID { get; set; }
 
     /// <summary>
     /// As run bit IADC Dull Grade (L) Location Row and cone numbers where wear located (e.g. Cracked Cone, Lost Cone etc).
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-BitDullLocationCode:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("InitialConditionLocationID")]
-    public string InitialConditionLocationID { get; set; }
+    public string? InitialConditionLocationID { get; set; }
 
     /// <summary>
     /// As run bit IADC Dull Grade (B) Condition of bit Bearings (integer 0-8 or E, F, N or X)).
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-BitDullBearingCode:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("InitialConditionBearingID")]
-    public string InitialConditionBearingID { get; set; }
+    public string? InitialConditionBearingID { get; set; }
 
     /// <summary>
     /// As run bit IADC Dull Grade (G) Condition of bit Gauge in 1/16 of an inch. I = in gauge, else number of 16ths out of gauge.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-BitDullGaugeCode:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("InitialConditionGaugeID")]
-    public string InitialConditionGaugeID { get; set; }
+    public string? InitialConditionGaugeID { get; set; }
 
     /// <summary>
     /// As run bit IADC Dull Grade (O) Other comments on bit condition from IADC list (BitDullCode in standard list).
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-BitDullCode:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("InitialConditionOtherID")]
-    public string InitialConditionOtherID { get; set; }
+    public string? InitialConditionOtherID { get; set; }
 
     /// <summary>
     /// As run bit IADC Dull Grade (R) Reason bit was pulled
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-BitReasonPulledCode:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("InitialConditionReasonID")]
-    public string InitialConditionReasonID { get; set; }
+    public string? InitialConditionReasonID { get; set; }
 
     /// <summary>
     /// Pulled bit IADC Dull Grade (I) Condition of Inner tooth rows (inner 2/3 of bit) (0-8).
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-BitDullInnerOuter:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("FinalConditionInnerID")]
-    public string FinalConditionInnerID { get; set; }
+    public string? FinalConditionInnerID { get; set; }
 
     /// <summary>
     /// Pulled bit IADC Dull Grade (O) Condition of Outer tooth rows (outer 1/3 of bit) (0-8).
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-BitDullInnerOuter:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("FinalConditionOuterID")]
-    public string FinalConditionOuterID { get; set; }
+    public string? FinalConditionOuterID { get; set; }
 
     /// <summary>
     /// Pulled bit IADC Dull Grade (D) Overall Dull condition from IADC bit wear 2 character codes.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-BitDullCode:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("FinalConditionDullID")]
-    public string FinalConditionDullID { get; set; }
+    public string? FinalConditionDullID { get; set; }
 
     /// <summary>
     /// Pulled bit IADC Dull Grade (L) Location Row and cone numbers where wear located (e.g. Cracked Cone, Lost Cone etc).
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-BitDullLocationCode:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("FinalConditionLocationID")]
-    public string FinalConditionLocationID { get; set; }
+    public string? FinalConditionLocationID { get; set; }
 
     /// <summary>
     /// Pulled bit IADC Dull Grade (B) Condition of bit Bearings (integer 0-8 or E, F, N or X).
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-BitDullBearingCode:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("FinalConditionBearingID")]
-    public string FinalConditionBearingID { get; set; }
+    public string? FinalConditionBearingID { get; set; }
 
     /// <summary>
     /// Pulled bit IADC Dull Grade (G) Condition of bit Gauge in 1/16 of a inch. I = in gauge, else number of 16ths out of gauge.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-BitDullGaugeCode:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("FinalConditionGaugeID")]
-    public string FinalConditionGaugeID { get; set; }
+    public string? FinalConditionGaugeID { get; set; }
 
     /// <summary>
     /// Pulled bit IADC Dull Grade (O) Other comments on bit condition.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-BitDullCode:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("FinalConditionOtherID")]
-    public string FinalConditionOtherID { get; set; }
+    public string? FinalConditionOtherID { get; set; }
 
     /// <summary>
     /// Pulled bit  IADC Dull Grade (R) Reason bit was pulled.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-BitReasonPulledCode:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("FinalConditionReasonID")]
-    public string FinalConditionReasonID { get; set; }
+    public string? FinalConditionReasonID { get; set; }
 
     /// <summary>
     /// Any other Bit Dull comments/description, older T-B-G code or full formatted dull grade e.g.  0-2-WT-N/S-X-I-LN-TD
     /// </summary>
     [JsonPropertyName("BitDullComments")]
-    public string BitDullComments { get; set; }
+    public string? BitDullComments { get; set; }
 
     /// <summary>
     /// Bit drive type (Motor, rotary table etc).
     /// </summary>
     [JsonPropertyName("DriveType")]
-    public string DriveType { get; set; }
+    public string? DriveType { get; set; }
 
     /// <summary>
     /// N = new, U = used.
     /// </summary>
     [JsonPropertyName("BitClass")]
-    public string BitClass { get; set; }
+    public string? BitClass { get; set; }
 
     /// <summary>
     /// Re-run Bit Number to describe bit number when previously run
     /// </summary>
     [JsonPropertyName("ReRunBitNumber")]
-    public string ReRunBitNumber { get; set; }
+    public string? ReRunBitNumber { get; set; }
 
     /// <summary>
     /// Hard/Abrasive Formation
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-BitFormationType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("HardAbrasiveFormationID")]
-    public string HardAbrasiveFormationID { get; set; }
+    public string? HardAbrasiveFormationID { get; set; }
 
     /// <summary>
     /// Cumulative Hours on Bit
@@ -221,6 +221,6 @@ public class AbstractTubularComponentBitRecord_1_1_0
     /// Remarks
     /// </summary>
     [JsonPropertyName("Remarks")]
-    public string Remarks { get; set; }
+    public string? Remarks { get; set; }
 
 }

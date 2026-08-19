@@ -17,20 +17,20 @@ namespace Osdu.Client.Apis.CrsConversion;
 public class GeoJsonFeature
 {
     [JsonPropertyName("geoJsonVariantInternal")]
-    public GeoJsonFeature_GeoJsonVariantInternal GeoJsonVariantInternal { get; set; }
+    public GeoJsonFeature_GeoJsonVariantInternal? GeoJsonVariantInternal { get; set; }
 
     [Required]
     [MinLength(1)]
     [JsonIgnore]
     [JsonPropertyName("type")]
-    public string Type { get; set; }
+    public required string Type { get; set; }
 
     [JsonPropertyName("bbox")]
-    public List<double> Bbox { get; set; }
+    public List<double>? Bbox { get; set; }
 
     [Required]
     [JsonPropertyName("geometry")]
-    public GeoJsonFeature_Geometry Geometry { get; set; }
+    public required GeoJsonFeature_Geometry Geometry { get; set; }
 
     [JsonPropertyName("properties")]
     public object? Properties { get; set; }

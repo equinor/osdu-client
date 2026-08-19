@@ -30,7 +30,7 @@ public class AbstractColumnLayerGridPatch_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-KDirectionType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("KDirectionID")]
-    public string KDirectionID { get; set; }
+    public string? KDirectionID { get; set; }
 
     /// <summary>
     /// Indicate if at least two adjacent nodes in K Direction are collocated. Also known as pinched node. Usually occur in erosional context.
@@ -44,7 +44,7 @@ public class AbstractColumnLayerGridPatch_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-PillarShapeType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("PillarShapeID")]
-    public string PillarShapeID { get; set; }
+    public string? PillarShapeID { get; set; }
 
     /// <summary>
     /// Indicate that it exists at least one gap in the lateral direction of the grid. A gap is really a hole, it is not a slice of dead cells.
@@ -85,7 +85,7 @@ public class AbstractColumnLayerGridPatch_1_0_0
     /// Indicate if a grid has been topologically expanded in a particular dimension (K expansion, J expansion, I expansion)
     /// </summary>
     [JsonPropertyName("ExpansionInDirection")]
-    public AbstractColumnLayerGridPatch_1_0_0_ExpansionInDirection ExpansionInDirection { get; set; }
+    public AbstractColumnLayerGridPatch_1_0_0_ExpansionInDirection? ExpansionInDirection { get; set; }
 
 }
 

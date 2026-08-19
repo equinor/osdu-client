@@ -24,13 +24,13 @@ public class AbstractAccessControlList_1_0_0
     /// </summary>
     [Required]
     [JsonPropertyName("owners")]
-    public List<string> Owners { get; set; }
+    public required List<string> Owners { get; set; }
 
     /// <summary>
     /// The list of viewers to which this data record is accessible/visible/discoverable formatted as an email (core.common.model.storage.validation.ValidationDoc.EMAIL_REGEX).
     /// </summary>
     [Required]
     [JsonPropertyName("viewers")]
-    public List<string> Viewers { get; set; }
+    public required List<string> Viewers { get; set; }
 
 }

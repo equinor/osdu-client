@@ -17,13 +17,13 @@ namespace Osdu.Client.Apis.Unit;
 public class MeasurementMap
 {
     [JsonPropertyName("measurementMapItems")]
-    public List<MeasurementMapItem> MeasurementMapItems { get; set; }
+    public List<MeasurementMapItem>? MeasurementMapItems { get; set; }
 
     [JsonPropertyName("fromNamespace")]
-    public string FromNamespace { get; set; }
+    public string? FromNamespace { get; set; }
 
     [JsonPropertyName("toNamespace")]
-    public string ToNamespace { get; set; }
+    public string? ToNamespace { get; set; }
 
     [JsonPropertyName("measurementMapItemCount")]
     public int? MeasurementMapItemCount { get; set; }

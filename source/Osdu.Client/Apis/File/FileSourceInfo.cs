@@ -25,68 +25,68 @@ public class FileSourceInfo
     [Required]
     [MinLength(1)]
     [JsonPropertyName("FileSource")]
-    public string FileSource { get; set; }
+    public required string FileSource { get; set; }
 
     /// <summary>
     /// File system path to the data file as it existed before loading to the data platform
     /// </summary>
     [JsonPropertyName("PreloadFilePath")]
-    public string PreloadFilePath { get; set; }
+    public string? PreloadFilePath { get; set; }
 
     /// <summary>
     /// Optional user name or reference, who created the file prior to up-loading to the platform.
     /// </summary>
     [JsonPropertyName("PreloadFileCreateUser")]
-    public string PreloadFileCreateUser { get; set; }
+    public string? PreloadFileCreateUser { get; set; }
 
     /// <summary>
     /// Optional create date and time of the file prior to uploading to the platform.
     /// </summary>
     [JsonPropertyName("PreloadFileCreateDate")]
-    public string PreloadFileCreateDate { get; set; }
+    public string? PreloadFileCreateDate { get; set; }
 
     /// <summary>
     /// Optional user name or reference, who last modified the file prior to up-loading to the platform.
     /// </summary>
     [JsonPropertyName("PreloadFileModifyUser")]
-    public string PreloadFileModifyUser { get; set; }
+    public string? PreloadFileModifyUser { get; set; }
 
     /// <summary>
     /// Optional last modified date and time of the file prior to up-loading to the platform.
     /// </summary>
     [JsonPropertyName("PreloadFileModifyDate")]
-    public string PreloadFileModifyDate { get; set; }
+    public string? PreloadFileModifyDate { get; set; }
 
     /// <summary>
     /// user-friendly file name.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// Length of file in bytes. Implemented as string. The value must be convertible to a long integer (sizes can become very large).
     /// </summary>
     [JsonPropertyName("FileSize")]
-    public string FileSize { get; set; }
+    public string? FileSize { get; set; }
 
     /// <summary>
     /// Encoding Format Type ID
     /// </summary>
     [RegularExpression(@"^srn:<namespace>:reference-data\\/EncodingFormatType:[^:]+:[0-9]*$")]
     [JsonPropertyName("EncodingFormatTypeID")]
-    public string EncodingFormatTypeID { get; set; }
+    public string? EncodingFormatTypeID { get; set; }
 
     /// <summary>
     /// MD5 checksum of file bytes - a 32 byte hexadecimal number
     /// </summary>
     [RegularExpression(@"^[0-9a-fA-F]32}$")]
     [JsonPropertyName("Checksum")]
-    public string Checksum { get; set; }
+    public string? Checksum { get; set; }
 
     /// <summary>
     /// The name of the checksum algorithm e.g. MD5, SHA-256.
     /// </summary>
     [JsonPropertyName("ChecksumAlgorithm")]
-    public string ChecksumAlgorithm { get; set; }
+    public string? ChecksumAlgorithm { get; set; }
 
 }

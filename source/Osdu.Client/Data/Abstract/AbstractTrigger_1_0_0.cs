@@ -23,18 +23,18 @@ public class AbstractTrigger_1_0_0
     /// The condition expressed as human readable text, which triggers the re-evaluation of the decision.
     /// </summary>
     [JsonPropertyName("Condition")]
-    public string Condition { get; set; }
+    public string? Condition { get; set; }
 
     /// <summary>
     /// An array of free remarks or annotations.
     /// </summary>
     [JsonPropertyName("Remarks")]
-    public List<AbstractRemark_1_0_0> Remarks { get; set; }
+    public List<AbstractRemark_1_0_0>? Remarks { get; set; }
 
     /// <summary>
     /// Relationships to zero or more activity templates representing workflows, which need to be executed when the condition is met.
     /// </summary>
     [JsonPropertyName("WorkflowIDs")]
-    public List<string> WorkflowIDs { get; set; }
+    public List<string>? WorkflowIDs { get; set; }
 
 }

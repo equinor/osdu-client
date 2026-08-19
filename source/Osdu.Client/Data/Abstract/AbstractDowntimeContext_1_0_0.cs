@@ -25,14 +25,14 @@ public class AbstractDowntimeContext_1_0_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-DowntimeEvent:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("DowntimeEventID")]
-    public string DowntimeEventID { get; set; }
+    public required string DowntimeEventID { get; set; }
 
     /// <summary>
     /// The fixed type 'Downtime Event' for this AbstractDowntimeContext
     /// </summary>
     [Required]
     [JsonPropertyName("ContextType")]
-    public AbstractDowntimeContext_1_0_0_ContextType ContextType { get; set; }
+    public required AbstractDowntimeContext_1_0_0_ContextType ContextType { get; set; }
 
 }
 

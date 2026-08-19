@@ -31,20 +31,20 @@ public class AbstractSpatialLocation_1_1_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-QuantitativeAccuracyBand:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("QuantitativeAccuracyBandID")]
-    public string QuantitativeAccuracyBandID { get; set; }
+    public string? QuantitativeAccuracyBandID { get; set; }
 
     /// <summary>
     /// A qualitative description of the quality of a spatial location, e.g. unverifiable, not verified, basic validation.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-QualitativeSpatialAccuracyType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("QualitativeSpatialAccuracyTypeID")]
-    public string QualitativeSpatialAccuracyTypeID { get; set; }
+    public string? QualitativeSpatialAccuracyTypeID { get; set; }
 
     /// <summary>
     /// The user who performed the Quality Check.
     /// </summary>
     [JsonPropertyName("CoordinateQualityCheckPerformedBy")]
-    public string CoordinateQualityCheckPerformedBy { get; set; }
+    public string? CoordinateQualityCheckPerformedBy { get; set; }
 
     /// <summary>
     /// The date of the Quality Check.
@@ -57,7 +57,7 @@ public class AbstractSpatialLocation_1_1_0
     /// Freetext remarks on Quality Check.
     /// </summary>
     [JsonPropertyName("CoordinateQualityCheckRemarks")]
-    public List<string> CoordinateQualityCheckRemarks { get; set; }
+    public List<string>? CoordinateQualityCheckRemarks { get; set; }
 
     [JsonPropertyName("AsIngestedCoordinates")]
     public AbstractAnyCrsFeatureCollection_1_1_0? AsIngestedCoordinates { get; set; }
@@ -69,20 +69,20 @@ public class AbstractSpatialLocation_1_1_0
     /// The audit trail of operations applied to the coordinates from the original state to the current state. The list may contain operations applied prior to ingestion as well as the operations applied to produce the Wgs84Coordinates. The text elements refer to ESRI style CRS and Transformation names, which may have to be translated to EPSG standard names.
     /// </summary>
     [JsonPropertyName("AppliedOperations")]
-    public List<string> AppliedOperations { get; set; }
+    public List<string>? AppliedOperations { get; set; }
 
     /// <summary>
     /// A type of spatial representation of an object, often general (e.g. an Outline, which could be applied to Field, Reservoir, Facility, etc.) or sometimes specific (e.g. Onshore Outline, State Offshore Outline, Federal Offshore Outline, 3 spatial representations that may be used by Countries).
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-SpatialParameterType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SpatialParameterTypeID")]
-    public string SpatialParameterTypeID { get; set; }
+    public string? SpatialParameterTypeID { get; set; }
 
     /// <summary>
     /// Indicates the expected look of the SpatialParameterType, e.g. Point, MultiPoint, LineString, MultiLineString, Polygon, MultiPolygon. The value constrains the type of geometries in the GeoJSON Wgs84Coordinates and AsIngestedCoordinates.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-SpatialGeometryType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SpatialGeometryTypeID")]
-    public string SpatialGeometryTypeID { get; set; }
+    public string? SpatialGeometryTypeID { get; set; }
 
 }

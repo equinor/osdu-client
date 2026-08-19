@@ -24,13 +24,13 @@ public class Acl
     /// </summary>
     [Required]
     [JsonPropertyName("viewers")]
-    public List<string> Viewers { get; set; }
+    public required List<string> Viewers { get; set; }
 
     /// <summary>
     /// List of valid groups which will have write privileges over the record.
     /// </summary>
     [Required]
     [JsonPropertyName("owners")]
-    public List<string> Owners { get; set; }
+    public required List<string> Owners { get; set; }
 
 }

@@ -42,19 +42,19 @@ public class AbstractInterpretation_1_1_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-DomainType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("DomainTypeID")]
-    public string DomainTypeID { get; set; }
+    public string? DomainTypeID { get; set; }
 
     /// <summary>
     /// Reference to the Feature the Interpretation refers to. The actual type of the target is specified in the specialisation, i.e. the type, which includes this schema fragment.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:(master-data\-\-BoundaryFeature|master-data\-\-ModelFeature|master-data\-\-RockVolumeFeature|work-product-component\-\-LocalBoundaryFeature|work-product-component\-\-LocalModelFeature|work-product-component\-\-LocalRockVolumeFeature):[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("FeatureID")]
-    public string FeatureID { get; set; }
+    public string? FeatureID { get; set; }
 
     /// <summary>
     /// Name of the feature the Interpretation refers to
     /// </summary>
     [JsonPropertyName("FeatureName")]
-    public string FeatureName { get; set; }
+    public string? FeatureName { get; set; }
 
 }

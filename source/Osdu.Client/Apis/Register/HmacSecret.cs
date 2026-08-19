@@ -20,6 +20,6 @@ namespace Osdu.Client.Apis.Register;
 public class HmacSecret : Secret
 {
     [JsonPropertyName("value")]
-    public string Value { get; set; }
+    public string? Value { get; set; }
 
 }

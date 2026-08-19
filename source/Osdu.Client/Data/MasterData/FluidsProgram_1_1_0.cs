@@ -25,7 +25,7 @@ public class FluidsProgram_1_1_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-FluidsProgram:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class FluidsProgram_1_1_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class FluidsProgram_1_1_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class FluidsProgram_1_1_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class FluidsProgram_1_1_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class FluidsProgram_1_1_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public FluidsProgram_1_1_0_Data? Data { get; set; }
@@ -101,13 +101,13 @@ public class FluidsProgram_1_1_0_Data : AbstractCommonResources_1_0_0 // Also co
     /// Alternative names, including historical, by which this master data is/has been known (it should include all the identifiers).
     /// </summary>
     [JsonPropertyName("NameAliases")]
-    public List<AbstractAliasNames_1_0_0> NameAliases { get; set; }
+    public List<AbstractAliasNames_1_0_0>? NameAliases { get; set; }
 
     /// <summary>
     /// List of geographic entities which provide context to the master data. This may include multiple types or multiple values of the same type.
     /// </summary>
     [JsonPropertyName("GeoContexts")]
-    public List<AbstractGeoContext_1_0_0> GeoContexts { get; set; }
+    public List<AbstractGeoContext_1_0_0>? GeoContexts { get; set; }
 
     [JsonPropertyName("SpatialLocation")]
     public AbstractSpatialLocation_1_1_0? SpatialLocation { get; set; }
@@ -116,46 +116,46 @@ public class FluidsProgram_1_1_0_Data : AbstractCommonResources_1_0_0 // Also co
     /// This describes the reason that caused the creation of a new version of this master data.
     /// </summary>
     [JsonPropertyName("VersionCreationReason")]
-    public string VersionCreationReason { get; set; }
+    public string? VersionCreationReason { get; set; }
 
     /// <summary>
     /// DEPRECATED: (in favor of more nuanced TechnicalAssurances[] array) Describes a master-data record's overall suitability for general business consumption based on data quality. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TechnicalAssuranceType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TechnicalAssuranceTypeID")]
-    public string TechnicalAssuranceTypeID { get; set; }
+    public string? TechnicalAssuranceTypeID { get; set; }
 
     /// <summary>
     /// Describes a record's overall suitability for general business consumption in context of one or more workflows/personas based on data quality and reviewer's decisions. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [JsonPropertyName("TechnicalAssurances")]
-    public List<AbstractTechnicalAssurance_1_2_0> TechnicalAssurances { get; set; }
+    public List<AbstractTechnicalAssurance_1_2_0>? TechnicalAssurances { get; set; }
 
     /// <summary>
     /// Identifier of the planned Wellbore
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Wellbore:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellboreID")]
-    public string WellboreID { get; set; }
+    public string? WellboreID { get; set; }
 
     /// <summary>
     /// An array of fluid intervals that in turn describe the target fluid properties that should be implemented
     /// </summary>
     [JsonPropertyName("FluidIntervals")]
-    public List<FluidsProgram_1_1_0_Data_FluidIntervals> FluidIntervals { get; set; }
+    public List<FluidsProgram_1_1_0_Data_FluidIntervals>? FluidIntervals { get; set; }
 
     /// <summary>
     /// Identifier of the fluids supplier company
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("FluidsSupplierID")]
-    public string FluidsSupplierID { get; set; }
+    public string? FluidsSupplierID { get; set; }
 
     /// <summary>
     /// Name of Fluids Program
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
@@ -172,42 +172,42 @@ public class FluidsProgram_1_1_0_Data_FluidIntervals
     /// </summary>
     [Required]
     [JsonPropertyName("IntervalName")]
-    public string IntervalName { get; set; }
+    public required string IntervalName { get; set; }
 
     /// <summary>
     /// The top measured depth of the interval in which the fluid will be used (in many cases, this Measured Depth will be the same than the one provided by WellboreArchitecture.HoleSection content). Depth relative to Planned wellbore ZDP. Navigate via WellboreID to the side-car WellPlanningWellbore, which holds the depth reference in data.VerticalMeasurement.
     /// </summary>
     [Required]
     [JsonPropertyName("IntervalTopMeasuredDepth")]
-    public double IntervalTopMeasuredDepth { get; set; }
+    public required double IntervalTopMeasuredDepth { get; set; }
 
     /// <summary>
     /// The bottom measured depth of the interval in which the fluid will be used (in many cases, this Measured Depth will be the same than the one provided by WellboreArchitecture.HoleSection content). Depth relative to Planned wellbore ZDP. Navigate via WellboreID to the side-car WellPlanningWellbore, which holds the depth reference in data.VerticalMeasurement.
     /// </summary>
     [Required]
     [JsonPropertyName("IntervalBaseMeasuredDepth")]
-    public double IntervalBaseMeasuredDepth { get; set; }
+    public required double IntervalBaseMeasuredDepth { get; set; }
 
     /// <summary>
     /// Description of the Hole Section for this Fluids Program
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-HoleSection:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("HoleSectionID")]
-    public string HoleSectionID { get; set; }
+    public string? HoleSectionID { get; set; }
 
     /// <summary>
     /// The identifier of the tubular to be installed.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-TubularAssembly:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("InstalledTubularAssemblyID")]
-    public string InstalledTubularAssemblyID { get; set; }
+    public string? InstalledTubularAssemblyID { get; set; }
 
     /// <summary>
     /// A fixed list of reference values describing the high level type of the drilling fluid
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-FluidType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("FluidTypeID")]
-    public string FluidTypeID { get; set; }
+    public string? FluidTypeID { get; set; }
 
     /// <summary>
     /// A reference number allowing traceability back to the analysis of the fluid in a lab
@@ -225,14 +225,14 @@ public class FluidsProgram_1_1_0_Data_FluidIntervals
     /// Comments and remarks.
     /// </summary>
     [JsonPropertyName("Comments")]
-    public string Comments { get; set; }
+    public string? Comments { get; set; }
 
     /// <summary>
     /// Provides the overall description of the drilling fluids system.
     /// </summary>
     [Required]
     [JsonPropertyName("FluidsSystem")]
-    public FluidsProgram_1_1_0_Data_FluidIntervals_FluidsSystem FluidsSystem { get; set; }
+    public required FluidsProgram_1_1_0_Data_FluidIntervals_FluidsSystem FluidsSystem { get; set; }
 
 }
 
@@ -245,33 +245,33 @@ public class FluidsProgram_1_1_0_Data_FluidIntervals_FluidsSystem
     /// Free text string of the common name or product name of the drilling mud.
     /// </summary>
     [JsonPropertyName("FluidSystemName")]
-    public string FluidSystemName { get; set; }
+    public string? FluidSystemName { get; set; }
 
     /// <summary>
     /// The purpose the mud will play in this hole section (can be Sweep, Displacement Mud).
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-FluidRole:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("FluidPurposeID")]
-    public string FluidPurposeID { get; set; }
+    public string? FluidPurposeID { get; set; }
 
     /// <summary>
     /// An array of planned / designed properties of the fluid for the Interval / Phase. Properties may have a specified value or a range that should be maintained
     /// </summary>
     [Required]
     [JsonPropertyName("FluidProperties")]
-    public List<FluidsProgram_1_1_0_Data_FluidIntervals_FluidsSystem_FluidProperties> FluidProperties { get; set; }
+    public required List<FluidsProgram_1_1_0_Data_FluidIntervals_FluidsSystem_FluidProperties> FluidProperties { get; set; }
 
     /// <summary>
     /// Description of the formulation to be used for the drilling activity
     /// </summary>
     [JsonPropertyName("BarrelFormulation")]
-    public List<FluidsProgram_1_1_0_Data_FluidIntervals_FluidsSystem_BarrelFormulation> BarrelFormulation { get; set; }
+    public List<FluidsProgram_1_1_0_Data_FluidIntervals_FluidsSystem_BarrelFormulation>? BarrelFormulation { get; set; }
 
     /// <summary>
     /// Type of polymers present in mud system.
     /// </summary>
     [JsonPropertyName("PolymerType")]
-    public string PolymerType { get; set; }
+    public string? PolymerType { get; set; }
 
 }
 
@@ -286,14 +286,14 @@ public class FluidsProgram_1_1_0_Data_FluidIntervals_FluidsSystem_FluidPropertie
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-FluidPropertyName:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("FluidPropertyNameID")]
-    public string FluidPropertyNameID { get; set; }
+    public required string FluidPropertyNameID { get; set; }
 
     /// <summary>
     /// Array of Fluids facet that describes each individual programmed property of the fluids.
     /// </summary>
     [Required]
     [JsonPropertyName("FluidFacets")]
-    public List<FluidsProgram_1_1_0_Data_FluidIntervals_FluidsSystem_FluidProperties_FluidFacets> FluidFacets { get; set; }
+    public required List<FluidsProgram_1_1_0_Data_FluidIntervals_FluidsSystem_FluidProperties_FluidFacets> FluidFacets { get; set; }
 
 }
 
@@ -308,14 +308,14 @@ public class FluidsProgram_1_1_0_Data_FluidIntervals_FluidsSystem_FluidPropertie
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-FluidPropertyFacetName:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("FluidPropertyFacetNameID")]
-    public string FluidPropertyFacetNameID { get; set; }
+    public required string FluidPropertyFacetNameID { get; set; }
 
     /// <summary>
     /// The actual value of the property
     /// </summary>
     [Required]
     [JsonPropertyName("FluidPropertyValue")]
-    public double FluidPropertyValue { get; set; }
+    public required double FluidPropertyValue { get; set; }
 
     /// <summary>
     /// The measurement unit of the Fluid Property Value
@@ -323,7 +323,7 @@ public class FluidsProgram_1_1_0_Data_FluidIntervals_FluidsSystem_FluidPropertie
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("FluidPropertyUnit")]
-    public string FluidPropertyUnit { get; set; }
+    public required string FluidPropertyUnit { get; set; }
 
     /// <summary>
     /// The unique identifier of the fluid property (density or temperature measurement,….)
@@ -331,7 +331,7 @@ public class FluidsProgram_1_1_0_Data_FluidIntervals_FluidsSystem_FluidPropertie
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitQuantity:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("MeasuredPropertyID")]
-    public string MeasuredPropertyID { get; set; }
+    public required string MeasuredPropertyID { get; set; }
 
 }
 
@@ -345,7 +345,7 @@ public class FluidsProgram_1_1_0_Data_FluidIntervals_FluidsSystem_BarrelFormulat
     /// </summary>
     [Required]
     [JsonPropertyName("ProductName")]
-    public string ProductName { get; set; }
+    public required string ProductName { get; set; }
 
     /// <summary>
     /// The actual value of the planned product concentration
@@ -358,7 +358,7 @@ public class FluidsProgram_1_1_0_Data_FluidIntervals_FluidsSystem_BarrelFormulat
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ConcentrationUnitOfMeasure")]
-    public string ConcentrationUnitOfMeasure { get; set; }
+    public string? ConcentrationUnitOfMeasure { get; set; }
 
     /// <summary>
     /// The actual number of units of the component. The unit size of the component. For example if you wanted to use 15 x 25 lb bags then the Unit would be lbs, the UnitSize would be 25 and the Product Package would be "Bag" and the Quantity would be 15
@@ -371,31 +371,31 @@ public class FluidsProgram_1_1_0_Data_FluidIntervals_FluidsSystem_BarrelFormulat
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ProductUnitOfMeasure")]
-    public string ProductUnitOfMeasure { get; set; }
+    public string? ProductUnitOfMeasure { get; set; }
 
     /// <summary>
     /// The unit size of the component. For example if this product came in 25 lb bags then the Unit would be lbs, the UnitSize would be 25 and the Product Package would be "Bag"
     /// </summary>
     [JsonPropertyName("ProductUnitSize")]
-    public string ProductUnitSize { get; set; }
+    public string? ProductUnitSize { get; set; }
 
     /// <summary>
     /// The code associated with the product
     /// </summary>
     [JsonPropertyName("ProductCode")]
-    public string ProductCode { get; set; }
+    public string? ProductCode { get; set; }
 
     /// <summary>
     /// The function that the component plays in the formulation. For example Base Oil, Fresh Water, Chemical Additive
     /// </summary>
     [JsonPropertyName("ProductFunction")]
-    public string ProductFunction { get; set; }
+    public string? ProductFunction { get; set; }
 
     /// <summary>
     /// The packaging that the component comes in. For example Sacks, Bags. For Liquids this is usually N/A
     /// </summary>
     [JsonPropertyName("ProductPackage")]
-    public string ProductPackage { get; set; }
+    public string? ProductPackage { get; set; }
 
     /// <summary>
     /// The specific gravity value of the component.

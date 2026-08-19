@@ -17,9 +17,9 @@ namespace Osdu.Client.Apis.Entitlement;
 public class AliasEntity
 {
     [JsonPropertyName("userId")]
-    public string UserId { get; set; }
+    public string? UserId { get; set; }
 
     [JsonPropertyName("aliasId")]
-    public string AliasId { get; set; }
+    public string? AliasId { get; set; }
 
 }

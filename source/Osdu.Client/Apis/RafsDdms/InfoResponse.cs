@@ -17,24 +17,24 @@ namespace Osdu.Client.Apis.RafsDdms;
 public class InfoResponse
 {
     [JsonPropertyName("name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     [JsonPropertyName("app_version")]
-    public string AppVersion { get; set; }
+    public string? AppVersion { get; set; }
 
     [JsonPropertyName("build_time")]
-    public string BuildTime { get; set; }
+    public string? BuildTime { get; set; }
 
     [JsonPropertyName("branch")]
-    public string Branch { get; set; }
+    public string? Branch { get; set; }
 
     [JsonPropertyName("commit_id")]
-    public string CommitId { get; set; }
+    public string? CommitId { get; set; }
 
     [JsonPropertyName("commit_message")]
-    public string CommitMessage { get; set; }
+    public string? CommitMessage { get; set; }
 
     [JsonPropertyName("release_version")]
-    public string ReleaseVersion { get; set; }
+    public string? ReleaseVersion { get; set; }
 
 }

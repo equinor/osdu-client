@@ -25,7 +25,7 @@ public class Reservoir_1_2_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Reservoir:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class Reservoir_1_2_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class Reservoir_1_2_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class Reservoir_1_2_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class Reservoir_1_2_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class Reservoir_1_2_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public Reservoir_1_2_0_Data? Data { get; set; }
@@ -101,13 +101,13 @@ public class Reservoir_1_2_0_Data : AbstractCommonResources_1_0_0 // Also compos
     /// Alternative names, including historical, by which this master data is/has been known (it should include all the identifiers).
     /// </summary>
     [JsonPropertyName("NameAliases")]
-    public List<AbstractAliasNames_1_0_0> NameAliases { get; set; }
+    public List<AbstractAliasNames_1_0_0>? NameAliases { get; set; }
 
     /// <summary>
     /// List of geographic entities which provide context to the master data. This may include multiple types or multiple values of the same type.
     /// </summary>
     [JsonPropertyName("GeoContexts")]
-    public List<AbstractGeoContext_1_0_0> GeoContexts { get; set; }
+    public List<AbstractGeoContext_1_0_0>? GeoContexts { get; set; }
 
     [JsonPropertyName("SpatialLocation")]
     public AbstractSpatialLocation_1_1_0? SpatialLocation { get; set; }
@@ -116,26 +116,26 @@ public class Reservoir_1_2_0_Data : AbstractCommonResources_1_0_0 // Also compos
     /// This describes the reason that caused the creation of a new version of this master data.
     /// </summary>
     [JsonPropertyName("VersionCreationReason")]
-    public string VersionCreationReason { get; set; }
+    public string? VersionCreationReason { get; set; }
 
     /// <summary>
     /// DEPRECATED: (in favor of more nuanced TechnicalAssurances[] array) Describes a master-data record's overall suitability for general business consumption based on data quality. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TechnicalAssuranceType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TechnicalAssuranceTypeID")]
-    public string TechnicalAssuranceTypeID { get; set; }
+    public string? TechnicalAssuranceTypeID { get; set; }
 
     /// <summary>
     /// Describes a record's overall suitability for general business consumption in context of one or more workflows/personas based on data quality and reviewer's decisions. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [JsonPropertyName("TechnicalAssurances")]
-    public List<AbstractTechnicalAssurance_1_2_0> TechnicalAssurances { get; set; }
+    public List<AbstractTechnicalAssurance_1_2_0>? TechnicalAssurances { get; set; }
 
     /// <summary>
     /// Name of the reservoir or reservoir segment.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// The productive area is the measured or estimated total area of the reservoir unit considered, usually the area within the hydrocarbon-water contact.
@@ -160,7 +160,7 @@ public class Reservoir_1_2_0_Data : AbstractCommonResources_1_0_0 // Also compos
     /// Array of Historical Status of a production model element as exploration, appraisal and development. The operational or legal status of the reservoir.
     /// </summary>
     [JsonPropertyName("Status")]
-    public List<Reservoir_1_2_0_Data_Status> Status { get; set; }
+    public List<Reservoir_1_2_0_Data_Status>? Status { get; set; }
 
     /// <summary>
     /// Currently active Status of a production model element as exploration, appraisal and development. The operational or legal status of the reservoir.
@@ -173,14 +173,14 @@ public class Reservoir_1_2_0_Data : AbstractCommonResources_1_0_0 // Also compos
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-PersistedCollection:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SectorID")]
-    public string SectorID { get; set; }
+    public string? SectorID { get; set; }
 
     /// <summary>
     /// DEPRECATED: Only used in ReservoirSegment: Identifier linking to the parent reservoir entity (It could be either a segment or a reservoir)
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:(master-data\-\-Reservoir|master-data\-\-ReservoirSegment):[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ParentReservoirEntityID")]
-    public string ParentReservoirEntityID { get; set; }
+    public string? ParentReservoirEntityID { get; set; }
 
     [JsonPropertyName("BusinessAssociate")]
     public AbstractContact_1_1_0? BusinessAssociate { get; set; }
@@ -190,13 +190,13 @@ public class Reservoir_1_2_0_Data : AbstractCommonResources_1_0_0 // Also compos
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ReservoirType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ReservoirTypeID")]
-    public string ReservoirTypeID { get; set; }
+    public string? ReservoirTypeID { get; set; }
 
     /// <summary>
     /// Time stamped remarks associated with the reservoir.
     /// </summary>
     [JsonPropertyName("Remarks")]
-    public List<AbstractRemark_1_0_0> Remarks { get; set; }
+    public List<AbstractRemark_1_0_0>? Remarks { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
@@ -213,25 +213,25 @@ public class Reservoir_1_2_0_Data_Status
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ReservoirStatusType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("StatusTypeID")]
-    public string StatusTypeID { get; set; }
+    public string? StatusTypeID { get; set; }
 
     /// <summary>
     /// Date of a status change
     /// </summary>
     [JsonPropertyName("StatusDate")]
-    public DateOnly StatusDate { get; set; }
+    public DateOnly? StatusDate { get; set; }
 
     /// <summary>
     /// The date and time at which the reservoir status type becomes effective.
     /// </summary>
     [JsonPropertyName("EffectiveDateTime")]
-    public DateOnly EffectiveDateTime { get; set; }
+    public DateOnly? EffectiveDateTime { get; set; }
 
     /// <summary>
     /// The date and time at which the reservoir status type is no longer in effect.
     /// </summary>
     [JsonPropertyName("TerminationDateTime")]
-    public DateOnly TerminationDateTime { get; set; }
+    public DateOnly? TerminationDateTime { get; set; }
 
 }
 
@@ -245,24 +245,24 @@ public class Reservoir_1_2_0_Data_CurrentStatus
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ReservoirStatusType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("StatusTypeID")]
-    public string StatusTypeID { get; set; }
+    public string? StatusTypeID { get; set; }
 
     /// <summary>
     /// Date of a status change
     /// </summary>
     [JsonPropertyName("StatusDate")]
-    public DateOnly StatusDate { get; set; }
+    public DateOnly? StatusDate { get; set; }
 
     /// <summary>
     /// The date and time at which the reservoir status type becomes effective.
     /// </summary>
     [JsonPropertyName("EffectiveDateTime")]
-    public DateOnly EffectiveDateTime { get; set; }
+    public DateOnly? EffectiveDateTime { get; set; }
 
     /// <summary>
     /// The date and time at which the reservoir status type is no longer in effect.
     /// </summary>
     [JsonPropertyName("TerminationDateTime")]
-    public DateOnly TerminationDateTime { get; set; }
+    public DateOnly? TerminationDateTime { get; set; }
 
 }

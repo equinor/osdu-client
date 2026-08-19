@@ -24,7 +24,7 @@ public class AbstractTimeSeriesLink_1_0_0
     /// </summary>
     [Required]
     [JsonPropertyName("TimeIndex")]
-    public int TimeIndex { get; set; }
+    public required int TimeIndex { get; set; }
 
     /// <summary>
     /// Time series the representation is associated to
@@ -32,6 +32,6 @@ public class AbstractTimeSeriesLink_1_0_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-TimeSeries:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TimeSeriesID")]
-    public string TimeSeriesID { get; set; }
+    public required string TimeSeriesID { get; set; }
 
 }

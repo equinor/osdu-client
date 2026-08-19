@@ -24,7 +24,7 @@ public class AbstractFileCollection_1_0_0
     /// </summary>
     [Required]
     [JsonPropertyName("DatasetProperties")]
-    public AbstractFileCollection_1_0_0_DatasetProperties DatasetProperties { get; set; }
+    public required AbstractFileCollection_1_0_0_DatasetProperties DatasetProperties { get; set; }
 
 }
 
@@ -38,25 +38,25 @@ public class AbstractFileCollection_1_0_0_DatasetProperties
     /// </summary>
     [Required]
     [JsonPropertyName("FileCollectionPath")]
-    public string FileCollectionPath { get; set; }
+    public required string FileCollectionPath { get; set; }
 
     /// <summary>
     /// An optional path to an index file.
     /// </summary>
     [JsonPropertyName("IndexFilePath")]
-    public string IndexFilePath { get; set; }
+    public string? IndexFilePath { get; set; }
 
     /// <summary>
     /// Array of file collection members as FileSourceInfo.
     /// </summary>
     [JsonPropertyName("FileSourceInfos")]
-    public List<AbstractFileSourceInfo_1_0_0> FileSourceInfos { get; set; }
+    public List<AbstractFileSourceInfo_1_0_0>? FileSourceInfos { get; set; }
 
     /// <summary>
     /// MD5 checksum of file bytes - a 32 byte hexadecimal number.
     /// </summary>
     [RegularExpression(@"^[0-9a-fA-F]{32}")]
     [JsonPropertyName("Checksum")]
-    public string Checksum { get; set; }
+    public string? Checksum { get; set; }
 
 }

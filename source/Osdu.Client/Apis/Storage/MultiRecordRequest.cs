@@ -23,6 +23,6 @@ public class MultiRecordRequest
     [MinLength(1)]
     [MaxLength(20)]
     [JsonPropertyName("records")]
-    public List<string> Records { get; set; }
+    public required List<string> Records { get; set; }
 
 }

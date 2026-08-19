@@ -25,7 +25,7 @@ public class PlannedCementJob_1_3_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-PlannedCementJob:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class PlannedCementJob_1_3_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class PlannedCementJob_1_3_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class PlannedCementJob_1_3_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class PlannedCementJob_1_3_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class PlannedCementJob_1_3_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public PlannedCementJob_1_3_0_Data? Data { get; set; }
@@ -101,13 +101,13 @@ public class PlannedCementJob_1_3_0_Data : AbstractCommonResources_1_0_0 // Also
     /// Alternative names, including historical, by which this master data is/has been known (it should include all the identifiers).
     /// </summary>
     [JsonPropertyName("NameAliases")]
-    public List<AbstractAliasNames_1_0_0> NameAliases { get; set; }
+    public List<AbstractAliasNames_1_0_0>? NameAliases { get; set; }
 
     /// <summary>
     /// List of geographic entities which provide context to the master data. This may include multiple types or multiple values of the same type.
     /// </summary>
     [JsonPropertyName("GeoContexts")]
-    public List<AbstractGeoContext_1_0_0> GeoContexts { get; set; }
+    public List<AbstractGeoContext_1_0_0>? GeoContexts { get; set; }
 
     [JsonPropertyName("SpatialLocation")]
     public AbstractSpatialLocation_1_1_0? SpatialLocation { get; set; }
@@ -116,66 +116,66 @@ public class PlannedCementJob_1_3_0_Data : AbstractCommonResources_1_0_0 // Also
     /// This describes the reason that caused the creation of a new version of this master data.
     /// </summary>
     [JsonPropertyName("VersionCreationReason")]
-    public string VersionCreationReason { get; set; }
+    public string? VersionCreationReason { get; set; }
 
     /// <summary>
     /// DEPRECATED: (in favor of more nuanced TechnicalAssurances[] array) Describes a master-data record's overall suitability for general business consumption based on data quality. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TechnicalAssuranceType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TechnicalAssuranceTypeID")]
-    public string TechnicalAssuranceTypeID { get; set; }
+    public string? TechnicalAssuranceTypeID { get; set; }
 
     /// <summary>
     /// Describes a record's overall suitability for general business consumption in context of one or more workflows/personas based on data quality and reviewer's decisions. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [JsonPropertyName("TechnicalAssurances")]
-    public List<AbstractTechnicalAssurance_1_2_0> TechnicalAssurances { get; set; }
+    public List<AbstractTechnicalAssurance_1_2_0>? TechnicalAssurances { get; set; }
 
     /// <summary>
     /// Human recognizable context for the cement job.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// Reference to the Wellbore
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-WellPlanningWellbore:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellboreID")]
-    public string WellboreID { get; set; }
+    public string? WellboreID { get; set; }
 
     /// <summary>
     /// Type of cement job.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CementJobType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("JobTypeID")]
-    public string JobTypeID { get; set; }
+    public string? JobTypeID { get; set; }
 
     /// <summary>
     /// Job configuration.
     /// </summary>
     [JsonPropertyName("JobConfig")]
-    public string JobConfig { get; set; }
+    public string? JobConfig { get; set; }
 
     /// <summary>
     /// Name for the cemented string
     /// </summary>
     [JsonPropertyName("NameCementedString")]
-    public string NameCementedString { get; set; }
+    public string? NameCementedString { get; set; }
 
     /// <summary>
     /// Identifier of the TubularAssembly that describes the cement work string
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:(master-data\-\-TubularAssembly|work-product-component\-\-TubularAssembly):[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WorkStringID")]
-    public string WorkStringID { get; set; }
+    public string? WorkStringID { get; set; }
 
     /// <summary>
     /// Identifier of cementing contractor.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ContractorID")]
-    public string ContractorID { get; set; }
+    public string? ContractorID { get; set; }
 
     /// <summary>
     /// Offshore job? Values are "true" (or "1") and "false" (or "0").
@@ -208,7 +208,7 @@ public class PlannedCementJob_1_3_0_Data : AbstractCommonResources_1_0_0 // Also
     /// Estimated duration for waiting on cement to set.
     /// </summary>
     [JsonPropertyName("EstimatedWaitingOnCement")]
-    public string EstimatedWaitingOnCement { get; set; }
+    public string? EstimatedWaitingOnCement { get; set; }
 
     /// <summary>
     /// If Plug, estimated measured depth of top of plug. Depth relative to Planned wellbore ZDP. Navigate via WellboreID to the side-car WellPlanningWellbore, which holds the depth reference in data.VerticalMeasurement.
@@ -256,20 +256,20 @@ public class PlannedCementJob_1_3_0_Data : AbstractCommonResources_1_0_0 // Also
     /// Set of stages for the job (usually 1 or 2).
     /// </summary>
     [JsonPropertyName("CementStages")]
-    public List<PlannedCementJob_1_3_0_Data_CementStages> CementStages { get; set; }
+    public List<PlannedCementJob_1_3_0_Data_CementStages>? CementStages { get; set; }
 
     /// <summary>
     /// Plug type.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-PlugType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("PlugTypeID")]
-    public string PlugTypeID { get; set; }
+    public string? PlugTypeID { get; set; }
 
     /// <summary>
     /// Type of squeeze.
     /// </summary>
     [JsonPropertyName("TypeSqueeze")]
-    public string TypeSqueeze { get; set; }
+    public string? TypeSqueeze { get; set; }
 
     /// <summary>
     /// Measured depth of squeeze. DDepth relative to Planned wellbore ZDP. Navigate via WellboreID to the side-car WellPlanningWellbore, which holds the depth reference in data.VerticalMeasurement.
@@ -289,14 +289,14 @@ public class PlannedCementJob_1_3_0_Data : AbstractCommonResources_1_0_0 // Also
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:(master-data\-\-TubularAssembly|work-product-component\-\-TubularAssembly):[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TubularAssemblyID")]
-    public string TubularAssemblyID { get; set; }
+    public string? TubularAssemblyID { get; set; }
 
     /// <summary>
     /// Identifier of the Wellbore Architecture describing the geometry of the installed tubular.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-WellboreArchitecture:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellboreArchitectureID")]
-    public string WellboreArchitectureID { get; set; }
+    public string? WellboreArchitectureID { get; set; }
 
     /// <summary>
     /// The estimated Measured depth of the Top of Cement. Depth relative to Planned wellbore ZDP. Navigate via WellboreID to the side-car WellPlanningWellbore, which holds the depth reference in data.VerticalMeasurement.
@@ -309,7 +309,7 @@ public class PlannedCementJob_1_3_0_Data : AbstractCommonResources_1_0_0 // Also
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:(master-data\-\-TubularComponent|work-product-component\-\-TubularComponent):[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("CementToolTubularComponentID")]
-    public string CementToolTubularComponentID { get; set; }
+    public string? CementToolTubularComponentID { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
@@ -326,14 +326,14 @@ public class PlannedCementJob_1_3_0_Data_CementStages
     /// </summary>
     [Required]
     [JsonPropertyName("StageNumber")]
-    public double StageNumber { get; set; }
+    public required double StageNumber { get; set; }
 
     /// <summary>
     /// Stage type.
     /// </summary>
     [Required]
     [JsonPropertyName("StageType")]
-    public string StageType { get; set; }
+    public required string StageType { get; set; }
 
     /// <summary>
     /// Measured depth at top of interval. Depth relative to Planned wellbore ZDP. Navigate via WellboreID to the side-car WellPlanningWellbore, which holds the depth reference in data.VerticalMeasurement.
@@ -399,7 +399,7 @@ public class PlannedCementJob_1_3_0_Data_CementStages
     /// Squeeze objective.
     /// </summary>
     [JsonPropertyName("SqueezeObjective")]
-    public string SqueezeObjective { get; set; }
+    public string? SqueezeObjective { get; set; }
 
     /// <summary>
     /// Measured depth of string (multi-stage cement job). Depth relative to Planned wellbore ZDP. Navigate via WellboreID to the side-car WellPlanningWellbore, which holds the depth reference in data.VerticalMeasurement.
@@ -435,7 +435,7 @@ public class PlannedCementJob_1_3_0_Data_CementStages
     /// Type of mud in hole.
     /// </summary>
     [JsonPropertyName("TypeOriginalMud")]
-    public string TypeOriginalMud { get; set; }
+    public string? TypeOriginalMud { get; set; }
 
     /// <summary>
     /// Mud density.
@@ -477,7 +477,7 @@ public class PlannedCementJob_1_3_0_Data_CementStages
     /// Displacement fluid name.
     /// </summary>
     [JsonPropertyName("FluidDisplace")]
-    public string FluidDisplace { get; set; }
+    public string? FluidDisplace { get; set; }
 
     /// <summary>
     /// Density of displacement fluid.
@@ -502,7 +502,7 @@ public class PlannedCementJob_1_3_0_Data_CementStages_CementingFluid
     /// Fluid type: Mud, Wash, Spacer, Slurry.
     /// </summary>
     [JsonPropertyName("TypeFluid")]
-    public string TypeFluid { get; set; }
+    public string? TypeFluid { get; set; }
 
     /// <summary>
     /// Fluid Index: 1: first fluid pumped (=original mud),
@@ -515,19 +515,19 @@ public class PlannedCementJob_1_3_0_Data_CementStages_CementingFluid
     /// Fluid description.
     /// </summary>
     [JsonPropertyName("FluidDescription")]
-    public string FluidDescription { get; set; }
+    public string? FluidDescription { get; set; }
 
     /// <summary>
     /// Purpose description.
     /// </summary>
     [JsonPropertyName("Purpose")]
-    public string Purpose { get; set; }
+    public string? Purpose { get; set; }
 
     /// <summary>
     /// Slurry class.
     /// </summary>
     [JsonPropertyName("ClassSlurryDryBlend")]
-    public string ClassSlurryDryBlend { get; set; }
+    public string? ClassSlurryDryBlend { get; set; }
 
     /// <summary>
     /// Estimated Measured depth at top of slurry placement.
@@ -606,7 +606,7 @@ public class PlannedCementJob_1_3_0_Data_CementStages_CementingFluid
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-FluidRheologicalModelType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("FluidRheologicalModelID")]
-    public string FluidRheologicalModelID { get; set; }
+    public string? FluidRheologicalModelID { get; set; }
 
     /// <summary>
     /// Viscosity (Newtonian) or Plastic Viscosity if Bingham.
@@ -672,7 +672,7 @@ public class PlannedCementJob_1_3_0_Data_CementStages_CementingFluid
     /// Type of base fluid: Fresh water, Sea water, Brine, Brackish water.
     /// </summary>
     [JsonPropertyName("BaseFluidType")]
-    public string BaseFluidType { get; set; }
+    public string? BaseFluidType { get; set; }
 
     /// <summary>
     /// Density of base fluid.
@@ -684,13 +684,13 @@ public class PlannedCementJob_1_3_0_Data_CementStages_CementingFluid
     /// Name of dry blend.
     /// </summary>
     [JsonPropertyName("DryBlendName")]
-    public string DryBlendName { get; set; }
+    public string? DryBlendName { get; set; }
 
     /// <summary>
     /// Description of dry blend.
     /// </summary>
     [JsonPropertyName("DryBlendDescription")]
-    public string DryBlendDescription { get; set; }
+    public string? DryBlendDescription { get; set; }
 
     /// <summary>
     /// Mass of dry blend: the blend is made of different solid additives: the volume is not constant.
@@ -714,7 +714,7 @@ public class PlannedCementJob_1_3_0_Data_CementStages_CementingFluid
     /// Additives can be added in slurry but also in spacers, washes, mud.
     /// </summary>
     [JsonPropertyName("CementAdditives")]
-    public List<PlannedCementJob_1_3_0_Data_CementStages_CementingFluid_CementAdditives> CementAdditives { get; set; }
+    public List<PlannedCementJob_1_3_0_Data_CementStages_CementingFluid_CementAdditives>? CementAdditives { get; set; }
 
     /// <summary>
     /// Foam used indicator.  Values are "true" (or "1") and "false" (or "0").
@@ -727,7 +727,7 @@ public class PlannedCementJob_1_3_0_Data_CementStages_CementingFluid
     /// Gas type used for foam job.
     /// </summary>
     [JsonPropertyName("GasFoamType")]
-    public string GasFoamType { get; set; }
+    public string? GasFoamType { get; set; }
 
     /// <summary>
     /// Volume of gas used for foam job.
@@ -770,7 +770,7 @@ public class PlannedCementJob_1_3_0_Data_CementStages_CementingFluid_CementPumpS
     /// Comments and Remarks.
     /// </summary>
     [JsonPropertyName("Comments")]
-    public string Comments { get; set; }
+    public string? Comments { get; set; }
 
 }
 
@@ -784,27 +784,27 @@ public class PlannedCementJob_1_3_0_Data_CementStages_CementingFluid_CementAddit
     /// </summary>
     [Required]
     [JsonPropertyName("AdditiveName")]
-    public string AdditiveName { get; set; }
+    public required string AdditiveName { get; set; }
 
     /// <summary>
     /// The liquid, solid or gaseous substance used to manipulate the function or properties of a fluid.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-AdditiveType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("AdditiveTypeID")]
-    public string AdditiveTypeID { get; set; }
+    public string? AdditiveTypeID { get; set; }
 
     /// <summary>
     /// The chief purpose or reason for adding a substance to a fluid used in a downhole operation.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-AdditiveRole:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("AdditiveRoleID")]
-    public string AdditiveRoleID { get; set; }
+    public string? AdditiveRoleID { get; set; }
 
     /// <summary>
     /// Wet or Dry.
     /// </summary>
     [JsonPropertyName("AdditiveFormulation")]
-    public string AdditiveFormulation { get; set; }
+    public string? AdditiveFormulation { get; set; }
 
     /// <summary>
     /// Additive density.
@@ -817,34 +817,34 @@ public class PlannedCementJob_1_3_0_Data_CementStages_CementingFluid_CementAddit
     /// </summary>
     [Required]
     [JsonPropertyName("AdditiveAmount")]
-    public double AdditiveAmount { get; set; }
+    public required double AdditiveAmount { get; set; }
 
     /// <summary>
     /// ConcentrationType: %BWOC (%By weight of Cement), %BWOB (%By weight of blend), %BWOW (%By weight of water), %BWOBF (%By weight of base fluid)
     /// </summary>
     [Required]
     [JsonPropertyName("TypeConc")]
-    public string TypeConc { get; set; }
+    public required string TypeConc { get; set; }
 
     /// <summary>
     /// Concentration Amount: unit type depends of typeConc.
     /// </summary>
     [Required]
     [JsonPropertyName("Concentration")]
-    public double Concentration { get; set; }
+    public required double Concentration { get; set; }
 
     /// <summary>
     /// Concentration in terms of weight per sack.
     /// </summary>
     [Required]
     [JsonPropertyName("WtSack")]
-    public double WtSack { get; set; }
+    public required double WtSack { get; set; }
 
     /// <summary>
     /// Concentration in terms of volume per sack.
     /// </summary>
     [Required]
     [JsonPropertyName("VolSack")]
-    public double VolSack { get; set; }
+    public required double VolSack { get; set; }
 
 }

@@ -24,19 +24,19 @@ public class AbstractFileSourceInfo_1_0_0
     /// </summary>
     [Required]
     [JsonPropertyName("FileSource")]
-    public string FileSource { get; set; }
+    public required string FileSource { get; set; }
 
     /// <summary>
     /// File system path to the data file as it existed before loading to the data platform.
     /// </summary>
     [JsonPropertyName("PreloadFilePath")]
-    public string PreloadFilePath { get; set; }
+    public string? PreloadFilePath { get; set; }
 
     /// <summary>
     /// Optional user name or reference, who created the file prior to up-loading to the platform.
     /// </summary>
     [JsonPropertyName("PreloadFileCreateUser")]
-    public string PreloadFileCreateUser { get; set; }
+    public string? PreloadFileCreateUser { get; set; }
 
     /// <summary>
     /// Optional create date and time of the file prior to up-loading to the platform.
@@ -49,7 +49,7 @@ public class AbstractFileSourceInfo_1_0_0
     /// Optional user name or reference, who last modified the file prior to up-loading to the platform.
     /// </summary>
     [JsonPropertyName("PreloadFileModifyUser")]
-    public string PreloadFileModifyUser { get; set; }
+    public string? PreloadFileModifyUser { get; set; }
 
     /// <summary>
     /// Optional last modified date and time of the file prior to up-loading to the platform.
@@ -62,33 +62,33 @@ public class AbstractFileSourceInfo_1_0_0
     /// Optional, user-friendly file name.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// Length of file in bytes. Implemented as string. The value must be convertible to a long integer (sizes can become very large).
     /// </summary>
     [RegularExpression(@"^[0-9]+$")]
     [JsonPropertyName("FileSize")]
-    public string FileSize { get; set; }
+    public string? FileSize { get; set; }
 
     /// <summary>
     /// Only used in FileCollection where the EncodingFormatType differs from data DatasetDefault specified in data.EncodingFormatTypeID: the media type specification for this dataset.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-EncodingFormatType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("EncodingFormatTypeID")]
-    public string EncodingFormatTypeID { get; set; }
+    public string? EncodingFormatTypeID { get; set; }
 
     /// <summary>
     /// Checksum of file bytes - a hexadecimal number with even number of bytes.
     /// </summary>
     [RegularExpression(@"^([0-9a-fA-F]{2})+$")]
     [JsonPropertyName("Checksum")]
-    public string Checksum { get; set; }
+    public string? Checksum { get; set; }
 
     /// <summary>
     /// The name of the checksum algorithm e.g. MD5, SHA-256.
     /// </summary>
     [JsonPropertyName("ChecksumAlgorithm")]
-    public string ChecksumAlgorithm { get; set; }
+    public string? ChecksumAlgorithm { get; set; }
 
 }

@@ -23,7 +23,7 @@ public class AbstractUnitEquipment_1_0_0
     /// Human-recognizable name for the equipment.
     /// </summary>
     [JsonPropertyName("EquipmentName")]
-    public string EquipmentName { get; set; }
+    public string? EquipmentName { get; set; }
 
     /// <summary>
     /// A number assigned to the Equipment to differentiate it from other identical equipment on the rigsite.
@@ -35,37 +35,37 @@ public class AbstractUnitEquipment_1_0_0
     /// The Make or Manufacturer of the equipment/unit
     /// </summary>
     [JsonPropertyName("EquipmentManufacturer")]
-    public string EquipmentManufacturer { get; set; }
+    public string? EquipmentManufacturer { get; set; }
 
     /// <summary>
     /// The Model of the equipment/unit.
     /// </summary>
     [JsonPropertyName("EquipmentModel")]
-    public string EquipmentModel { get; set; }
+    public string? EquipmentModel { get; set; }
 
     /// <summary>
     /// A description of the "type" of equipment being defined. For example, a mud pump may have the "type" Triplex, Duplex, Mixing, etc. or a derrick type may be conventional, portable mast, box, etc.
     /// </summary>
     [JsonPropertyName("EquipmentTypeID")]
-    public string EquipmentTypeID { get; set; }
+    public string? EquipmentTypeID { get; set; }
 
     /// <summary>
     /// The owner of the equipment or unit
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("EquipmentOwnerID")]
-    public string EquipmentOwnerID { get; set; }
+    public string? EquipmentOwnerID { get; set; }
 
     /// <summary>
     /// An identification tag for the equipment/unit. A serial number is a type of identification tag; however, some tags contain many pieces of information. This element only identifies the tag and does not describe the contents.
     /// </summary>
     [JsonPropertyName("EquipmentTag")]
-    public string EquipmentTag { get; set; }
+    public string? EquipmentTag { get; set; }
 
     /// <summary>
     /// Free text remarks about the equipment/unit.
     /// </summary>
     [JsonPropertyName("Comments")]
-    public string Comments { get; set; }
+    public string? Comments { get; set; }
 
 }

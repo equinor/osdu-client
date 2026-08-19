@@ -23,12 +23,12 @@ public class PointsInAouSearchResult
     /// A point that didn't land in the bounding box for area of use search
     /// </summary>
     [JsonPropertyName("bboxFailedPoints")]
-    public List<PointsInAouSearchPoint> BboxFailedPoints { get; set; }
+    public List<PointsInAouSearchPoint>? BboxFailedPoints { get; set; }
 
     /// <summary>
     /// Point distance with highest km outside bounding box
     /// </summary>
     [JsonPropertyName("maxDistKmOutsideBBox")]
-    public string MaxDistKmOutsideBBox { get; set; }
+    public string? MaxDistKmOutsideBBox { get; set; }
 
 }

@@ -24,19 +24,19 @@ public class AbstractProjectActivity_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-ActivityTemplate:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ActivityTemplateID")]
-    public string ActivityTemplateID { get; set; }
+    public string? ActivityTemplateID { get; set; }
 
     /// <summary>
     /// The relationship to a parent project acting as a parent activity.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:(master-data\-\-[\w\-\.]*Project[\w\-\.]*|master-data\-\-[\w\-\.]*Survey[\w\-\.]*):[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ParentProjectID")]
-    public string ParentProjectID { get; set; }
+    public string? ParentProjectID { get; set; }
 
     /// <summary>
     /// General parameter value used in one instance of activity.  Includes reference to data objects which are inputs and outputs of the activity.
     /// </summary>
     [JsonPropertyName("Parameters")]
-    public List<AbstractActivityParameter_1_0_0> Parameters { get; set; }
+    public List<AbstractActivityParameter_1_0_0>? Parameters { get; set; }
 
 }

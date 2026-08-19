@@ -24,13 +24,13 @@ public class RecordBulkUpdateParam
     /// </summary>
     [Required]
     [JsonPropertyName("query")]
-    public RecordQuery Query { get; set; }
+    public required RecordQuery Query { get; set; }
 
     /// <summary>
     /// Record metadata operations.
     /// </summary>
     [Required]
     [JsonPropertyName("ops")]
-    public List<PatchOperation> Ops { get; set; }
+    public required List<PatchOperation> Ops { get; set; }
 
 }

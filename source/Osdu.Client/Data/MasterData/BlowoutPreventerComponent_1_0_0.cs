@@ -25,7 +25,7 @@ public class BlowoutPreventerComponent_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-BlowoutPreventerComponent:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class BlowoutPreventerComponent_1_0_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class BlowoutPreventerComponent_1_0_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class BlowoutPreventerComponent_1_0_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class BlowoutPreventerComponent_1_0_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class BlowoutPreventerComponent_1_0_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public BlowoutPreventerComponent_1_0_0_Data? Data { get; set; }
@@ -101,13 +101,13 @@ public class BlowoutPreventerComponent_1_0_0_Data : AbstractCommonResources_1_0_
     /// Alternative names, including historical, by which this master data is/has been known (it should include all the identifiers).
     /// </summary>
     [JsonPropertyName("NameAliases")]
-    public List<AbstractAliasNames_1_0_0> NameAliases { get; set; }
+    public List<AbstractAliasNames_1_0_0>? NameAliases { get; set; }
 
     /// <summary>
     /// List of geographic entities which provide context to the master data. This may include multiple types or multiple values of the same type.
     /// </summary>
     [JsonPropertyName("GeoContexts")]
-    public List<AbstractGeoContext_1_0_0> GeoContexts { get; set; }
+    public List<AbstractGeoContext_1_0_0>? GeoContexts { get; set; }
 
     [JsonPropertyName("SpatialLocation")]
     public AbstractSpatialLocation_1_1_0? SpatialLocation { get; set; }
@@ -116,53 +116,53 @@ public class BlowoutPreventerComponent_1_0_0_Data : AbstractCommonResources_1_0_
     /// This describes the reason that caused the creation of a new version of this master data.
     /// </summary>
     [JsonPropertyName("VersionCreationReason")]
-    public string VersionCreationReason { get; set; }
+    public string? VersionCreationReason { get; set; }
 
     /// <summary>
     /// DEPRECATED: (in favor of more nuanced TechnicalAssurances[] array) Describes a master-data record's overall suitability for general business consumption based on data quality. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TechnicalAssuranceType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TechnicalAssuranceTypeID")]
-    public string TechnicalAssuranceTypeID { get; set; }
+    public string? TechnicalAssuranceTypeID { get; set; }
 
     /// <summary>
     /// Describes a record's overall suitability for general business consumption in context of one or more workflows/personas based on data quality and reviewer's decisions. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [JsonPropertyName("TechnicalAssurances")]
-    public List<AbstractTechnicalAssurance_1_2_0> TechnicalAssurances { get; set; }
+    public List<AbstractTechnicalAssurance_1_2_0>? TechnicalAssurances { get; set; }
 
     /// <summary>
     /// Identifier of the blowout preventer the component is a part of.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-BlowoutPreventer:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("BlowoutPreventerID")]
-    public string BlowoutPreventerID { get; set; }
+    public string? BlowoutPreventerID { get; set; }
 
     /// <summary>
     /// Identifier of the Well the component is associated with.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:(master-data\-\-Well|master-data\-\-WellPlanningWell):[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellID")]
-    public string WellID { get; set; }
+    public string? WellID { get; set; }
 
     /// <summary>
     /// Identifier of the type of blowout preventer component.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-BlowoutPreventerComponentType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("BlowoutPreventerComponentTypeID")]
-    public string BlowoutPreventerComponentTypeID { get; set; }
+    public string? BlowoutPreventerComponentTypeID { get; set; }
 
     /// <summary>
     /// The name of the blowout preventer component.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// Description of the blowout preventer component.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// Is the blowout preventer component vertical?
@@ -183,19 +183,19 @@ public class BlowoutPreventerComponent_1_0_0_Data : AbstractCommonResources_1_0_
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ManufacturerID")]
-    public string ManufacturerID { get; set; }
+    public string? ManufacturerID { get; set; }
 
     /// <summary>
     /// Manufacturer's designated model.
     /// </summary>
     [JsonPropertyName("Model")]
-    public string Model { get; set; }
+    public string? Model { get; set; }
 
     /// <summary>
     /// Serial number of the component as provided by the manufacturer and/or the supplier.
     /// </summary>
     [JsonPropertyName("SerialNumber")]
-    public string SerialNumber { get; set; }
+    public string? SerialNumber { get; set; }
 
     /// <summary>
     /// The sequence within which the components entered the hole. That is, a sequence number of 1 entered first, 2 entered next, etc.
@@ -286,7 +286,7 @@ public class BlowoutPreventerComponent_1_0_0_Data : AbstractCommonResources_1_0_
     /// General comments and remarks related to the component.
     /// </summary>
     [JsonPropertyName("Comment")]
-    public string Comment { get; set; }
+    public string? Comment { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }

@@ -25,7 +25,7 @@ public class TubularAssembly_2_1_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-TubularAssembly:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class TubularAssembly_2_1_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class TubularAssembly_2_1_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class TubularAssembly_2_1_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class TubularAssembly_2_1_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class TubularAssembly_2_1_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public TubularAssembly_2_1_0_Data? Data { get; set; }
@@ -101,13 +101,13 @@ public class TubularAssembly_2_1_0_Data : AbstractCommonResources_1_0_0 // Also 
     /// Alternative names, including historical, by which this master data is/has been known (it should include all the identifiers).
     /// </summary>
     [JsonPropertyName("NameAliases")]
-    public List<AbstractAliasNames_1_0_0> NameAliases { get; set; }
+    public List<AbstractAliasNames_1_0_0>? NameAliases { get; set; }
 
     /// <summary>
     /// List of geographic entities which provide context to the master data. This may include multiple types or multiple values of the same type.
     /// </summary>
     [JsonPropertyName("GeoContexts")]
-    public List<AbstractGeoContext_1_0_0> GeoContexts { get; set; }
+    public List<AbstractGeoContext_1_0_0>? GeoContexts { get; set; }
 
     [JsonPropertyName("SpatialLocation")]
     public AbstractSpatialLocation_1_1_0? SpatialLocation { get; set; }
@@ -116,40 +116,40 @@ public class TubularAssembly_2_1_0_Data : AbstractCommonResources_1_0_0 // Also 
     /// This describes the reason that caused the creation of a new version of this master data.
     /// </summary>
     [JsonPropertyName("VersionCreationReason")]
-    public string VersionCreationReason { get; set; }
+    public string? VersionCreationReason { get; set; }
 
     /// <summary>
     /// DEPRECATED: (in favor of more nuanced TechnicalAssurances[] array) Describes a master-data record's overall suitability for general business consumption based on data quality. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TechnicalAssuranceType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TechnicalAssuranceTypeID")]
-    public string TechnicalAssuranceTypeID { get; set; }
+    public string? TechnicalAssuranceTypeID { get; set; }
 
     /// <summary>
     /// Describes a record's overall suitability for general business consumption in context of one or more workflows/personas based on data quality and reviewer's decisions. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [JsonPropertyName("TechnicalAssurances")]
-    public List<AbstractTechnicalAssurance_1_2_0> TechnicalAssurances { get; set; }
+    public List<AbstractTechnicalAssurance_1_2_0>? TechnicalAssurances { get; set; }
 
     /// <summary>
     /// The name of the Tubular Assembly.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// Identifier of the Wellbore the Assembly is installed into or run in. Note: it may not be same wellbore that current assembly is installed into.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Wellbore:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ParentWellboreID")]
-    public string ParentWellboreID { get; set; }
+    public string? ParentWellboreID { get; set; }
 
     /// <summary>
     /// Optional - Identifier of the parent assembly (in case of side-track, multi-nesting,…) - The Concentric Tubular model is used to identify the Assembly that an Assembly sits inside e.g. Surface Casing set inside Conductor, Tubing set inside Production Casing, a Bumper Spring set inside a Production Tubing Profile Nipple, Liner set inside Casing, etc. This is needed to enable a Digital Well Sketch application to understand relationships between Assemblies including those in parent Wellbores.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-TubularAssembly:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ParentAssemblyID")]
-    public string ParentAssemblyID { get; set; }
+    public string? ParentAssemblyID { get; set; }
 
     /// <summary>
     /// Reflects the current status of the Assembly - as 'installed', 'pulled', 'planned',... - Applicable to tubing/completions as opposed to drillstrings. Historical states are recorded in TubularAssemblyStates.
@@ -161,7 +161,7 @@ public class TubularAssembly_2_1_0_Data : AbstractCommonResources_1_0_0 // Also 
     /// The full record of historical and current states of the Assembly. The current active state is recorded in TubularAssemblyStatus.
     /// </summary>
     [JsonPropertyName("TubularAssemblyStates")]
-    public List<TubularAssembly_2_1_0_Data_TubularAssemblyStates> TubularAssemblyStates { get; set; }
+    public List<TubularAssembly_2_1_0_Data_TubularAssemblyStates>? TubularAssemblyStates { get; set; }
 
     [JsonPropertyName("VerticalMeasurement")]
     public AbstractFacilityVerticalMeasurement_1_0_0? VerticalMeasurement { get; set; }
@@ -183,41 +183,41 @@ public class TubularAssembly_2_1_0_Data : AbstractCommonResources_1_0_0 // Also 
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TubularAssemblyType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TubularAssemblyTypeID")]
-    public string TubularAssemblyTypeID { get; set; }
+    public string? TubularAssemblyTypeID { get; set; }
 
     /// <summary>
     /// Descriptor for Assembly, e.g. Production, Surface, Conductor, Intermediate, Drilling
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-StringClass:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("StringClassID")]
-    public string StringClassID { get; set; }
+    public string? StringClassID { get; set; }
 
     /// <summary>
     /// Used to describe if it belongs to a RunActivity or to a PullActivity
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TubularAssemblyActivityType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ActivityTypeID")]
-    public string ActivityTypeID { get; set; }
+    public string? ActivityTypeID { get; set; }
 
     /// <summary>
     /// Used to describe the reason of Activity - such as cut/pull, pulling,…
     /// </summary>
     [JsonPropertyName("ActivityTypeReasonDescription")]
-    public string ActivityTypeReasonDescription { get; set; }
+    public string? ActivityTypeReasonDescription { get; set; }
 
     /// <summary>
     /// Type of Artificial Lift supported by the TubularAssembly where applicable E.g. could be "Surface Pump" / "Submersible Pump" / "Gas Lift", etc
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ArtificialLiftType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ArtificialLiftTypeID")]
-    public string ArtificialLiftTypeID { get; set; }
+    public string? ArtificialLiftTypeID { get; set; }
 
     /// <summary>
     /// This reference table describes the type of liner used in the borehole where applicable. For example, slotted, gravel packed or pre-perforated etc.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-LinerType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("LinerTypeID")]
-    public string LinerTypeID { get; set; }
+    public string? LinerTypeID { get; set; }
 
     /// <summary>
     /// True if the assembly is a mixed string, else false. True where the Tubular Assembly is made up of joints with different Diameters, Weights, Grades, Connection, Tensile Strengths, Collapse Resistance or  Yield Strengths.
@@ -238,7 +238,7 @@ public class TubularAssembly_2_1_0_Data : AbstractCommonResources_1_0_0 // Also 
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TubularDirection:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TubularDirectionID")]
-    public string TubularDirectionID { get; set; }
+    public string? TubularDirectionID { get; set; }
 
     /// <summary>
     /// Nominal size (diameter) describing the whole assembly, e.g. 9.625", 12.25
@@ -311,7 +311,7 @@ public class TubularAssembly_2_1_0_Data : AbstractCommonResources_1_0_0 // Also 
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ContractorID")]
-    public string ContractorID { get; set; }
+    public string? ContractorID { get; set; }
 
     /// <summary>
     /// Density of Fluid Behind Assembly
@@ -324,7 +324,7 @@ public class TubularAssembly_2_1_0_Data : AbstractCommonResources_1_0_0 // Also 
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WellFluidType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("FluidBehindTypeID")]
-    public string FluidBehindTypeID { get; set; }
+    public string? FluidBehindTypeID { get; set; }
 
     /// <summary>
     /// Fluid Lost Volume when running assembly in hole
@@ -429,13 +429,13 @@ public class TubularAssembly_2_1_0_Data_TubularAssemblyStatus
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TubularAssemblyStatusType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("StatusTypeID")]
-    public string StatusTypeID { get; set; }
+    public string? StatusTypeID { get; set; }
 
     /// <summary>
     /// Used to describe the reason of Activity - such as installed, cut/pull, pulling.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// Date the status has been established.
@@ -456,13 +456,13 @@ public class TubularAssembly_2_1_0_Data_TubularAssemblyStates
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TubularAssemblyStatusType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("StatusTypeID")]
-    public string StatusTypeID { get; set; }
+    public string? StatusTypeID { get; set; }
 
     /// <summary>
     /// Used to describe the reason of Activity - such as installed, cut/pull, pulling.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// Date the status has been established.

@@ -19,6 +19,6 @@ public class Body_create_or_update_partition_policy_api_policy_v1_policies_osdu_
     [Required]
     [MinLength(10)]
     [JsonPropertyName("file")]
-    public string File { get; set; }
+    public required string File { get; set; }
 
 }

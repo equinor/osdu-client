@@ -53,6 +53,6 @@ public class AbstractTubularComponentMWDTool_1_0_0
     /// Array of one or more flow rate versus measured pressure loss points used to interpolate pressure loss across the MWD/LWD tool for a given flowrate
     /// </summary>
     [JsonPropertyName("PressureLossCurve")]
-    public List<AbstractTubularComponentPressureLoss_1_0_0> PressureLossCurve { get; set; }
+    public List<AbstractTubularComponentPressureLoss_1_0_0>? PressureLossCurve { get; set; }
 
 }

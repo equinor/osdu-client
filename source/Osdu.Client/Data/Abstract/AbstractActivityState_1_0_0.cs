@@ -38,12 +38,12 @@ public class AbstractActivityState_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ActivityStatus:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ActivityStatusID")]
-    public string ActivityStatusID { get; set; }
+    public string? ActivityStatusID { get; set; }
 
     /// <summary>
     /// An optional remark associated with the ActivityStatus and time interval.
     /// </summary>
     [JsonPropertyName("Remark")]
-    public string Remark { get; set; }
+    public string? Remark { get; set; }
 
 }

@@ -23,19 +23,19 @@ public class SortQuery
     /// The list of fields to sort the results.
     /// </summary>
     [JsonPropertyName("field")]
-    public List<string> Field { get; set; }
+    public List<string>? Field { get; set; }
 
     /// <summary>
     /// The list of orders to sort the results. The element must be either ASC or DESC.
     /// </summary>
     [JsonPropertyName("order")]
-    public List<SortQuery_Order> Order { get; set; }
+    public List<SortQuery_Order>? Order { get; set; }
 
     /// <summary>
     /// Optional list of filter expressions applied per sort field, controlling how missing or unmapped values are treated.
     /// </summary>
     [JsonPropertyName("filter")]
-    public List<string> Filter { get; set; }
+    public List<string>? Filter { get; set; }
 
 }
 

@@ -25,7 +25,7 @@ public class BHARun_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-BHARun:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class BHARun_1_0_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class BHARun_1_0_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class BHARun_1_0_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class BHARun_1_0_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class BHARun_1_0_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public BHARun_1_0_0_Data? Data { get; set; }
@@ -101,13 +101,13 @@ public class BHARun_1_0_0_Data : AbstractCommonResources_1_0_0 // Also composes:
     /// Alternative names, including historical, by which this master data is/has been known (it should include all the identifiers).
     /// </summary>
     [JsonPropertyName("NameAliases")]
-    public List<AbstractAliasNames_1_0_0> NameAliases { get; set; }
+    public List<AbstractAliasNames_1_0_0>? NameAliases { get; set; }
 
     /// <summary>
     /// List of geographic entities which provide context to the master data. This may include multiple types or multiple values of the same type.
     /// </summary>
     [JsonPropertyName("GeoContexts")]
-    public List<AbstractGeoContext_1_0_0> GeoContexts { get; set; }
+    public List<AbstractGeoContext_1_0_0>? GeoContexts { get; set; }
 
     [JsonPropertyName("SpatialLocation")]
     public AbstractSpatialLocation_1_0_0? SpatialLocation { get; set; }
@@ -116,38 +116,38 @@ public class BHARun_1_0_0_Data : AbstractCommonResources_1_0_0 // Also composes:
     /// This describes the reason that caused the creation of a new version of this master data.
     /// </summary>
     [JsonPropertyName("VersionCreationReason")]
-    public string VersionCreationReason { get; set; }
+    public string? VersionCreationReason { get; set; }
 
     /// <summary>
     /// Describes a master-data record's overall suitability for general business consumption based on data quality. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TechnicalAssuranceType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TechnicalAssuranceTypeID")]
-    public string TechnicalAssuranceTypeID { get; set; }
+    public string? TechnicalAssuranceTypeID { get; set; }
 
     /// <summary>
     /// Native identifier from a Master Data Management System or other trusted source external to OSDU - stored here in order to allow for multi-system connection and synchronization. If used, the "Source" property should identify that source system.
     /// </summary>
     [JsonPropertyName("ProjectID")]
-    public string ProjectID { get; set; }
+    public string? ProjectID { get; set; }
 
     /// <summary>
     /// The common or preferred name of a Project.
     /// </summary>
     [JsonPropertyName("ProjectName")]
-    public string ProjectName { get; set; }
+    public string? ProjectName { get; set; }
 
     /// <summary>
     /// DEPRECATED: please use data.NameAliases. The history of Project names, codes, and other business identifiers.
     /// </summary>
     [JsonPropertyName("ProjectNames")]
-    public List<AbstractAliasNames_1_0_0> ProjectNames { get; set; }
+    public List<AbstractAliasNames_1_0_0>? ProjectNames { get; set; }
 
     /// <summary>
     /// Description of the objectives of a Project.
     /// </summary>
     [JsonPropertyName("Purpose")]
-    public string Purpose { get; set; }
+    public string? Purpose { get; set; }
 
     /// <summary>
     /// The date and time when the Project was initiated.
@@ -167,44 +167,44 @@ public class BHARun_1_0_0_Data : AbstractCommonResources_1_0_0 // Also composes:
     /// The history of expenditure approvals.
     /// </summary>
     [JsonPropertyName("FundsAuthorizations")]
-    public List<BHARun_1_0_0_Data_FundsAuthorizations> FundsAuthorizations { get; set; }
+    public List<BHARun_1_0_0_Data_FundsAuthorizations>? FundsAuthorizations { get; set; }
 
     /// <summary>
     /// References to applicable agreements in external contract database system of record.
     /// </summary>
     [JsonPropertyName("ContractIDs")]
-    public List<string> ContractIDs { get; set; }
+    public List<string>? ContractIDs { get; set; }
 
     /// <summary>
     /// The organisation which controlled the conduct of the project.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("Operator")]
-    public string Operator { get; set; }
+    public string? Operator { get; set; }
 
     /// <summary>
     /// References to organisations which supplied services to the Project.
     /// </summary>
     [JsonPropertyName("Contractors")]
-    public List<BHARun_1_0_0_Data_Contractors> Contractors { get; set; }
+    public List<BHARun_1_0_0_Data_Contractors>? Contractors { get; set; }
 
     /// <summary>
     /// List of key individuals supporting the Project.  This could be Abstracted for re-use, and could reference a separate Persons master data object.
     /// </summary>
     [JsonPropertyName("Personnel")]
-    public List<BHARun_1_0_0_Data_Personnel> Personnel { get; set; }
+    public List<BHARun_1_0_0_Data_Personnel>? Personnel { get; set; }
 
     /// <summary>
     /// General parameters defining the configuration of the Project.  In the case of a seismic acquisition project it is like receiver interval, source depth, source type.  In the case of a processing project, it is like replacement velocity, reference datum above mean sea level.
     /// </summary>
     [JsonPropertyName("ProjectSpecifications")]
-    public List<BHARun_1_0_0_Data_ProjectSpecifications> ProjectSpecifications { get; set; }
+    public List<BHARun_1_0_0_Data_ProjectSpecifications>? ProjectSpecifications { get; set; }
 
     /// <summary>
     /// The history of life cycle states that the Project has been through..
     /// </summary>
     [JsonPropertyName("ProjectStates")]
-    public List<BHARun_1_0_0_Data_ProjectStates> ProjectStates { get; set; }
+    public List<BHARun_1_0_0_Data_ProjectStates>? ProjectStates { get; set; }
 
     /// <summary>
     /// Unique identifier for the wellbore.  This uniquely represents
@@ -212,13 +212,13 @@ public class BHARun_1_0_0_Data : AbstractCommonResources_1_0_0 // Also composes:
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Wellbore:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellboreID")]
-    public string WellboreID { get; set; }
+    public string? WellboreID { get; set; }
 
     /// <summary>
     /// Human recognizable context for the run.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// This represents a foreign key to the tubular (assembly)
@@ -226,14 +226,14 @@ public class BHARun_1_0_0_Data : AbstractCommonResources_1_0_0 // Also composes:
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-TubularAssembly:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TubularID")]
-    public string TubularID { get; set; }
+    public string? TubularID { get; set; }
 
     /// <summary>
     /// This represents a foreign key to the Hole Section in which this BHA Run was performed.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-HoleSection:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("HoleSectionID")]
-    public string HoleSectionID { get; set; }
+    public string? HoleSectionID { get; set; }
 
     /// <summary>
     /// Date and time that activities started.
@@ -280,13 +280,13 @@ public class BHARun_1_0_0_Data : AbstractCommonResources_1_0_0 // Also composes:
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-BhaStatus:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("StatusBhaID")]
-    public string StatusBhaID { get; set; }
+    public string? StatusBhaID { get; set; }
 
     /// <summary>
     /// Bit run number.
     /// </summary>
     [JsonPropertyName("BitRunNumber")]
-    public string BitRunNumber { get; set; }
+    public string? BitRunNumber { get; set; }
 
     /// <summary>
     /// The BHA (drilling string) run number.
@@ -299,25 +299,25 @@ public class BHARun_1_0_0_Data : AbstractCommonResources_1_0_0 // Also composes:
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ReasonTripType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TripReasonID")]
-    public string TripReasonID { get; set; }
+    public string? TripReasonID { get; set; }
 
     /// <summary>
     /// Objective of bottom hole assembly.
     /// </summary>
     [JsonPropertyName("ObjectiveBha")]
-    public string ObjectiveBha { get; set; }
+    public string? ObjectiveBha { get; set; }
 
     /// <summary>
     /// Identifiers of the associated run parameter plans.
     /// </summary>
     [JsonPropertyName("RunParameterPlans")]
-    public List<BHARun_1_0_0_Data_RunParameterPlans> RunParameterPlans { get; set; }
+    public List<BHARun_1_0_0_Data_RunParameterPlans>? RunParameterPlans { get; set; }
 
     /// <summary>
     /// Free text allowing any comment associated to the run
     /// </summary>
     [JsonPropertyName("RunComment")]
-    public string RunComment { get; set; }
+    public string? RunComment { get; set; }
 
     /// <summary>
     /// Measured depth at run start. Depth relative to Planned wellbore ZDP. Navigate via WellboreID to the side-car WellPlanningWellbore, which holds the depth reference in data.VerticalMeasurement.
@@ -353,7 +353,7 @@ public class BHARun_1_0_0_Data : AbstractCommonResources_1_0_0 // Also composes:
     /// The parameters that were used during the BHA run
     /// </summary>
     [JsonPropertyName("DrillingParams")]
-    public List<BHARun_1_0_0_Data_DrillingParams> DrillingParams { get; set; }
+    public List<BHARun_1_0_0_Data_DrillingParams>? DrillingParams { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
@@ -369,7 +369,7 @@ public class BHARun_1_0_0_Data_FundsAuthorizations
     /// Internal Company control number which identifies the allocation of funds to the Project.
     /// </summary>
     [JsonPropertyName("AuthorizationID")]
-    public string AuthorizationID { get; set; }
+    public string? AuthorizationID { get; set; }
 
     /// <summary>
     /// The date and time when the funds were approved.
@@ -389,7 +389,7 @@ public class BHARun_1_0_0_Data_FundsAuthorizations
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-Currency:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("CurrencyID")]
-    public string CurrencyID { get; set; }
+    public string? CurrencyID { get; set; }
 
 }
 
@@ -403,20 +403,20 @@ public class BHARun_1_0_0_Data_Contractors
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ContractorOrganisationID")]
-    public string ContractorOrganisationID { get; set; }
+    public string? ContractorOrganisationID { get; set; }
 
     /// <summary>
     /// Name of the team, unit, crew, party, or other subdivision of the Contractor that provided services.
     /// </summary>
     [JsonPropertyName("ContractorCrew")]
-    public string ContractorCrew { get; set; }
+    public string? ContractorCrew { get; set; }
 
     /// <summary>
     /// The identifier of a reference value for the role of a contractor providing services, such as Recording, Line Clearing, Positioning, Data Processing.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ContractorType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ContractorTypeID")]
-    public string ContractorTypeID { get; set; }
+    public string? ContractorTypeID { get; set; }
 
 }
 
@@ -429,21 +429,21 @@ public class BHARun_1_0_0_Data_Personnel
     /// Name of an individual supporting the Project.
     /// </summary>
     [JsonPropertyName("PersonName")]
-    public string PersonName { get; set; }
+    public string? PersonName { get; set; }
 
     /// <summary>
     /// Reference to the company which employs Personnel.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("CompanyOrganisationID")]
-    public string CompanyOrganisationID { get; set; }
+    public string? CompanyOrganisationID { get; set; }
 
     /// <summary>
     /// The identifier of a reference value for the role of an individual supporting a Project, such as Project Manager, Party Chief, Client Representative, Senior Observer.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ProjectRole:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ProjectRoleID")]
-    public string ProjectRoleID { get; set; }
+    public string? ProjectRoleID { get; set; }
 
 }
 
@@ -490,21 +490,21 @@ public class BHARun_1_0_0_Data_ProjectSpecifications
     /// The actual text value of the parameter.
     /// </summary>
     [JsonPropertyName("ProjectSpecificationText")]
-    public string ProjectSpecificationText { get; set; }
+    public string? ProjectSpecificationText { get; set; }
 
     /// <summary>
     /// The unit for the quantity parameter if overriding the default for this ParameterType, like metre (m in SI units system) for quantity Length.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("UnitOfMeasureID")]
-    public string UnitOfMeasureID { get; set; }
+    public string? UnitOfMeasureID { get; set; }
 
     /// <summary>
     /// Parameter type of property or characteristic.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ParameterType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ParameterTypeID")]
-    public string ParameterTypeID { get; set; }
+    public string? ParameterTypeID { get; set; }
 
 }
 
@@ -532,7 +532,7 @@ public class BHARun_1_0_0_Data_ProjectStates
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ProjectStateType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ProjectStateTypeID")]
-    public string ProjectStateTypeID { get; set; }
+    public string? ProjectStateTypeID { get; set; }
 
 }
 
@@ -571,42 +571,42 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan
     /// </summary>
     [Required]
     [JsonPropertyName("RealizationStrategy")]
-    public string RealizationStrategy { get; set; }
+    public required string RealizationStrategy { get; set; }
 
     /// <summary>
     /// A group of parameters that refer to Torque on Bottom
     /// </summary>
     [Required]
     [JsonPropertyName("TorqueOnBottomGroup")]
-    public BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueOnBottomGroup TorqueOnBottomGroup { get; set; }
+    public required BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueOnBottomGroup TorqueOnBottomGroup { get; set; }
 
     /// <summary>
     /// A group of parameters that refer to RPM (rotations per minute)
     /// </summary>
     [Required]
     [JsonPropertyName("RPMGroup")]
-    public BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup RPMGroup { get; set; }
+    public required BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup RPMGroup { get; set; }
 
     /// <summary>
     /// A group of parameters that refer to ROP (rate of penetration)
     /// </summary>
     [Required]
     [JsonPropertyName("ROPGroup")]
-    public BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup ROPGroup { get; set; }
+    public required BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup ROPGroup { get; set; }
 
     /// <summary>
     /// A group of parameters that refer to WOB (weight on bit)
     /// </summary>
     [Required]
     [JsonPropertyName("WOBGroup")]
-    public BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup WOBGroup { get; set; }
+    public required BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup WOBGroup { get; set; }
 
     /// <summary>
     /// A group of parameters that refer to flowrate
     /// </summary>
     [Required]
     [JsonPropertyName("FlowratePumpGroup")]
-    public BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_FlowratePumpGroup FlowratePumpGroup { get; set; }
+    public required BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_FlowratePumpGroup FlowratePumpGroup { get; set; }
 
 }
 
@@ -620,14 +620,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueOn
     /// </summary>
     [Required]
     [JsonPropertyName("MaximumTorqueOnBottom")]
-    public BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueOnBottomGroup_MaximumTorqueOnBottom MaximumTorqueOnBottom { get; set; }
+    public required BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueOnBottomGroup_MaximumTorqueOnBottom MaximumTorqueOnBottom { get; set; }
 
     /// <summary>
     /// The planned minimum torque while on bottom
     /// </summary>
     [Required]
     [JsonPropertyName("MinimumTorqueOnBottom")]
-    public BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueOnBottomGroup_MinimumTorqueOnBottom MinimumTorqueOnBottom { get; set; }
+    public required BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueOnBottomGroup_MinimumTorqueOnBottom MinimumTorqueOnBottom { get; set; }
 
 }
 
@@ -641,7 +641,7 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueOn
     /// </summary>
     [Required]
     [JsonPropertyName("Point")]
-    public List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueOnBottomGroup_MaximumTorqueOnBottom_Point> Point { get; set; }
+    public required List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueOnBottomGroup_MaximumTorqueOnBottom_Point> Point { get; set; }
 
 }
 
@@ -655,14 +655,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueOn
     /// </summary>
     [Required]
     [JsonPropertyName("ObservationMeasuredDepth")]
-    public double ObservationMeasuredDepth { get; set; }
+    public required double ObservationMeasuredDepth { get; set; }
 
     /// <summary>
     /// The value observed at the measured depth
     /// </summary>
     [Required]
     [JsonPropertyName("Value")]
-    public double Value { get; set; }
+    public required double Value { get; set; }
 
     /// <summary>
     /// Unit of measure of the Value value
@@ -670,14 +670,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueOn
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ValueUnitID")]
-    public string ValueUnitID { get; set; }
+    public required string ValueUnitID { get; set; }
 
     /// <summary>
     /// The source indicator associated with this point.
     /// </summary>
     [Required]
     [JsonPropertyName("PointsSources")]
-    public List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueOnBottomGroup_MaximumTorqueOnBottom_Point_PointsSources> PointsSources { get; set; }
+    public required List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueOnBottomGroup_MaximumTorqueOnBottom_Point_PointsSources> PointsSources { get; set; }
 
 }
 
@@ -691,14 +691,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueOn
     /// </summary>
     [Required]
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public required string Name { get; set; }
 
     /// <summary>
     /// The value at that point.
     /// </summary>
     [Required]
     [JsonPropertyName("Value")]
-    public double Value { get; set; }
+    public required double Value { get; set; }
 
     /// <summary>
     /// Unit of measure of the Value value
@@ -706,13 +706,13 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueOn
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ValueUnitID")]
-    public string ValueUnitID { get; set; }
+    public required string ValueUnitID { get; set; }
 
     /// <summary>
     /// Description associated with the source indicator type.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
 }
 
@@ -726,7 +726,7 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueOn
     /// </summary>
     [Required]
     [JsonPropertyName("Point")]
-    public List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueOnBottomGroup_MinimumTorqueOnBottom_Point> Point { get; set; }
+    public required List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueOnBottomGroup_MinimumTorqueOnBottom_Point> Point { get; set; }
 
 }
 
@@ -740,14 +740,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueOn
     /// </summary>
     [Required]
     [JsonPropertyName("ObservationMeasuredDepth")]
-    public double ObservationMeasuredDepth { get; set; }
+    public required double ObservationMeasuredDepth { get; set; }
 
     /// <summary>
     /// The value observed at the measured depth
     /// </summary>
     [Required]
     [JsonPropertyName("Value")]
-    public double Value { get; set; }
+    public required double Value { get; set; }
 
     /// <summary>
     /// Unit of measure of the Value value
@@ -755,14 +755,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueOn
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ValueUnitID")]
-    public string ValueUnitID { get; set; }
+    public required string ValueUnitID { get; set; }
 
     /// <summary>
     /// The source indicator associated with this point.
     /// </summary>
     [Required]
     [JsonPropertyName("PointsSources")]
-    public List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueOnBottomGroup_MinimumTorqueOnBottom_Point_PointsSources> PointsSources { get; set; }
+    public required List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueOnBottomGroup_MinimumTorqueOnBottom_Point_PointsSources> PointsSources { get; set; }
 
 }
 
@@ -776,14 +776,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueOn
     /// </summary>
     [Required]
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public required string Name { get; set; }
 
     /// <summary>
     /// The value at that point.
     /// </summary>
     [Required]
     [JsonPropertyName("Value")]
-    public double Value { get; set; }
+    public required double Value { get; set; }
 
     /// <summary>
     /// Unit of measure of the Value value
@@ -791,13 +791,13 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueOn
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ValueUnitID")]
-    public string ValueUnitID { get; set; }
+    public required string ValueUnitID { get; set; }
 
     /// <summary>
     /// Description associated with the source indicator type.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
 }
 
@@ -854,7 +854,7 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup
     /// </summary>
     [Required]
     [JsonPropertyName("Point")]
-    public List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_MaximumRPM_Point> Point { get; set; }
+    public required List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_MaximumRPM_Point> Point { get; set; }
 
 }
 
@@ -868,14 +868,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup
     /// </summary>
     [Required]
     [JsonPropertyName("ObservationMeasuredDepth")]
-    public double ObservationMeasuredDepth { get; set; }
+    public required double ObservationMeasuredDepth { get; set; }
 
     /// <summary>
     /// The value observed at the measured depth
     /// </summary>
     [Required]
     [JsonPropertyName("Value")]
-    public double Value { get; set; }
+    public required double Value { get; set; }
 
     /// <summary>
     /// Unit of measure of the Value value
@@ -883,14 +883,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ValueUnitID")]
-    public string ValueUnitID { get; set; }
+    public required string ValueUnitID { get; set; }
 
     /// <summary>
     /// The source indicator associated with this point.
     /// </summary>
     [Required]
     [JsonPropertyName("PointsSources")]
-    public List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_MaximumRPM_Point_PointsSources> PointsSources { get; set; }
+    public required List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_MaximumRPM_Point_PointsSources> PointsSources { get; set; }
 
 }
 
@@ -904,14 +904,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup
     /// </summary>
     [Required]
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public required string Name { get; set; }
 
     /// <summary>
     /// The value at that point.
     /// </summary>
     [Required]
     [JsonPropertyName("Value")]
-    public double Value { get; set; }
+    public required double Value { get; set; }
 
     /// <summary>
     /// Unit of measure of the Value value
@@ -919,13 +919,13 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ValueUnitID")]
-    public string ValueUnitID { get; set; }
+    public required string ValueUnitID { get; set; }
 
     /// <summary>
     /// Description associated with the source indicator type.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
 }
 
@@ -939,7 +939,7 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup
     /// </summary>
     [Required]
     [JsonPropertyName("Point")]
-    public List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_MinimumRPM_Point> Point { get; set; }
+    public required List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_MinimumRPM_Point> Point { get; set; }
 
 }
 
@@ -953,14 +953,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup
     /// </summary>
     [Required]
     [JsonPropertyName("ObservationMeasuredDepth")]
-    public double ObservationMeasuredDepth { get; set; }
+    public required double ObservationMeasuredDepth { get; set; }
 
     /// <summary>
     /// The value observed at the measured depth
     /// </summary>
     [Required]
     [JsonPropertyName("Value")]
-    public double Value { get; set; }
+    public required double Value { get; set; }
 
     /// <summary>
     /// Unit of measure of the Value value
@@ -968,14 +968,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ValueUnitID")]
-    public string ValueUnitID { get; set; }
+    public required string ValueUnitID { get; set; }
 
     /// <summary>
     /// The source indicator associated with this point.
     /// </summary>
     [Required]
     [JsonPropertyName("PointsSources")]
-    public List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_MinimumRPM_Point_PointsSources> PointsSources { get; set; }
+    public required List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_MinimumRPM_Point_PointsSources> PointsSources { get; set; }
 
 }
 
@@ -989,14 +989,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup
     /// </summary>
     [Required]
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public required string Name { get; set; }
 
     /// <summary>
     /// The value at that point.
     /// </summary>
     [Required]
     [JsonPropertyName("Value")]
-    public double Value { get; set; }
+    public required double Value { get; set; }
 
     /// <summary>
     /// Unit of measure of the Value value
@@ -1004,13 +1004,13 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ValueUnitID")]
-    public string ValueUnitID { get; set; }
+    public required string ValueUnitID { get; set; }
 
     /// <summary>
     /// Description associated with the source indicator type.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
 }
 
@@ -1024,7 +1024,7 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup
     /// </summary>
     [Required]
     [JsonPropertyName("Point")]
-    public List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_RecommendedRPM_Point> Point { get; set; }
+    public required List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_RecommendedRPM_Point> Point { get; set; }
 
 }
 
@@ -1038,14 +1038,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup
     /// </summary>
     [Required]
     [JsonPropertyName("ObservationMeasuredDepth")]
-    public double ObservationMeasuredDepth { get; set; }
+    public required double ObservationMeasuredDepth { get; set; }
 
     /// <summary>
     /// The value observed at the measured depth
     /// </summary>
     [Required]
     [JsonPropertyName("Value")]
-    public double Value { get; set; }
+    public required double Value { get; set; }
 
     /// <summary>
     /// Unit of measure of the Value value
@@ -1053,14 +1053,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ValueUnitID")]
-    public string ValueUnitID { get; set; }
+    public required string ValueUnitID { get; set; }
 
     /// <summary>
     /// The source indicator associated with this point.
     /// </summary>
     [Required]
     [JsonPropertyName("PointsSources")]
-    public List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_RecommendedRPM_Point_PointsSources> PointsSources { get; set; }
+    public required List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_RecommendedRPM_Point_PointsSources> PointsSources { get; set; }
 
 }
 
@@ -1074,14 +1074,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup
     /// </summary>
     [Required]
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public required string Name { get; set; }
 
     /// <summary>
     /// The value at that point.
     /// </summary>
     [Required]
     [JsonPropertyName("Value")]
-    public double Value { get; set; }
+    public required double Value { get; set; }
 
     /// <summary>
     /// Unit of measure of the Value value
@@ -1089,13 +1089,13 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ValueUnitID")]
-    public string ValueUnitID { get; set; }
+    public required string ValueUnitID { get; set; }
 
     /// <summary>
     /// Description associated with the source indicator type.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
 }
 
@@ -1109,7 +1109,7 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup
     /// </summary>
     [Required]
     [JsonPropertyName("Point")]
-    public List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_DownHoleMaximumRPM_Point> Point { get; set; }
+    public required List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_DownHoleMaximumRPM_Point> Point { get; set; }
 
 }
 
@@ -1123,14 +1123,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup
     /// </summary>
     [Required]
     [JsonPropertyName("ObservationMeasuredDepth")]
-    public double ObservationMeasuredDepth { get; set; }
+    public required double ObservationMeasuredDepth { get; set; }
 
     /// <summary>
     /// The value observed at the measured depth
     /// </summary>
     [Required]
     [JsonPropertyName("Value")]
-    public double Value { get; set; }
+    public required double Value { get; set; }
 
     /// <summary>
     /// Unit of measure of the Value value
@@ -1138,14 +1138,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ValueUnitID")]
-    public string ValueUnitID { get; set; }
+    public required string ValueUnitID { get; set; }
 
     /// <summary>
     /// The source indicator associated with this point.
     /// </summary>
     [Required]
     [JsonPropertyName("PointsSources")]
-    public List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_DownHoleMaximumRPM_Point_PointsSources> PointsSources { get; set; }
+    public required List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_DownHoleMaximumRPM_Point_PointsSources> PointsSources { get; set; }
 
 }
 
@@ -1159,14 +1159,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup
     /// </summary>
     [Required]
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public required string Name { get; set; }
 
     /// <summary>
     /// The value at that point.
     /// </summary>
     [Required]
     [JsonPropertyName("Value")]
-    public double Value { get; set; }
+    public required double Value { get; set; }
 
     /// <summary>
     /// Unit of measure of the Value value
@@ -1174,13 +1174,13 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ValueUnitID")]
-    public string ValueUnitID { get; set; }
+    public required string ValueUnitID { get; set; }
 
     /// <summary>
     /// Description associated with the source indicator type.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
 }
 
@@ -1194,7 +1194,7 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup
     /// </summary>
     [Required]
     [JsonPropertyName("Point")]
-    public List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_DownHoleMinimumRPM_Point> Point { get; set; }
+    public required List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_DownHoleMinimumRPM_Point> Point { get; set; }
 
 }
 
@@ -1208,14 +1208,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup
     /// </summary>
     [Required]
     [JsonPropertyName("ObservationMeasuredDepth")]
-    public double ObservationMeasuredDepth { get; set; }
+    public required double ObservationMeasuredDepth { get; set; }
 
     /// <summary>
     /// The value observed at the measured depth
     /// </summary>
     [Required]
     [JsonPropertyName("Value")]
-    public double Value { get; set; }
+    public required double Value { get; set; }
 
     /// <summary>
     /// Unit of measure of the Value value
@@ -1223,14 +1223,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ValueUnitID")]
-    public string ValueUnitID { get; set; }
+    public required string ValueUnitID { get; set; }
 
     /// <summary>
     /// The source indicator associated with this point.
     /// </summary>
     [Required]
     [JsonPropertyName("PointsSources")]
-    public List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_DownHoleMinimumRPM_Point_PointsSources> PointsSources { get; set; }
+    public required List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_DownHoleMinimumRPM_Point_PointsSources> PointsSources { get; set; }
 
 }
 
@@ -1244,14 +1244,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup
     /// </summary>
     [Required]
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public required string Name { get; set; }
 
     /// <summary>
     /// The value at that point.
     /// </summary>
     [Required]
     [JsonPropertyName("Value")]
-    public double Value { get; set; }
+    public required double Value { get; set; }
 
     /// <summary>
     /// Unit of measure of the Value value
@@ -1259,13 +1259,13 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ValueUnitID")]
-    public string ValueUnitID { get; set; }
+    public required string ValueUnitID { get; set; }
 
     /// <summary>
     /// Description associated with the source indicator type.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
 }
 
@@ -1279,7 +1279,7 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup
     /// </summary>
     [Required]
     [JsonPropertyName("Point")]
-    public List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_DownHoleRecommendedRPM_Point> Point { get; set; }
+    public required List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_DownHoleRecommendedRPM_Point> Point { get; set; }
 
 }
 
@@ -1293,14 +1293,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup
     /// </summary>
     [Required]
     [JsonPropertyName("ObservationMeasuredDepth")]
-    public double ObservationMeasuredDepth { get; set; }
+    public required double ObservationMeasuredDepth { get; set; }
 
     /// <summary>
     /// The value observed at the measured depth
     /// </summary>
     [Required]
     [JsonPropertyName("Value")]
-    public double Value { get; set; }
+    public required double Value { get; set; }
 
     /// <summary>
     /// Unit of measure of the Value value
@@ -1308,14 +1308,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ValueUnitID")]
-    public string ValueUnitID { get; set; }
+    public required string ValueUnitID { get; set; }
 
     /// <summary>
     /// The source indicator associated with this point.
     /// </summary>
     [Required]
     [JsonPropertyName("PointsSources")]
-    public List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_DownHoleRecommendedRPM_Point_PointsSources> PointsSources { get; set; }
+    public required List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_DownHoleRecommendedRPM_Point_PointsSources> PointsSources { get; set; }
 
 }
 
@@ -1329,14 +1329,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup
     /// </summary>
     [Required]
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public required string Name { get; set; }
 
     /// <summary>
     /// The value at that point.
     /// </summary>
     [Required]
     [JsonPropertyName("Value")]
-    public double Value { get; set; }
+    public required double Value { get; set; }
 
     /// <summary>
     /// Unit of measure of the Value value
@@ -1344,13 +1344,13 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ValueUnitID")]
-    public string ValueUnitID { get; set; }
+    public required string ValueUnitID { get; set; }
 
     /// <summary>
     /// Description associated with the source indicator type.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
 }
 
@@ -1364,14 +1364,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup
     /// </summary>
     [Required]
     [JsonPropertyName("MaximumROP")]
-    public BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup_MaximumROP MaximumROP { get; set; }
+    public required BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup_MaximumROP MaximumROP { get; set; }
 
     /// <summary>
     /// The planned minimum rate of penetration for the run
     /// </summary>
     [Required]
     [JsonPropertyName("MinimumROP")]
-    public BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup_MinimumROP MinimumROP { get; set; }
+    public required BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup_MinimumROP MinimumROP { get; set; }
 
     /// <summary>
     /// The recommended rate of penetration for the run
@@ -1391,7 +1391,7 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup
     /// </summary>
     [Required]
     [JsonPropertyName("Point")]
-    public List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup_MaximumROP_Point> Point { get; set; }
+    public required List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup_MaximumROP_Point> Point { get; set; }
 
 }
 
@@ -1405,14 +1405,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup
     /// </summary>
     [Required]
     [JsonPropertyName("ObservationMeasuredDepth")]
-    public double ObservationMeasuredDepth { get; set; }
+    public required double ObservationMeasuredDepth { get; set; }
 
     /// <summary>
     /// The value observed at the measured depth
     /// </summary>
     [Required]
     [JsonPropertyName("Value")]
-    public double Value { get; set; }
+    public required double Value { get; set; }
 
     /// <summary>
     /// Unit of measure of the Value value
@@ -1420,14 +1420,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ValueUnitID")]
-    public string ValueUnitID { get; set; }
+    public required string ValueUnitID { get; set; }
 
     /// <summary>
     /// The source indicator associated with this point.
     /// </summary>
     [Required]
     [JsonPropertyName("PointsSources")]
-    public List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup_MaximumROP_Point_PointsSources> PointsSources { get; set; }
+    public required List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup_MaximumROP_Point_PointsSources> PointsSources { get; set; }
 
 }
 
@@ -1441,14 +1441,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup
     /// </summary>
     [Required]
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public required string Name { get; set; }
 
     /// <summary>
     /// The value at that point.
     /// </summary>
     [Required]
     [JsonPropertyName("Value")]
-    public double Value { get; set; }
+    public required double Value { get; set; }
 
     /// <summary>
     /// Unit of measure of the Value value
@@ -1456,13 +1456,13 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ValueUnitID")]
-    public string ValueUnitID { get; set; }
+    public required string ValueUnitID { get; set; }
 
     /// <summary>
     /// Description associated with the source indicator type.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
 }
 
@@ -1476,7 +1476,7 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup
     /// </summary>
     [Required]
     [JsonPropertyName("Point")]
-    public List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup_MinimumROP_Point> Point { get; set; }
+    public required List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup_MinimumROP_Point> Point { get; set; }
 
 }
 
@@ -1490,14 +1490,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup
     /// </summary>
     [Required]
     [JsonPropertyName("ObservationMeasuredDepth")]
-    public double ObservationMeasuredDepth { get; set; }
+    public required double ObservationMeasuredDepth { get; set; }
 
     /// <summary>
     /// The value observed at the measured depth
     /// </summary>
     [Required]
     [JsonPropertyName("Value")]
-    public double Value { get; set; }
+    public required double Value { get; set; }
 
     /// <summary>
     /// Unit of measure of the Value value
@@ -1505,14 +1505,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ValueUnitID")]
-    public string ValueUnitID { get; set; }
+    public required string ValueUnitID { get; set; }
 
     /// <summary>
     /// The source indicator associated with this point.
     /// </summary>
     [Required]
     [JsonPropertyName("PointsSources")]
-    public List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup_MinimumROP_Point_PointsSources> PointsSources { get; set; }
+    public required List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup_MinimumROP_Point_PointsSources> PointsSources { get; set; }
 
 }
 
@@ -1526,14 +1526,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup
     /// </summary>
     [Required]
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public required string Name { get; set; }
 
     /// <summary>
     /// The value at that point.
     /// </summary>
     [Required]
     [JsonPropertyName("Value")]
-    public double Value { get; set; }
+    public required double Value { get; set; }
 
     /// <summary>
     /// Unit of measure of the Value value
@@ -1541,13 +1541,13 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ValueUnitID")]
-    public string ValueUnitID { get; set; }
+    public required string ValueUnitID { get; set; }
 
     /// <summary>
     /// Description associated with the source indicator type.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
 }
 
@@ -1561,7 +1561,7 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup
     /// </summary>
     [Required]
     [JsonPropertyName("Point")]
-    public List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup_RecommendedROP_Point> Point { get; set; }
+    public required List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup_RecommendedROP_Point> Point { get; set; }
 
 }
 
@@ -1575,14 +1575,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup
     /// </summary>
     [Required]
     [JsonPropertyName("ObservationMeasuredDepth")]
-    public double ObservationMeasuredDepth { get; set; }
+    public required double ObservationMeasuredDepth { get; set; }
 
     /// <summary>
     /// The value observed at the measured depth
     /// </summary>
     [Required]
     [JsonPropertyName("Value")]
-    public double Value { get; set; }
+    public required double Value { get; set; }
 
     /// <summary>
     /// Unit of measure of the Value value
@@ -1590,14 +1590,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ValueUnitID")]
-    public string ValueUnitID { get; set; }
+    public required string ValueUnitID { get; set; }
 
     /// <summary>
     /// The source indicator associated with this point.
     /// </summary>
     [Required]
     [JsonPropertyName("PointsSources")]
-    public List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup_RecommendedROP_Point_PointsSources> PointsSources { get; set; }
+    public required List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup_RecommendedROP_Point_PointsSources> PointsSources { get; set; }
 
 }
 
@@ -1611,14 +1611,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup
     /// </summary>
     [Required]
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public required string Name { get; set; }
 
     /// <summary>
     /// The value at that point.
     /// </summary>
     [Required]
     [JsonPropertyName("Value")]
-    public double Value { get; set; }
+    public required double Value { get; set; }
 
     /// <summary>
     /// Unit of measure of the Value value
@@ -1626,13 +1626,13 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ValueUnitID")]
-    public string ValueUnitID { get; set; }
+    public required string ValueUnitID { get; set; }
 
     /// <summary>
     /// Description associated with the source indicator type.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
 }
 
@@ -1646,14 +1646,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup
     /// </summary>
     [Required]
     [JsonPropertyName("MaximumWOB")]
-    public BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup_MaximumWOB MaximumWOB { get; set; }
+    public required BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup_MaximumWOB MaximumWOB { get; set; }
 
     /// <summary>
     /// The planned minimum weight on bit for this run
     /// </summary>
     [Required]
     [JsonPropertyName("MinimumWOB")]
-    public BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup_MinimumWOB MinimumWOB { get; set; }
+    public required BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup_MinimumWOB MinimumWOB { get; set; }
 
     /// <summary>
     /// The recommended weight on bit for this run
@@ -1673,7 +1673,7 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup
     /// </summary>
     [Required]
     [JsonPropertyName("Point")]
-    public List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup_MaximumWOB_Point> Point { get; set; }
+    public required List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup_MaximumWOB_Point> Point { get; set; }
 
 }
 
@@ -1687,14 +1687,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup
     /// </summary>
     [Required]
     [JsonPropertyName("ObservationMeasuredDepth")]
-    public double ObservationMeasuredDepth { get; set; }
+    public required double ObservationMeasuredDepth { get; set; }
 
     /// <summary>
     /// The value observed at the measured depth
     /// </summary>
     [Required]
     [JsonPropertyName("Value")]
-    public double Value { get; set; }
+    public required double Value { get; set; }
 
     /// <summary>
     /// Unit of measure of the Value value
@@ -1702,14 +1702,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ValueUnitID")]
-    public string ValueUnitID { get; set; }
+    public required string ValueUnitID { get; set; }
 
     /// <summary>
     /// The source indicator associated with this point.
     /// </summary>
     [Required]
     [JsonPropertyName("PointsSources")]
-    public List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup_MaximumWOB_Point_PointsSources> PointsSources { get; set; }
+    public required List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup_MaximumWOB_Point_PointsSources> PointsSources { get; set; }
 
 }
 
@@ -1723,14 +1723,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup
     /// </summary>
     [Required]
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public required string Name { get; set; }
 
     /// <summary>
     /// The value at that point.
     /// </summary>
     [Required]
     [JsonPropertyName("Value")]
-    public double Value { get; set; }
+    public required double Value { get; set; }
 
     /// <summary>
     /// Unit of measure of the Value value
@@ -1738,13 +1738,13 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ValueUnitID")]
-    public string ValueUnitID { get; set; }
+    public required string ValueUnitID { get; set; }
 
     /// <summary>
     /// Description associated with the source indicator type.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
 }
 
@@ -1758,7 +1758,7 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup
     /// </summary>
     [Required]
     [JsonPropertyName("Point")]
-    public List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup_MinimumWOB_Point> Point { get; set; }
+    public required List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup_MinimumWOB_Point> Point { get; set; }
 
 }
 
@@ -1772,14 +1772,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup
     /// </summary>
     [Required]
     [JsonPropertyName("ObservationMeasuredDepth")]
-    public double ObservationMeasuredDepth { get; set; }
+    public required double ObservationMeasuredDepth { get; set; }
 
     /// <summary>
     /// The value observed at the measured depth
     /// </summary>
     [Required]
     [JsonPropertyName("Value")]
-    public double Value { get; set; }
+    public required double Value { get; set; }
 
     /// <summary>
     /// Unit of measure of the Value value
@@ -1787,14 +1787,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ValueUnitID")]
-    public string ValueUnitID { get; set; }
+    public required string ValueUnitID { get; set; }
 
     /// <summary>
     /// The source indicator associated with this point.
     /// </summary>
     [Required]
     [JsonPropertyName("PointsSources")]
-    public List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup_MinimumWOB_Point_PointsSources> PointsSources { get; set; }
+    public required List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup_MinimumWOB_Point_PointsSources> PointsSources { get; set; }
 
 }
 
@@ -1808,14 +1808,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup
     /// </summary>
     [Required]
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public required string Name { get; set; }
 
     /// <summary>
     /// The value at that point.
     /// </summary>
     [Required]
     [JsonPropertyName("Value")]
-    public double Value { get; set; }
+    public required double Value { get; set; }
 
     /// <summary>
     /// Unit of measure of the Value value
@@ -1823,13 +1823,13 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ValueUnitID")]
-    public string ValueUnitID { get; set; }
+    public required string ValueUnitID { get; set; }
 
     /// <summary>
     /// Description associated with the source indicator type.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
 }
 
@@ -1843,7 +1843,7 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup
     /// </summary>
     [Required]
     [JsonPropertyName("Point")]
-    public List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup_RecommendedWOB_Point> Point { get; set; }
+    public required List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup_RecommendedWOB_Point> Point { get; set; }
 
 }
 
@@ -1857,14 +1857,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup
     /// </summary>
     [Required]
     [JsonPropertyName("ObservationMeasuredDepth")]
-    public double ObservationMeasuredDepth { get; set; }
+    public required double ObservationMeasuredDepth { get; set; }
 
     /// <summary>
     /// The value observed at the measured depth
     /// </summary>
     [Required]
     [JsonPropertyName("Value")]
-    public double Value { get; set; }
+    public required double Value { get; set; }
 
     /// <summary>
     /// Unit of measure of the Value value
@@ -1872,14 +1872,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ValueUnitID")]
-    public string ValueUnitID { get; set; }
+    public required string ValueUnitID { get; set; }
 
     /// <summary>
     /// The source indicator associated with this point.
     /// </summary>
     [Required]
     [JsonPropertyName("PointsSources")]
-    public List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup_RecommendedWOB_Point_PointsSources> PointsSources { get; set; }
+    public required List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup_RecommendedWOB_Point_PointsSources> PointsSources { get; set; }
 
 }
 
@@ -1893,14 +1893,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup
     /// </summary>
     [Required]
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public required string Name { get; set; }
 
     /// <summary>
     /// The value at that point.
     /// </summary>
     [Required]
     [JsonPropertyName("Value")]
-    public double Value { get; set; }
+    public required double Value { get; set; }
 
     /// <summary>
     /// Unit of measure of the Value value
@@ -1908,13 +1908,13 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ValueUnitID")]
-    public string ValueUnitID { get; set; }
+    public required string ValueUnitID { get; set; }
 
     /// <summary>
     /// Description associated with the source indicator type.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
 }
 
@@ -1928,14 +1928,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_Flowrate
     /// </summary>
     [Required]
     [JsonPropertyName("MaximumFlowratePump")]
-    public BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_FlowratePumpGroup_MaximumFlowratePump MaximumFlowratePump { get; set; }
+    public required BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_FlowratePumpGroup_MaximumFlowratePump MaximumFlowratePump { get; set; }
 
     /// <summary>
     /// The planned minimum flowrate for the run
     /// </summary>
     [Required]
     [JsonPropertyName("MinimumFlowratePump")]
-    public BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_FlowratePumpGroup_MinimumFlowratePump MinimumFlowratePump { get; set; }
+    public required BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_FlowratePumpGroup_MinimumFlowratePump MinimumFlowratePump { get; set; }
 
     /// <summary>
     /// The recommended flowrate for the run
@@ -1955,7 +1955,7 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_Flowrate
     /// </summary>
     [Required]
     [JsonPropertyName("Point")]
-    public List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_FlowratePumpGroup_MaximumFlowratePump_Point> Point { get; set; }
+    public required List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_FlowratePumpGroup_MaximumFlowratePump_Point> Point { get; set; }
 
 }
 
@@ -1969,14 +1969,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_Flowrate
     /// </summary>
     [Required]
     [JsonPropertyName("ObservationMeasuredDepth")]
-    public double ObservationMeasuredDepth { get; set; }
+    public required double ObservationMeasuredDepth { get; set; }
 
     /// <summary>
     /// The value observed at the measured depth
     /// </summary>
     [Required]
     [JsonPropertyName("Value")]
-    public double Value { get; set; }
+    public required double Value { get; set; }
 
     /// <summary>
     /// Unit of measure of the Value value
@@ -1984,14 +1984,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_Flowrate
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ValueUnitID")]
-    public string ValueUnitID { get; set; }
+    public required string ValueUnitID { get; set; }
 
     /// <summary>
     /// The source indicator associated with this point.
     /// </summary>
     [Required]
     [JsonPropertyName("PointsSources")]
-    public List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_FlowratePumpGroup_MaximumFlowratePump_Point_PointsSources> PointsSources { get; set; }
+    public required List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_FlowratePumpGroup_MaximumFlowratePump_Point_PointsSources> PointsSources { get; set; }
 
 }
 
@@ -2005,14 +2005,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_Flowrate
     /// </summary>
     [Required]
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public required string Name { get; set; }
 
     /// <summary>
     /// The value at that point.
     /// </summary>
     [Required]
     [JsonPropertyName("Value")]
-    public double Value { get; set; }
+    public required double Value { get; set; }
 
     /// <summary>
     /// Unit of measure of the Value value
@@ -2020,13 +2020,13 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_Flowrate
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ValueUnitID")]
-    public string ValueUnitID { get; set; }
+    public required string ValueUnitID { get; set; }
 
     /// <summary>
     /// Description associated with the source indicator type.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
 }
 
@@ -2040,7 +2040,7 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_Flowrate
     /// </summary>
     [Required]
     [JsonPropertyName("Point")]
-    public List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_FlowratePumpGroup_MinimumFlowratePump_Point> Point { get; set; }
+    public required List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_FlowratePumpGroup_MinimumFlowratePump_Point> Point { get; set; }
 
 }
 
@@ -2054,14 +2054,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_Flowrate
     /// </summary>
     [Required]
     [JsonPropertyName("ObservationMeasuredDepth")]
-    public double ObservationMeasuredDepth { get; set; }
+    public required double ObservationMeasuredDepth { get; set; }
 
     /// <summary>
     /// The value observed at the measured depth
     /// </summary>
     [Required]
     [JsonPropertyName("Value")]
-    public double Value { get; set; }
+    public required double Value { get; set; }
 
     /// <summary>
     /// Unit of measure of the Value value
@@ -2069,14 +2069,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_Flowrate
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ValueUnitID")]
-    public string ValueUnitID { get; set; }
+    public required string ValueUnitID { get; set; }
 
     /// <summary>
     /// The source indicator associated with this point.
     /// </summary>
     [Required]
     [JsonPropertyName("PointsSources")]
-    public List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_FlowratePumpGroup_MinimumFlowratePump_Point_PointsSources> PointsSources { get; set; }
+    public required List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_FlowratePumpGroup_MinimumFlowratePump_Point_PointsSources> PointsSources { get; set; }
 
 }
 
@@ -2090,14 +2090,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_Flowrate
     /// </summary>
     [Required]
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public required string Name { get; set; }
 
     /// <summary>
     /// The value at that point.
     /// </summary>
     [Required]
     [JsonPropertyName("Value")]
-    public double Value { get; set; }
+    public required double Value { get; set; }
 
     /// <summary>
     /// Unit of measure of the Value value
@@ -2105,13 +2105,13 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_Flowrate
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ValueUnitID")]
-    public string ValueUnitID { get; set; }
+    public required string ValueUnitID { get; set; }
 
     /// <summary>
     /// Description associated with the source indicator type.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
 }
 
@@ -2125,7 +2125,7 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_Flowrate
     /// </summary>
     [Required]
     [JsonPropertyName("Point")]
-    public List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_FlowratePumpGroup_RecommendedFlowratePump_Point> Point { get; set; }
+    public required List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_FlowratePumpGroup_RecommendedFlowratePump_Point> Point { get; set; }
 
 }
 
@@ -2139,14 +2139,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_Flowrate
     /// </summary>
     [Required]
     [JsonPropertyName("ObservationMeasuredDepth")]
-    public double ObservationMeasuredDepth { get; set; }
+    public required double ObservationMeasuredDepth { get; set; }
 
     /// <summary>
     /// The value observed at the measured depth
     /// </summary>
     [Required]
     [JsonPropertyName("Value")]
-    public double Value { get; set; }
+    public required double Value { get; set; }
 
     /// <summary>
     /// Unit of measure of the Value value
@@ -2154,14 +2154,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_Flowrate
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ValueUnitID")]
-    public string ValueUnitID { get; set; }
+    public required string ValueUnitID { get; set; }
 
     /// <summary>
     /// The source indicator associated with this point.
     /// </summary>
     [Required]
     [JsonPropertyName("PointsSources")]
-    public List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_FlowratePumpGroup_RecommendedFlowratePump_Point_PointsSources> PointsSources { get; set; }
+    public required List<BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_FlowratePumpGroup_RecommendedFlowratePump_Point_PointsSources> PointsSources { get; set; }
 
 }
 
@@ -2175,14 +2175,14 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_Flowrate
     /// </summary>
     [Required]
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public required string Name { get; set; }
 
     /// <summary>
     /// The value at that point.
     /// </summary>
     [Required]
     [JsonPropertyName("Value")]
-    public double Value { get; set; }
+    public required double Value { get; set; }
 
     /// <summary>
     /// Unit of measure of the Value value
@@ -2190,13 +2190,13 @@ public class BHARun_1_0_0_Data_RunParameterPlans_OperationParameterPlan_Flowrate
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ValueUnitID")]
-    public string ValueUnitID { get; set; }
+    public required string ValueUnitID { get; set; }
 
     /// <summary>
     /// Description associated with the source indicator type.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
 }
 
@@ -2554,12 +2554,12 @@ public class BHARun_1_0_0_Data_DrillingParams
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-MudClass:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("MudClass")]
-    public string MudClass { get; set; }
+    public string? MudClass { get; set; }
 
     /// <summary>
     /// Comments and remarks.
     /// </summary>
     [JsonPropertyName("Comments")]
-    public string Comments { get; set; }
+    public string? Comments { get; set; }
 
 }

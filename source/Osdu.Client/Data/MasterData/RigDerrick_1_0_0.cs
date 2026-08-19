@@ -25,7 +25,7 @@ public class RigDerrick_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-RigDerrick:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class RigDerrick_1_0_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class RigDerrick_1_0_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class RigDerrick_1_0_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class RigDerrick_1_0_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class RigDerrick_1_0_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public RigDerrick_1_0_0_Data? Data { get; set; }
@@ -101,13 +101,13 @@ public class RigDerrick_1_0_0_Data : AbstractCommonResources_1_0_1 // Also compo
     /// Alternative names, including historical, by which this master data is/has been known (it should include all the identifiers).
     /// </summary>
     [JsonPropertyName("NameAliases")]
-    public List<AbstractAliasNames_1_0_0> NameAliases { get; set; }
+    public List<AbstractAliasNames_1_0_0>? NameAliases { get; set; }
 
     /// <summary>
     /// List of geographic entities which provide context to the master data. This may include multiple types or multiple values of the same type.
     /// </summary>
     [JsonPropertyName("GeoContexts")]
-    public List<AbstractGeoContext_1_0_0> GeoContexts { get; set; }
+    public List<AbstractGeoContext_1_0_0>? GeoContexts { get; set; }
 
     [JsonPropertyName("SpatialLocation")]
     public AbstractSpatialLocation_1_1_0? SpatialLocation { get; set; }
@@ -116,40 +116,40 @@ public class RigDerrick_1_0_0_Data : AbstractCommonResources_1_0_1 // Also compo
     /// This describes the reason that caused the creation of a new version of this master data.
     /// </summary>
     [JsonPropertyName("VersionCreationReason")]
-    public string VersionCreationReason { get; set; }
+    public string? VersionCreationReason { get; set; }
 
     /// <summary>
     /// DEPRECATED: (in favor of more nuanced TechnicalAssurances[] array) Describes a master-data record's overall suitability for general business consumption based on data quality. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TechnicalAssuranceType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TechnicalAssuranceTypeID")]
-    public string TechnicalAssuranceTypeID { get; set; }
+    public string? TechnicalAssuranceTypeID { get; set; }
 
     /// <summary>
     /// Describes a record's overall suitability for general business consumption in context of one or more workflows/personas based on data quality and reviewer's decisions. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [JsonPropertyName("TechnicalAssurances")]
-    public List<AbstractTechnicalAssurance_1_2_0> TechnicalAssurances { get; set; }
+    public List<AbstractTechnicalAssurance_1_2_0>? TechnicalAssurances { get; set; }
 
     /// <summary>
     /// Identifies the Rig Specification this Inventory applies to.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-RigSpecifications:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("RigSpecificationsID")]
-    public string RigSpecificationsID { get; set; }
+    public string? RigSpecificationsID { get; set; }
 
     /// <summary>
     /// Description of the derrick for example,  conventional, portable mast, cantilever, modular,  box, etc.
     /// </summary>
     [JsonPropertyName("DerrickDescription")]
-    public string DerrickDescription { get; set; }
+    public string? DerrickDescription { get; set; }
 
     /// <summary>
     /// Specifies the type of drilling derrick. Describes the type of Derrick.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-DerrickType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("DerrickTypeID")]
-    public string DerrickTypeID { get; set; }
+    public string? DerrickTypeID { get; set; }
 
     /// <summary>
     /// Rating is based on load capacity, height and structural strength which determine its ability to support drilling operations
@@ -173,13 +173,13 @@ public class RigDerrick_1_0_0_Data : AbstractCommonResources_1_0_1 // Also compo
     /// Name of pipe-handling system.
     /// </summary>
     [JsonPropertyName("PipeHandlingName")]
-    public string PipeHandlingName { get; set; }
+    public string? PipeHandlingName { get; set; }
 
     /// <summary>
     /// The length of the pipe stand.
     /// </summary>
     [JsonPropertyName("PipeStandLength")]
-    public string PipeStandLength { get; set; }
+    public string? PipeStandLength { get; set; }
 
     /// <summary>
     /// Average height of stands in the Derrick
@@ -197,7 +197,7 @@ public class RigDerrick_1_0_0_Data : AbstractCommonResources_1_0_1 // Also compo
     /// Description of rotating system. For example, Rotary Table, Top Drive, Kelly Bushing.
     /// </summary>
     [JsonPropertyName("RotarySystemDescription")]
-    public string RotarySystemDescription { get; set; }
+    public string? RotarySystemDescription { get; set; }
 
     /// <summary>
     /// Maximum allowable Rotary System torque rating.
@@ -209,19 +209,19 @@ public class RigDerrick_1_0_0_Data : AbstractCommonResources_1_0_1 // Also compo
     /// Company that manufactured the Rotary System ("Make").
     /// </summary>
     [JsonPropertyName("RotarySystemMake")]
-    public string RotarySystemMake { get; set; }
+    public string? RotarySystemMake { get; set; }
 
     /// <summary>
     /// Rotary System Model.
     /// </summary>
     [JsonPropertyName("RotarySystemModel")]
-    public string RotarySystemModel { get; set; }
+    public string? RotarySystemModel { get; set; }
 
     /// <summary>
     /// Rotary System Type.
     /// </summary>
     [JsonPropertyName("RotarySystemType")]
-    public string RotarySystemType { get; set; }
+    public string? RotarySystemType { get; set; }
 
     /// <summary>
     /// Rotary size opening.
@@ -257,19 +257,19 @@ public class RigDerrick_1_0_0_Data : AbstractCommonResources_1_0_1 // Also compo
     /// Company that manufactured the Top Drive ("Make").
     /// </summary>
     [JsonPropertyName("TopDriveMake")]
-    public string TopDriveMake { get; set; }
+    public string? TopDriveMake { get; set; }
 
     /// <summary>
     /// Model of the Top Drive
     /// </summary>
     [JsonPropertyName("TopDriveModel")]
-    public string TopDriveModel { get; set; }
+    public string? TopDriveModel { get; set; }
 
     /// <summary>
     /// Top Drive Type.
     /// </summary>
     [JsonPropertyName("TopDriveType")]
-    public string TopDriveType { get; set; }
+    public string? TopDriveType { get; set; }
 
     /// <summary>
     /// Top Drive Inner Diameter.
@@ -299,13 +299,13 @@ public class RigDerrick_1_0_0_Data : AbstractCommonResources_1_0_1 // Also compo
     /// The Model of the Swivel
     /// </summary>
     [JsonPropertyName("SwivelModel")]
-    public string SwivelModel { get; set; }
+    public string? SwivelModel { get; set; }
 
     /// <summary>
     /// Type of swivel.
     /// </summary>
     [JsonPropertyName("SwivelType")]
-    public string SwivelType { get; set; }
+    public string? SwivelType { get; set; }
 
     /// <summary>
     /// Maximum swivel rating.
@@ -317,13 +317,13 @@ public class RigDerrick_1_0_0_Data : AbstractCommonResources_1_0_1 // Also compo
     /// The manufacture model of the hook
     /// </summary>
     [JsonPropertyName("HookModel")]
-    public string HookModel { get; set; }
+    public string? HookModel { get; set; }
 
     /// <summary>
     /// Type of hook installed for this rig usage.
     /// </summary>
     [JsonPropertyName("HookType")]
-    public string HookType { get; set; }
+    public string? HookType { get; set; }
 
     /// <summary>
     /// Maximum allowable weight rating of the hook for this Derrick
@@ -341,13 +341,13 @@ public class RigDerrick_1_0_0_Data : AbstractCommonResources_1_0_1 // Also compo
     /// The model of the drawworks
     /// </summary>
     [JsonPropertyName("DrawWorksModel")]
-    public string DrawWorksModel { get; set; }
+    public string? DrawWorksModel { get; set; }
 
     /// <summary>
     /// The type of machine on the rig consisting of a large-diameter steel spool, brakes, a power source, and assorted auxiliary devices
     /// </summary>
     [JsonPropertyName("DrawWorksType")]
-    public string DrawWorksType { get; set; }
+    public string? DrawWorksType { get; set; }
 
     /// <summary>
     /// Draw works horse power.
@@ -365,13 +365,13 @@ public class RigDerrick_1_0_0_Data : AbstractCommonResources_1_0_1 // Also compo
     /// It is an electrical motor the drives the drawworks. It controls the speed and tension of the wireline, enabling the lifting and lowering of equipment
     /// </summary>
     [JsonPropertyName("DrawWorksMotor")]
-    public string DrawWorksMotor { get; set; }
+    public string? DrawWorksMotor { get; set; }
 
     /// <summary>
     /// The model of the Block
     /// </summary>
     [JsonPropertyName("BlockModel")]
-    public string BlockModel { get; set; }
+    public string? BlockModel { get; set; }
 
     /// <summary>
     /// Weight of the block.
@@ -413,7 +413,7 @@ public class RigDerrick_1_0_0_Data : AbstractCommonResources_1_0_1 // Also compo
     /// It controls and stops the movement of heavy drilling equipment. Ensures safe handling of the load and prevents uncontrolled movements.
     /// </summary>
     [JsonPropertyName("BrakeDescription")]
-    public string BrakeDescription { get; set; }
+    public string? BrakeDescription { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }

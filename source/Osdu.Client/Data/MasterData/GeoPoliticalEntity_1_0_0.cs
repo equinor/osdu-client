@@ -25,7 +25,7 @@ public class GeoPoliticalEntity_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-GeoPoliticalEntity:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class GeoPoliticalEntity_1_0_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class GeoPoliticalEntity_1_0_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class GeoPoliticalEntity_1_0_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class GeoPoliticalEntity_1_0_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class GeoPoliticalEntity_1_0_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public GeoPoliticalEntity_1_0_0_Data? Data { get; set; }
@@ -101,13 +101,13 @@ public class GeoPoliticalEntity_1_0_0_Data : AbstractCommonResources_1_0_0 // Al
     /// Alternative names, including historical, by which this master data is/has been known (it should include all the identifiers).
     /// </summary>
     [JsonPropertyName("NameAliases")]
-    public List<AbstractAliasNames_1_0_0> NameAliases { get; set; }
+    public List<AbstractAliasNames_1_0_0>? NameAliases { get; set; }
 
     /// <summary>
     /// List of geographic entities which provide context to the master data. This may include multiple types or multiple values of the same type.
     /// </summary>
     [JsonPropertyName("GeoContexts")]
-    public List<AbstractGeoContext_1_0_0> GeoContexts { get; set; }
+    public List<AbstractGeoContext_1_0_0>? GeoContexts { get; set; }
 
     [JsonPropertyName("SpatialLocation")]
     public AbstractSpatialLocation_1_0_0? SpatialLocation { get; set; }
@@ -116,20 +116,20 @@ public class GeoPoliticalEntity_1_0_0_Data : AbstractCommonResources_1_0_0 // Al
     /// This describes the reason that caused the creation of a new version of this master data.
     /// </summary>
     [JsonPropertyName("VersionCreationReason")]
-    public string VersionCreationReason { get; set; }
+    public string? VersionCreationReason { get; set; }
 
     /// <summary>
     /// Describes a master-data record's overall suitability for general business consumption based on data quality. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TechnicalAssuranceType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TechnicalAssuranceTypeID")]
-    public string TechnicalAssuranceTypeID { get; set; }
+    public string? TechnicalAssuranceTypeID { get; set; }
 
     /// <summary>
     /// Native identifier from a Master Data Management System or other trusted source external to OSDU - stored here in order to allow for multi-system connection and synchronization. If used, the "Source" property should identify that source system.
     /// </summary>
     [JsonPropertyName("GeoPoliticalEntityID")]
-    public string GeoPoliticalEntityID { get; set; }
+    public string? GeoPoliticalEntityID { get; set; }
 
     /// <summary>
     /// The date and time at which a given geopolitical entity is no longer in effect.
@@ -171,26 +171,26 @@ public class GeoPoliticalEntity_1_0_0_Data : AbstractCommonResources_1_0_0 // Al
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-GeoPoliticalEntityType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("GeoPoliticalEntityTypeID")]
-    public string GeoPoliticalEntityTypeID { get; set; }
+    public string? GeoPoliticalEntityTypeID { get; set; }
 
     /// <summary>
     /// Name of the geopolitical entity.
     /// </summary>
     [JsonPropertyName("GeoPoliticalEntityName")]
-    public string GeoPoliticalEntityName { get; set; }
+    public string? GeoPoliticalEntityName { get; set; }
 
     /// <summary>
     /// DEPRECATED: please use data.NameAliases. Alternative names, including historical, by which this geopolitical entity is/has been known.
     /// </summary>
     [JsonPropertyName("GeoPoliticalEntityNameAliases")]
-    public List<AbstractAliasNames_1_0_0> GeoPoliticalEntityNameAliases { get; set; }
+    public List<AbstractAliasNames_1_0_0>? GeoPoliticalEntityNameAliases { get; set; }
 
     /// <summary>
     /// The identifier of the parent GeoPoliticalEntity, for example the GeoPoliticalEntity Texas has parent ID representing the GeoPoliticalEntity USA
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-GeoPoliticalEntity:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ParentGeoPoliticalEntityID")]
-    public string ParentGeoPoliticalEntityID { get; set; }
+    public string? ParentGeoPoliticalEntityID { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }

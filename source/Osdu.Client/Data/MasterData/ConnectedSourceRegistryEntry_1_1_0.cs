@@ -25,7 +25,7 @@ public class ConnectedSourceRegistryEntry_1_1_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-ConnectedSourceRegistryEntry:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class ConnectedSourceRegistryEntry_1_1_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class ConnectedSourceRegistryEntry_1_1_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class ConnectedSourceRegistryEntry_1_1_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class ConnectedSourceRegistryEntry_1_1_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class ConnectedSourceRegistryEntry_1_1_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public ConnectedSourceRegistryEntry_1_1_0_Data? Data { get; set; }
@@ -101,13 +101,13 @@ public class ConnectedSourceRegistryEntry_1_1_0_Data : AbstractCommonResources_1
     /// Alternative names, including historical, by which this master data is/has been known (it should include all the identifiers).
     /// </summary>
     [JsonPropertyName("NameAliases")]
-    public List<AbstractAliasNames_1_0_0> NameAliases { get; set; }
+    public List<AbstractAliasNames_1_0_0>? NameAliases { get; set; }
 
     /// <summary>
     /// List of geographic entities which provide context to the master data. This may include multiple types or multiple values of the same type.
     /// </summary>
     [JsonPropertyName("GeoContexts")]
-    public List<AbstractGeoContext_1_0_0> GeoContexts { get; set; }
+    public List<AbstractGeoContext_1_0_0>? GeoContexts { get; set; }
 
     [JsonPropertyName("SpatialLocation")]
     public AbstractSpatialLocation_1_1_0? SpatialLocation { get; set; }
@@ -116,26 +116,26 @@ public class ConnectedSourceRegistryEntry_1_1_0_Data : AbstractCommonResources_1
     /// This describes the reason that caused the creation of a new version of this master data.
     /// </summary>
     [JsonPropertyName("VersionCreationReason")]
-    public string VersionCreationReason { get; set; }
+    public string? VersionCreationReason { get; set; }
 
     /// <summary>
     /// Describes a master-data record's overall suitability for general business consumption based on data quality. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TechnicalAssuranceType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TechnicalAssuranceTypeID")]
-    public string TechnicalAssuranceTypeID { get; set; }
+    public string? TechnicalAssuranceTypeID { get; set; }
 
     /// <summary>
     /// Descriptive label given to the data source. This could be the name of an organisation and/or the name of a specific database or system.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// Additional information/description about the data source
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// Flag that determines whether the external source has a full OSDU implementation (true) or a wrapper facade over proprietary APIs (false)
@@ -148,32 +148,32 @@ public class ConnectedSourceRegistryEntry_1_1_0_Data : AbstractCommonResources_1
     /// References to applicable agreements governing the use of the data source
     /// </summary>
     [JsonPropertyName("AgreementIDs")]
-    public List<string> AgreementIDs { get; set; }
+    public List<string>? AgreementIDs { get; set; }
 
     /// <summary>
     /// List of security schemes available for use in authorizing against OSDU-compliant APIs of a connected data source.
     /// </summary>
     [JsonPropertyName("SecuritySchemes")]
-    public List<ConnectedSourceRegistryEntry_1_1_0_Data_SecuritySchemes> SecuritySchemes { get; set; }
+    public List<ConnectedSourceRegistryEntry_1_1_0_Data_SecuritySchemes>? SecuritySchemes { get; set; }
 
     /// <summary>
     /// List of SMTP server schemes available for use in mailing the detailed EDS's report.
     /// </summary>
     [JsonPropertyName("SmtpSchemes")]
-    public List<ConnectedSourceRegistryEntry_1_1_0_Data_SmtpSchemes> SmtpSchemes { get; set; }
+    public List<ConnectedSourceRegistryEntry_1_1_0_Data_SmtpSchemes>? SmtpSchemes { get; set; }
 
     /// <summary>
     /// Connectivity information for Airflow endpoints to get more information of Manifest Ingestion.
     /// </summary>
     [JsonPropertyName("AirflowStableAPIUrl")]
-    public string AirflowStableAPIUrl { get; set; }
+    public string? AirflowStableAPIUrl { get; set; }
 
     /// <summary>
     /// Identifier of the organisation that the registered source belongs to.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SourceOrganisationID")]
-    public string SourceOrganisationID { get; set; }
+    public string? SourceOrganisationID { get; set; }
 
     /// <summary>
     /// Temporary property awaiting a external reference-value mapping framework. A generic dictionary of string reference-data as keys mapping to reference-value as string value. Only predefined reference-data and its values are permitted.
@@ -196,7 +196,7 @@ public class ConnectedSourceRegistryEntry_1_1_0_Data_SecuritySchemes
     /// </summary>
     [Required]
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public required string Name { get; set; }
 
     /// <summary>
     /// Type of security schema
@@ -204,98 +204,98 @@ public class ConnectedSourceRegistryEntry_1_1_0_Data_SecuritySchemes
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-SecuritySchemeType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TypeID")]
-    public string TypeID { get; set; }
+    public required string TypeID { get; set; }
 
     /// <summary>
     /// OAuth2 flow, or grant type
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-OAuth2FlowType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("FlowTypeID")]
-    public string FlowTypeID { get; set; }
+    public string? FlowTypeID { get; set; }
 
     /// <summary>
     /// Url the identity provider will send the token to in OAuth2 authorization code flows
     /// </summary>
     [JsonPropertyName("CallbackUrl")]
-    public string CallbackUrl { get; set; }
+    public string? CallbackUrl { get; set; }
 
     /// <summary>
     /// Authorization endpoint of the identity provider used in OAuth2 flows
     /// </summary>
     [JsonPropertyName("AuthorizationUrl")]
-    public string AuthorizationUrl { get; set; }
+    public string? AuthorizationUrl { get; set; }
 
     /// <summary>
     /// Token endpoint of the identity provider used in OAuth2 flows
     /// </summary>
     [JsonPropertyName("TokenUrl")]
-    public string TokenUrl { get; set; }
+    public string? TokenUrl { get; set; }
 
     /// <summary>
     /// Key for obtaining the space-delimited scopes list for use in OAuth2 flows from the secret repository
     /// </summary>
     [JsonPropertyName("ScopesKeyName")]
-    public string ScopesKeyName { get; set; }
+    public string? ScopesKeyName { get; set; }
 
     /// <summary>
     /// DEPRECATED: Superseded  by ClientIDKeyName. Client ID
     /// </summary>
     [JsonPropertyName("ClientID")]
-    public string ClientID { get; set; }
+    public string? ClientID { get; set; }
 
     /// <summary>
     /// Key for obtaining the client secret for use in OAuth2 flows from the secret repository
     /// </summary>
     [JsonPropertyName("ClientSecretKeyName")]
-    public string ClientSecretKeyName { get; set; }
+    public string? ClientSecretKeyName { get; set; }
 
     /// <summary>
     /// Audience used in OAuth2 flows
     /// </summary>
     [JsonPropertyName("Audience")]
-    public string Audience { get; set; }
+    public string? Audience { get; set; }
 
     /// <summary>
     /// Key for obtaining a refresh token from the secret repository
     /// </summary>
     [JsonPropertyName("RefreshTokenKeyName")]
-    public string RefreshTokenKeyName { get; set; }
+    public string? RefreshTokenKeyName { get; set; }
 
     /// <summary>
     /// Key for obtaining an access token from the secret repository
     /// </summary>
     [JsonPropertyName("AccessTokenKeyName")]
-    public string AccessTokenKeyName { get; set; }
+    public string? AccessTokenKeyName { get; set; }
 
     /// <summary>
     /// Key for obtaining an API key from the secret repository
     /// </summary>
     [JsonPropertyName("APIKeyKeyName")]
-    public string APIKeyKeyName { get; set; }
+    public string? APIKeyKeyName { get; set; }
 
     /// <summary>
     /// Key for obtaining Username from the secret repository
     /// </summary>
     [JsonPropertyName("UsernameKeyName")]
-    public string UsernameKeyName { get; set; }
+    public string? UsernameKeyName { get; set; }
 
     /// <summary>
     /// Key for obtaining Password from the secret repository
     /// </summary>
     [JsonPropertyName("PasswordKeyName")]
-    public string PasswordKeyName { get; set; }
+    public string? PasswordKeyName { get; set; }
 
     /// <summary>
     /// Url of the secret repository containing secrets for this security scheme
     /// </summary>
     [JsonPropertyName("SecretRepoUrl")]
-    public string SecretRepoUrl { get; set; }
+    public string? SecretRepoUrl { get; set; }
 
     /// <summary>
     /// Key for obtaining the client id for use in the OAuth2 flows from the secret repository
     /// </summary>
     [JsonPropertyName("ClientIDKeyName")]
-    public string ClientIDKeyName { get; set; }
+    public string? ClientIDKeyName { get; set; }
 
 }
 
@@ -309,25 +309,25 @@ public class ConnectedSourceRegistryEntry_1_1_0_Data_SmtpSchemes
     /// </summary>
     [Required]
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public required string Name { get; set; }
 
     /// <summary>
     /// Key for the SMTP user.
     /// </summary>
     [JsonPropertyName("SmtpUserKeyName")]
-    public string SmtpUserKeyName { get; set; }
+    public string? SmtpUserKeyName { get; set; }
 
     /// <summary>
     /// Key for the SMTP password.
     /// </summary>
     [JsonPropertyName("SmtpPasswordKeyName")]
-    public string SmtpPasswordKeyName { get; set; }
+    public string? SmtpPasswordKeyName { get; set; }
 
     /// <summary>
     /// Sender's mail address.
     /// </summary>
     [JsonPropertyName("SmtpSenderMail")]
-    public string SmtpSenderMail { get; set; }
+    public string? SmtpSenderMail { get; set; }
 
     /// <summary>
     /// Timeout time for the SMTP server.
@@ -345,7 +345,7 @@ public class ConnectedSourceRegistryEntry_1_1_0_Data_SmtpSchemes
     /// Key for the SMTP host.
     /// </summary>
     [JsonPropertyName("SmtpHostKeyName")]
-    public string SmtpHostKeyName { get; set; }
+    public string? SmtpHostKeyName { get; set; }
 
     /// <summary>
     /// Type of protocol for connection.
@@ -371,7 +371,7 @@ public class ConnectedSourceRegistryEntry_1_1_0_Data_SmtpSchemes
     /// List of receiver's mail addresses.
     /// </summary>
     [JsonPropertyName("SmtpReceiverMail")]
-    public List<string> SmtpReceiverMail { get; set; }
+    public List<string>? SmtpReceiverMail { get; set; }
 
     /// <summary>
     /// Start date from which report is required.
@@ -391,6 +391,6 @@ public class ConnectedSourceRegistryEntry_1_1_0_Data_SmtpSchemes
     /// Email Trigger Frequency for the EDS report, cron job format
     /// </summary>
     [JsonPropertyName("EmailTriggerFrequency")]
-    public string EmailTriggerFrequency { get; set; }
+    public string? EmailTriggerFrequency { get; set; }
 
 }

@@ -18,7 +18,7 @@ public class UserDetailRequestModel
 {
     [Required]
     [JsonPropertyName("user_detail")]
-    public UserDetailsModel UserDetail { get; set; }
+    public required UserDetailsModel UserDetail { get; set; }
 
     [JsonPropertyName("ttl")]
     public int? Ttl { get; set; }

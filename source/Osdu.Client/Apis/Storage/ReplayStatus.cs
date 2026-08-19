@@ -23,7 +23,7 @@ public class ReplayStatus
     /// Record kind being replayed.
     /// </summary>
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public string? Kind { get; set; }
 
     /// <summary>
     /// Total number of records of this kind to be processed.
@@ -41,7 +41,7 @@ public class ReplayStatus
     /// State of the replay for this kind.
     /// </summary>
     [JsonPropertyName("state")]
-    public string State { get; set; }
+    public string? State { get; set; }
 
     /// <summary>
     /// Timestamp when processing of this kind started.
@@ -54,6 +54,6 @@ public class ReplayStatus
     /// Human-readable elapsed time for this kind.
     /// </summary>
     [JsonPropertyName("elapsedTime")]
-    public string ElapsedTime { get; set; }
+    public string? ElapsedTime { get; set; }
 
 }

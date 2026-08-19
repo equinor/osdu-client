@@ -23,19 +23,19 @@ public class AbstractReferenceType_1_0_0
     /// The name of the entity instance.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// Alternative names, including historical, by which this entity instance is/has been known.
     /// </summary>
     [JsonPropertyName("NameAlias")]
-    public List<AbstractAliasNames_1_0_0> NameAlias { get; set; }
+    public List<AbstractAliasNames_1_0_0>? NameAlias { get; set; }
 
     /// <summary>
     /// Native identifier from a Master Data Management System or other trusted source external to OSDU - stored here in order to allow for multi-system connection and synchronization. If used, the "Source" property should identify that source system.
     /// </summary>
     [JsonPropertyName("ID")]
-    public string ID { get; set; }
+    public string? ID { get; set; }
 
     /// <summary>
     /// By default reference values are considered as 'active'. An absent 'InactiveIndicator' property value means the reference value is in active use. When 'InactiveIndicator' is set true the reverence value is no longer in use and should no longer be offered as a choice.
@@ -48,31 +48,31 @@ public class AbstractReferenceType_1_0_0
     /// The text which describes a NAME TYPE in detail.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// The abbreviation or mnemonic for a reference type if defined. Example: WELL and WLBR.
     /// </summary>
     [JsonPropertyName("Code")]
-    public string Code { get; set; }
+    public string? Code { get; set; }
 
     /// <summary>
     /// Name of the authority, or organisation, which governs the entity value and from which it is sourced.
     /// </summary>
     [JsonPropertyName("AttributionAuthority")]
-    public string AttributionAuthority { get; set; }
+    public string? AttributionAuthority { get; set; }
 
     /// <summary>
     /// Name, URL, or other identifier of the publication, or repository, of the attribution source organisation from which the entity value is sourced.
     /// </summary>
     [JsonPropertyName("AttributionPublication")]
-    public string AttributionPublication { get; set; }
+    public string? AttributionPublication { get; set; }
 
     /// <summary>
     /// The distinct instance of the attribution publication, by version number, sequence number, date of publication, etc., that was used for the entity value.
     /// </summary>
     [JsonPropertyName("AttributionRevision")]
-    public string AttributionRevision { get; set; }
+    public string? AttributionRevision { get; set; }
 
     /// <summary>
     /// For reference values published and governed by OSDU: The date and time the record was committed into the OSDU member GitLab reference-values repository. The sole purpose of this date is to optimise the OSDU milestone upgrades. It allows the upgrade code to figure out whether or not the record must be PUT into reference value storage.

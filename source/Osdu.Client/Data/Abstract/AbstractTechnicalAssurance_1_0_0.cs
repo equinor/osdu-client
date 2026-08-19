@@ -25,37 +25,37 @@ public class AbstractTechnicalAssurance_1_0_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TechnicalAssuranceType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TechnicalAssuranceTypeID")]
-    public string TechnicalAssuranceTypeID { get; set; }
+    public required string TechnicalAssuranceTypeID { get; set; }
 
     /// <summary>
     /// The individuals, or roles, that reviewed and determined the technical assurance value
     /// </summary>
     [JsonPropertyName("Reviewers")]
-    public List<AbstractContact_1_0_0> Reviewers { get; set; }
+    public List<AbstractContact_1_0_0>? Reviewers { get; set; }
 
     /// <summary>
     /// List of workflows and/or personas that the technical assurance value is valid for (e.g., This data is trusted for Seismic Processing)
     /// </summary>
     [JsonPropertyName("AcceptableUsage")]
-    public List<AbstractTechnicalAssurance_1_0_0_AcceptableUsage> AcceptableUsage { get; set; }
+    public List<AbstractTechnicalAssurance_1_0_0_AcceptableUsage>? AcceptableUsage { get; set; }
 
     /// <summary>
     /// List of workflows and/or personas that the technical assurance value is not valid for (e.g., This data is not trusted for seismic interpretation)
     /// </summary>
     [JsonPropertyName("UnacceptableUsage")]
-    public List<AbstractTechnicalAssurance_1_0_0_UnacceptableUsage> UnacceptableUsage { get; set; }
+    public List<AbstractTechnicalAssurance_1_0_0_UnacceptableUsage>? UnacceptableUsage { get; set; }
 
     /// <summary>
     /// Date when the technical assurance determination for this record has taken place
     /// </summary>
     [JsonPropertyName("EffectiveDate")]
-    public DateOnly EffectiveDate { get; set; }
+    public DateOnly? EffectiveDate { get; set; }
 
     /// <summary>
     /// Any additional context to support the determination of technical assurance
     /// </summary>
     [JsonPropertyName("Comment")]
-    public string Comment { get; set; }
+    public string? Comment { get; set; }
 
 }
 
@@ -69,14 +69,14 @@ public class AbstractTechnicalAssurance_1_0_0_AcceptableUsage
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WorkflowUsageType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WorkflowUsage")]
-    public string WorkflowUsage { get; set; }
+    public string? WorkflowUsage { get; set; }
 
     /// <summary>
     /// Name of the role or personas that the record is technical assurance value is valid for.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WorkflowPersonaType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WorkflowPersona")]
-    public string WorkflowPersona { get; set; }
+    public string? WorkflowPersona { get; set; }
 
 }
 
@@ -90,13 +90,13 @@ public class AbstractTechnicalAssurance_1_0_0_UnacceptableUsage
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WorkflowUsageType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WorkflowUsage")]
-    public string WorkflowUsage { get; set; }
+    public string? WorkflowUsage { get; set; }
 
     /// <summary>
     /// Name of the role or personas that the record is technical assurance value is not valid for.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WorkflowPersonaType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WorkflowPersona")]
-    public string WorkflowPersona { get; set; }
+    public string? WorkflowPersona { get; set; }
 
 }

@@ -35,24 +35,24 @@ public class ReadablePropertyValues
     /// The values of all the allowed Security Classifications.
     /// </summary>
     [JsonPropertyName("securityClassifications")]
-    public List<string> SecurityClassifications { get; set; }
+    public List<string>? SecurityClassifications { get; set; }
 
     /// <summary>
     /// The name of all the allowed Export Classifications.
     /// </summary>
     [JsonPropertyName("exportClassificationControlNumbers")]
-    public List<string> ExportClassificationControlNumbers { get; set; }
+    public List<string>? ExportClassificationControlNumbers { get; set; }
 
     /// <summary>
     /// The name of all the allowed Personal Data Type values.
     /// </summary>
     [JsonPropertyName("personalDataTypes")]
-    public List<string> PersonalDataTypes { get; set; }
+    public List<string>? PersonalDataTypes { get; set; }
 
     /// <summary>
     /// The name of all the allowed Data Type values.
     /// </summary>
     [JsonPropertyName("dataTypes")]
-    public List<string> DataTypes { get; set; }
+    public List<string>? DataTypes { get; set; }
 
 }

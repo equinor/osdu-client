@@ -17,13 +17,13 @@ namespace Osdu.Client.Apis.Storage;
 public class RecordHeadersDTO
 {
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     [JsonPropertyName("version")]
     public long? Version { get; set; }
 
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public string? Kind { get; set; }
 
     /// <summary>
     /// Access control lists defining which groups can view or own a record.
@@ -44,15 +44,15 @@ public class RecordHeadersDTO
     public Dictionary<string, string>? Tags { get; set; }
 
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     [JsonPropertyName("createTime")]
-    public string CreateTime { get; set; }
+    public string? CreateTime { get; set; }
 
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("modifyTime")]
-    public string ModifyTime { get; set; }
+    public string? ModifyTime { get; set; }
 
 }

@@ -17,6 +17,6 @@ namespace Osdu.Client.Apis.Dataset;
 public class GetCreateUpdateDatasetRegistryResponse
 {
     [JsonPropertyName("datasetRegistries")]
-    public List<Record> DatasetRegistries { get; set; }
+    public List<Record>? DatasetRegistries { get; set; }
 
 }

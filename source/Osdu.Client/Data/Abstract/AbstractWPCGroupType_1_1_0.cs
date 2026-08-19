@@ -23,19 +23,19 @@ public class AbstractWPCGroupType_1_1_0
     /// The record id, which identifies this OSDU File or dataset resource.
     /// </summary>
     [JsonPropertyName("Datasets")]
-    public List<string> Datasets { get; set; }
+    public List<string>? Datasets { get; set; }
 
     /// <summary>
     /// An array of references to content in Domain Data Management Services represented by this work-product-component. The references are formed as URI following https://www.rfc-editor.org/rfc/rfc3986#page-16. This property is exclusively populated by DDMSs. If a work-product-component is represented in more than one DDMS, DDMSs are obliged to find the specific reference by inspecting the URI's authority values matching the DDMS id.
     /// </summary>
     [JsonPropertyName("DDMSDatasets")]
-    public List<string> DDMSDatasets { get; set; }
+    public List<string>? DDMSDatasets { get; set; }
 
     /// <summary>
     /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
     /// </summary>
     [JsonPropertyName("Artefacts")]
-    public List<AbstractWPCGroupType_1_1_0_Artefacts> Artefacts { get; set; }
+    public List<AbstractWPCGroupType_1_1_0_Artefacts>? Artefacts { get; set; }
 
     /// <summary>
     /// A flag that indicates if the work product component is undergoing an extended load.  It reflects the fact that the work product component is in an early stage and may be updated before finalization.
@@ -55,13 +55,13 @@ public class AbstractWPCGroupType_1_1_0
     /// Describes a record's overall suitability for general business consumption based on data quality. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [JsonPropertyName("TechnicalAssurances")]
-    public List<AbstractTechnicalAssurance_1_1_0> TechnicalAssurances { get; set; }
+    public List<AbstractTechnicalAssurance_1_1_0>? TechnicalAssurances { get; set; }
 
     /// <summary>
     /// Alternative names, including historical, by which this work-product-component is/has been known (it should include all the identifiers).
     /// </summary>
     [JsonPropertyName("NameAliases")]
-    public List<AbstractAliasNames_1_0_0> NameAliases { get; set; }
+    public List<AbstractAliasNames_1_0_0>? NameAliases { get; set; }
 
 }
 
@@ -75,20 +75,20 @@ public class AbstractWPCGroupType_1_1_0_Artefacts
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ArtefactRole:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("RoleID")]
-    public string RoleID { get; set; }
+    public string? RoleID { get; set; }
 
     /// <summary>
     /// The kind or schema ID of the artefact. Resolvable with the Schema Service.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("ResourceKind")]
-    public string ResourceKind { get; set; }
+    public string? ResourceKind { get; set; }
 
     /// <summary>
     /// The SRN which identifies this OSDU Artefact resource.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:dataset\-\-[\w\-\.]+:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ResourceID")]
-    public string ResourceID { get; set; }
+    public string? ResourceID { get; set; }
 
 }

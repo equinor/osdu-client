@@ -57,20 +57,20 @@ public class AbstractFacilitySpecification_1_0_0
     /// The actual text value of the parameter.
     /// </summary>
     [JsonPropertyName("FacilitySpecificationText")]
-    public string FacilitySpecificationText { get; set; }
+    public string? FacilitySpecificationText { get; set; }
 
     /// <summary>
     /// The unit for the quantity parameter, like metre (m in SI units system) for quantity Length.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("UnitOfMeasureID")]
-    public string UnitOfMeasureID { get; set; }
+    public string? UnitOfMeasureID { get; set; }
 
     /// <summary>
     /// Parameter type of property or characteristic.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ParameterType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ParameterTypeID")]
-    public string ParameterTypeID { get; set; }
+    public string? ParameterTypeID { get; set; }
 
 }

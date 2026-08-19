@@ -23,6 +23,6 @@ public class AbstractLegalParentList_1_0_0
     /// An array of none, one or many entity references of 'direct parents' in the data platform, which mark the current record as a derivative. In contrast to other relationships, the source record version is required. During record creation or update the ancestry.parents[] relationships are used to collect the legal tags from the sources and aggregate them in the legal.legaltags[] array. As a consequence, should e.g., one or more of the legal tags of the source data expire, the access to the derivatives is also terminated. For details, see ComplianceService tutorial, 'Creating derivative Records'.
     /// </summary>
     [JsonPropertyName("parents")]
-    public List<string> Parents { get; set; }
+    public List<string>? Parents { get; set; }
 
 }

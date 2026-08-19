@@ -25,7 +25,7 @@ public class WellboreTrajectory_1_3_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-WellboreTrajectory:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class WellboreTrajectory_1_3_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class WellboreTrajectory_1_3_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class WellboreTrajectory_1_3_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class WellboreTrajectory_1_3_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class WellboreTrajectory_1_3_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public WellboreTrajectory_1_3_0_Data? Data { get; set; }
@@ -101,19 +101,19 @@ public class WellboreTrajectory_1_3_0_Data : AbstractCommonResources_1_0_0 // Al
     /// The record id, which identifies this OSDU File or dataset resource.
     /// </summary>
     [JsonPropertyName("Datasets")]
-    public List<string> Datasets { get; set; }
+    public List<string>? Datasets { get; set; }
 
     /// <summary>
     /// An array of references to content in Domain Data Management Services represented by this work-product-component. The references are formed as URI following https://www.rfc-editor.org/rfc/rfc3986#page-16. This property is exclusively populated by DDMSs. If a work-product-component is represented in more than one DDMS, DDMSs are obliged to find the specific reference by inspecting the URI's authority values matching the DDMS id.
     /// </summary>
     [JsonPropertyName("DDMSDatasets")]
-    public List<string> DDMSDatasets { get; set; }
+    public List<string>? DDMSDatasets { get; set; }
 
     /// <summary>
     /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
     /// </summary>
     [JsonPropertyName("Artefacts")]
-    public List<WellboreTrajectory_1_3_0_Data_Artefacts> Artefacts { get; set; }
+    public List<WellboreTrajectory_1_3_0_Data_Artefacts>? Artefacts { get; set; }
 
     /// <summary>
     /// A flag that indicates if the work product component is undergoing an extended load.  It reflects the fact that the work product component is in an early stage and may be updated before finalization.
@@ -133,25 +133,25 @@ public class WellboreTrajectory_1_3_0_Data : AbstractCommonResources_1_0_0 // Al
     /// Describes a record's overall suitability for general business consumption based on data quality. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [JsonPropertyName("TechnicalAssurances")]
-    public List<AbstractTechnicalAssurance_1_2_0> TechnicalAssurances { get; set; }
+    public List<AbstractTechnicalAssurance_1_2_0>? TechnicalAssurances { get; set; }
 
     /// <summary>
     /// Alternative names, including historical, by which this work-product-component is/has been known (it should include all the identifiers).
     /// </summary>
     [JsonPropertyName("NameAliases")]
-    public List<AbstractAliasNames_1_0_0> NameAliases { get; set; }
+    public List<AbstractAliasNames_1_0_0>? NameAliases { get; set; }
 
     /// <summary>
     /// Name
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// Description.  Summary of the work product component.  Not the same as Remark which captures thoughts of creator about the wpc.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// Date that a resource (work  product component here) is formed outside of OSDU before loading (e.g. publication date).
@@ -164,7 +164,7 @@ public class WellboreTrajectory_1_3_0_Data : AbstractCommonResources_1_0_0 // Al
     /// Array of key words to identify the work product, especially to help in search.
     /// </summary>
     [JsonPropertyName("Tags")]
-    public List<string> Tags { get; set; }
+    public List<string>? Tags { get; set; }
 
     [JsonPropertyName("SpatialPoint")]
     public AbstractSpatialLocation_1_1_0? SpatialPoint { get; set; }
@@ -176,45 +176,45 @@ public class WellboreTrajectory_1_3_0_Data : AbstractCommonResources_1_0_0 // Al
     /// List of geographic entities which provide context to the WPC.  This may include multiple types or multiple values of the same type.
     /// </summary>
     [JsonPropertyName("GeoContexts")]
-    public List<AbstractGeoContext_1_0_0> GeoContexts { get; set; }
+    public List<AbstractGeoContext_1_0_0>? GeoContexts { get; set; }
 
     /// <summary>
     /// Name of the person that first submitted the work product component to OSDU.
     /// </summary>
     [JsonPropertyName("SubmitterName")]
-    public string SubmitterName { get; set; }
+    public string? SubmitterName { get; set; }
 
     /// <summary>
     /// Array of business processes/workflows that the work product component has been through (ex. well planning, exploration).
     /// </summary>
     [JsonPropertyName("BusinessActivities")]
-    public List<string> BusinessActivities { get; set; }
+    public List<string>? BusinessActivities { get; set; }
 
     /// <summary>
     /// Array of Authors' names of the work product component.  Could be a person or company entity.
     /// </summary>
     [JsonPropertyName("AuthorIDs")]
-    public List<string> AuthorIDs { get; set; }
+    public List<string>? AuthorIDs { get; set; }
 
     /// <summary>
     /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
     /// </summary>
     [JsonPropertyName("LineageAssertions")]
-    public List<WellboreTrajectory_1_3_0_Data_LineageAssertions> LineageAssertions { get; set; }
+    public List<WellboreTrajectory_1_3_0_Data_LineageAssertions>? LineageAssertions { get; set; }
 
     /// <summary>
     /// Name of the Survey Company.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ServiceCompanyID")]
-    public string ServiceCompanyID { get; set; }
+    public string? ServiceCompanyID { get; set; }
 
     /// <summary>
     /// A unique name, code or number designated to the Wellbore.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Wellbore:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellboreID")]
-    public string WellboreID { get; set; }
+    public string? WellboreID { get; set; }
 
     /// <summary>
     /// Measured depth in wellbore where the directional survey starts. This should equal the minimum station measured depth for this directional survey, regardless of whether the surveyed station represents an actual surveyed MD or not.
@@ -227,21 +227,21 @@ public class WellboreTrajectory_1_3_0_Data : AbstractCommonResources_1_0_0 // Al
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-AzimuthReferenceType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("AzimuthReferenceType")]
-    public string AzimuthReferenceType { get; set; }
+    public string? AzimuthReferenceType { get; set; }
 
     /// <summary>
     /// Calculation Method Type used to compute the TVD, X OFFSET, Y OFFSET and DOG LEG SEVERITY values for this Directional Survey. For example, Radius of Curvature, Minimum Curvature, Balanced Tangential, etc.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CalculationMethodType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("CalculationMethodType")]
-    public string CalculationMethodType { get; set; }
+    public string? CalculationMethodType { get; set; }
 
     /// <summary>
     /// Coordinate Reference System defining the Projection of the station EASTING and NORTHING values. If  type is "Grid North" and EASTING and NORTHING attributes are stored, clearly identifying their projection is required.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CoordinateReferenceSystem:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ProjectedCRSID")]
-    public string ProjectedCRSID { get; set; }
+    public string? ProjectedCRSID { get; set; }
 
     /// <summary>
     /// A flag indicating if the survey is currently active or valid within his lifecycle stage, not necessarily the definitive survey.
@@ -254,7 +254,7 @@ public class WellboreTrajectory_1_3_0_Data : AbstractCommonResources_1_0_0 // Al
     /// The type of this directional survey.  For example a "Directional Survey" where MD, Inclination and Azimuth are all measured or a "Position Log" where Inclination and Azimuth are both null and only MD, TVD and X/Y Offsets are available) - or "Full Survey" where everything is fully filled-up, depth-inclination-azimuth.
     /// </summary>
     [JsonPropertyName("SurveyType")]
-    public string SurveyType { get; set; }
+    public string? SurveyType { get; set; }
 
     /// <summary>
     /// The date that the survey data was acquired on the field.
@@ -268,32 +268,32 @@ public class WellboreTrajectory_1_3_0_Data : AbstractCommonResources_1_0_0 // Al
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CoordinateReferenceSystem:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("GeographicCRSID")]
-    public string GeographicCRSID { get; set; }
+    public string? GeographicCRSID { get; set; }
 
     /// <summary>
     /// Remarks related to acquisition context which is not the same as Description which is a summary of the work-product-component.
     /// </summary>
     [JsonPropertyName("AcquisitionRemark")]
-    public string AcquisitionRemark { get; set; }
+    public string? AcquisitionRemark { get; set; }
 
     /// <summary>
     /// Unique or Distinctive Survey Reference Number, Job Number, File Number, Identifier, Label, Name, etc. as indicated on a directional survey report, file, etc.  Use this attribute to allow correlation of the data in this Directional Survey back to the original source document, file, etc.
     /// </summary>
     [JsonPropertyName("SurveyReferenceIdentifier")]
-    public string SurveyReferenceIdentifier { get; set; }
+    public string? SurveyReferenceIdentifier { get; set; }
 
     /// <summary>
     /// The type of tool or equipment used to acquire this Directional Survey.  For example, gyroscopic, magnetic, MWD, TOTCO, acid bottle, etc. Follow OWSG reference data and support the ISCWSA survey tool definitions.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-SurveyToolType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SurveyToolTypeID")]
-    public string SurveyToolTypeID { get; set; }
+    public string? SurveyToolTypeID { get; set; }
 
     /// <summary>
     /// The version of the wellbore survey deliverable received from the service provider - as given by this provider
     /// </summary>
     [JsonPropertyName("SurveyVersion")]
-    public string SurveyVersion { get; set; }
+    public string? SurveyVersion { get; set; }
 
     /// <summary>
     /// The measured depth to which the survey segment was extrapolated.
@@ -305,7 +305,7 @@ public class WellboreTrajectory_1_3_0_Data : AbstractCommonResources_1_0_0 // Al
     /// Comment/Annotation made to WellboreTrajectory describing the projected MD Base or Bottomhole, e.g., listing the Depth Reference Name, Elevation and Bottomhole MD. This can be used for comparison against the survey at a later date.
     /// </summary>
     [JsonPropertyName("ExtrapolatedMeasuredDepthRemark")]
-    public string ExtrapolatedMeasuredDepthRemark { get; set; }
+    public string? ExtrapolatedMeasuredDepthRemark { get; set; }
 
     /// <summary>
     /// Measured depth within the wellbore of the LAST surveyed station with recorded data.  If a stored survey has been extrapolated to a deeper depth than the last surveyed station then that is the extrapolated measured depth and not the survey base depth.
@@ -332,13 +332,13 @@ public class WellboreTrajectory_1_3_0_Data : AbstractCommonResources_1_0_0 // Al
     /// The array of TrajectoryStationProperty definitions describing the available properties for this instance of WellboreTrajectory.
     /// </summary>
     [JsonPropertyName("AvailableTrajectoryStationProperties")]
-    public List<WellboreTrajectory_1_3_0_Data_AvailableTrajectoryStationProperties> AvailableTrajectoryStationProperties { get; set; }
+    public List<WellboreTrajectory_1_3_0_Data_AvailableTrajectoryStationProperties>? AvailableTrajectoryStationProperties { get; set; }
 
     /// <summary>
     /// The audit trail of operations applied to the station coordinates from the original state to the current state. The list may contain operations applied prior to ingestion as well as the operations applied to produce the Wgs84Coordinates. The text elements refer to ESRI style CRS and Transformation names, which may have to be translated to EPSG standard names.
     /// </summary>
     [JsonPropertyName("AppliedOperations")]
-    public List<string> AppliedOperations { get; set; }
+    public List<string>? AppliedOperations { get; set; }
 
     /// <summary>
     /// Date/time when the directional Survey QA/QC was performed.
@@ -351,13 +351,13 @@ public class WellboreTrajectory_1_3_0_Data : AbstractCommonResources_1_0_0 // Al
     /// Name of Borehole Survey specialist who performed the QA/QC work
     /// </summary>
     [JsonPropertyName("AppliedOperationsUser")]
-    public string AppliedOperationsUser { get; set; }
+    public string? AppliedOperationsUser { get; set; }
 
     /// <summary>
     /// Any comments captured by the Borehole Survey specialist when performing the QA/QC work.
     /// </summary>
     [JsonPropertyName("AppliedOperationsRemarks")]
-    public string AppliedOperationsRemarks { get; set; }
+    public string? AppliedOperationsRemarks { get; set; }
 
     /// <summary>
     /// The date and time capturing when the first survey station was measured.
@@ -378,7 +378,7 @@ public class WellboreTrajectory_1_3_0_Data : AbstractCommonResources_1_0_0 // Al
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("CompanyID")]
-    public string CompanyID { get; set; }
+    public string? CompanyID { get; set; }
 
     /// <summary>
     /// The Grid Convergence angle computed at the surface position, which was used for the WellboreTrajectory True North to Grid North Azimuths corrections. Only populated for projected CRSs. Recommended sign convention: Gauss-Bomford.
@@ -413,21 +413,21 @@ public class WellboreTrajectory_1_3_0_Data_Artefacts
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ArtefactRole:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("RoleID")]
-    public string RoleID { get; set; }
+    public string? RoleID { get; set; }
 
     /// <summary>
     /// The kind or schema ID of the artefact. Resolvable with the Schema Service.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("ResourceKind")]
-    public string ResourceKind { get; set; }
+    public string? ResourceKind { get; set; }
 
     /// <summary>
     /// The SRN which identifies this OSDU Artefact resource.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:dataset\-\-[\w\-\.]+:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ResourceID")]
-    public string ResourceID { get; set; }
+    public string? ResourceID { get; set; }
 
 }
 
@@ -441,14 +441,14 @@ public class WellboreTrajectory_1_3_0_Data_LineageAssertions
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ID")]
-    public string ID { get; set; }
+    public string? ID { get; set; }
 
     /// <summary>
     /// Used by LineageAssertion to describe the nature of the line of descent of a work product component from a prior Resource, such as DIRECT, INDIRECT, REFERENCE.  It is not for proximity (number of nodes away), it is not to cover all the relationships in a full ontology or graph, and it is not to describe the type of activity that created the asserting WPC.  LineageAssertion does not encompass a full provenance, process history, or activity model.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-LineageRelationshipType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("LineageRelationshipType")]
-    public string LineageRelationshipType { get; set; }
+    public string? LineageRelationshipType { get; set; }
 
 }
 
@@ -462,19 +462,19 @@ public class WellboreTrajectory_1_3_0_Data_AvailableTrajectoryStationProperties
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TrajectoryStationPropertyType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TrajectoryStationPropertyTypeID")]
-    public string TrajectoryStationPropertyTypeID { get; set; }
+    public string? TrajectoryStationPropertyTypeID { get; set; }
 
     /// <summary>
     /// Unit of Measure for the station properties of type TrajectoryStationPropertyType.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("StationPropertyUnitID")]
-    public string StationPropertyUnitID { get; set; }
+    public string? StationPropertyUnitID { get; set; }
 
     /// <summary>
     /// The name of the curve (e.g. column in a CSV document) as originally found. If absent The name of the TrajectoryStationPropertyType is intended to be used.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
 }

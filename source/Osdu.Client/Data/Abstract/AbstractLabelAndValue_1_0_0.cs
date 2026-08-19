@@ -25,7 +25,7 @@ public class AbstractLabelAndValue_1_0_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-GeoLabelType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("LabelTypeID")]
-    public string LabelTypeID { get; set; }
+    public required string LabelTypeID { get; set; }
 
     /// <summary>
     /// A numeric, floating point label value. Only populated if the associated labelType data.ValueType is 'number'. The label type's ValueCount must be 1.
@@ -50,14 +50,14 @@ public class AbstractLabelAndValue_1_0_0
     /// A textual label value. Only populated if the associated labelType data.ValueType is 'string'. Not to be used for relationships, see ValueAsRelatedID. The label type's ValueCount must be 1.
     /// </summary>
     [JsonPropertyName("ValueAsString")]
-    public string ValueAsString { get; set; }
+    public string? ValueAsString { get; set; }
 
     /// <summary>
     /// A label relationship to another record via its record id:version, where version is optional. The expected target type is defined in labelType.RelationshipTargetKind. Only populated if the associated labelType data.ValueType is 'string'. The label type's ValueCount must be 1.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ValueAsRelatedID")]
-    public string ValueAsRelatedID { get; set; }
+    public string? ValueAsRelatedID { get; set; }
 
     /// <summary>
     /// A label value as date or date time. Only populated if the associated labelType data.ValueType is 'string'. The label type's ValueCount must be 1.
@@ -70,37 +70,37 @@ public class AbstractLabelAndValue_1_0_0
     /// A numeric, floating point label value. Only populated if the associated labelType data.ValueType is 'number'. The label type's ValueCount is greater than 1.
     /// </summary>
     [JsonPropertyName("ValueAsNumberArray")]
-    public List<double> ValueAsNumberArray { get; set; }
+    public List<double>? ValueAsNumberArray { get; set; }
 
     /// <summary>
     /// An integer label value. Only populated if the associated labelType data.ValueType is 'integer'. The label type's ValueCount is greater than 1.
     /// </summary>
     [RegularExpression(@"^[0-9]+$")]
     [JsonPropertyName("ValueAsIntegerArray")]
-    public List<int> ValueAsIntegerArray { get; set; }
+    public List<int>? ValueAsIntegerArray { get; set; }
 
     /// <summary>
     /// A Boolean label value. Only populated if the associated labelType data.ValueType is 'boolean'. The label type's ValueCount is greater than 1.
     /// </summary>
     [JsonPropertyName("ValueAsBooleanArray")]
-    public List<bool> ValueAsBooleanArray { get; set; }
+    public List<bool>? ValueAsBooleanArray { get; set; }
 
     /// <summary>
     /// A textual label value. Only populated if the associated labelType data.ValueType is 'string'. Not to be used for relationships, see ValueAsRelatedID. The label type's ValueCount is greater than 1.
     /// </summary>
     [JsonPropertyName("ValueAsStringArray")]
-    public List<string> ValueAsStringArray { get; set; }
+    public List<string>? ValueAsStringArray { get; set; }
 
     /// <summary>
     /// A label relationship to another record via its record id:version, where version is optional. The expected target type is defined in labelType.RelationshipTargetKind. Only populated if the associated labelType data.ValueType is 'string'. The label type's ValueCount is greater than 1.
     /// </summary>
     [JsonPropertyName("ValueAsRelatedIDs")]
-    public List<string> ValueAsRelatedIDs { get; set; }
+    public List<string>? ValueAsRelatedIDs { get; set; }
 
     /// <summary>
     /// A label value as date or date time. Only populated if the associated labelType data.ValueType is 'string'. The label type's ValueCount is greater than 1.
     /// </summary>
     [JsonPropertyName("ValueAsDateTimeArray")]
-    public List<string> ValueAsDateTimeArray { get; set; }
+    public List<string>? ValueAsDateTimeArray { get; set; }
 
 }

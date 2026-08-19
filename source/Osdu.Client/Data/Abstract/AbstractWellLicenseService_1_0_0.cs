@@ -24,13 +24,13 @@ public class AbstractWellLicenseService_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-BusinessAssociate:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ContactBusinessAssociateID")]
-    public string ContactBusinessAssociateID { get; set; }
+    public string? ContactBusinessAssociateID { get; set; }
 
     /// <summary>
     /// Narrative remarks about the service provided for the license.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// The time of day on the end date when the service was completed.
@@ -44,46 +44,46 @@ public class AbstractWellLicenseService_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-BusinessAssociate:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("RepresentedBusinessAssociateID")]
-    public string RepresentedBusinessAssociateID { get; set; }
+    public string? RepresentedBusinessAssociateID { get; set; }
 
     /// <summary>
     /// The agent through whom a service is brokered or otherwise obtained.  Commonly used where regulations require the use of local agents, or where confidentiality is a concern.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-BusinessAssociate:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ServiceAgentID")]
-    public string ServiceAgentID { get; set; }
+    public string? ServiceAgentID { get; set; }
 
     /// <summary>
     /// Service agents work on behalf of a licensee, and must be approved by the regulator. The service agent has legal authority, and the relationship between a regulator, a licensee  is formal.  If the service agent changes, the regulator must be notified and approval for the change given. This is the date that the authority who granted the license gave consent to change the service agent.
     /// </summary>
     [JsonPropertyName("ServiceAgentApprovedDate")]
-    public DateOnly ServiceAgentApprovedDate { get; set; }
+    public DateOnly? ServiceAgentApprovedDate { get; set; }
 
     /// <summary>
     /// The relationship between a licensee and service agent is formal.  When a service agent is discharged, regulatory notification, and sometimes approval, is required.
     /// </summary>
     [JsonPropertyName("ServiceAgentDischargeDate")]
-    public DateOnly ServiceAgentDischargeDate { get; set; }
+    public DateOnly? ServiceAgentDischargeDate { get; set; }
 
     /// <summary>
     /// The business associate who provided the service, generally the supplier.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-BusinessAssociate:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ServiceByBusinessAssociateID")]
-    public string ServiceByBusinessAssociateID { get; set; }
+    public string? ServiceByBusinessAssociateID { get; set; }
 
     /// <summary>
     /// The business associate for whom this service was provided, generally the client or customer.
     /// </summary>
     [JsonPropertyName("ServiceForBusinessAssociate")]
-    public string ServiceForBusinessAssociate { get; set; }
+    public string? ServiceForBusinessAssociate { get; set; }
 
     /// <summary>
     /// This attribute can be used to capture information about the quality of service.  Users of this attribute should be aware that this information may be considered private or privileged, and in some situations data may become public, resulting in violation of certain laws.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WellLicenseServiceQualityType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ServiceQualityTypeID")]
-    public string ServiceQualityTypeID { get; set; }
+    public string? ServiceQualityTypeID { get; set; }
 
     /// <summary>
     /// In some cases, it is necessary to order services in the sequence provided, particularly when there are relationships between the services. Use this number to organize services in the order that they were done in.  Note that some services are not necessarily associated with a date sufficiently accurate to allow this sequencing to be reliably derived.
@@ -96,7 +96,7 @@ public class AbstractWellLicenseService_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WellLicenseServiceType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ServiceTypeID")]
-    public string ServiceTypeID { get; set; }
+    public string? ServiceTypeID { get; set; }
 
     /// <summary>
     /// The time of start day when the service started.
@@ -109,6 +109,6 @@ public class AbstractWellLicenseService_1_0_0
     /// Unique identifier of this element in the parent's list of license services.
     /// </summary>
     [JsonPropertyName("ElementIdentifier")]
-    public string ElementIdentifier { get; set; }
+    public string? ElementIdentifier { get; set; }
 
 }

@@ -25,7 +25,7 @@ public class File_TabularData_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:dataset\-\-File.TabularData:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class File_TabularData_1_0_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class File_TabularData_1_0_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class File_TabularData_1_0_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class File_TabularData_1_0_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class File_TabularData_1_0_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public File_TabularData_1_0_0_Data? Data { get; set; }
@@ -101,40 +101,40 @@ public class File_TabularData_1_0_0_Data : AbstractCommonResources_1_0_1 // Also
     /// An optional name of the dataset, e.g. a user friendly file or file collection name.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// An optional, textual description of the dataset.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// Total size of the dataset in bytes; for files it is the same as declared in FileSourceInfo.FileSize or the sum of all individual files. Implemented as string. The value must be convertible to a long integer (sizes can become very large).
     /// </summary>
     [RegularExpression(@"^[0-9]+$")]
     [JsonPropertyName("TotalSize")]
-    public string TotalSize { get; set; }
+    public string? TotalSize { get; set; }
 
     /// <summary>
     /// EncodingFormatType ID reference value relationship. It can be a mime-type or media-type.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-EncodingFormatType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("EncodingFormatTypeID")]
-    public string EncodingFormatTypeID { get; set; }
+    public string? EncodingFormatTypeID { get; set; }
 
     /// <summary>
     /// Relationship to the SchemaFormatType reference value.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-SchemaFormatType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SchemaFormatTypeID")]
-    public string SchemaFormatTypeID { get; set; }
+    public string? SchemaFormatTypeID { get; set; }
 
     /// <summary>
     /// Endianness of binary value.  Enumeration: "BIG", "LITTLE".  If absent, applications will need to interpret from context indicators.
     /// </summary>
     [JsonPropertyName("Endian")]
-    public File_TabularData_1_0_0_Data_Endian Endian { get; set; }
+    public File_TabularData_1_0_0_Data_Endian? Endian { get; set; }
 
     /// <summary>
     /// Placeholder for a specialization.
@@ -147,33 +147,33 @@ public class File_TabularData_1_0_0_Data : AbstractCommonResources_1_0_1 // Also
     /// </summary>
     [RegularExpression(@"^[0-9a-fA-F]{32}")]
     [JsonPropertyName("Checksum")]
-    public string Checksum { get; set; }
+    public string? Checksum { get; set; }
 
     /// <summary>
     /// Optional relationship to a ColumnBasedTableTemplate record, which defines the KeyColumn and Column definitions. Some columns defined in the template may be omitted if not contained in the ColumnValues, but the ones used must be exactly identical to the template's column definitions. If the ColumnBasedTableTemplateID is populated, the ColumnBasedTableType is expected to be ColumnBasedTableTemplateControlled.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-ColumnBasedTableTemplate:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ColumnBasedTableTemplateID")]
-    public string ColumnBasedTableTemplateID { get; set; }
+    public string? ColumnBasedTableTemplateID { get; set; }
 
     /// <summary>
     /// Quickly indicate the type of the column based table (KrPc, PVT, Facies, ...) and its standard columns definition. It is supposed to be used when you don't use KeyColumns neither Columns as attributes of this WPC.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ColumnBasedTableType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ColumnBasedTableTypeID")]
-    public string ColumnBasedTableTypeID { get; set; }
+    public string? ColumnBasedTableTypeID { get; set; }
 
     /// <summary>
     /// A column whose values are considered as keys/indices. Do not use this attribute if you want to follow a given ColumnBasedTableType.
     /// </summary>
     [JsonPropertyName("KeyColumns")]
-    public List<AbstractReferencePropertyType_1_2_1> KeyColumns { get; set; }
+    public List<AbstractReferencePropertyType_1_2_1>? KeyColumns { get; set; }
 
     /// <summary>
     /// A common column storing values of a particular property kind. Do not use this attribute if you want to follow a given ColumnBasedTableType.
     /// </summary>
     [JsonPropertyName("Columns")]
-    public List<AbstractReferencePropertyType_1_2_1> Columns { get; set; }
+    public List<AbstractReferencePropertyType_1_2_1>? Columns { get; set; }
 
     /// <summary>
     /// If set to true, the first data row contains the ColumnName values or labels for the purpose of checking/constraining the ColumnName in Columns[]/KeyColumns[].
@@ -186,13 +186,13 @@ public class File_TabularData_1_0_0_Data : AbstractCommonResources_1_0_1 // Also
     /// The column specifications in the order they appear in the data file. ColumnSpecifications[].ColumnName is the key, which matches and links to the Columns[].ColumnName metadata. ColumnSpecifications contain format hints and absent value definitions.
     /// </summary>
     [JsonPropertyName("ColumnSpecifications")]
-    public List<File_TabularData_1_0_0_Data_ColumnSpecifications> ColumnSpecifications { get; set; }
+    public List<File_TabularData_1_0_0_Data_ColumnSpecifications>? ColumnSpecifications { get; set; }
 
     /// <summary>
     /// If specified, a cells of a record row are separated by this character, e.g., ',' for comma separated columns. For fixed format record rows the property is left absent or the value as empty string "".
     /// </summary>
     [JsonPropertyName("ColumnSeparator")]
-    public string ColumnSeparator { get; set; }
+    public string? ColumnSeparator { get; set; }
 
     /// <summary>
     /// Sometimes the data file contains header records, which do not contain row data. NumberOfRowsToSkip avoids parsing header rows as data rows. If absent, the default value is 0.
@@ -204,7 +204,7 @@ public class File_TabularData_1_0_0_Data : AbstractCommonResources_1_0_1 // Also
     /// The start of a comment line, which should be skipped.
     /// </summary>
     [JsonPropertyName("CommentIndicator")]
-    public string CommentIndicator { get; set; }
+    public string? CommentIndicator { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
@@ -235,14 +235,14 @@ public class File_TabularData_1_0_0_Data_ColumnSpecifications
     /// </summary>
     [Required]
     [JsonPropertyName("ColumnName")]
-    public string ColumnName { get; set; }
+    public required string ColumnName { get; set; }
 
     /// <summary>
     /// The fixed format code, I for integer, A for string, F for floating point numbers, followed by a n integer number describing the field length. For floating point numbers (F), the number of decimals is indicated after the decimal point, i.e., F9.2 meaning field length 9 characters including sign and 2 characters behind the decimal point. The value type is defined in the column  metadata.
     /// </summary>
     [RegularExpression(@"^F\d+.\d+$|^A\d+$|^I\d+$")]
     [JsonPropertyName("ColumnFormat")]
-    public string ColumnFormat { get; set; }
+    public string? ColumnFormat { get; set; }
 
     /// <summary>
     /// Only used for fixed format parsing, i.e., when ColumnFormat is populated. It described the length (in bytes) of the column in the table row.
@@ -260,6 +260,6 @@ public class File_TabularData_1_0_0_Data_ColumnSpecifications
     /// The value representing an absent value or null value. For fixed format cell values this string value must be compatible with the CellFormat.
     /// </summary>
     [JsonPropertyName("AbsentValue")]
-    public string AbsentValue { get; set; }
+    public string? AbsentValue { get; set; }
 
 }

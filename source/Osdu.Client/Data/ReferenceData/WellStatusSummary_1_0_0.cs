@@ -25,7 +25,7 @@ public class WellStatusSummary_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WellStatusSummary:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class WellStatusSummary_1_0_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class WellStatusSummary_1_0_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class WellStatusSummary_1_0_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class WellStatusSummary_1_0_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class WellStatusSummary_1_0_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public WellStatusSummary_1_0_0_Data? Data { get; set; }
@@ -101,19 +101,19 @@ public class WellStatusSummary_1_0_0_Data : AbstractCommonResources_1_0_0 // Als
     /// The name of the entity instance.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// Alternative names, including historical, by which this entity instance is/has been known.
     /// </summary>
     [JsonPropertyName("NameAlias")]
-    public List<AbstractAliasNames_1_0_0> NameAlias { get; set; }
+    public List<AbstractAliasNames_1_0_0>? NameAlias { get; set; }
 
     /// <summary>
     /// Native identifier from a Master Data Management System or other trusted source external to OSDU - stored here in order to allow for multi-system connection and synchronization. If used, the "Source" property should identify that source system.
     /// </summary>
     [JsonPropertyName("ID")]
-    public string ID { get; set; }
+    public string? ID { get; set; }
 
     /// <summary>
     /// By default reference values are considered as 'active'. An absent 'InactiveIndicator' property value means the reference value is in active use. When 'InactiveIndicator' is set true the reverence value is no longer in use and should no longer be offered as a choice.
@@ -126,31 +126,31 @@ public class WellStatusSummary_1_0_0_Data : AbstractCommonResources_1_0_0 // Als
     /// The text which describes a NAME TYPE in detail.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// The abbreviation or mnemonic for a reference type if defined. Example: WELL and WLBR.
     /// </summary>
     [JsonPropertyName("Code")]
-    public string Code { get; set; }
+    public string? Code { get; set; }
 
     /// <summary>
     /// Name of the authority, or organisation, which governs the entity value and from which it is sourced.
     /// </summary>
     [JsonPropertyName("AttributionAuthority")]
-    public string AttributionAuthority { get; set; }
+    public string? AttributionAuthority { get; set; }
 
     /// <summary>
     /// Name, URL, or other identifier of the publication, or repository, of the attribution source organisation from which the entity value is sourced.
     /// </summary>
     [JsonPropertyName("AttributionPublication")]
-    public string AttributionPublication { get; set; }
+    public string? AttributionPublication { get; set; }
 
     /// <summary>
     /// The distinct instance of the attribution publication, by version number, sequence number, date of publication, etc., that was used for the entity value.
     /// </summary>
     [JsonPropertyName("AttributionRevision")]
-    public string AttributionRevision { get; set; }
+    public string? AttributionRevision { get; set; }
 
     /// <summary>
     /// For reference values published and governed by OSDU: The date and time the record was committed into the OSDU member GitLab reference-values repository. The sole purpose of this date is to optimise the OSDU milestone upgrades. It allows the upgrade code to figure out whether or not the record must be PUT into reference value storage.
@@ -164,70 +164,70 @@ public class WellStatusSummary_1_0_0_Data : AbstractCommonResources_1_0_0 // Als
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WellProductType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("PrimaryProductTypeID")]
-    public string PrimaryProductTypeID { get; set; }
+    public string? PrimaryProductTypeID { get; set; }
 
     /// <summary>
     /// The Secondary Product Type permitted in this summary category. Product Type [Well Product Type] is the physical product(s) that can be attributed to any well component. A Secondary Product Significance identifies the Product Type that is the second most significant.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WellProductType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SecondaryProductTypeID")]
-    public string SecondaryProductTypeID { get; set; }
+    public string? SecondaryProductTypeID { get; set; }
 
     /// <summary>
     /// The Tertiary Product Type permitted in this summary category. Product Type [Well Product Type] is the physical product(s) that can be attributed to any well component. A Tertiary Product Significance identifies the Product Type that is the third most significant.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WellProductType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TertiaryProductTypeID")]
-    public string TertiaryProductTypeID { get; set; }
+    public string? TertiaryProductTypeID { get; set; }
 
     /// <summary>
     /// The Show Product Type permitted in this summary category. Product Type [Well Product Type] is the physical product(s) that can be attributed to any well component. A Show Product Significance identifies a Product Type present in non-commercial quantity.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WellProductType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ShowProductTypeID")]
-    public string ShowProductTypeID { get; set; }
+    public string? ShowProductTypeID { get; set; }
 
     /// <summary>
     /// The Fluid Direction permitted in this summary category. Fluid Direction [Well Fluid Direction] is the flow direction of the wellhead stream. The facet value can change over the life of the well.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WellFluidDirection:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("FluidDirectionID")]
-    public string FluidDirectionID { get; set; }
+    public string? FluidDirectionID { get; set; }
 
     /// <summary>
     /// The Well Role permitted in this summary category. Role [Well Role] is the current purpose, whether planned or actual. If there are multiple Roles among a well's components, the well may be assigned the facet value with the highest significance. The value of Role may change over the Life Cycle.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WellRole:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("RoleID")]
-    public string RoleID { get; set; }
+    public string? RoleID { get; set; }
 
     /// <summary>
     /// The Well Condition permitted in this summary category. Condition [Well Condition] is the operational state of a well component relative to the Role [Well Role].
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WellCondition:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ConditionID")]
-    public string ConditionID { get; set; }
+    public string? ConditionID { get; set; }
 
     /// <summary>
     /// The Lifecycle Phase [Facility State Type] permitted in this summary category.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-FacilityStateType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("LifecyclePhaseID")]
-    public string LifecyclePhaseID { get; set; }
+    public string? LifecyclePhaseID { get; set; }
 
     /// <summary>
     /// The Business Intention permitted in this summary category. Business Intention [Well Business Intention] is the general purpose for which resources are approved for drilling a new well or subsequent wellbore(s).
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WellBusinessIntention:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("BusinessIntentionID")]
-    public string BusinessIntentionID { get; set; }
+    public string? BusinessIntentionID { get; set; }
 
     /// <summary>
     /// Play Type is the focus or area conducive to hydrocarbon discovery and includes the related activities for the development and production of the reservoir.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-PlayType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("PlayTypeID")]
-    public string PlayTypeID { get; set; }
+    public string? PlayTypeID { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }

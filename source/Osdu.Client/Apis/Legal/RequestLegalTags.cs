@@ -26,6 +26,6 @@ public class RequestLegalTags
     [MinLength(1)]
     [MaxLength(25)]
     [JsonPropertyName("names")]
-    public List<string> Names { get; set; }
+    public required List<string> Names { get; set; }
 
 }

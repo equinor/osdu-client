@@ -33,25 +33,25 @@ public class AbstractWellLicenseCondition_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-BusinessAssociate:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ContactBusinessAssociateID")]
-    public string ContactBusinessAssociateID { get; set; }
+    public string? ContactBusinessAssociateID { get; set; }
 
     /// <summary>
     /// The state that must be achieved for the condition to become effective. For example, a report may be due 60 days after operations commence (or cease).
     /// </summary>
     [JsonPropertyName("DueCondition")]
-    public string DueCondition { get; set; }
+    public string? DueCondition { get; set; }
 
     /// <summary>
     /// The date that this condition must be fulfilled.
     /// </summary>
     [JsonPropertyName("DueDate")]
-    public DateOnly DueDate { get; set; }
+    public DateOnly? DueDate { get; set; }
 
     /// <summary>
     /// The frequency with which this condition must be met, such as an annual review. Where conditions are cycling in this way, please use the project (for work flow) or obligations ( for payments) module to track completions.
     /// </summary>
     [JsonPropertyName("DueFrequency")]
-    public string DueFrequency { get; set; }
+    public string? DueFrequency { get; set; }
 
     /// <summary>
     /// The period within which this condition must be satisfied, usually following completion of operations.
@@ -63,32 +63,32 @@ public class AbstractWellLicenseCondition_1_0_0
     /// The date on which this row of data first came into effect from a business perspective.
     /// </summary>
     [JsonPropertyName("EffectiveDate")]
-    public DateOnly EffectiveDate { get; set; }
+    public DateOnly? EffectiveDate { get; set; }
 
     /// <summary>
     /// A Y/N flag indicating that the holder of the license is exempt from this condition.
     /// </summary>
     [JsonPropertyName("IsExempt")]
-    public string IsExempt { get; set; }
+    public string? IsExempt { get; set; }
 
     /// <summary>
     /// The date on which this condition is no longer in effect for the well license.
     /// </summary>
     [JsonPropertyName("ExpiryDate")]
-    public DateOnly ExpiryDate { get; set; }
+    public DateOnly? ExpiryDate { get; set; }
 
     /// <summary>
     /// The business associate who fulfilled this condition.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-BusinessAssociate:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("FulfilledBy")]
-    public string FulfilledBy { get; set; }
+    public string? FulfilledBy { get; set; }
 
     /// <summary>
     /// Fulfilled data is the date that this condition was entirely completed or fulfilled.   This date is assigned from the perspective of the business associate who fulfilled the condition.  Some conditions are ongoing, or repeat over time and are tracked as an obligation.
     /// </summary>
     [JsonPropertyName("FulfilledDate")]
-    public DateOnly FulfilledDate { get; set; }
+    public DateOnly? FulfilledDate { get; set; }
 
     /// <summary>
     /// A flag indicating that this condition has been fulfilled. This is applicable when a condition is met once.
@@ -102,47 +102,47 @@ public class AbstractWellLicenseCondition_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-StratigraphicColumn:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("StratigraphicColumnID")]
-    public string StratigraphicColumnID { get; set; }
+    public string? StratigraphicColumnID { get; set; }
 
     /// <summary>
     /// The name of a stratigraphic unit that is named in a license condition.  This could be a formation in which aquifers must be protected, formations into which water or other waste disposal is authorized etc.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-StratigraphicUnitInterpretation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("StratigraphicUnitInterpretationID")]
-    public string StratigraphicUnitInterpretationID { get; set; }
+    public string? StratigraphicUnitInterpretationID { get; set; }
 
     /// <summary>
     /// The type of stratigraphy, such as chronostratigraphic, lithostratigraphic, biostratigraphic or sequence stratigraphic.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-StratigraphicRoleType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("StratigraphicRoleTypeID")]
-    public string StratigraphicRoleTypeID { get; set; }
+    public string? StratigraphicRoleTypeID { get; set; }
 
     /// <summary>
     /// The optional column rank or level of StratigraphicRoleType (see StratigraphicRoleTypeID) that is identified.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-StratigraphicColumnRankUnitType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("StratigraphicColumnRankUnitTypeID")]
-    public string StratigraphicColumnRankUnitTypeID { get; set; }
+    public string? StratigraphicColumnRankUnitTypeID { get; set; }
 
     /// <summary>
     /// Narrative descriptive remarks that accompany the license condition. Could include the definition at which the values apply (such as 101.325 kilopascals and 15 degrees Celsius).
     /// </summary>
     [JsonPropertyName("ConditionDescription")]
-    public string ConditionDescription { get; set; }
+    public string? ConditionDescription { get; set; }
 
     /// <summary>
     /// Names or code values assigned to a well license condition. Can include any type of condition with the exception of values related to stratigraphic units (explicit), Products (explicit) or values (use numeric values).
     /// </summary>
     [JsonPropertyName("ConditionNames")]
-    public List<string> ConditionNames { get; set; }
+    public List<string>? ConditionNames { get; set; }
 
     /// <summary>
     /// The type of condition applied to the well license, such as flaring rate, venting rate, production rate, H2S content limit, emissions etc.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WellLicenseConditionType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ConditionTypeID")]
-    public string ConditionTypeID { get; set; }
+    public string? ConditionTypeID { get; set; }
 
     /// <summary>
     /// The value applied to this condition. For example, an NOX emission limitation may be set at 0.02 kg / hr and the production rate for oil set at 10 m3/day.
@@ -155,26 +155,26 @@ public class AbstractWellLicenseCondition_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WellLicenseSubstance:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SubstanceID")]
-    public string SubstanceID { get; set; }
+    public string? SubstanceID { get; set; }
 
     /// <summary>
     /// Unique identifier of this element in the parent's list of license conditions.
     /// </summary>
     [JsonPropertyName("ElementIdentifier")]
-    public string ElementIdentifier { get; set; }
+    public string? ElementIdentifier { get; set; }
 
     /// <summary>
     /// The type of loss experienced.  This may include fuel spills from a vehicle, gas emissions from a wellhead or feeder line, or any other substance.  This is an important part of carbon footprint analysis.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WellLicenseSubstanceLossType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SubstanceLossTypeID")]
-    public string SubstanceLossTypeID { get; set; }
+    public string? SubstanceLossTypeID { get; set; }
 
     /// <summary>
     /// The identity of any substance that escapes or spills, particularly when unintended. Intended substances and volumes are recorded as production values.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WellLicenseSubstanceLoss:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SubstanceLossID")]
-    public string SubstanceLossID { get; set; }
+    public string? SubstanceLossID { get; set; }
 
 }

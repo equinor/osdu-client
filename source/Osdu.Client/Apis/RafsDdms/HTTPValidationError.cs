@@ -17,6 +17,6 @@ namespace Osdu.Client.Apis.RafsDdms;
 public class HTTPValidationError
 {
     [JsonPropertyName("errors")]
-    public List<ValidationError> Errors { get; set; }
+    public List<ValidationError>? Errors { get; set; }
 
 }

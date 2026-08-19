@@ -24,20 +24,20 @@ public class AbstractDefinitiveDepthShift_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-WellLog:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("DefinitiveDepthShiftSourceID")]
-    public string DefinitiveDepthShiftSourceID { get; set; }
+    public string? DefinitiveDepthShiftSourceID { get; set; }
 
     /// <summary>
     /// Identifies the definitive depth shift record applied to the object.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-DepthShift:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("DefinitiveDepthShiftID")]
-    public string DefinitiveDepthShiftID { get; set; }
+    public string? DefinitiveDepthShiftID { get; set; }
 
     /// <summary>
     /// Identifies the attributes impacted by the depth shift and their persisted depth-shifted values.
     /// </summary>
     [JsonPropertyName("DepthShiftedAttributes")]
-    public List<AbstractDefinitiveDepthShift_1_0_0_DepthShiftedAttributes> DepthShiftedAttributes { get; set; }
+    public List<AbstractDefinitiveDepthShift_1_0_0_DepthShiftedAttributes>? DepthShiftedAttributes { get; set; }
 
 }
 
@@ -50,7 +50,7 @@ public class AbstractDefinitiveDepthShift_1_0_0_DepthShiftedAttributes
     /// Identifies the attribute name in this data record that is impacted by the depth shift.
     /// </summary>
     [JsonPropertyName("DepthShiftAttributeName")]
-    public string DepthShiftAttributeName { get; set; }
+    public string? DepthShiftAttributeName { get; set; }
 
     /// <summary>
     /// Defines the amount of depth shifted from the original, as-received, depths for this data attribute. Positive values represent depth-shifting downhole in depth, while negative values represent depth shifting uphole.
@@ -69,6 +69,6 @@ public class AbstractDefinitiveDepthShift_1_0_0_DepthShiftedAttributes
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("DepthShiftUnitOfMeasureID")]
-    public string DepthShiftUnitOfMeasureID { get; set; }
+    public string? DepthShiftUnitOfMeasureID { get; set; }
 
 }

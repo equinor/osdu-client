@@ -24,21 +24,21 @@ public class AbstractTubularComponentStabiliser_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-StabiliserType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("StabiliserTypeID")]
-    public string StabiliserTypeID { get; set; }
+    public string? StabiliserTypeID { get; set; }
 
     /// <summary>
     /// Blade type classification.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-StabiliserBladeDesignType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("StabiliserBladeDesignTypeID")]
-    public string StabiliserBladeDesignTypeID { get; set; }
+    public string? StabiliserBladeDesignTypeID { get; set; }
 
     /// <summary>
     /// Stabiliser operating design classification.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-StabiliserOperatingDesign:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("StabiliserOperatingDesignID")]
-    public string StabiliserOperatingDesignID { get; set; }
+    public string? StabiliserOperatingDesignID { get; set; }
 
     /// <summary>
     /// Minimum Outer Diameter of the Blades.

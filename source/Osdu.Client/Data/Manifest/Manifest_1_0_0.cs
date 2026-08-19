@@ -24,19 +24,19 @@ public class Manifest_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public string? Kind { get; set; }
 
     /// <summary>
     /// Reference-data are submitted as an array of records.
     /// </summary>
     [JsonPropertyName("ReferenceData")]
-    public List<GenericReferenceData_1_0_0> ReferenceData { get; set; }
+    public List<GenericReferenceData_1_0_0>? ReferenceData { get; set; }
 
     /// <summary>
     /// Master-data are submitted as an array of records.
     /// </summary>
     [JsonPropertyName("MasterData")]
-    public List<GenericMasterData_1_0_0> MasterData { get; set; }
+    public List<GenericMasterData_1_0_0>? MasterData { get; set; }
 
     /// <summary>
     /// Manifest schema for work-product, work-product-component, dataset ensembles. The items in 'Datasets' are processed first since they are referenced by 'WorkProductComponents' ('data.DatasetIDs[]' and 'data.Artefacts[].ResourceID'). The WorkProduct is processed last collecting the WorkProductComponents.
@@ -58,12 +58,12 @@ public class Manifest_1_0_0_Data
     /// The list of work-product-components records. The record ids are internal surrogate keys enabling the association of work-product-component records with the work-product records.
     /// </summary>
     [JsonPropertyName("WorkProductComponents")]
-    public List<GenericWorkProductComponent_1_0_0> WorkProductComponents { get; set; }
+    public List<GenericWorkProductComponent_1_0_0>? WorkProductComponents { get; set; }
 
     /// <summary>
     /// The list of 'Datasets' or data containers holding the actual data. The record ids are usually internal surrogate keys enabling the association of dataset records with work-product-component records, namely via 'DatasetIDs' and 'Artefacts.ResourceID' (both referring to 'dataset' group-type entity types).
     /// </summary>
     [JsonPropertyName("Datasets")]
-    public List<GenericDataset_1_0_0> Datasets { get; set; }
+    public List<GenericDataset_1_0_0>? Datasets { get; set; }
 
 }

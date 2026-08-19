@@ -25,7 +25,7 @@ public class PPFGDataset_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-PPFGDataset:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class PPFGDataset_1_0_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class PPFGDataset_1_0_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class PPFGDataset_1_0_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class PPFGDataset_1_0_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class PPFGDataset_1_0_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public PPFGDataset_1_0_0_Data? Data { get; set; }
@@ -101,13 +101,13 @@ public class PPFGDataset_1_0_0_Data : AbstractCommonResources_1_0_0 // Also comp
     /// The record id, which identifies this OSDU File or dataset resource.
     /// </summary>
     [JsonPropertyName("Datasets")]
-    public List<string> Datasets { get; set; }
+    public List<string>? Datasets { get; set; }
 
     /// <summary>
     /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
     /// </summary>
     [JsonPropertyName("Artefacts")]
-    public List<PPFGDataset_1_0_0_Data_Artefacts> Artefacts { get; set; }
+    public List<PPFGDataset_1_0_0_Data_Artefacts>? Artefacts { get; set; }
 
     /// <summary>
     /// A flag that indicates if the work product component is undergoing an extended load.  It reflects the fact that the work product component is in an early stage and may be updated before finalization.
@@ -127,19 +127,19 @@ public class PPFGDataset_1_0_0_Data : AbstractCommonResources_1_0_0 // Also comp
     /// Describes a record's overall suitability for general business consumption based on data quality. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [JsonPropertyName("TechnicalAssurances")]
-    public List<AbstractTechnicalAssurance_1_0_0> TechnicalAssurances { get; set; }
+    public List<AbstractTechnicalAssurance_1_0_0>? TechnicalAssurances { get; set; }
 
     /// <summary>
     /// Name
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// Description.  Summary of the work product component.  Not the same as Remark which captures thoughts of creator about the wpc.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// Date that a resource (work  product component here) is formed outside of OSDU before loading (e.g. publication date).
@@ -152,7 +152,7 @@ public class PPFGDataset_1_0_0_Data : AbstractCommonResources_1_0_0 // Also comp
     /// Array of key words to identify the work product, especially to help in search.
     /// </summary>
     [JsonPropertyName("Tags")]
-    public List<string> Tags { get; set; }
+    public List<string>? Tags { get; set; }
 
     [JsonPropertyName("SpatialPoint")]
     public AbstractSpatialLocation_1_0_0? SpatialPoint { get; set; }
@@ -164,45 +164,45 @@ public class PPFGDataset_1_0_0_Data : AbstractCommonResources_1_0_0 // Also comp
     /// List of geographic entities which provide context to the WPC.  This may include multiple types or multiple values of the same type.
     /// </summary>
     [JsonPropertyName("GeoContexts")]
-    public List<AbstractGeoContext_1_0_0> GeoContexts { get; set; }
+    public List<AbstractGeoContext_1_0_0>? GeoContexts { get; set; }
 
     /// <summary>
     /// Name of the person that first submitted the work product component to OSDU.
     /// </summary>
     [JsonPropertyName("SubmitterName")]
-    public string SubmitterName { get; set; }
+    public string? SubmitterName { get; set; }
 
     /// <summary>
     /// Array of business processes/workflows that the work product component has been through (ex. well planning, exploration).
     /// </summary>
     [JsonPropertyName("BusinessActivities")]
-    public List<string> BusinessActivities { get; set; }
+    public List<string>? BusinessActivities { get; set; }
 
     /// <summary>
     /// Array of Authors' names of the work product component.  Could be a person or company entity.
     /// </summary>
     [JsonPropertyName("AuthorIDs")]
-    public List<string> AuthorIDs { get; set; }
+    public List<string>? AuthorIDs { get; set; }
 
     /// <summary>
     /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
     /// </summary>
     [JsonPropertyName("LineageAssertions")]
-    public List<PPFGDataset_1_0_0_Data_LineageAssertions> LineageAssertions { get; set; }
+    public List<PPFGDataset_1_0_0_Data_LineageAssertions>? LineageAssertions { get; set; }
 
     /// <summary>
     /// ID from the Well where the PPFG Work Product Component was recorded
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Well:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellID")]
-    public string WellID { get; set; }
+    public string? WellID { get; set; }
 
     /// <summary>
     /// ID from the Wellbore where the PPFG Work Product Component was recorded
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Wellbore:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellboreID")]
-    public string WellboreID { get; set; }
+    public string? WellboreID { get; set; }
 
     /// <summary>
     /// The date that the PPFG data set was created by the PPFG practitioner or contractor
@@ -216,64 +216,64 @@ public class PPFGDataset_1_0_0_Data : AbstractCommonResources_1_0_0 // Also comp
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-PPFGContextType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ContextTypeID")]
-    public string ContextTypeID { get; set; }
+    public string? ContextTypeID { get; set; }
 
     /// <summary>
     /// ID of the service Company that acquired the PPFG
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ServiceCompanyID")]
-    public string ServiceCompanyID { get; set; }
+    public string? ServiceCompanyID { get; set; }
 
     /// <summary>
     /// Open comments from the calculation team
     /// </summary>
     [JsonPropertyName("Comment")]
-    public string Comment { get; set; }
+    public string? Comment { get; set; }
 
     /// <summary>
     /// Id of the Reference WellTrajectory used for TVD's calculation
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-WellboreTrajectory:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ReferenceWellTrajectoryID")]
-    public string ReferenceWellTrajectoryID { get; set; }
+    public string? ReferenceWellTrajectoryID { get; set; }
 
     /// <summary>
     /// IDs of the offset Wellbores included in the context and calculations of this PPFG data set
     /// </summary>
     [JsonPropertyName("OffsetWellboreIDs")]
-    public List<string> OffsetWellboreIDs { get; set; }
+    public List<string>? OffsetWellboreIDs { get; set; }
 
     /// <summary>
     /// ID of the PPFG curve that is the primary reference or index. Derived from the PPFG curve ID
     /// </summary>
     [JsonPropertyName("PrimaryReferenceCurveID")]
-    public string PrimaryReferenceCurveID { get; set; }
+    public string? PrimaryReferenceCurveID { get; set; }
 
     /// <summary>
     /// The type of the primary reference, for example 'TVDSS',  'MD' , 'TWT'
     /// </summary>
     [JsonPropertyName("PrimaryReferenceType")]
-    public string PrimaryReferenceType { get; set; }
+    public string? PrimaryReferenceType { get; set; }
 
     /// <summary>
     /// The characters that represent absent curve values in this data set, for example  '-999', 'NULL', '0', etc. Typically for legacy data
     /// </summary>
     [JsonPropertyName("AbsentValueCharacters")]
-    public string AbsentValueCharacters { get; set; }
+    public string? AbsentValueCharacters { get; set; }
 
     /// <summary>
     /// Tectonic Scenario Setting for Planning and Pore Pressure Practitioners. Built into interpretive curves. Can be, for example 'Strike Slip'
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TectonicSettingType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TectonicSetting")]
-    public string TectonicSetting { get; set; }
+    public string? TectonicSetting { get; set; }
 
     /// <summary>
     /// Free text to describe the type of gauge used for the pressure measurement
     /// </summary>
     [JsonPropertyName("GaugeType")]
-    public string GaugeType { get; set; }
+    public string? GaugeType { get; set; }
 
     [JsonPropertyName("VerticalMeasurement")]
     public AbstractFacilityVerticalMeasurement_1_0_0? VerticalMeasurement { get; set; }
@@ -282,7 +282,7 @@ public class PPFGDataset_1_0_0_Data : AbstractCommonResources_1_0_0 // Also comp
     /// Array of curve that constitutes the whole PPFG Dataset
     /// </summary>
     [JsonPropertyName("Curves")]
-    public List<PPFGDataset_1_0_0_Data_Curves> Curves { get; set; }
+    public List<PPFGDataset_1_0_0_Data_Curves>? Curves { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
@@ -299,21 +299,21 @@ public class PPFGDataset_1_0_0_Data_Artefacts
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ArtefactRole:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("RoleID")]
-    public string RoleID { get; set; }
+    public string? RoleID { get; set; }
 
     /// <summary>
     /// The kind or schema ID of the artefact. Resolvable with the Schema Service.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("ResourceKind")]
-    public string ResourceKind { get; set; }
+    public string? ResourceKind { get; set; }
 
     /// <summary>
     /// The SRN which identifies this OSDU Artefact resource.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:dataset\-\-[\w\-\.]+:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ResourceID")]
-    public string ResourceID { get; set; }
+    public string? ResourceID { get; set; }
 
 }
 
@@ -327,14 +327,14 @@ public class PPFGDataset_1_0_0_Data_LineageAssertions
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ID")]
-    public string ID { get; set; }
+    public string? ID { get; set; }
 
     /// <summary>
     /// Used by LineageAssertion to describe the nature of the line of descent of a work product component from a prior Resource, such as DIRECT, INDIRECT, REFERENCE.  It is not for proximity (number of nodes away), it is not to cover all the relationships in a full ontology or graph, and it is not to describe the type of activity that created the asserting WPC.  LineageAssertion does not encompass a full provenance, process history, or activity model.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-LineageRelationshipType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("LineageRelationshipType")]
-    public string LineageRelationshipType { get; set; }
+    public string? LineageRelationshipType { get; set; }
 
 }
 
@@ -344,67 +344,67 @@ public class PPFGDataset_1_0_0_Data_Curves
     /// The ID of the PPFG Curve
     /// </summary>
     [JsonPropertyName("CurveID")]
-    public string CurveID { get; set; }
+    public string? CurveID { get; set; }
 
     /// <summary>
     /// The original or as supplied PPFG curve name. Intended to hold historical or legacy information
     /// </summary>
     [JsonPropertyName("CurveName")]
-    public string CurveName { get; set; }
+    public string? CurveName { get; set; }
 
     /// <summary>
     /// ID of the Main Family Type of the PPFG quantity measured, for example 'Pore Pressure'. Primarily used for high level curve classification
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-PPFGCurveMainFamily:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("CurveMainFamilyID")]
-    public string CurveMainFamilyID { get; set; }
+    public string? CurveMainFamilyID { get; set; }
 
     /// <summary>
     /// ID of the PPFG Curve Family of the PPFG quantity measured, for example 'Pore Pressure from Corrected Drilling Exponent'. An individual curve that belongs to a Main Family
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-PPFGCurveFamily:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("CurveFamilyID")]
-    public string CurveFamilyID { get; set; }
+    public string? CurveFamilyID { get; set; }
 
     /// <summary>
     /// ID of the mnemonic of the Curve Family which is the value as received either from external providers or from internal processing team, for example 'PP DxC'
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-PPFGCurveMnemonic:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("CurveFamilyMnemonicID")]
-    public string CurveFamilyMnemonicID { get; set; }
+    public string? CurveFamilyMnemonicID { get; set; }
 
     /// <summary>
     /// ID of the PPFG Curve probability, for example 'Most Likely Case' and 'P50'
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-PPFGCurveProbability:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("CurveProbabilityID")]
-    public string CurveProbabilityID { get; set; }
+    public string? CurveProbabilityID { get; set; }
 
     /// <summary>
     /// IDs of the type and level of processing that has been applied to the curve. An array of curve processing operations that have been applied, for example 'Smoothed', 'Calibrated', etc
     /// </summary>
     [JsonPropertyName("CurveDataProcessingTypeIDs")]
-    public List<string> CurveDataProcessingTypeIDs { get; set; }
+    public List<string>? CurveDataProcessingTypeIDs { get; set; }
 
     /// <summary>
     /// ID of the lithological unit represented by the curve
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-PPFGCurveLithoType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("CurveLithologyID")]
-    public string CurveLithologyID { get; set; }
+    public string? CurveLithologyID { get; set; }
 
     /// <summary>
     /// ID of the empirical calibrated model used for pressure calculations from a petrophysical curve (sonic or resistivity logs), for example 'Eaton' and  'Bowers',...
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-PPFGCurveTransformModelType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("CurveTransformModelTypeID")]
-    public string CurveTransformModelTypeID { get; set; }
+    public string? CurveTransformModelTypeID { get; set; }
 
     /// <summary>
     /// Unit of Measure of the Physical Quantity Measured by the curve. An ID to relevant unit of measure reference
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("CurveUOM")]
-    public string CurveUOM { get; set; }
+    public string? CurveUOM { get; set; }
 
 }

@@ -25,7 +25,7 @@ public class SamplesAnalysis_2_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-SamplesAnalysis:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class SamplesAnalysis_2_0_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class SamplesAnalysis_2_0_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class SamplesAnalysis_2_0_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class SamplesAnalysis_2_0_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class SamplesAnalysis_2_0_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public SamplesAnalysis_2_0_0_Data? Data { get; set; }
@@ -101,19 +101,19 @@ public class SamplesAnalysis_2_0_0_Data : AbstractCommonResources_1_0_1 // Also 
     /// The record id, which identifies this OSDU File or dataset resource.
     /// </summary>
     [JsonPropertyName("Datasets")]
-    public List<string> Datasets { get; set; }
+    public List<string>? Datasets { get; set; }
 
     /// <summary>
     /// An array of references to content in Domain Data Management Services represented by this work-product-component. The references are formed as URI following https://www.rfc-editor.org/rfc/rfc3986#page-16. This property is exclusively populated by DDMSs. If a work-product-component is represented in more than one DDMS, DDMSs are obliged to find the specific reference by inspecting the URI's authority values matching the DDMS id.
     /// </summary>
     [JsonPropertyName("DDMSDatasets")]
-    public List<string> DDMSDatasets { get; set; }
+    public List<string>? DDMSDatasets { get; set; }
 
     /// <summary>
     /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
     /// </summary>
     [JsonPropertyName("Artefacts")]
-    public List<SamplesAnalysis_2_0_0_Data_Artefacts> Artefacts { get; set; }
+    public List<SamplesAnalysis_2_0_0_Data_Artefacts>? Artefacts { get; set; }
 
     /// <summary>
     /// A flag that indicates if the work product component is undergoing an extended load.  It reflects the fact that the work product component is in an early stage and may be updated before finalization.
@@ -133,25 +133,25 @@ public class SamplesAnalysis_2_0_0_Data : AbstractCommonResources_1_0_1 // Also 
     /// Describes a record's overall suitability for general business consumption based on data quality. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [JsonPropertyName("TechnicalAssurances")]
-    public List<AbstractTechnicalAssurance_1_2_0> TechnicalAssurances { get; set; }
+    public List<AbstractTechnicalAssurance_1_2_0>? TechnicalAssurances { get; set; }
 
     /// <summary>
     /// Alternative names, including historical, by which this work-product-component is/has been known (it should include all the identifiers).
     /// </summary>
     [JsonPropertyName("NameAliases")]
-    public List<AbstractAliasNames_1_0_0> NameAliases { get; set; }
+    public List<AbstractAliasNames_1_0_0>? NameAliases { get; set; }
 
     /// <summary>
     /// Name
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// Description.  Summary of the work product component.  Not the same as Remark which captures thoughts of creator about the wpc.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// Date that a resource (work  product component here) is formed outside of OSDU before loading (e.g. publication date).
@@ -164,7 +164,7 @@ public class SamplesAnalysis_2_0_0_Data : AbstractCommonResources_1_0_1 // Also 
     /// Array of key words to identify the work product, especially to help in search.
     /// </summary>
     [JsonPropertyName("Tags")]
-    public List<string> Tags { get; set; }
+    public List<string>? Tags { get; set; }
 
     [JsonPropertyName("SpatialPoint")]
     public AbstractSpatialLocation_1_1_0? SpatialPoint { get; set; }
@@ -176,76 +176,76 @@ public class SamplesAnalysis_2_0_0_Data : AbstractCommonResources_1_0_1 // Also 
     /// List of geographic entities which provide context to the WPC.  This may include multiple types or multiple values of the same type.
     /// </summary>
     [JsonPropertyName("GeoContexts")]
-    public List<AbstractGeoContext_1_0_0> GeoContexts { get; set; }
+    public List<AbstractGeoContext_1_0_0>? GeoContexts { get; set; }
 
     /// <summary>
     /// Name of the person that first submitted the work product component to OSDU.
     /// </summary>
     [JsonPropertyName("SubmitterName")]
-    public string SubmitterName { get; set; }
+    public string? SubmitterName { get; set; }
 
     /// <summary>
     /// Array of business processes/workflows that the work product component has been through (ex. well planning, exploration).
     /// </summary>
     [JsonPropertyName("BusinessActivities")]
-    public List<string> BusinessActivities { get; set; }
+    public List<string>? BusinessActivities { get; set; }
 
     /// <summary>
     /// Array of Authors' names of the work product component.  Could be a person or company entity.
     /// </summary>
     [JsonPropertyName("AuthorIDs")]
-    public List<string> AuthorIDs { get; set; }
+    public List<string>? AuthorIDs { get; set; }
 
     /// <summary>
     /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
     /// </summary>
     [JsonPropertyName("LineageAssertions")]
-    public List<SamplesAnalysis_2_0_0_Data_LineageAssertions> LineageAssertions { get; set; }
+    public List<SamplesAnalysis_2_0_0_Data_LineageAssertions>? LineageAssertions { get; set; }
 
     /// <summary>
     /// The relation to the ActivityTemplate carrying expected parameter definitions and default values.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-ActivityTemplate:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ActivityTemplateID")]
-    public string ActivityTemplateID { get; set; }
+    public string? ActivityTemplateID { get; set; }
 
     /// <summary>
     /// The relationship to a parent project acting as a parent activity.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-[\w\-\.]+:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ParentProjectID")]
-    public string ParentProjectID { get; set; }
+    public string? ParentProjectID { get; set; }
 
     /// <summary>
     /// The relationship to a parent activity.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-[\w\-\.]+:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ParentActivityID")]
-    public string ParentActivityID { get; set; }
+    public string? ParentActivityID { get; set; }
 
     /// <summary>
     /// An array of parameter values used in one instance of activity.  It may include references to data objects which are inputs and/or outputs of the activity. The array is mandatory but can be empty.
     /// </summary>
     [JsonPropertyName("Parameters")]
-    public List<AbstractActivityParameter_1_1_0> Parameters { get; set; }
+    public List<AbstractActivityParameter_1_1_0>? Parameters { get; set; }
 
     /// <summary>
     /// The activity or activities feeding results into this activity instance.
     /// </summary>
     [JsonPropertyName("PriorActivityIDs")]
-    public List<string> PriorActivityIDs { get; set; }
+    public List<string>? PriorActivityIDs { get; set; }
 
     /// <summary>
     /// Software names and versions used.
     /// </summary>
     [JsonPropertyName("SoftwareSpecifications")]
-    public List<SamplesAnalysis_2_0_0_Data_SoftwareSpecifications> SoftwareSpecifications { get; set; }
+    public List<SamplesAnalysis_2_0_0_Data_SoftwareSpecifications>? SoftwareSpecifications { get; set; }
 
     /// <summary>
     /// The (non-overlapping) historical activity states and effective start and termination dates. The last state is replicated in the single LastActivityState for simpler queries.
     /// </summary>
     [JsonPropertyName("ActivityStates")]
-    public List<AbstractActivityState_1_0_0> ActivityStates { get; set; }
+    public List<AbstractActivityState_1_0_0>? ActivityStates { get; set; }
 
     [JsonPropertyName("LastActivityState")]
     public AbstractActivityState_1_0_0? LastActivityState { get; set; }
@@ -254,68 +254,68 @@ public class SamplesAnalysis_2_0_0_Data : AbstractCommonResources_1_0_1 // Also 
     /// Identifies the specific physical sample(s) on which this batch of lab analysis was performed.
     /// </summary>
     [JsonPropertyName("SampleIDs")]
-    public List<string> SampleIDs { get; set; }
+    public List<string>? SampleIDs { get; set; }
 
     /// <summary>
     /// The names or identifiers of the analyzed samples in this report or document. These names or identifiers are often assigned by the laboratory. This list can be used to assist in locating the appropriate OSDU Sample records or to find the dataset in the parent report.
     /// </summary>
     [JsonPropertyName("ReportSampleIdentifiers")]
-    public List<string> ReportSampleIdentifiers { get; set; }
+    public List<string>? ReportSampleIdentifiers { get; set; }
 
     /// <summary>
     /// The date the batch of sample analysis was completed.
     /// </summary>
     [JsonPropertyName("DateAnalyzed")]
-    public DateOnly DateAnalyzed { get; set; }
+    public DateOnly? DateAnalyzed { get; set; }
 
     /// <summary>
     /// Identifies the laboratories that conducted the sample analysis contained in this dataset.
     /// </summary>
     [JsonPropertyName("LaboratoryIDs")]
-    public List<string> LaboratoryIDs { get; set; }
+    public List<string>? LaboratoryIDs { get; set; }
 
     /// <summary>
     /// List of names of laboratories used to conduct the sample analyses contained in this report. This attribute is more freeform than Laboratory IDs and does not have relationships to OSDU Record IDs.
     /// </summary>
     [JsonPropertyName("LaboratoryNames")]
-    public List<string> LaboratoryNames { get; set; }
+    public List<string>? LaboratoryNames { get; set; }
 
     /// <summary>
     /// The names and other information of the analysts responsible for conducting and reporting on the analysis performed.
     /// </summary>
     [JsonPropertyName("LaboratoryAnalysts")]
-    public List<string> LaboratoryAnalysts { get; set; }
+    public List<string>? LaboratoryAnalysts { get; set; }
 
     /// <summary>
     /// An array containing operational or quality comments pertaining to the sample analysis represented by this work product component.
     /// </summary>
     [JsonPropertyName("Remarks")]
-    public List<AbstractRemark_1_0_0> Remarks { get; set; }
+    public List<AbstractRemark_1_0_0>? Remarks { get; set; }
 
     /// <summary>
     /// The date that the results of the analysis containing observed measurements or calculations was published.
     /// </summary>
     [JsonPropertyName("DatePublished")]
-    public DateOnly DatePublished { get; set; }
+    public DateOnly? DatePublished { get; set; }
 
     /// <summary>
     /// Identifies the report from which this analysis was extracted or multiple reports from which this analysis was reconstructed.
     /// </summary>
     [JsonPropertyName("ParentSamplesAnalysesReports")]
-    public List<SamplesAnalysis_2_0_0_Data_ParentSamplesAnalysesReports> ParentSamplesAnalysesReports { get; set; }
+    public List<SamplesAnalysis_2_0_0_Data_ParentSamplesAnalysesReports>? ParentSamplesAnalysesReports { get; set; }
 
     /// <summary>
     /// List of higher level grouping terms that are often used within organisations to search for analysis types in addition to the formal Family and Method properties, but which are variable across organisations and therefore do not need to be governed strictly by the OSDU Forum. For example: SCAL, Static SCAL, Dynamic SCAL, Source Rock Analysis. We suggest you use a namespace, like the operators name, like “Shell.SCAL”. BP.SCAL, Equinor.SCAL, Chevron.SCAL, Exxon.SCAL.....
     /// </summary>
     [JsonPropertyName("SamplesAnalysisCategoryTagIDs")]
-    public List<string> SamplesAnalysisCategoryTagIDs { get; set; }
+    public List<string>? SamplesAnalysisCategoryTagIDs { get; set; }
 
     /// <summary>
     /// The type of scientific lab analysis (such as routine core analysis, compositional analysis, differential liberation, etc.) performed on a physical specimen. Sample Analysis is characterized by an analysis family and sub family, based on criteria such as analysis method or highly relevant parameters.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-SampleAnalysisType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SampleAnalysisTypeID")]
-    public string SampleAnalysisTypeID { get; set; }
+    public string? SampleAnalysisTypeID { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
@@ -332,21 +332,21 @@ public class SamplesAnalysis_2_0_0_Data_Artefacts
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ArtefactRole:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("RoleID")]
-    public string RoleID { get; set; }
+    public string? RoleID { get; set; }
 
     /// <summary>
     /// The kind or schema ID of the artefact. Resolvable with the Schema Service.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("ResourceKind")]
-    public string ResourceKind { get; set; }
+    public string? ResourceKind { get; set; }
 
     /// <summary>
     /// The SRN which identifies this OSDU Artefact resource.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:dataset\-\-[\w\-\.]+:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ResourceID")]
-    public string ResourceID { get; set; }
+    public string? ResourceID { get; set; }
 
 }
 
@@ -360,14 +360,14 @@ public class SamplesAnalysis_2_0_0_Data_LineageAssertions
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ID")]
-    public string ID { get; set; }
+    public string? ID { get; set; }
 
     /// <summary>
     /// Used by LineageAssertion to describe the nature of the line of descent of a work product component from a prior Resource, such as DIRECT, INDIRECT, REFERENCE.  It is not for proximity (number of nodes away), it is not to cover all the relationships in a full ontology or graph, and it is not to describe the type of activity that created the asserting WPC.  LineageAssertion does not encompass a full provenance, process history, or activity model.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-LineageRelationshipType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("LineageRelationshipType")]
-    public string LineageRelationshipType { get; set; }
+    public string? LineageRelationshipType { get; set; }
 
 }
 
@@ -380,13 +380,13 @@ public class SamplesAnalysis_2_0_0_Data_SoftwareSpecifications
     /// The name of the software, application or plug-in used while performing this activity.
     /// </summary>
     [JsonPropertyName("SoftwareName")]
-    public string SoftwareName { get; set; }
+    public string? SoftwareName { get; set; }
 
     /// <summary>
     /// The version of the software, application or plug-in used while performing this activity.
     /// </summary>
     [JsonPropertyName("Version")]
-    public string Version { get; set; }
+    public string? Version { get; set; }
 
 }
 
@@ -400,12 +400,12 @@ public class SamplesAnalysis_2_0_0_Data_ParentSamplesAnalysesReports
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-SamplesAnalysesReport:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ParentSamplesAnalysesReportID")]
-    public string ParentSamplesAnalysesReportID { get; set; }
+    public string? ParentSamplesAnalysesReportID { get; set; }
 
     /// <summary>
     /// If this dataset was extracted from a larger report, this identifies the page number or range (if in document format such as PDF) or sheet names (if in document format such as spreadsheet). For ease of parsing, ranges should be denoted with hyphens with no spaces, and divided with commas). E.g. "12-15,17" or "Sheet1,Sheet2".
     /// </summary>
     [JsonPropertyName("ParentSamplesAnalysesReportPageNumbers")]
-    public string ParentSamplesAnalysesReportPageNumbers { get; set; }
+    public string? ParentSamplesAnalysesReportPageNumbers { get; set; }
 
 }

@@ -25,14 +25,14 @@ public class AddMemberDto
     [Required]
     [MinLength(1)]
     [JsonPropertyName("email")]
-    public string Email { get; set; }
+    public required string Email { get; set; }
 
     /// <summary>
     /// Role of the member
     /// </summary>
     [Required]
     [JsonPropertyName("role")]
-    public AddMemberDto_Role Role { get; set; }
+    public required AddMemberDto_Role Role { get; set; }
 
 }
 

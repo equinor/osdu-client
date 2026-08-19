@@ -23,21 +23,21 @@ public class AbstractAliasNames_1_0_0
     /// Alternative Name value of defined name type for an object.
     /// </summary>
     [JsonPropertyName("AliasName")]
-    public string AliasName { get; set; }
+    public string? AliasName { get; set; }
 
     /// <summary>
     /// A classification of alias names such as by role played or type of source, such as regulatory name, regulatory code, company code, international standard name, etc.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-AliasNameType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("AliasNameTypeID")]
-    public string AliasNameTypeID { get; set; }
+    public string? AliasNameTypeID { get; set; }
 
     /// <summary>
     /// The StandardsOrganisation (reference-data) or Organisation (master-data) that provided the name (the source).
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:(reference-data\-\-StandardsOrganisation|master-data\-\-Organisation):[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("DefinitionOrganisationID")]
-    public string DefinitionOrganisationID { get; set; }
+    public string? DefinitionOrganisationID { get; set; }
 
     /// <summary>
     /// The date and time when an alias name becomes effective.

@@ -18,13 +18,13 @@ public class Legal
 {
     [Required]
     [JsonPropertyName("legaltags")]
-    public List<string> Legaltags { get; set; }
+    public required List<string> Legaltags { get; set; }
 
     [Required]
     [JsonPropertyName("otherRelevantDataCountries")]
-    public List<string> OtherRelevantDataCountries { get; set; }
+    public required List<string> OtherRelevantDataCountries { get; set; }
 
     [JsonPropertyName("status")]
-    public string Status { get; set; }
+    public string? Status { get; set; }
 
 }

@@ -25,7 +25,7 @@ public class AbstractWellLicenseStatus_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WellLicenseStatusType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("LicenseStatusTypeID")]
-    public string LicenseStatusTypeID { get; set; }
+    public string? LicenseStatusTypeID { get; set; }
 
     /// <summary>
     /// A flag that indicates whether a particular status is currently in effect.  Historical status information can be retained for legal, administrative or analysis purposes.  Future status information can be projected based on the terms of a license and may also be captured in this data object.
@@ -39,44 +39,44 @@ public class AbstractWellLicenseStatus_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-BusinessAssociate:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("StatusAssignedByID")]
-    public string StatusAssignedByID { get; set; }
+    public string? StatusAssignedByID { get; set; }
 
     /// <summary>
     /// The date on which this status was first valid.  Note that a data object can have more than one status in effect at the same time, provided that there is no conflict or confusion created by doing so.
     /// </summary>
     [JsonPropertyName("StatusEffectiveDate")]
-    public DateOnly StatusEffectiveDate { get; set; }
+    public DateOnly? StatusEffectiveDate { get; set; }
 
     /// <summary>
     /// The date on which this status is no longer valid.  A status can become invalid based on events or activities, because they have been superseded by a different status or even because status information is no longer relevant.
     /// </summary>
     [JsonPropertyName("StatusTerminationDate")]
-    public DateOnly StatusTerminationDate { get; set; }
+    public DateOnly? StatusTerminationDate { get; set; }
 
     /// <summary>
     /// Identify the well for which this status is valid, particularly useful when a status is applicable for the entire well configuration . Note that these are not well statuses, but license statuses.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Well:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellID")]
-    public string WellID { get; set; }
+    public string? WellID { get; set; }
 
     /// <summary>
     /// Identify the wellbore for which this status is valid, particularly useful when a status is not applicable for the entire well configuration.  In the license, each wellbore may have a different status in terms of the license. Note that these are not well statuses, but license statuses.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Wellbore:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellboreID")]
-    public string WellboreID { get; set; }
+    public string? WellboreID { get; set; }
 
     /// <summary>
     /// The reason why this status has been assigned to a well license.  This is particularly important if a license has been cancelled, suspended or terminated by a regulatory authority.
     /// </summary>
     [JsonPropertyName("StatusReason")]
-    public string StatusReason { get; set; }
+    public string? StatusReason { get; set; }
 
     /// <summary>
     /// Unique identifier of this element in the parent's list of license states.
     /// </summary>
     [JsonPropertyName("ElementIdentifier")]
-    public string ElementIdentifier { get; set; }
+    public string? ElementIdentifier { get; set; }
 
 }

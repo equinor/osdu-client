@@ -23,10 +23,10 @@ public class RegisteredInterface
     [MinLength(1)]
     [RegularExpression(@"^[\w\.-]{2,50}")]
     [JsonPropertyName("entityType")]
-    public string EntityType { get; set; }
+    public required string EntityType { get; set; }
 
     [Required]
     [JsonPropertyName("schema")]
-    public object Schema { get; set; }
+    public required object Schema { get; set; }
 
 }

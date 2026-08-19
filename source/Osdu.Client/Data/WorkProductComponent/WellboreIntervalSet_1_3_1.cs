@@ -25,7 +25,7 @@ public class WellboreIntervalSet_1_3_1
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-WellboreIntervalSet:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class WellboreIntervalSet_1_3_1
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class WellboreIntervalSet_1_3_1
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class WellboreIntervalSet_1_3_1
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class WellboreIntervalSet_1_3_1
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class WellboreIntervalSet_1_3_1
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public WellboreIntervalSet_1_3_1_Data? Data { get; set; }
@@ -101,19 +101,19 @@ public class WellboreIntervalSet_1_3_1_Data : AbstractCommonResources_1_0_1 // A
     /// The record id, which identifies this OSDU File or dataset resource.
     /// </summary>
     [JsonPropertyName("Datasets")]
-    public List<string> Datasets { get; set; }
+    public List<string>? Datasets { get; set; }
 
     /// <summary>
     /// An array of references to content in Domain Data Management Services represented by this work-product-component. The references are formed as URI following https://www.rfc-editor.org/rfc/rfc3986#page-16. This property is exclusively populated by DDMSs. If a work-product-component is represented in more than one DDMS, DDMSs are obliged to find the specific reference by inspecting the URI's authority values matching the DDMS id.
     /// </summary>
     [JsonPropertyName("DDMSDatasets")]
-    public List<string> DDMSDatasets { get; set; }
+    public List<string>? DDMSDatasets { get; set; }
 
     /// <summary>
     /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
     /// </summary>
     [JsonPropertyName("Artefacts")]
-    public List<WellboreIntervalSet_1_3_1_Data_Artefacts> Artefacts { get; set; }
+    public List<WellboreIntervalSet_1_3_1_Data_Artefacts>? Artefacts { get; set; }
 
     /// <summary>
     /// A flag that indicates if the work product component is undergoing an extended load.  It reflects the fact that the work product component is in an early stage and may be updated before finalization.
@@ -133,25 +133,25 @@ public class WellboreIntervalSet_1_3_1_Data : AbstractCommonResources_1_0_1 // A
     /// Describes a record's overall suitability for general business consumption based on data quality. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [JsonPropertyName("TechnicalAssurances")]
-    public List<AbstractTechnicalAssurance_1_2_0> TechnicalAssurances { get; set; }
+    public List<AbstractTechnicalAssurance_1_2_0>? TechnicalAssurances { get; set; }
 
     /// <summary>
     /// Alternative names, including historical, by which this work-product-component is/has been known (it should include all the identifiers).
     /// </summary>
     [JsonPropertyName("NameAliases")]
-    public List<AbstractAliasNames_1_0_0> NameAliases { get; set; }
+    public List<AbstractAliasNames_1_0_0>? NameAliases { get; set; }
 
     /// <summary>
     /// Name
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// Description.  Summary of the work product component.  Not the same as Remark which captures thoughts of creator about the wpc.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// Date that a resource (work  product component here) is formed outside of OSDU before loading (e.g. publication date).
@@ -164,7 +164,7 @@ public class WellboreIntervalSet_1_3_1_Data : AbstractCommonResources_1_0_1 // A
     /// Array of key words to identify the work product, especially to help in search.
     /// </summary>
     [JsonPropertyName("Tags")]
-    public List<string> Tags { get; set; }
+    public List<string>? Tags { get; set; }
 
     [JsonPropertyName("SpatialPoint")]
     public AbstractSpatialLocation_1_1_0? SpatialPoint { get; set; }
@@ -176,38 +176,38 @@ public class WellboreIntervalSet_1_3_1_Data : AbstractCommonResources_1_0_1 // A
     /// List of geographic entities which provide context to the WPC.  This may include multiple types or multiple values of the same type.
     /// </summary>
     [JsonPropertyName("GeoContexts")]
-    public List<AbstractGeoContext_1_0_0> GeoContexts { get; set; }
+    public List<AbstractGeoContext_1_0_0>? GeoContexts { get; set; }
 
     /// <summary>
     /// Name of the person that first submitted the work product component to OSDU.
     /// </summary>
     [JsonPropertyName("SubmitterName")]
-    public string SubmitterName { get; set; }
+    public string? SubmitterName { get; set; }
 
     /// <summary>
     /// Array of business processes/workflows that the work product component has been through (ex. well planning, exploration).
     /// </summary>
     [JsonPropertyName("BusinessActivities")]
-    public List<string> BusinessActivities { get; set; }
+    public List<string>? BusinessActivities { get; set; }
 
     /// <summary>
     /// Array of Authors' names of the work product component.  Could be a person or company entity.
     /// </summary>
     [JsonPropertyName("AuthorIDs")]
-    public List<string> AuthorIDs { get; set; }
+    public List<string>? AuthorIDs { get; set; }
 
     /// <summary>
     /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
     /// </summary>
     [JsonPropertyName("LineageAssertions")]
-    public List<WellboreIntervalSet_1_3_1_Data_LineageAssertions> LineageAssertions { get; set; }
+    public List<WellboreIntervalSet_1_3_1_Data_LineageAssertions>? LineageAssertions { get; set; }
 
     /// <summary>
     /// The relationship to a Wellbore, to which this WellboreIntervalSet is associated with.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Wellbore:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellboreID")]
-    public string WellboreID { get; set; }
+    public string? WellboreID { get; set; }
 
     [JsonPropertyName("VerticalMeasurement")]
     public AbstractFacilityVerticalMeasurement_1_0_0? VerticalMeasurement { get; set; }
@@ -217,20 +217,20 @@ public class WellboreIntervalSet_1_3_1_Data : AbstractCommonResources_1_0_1 // A
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-StratigraphicColumn:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("StratigraphicColumnID")]
-    public string StratigraphicColumnID { get; set; }
+    public string? StratigraphicColumnID { get; set; }
 
     /// <summary>
     /// The optional reference to a StratigraphicColumnRankInterpretation. It expresses the intent of a stratigraphic framework with non-overlapping intervals. Only one of the properties StratigraphicColumnID or StratigraphicColumnRankInterpretationID should be populated.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-StratigraphicColumnRankInterpretation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("StratigraphicColumnRankInterpretationID")]
-    public string StratigraphicColumnRankInterpretationID { get; set; }
+    public string? StratigraphicColumnRankInterpretationID { get; set; }
 
     /// <summary>
     /// Array of Intervals, index-aligned with IntervalProperties.
     /// </summary>
     [JsonPropertyName("Intervals")]
-    public List<WellboreIntervalSet_1_3_1_Data_Intervals> Intervals { get; set; }
+    public List<WellboreIntervalSet_1_3_1_Data_Intervals>? Intervals { get; set; }
 
     [JsonPropertyName("IntervalProperties")]
     public AbstractColumnBasedTable_1_2_1? IntervalProperties { get; set; }
@@ -253,21 +253,21 @@ public class WellboreIntervalSet_1_3_1_Data_Artefacts
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ArtefactRole:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("RoleID")]
-    public string RoleID { get; set; }
+    public string? RoleID { get; set; }
 
     /// <summary>
     /// The kind or schema ID of the artefact. Resolvable with the Schema Service.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("ResourceKind")]
-    public string ResourceKind { get; set; }
+    public string? ResourceKind { get; set; }
 
     /// <summary>
     /// The SRN which identifies this OSDU Artefact resource.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:dataset\-\-[\w\-\.]+:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ResourceID")]
-    public string ResourceID { get; set; }
+    public string? ResourceID { get; set; }
 
 }
 
@@ -281,14 +281,14 @@ public class WellboreIntervalSet_1_3_1_Data_LineageAssertions
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ID")]
-    public string ID { get; set; }
+    public string? ID { get; set; }
 
     /// <summary>
     /// Used by LineageAssertion to describe the nature of the line of descent of a work product component from a prior Resource, such as DIRECT, INDIRECT, REFERENCE.  It is not for proximity (number of nodes away), it is not to cover all the relationships in a full ontology or graph, and it is not to describe the type of activity that created the asserting WPC.  LineageAssertion does not encompass a full provenance, process history, or activity model.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-LineageRelationshipType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("LineageRelationshipType")]
-    public string LineageRelationshipType { get; set; }
+    public string? LineageRelationshipType { get; set; }
 
 }
 
@@ -301,13 +301,13 @@ public class WellboreIntervalSet_1_3_1_Data_Intervals
     /// The unique identifier of the interval array member in the data.Intervals[] array. Ideally a UUID. IntervalID is also used to associate IntervalProperties via the key column data.IntervalProperties.ColumnValues[0].StringColumn[].
     /// </summary>
     [JsonPropertyName("IntervalID")]
-    public string IntervalID { get; set; }
+    public string? IntervalID { get; set; }
 
     /// <summary>
     /// An array of StratigraphicUnitInterpretation, GeobodyInterpretation or RockFluidUnitInterpretation record Ids associated to this interval.
     /// </summary>
     [JsonPropertyName("GeologicUnitInterpretationIDs")]
-    public List<string> GeologicUnitInterpretationIDs { get; set; }
+    public List<string>? GeologicUnitInterpretationIDs { get; set; }
 
     /// <summary>
     /// The minimal MeasuredDepth of the interval. In the most common case this is the top.  If this value is associated with a marker then this value is a denormalization of data.Markers[].MarkerMeasuredDepth where the data.Markers[].MarkerID equals to StartMarkerID.
@@ -325,27 +325,27 @@ public class WellboreIntervalSet_1_3_1_Data_Intervals
     /// Name of the interval start (typically the top); when associated with a marker in a WellboreMarkerSet then this name is a denormalization of data.Markers[].MarkerName where the data.Markers[].MarkerID equals to StartMarkerID.
     /// </summary>
     [JsonPropertyName("StartIntervalName")]
-    public string StartIntervalName { get; set; }
+    public string? StartIntervalName { get; set; }
 
     /// <summary>
     /// Optional reference to the WellboreMarkerSet containing the interval start (typically the top), with MarkerID equals StartMarkerID.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-WellboreMarkerSet:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("StartMarkerSetID")]
-    public string StartMarkerSetID { get; set; }
+    public string? StartMarkerSetID { get; set; }
 
     /// <summary>
     /// Individual markers are not globally identifiable. TopMarkerID is the unique id (MarkerID) of the top interval marker (typically the interval base) in the data.Markers[] array where the data.Markers[].MarkerID equals to StartMarkerID.
     /// </summary>
     [JsonPropertyName("StartMarkerID")]
-    public string StartMarkerID { get; set; }
+    public string? StartMarkerID { get; set; }
 
     /// <summary>
     /// The optional relationship to a HorizonInterpretation, GeobodyBoundaryInterpretation or FaultInterpretation. If the interval start (typically the top) is associated with a marker, this is considered a denormalization of the data.Markers[].InterpretationID for the data.Markers[].MarkerID equals to StartMarkerID.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:(work-product-component\-\-HorizonInterpretation|work-product-component\-\-GeobodyBoundaryInterpretation|work-product-component\-\-FaultInterpretation):[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("StartBoundaryInterpretationID")]
-    public string StartBoundaryInterpretationID { get; set; }
+    public string? StartBoundaryInterpretationID { get; set; }
 
     /// <summary>
     /// The maximum MeasuredDepth of the interval (typically the base). If the interval stop is associated with a marker then this value is a denormalization of data.Markers[].MarkerMeasuredDepth where the data.Markers[].MarkerID equals to StopMarkerID.
@@ -363,26 +363,26 @@ public class WellboreIntervalSet_1_3_1_Data_Intervals
     /// Name of the interval stop (typically the base); when associated with a marker in a WellboreMarkerSet then this name is a denormalization of data.Markers[].MarkerName where the data.Markers[].MarkerID equals to StopMarkerID.
     /// </summary>
     [JsonPropertyName("StopIntervalName")]
-    public string StopIntervalName { get; set; }
+    public string? StopIntervalName { get; set; }
 
     /// <summary>
     /// Optional reference to the WellboreMarkerSet containing the top with MarkerID equals StopMarkerID.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-WellboreMarkerSet:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("StopMarkerSetID")]
-    public string StopMarkerSetID { get; set; }
+    public string? StopMarkerSetID { get; set; }
 
     /// <summary>
     /// Individual markers are not globally identifiable. StopMarkerID is the unique id (MarkerID) of the interval stop (typically the interval base) in the data.Markers[] array where the data.Markers[].MarkerID equals to StopMarkerID.
     /// </summary>
     [JsonPropertyName("StopMarkerID")]
-    public string StopMarkerID { get; set; }
+    public string? StopMarkerID { get; set; }
 
     /// <summary>
     /// The optional relationship to a HorizonInterpretation, GeobodyBoundaryInterpretation or FaultInterpretation. If the interval stop (typically the base) is associated with a marker, this is considered a denormalization of the data.Markers[].InterpretationID where the data.Markers[].MarkerID equals to StopMarkerID.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:(work-product-component\-\-HorizonInterpretation|work-product-component\-\-GeobodyBoundaryInterpretation|work-product-component\-\-FaultInterpretation):[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("StopBoundaryInterpretationID")]
-    public string StopBoundaryInterpretationID { get; set; }
+    public string? StopBoundaryInterpretationID { get; set; }
 
 }

@@ -27,7 +27,7 @@ public class AbstractFacet_1_0_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-FacetType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("FacetTypeID")]
-    public string FacetTypeID { get; set; }
+    public required string FacetTypeID { get; set; }
 
     /// <summary>
     /// Additional context about the nature of a property type. The purpose of such attribute is to minimize the need to create specialized property types by mutualizing some well known qualifiers such as "maximum", "minimum" which apply to a lot of different property types.
@@ -35,6 +35,6 @@ public class AbstractFacet_1_0_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-FacetRole:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("FacetRoleID")]
-    public string FacetRoleID { get; set; }
+    public required string FacetRoleID { get; set; }
 
 }

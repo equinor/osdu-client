@@ -35,7 +35,7 @@ public class AbstractWellLicenseViolation_1_0_0
     /// The condition(s) in a license that have been violated.  This may be a relationship to the specific conditions. The ViolatedCondition value refers to an array element in data.LicenseConditions[].
     /// </summary>
     [JsonPropertyName("ViolatedCondition")]
-    public string ViolatedCondition { get; set; }
+    public string? ViolatedCondition { get; set; }
 
     /// <summary>
     /// Indicates whether this violation is still in effect, or has not been fully resolved.
@@ -48,76 +48,76 @@ public class AbstractWellLicenseViolation_1_0_0
     /// The consequence of the violation as assigned by the regulatory or other authority.  Consequence may be financial, work to be done, reports to be submitted. In addition, the authority may suspend, terminate or otherwise revise a license by adding new conditions or obligations.  For each violation, there may be more than one consequences.
     /// </summary>
     [JsonPropertyName("ViolationConsequenceTypeIDs")]
-    public List<string> ViolationConsequenceTypeIDs { get; set; }
+    public List<string>? ViolationConsequenceTypeIDs { get; set; }
 
     /// <summary>
     /// The date on which the violation was first on record, such as the date that the regulatory agency notified you about a problem, or the date when something such as a report was overdue. Violations may be triggered by operations or events (or failure to complete something) or may be reported by another party.
     /// </summary>
     [JsonPropertyName("ViolationDate")]
-    public DateOnly ViolationDate { get; set; }
+    public DateOnly? ViolationDate { get; set; }
 
     /// <summary>
     /// A supporting narrative that describes the violation.  While in some cases the nature of the violations, others require detailed explanations.  For example, environmental violations often require explanatory text).
     /// In populating descriptions of the violation and the resolution, ensure that the contents are appropriate to the attribute.  Do not put resolution information in the violation description, for example.
     /// </summary>
     [JsonPropertyName("ViolationDescription")]
-    public string ViolationDescription { get; set; }
+    public string? ViolationDescription { get; set; }
 
     /// <summary>
     /// The date on which a violation is determined to have been fully resolved.
     /// </summary>
     [JsonPropertyName("ViolationEndDate")]
-    public DateOnly ViolationEndDate { get; set; }
+    public DateOnly? ViolationEndDate { get; set; }
 
     /// <summary>
     /// A short narrative description of the specific resolution of the violation, such as procedures modified, fence repaired, water disposal corrected etc.
     /// </summary>
     [JsonPropertyName("ViolationResolutionDescription")]
-    public string ViolationResolutionDescription { get; set; }
+    public string? ViolationResolutionDescription { get; set; }
 
     /// <summary>
     /// The method by which a license violation has been resolved.  In some cases, more than one method must be used, so multiple entries may be required, with appropriate dates associated.  Methods may be financial (fines or other payments), operational (procedures altered),  rectification (things fixed or moved) or conciliatory (remedies to citizens or other stakeholders).
     /// </summary>
     [JsonPropertyName("ViolationResolutionMethodTypeIDs")]
-    public List<string> ViolationResolutionMethodTypeIDs { get; set; }
+    public List<string>? ViolationResolutionMethodTypeIDs { get; set; }
 
     /// <summary>
     /// The date that this violation was resolved by submitting required information, paying fines, amending procedures etc. and necessary release notice provided (usually by the regulator).  This may or may not be the same as the ViolationEndDate.
     /// </summary>
     [JsonPropertyName("ViolationResolvedDate")]
-    public DateOnly ViolationResolvedDate { get; set; }
+    public DateOnly? ViolationResolvedDate { get; set; }
 
     /// <summary>
     /// The date on which this violation was determined to be in effect.  This may not be the same date as the violation actually first began, ViolationDate.
     /// </summary>
     [JsonPropertyName("ViolationStartDate")]
-    public DateOnly ViolationStartDate { get; set; }
+    public DateOnly? ViolationStartDate { get; set; }
 
     /// <summary>
     /// The type of violation of a license that is being recorded. Can be as simple as failure to submit necessary reports or something more difficult such as improper procedures. Grouping these violations by class supports reporting, metrics and analysis.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WellLicenseViolationType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ViolationTypeID")]
-    public string ViolationTypeID { get; set; }
+    public string? ViolationTypeID { get; set; }
 
     /// <summary>
     /// Identify the well  that is in violation. The condition violated can be tracked via ViolatedCondition referring to an object in data.LicenseConditions[].
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Well:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellID")]
-    public string WellID { get; set; }
+    public string? WellID { get; set; }
 
     /// <summary>
     /// Identify the wellbore  that is in violation. The condition violated can be tracked via ViolatedCondition referring to an object in data.LicenseConditions[].
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Wellbore:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellboreID")]
-    public string WellboreID { get; set; }
+    public string? WellboreID { get; set; }
 
     /// <summary>
     /// Unique identifier of this element in the parent's list of license violations.
     /// </summary>
     [JsonPropertyName("ElementIdentifier")]
-    public string ElementIdentifier { get; set; }
+    public string? ElementIdentifier { get; set; }
 
 }

@@ -24,14 +24,14 @@ public class AbstractPTCondition_1_1_0
     /// </summary>
     [Required]
     [JsonPropertyName("Pressure")]
-    public double Pressure { get; set; }
+    public required double Pressure { get; set; }
 
     /// <summary>
     /// The recorded temperature condition. The unit of measure context is defined via meta[] in the Storage record while the Search responses return the value in base SI unit K (Kelvin).
     /// </summary>
     [Required]
     [JsonPropertyName("Temperature")]
-    public double Temperature { get; set; }
+    public required double Temperature { get; set; }
 
     /// <summary>
     /// To capture when Measurement have been made at Standard Conditions (25°C / 100 kPa)
@@ -46,6 +46,6 @@ public class AbstractPTCondition_1_1_0
     /// Open Text Box to capture the P &amp; T Reference when measurements are made at non standard conditions (such as "Reservoir", "Tank",…)
     /// </summary>
     [JsonPropertyName("NonStandardConditionsReference")]
-    public string NonStandardConditionsReference { get; set; }
+    public string? NonStandardConditionsReference { get; set; }
 
 }

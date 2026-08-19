@@ -24,19 +24,19 @@ public class AbstractContent_1_0_0
     /// </summary>
     [Required]
     [JsonPropertyName("SchemaKind")]
-    public string SchemaKind { get; set; }
+    public required string SchemaKind { get; set; }
 
     /// <summary>
     /// The name of this record.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// A description or remark about this content record.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// The standard OSDU extension point for customizations. It is good practice to declare the schema fragment kind(s) for the extension(s) in the object.

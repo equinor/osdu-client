@@ -48,6 +48,6 @@ public class AbstractSampleProperties_1_1_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-SampleOrientationType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SampleOrientationTypeID")]
-    public string SampleOrientationTypeID { get; set; }
+    public string? SampleOrientationTypeID { get; set; }
 
 }

@@ -25,7 +25,7 @@ public class ConnectedSourceDataJob_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-ConnectedSourceDataJob:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class ConnectedSourceDataJob_1_0_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class ConnectedSourceDataJob_1_0_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class ConnectedSourceDataJob_1_0_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class ConnectedSourceDataJob_1_0_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class ConnectedSourceDataJob_1_0_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public ConnectedSourceDataJob_1_0_0_Data? Data { get; set; }
@@ -101,13 +101,13 @@ public class ConnectedSourceDataJob_1_0_0_Data : AbstractCommonResources_1_0_0 /
     /// Alternative names, including historical, by which this master data is/has been known (it should include all the identifiers).
     /// </summary>
     [JsonPropertyName("NameAliases")]
-    public List<AbstractAliasNames_1_0_0> NameAliases { get; set; }
+    public List<AbstractAliasNames_1_0_0>? NameAliases { get; set; }
 
     /// <summary>
     /// List of geographic entities which provide context to the master data. This may include multiple types or multiple values of the same type.
     /// </summary>
     [JsonPropertyName("GeoContexts")]
-    public List<AbstractGeoContext_1_0_0> GeoContexts { get; set; }
+    public List<AbstractGeoContext_1_0_0>? GeoContexts { get; set; }
 
     [JsonPropertyName("SpatialLocation")]
     public AbstractSpatialLocation_1_1_0? SpatialLocation { get; set; }
@@ -116,27 +116,27 @@ public class ConnectedSourceDataJob_1_0_0_Data : AbstractCommonResources_1_0_0 /
     /// This describes the reason that caused the creation of a new version of this master data.
     /// </summary>
     [JsonPropertyName("VersionCreationReason")]
-    public string VersionCreationReason { get; set; }
+    public string? VersionCreationReason { get; set; }
 
     /// <summary>
     /// Describes a master-data record's overall suitability for general business consumption based on data quality. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TechnicalAssuranceType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TechnicalAssuranceTypeID")]
-    public string TechnicalAssuranceTypeID { get; set; }
+    public string? TechnicalAssuranceTypeID { get; set; }
 
     /// <summary>
     /// Descriptive label given to a scheduled job.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// ID reference of the parent Connected Source Registry Entry
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-ConnectedSourceRegistryEntry:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ConnectedSourceRegistryEntryID")]
-    public string ConnectedSourceRegistryEntryID { get; set; }
+    public string? ConnectedSourceRegistryEntryID { get; set; }
 
     /// <summary>
     /// Indicates if a scheduled job is active (will be executed) or not (won't be executed)
@@ -149,37 +149,37 @@ public class ConnectedSourceDataJob_1_0_0_Data : AbstractCommonResources_1_0_0 /
     /// The data type/schema/kind of data being retrieved form the external source. The returned value should validate against the corresponding registered schema in the OSDU schema service.
     /// </summary>
     [JsonPropertyName("FetchKind")]
-    public string FetchKind { get; set; }
+    public string? FetchKind { get; set; }
 
     /// <summary>
     /// Filter applied to the data fetch request, using data members in the FetchKind schema.
     /// </summary>
     [JsonPropertyName("Filter")]
-    public string Filter { get; set; }
+    public string? Filter { get; set; }
 
     /// <summary>
     /// ID of the external partition containing the desired data
     /// </summary>
     [JsonPropertyName("ConnectedSourceDataPartitionID")]
-    public string ConnectedSourceDataPartitionID { get; set; }
+    public string? ConnectedSourceDataPartitionID { get; set; }
 
     /// <summary>
     /// Schedule this job should run on, in CRON format
     /// </summary>
     [JsonPropertyName("ScheduleUTC")]
-    public string ScheduleUTC { get; set; }
+    public string? ScheduleUTC { get; set; }
 
     /// <summary>
     /// Consumer partition the incoming data will be placed in.
     /// </summary>
     [JsonPropertyName("OnIngestionDataPartitionID")]
-    public string OnIngestionDataPartitionID { get; set; }
+    public string? OnIngestionDataPartitionID { get; set; }
 
     /// <summary>
     /// List of workflows and their configuration used in this scheduled job
     /// </summary>
     [JsonPropertyName("Workflows")]
-    public List<ConnectedSourceDataJob_1_0_0_Data_Workflows> Workflows { get; set; }
+    public List<ConnectedSourceDataJob_1_0_0_Data_Workflows>? Workflows { get; set; }
 
     [JsonPropertyName("OnIngestionLegalTags")]
     public AbstractLegalTags_1_0_0? OnIngestionLegalTags { get; set; }
@@ -214,32 +214,32 @@ public class ConnectedSourceDataJob_1_0_0_Data_Workflows
     /// Tag given to a workflow category, such as Fetch, Ingest, Delivery
     /// </summary>
     [JsonPropertyName("Tag")]
-    public string Tag { get; set; }
+    public string? Tag { get; set; }
 
     /// <summary>
     /// Allows creation of a specific handler DAG for the source type
     /// </summary>
     [JsonPropertyName("Handler")]
-    public string Handler { get; set; }
+    public string? Handler { get; set; }
 
     /// <summary>
     /// Name value or object Id
     /// </summary>
     [JsonPropertyName("Parameters")]
-    public List<ConnectedSourceDataJob_1_0_0_Data_Workflows_Parameters> Parameters { get; set; }
+    public List<ConnectedSourceDataJob_1_0_0_Data_Workflows_Parameters>? Parameters { get; set; }
 
     /// <summary>
     /// Data source endpoint used in workflow
     /// </summary>
     [JsonPropertyName("Url")]
-    public string Url { get; set; }
+    public string? Url { get; set; }
 
     /// <summary>
     /// Reference name for the security scheme in the ConnectedSourceRegistryEntry document this scheduled job belongs to.
     /// </summary>
     [Required]
     [JsonPropertyName("SecuritySchemeName")]
-    public string SecuritySchemeName { get; set; }
+    public required string SecuritySchemeName { get; set; }
 
 }
 
@@ -252,12 +252,12 @@ public class ConnectedSourceDataJob_1_0_0_Data_Workflows_Parameters
     /// Name of the parameter the handler expects
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// Value of the parameter the handler expects
     /// </summary>
     [JsonPropertyName("Value")]
-    public string Value { get; set; }
+    public string? Value { get; set; }
 
 }

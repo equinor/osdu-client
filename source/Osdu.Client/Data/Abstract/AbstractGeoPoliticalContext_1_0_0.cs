@@ -24,13 +24,13 @@ public class AbstractGeoPoliticalContext_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-GeoPoliticalEntity:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("GeoPoliticalEntityID")]
-    public string GeoPoliticalEntityID { get; set; }
+    public string? GeoPoliticalEntityID { get; set; }
 
     /// <summary>
     /// The GeoPoliticalEntityType reference of the GeoPoliticalEntity (via GeoPoliticalEntityID) for application convenience.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-GeoPoliticalEntityType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("GeoTypeID")]
-    public string GeoTypeID { get; set; }
+    public string? GeoTypeID { get; set; }
 
 }

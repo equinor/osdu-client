@@ -25,7 +25,7 @@ public class FaultSystem_1_4_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-FaultSystem:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class FaultSystem_1_4_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class FaultSystem_1_4_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class FaultSystem_1_4_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class FaultSystem_1_4_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class FaultSystem_1_4_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public FaultSystem_1_4_0_Data? Data { get; set; }
@@ -101,19 +101,19 @@ public class FaultSystem_1_4_0_Data : AbstractCommonResources_1_0_0 // Also comp
     /// The record id, which identifies this OSDU File or dataset resource.
     /// </summary>
     [JsonPropertyName("Datasets")]
-    public List<string> Datasets { get; set; }
+    public List<string>? Datasets { get; set; }
 
     /// <summary>
     /// An array of references to content in Domain Data Management Services represented by this work-product-component. The references are formed as URI following https://www.rfc-editor.org/rfc/rfc3986#page-16. This property is exclusively populated by DDMSs. If a work-product-component is represented in more than one DDMS, DDMSs are obliged to find the specific reference by inspecting the URI's authority values matching the DDMS id.
     /// </summary>
     [JsonPropertyName("DDMSDatasets")]
-    public List<string> DDMSDatasets { get; set; }
+    public List<string>? DDMSDatasets { get; set; }
 
     /// <summary>
     /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
     /// </summary>
     [JsonPropertyName("Artefacts")]
-    public List<FaultSystem_1_4_0_Data_Artefacts> Artefacts { get; set; }
+    public List<FaultSystem_1_4_0_Data_Artefacts>? Artefacts { get; set; }
 
     /// <summary>
     /// A flag that indicates if the work product component is undergoing an extended load.  It reflects the fact that the work product component is in an early stage and may be updated before finalization.
@@ -133,25 +133,25 @@ public class FaultSystem_1_4_0_Data : AbstractCommonResources_1_0_0 // Also comp
     /// Describes a record's overall suitability for general business consumption based on data quality. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [JsonPropertyName("TechnicalAssurances")]
-    public List<AbstractTechnicalAssurance_1_2_0> TechnicalAssurances { get; set; }
+    public List<AbstractTechnicalAssurance_1_2_0>? TechnicalAssurances { get; set; }
 
     /// <summary>
     /// Alternative names, including historical, by which this work-product-component is/has been known (it should include all the identifiers).
     /// </summary>
     [JsonPropertyName("NameAliases")]
-    public List<AbstractAliasNames_1_0_0> NameAliases { get; set; }
+    public List<AbstractAliasNames_1_0_0>? NameAliases { get; set; }
 
     /// <summary>
     /// Name
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// Description.  Summary of the work product component.  Not the same as Remark which captures thoughts of creator about the wpc.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// Date that a resource (work  product component here) is formed outside of OSDU before loading (e.g. publication date).
@@ -164,7 +164,7 @@ public class FaultSystem_1_4_0_Data : AbstractCommonResources_1_0_0 // Also comp
     /// Array of key words to identify the work product, especially to help in search.
     /// </summary>
     [JsonPropertyName("Tags")]
-    public List<string> Tags { get; set; }
+    public List<string>? Tags { get; set; }
 
     [JsonPropertyName("SpatialPoint")]
     public AbstractSpatialLocation_1_1_0? SpatialPoint { get; set; }
@@ -176,84 +176,84 @@ public class FaultSystem_1_4_0_Data : AbstractCommonResources_1_0_0 // Also comp
     /// List of geographic entities which provide context to the WPC.  This may include multiple types or multiple values of the same type.
     /// </summary>
     [JsonPropertyName("GeoContexts")]
-    public List<AbstractGeoContext_1_0_0> GeoContexts { get; set; }
+    public List<AbstractGeoContext_1_0_0>? GeoContexts { get; set; }
 
     /// <summary>
     /// Name of the person that first submitted the work product component to OSDU.
     /// </summary>
     [JsonPropertyName("SubmitterName")]
-    public string SubmitterName { get; set; }
+    public string? SubmitterName { get; set; }
 
     /// <summary>
     /// Array of business processes/workflows that the work product component has been through (ex. well planning, exploration).
     /// </summary>
     [JsonPropertyName("BusinessActivities")]
-    public List<string> BusinessActivities { get; set; }
+    public List<string>? BusinessActivities { get; set; }
 
     /// <summary>
     /// Array of Authors' names of the work product component.  Could be a person or company entity.
     /// </summary>
     [JsonPropertyName("AuthorIDs")]
-    public List<string> AuthorIDs { get; set; }
+    public List<string>? AuthorIDs { get; set; }
 
     /// <summary>
     /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
     /// </summary>
     [JsonPropertyName("LineageAssertions")]
-    public List<FaultSystem_1_4_0_Data_LineageAssertions> LineageAssertions { get; set; }
+    public List<FaultSystem_1_4_0_Data_LineageAssertions>? LineageAssertions { get; set; }
 
     /// <summary>
     /// Method used to pick faults. E.g.Autotracked, Grid, Manual Picked, Mixed.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-SeismicPickingType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SeismicPickingTypeID")]
-    public string SeismicPickingTypeID { get; set; }
+    public string? SeismicPickingTypeID { get; set; }
 
     /// <summary>
     /// Optional comment to capture interpreter thoughts.  Distinguished from Description which is a general explanation of the object.
     /// </summary>
     [JsonPropertyName("Remark")]
-    public string Remark { get; set; }
+    public string? Remark { get; set; }
 
     /// <summary>
     /// Seismic Volumes picked against
     /// </summary>
     [JsonPropertyName("SeismicTraceDataIDs")]
-    public List<string> SeismicTraceDataIDs { get; set; }
+    public List<string>? SeismicTraceDataIDs { get; set; }
 
     /// <summary>
     /// Vertical domain of faults.  E.g. Time, Depth
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-SeismicDomainType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SeismicDomainTypeID")]
-    public string SeismicDomainTypeID { get; set; }
+    public string? SeismicDomainTypeID { get; set; }
 
     /// <summary>
     /// Unit of measurement for vertical domain
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SeismicDomainUOM")]
-    public string SeismicDomainUOM { get; set; }
+    public string? SeismicDomainUOM { get; set; }
 
     /// <summary>
     /// The CRS for surface coordinates used in fault locations if not specified in File.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CoordinateReferenceSystem:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("HorizontalCRSID")]
-    public string HorizontalCRSID { get; set; }
+    public string? HorizontalCRSID { get; set; }
 
     /// <summary>
     /// The Bin Grid of the Fault System when coordinates are specified in seismic bin inline/crossline. Not populated for 2D based FaultSystem records.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-SeismicBinGrid:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("BinGridID")]
-    public string BinGridID { get; set; }
+    public string? BinGridID { get; set; }
 
     /// <summary>
     /// The list of seismic line geometries holding the trace to 'world' coordinate mappings for the 2D seismic lines. Only populated if the Fault System is based on 2D fault interpretations.
     /// </summary>
     [JsonPropertyName("SeismicLineGeometries")]
-    public List<string> SeismicLineGeometries { get; set; }
+    public List<string>? SeismicLineGeometries { get; set; }
 
     /// <summary>
     /// Datum value, the elevation of zero time/depth on the vertical axis in the domain of seismicdomaintype relative to the vertical reference datum used (usually MSL). Positive is upward from zero elevation to seismic datum).
@@ -266,7 +266,7 @@ public class FaultSystem_1_4_0_Data : AbstractCommonResources_1_0_0 // Also comp
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-VerticalMeasurementType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("VerticalMeasurementTypeID")]
-    public string VerticalMeasurementTypeID { get; set; }
+    public string? VerticalMeasurementTypeID { get; set; }
 
     /// <summary>
     /// Value used to produce vertical static shifts in data
@@ -278,7 +278,7 @@ public class FaultSystem_1_4_0_Data : AbstractCommonResources_1_0_0 // Also comp
     /// Array of Faults that comprise the Fault System
     /// </summary>
     [JsonPropertyName("Faults")]
-    public List<FaultSystem_1_4_0_Data_Faults> Faults { get; set; }
+    public List<FaultSystem_1_4_0_Data_Faults>? Faults { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
@@ -295,21 +295,21 @@ public class FaultSystem_1_4_0_Data_Artefacts
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ArtefactRole:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("RoleID")]
-    public string RoleID { get; set; }
+    public string? RoleID { get; set; }
 
     /// <summary>
     /// The kind or schema ID of the artefact. Resolvable with the Schema Service.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("ResourceKind")]
-    public string ResourceKind { get; set; }
+    public string? ResourceKind { get; set; }
 
     /// <summary>
     /// The SRN which identifies this OSDU Artefact resource.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:dataset\-\-[\w\-\.]+:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ResourceID")]
-    public string ResourceID { get; set; }
+    public string? ResourceID { get; set; }
 
 }
 
@@ -323,14 +323,14 @@ public class FaultSystem_1_4_0_Data_LineageAssertions
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ID")]
-    public string ID { get; set; }
+    public string? ID { get; set; }
 
     /// <summary>
     /// Used by LineageAssertion to describe the nature of the line of descent of a work product component from a prior Resource, such as DIRECT, INDIRECT, REFERENCE.  It is not for proximity (number of nodes away), it is not to cover all the relationships in a full ontology or graph, and it is not to describe the type of activity that created the asserting WPC.  LineageAssertion does not encompass a full provenance, process history, or activity model.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-LineageRelationshipType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("LineageRelationshipType")]
-    public string LineageRelationshipType { get; set; }
+    public string? LineageRelationshipType { get; set; }
 
 }
 
@@ -343,28 +343,28 @@ public class FaultSystem_1_4_0_Data_Faults
     /// Name of an individual fault within a fault system.
     /// </summary>
     [JsonPropertyName("SeismicFaultName")]
-    public string SeismicFaultName { get; set; }
+    public string? SeismicFaultName { get; set; }
 
     /// <summary>
     /// The related FaultInterpretation for collaborating with Earth Modeling.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-FaultInterpretation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("FaultInterpretationID")]
-    public string FaultInterpretationID { get; set; }
+    public string? FaultInterpretationID { get; set; }
 
     /// <summary>
     /// Geological type of fault geometry. E.g. Thrust (thr), Reverse (rev), Normal(norm)
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-SeismicFaultType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SeismicFaultTypeID")]
-    public string SeismicFaultTypeID { get; set; }
+    public string? SeismicFaultTypeID { get; set; }
 
     /// <summary>
     /// Method used to pick faults. E.g.Autotracked, Grid, Manual Picked
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-SeismicPickingType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SeismicPickingTypeID")]
-    public string SeismicPickingTypeID { get; set; }
+    public string? SeismicPickingTypeID { get; set; }
 
     /// <summary>
     /// Maximum linear dimension measured along strike of the slip surface
@@ -377,7 +377,7 @@ public class FaultSystem_1_4_0_Data_Faults
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SeismicFaultLengthUOM")]
-    public string SeismicFaultLengthUOM { get; set; }
+    public string? SeismicFaultLengthUOM { get; set; }
 
     /// <summary>
     /// Surface Area of the Fault Plane
@@ -390,7 +390,7 @@ public class FaultSystem_1_4_0_Data_Faults
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SeismicFaultSurfaceAreaUOM")]
-    public string SeismicFaultSurfaceAreaUOM { get; set; }
+    public string? SeismicFaultSurfaceAreaUOM { get; set; }
 
     /// <summary>
     /// Maximum vertical angle of fault
@@ -403,7 +403,7 @@ public class FaultSystem_1_4_0_Data_Faults
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("VerticalFaultDipAngleUOM")]
-    public string VerticalFaultDipAngleUOM { get; set; }
+    public string? VerticalFaultDipAngleUOM { get; set; }
 
     /// <summary>
     /// Maximum stratigraphic heave, the apparent horizontal component of the net-slip.
@@ -416,7 +416,7 @@ public class FaultSystem_1_4_0_Data_Faults
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("FaultHeaveNumberUOM")]
-    public string FaultHeaveNumberUOM { get; set; }
+    public string? FaultHeaveNumberUOM { get; set; }
 
     /// <summary>
     /// Net (average) Slip
@@ -429,7 +429,7 @@ public class FaultSystem_1_4_0_Data_Faults
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("FaultNetSlipNumberUOM")]
-    public string FaultNetSlipNumberUOM { get; set; }
+    public string? FaultNetSlipNumberUOM { get; set; }
 
     /// <summary>
     /// Maximum vertical offset of faulted strata.
@@ -442,32 +442,32 @@ public class FaultSystem_1_4_0_Data_Faults
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("StratigraphicFaultOffsetUOM")]
-    public string StratigraphicFaultOffsetUOM { get; set; }
+    public string? StratigraphicFaultOffsetUOM { get; set; }
 
     /// <summary>
     /// Optional comment
     /// </summary>
     [JsonPropertyName("Remark")]
-    public string Remark { get; set; }
+    public string? Remark { get; set; }
 
     /// <summary>
     /// The person or team who interpreted the fault data.
     /// </summary>
     [JsonPropertyName("Interpreter")]
-    public string Interpreter { get; set; }
+    public string? Interpreter { get; set; }
 
     /// <summary>
     /// RepresentationRole for this Fault element if more than one role is in use for this FaultSystem.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-RepresentationRole:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("Role")]
-    public string Role { get; set; }
+    public string? Role { get; set; }
 
     /// <summary>
     /// RepresentationType for this Fault element if more than one type is in use for this FaultSystem.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-RepresentationType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("Type")]
-    public string Type { get; set; }
+    public string? Type { get; set; }
 
 }

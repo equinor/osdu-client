@@ -23,7 +23,7 @@ public class MinimumDepthInterval
     /// Explicit list of Measured Depth values where interpolated stations should be computed. Unit specified by unitMD or unitZ.
     /// </summary>
     [JsonPropertyName("md_i")]
-    public List<double> MdI { get; set; }
+    public List<double>? MdI { get; set; }
 
     /// <summary>
     /// Regular interval for generating interpolated stations. Stations created from first to last input MD at this interval.

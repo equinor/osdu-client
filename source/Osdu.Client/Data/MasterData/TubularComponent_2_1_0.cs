@@ -25,7 +25,7 @@ public class TubularComponent_2_1_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-TubularComponent:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class TubularComponent_2_1_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class TubularComponent_2_1_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class TubularComponent_2_1_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class TubularComponent_2_1_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class TubularComponent_2_1_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public TubularComponent_2_1_0_Data? Data { get; set; }
@@ -101,13 +101,13 @@ public class TubularComponent_2_1_0_Data : AbstractCommonResources_1_0_0 // Also
     /// Alternative names, including historical, by which this master data is/has been known (it should include all the identifiers).
     /// </summary>
     [JsonPropertyName("NameAliases")]
-    public List<AbstractAliasNames_1_0_0> NameAliases { get; set; }
+    public List<AbstractAliasNames_1_0_0>? NameAliases { get; set; }
 
     /// <summary>
     /// List of geographic entities which provide context to the master data. This may include multiple types or multiple values of the same type.
     /// </summary>
     [JsonPropertyName("GeoContexts")]
-    public List<AbstractGeoContext_1_0_0> GeoContexts { get; set; }
+    public List<AbstractGeoContext_1_0_0>? GeoContexts { get; set; }
 
     [JsonPropertyName("SpatialLocation")]
     public AbstractSpatialLocation_1_1_0? SpatialLocation { get; set; }
@@ -116,40 +116,40 @@ public class TubularComponent_2_1_0_Data : AbstractCommonResources_1_0_0 // Also
     /// This describes the reason that caused the creation of a new version of this master data.
     /// </summary>
     [JsonPropertyName("VersionCreationReason")]
-    public string VersionCreationReason { get; set; }
+    public string? VersionCreationReason { get; set; }
 
     /// <summary>
     /// DEPRECATED: (in favor of more nuanced TechnicalAssurances[] array) Describes a master-data record's overall suitability for general business consumption based on data quality. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TechnicalAssuranceType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TechnicalAssuranceTypeID")]
-    public string TechnicalAssuranceTypeID { get; set; }
+    public string? TechnicalAssuranceTypeID { get; set; }
 
     /// <summary>
     /// Describes a record's overall suitability for general business consumption in context of one or more workflows/personas based on data quality and reviewer's decisions. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [JsonPropertyName("TechnicalAssurances")]
-    public List<AbstractTechnicalAssurance_1_2_0> TechnicalAssurances { get; set; }
+    public List<AbstractTechnicalAssurance_1_2_0>? TechnicalAssurances { get; set; }
 
     /// <summary>
     /// The name of this tubular component.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// Identifier of the wellbore the Component is standing in.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Wellbore:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ParentWellboreID")]
-    public string ParentWellboreID { get; set; }
+    public string? ParentWellboreID { get; set; }
 
     /// <summary>
     /// Identifier of the Assembly the component is taking part on.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-TubularAssembly:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ParentAssemblyID")]
-    public string ParentAssemblyID { get; set; }
+    public string? ParentAssemblyID { get; set; }
 
     /// <summary>
     /// The sequence within which the components entered the hole. That is, a sequence number of 1 entered first, 2 entered next, etc.
@@ -198,54 +198,54 @@ public class TubularComponent_2_1_0_Data : AbstractCommonResources_1_0_0 // Also
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ManufacturerID")]
-    public string ManufacturerID { get; set; }
+    public string? ManufacturerID { get; set; }
 
     /// <summary>
     /// Unique identifier for the supplier of this equipment.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SupplierID")]
-    public string SupplierID { get; set; }
+    public string? SupplierID { get; set; }
 
     /// <summary>
     /// Name of the component Model as defined per the operating company
     /// </summary>
     [JsonPropertyName("Model")]
-    public string Model { get; set; }
+    public string? Model { get; set; }
 
     /// <summary>
     /// Serial Number of the component as provided by the manufacturer and/or the supplier
     /// </summary>
     [JsonPropertyName("SerialNumber")]
-    public string SerialNumber { get; set; }
+    public string? SerialNumber { get; set; }
 
     /// <summary>
     /// Identifier of the Section Type.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TubularSectionType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SectionTypeID")]
-    public string SectionTypeID { get; set; }
+    public string? SectionTypeID { get; set; }
 
     /// <summary>
     /// Specifies the types of components that can be used in a tubular string. These are used to specify the type of component and multiple components are used to define a tubular string (Tubular).
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TubularComponentType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TubularComponentTypeID")]
-    public string TubularComponentTypeID { get; set; }
+    public string? TubularComponentTypeID { get; set; }
 
     /// <summary>
     /// Specifies the material type constituting the component.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TubularMaterialType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TubularComponentMaterialTypeID")]
-    public string TubularComponentMaterialTypeID { get; set; }
+    public string? TubularComponentMaterialTypeID { get; set; }
 
     /// <summary>
     /// Id of tubing grade - eg. the tensile strength of the tubing material. A system of classifying the material specifications for steel alloys used in the manufacture of tubing.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TubularComponentGrade:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TubularComponentTubingGradeID")]
-    public string TubularComponentTubingGradeID { get; set; }
+    public string? TubularComponentTubingGradeID { get; set; }
 
     /// <summary>
     /// The tensile strength of the tubing material. A system of classifying the material specifications for steel alloys used in the manufacture of tubing.
@@ -270,21 +270,21 @@ public class TubularComponent_2_1_0_Data : AbstractCommonResources_1_0_0 // Also
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TubularComponentPinBoxType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TubularComponentBoxPinConfigID")]
-    public string TubularComponentBoxPinConfigID { get; set; }
+    public string? TubularComponentBoxPinConfigID { get; set; }
 
     /// <summary>
     /// Id of the Top Connection Type
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TubularComponentConnectionType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TubularComponentTopConnectionTypeID")]
-    public string TubularComponentTopConnectionTypeID { get; set; }
+    public string? TubularComponentTopConnectionTypeID { get; set; }
 
     /// <summary>
     /// Id of the Bottom Connection Type
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TubularComponentConnectionType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TubularComponentBottomConnectionTypeID")]
-    public string TubularComponentBottomConnectionTypeID { get; set; }
+    public string? TubularComponentBottomConnectionTypeID { get; set; }
 
     /// <summary>
     /// The measured depth of the top from the specific component
@@ -429,7 +429,7 @@ public class TubularComponent_2_1_0_Data : AbstractCommonResources_1_0_0 // Also
     /// Internal Reference name/description
     /// </summary>
     [JsonPropertyName("InternalReference")]
-    public string InternalReference { get; set; }
+    public string? InternalReference { get; set; }
 
     /// <summary>
     /// Axial Load Capacity of component
@@ -448,13 +448,13 @@ public class TubularComponent_2_1_0_Data : AbstractCommonResources_1_0_0 // Also
     /// Vendor part number
     /// </summary>
     [JsonPropertyName("PartNumber")]
-    public string PartNumber { get; set; }
+    public string? PartNumber { get; set; }
 
     /// <summary>
     /// Vendor number or other reference identifier
     /// </summary>
     [JsonPropertyName("VendorNumber")]
-    public string VendorNumber { get; set; }
+    public string? VendorNumber { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }

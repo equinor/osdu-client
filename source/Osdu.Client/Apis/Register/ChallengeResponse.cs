@@ -23,6 +23,6 @@ public class ChallengeResponse
     /// Hash of the supplied crc value computed with the subscriber's shared secret
     /// </summary>
     [JsonPropertyName("responseHash")]
-    public string ResponseHash { get; set; }
+    public string? ResponseHash { get; set; }
 
 }

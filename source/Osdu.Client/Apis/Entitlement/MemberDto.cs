@@ -23,25 +23,25 @@ public class MemberDto
     /// Email Id of the member
     /// </summary>
     [JsonPropertyName("email")]
-    public string Email { get; set; }
+    public string? Email { get; set; }
 
     /// <summary>
     /// Role of the member
     /// </summary>
     [JsonPropertyName("role")]
-    public MemberDto_Role Role { get; set; }
+    public MemberDto_Role? Role { get; set; }
 
     /// <summary>
     /// Type of the member
     /// </summary>
     [JsonPropertyName("memberType")]
-    public MemberDto_MemberType MemberType { get; set; }
+    public MemberDto_MemberType? MemberType { get; set; }
 
     /// <summary>
     /// dataPartitionId
     /// </summary>
     [JsonPropertyName("dataPartitionId")]
-    public string DataPartitionId { get; set; }
+    public string? DataPartitionId { get; set; }
 
 }
 

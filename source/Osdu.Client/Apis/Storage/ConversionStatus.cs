@@ -17,12 +17,12 @@ namespace Osdu.Client.Apis.Storage;
 public class ConversionStatus
 {
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     [JsonPropertyName("status")]
-    public string Status { get; set; }
+    public string? Status { get; set; }
 
     [JsonPropertyName("errors")]
-    public List<string> Errors { get; set; }
+    public List<string>? Errors { get; set; }
 
 }

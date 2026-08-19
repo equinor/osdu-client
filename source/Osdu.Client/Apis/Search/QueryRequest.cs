@@ -24,7 +24,7 @@ public class QueryRequest
     /// </summary>
     [Required]
     [JsonPropertyName("kind")]
-    public object Kind { get; set; }
+    public required object Kind { get; set; }
 
     /// <summary>
     /// The maximum number of results to return from the given offset. If no limit is provided, then it will return 10 items. Max number of items which can be fetched by the query is 1000. (If you wish to fetch large set of items, please use query_with_cursor API)
@@ -37,31 +37,31 @@ public class QueryRequest
     /// The query string in Lucene query string syntax.
     /// </summary>
     [JsonPropertyName("query")]
-    public string Query { get; set; }
+    public string? Query { get; set; }
 
     /// <summary>
     /// Part of the phrase for which search should return completions
     /// </summary>
     [JsonPropertyName("suggestPhrase")]
-    public string SuggestPhrase { get; set; }
+    public string? SuggestPhrase { get; set; }
 
     /// <summary>
     /// The fields where matches should be highlighted.
     /// </summary>
     [JsonPropertyName("highlightedFields")]
-    public List<string> HighlightedFields { get; set; }
+    public List<string>? HighlightedFields { get; set; }
 
     /// <summary>
     /// The fields on which to project the results.
     /// </summary>
     [JsonPropertyName("returnedFields")]
-    public List<string> ReturnedFields { get; set; }
+    public List<string>? ReturnedFields { get; set; }
 
     /// <summary>
     /// The fields on which to exclude from the results.
     /// </summary>
     [JsonPropertyName("excludedFields")]
-    public List<string> ExcludedFields { get; set; }
+    public List<string>? ExcludedFields { get; set; }
 
     /// <summary>
     /// The fields and orders to return sorted results.
@@ -93,7 +93,7 @@ public class QueryRequest
     /// The aggregateBy field returns the distinct values of the given field.
     /// </summary>
     [JsonPropertyName("aggregateBy")]
-    public string AggregateBy { get; set; }
+    public string? AggregateBy { get; set; }
 
     /// <summary>
     /// The starting offset from which to return results.

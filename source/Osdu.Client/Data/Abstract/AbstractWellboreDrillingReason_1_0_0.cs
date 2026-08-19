@@ -24,7 +24,7 @@ public class AbstractWellboreDrillingReason_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-DrillingReasonType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("DrillingReasonTypeID")]
-    public string DrillingReasonTypeID { get; set; }
+    public string? DrillingReasonTypeID { get; set; }
 
     /// <summary>
     /// The date and time at which the event becomes effective.

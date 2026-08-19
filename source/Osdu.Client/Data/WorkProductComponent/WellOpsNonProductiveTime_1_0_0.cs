@@ -25,7 +25,7 @@ public class WellOpsNonProductiveTime_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-WellOpsNonProductiveTime:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class WellOpsNonProductiveTime_1_0_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class WellOpsNonProductiveTime_1_0_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class WellOpsNonProductiveTime_1_0_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class WellOpsNonProductiveTime_1_0_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class WellOpsNonProductiveTime_1_0_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public WellOpsNonProductiveTime_1_0_0_Data? Data { get; set; }
@@ -101,19 +101,19 @@ public class WellOpsNonProductiveTime_1_0_0_Data : AbstractCommonResources_1_0_0
     /// The record id, which identifies this OSDU File or dataset resource.
     /// </summary>
     [JsonPropertyName("Datasets")]
-    public List<string> Datasets { get; set; }
+    public List<string>? Datasets { get; set; }
 
     /// <summary>
     /// An array of references to content in Domain Data Management Services represented by this work-product-component. The references are formed as URI following https://www.rfc-editor.org/rfc/rfc3986#page-16. This property is exclusively populated by DDMSs. If a work-product-component is represented in more than one DDMS, DDMSs are obliged to find the specific reference by inspecting the URI's authority values matching the DDMS id.
     /// </summary>
     [JsonPropertyName("DDMSDatasets")]
-    public List<string> DDMSDatasets { get; set; }
+    public List<string>? DDMSDatasets { get; set; }
 
     /// <summary>
     /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
     /// </summary>
     [JsonPropertyName("Artefacts")]
-    public List<WellOpsNonProductiveTime_1_0_0_Data_Artefacts> Artefacts { get; set; }
+    public List<WellOpsNonProductiveTime_1_0_0_Data_Artefacts>? Artefacts { get; set; }
 
     /// <summary>
     /// A flag that indicates if the work product component is undergoing an extended load.  It reflects the fact that the work product component is in an early stage and may be updated before finalization.
@@ -133,25 +133,25 @@ public class WellOpsNonProductiveTime_1_0_0_Data : AbstractCommonResources_1_0_0
     /// Describes a record's overall suitability for general business consumption based on data quality. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [JsonPropertyName("TechnicalAssurances")]
-    public List<AbstractTechnicalAssurance_1_1_0> TechnicalAssurances { get; set; }
+    public List<AbstractTechnicalAssurance_1_1_0>? TechnicalAssurances { get; set; }
 
     /// <summary>
     /// Alternative names, including historical, by which this work-product-component is/has been known (it should include all the identifiers).
     /// </summary>
     [JsonPropertyName("NameAliases")]
-    public List<AbstractAliasNames_1_0_0> NameAliases { get; set; }
+    public List<AbstractAliasNames_1_0_0>? NameAliases { get; set; }
 
     /// <summary>
     /// Name
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// Description.  Summary of the work product component.  Not the same as Remark which captures thoughts of creator about the wpc.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// Date that a resource (work  product component here) is formed outside of OSDU before loading (e.g. publication date).
@@ -164,7 +164,7 @@ public class WellOpsNonProductiveTime_1_0_0_Data : AbstractCommonResources_1_0_0
     /// Array of key words to identify the work product, especially to help in search.
     /// </summary>
     [JsonPropertyName("Tags")]
-    public List<string> Tags { get; set; }
+    public List<string>? Tags { get; set; }
 
     [JsonPropertyName("SpatialPoint")]
     public AbstractSpatialLocation_1_1_0? SpatialPoint { get; set; }
@@ -176,52 +176,52 @@ public class WellOpsNonProductiveTime_1_0_0_Data : AbstractCommonResources_1_0_0
     /// List of geographic entities which provide context to the WPC.  This may include multiple types or multiple values of the same type.
     /// </summary>
     [JsonPropertyName("GeoContexts")]
-    public List<AbstractGeoContext_1_0_0> GeoContexts { get; set; }
+    public List<AbstractGeoContext_1_0_0>? GeoContexts { get; set; }
 
     /// <summary>
     /// Name of the person that first submitted the work product component to OSDU.
     /// </summary>
     [JsonPropertyName("SubmitterName")]
-    public string SubmitterName { get; set; }
+    public string? SubmitterName { get; set; }
 
     /// <summary>
     /// Array of business processes/workflows that the work product component has been through (ex. well planning, exploration).
     /// </summary>
     [JsonPropertyName("BusinessActivities")]
-    public List<string> BusinessActivities { get; set; }
+    public List<string>? BusinessActivities { get; set; }
 
     /// <summary>
     /// Array of Authors' names of the work product component.  Could be a person or company entity.
     /// </summary>
     [JsonPropertyName("AuthorIDs")]
-    public List<string> AuthorIDs { get; set; }
+    public List<string>? AuthorIDs { get; set; }
 
     /// <summary>
     /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
     /// </summary>
     [JsonPropertyName("LineageAssertions")]
-    public List<WellOpsNonProductiveTime_1_0_0_Data_LineageAssertions> LineageAssertions { get; set; }
+    public List<WellOpsNonProductiveTime_1_0_0_Data_LineageAssertions>? LineageAssertions { get; set; }
 
     /// <summary>
     /// Parent Wellbore Identifier
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Wellbore:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellboreID")]
-    public string WellboreID { get; set; }
+    public string? WellboreID { get; set; }
 
     /// <summary>
     /// Identifier of the Well Activity in which the NPT occurred
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-WellActivity:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellActivityID")]
-    public string WellActivityID { get; set; }
+    public string? WellActivityID { get; set; }
 
     /// <summary>
     /// Identifier of the Rig/Work Unit performing the activity at the time of the NPT
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Rig:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("RigID")]
-    public string RigID { get; set; }
+    public string? RigID { get; set; }
 
     [JsonPropertyName("VerticalMeasurement")]
     public AbstractFacilityVerticalMeasurement_1_0_0? VerticalMeasurement { get; set; }
@@ -230,28 +230,28 @@ public class WellOpsNonProductiveTime_1_0_0_Data : AbstractCommonResources_1_0_0
     /// Title, free text entry usually by Rigsite personnel
     /// </summary>
     [JsonPropertyName("Title")]
-    public string Title { get; set; }
+    public string? Title { get; set; }
 
     /// <summary>
     /// Unplanned Event Type classification (NPT w/ Equipment Failure, NPT w/out Equipment Failure, Equipment Failure (no NPT)
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-NPTUnplannedEventType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("UnplannedEventTypeID")]
-    public string UnplannedEventTypeID { get; set; }
+    public string? UnplannedEventTypeID { get; set; }
 
     /// <summary>
     /// Major NPT Cause Type category
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-NPTCauseType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("NPTCauseTypeID")]
-    public string NPTCauseTypeID { get; set; }
+    public string? NPTCauseTypeID { get; set; }
 
     /// <summary>
     /// Minor NPT Cause Type category
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-NPTCauseSubType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("NPTCauseSubTypeID")]
-    public string NPTCauseSubTypeID { get; set; }
+    public string? NPTCauseSubTypeID { get; set; }
 
     /// <summary>
     /// Used to flag NPT Events which were later classified as not NPT
@@ -279,26 +279,26 @@ public class WellOpsNonProductiveTime_1_0_0_Data : AbstractCommonResources_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-WellOperationsReport:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("StartOperationsReportID")]
-    public string StartOperationsReportID { get; set; }
+    public string? StartOperationsReportID { get; set; }
 
     /// <summary>
     /// Start Operations Activity Natural Identifier from Daily Operations Report. Requires that the relationship to WellOperationsReport is populated. ActivityName must match a member in the related WellOperationsReport data.OperationsActivity[].ActivityID.
     /// </summary>
     [JsonPropertyName("StartOperationsActivityID")]
-    public string StartOperationsActivityID { get; set; }
+    public string? StartOperationsActivityID { get; set; }
 
     /// <summary>
     /// Start Operations Activity Daily Operations Report ID  in which the NPT Event ended.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-WellOperationsReport:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("EndOperationsReportID")]
-    public string EndOperationsReportID { get; set; }
+    public string? EndOperationsReportID { get; set; }
 
     /// <summary>
     /// End Operations Activity Natural Identifier from Daily Operations Report. Requires that the relationship WellOperationsReport is populated. ActivityID must match a member in the related WellOperationsReport data.OperationsActivity[].ActivityID.
     /// </summary>
     [JsonPropertyName("EndOperationsActivityID")]
-    public string EndOperationsActivityID { get; set; }
+    public string? EndOperationsActivityID { get; set; }
 
     /// <summary>
     /// NPT Level (nesting). 0 = Productive Time (not NPT), 1 = 1st Unplanned Activity, 2 = 2nd Unplanned activity occurring within 1st NPT, 3 = 3rd NPT occurring within 2nd NPT, tc.
@@ -311,7 +311,7 @@ public class WellOpsNonProductiveTime_1_0_0_Data : AbstractCommonResources_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-WellOpsNonProductiveTime:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ParentNPTEventID")]
-    public string ParentNPTEventID { get; set; }
+    public string? ParentNPTEventID { get; set; }
 
     /// <summary>
     /// Measured Depth at time when the NPT event started (when relevant) referenced from Vertical Measure Elevation
@@ -342,13 +342,13 @@ public class WellOpsNonProductiveTime_1_0_0_Data : AbstractCommonResources_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-WellboreMarkerSet:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellboreMarkerSetID")]
-    public string WellboreMarkerSetID { get; set; }
+    public string? WellboreMarkerSetID { get; set; }
 
     /// <summary>
     /// Name of the NPT Coach/Well Operations Performance Engineer who was responsible for shepherding the NPT through its lifecycle
     /// </summary>
     [JsonPropertyName("AccountableParty")]
-    public string AccountableParty { get; set; }
+    public string? AccountableParty { get; set; }
 
     /// <summary>
     /// Gross Time Duration = NPT End Date/time - Start Date/time
@@ -379,47 +379,47 @@ public class WellOpsNonProductiveTime_1_0_0_Data : AbstractCommonResources_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-NPTSeverityLevel:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SeverityLevelID")]
-    public string SeverityLevelID { get; set; }
+    public string? SeverityLevelID { get; set; }
 
     /// <summary>
     /// NPT Safety Classification - High Potential Incident, Process Safety Incident, or both. NULL identifies NPT Events with no safety implications.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-NPTSafetyClassificationType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SafetyClassificationID")]
-    public string SafetyClassificationID { get; set; }
+    public string? SafetyClassificationID { get; set; }
 
     /// <summary>
     /// Safety Incident Reference to another system
     /// </summary>
     [JsonPropertyName("SafetyIncidentReferenceID")]
-    public string SafetyIncidentReferenceID { get; set; }
+    public string? SafetyIncidentReferenceID { get; set; }
 
     /// <summary>
     /// Well Control Event Classification level
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WellControlEventClassification:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellControlEventClassificationID")]
-    public string WellControlEventClassificationID { get; set; }
+    public string? WellControlEventClassificationID { get; set; }
 
     /// <summary>
     /// Cost Group/Code (Activity Element)
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CostCode:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("CostGroupID")]
-    public string CostGroupID { get; set; }
+    public string? CostGroupID { get; set; }
 
     /// <summary>
     /// Team assigned to investigate the NPT
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-NPTRootCauseFailureTeam:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("RootCauseFailureTeamID")]
-    public string RootCauseFailureTeamID { get; set; }
+    public string? RootCauseFailureTeamID { get; set; }
 
     /// <summary>
     /// NPT incident Reference/Identifier to other Root Cause Failure Analysis system
     /// </summary>
     [JsonPropertyName("RootCauseFailureReferenceID")]
-    public string RootCauseFailureReferenceID { get; set; }
+    public string? RootCauseFailureReferenceID { get; set; }
 
     /// <summary>
     /// Ongoing operations burn rate cost (daily cost). Used to calculate Gross and Net Cost
@@ -462,51 +462,51 @@ public class WellOpsNonProductiveTime_1_0_0_Data : AbstractCommonResources_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ResponsibleCompanyID")]
-    public string ResponsibleCompanyID { get; set; }
+    public string? ResponsibleCompanyID { get; set; }
 
     /// <summary>
     /// Responsible Company Contact Name
     /// </summary>
     [JsonPropertyName("ResponsibleCompanyContact")]
-    public string ResponsibleCompanyContact { get; set; }
+    public string? ResponsibleCompanyContact { get; set; }
 
     /// <summary>
     /// Responsible Company Comments
     /// </summary>
     [JsonPropertyName("ResponsibleCompanyComments")]
-    public string ResponsibleCompanyComments { get; set; }
+    public string? ResponsibleCompanyComments { get; set; }
 
     /// <summary>
     /// Responsible Company Findings
     /// </summary>
     [JsonPropertyName("ResponsibleCompanyFindings")]
-    public string ResponsibleCompanyFindings { get; set; }
+    public string? ResponsibleCompanyFindings { get; set; }
 
     /// <summary>
     /// Responsible Company Resolution Date
     /// </summary>
     [JsonPropertyName("ResponsibleCompanyResolutionDate")]
-    public DateOnly ResponsibleCompanyResolutionDate { get; set; }
+    public DateOnly? ResponsibleCompanyResolutionDate { get; set; }
 
     /// <summary>
     /// Downtime Event Identifier, used when NPT Equipment failures also captured as downtime events
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-DowntimeEvent:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("DowntimeEventID")]
-    public string DowntimeEventID { get; set; }
+    public string? DowntimeEventID { get; set; }
 
     /// <summary>
     /// Equipment Failure Type Identifier
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-NPTEquipmentType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("EquipmentFailureTypeID")]
-    public string EquipmentFailureTypeID { get; set; }
+    public string? EquipmentFailureTypeID { get; set; }
 
     /// <summary>
     /// Equipment Model Name/Number
     /// </summary>
     [JsonPropertyName("EquipmentModel")]
-    public string EquipmentModel { get; set; }
+    public string? EquipmentModel { get; set; }
 
     /// <summary>
     /// Equipment Size / Diameter
@@ -518,20 +518,20 @@ public class WellOpsNonProductiveTime_1_0_0_Data : AbstractCommonResources_1_0_0
     /// Equipment Serial Number
     /// </summary>
     [JsonPropertyName("EquipmentSerialNumber")]
-    public string EquipmentSerialNumber { get; set; }
+    public string? EquipmentSerialNumber { get; set; }
 
     /// <summary>
     /// Equipment Part Number
     /// </summary>
     [JsonPropertyName("EquipmentPartNumber")]
-    public string EquipmentPartNumber { get; set; }
+    public string? EquipmentPartNumber { get; set; }
 
     /// <summary>
     /// Equipment Manufacturer
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("EquipmentManufacturerID")]
-    public string EquipmentManufacturerID { get; set; }
+    public string? EquipmentManufacturerID { get; set; }
 
     /// <summary>
     /// Equipment Last Inspection Date/time
@@ -544,7 +544,7 @@ public class WellOpsNonProductiveTime_1_0_0_Data : AbstractCommonResources_1_0_0
     /// Equipment Failure Location Description
     /// </summary>
     [JsonPropertyName("EquipmentFailureLocationDescription")]
-    public string EquipmentFailureLocationDescription { get; set; }
+    public string? EquipmentFailureLocationDescription { get; set; }
 
     /// <summary>
     /// Equipment Failure Hours Before Fail
@@ -563,64 +563,64 @@ public class WellOpsNonProductiveTime_1_0_0_Data : AbstractCommonResources_1_0_0
     /// Investigation Status History
     /// </summary>
     [JsonPropertyName("InvestigationStatus")]
-    public List<WellOpsNonProductiveTime_1_0_0_Data_InvestigationStatus> InvestigationStatus { get; set; }
+    public List<WellOpsNonProductiveTime_1_0_0_Data_InvestigationStatus>? InvestigationStatus { get; set; }
 
     /// <summary>
     /// NPT Actions
     /// </summary>
     [JsonPropertyName("NPTActions")]
-    public List<WellOpsNonProductiveTime_1_0_0_Data_NPTActions> NPTActions { get; set; }
+    public List<WellOpsNonProductiveTime_1_0_0_Data_NPTActions>? NPTActions { get; set; }
 
     /// <summary>
     /// Risk Assessment Type ID
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-NPTRiskAssessmentType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("RiskAssessmentTypeID")]
-    public string RiskAssessmentTypeID { get; set; }
+    public string? RiskAssessmentTypeID { get; set; }
 
     /// <summary>
     /// ID of specific risk associated to this NPT
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Risk:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("RiskID")]
-    public string RiskID { get; set; }
+    public string? RiskID { get; set; }
 
     /// <summary>
     /// Root Cause Type ID
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-NPTRootCauseType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("RootCauseTypeID")]
-    public string RootCauseTypeID { get; set; }
+    public string? RootCauseTypeID { get; set; }
 
     /// <summary>
     /// Root Cause Description
     /// </summary>
     [JsonPropertyName("RootCauseDescription")]
-    public string RootCauseDescription { get; set; }
+    public string? RootCauseDescription { get; set; }
 
     /// <summary>
     /// Preventative Actions
     /// </summary>
     [JsonPropertyName("PreventativeActions")]
-    public string PreventativeActions { get; set; }
+    public string? PreventativeActions { get; set; }
 
     /// <summary>
     /// Remedial actions taken by field/rig team when NPT occurred to address the NPT.
     /// </summary>
     [JsonPropertyName("FieldRemediation")]
-    public string FieldRemediation { get; set; }
+    public string? FieldRemediation { get; set; }
 
     /// <summary>
     /// Learnings arising from the NPT investigation
     /// </summary>
     [JsonPropertyName("Learnings")]
-    public string Learnings { get; set; }
+    public string? Learnings { get; set; }
 
     /// <summary>
     /// Remarks
     /// </summary>
     [JsonPropertyName("Remarks")]
-    public string Remarks { get; set; }
+    public string? Remarks { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
@@ -637,21 +637,21 @@ public class WellOpsNonProductiveTime_1_0_0_Data_Artefacts
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ArtefactRole:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("RoleID")]
-    public string RoleID { get; set; }
+    public string? RoleID { get; set; }
 
     /// <summary>
     /// The kind or schema ID of the artefact. Resolvable with the Schema Service.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("ResourceKind")]
-    public string ResourceKind { get; set; }
+    public string? ResourceKind { get; set; }
 
     /// <summary>
     /// The SRN which identifies this OSDU Artefact resource.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:dataset\-\-[\w\-\.]+:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ResourceID")]
-    public string ResourceID { get; set; }
+    public string? ResourceID { get; set; }
 
 }
 
@@ -665,14 +665,14 @@ public class WellOpsNonProductiveTime_1_0_0_Data_LineageAssertions
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ID")]
-    public string ID { get; set; }
+    public string? ID { get; set; }
 
     /// <summary>
     /// Used by LineageAssertion to describe the nature of the line of descent of a work product component from a prior Resource, such as DIRECT, INDIRECT, REFERENCE.  It is not for proximity (number of nodes away), it is not to cover all the relationships in a full ontology or graph, and it is not to describe the type of activity that created the asserting WPC.  LineageAssertion does not encompass a full provenance, process history, or activity model.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-LineageRelationshipType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("LineageRelationshipType")]
-    public string LineageRelationshipType { get; set; }
+    public string? LineageRelationshipType { get; set; }
 
 }
 
@@ -693,19 +693,19 @@ public class WellOpsNonProductiveTime_1_0_0_Data_InvestigationStatus
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-NPTInvestigationStatusType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("InvestigationStatusTypeID")]
-    public string InvestigationStatusTypeID { get; set; }
+    public string? InvestigationStatusTypeID { get; set; }
 
     /// <summary>
     /// Investigation Team Reviewer
     /// </summary>
     [JsonPropertyName("InvestigationTeamReviewer")]
-    public string InvestigationTeamReviewer { get; set; }
+    public string? InvestigationTeamReviewer { get; set; }
 
     /// <summary>
     /// Investigation Status Remarks
     /// </summary>
     [JsonPropertyName("InvestigationStatusRemarks")]
-    public string InvestigationStatusRemarks { get; set; }
+    public string? InvestigationStatusRemarks { get; set; }
 
 }
 
@@ -725,24 +725,24 @@ public class WellOpsNonProductiveTime_1_0_0_Data_NPTActions
     /// Action Description
     /// </summary>
     [JsonPropertyName("ActionDescription")]
-    public string ActionDescription { get; set; }
+    public string? ActionDescription { get; set; }
 
     /// <summary>
     /// Action Owner name
     /// </summary>
     [JsonPropertyName("ActionOwner")]
-    public string ActionOwner { get; set; }
+    public string? ActionOwner { get; set; }
 
     /// <summary>
     /// Action Completed Date
     /// </summary>
     [JsonPropertyName("ActionCompletedDate")]
-    public string ActionCompletedDate { get; set; }
+    public string? ActionCompletedDate { get; set; }
 
     /// <summary>
     /// Action Remarks
     /// </summary>
     [JsonPropertyName("ActionRemarks")]
-    public string ActionRemarks { get; set; }
+    public string? ActionRemarks { get; set; }
 
 }

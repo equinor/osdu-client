@@ -25,7 +25,7 @@ public class WellActivity_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-WellActivity:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class WellActivity_1_0_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class WellActivity_1_0_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class WellActivity_1_0_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class WellActivity_1_0_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class WellActivity_1_0_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public WellActivity_1_0_0_Data? Data { get; set; }
@@ -101,13 +101,13 @@ public class WellActivity_1_0_0_Data : AbstractCommonResources_1_0_0 // Also com
     /// Alternative names, including historical, by which this master data is/has been known (it should include all the identifiers).
     /// </summary>
     [JsonPropertyName("NameAliases")]
-    public List<AbstractAliasNames_1_0_0> NameAliases { get; set; }
+    public List<AbstractAliasNames_1_0_0>? NameAliases { get; set; }
 
     /// <summary>
     /// List of geographic entities which provide context to the master data. This may include multiple types or multiple values of the same type.
     /// </summary>
     [JsonPropertyName("GeoContexts")]
-    public List<AbstractGeoContext_1_0_0> GeoContexts { get; set; }
+    public List<AbstractGeoContext_1_0_0>? GeoContexts { get; set; }
 
     [JsonPropertyName("SpatialLocation")]
     public AbstractSpatialLocation_1_1_0? SpatialLocation { get; set; }
@@ -116,38 +116,38 @@ public class WellActivity_1_0_0_Data : AbstractCommonResources_1_0_0 // Also com
     /// This describes the reason that caused the creation of a new version of this master data.
     /// </summary>
     [JsonPropertyName("VersionCreationReason")]
-    public string VersionCreationReason { get; set; }
+    public string? VersionCreationReason { get; set; }
 
     /// <summary>
     /// Describes a master-data record's overall suitability for general business consumption based on data quality. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TechnicalAssuranceType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TechnicalAssuranceTypeID")]
-    public string TechnicalAssuranceTypeID { get; set; }
+    public string? TechnicalAssuranceTypeID { get; set; }
 
     /// <summary>
     /// Native identifier from a Master Data Management System or other trusted source external to OSDU - stored here in order to allow for multi-system connection and synchronization. If used, the "Source" property should identify that source system.
     /// </summary>
     [JsonPropertyName("ProjectID")]
-    public string ProjectID { get; set; }
+    public string? ProjectID { get; set; }
 
     /// <summary>
     /// The common or preferred name of a Project.
     /// </summary>
     [JsonPropertyName("ProjectName")]
-    public string ProjectName { get; set; }
+    public string? ProjectName { get; set; }
 
     /// <summary>
     /// DEPRECATED: please use data.NameAliases. The history of Project names, codes, and other business identifiers.
     /// </summary>
     [JsonPropertyName("ProjectNames")]
-    public List<AbstractAliasNames_1_0_0> ProjectNames { get; set; }
+    public List<AbstractAliasNames_1_0_0>? ProjectNames { get; set; }
 
     /// <summary>
     /// Description of the objectives of a Project.
     /// </summary>
     [JsonPropertyName("Purpose")]
-    public string Purpose { get; set; }
+    public string? Purpose { get; set; }
 
     /// <summary>
     /// The date and time when the Project was initiated.
@@ -167,70 +167,70 @@ public class WellActivity_1_0_0_Data : AbstractCommonResources_1_0_0 // Also com
     /// The history of expenditure approvals.
     /// </summary>
     [JsonPropertyName("FundsAuthorizations")]
-    public List<WellActivity_1_0_0_Data_FundsAuthorizations> FundsAuthorizations { get; set; }
+    public List<WellActivity_1_0_0_Data_FundsAuthorizations>? FundsAuthorizations { get; set; }
 
     /// <summary>
     /// References to applicable agreements in external contract database system of record.
     /// </summary>
     [JsonPropertyName("ContractIDs")]
-    public List<string> ContractIDs { get; set; }
+    public List<string>? ContractIDs { get; set; }
 
     /// <summary>
     /// The organisation which controlled the conduct of the project.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("Operator")]
-    public string Operator { get; set; }
+    public string? Operator { get; set; }
 
     /// <summary>
     /// References to organisations which supplied services to the Project.
     /// </summary>
     [JsonPropertyName("Contractors")]
-    public List<WellActivity_1_0_0_Data_Contractors> Contractors { get; set; }
+    public List<WellActivity_1_0_0_Data_Contractors>? Contractors { get; set; }
 
     /// <summary>
     /// List of key individuals supporting the Project.  This could be Abstracted for re-use, and could reference a separate Persons master data object.
     /// </summary>
     [JsonPropertyName("Personnel")]
-    public List<WellActivity_1_0_0_Data_Personnel> Personnel { get; set; }
+    public List<WellActivity_1_0_0_Data_Personnel>? Personnel { get; set; }
 
     /// <summary>
     /// General parameters defining the configuration of the Project.  In the case of a seismic acquisition project it is like receiver interval, source depth, source type.  In the case of a processing project, it is like replacement velocity, reference datum above mean sea level.
     /// </summary>
     [JsonPropertyName("ProjectSpecifications")]
-    public List<WellActivity_1_0_0_Data_ProjectSpecifications> ProjectSpecifications { get; set; }
+    public List<WellActivity_1_0_0_Data_ProjectSpecifications>? ProjectSpecifications { get; set; }
 
     /// <summary>
     /// The history of life cycle states that the Project has been through..
     /// </summary>
     [JsonPropertyName("ProjectStates")]
-    public List<WellActivity_1_0_0_Data_ProjectStates> ProjectStates { get; set; }
+    public List<WellActivity_1_0_0_Data_ProjectStates>? ProjectStates { get; set; }
 
     /// <summary>
     /// The relation to the ActivityTemplate carrying expected parameter definitions and default values.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-ActivityTemplate:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ActivityTemplateID")]
-    public string ActivityTemplateID { get; set; }
+    public string? ActivityTemplateID { get; set; }
 
     /// <summary>
     /// The relationship to a parent project acting as a parent activity.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-[\w\-\.]+:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ParentProjectID")]
-    public string ParentProjectID { get; set; }
+    public string? ParentProjectID { get; set; }
 
     /// <summary>
     /// General parameter value used in one instance of activity.  Includes reference to data objects which are inputs and outputs of the activity.
     /// </summary>
     [JsonPropertyName("Parameters")]
-    public List<AbstractActivityParameter_1_0_0> Parameters { get; set; }
+    public List<AbstractActivityParameter_1_0_0>? Parameters { get; set; }
 
     /// <summary>
     /// The (non-overlapping) historical activity states and effective start and termination dates. The last state is replicated in the single LastActivityState for simpler queries.
     /// </summary>
     [JsonPropertyName("ActivityStates")]
-    public List<AbstractActivityState_1_0_0> ActivityStates { get; set; }
+    public List<AbstractActivityState_1_0_0>? ActivityStates { get; set; }
 
     [JsonPropertyName("LastActivityState")]
     public AbstractActivityState_1_0_0? LastActivityState { get; set; }
@@ -239,33 +239,33 @@ public class WellActivity_1_0_0_Data : AbstractCommonResources_1_0_0 // Also com
     /// The name of this Well Activity
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// Link to the Well
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Well:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellID")]
-    public string WellID { get; set; }
+    public string? WellID { get; set; }
 
     /// <summary>
     /// The type of well activity being conducted.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WellActivityType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellActivityType")]
-    public string WellActivityType { get; set; }
+    public string? WellActivityType { get; set; }
 
     /// <summary>
     /// A narrative summary of the work being conducted in this well activity
     /// </summary>
     [JsonPropertyName("WellActivityDescription")]
-    public string WellActivityDescription { get; set; }
+    public string? WellActivityDescription { get; set; }
 
     /// <summary>
     /// The objective for the Well Activity.  A Well Activity may have one or more objectives. The first is the primary objective to need to retain order.
     /// </summary>
     [JsonPropertyName("WellActivityObjective")]
-    public List<string> WellActivityObjective { get; set; }
+    public List<string>? WellActivityObjective { get; set; }
 
     /// <summary>
     /// Expected duration in days for the well activity
@@ -278,13 +278,13 @@ public class WellActivity_1_0_0_Data : AbstractCommonResources_1_0_0 // Also com
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WellheadConnection:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellheadConnection")]
-    public string WellheadConnection { get; set; }
+    public string? WellheadConnection { get; set; }
 
     /// <summary>
     /// Benchmarking categories (from picklist - open)
     /// </summary>
     [JsonPropertyName("TechnologyApplied")]
-    public List<string> TechnologyApplied { get; set; }
+    public List<string>? TechnologyApplied { get; set; }
 
     /// <summary>
     /// Timestamp for the beginning of the Well Activity
@@ -339,7 +339,7 @@ public class WellActivity_1_0_0_Data : AbstractCommonResources_1_0_0 // Also com
     /// Name of the individual that submitted data for benchmarking
     /// </summary>
     [JsonPropertyName("PerformanceBenchmarkSubmitter")]
-    public string PerformanceBenchmarkSubmitter { get; set; }
+    public string? PerformanceBenchmarkSubmitter { get; set; }
 
     /// <summary>
     /// Date Performance Benchmark was submitted
@@ -352,25 +352,25 @@ public class WellActivity_1_0_0_Data : AbstractCommonResources_1_0_0 // Also com
     /// Freeform comments describing the overall well activity
     /// </summary>
     [JsonPropertyName("Comments")]
-    public string Comments { get; set; }
+    public string? Comments { get; set; }
 
     /// <summary>
     /// Company or corporate division that is responsible for executing the work.
     /// </summary>
     [JsonPropertyName("StewardingCompany")]
-    public string StewardingCompany { get; set; }
+    public string? StewardingCompany { get; set; }
 
     /// <summary>
     /// Team within a company, or corporate division that is responsible for executing the work.
     /// </summary>
     [JsonPropertyName("StewardingCompanyTeam")]
-    public string StewardingCompanyTeam { get; set; }
+    public string? StewardingCompanyTeam { get; set; }
 
     /// <summary>
     /// Individual, company, or corporate division that work is being executed on behalf of.
     /// </summary>
     [JsonPropertyName("Customer")]
-    public string Customer { get; set; }
+    public string? Customer { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
@@ -386,7 +386,7 @@ public class WellActivity_1_0_0_Data_FundsAuthorizations
     /// Internal Company control number which identifies the allocation of funds to the Project.
     /// </summary>
     [JsonPropertyName("AuthorizationID")]
-    public string AuthorizationID { get; set; }
+    public string? AuthorizationID { get; set; }
 
     /// <summary>
     /// The date and time when the funds were approved.
@@ -406,7 +406,7 @@ public class WellActivity_1_0_0_Data_FundsAuthorizations
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-Currency:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("CurrencyID")]
-    public string CurrencyID { get; set; }
+    public string? CurrencyID { get; set; }
 
 }
 
@@ -420,20 +420,20 @@ public class WellActivity_1_0_0_Data_Contractors
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ContractorOrganisationID")]
-    public string ContractorOrganisationID { get; set; }
+    public string? ContractorOrganisationID { get; set; }
 
     /// <summary>
     /// Name of the team, unit, crew, party, or other subdivision of the Contractor that provided services.
     /// </summary>
     [JsonPropertyName("ContractorCrew")]
-    public string ContractorCrew { get; set; }
+    public string? ContractorCrew { get; set; }
 
     /// <summary>
     /// The identifier of a reference value for the role of a contractor providing services, such as Recording, Line Clearing, Positioning, Data Processing.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ContractorType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ContractorTypeID")]
-    public string ContractorTypeID { get; set; }
+    public string? ContractorTypeID { get; set; }
 
 }
 
@@ -446,21 +446,21 @@ public class WellActivity_1_0_0_Data_Personnel
     /// Name of an individual supporting the Project.
     /// </summary>
     [JsonPropertyName("PersonName")]
-    public string PersonName { get; set; }
+    public string? PersonName { get; set; }
 
     /// <summary>
     /// Reference to the company which employs Personnel.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("CompanyOrganisationID")]
-    public string CompanyOrganisationID { get; set; }
+    public string? CompanyOrganisationID { get; set; }
 
     /// <summary>
     /// The identifier of a reference value for the role of an individual supporting a Project, such as Project Manager, Party Chief, Client Representative, Senior Observer.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ProjectRole:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ProjectRoleID")]
-    public string ProjectRoleID { get; set; }
+    public string? ProjectRoleID { get; set; }
 
 }
 
@@ -507,21 +507,21 @@ public class WellActivity_1_0_0_Data_ProjectSpecifications
     /// The actual text value of the parameter.
     /// </summary>
     [JsonPropertyName("ProjectSpecificationText")]
-    public string ProjectSpecificationText { get; set; }
+    public string? ProjectSpecificationText { get; set; }
 
     /// <summary>
     /// The unit for the quantity parameter if overriding the default for this ParameterType, like metre (m in SI units system) for quantity Length.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("UnitOfMeasureID")]
-    public string UnitOfMeasureID { get; set; }
+    public string? UnitOfMeasureID { get; set; }
 
     /// <summary>
     /// Parameter type of property or characteristic.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ParameterType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ParameterTypeID")]
-    public string ParameterTypeID { get; set; }
+    public string? ParameterTypeID { get; set; }
 
 }
 
@@ -549,6 +549,6 @@ public class WellActivity_1_0_0_Data_ProjectStates
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ProjectStateType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ProjectStateTypeID")]
-    public string ProjectStateTypeID { get; set; }
+    public string? ProjectStateTypeID { get; set; }
 
 }

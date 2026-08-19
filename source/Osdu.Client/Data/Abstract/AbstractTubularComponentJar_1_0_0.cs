@@ -60,13 +60,13 @@ public class AbstractTubularComponentJar_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-JarType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("JarTypeID")]
-    public string JarTypeID { get; set; }
+    public string? JarTypeID { get; set; }
 
     /// <summary>
     /// Specifies the type of jar action.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-JarActionType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("JarActionTypeID")]
-    public string JarActionTypeID { get; set; }
+    public string? JarActionTypeID { get; set; }
 
 }

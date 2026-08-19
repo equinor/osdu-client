@@ -24,7 +24,7 @@ public class AbstractReferencePropertyType_1_2_2
     /// </summary>
     [RegularExpression(@"^string$|^number$|^integer$|^boolean$")]
     [JsonPropertyName("ValueType")]
-    public string ValueType { get; set; }
+    public string? ValueType { get; set; }
 
     /// <summary>
     /// The number of values in a tuple, e.g. For coordinates. The default is 1.
@@ -37,14 +37,14 @@ public class AbstractReferencePropertyType_1_2_2
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("UnitOfMeasureID")]
-    public string UnitOfMeasureID { get; set; }
+    public string? UnitOfMeasureID { get; set; }
 
     /// <summary>
     /// Only populated if the ValueType is "number". It holds the UnitQuantity associated with this reference property type. It is a relationship to UnitQuantity record. If `UnitQuantityID` is provided, `PropertyType` is expected to be omitted.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitQuantity:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("UnitQuantityID")]
-    public string UnitQuantityID { get; set; }
+    public string? UnitQuantityID { get; set; }
 
     [JsonPropertyName("PropertyType")]
     public AbstractPropertyType_1_0_0? PropertyType { get; set; }
@@ -54,7 +54,7 @@ public class AbstractReferencePropertyType_1_2_2
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:([0-9]+)?(\.)?([0-9]+)?(\.)?([0-9]+)?$")]
     [JsonPropertyName("RelationshipTargetKind")]
-    public string RelationshipTargetKind { get; set; }
+    public string? RelationshipTargetKind { get; set; }
 
     /// <summary>
     /// Ordered array with: FacetType, FacetRole, both calling specific references
@@ -62,12 +62,12 @@ public class AbstractReferencePropertyType_1_2_2
     /// FacetRole: Additional context about the nature of a property type. The purpose of such attribute is to minimize the need to create specialized property types by mutualizing some well known qualifiers such as "maximum", "minimum" which apply to a lot of different property types.
     /// </summary>
     [JsonPropertyName("FacetIDs")]
-    public List<AbstractFacet_1_0_0> FacetIDs { get; set; }
+    public List<AbstractFacet_1_0_0>? FacetIDs { get; set; }
 
     /// <summary>
     /// When describing a table column, e.g., in an associated dataset, this optional property allows the association of the record column definition(s) to dataset table column(s).
     /// </summary>
     [JsonPropertyName("ColumnName")]
-    public string ColumnName { get; set; }
+    public string? ColumnName { get; set; }
 
 }

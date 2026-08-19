@@ -25,7 +25,7 @@ public class File_Image_PNG_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:dataset\-\-File.Image.PNG:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class File_Image_PNG_1_0_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class File_Image_PNG_1_0_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class File_Image_PNG_1_0_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class File_Image_PNG_1_0_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class File_Image_PNG_1_0_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public File_Image_PNG_1_0_0_Data? Data { get; set; }
@@ -101,40 +101,40 @@ public class File_Image_PNG_1_0_0_Data : AbstractCommonResources_1_0_0 // Also c
     /// An optional name of the dataset, e.g. a user friendly file or file collection name.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// An optional, textual description of the dataset.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// Total size of the dataset in bytes; for files it is the same as declared in FileSourceInfo.FileSize or the sum of all individual files. Implemented as string. The value must be convertible to a long integer (sizes can become very large).
     /// </summary>
     [RegularExpression(@"^[0-9]+$")]
     [JsonPropertyName("TotalSize")]
-    public string TotalSize { get; set; }
+    public string? TotalSize { get; set; }
 
     /// <summary>
     /// EncodingFormatType ID reference value relationship. It can be a mime-type or media-type.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-EncodingFormatType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("EncodingFormatTypeID")]
-    public string EncodingFormatTypeID { get; set; }
+    public string? EncodingFormatTypeID { get; set; }
 
     /// <summary>
     /// Relationship to the SchemaFormatType reference value.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-SchemaFormatType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SchemaFormatTypeID")]
-    public string SchemaFormatTypeID { get; set; }
+    public string? SchemaFormatTypeID { get; set; }
 
     /// <summary>
     /// Endianness of binary value.  Enumeration: "BIG", "LITTLE".  If absent, applications will need to interpret from context indicators.
     /// </summary>
     [JsonPropertyName("Endian")]
-    public File_Image_PNG_1_0_0_Data_Endian Endian { get; set; }
+    public File_Image_PNG_1_0_0_Data_Endian? Endian { get; set; }
 
     /// <summary>
     /// Placeholder for a specialization.
@@ -147,7 +147,7 @@ public class File_Image_PNG_1_0_0_Data : AbstractCommonResources_1_0_0 // Also c
     /// </summary>
     [RegularExpression(@"^[0-9a-fA-F]{32}")]
     [JsonPropertyName("Checksum")]
-    public string Checksum { get; set; }
+    public string? Checksum { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }

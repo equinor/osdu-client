@@ -17,12 +17,12 @@ namespace Osdu.Client.Apis.Unit;
 public class MapState
 {
     [JsonPropertyName("state")]
-    public string State { get; set; }
+    public string? State { get; set; }
 
     [JsonPropertyName("source")]
-    public string Source { get; set; }
+    public string? Source { get; set; }
 
     [JsonPropertyName("description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
 }

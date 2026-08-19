@@ -23,14 +23,14 @@ public class AbstractBinGrid_1_1_0
     /// Name of bin grid (e.g., GEOCO_GREENCYN_PHV_2012).  Probably the name as it exists in a separate corporate store if OSDU is not main system.
     /// </summary>
     [JsonPropertyName("BinGridName")]
-    public string BinGridName { get; set; }
+    public string? BinGridName { get; set; }
 
     /// <summary>
     /// Type of bin grid (Acquisition, Processing, Velocity, MagGrav, Magnetics, Gravity, GeologicModel, Reprojected, etc.)
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-SeismicBinGridType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("BinGridTypeID")]
-    public string BinGridTypeID { get; set; }
+    public string? BinGridTypeID { get; set; }
 
     /// <summary>
     /// Identifier of the source bin grid as stored in a corporate database/application if OSDU is not main system.
@@ -42,7 +42,7 @@ public class AbstractBinGrid_1_1_0
     /// Identifier (name) of the corporate database/application that stores the source bin grid definitions if OSDU is not main system.
     /// </summary>
     [JsonPropertyName("SourceBinGridAppID")]
-    public string SourceBinGridAppID { get; set; }
+    public string? SourceBinGridAppID { get; set; }
 
     /// <summary>
     /// Nominal design fold as intended by the bin grid definition, expressed as the mode in percentage points (60 fold = 6000%).
@@ -55,13 +55,13 @@ public class AbstractBinGrid_1_1_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-BinGridDefinitionMethodType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("BinGridDefinitionMethodTypeID")]
-    public string BinGridDefinitionMethodTypeID { get; set; }
+    public string? BinGridDefinitionMethodTypeID { get; set; }
 
     /// <summary>
     /// DEPRECATED: Use  AbstractGeoJson.PropertiesBinGridCorners properties inside the ABCDBinGridSpatialLocation. Previously:  Array of 4 corner points for bin grid in local coordinates: Point A (min inline, min crossline); Point B (min inline, max crossline); Point C (max inline, min crossline); Point D (max inline, max crossline).  If Point D is not given and BinGridDefinitionMethodTypeID=4, it must be supplied, with its spatial location, before ingestion to create a parallelogram in map coordinate space.  Note correspondence of inline=x, crossline=y.
     /// </summary>
     [JsonPropertyName("ABCDBinGridLocalCoordinates")]
-    public List<AbstractCoordinates_1_0_0> ABCDBinGridLocalCoordinates { get; set; }
+    public List<AbstractCoordinates_1_0_0>? ABCDBinGridLocalCoordinates { get; set; }
 
     [JsonPropertyName("ABCDBinGridSpatialLocation")]
     public AbstractSpatialLocation_1_1_0? ABCDBinGridSpatialLocation { get; set; }

@@ -17,10 +17,10 @@ namespace Osdu.Client.Apis.Unit;
 public class UnitEssence
 {
     [JsonPropertyName("type")]
-    public string Type { get; set; }
+    public string? Type { get; set; }
 
     [JsonPropertyName("symbol")]
-    public string Symbol { get; set; }
+    public string? Symbol { get; set; }
 
     [JsonPropertyName("abcd")]
     public ABCD? Abcd { get; set; }

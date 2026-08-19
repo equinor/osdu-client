@@ -24,14 +24,14 @@ public class AbstractStimMaterialQuantity_1_0_0
     /// </summary>
     [Required]
     [JsonPropertyName("MaterialReferenceID")]
-    public string MaterialReferenceID { get; set; }
+    public required string MaterialReferenceID { get; set; }
 
     /// <summary>
     /// Additive or Proppant when referenced to the Job Material Catalog
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-StimMaterialType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("MaterialKindID")]
-    public string MaterialKindID { get; set; }
+    public string? MaterialKindID { get; set; }
 
     /// <summary>
     /// The density of the material used.

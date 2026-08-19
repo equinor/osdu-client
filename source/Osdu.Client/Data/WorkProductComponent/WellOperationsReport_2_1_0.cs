@@ -25,7 +25,7 @@ public class WellOperationsReport_2_1_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-WellOperationsReport:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class WellOperationsReport_2_1_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class WellOperationsReport_2_1_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class WellOperationsReport_2_1_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class WellOperationsReport_2_1_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class WellOperationsReport_2_1_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public WellOperationsReport_2_1_0_Data? Data { get; set; }
@@ -101,19 +101,19 @@ public class WellOperationsReport_2_1_0_Data : AbstractCommonResources_1_0_0 // 
     /// The record id, which identifies this OSDU File or dataset resource.
     /// </summary>
     [JsonPropertyName("Datasets")]
-    public List<string> Datasets { get; set; }
+    public List<string>? Datasets { get; set; }
 
     /// <summary>
     /// An array of references to content in Domain Data Management Services represented by this work-product-component. The references are formed as URI following https://www.rfc-editor.org/rfc/rfc3986#page-16. This property is exclusively populated by DDMSs. If a work-product-component is represented in more than one DDMS, DDMSs are obliged to find the specific reference by inspecting the URI's authority values matching the DDMS id.
     /// </summary>
     [JsonPropertyName("DDMSDatasets")]
-    public List<string> DDMSDatasets { get; set; }
+    public List<string>? DDMSDatasets { get; set; }
 
     /// <summary>
     /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
     /// </summary>
     [JsonPropertyName("Artefacts")]
-    public List<WellOperationsReport_2_1_0_Data_Artefacts> Artefacts { get; set; }
+    public List<WellOperationsReport_2_1_0_Data_Artefacts>? Artefacts { get; set; }
 
     /// <summary>
     /// A flag that indicates if the work product component is undergoing an extended load.  It reflects the fact that the work product component is in an early stage and may be updated before finalization.
@@ -133,25 +133,25 @@ public class WellOperationsReport_2_1_0_Data : AbstractCommonResources_1_0_0 // 
     /// Describes a record's overall suitability for general business consumption based on data quality. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [JsonPropertyName("TechnicalAssurances")]
-    public List<AbstractTechnicalAssurance_1_2_0> TechnicalAssurances { get; set; }
+    public List<AbstractTechnicalAssurance_1_2_0>? TechnicalAssurances { get; set; }
 
     /// <summary>
     /// Alternative names, including historical, by which this work-product-component is/has been known (it should include all the identifiers).
     /// </summary>
     [JsonPropertyName("NameAliases")]
-    public List<AbstractAliasNames_1_0_0> NameAliases { get; set; }
+    public List<AbstractAliasNames_1_0_0>? NameAliases { get; set; }
 
     /// <summary>
     /// Name
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// Description.  Summary of the work product component.  Not the same as Remark which captures thoughts of creator about the wpc.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// Date that a resource (work  product component here) is formed outside of OSDU before loading (e.g. publication date).
@@ -164,7 +164,7 @@ public class WellOperationsReport_2_1_0_Data : AbstractCommonResources_1_0_0 // 
     /// Array of key words to identify the work product, especially to help in search.
     /// </summary>
     [JsonPropertyName("Tags")]
-    public List<string> Tags { get; set; }
+    public List<string>? Tags { get; set; }
 
     [JsonPropertyName("SpatialPoint")]
     public AbstractSpatialLocation_1_1_0? SpatialPoint { get; set; }
@@ -176,50 +176,50 @@ public class WellOperationsReport_2_1_0_Data : AbstractCommonResources_1_0_0 // 
     /// List of geographic entities which provide context to the WPC.  This may include multiple types or multiple values of the same type.
     /// </summary>
     [JsonPropertyName("GeoContexts")]
-    public List<AbstractGeoContext_1_0_0> GeoContexts { get; set; }
+    public List<AbstractGeoContext_1_0_0>? GeoContexts { get; set; }
 
     /// <summary>
     /// Name of the person that first submitted the work product component to OSDU.
     /// </summary>
     [JsonPropertyName("SubmitterName")]
-    public string SubmitterName { get; set; }
+    public string? SubmitterName { get; set; }
 
     /// <summary>
     /// Array of business processes/workflows that the work product component has been through (ex. well planning, exploration).
     /// </summary>
     [JsonPropertyName("BusinessActivities")]
-    public List<string> BusinessActivities { get; set; }
+    public List<string>? BusinessActivities { get; set; }
 
     /// <summary>
     /// Array of Authors' names of the work product component.  Could be a person or company entity.
     /// </summary>
     [JsonPropertyName("AuthorIDs")]
-    public List<string> AuthorIDs { get; set; }
+    public List<string>? AuthorIDs { get; set; }
 
     /// <summary>
     /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
     /// </summary>
     [JsonPropertyName("LineageAssertions")]
-    public List<WellOperationsReport_2_1_0_Data_LineageAssertions> LineageAssertions { get; set; }
+    public List<WellOperationsReport_2_1_0_Data_LineageAssertions>? LineageAssertions { get; set; }
 
     /// <summary>
     /// A link to the Well  Activity to which this report is associated.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-WellActivity:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellActivityID")]
-    public string WellActivityID { get; set; }
+    public string? WellActivityID { get; set; }
 
     /// <summary>
     /// Sequential number assigned to report header.
     /// </summary>
     [JsonPropertyName("ReportNumber")]
-    public string ReportNumber { get; set; }
+    public string? ReportNumber { get; set; }
 
     /// <summary>
     /// Report description
     /// </summary>
     [JsonPropertyName("ReportDescription")]
-    public string ReportDescription { get; set; }
+    public string? ReportDescription { get; set; }
 
     /// <summary>
     /// Date and time that the reporting period started. A report period is commonly 24 hours.
@@ -240,19 +240,19 @@ public class WellOperationsReport_2_1_0_Data : AbstractCommonResources_1_0_0 // 
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Wellbore:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellboreID")]
-    public string WellboreID { get; set; }
+    public string? WellboreID { get; set; }
 
     /// <summary>
     /// Bit description and dull grade
     /// </summary>
     [JsonPropertyName("BitRecord")]
-    public List<WellOperationsReport_2_1_0_Data_BitRecord> BitRecord { get; set; }
+    public List<WellOperationsReport_2_1_0_Data_BitRecord>? BitRecord { get; set; }
 
     /// <summary>
     /// An array of sequential operation activities descriptions performed during this reporting period. Potentially includes critical path and offline activities.
     /// </summary>
     [JsonPropertyName("OperationsActivity")]
-    public List<WellOperationsReport_2_1_0_Data_OperationsActivity> OperationsActivity { get; set; }
+    public List<WellOperationsReport_2_1_0_Data_OperationsActivity>? OperationsActivity { get; set; }
 
     /// <summary>
     /// Local name defined for the Well
@@ -264,103 +264,103 @@ public class WellOperationsReport_2_1_0_Data : AbstractCommonResources_1_0_0 // 
     /// Local name defined for the wellbore
     /// </summary>
     [JsonPropertyName("WellboreAlias")]
-    public List<WellOperationsReport_2_1_0_Data_WellboreAlias> WellboreAlias { get; set; }
+    public List<WellOperationsReport_2_1_0_Data_WellboreAlias>? WellboreAlias { get; set; }
 
     /// <summary>
     /// Information regarding the status of the wellbore during this reporting period
     /// </summary>
     [JsonPropertyName("StatusInfo")]
-    public List<WellOperationsReport_2_1_0_Data_StatusInfo> StatusInfo { get; set; }
+    public List<WellOperationsReport_2_1_0_Data_StatusInfo>? StatusInfo { get; set; }
 
     /// <summary>
     /// References to the Fluids Reports generated during this reporting period.
     /// </summary>
     [JsonPropertyName("FluidsIDs")]
-    public List<string> FluidsIDs { get; set; }
+    public List<string>? FluidsIDs { get; set; }
 
     /// <summary>
     /// A reference to the PPFG information for this reporting period
     /// </summary>
     [JsonPropertyName("PorePressure")]
-    public List<string> PorePressure { get; set; }
+    public List<string>? PorePressure { get; set; }
 
     /// <summary>
     /// A series of time stamped comments which comprise part of this operations report.
     /// </summary>
     [JsonPropertyName("TimedComments")]
-    public List<WellOperationsReport_2_1_0_Data_TimedComments> TimedComments { get; set; }
+    public List<WellOperationsReport_2_1_0_Data_TimedComments>? TimedComments { get; set; }
 
     /// <summary>
     /// Meteorological readings for the defined time period on an operations report
     /// </summary>
     [JsonPropertyName("Weather")]
-    public List<WellOperationsReport_2_1_0_Data_Weather> Weather { get; set; }
+    public List<WellOperationsReport_2_1_0_Data_Weather>? Weather { get; set; }
 
     /// <summary>
     /// Snapshot of operations personnel broken down by each company on the rig at the time of the report.
     /// </summary>
     [JsonPropertyName("Personnel")]
-    public List<WellOperationsReport_2_1_0_Data_Personnel> Personnel { get; set; }
+    public List<WellOperationsReport_2_1_0_Data_Personnel>? Personnel { get; set; }
 
     /// <summary>
     /// Information related to pump operations on a drilling/operations report
     /// </summary>
     [JsonPropertyName("PumpOp")]
-    public List<WellOperationsReport_2_1_0_Data_PumpOp> PumpOp { get; set; }
+    public List<WellOperationsReport_2_1_0_Data_PumpOp>? PumpOp { get; set; }
 
     /// <summary>
     /// Information related to mud volumes for drilling/operations report
     /// </summary>
     [JsonPropertyName("MudVolume")]
-    public List<WellOperationsReport_2_1_0_Data_MudVolume> MudVolume { get; set; }
+    public List<WellOperationsReport_2_1_0_Data_MudVolume>? MudVolume { get; set; }
 
     /// <summary>
     /// Quantity of items inventoried during drilling and/or operations
     /// </summary>
     [JsonPropertyName("Inventory")]
-    public List<WellOperationsReport_2_1_0_Data_Inventory> Inventory { get; set; }
+    public List<WellOperationsReport_2_1_0_Data_Inventory>? Inventory { get; set; }
 
     /// <summary>
     /// Cost information captured for a defined time period during operations and/or drilling
     /// </summary>
     [JsonPropertyName("Cost")]
-    public List<WellOperationsReport_2_1_0_Data_Cost> Cost { get; set; }
+    public List<WellOperationsReport_2_1_0_Data_Cost>? Cost { get; set; }
 
     /// <summary>
     /// Health Safety or Environment events that occurred since the last drilling/operation report. Captures data related to HSE events (e.g., tests, inspections, meetings, and drills), test values (e.g., pressure tested to), and/or incidents (e.g., discharges, non-compliance notices received, etc.).
     /// </summary>
     [JsonPropertyName("HSE")]
-    public List<WellOperationsReport_2_1_0_Data_HSE> HSE { get; set; }
+    public List<WellOperationsReport_2_1_0_Data_HSE>? HSE { get; set; }
 
     /// <summary>
     /// Description of incidents that have occurred during the last drilling/operations report
     /// </summary>
     [JsonPropertyName("Incident")]
-    public List<WellOperationsReport_2_1_0_Data_Incident> Incident { get; set; }
+    public List<WellOperationsReport_2_1_0_Data_Incident>? Incident { get; set; }
 
     /// <summary>
     /// Mud that has been lost during drilling / operations
     /// </summary>
     [JsonPropertyName("MudLosses")]
-    public List<WellOperationsReport_2_1_0_Data_MudLosses> MudLosses { get; set; }
+    public List<WellOperationsReport_2_1_0_Data_MudLosses>? MudLosses { get; set; }
 
     /// <summary>
     /// Operator personnel contact information on an operations report
     /// </summary>
     [JsonPropertyName("JobContact")]
-    public List<AbstractContactUserProfile_1_0_0> JobContact { get; set; }
+    public List<AbstractContactUserProfile_1_0_0>? JobContact { get; set; }
 
     /// <summary>
     /// General information about a gas reading taken during the drill report period
     /// </summary>
     [JsonPropertyName("GasReading")]
-    public List<WellOperationsReport_2_1_0_Data_GasReading> GasReading { get; set; }
+    public List<WellOperationsReport_2_1_0_Data_GasReading>? GasReading { get; set; }
 
     /// <summary>
     /// Hole condition description.
     /// </summary>
     [JsonPropertyName("ConditionHole")]
-    public string ConditionHole { get; set; }
+    public string? ConditionHole { get; set; }
 
     /// <summary>
     /// Daily cost.
@@ -378,7 +378,7 @@ public class WellOperationsReport_2_1_0_Data : AbstractCommonResources_1_0_0 // 
     /// Description of the lithology for the interval.
     /// </summary>
     [JsonPropertyName("Lithology")]
-    public string Lithology { get; set; }
+    public string? Lithology { get; set; }
 
     /// <summary>
     /// Cumulative cost for the job through the end of current report
@@ -414,7 +414,7 @@ public class WellOperationsReport_2_1_0_Data : AbstractCommonResources_1_0_0 // 
     /// Report remarks
     /// </summary>
     [JsonPropertyName("ReportRemarks")]
-    public string ReportRemarks { get; set; }
+    public string? ReportRemarks { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
@@ -431,21 +431,21 @@ public class WellOperationsReport_2_1_0_Data_Artefacts
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ArtefactRole:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("RoleID")]
-    public string RoleID { get; set; }
+    public string? RoleID { get; set; }
 
     /// <summary>
     /// The kind or schema ID of the artefact. Resolvable with the Schema Service.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("ResourceKind")]
-    public string ResourceKind { get; set; }
+    public string? ResourceKind { get; set; }
 
     /// <summary>
     /// The SRN which identifies this OSDU Artefact resource.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:dataset\-\-[\w\-\.]+:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ResourceID")]
-    public string ResourceID { get; set; }
+    public string? ResourceID { get; set; }
 
 }
 
@@ -459,14 +459,14 @@ public class WellOperationsReport_2_1_0_Data_LineageAssertions
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ID")]
-    public string ID { get; set; }
+    public string? ID { get; set; }
 
     /// <summary>
     /// Used by LineageAssertion to describe the nature of the line of descent of a work product component from a prior Resource, such as DIRECT, INDIRECT, REFERENCE.  It is not for proximity (number of nodes away), it is not to cover all the relationships in a full ontology or graph, and it is not to describe the type of activity that created the asserting WPC.  LineageAssertion does not encompass a full provenance, process history, or activity model.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-LineageRelationshipType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("LineageRelationshipType")]
-    public string LineageRelationshipType { get; set; }
+    public string? LineageRelationshipType { get; set; }
 
 }
 
@@ -480,21 +480,21 @@ public class WellOperationsReport_2_1_0_Data_BitRecord
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-BHARun:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("BHARunID")]
-    public string BHARunID { get; set; }
+    public string? BHARunID { get; set; }
 
     /// <summary>
     /// Identifier of Bit Tubular Component
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:(master-data\-\-TubularComponent|work-product-component\-\-TubularComponent):[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TubularComponentID")]
-    public string TubularComponentID { get; set; }
+    public string? TubularComponentID { get; set; }
 
     /// <summary>
     /// Bit number and rerun number e.g. "4.1" for the first rerun of bit 4.
     /// </summary>
     [Required]
     [JsonPropertyName("NumBit")]
-    public string NumBit { get; set; }
+    public required string NumBit { get; set; }
 
     /// <summary>
     /// Diameter of drilled hole.
@@ -518,14 +518,14 @@ public class WellOperationsReport_2_1_0_Data_BitRecord
     /// Manufacturer / supplier of the item.
     /// </summary>
     [JsonPropertyName("Manufacturer")]
-    public string Manufacturer { get; set; }
+    public string? Manufacturer { get; set; }
 
     /// <summary>
     /// Type of bit.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-BitType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TypeBit")]
-    public string TypeBit { get; set; }
+    public string? TypeBit { get; set; }
 
     /// <summary>
     /// Bit cost in local currency.
@@ -537,19 +537,19 @@ public class WellOperationsReport_2_1_0_Data_BitRecord
     /// The name of the local currency
     /// </summary>
     [JsonPropertyName("CostCurrency")]
-    public string CostCurrency { get; set; }
+    public string? CostCurrency { get; set; }
 
     /// <summary>
     /// The manufacturer's code for the bit.
     /// </summary>
     [JsonPropertyName("MfgCode")]
-    public string MfgCode { get; set; }
+    public string? MfgCode { get; set; }
 
     /// <summary>
     /// IADC bit code.
     /// </summary>
     [JsonPropertyName("IADCCode")]
-    public string IADCCode { get; set; }
+    public string? IADCCode { get; set; }
 
     /// <summary>
     /// As run bit IADC Dull Grade (I) Condition of Inner tooth rows (inner 2/3 of bit) (0-8).
@@ -568,42 +568,42 @@ public class WellOperationsReport_2_1_0_Data_BitRecord
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-BitDullCode:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("InitialConditionDull")]
-    public string InitialConditionDull { get; set; }
+    public string? InitialConditionDull { get; set; }
 
     /// <summary>
     /// As run bit IADC Dull Grade (L) Location Row and cone numbers where wear located (e.g. Cracked Cone, Lost Cone etc).
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-BitDullLocationCode:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("InitialConditionLocation")]
-    public string InitialConditionLocation { get; set; }
+    public string? InitialConditionLocation { get; set; }
 
     /// <summary>
     /// As run bit IADC Dull Grade (B) Condition of bit Bearings (integer 0-8 or E, F, N or X)).
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-BitDullBearingCode:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("InitialConditionBearing")]
-    public string InitialConditionBearing { get; set; }
+    public string? InitialConditionBearing { get; set; }
 
     /// <summary>
     /// As run bit IADC Dull Grade (G) Condition of bit Gauge in 1/16 of an inch. I = in gauge, else number of 16ths out of gauge.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-BitDullGaugeCode:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("InitialConditionGauge")]
-    public string InitialConditionGauge { get; set; }
+    public string? InitialConditionGauge { get; set; }
 
     /// <summary>
     /// As run bit IADC Dull Grade (O) Other comments on bit condition from IADC list (BitDullCode in standard list).
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-BitDullCode:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("InitialConditionOther")]
-    public string InitialConditionOther { get; set; }
+    public string? InitialConditionOther { get; set; }
 
     /// <summary>
     /// As run bit IADC Dull Grade (R) Reason bit was pulled
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-BitReasonPulledCode:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("InitialConditionReason")]
-    public string InitialConditionReason { get; set; }
+    public string? InitialConditionReason { get; set; }
 
     /// <summary>
     /// Pulled bit IADC Dull Grade (I) Condition of Inner tooth rows (inner 2/3 of bit) (0-8).
@@ -622,60 +622,60 @@ public class WellOperationsReport_2_1_0_Data_BitRecord
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-BitDullCode:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("FinalConditionDull")]
-    public string FinalConditionDull { get; set; }
+    public string? FinalConditionDull { get; set; }
 
     /// <summary>
     /// Pulled bit IADC Dull Grade (L) Location Row and cone numbers where wear located (e.g. Cracked Cone, Lost Cone etc).
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-BitDullLocationCode:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("FinalConditionLocation")]
-    public string FinalConditionLocation { get; set; }
+    public string? FinalConditionLocation { get; set; }
 
     /// <summary>
     /// Pulled bit IADC Dull Grade (B) Condition of bit Bearings (integer 0-8 or E, F, N or X).
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-BitDullBearingCode:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("FinalConditionBearing")]
-    public string FinalConditionBearing { get; set; }
+    public string? FinalConditionBearing { get; set; }
 
     /// <summary>
     /// Pulled bit IADC Dull Grade (G) Condition of bit Gauge in 1/16 of a inch. I = in gauge, else number of 16ths out of gauge.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-BitDullGaugeCode:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("FinalConditionGauge")]
-    public string FinalConditionGauge { get; set; }
+    public string? FinalConditionGauge { get; set; }
 
     /// <summary>
     /// Pulled bit IADC Dull Grade (O) Other comments on bit condition.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-BitDullCode:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("FinalConditionOther")]
-    public string FinalConditionOther { get; set; }
+    public string? FinalConditionOther { get; set; }
 
     /// <summary>
     /// Pulled bit  IADC Dull Grade (R) Reason bit was pulled.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-BitReasonPulledCode:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("FinalConditionReason")]
-    public string FinalConditionReason { get; set; }
+    public string? FinalConditionReason { get; set; }
 
     /// <summary>
     /// Any other Bit Dull comments/description, older T-B-G code or full formatted dull grade e.g.  0-2-WT-N/S-X-I-LN-TD
     /// </summary>
     [JsonPropertyName("BitDullComments")]
-    public string BitDullComments { get; set; }
+    public string? BitDullComments { get; set; }
 
     /// <summary>
     /// Bit drive type (Motor, rotary table etc).
     /// </summary>
     [JsonPropertyName("DriveType")]
-    public string DriveType { get; set; }
+    public string? DriveType { get; set; }
 
     /// <summary>
     /// N = new, U = used.
     /// </summary>
     [JsonPropertyName("BitClass")]
-    public string BitClass { get; set; }
+    public string? BitClass { get; set; }
 
 }
 
@@ -688,7 +688,7 @@ public class WellOperationsReport_2_1_0_Data_OperationsActivity
     /// Identifier of the activity.
     /// </summary>
     [JsonPropertyName("ActivityID")]
-    public string ActivityID { get; set; }
+    public string? ActivityID { get; set; }
 
     /// <summary>
     /// Date and time that activities started.
@@ -714,27 +714,27 @@ public class WellOperationsReport_2_1_0_Data_OperationsActivity
     /// Phase refers to a large activity classification, e.g., drill surface hole.
     /// </summary>
     [JsonPropertyName("Phase")]
-    public string Phase { get; set; }
+    public string? Phase { get; set; }
 
     /// <summary>
     /// The activity code of the activity
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ActivityCode:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ActivityCodeID")]
-    public string ActivityCodeID { get; set; }
+    public string? ActivityCodeID { get; set; }
 
     /// <summary>
     /// Custom string to further define an activity.
     /// </summary>
     [JsonPropertyName("DetailActivity")]
-    public string DetailActivity { get; set; }
+    public string? DetailActivity { get; set; }
 
     /// <summary>
     /// Classifier (planned, unplanned, downtime).
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-DrillingActivityClassType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TypeActivityClassID")]
-    public string TypeActivityClassID { get; set; }
+    public string? TypeActivityClassID { get; set; }
 
     /// <summary>
     /// Measured depth at the top of interval over which the activity was conducted.
@@ -777,35 +777,35 @@ public class WellOperationsReport_2_1_0_Data_OperationsActivity
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ActivityOutcome:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ActivityOutcomeID")]
-    public string ActivityOutcomeID { get; set; }
+    public string? ActivityOutcomeID { get; set; }
 
     /// <summary>
     /// More detail on the outcome of the activity. For Example Injury, Operation Failed, Kick, Circulation Loss, Mud Loss
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ActivityOutcomeDetail:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ActivityOutcomeDetailID")]
-    public string ActivityOutcomeDetailID { get; set; }
+    public string? ActivityOutcomeDetailID { get; set; }
 
     /// <summary>
     /// Reference to the Organisation that represents the Operator
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("OperatorID")]
-    public string OperatorID { get; set; }
+    public string? OperatorID { get; set; }
 
     /// <summary>
     /// Reference to the Organisation that represents the Service Provider
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ServiceProviderID")]
-    public string ServiceProviderID { get; set; }
+    public string? ServiceProviderID { get; set; }
 
     /// <summary>
     /// A pointer to the tubular object related to this activity, i.e. Drill string, workstring, casing, liner. Not the Hole Section that you are operating within.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:(master-data\-\-TubularAssembly|work-product-component\-\-TubularAssembly):[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TubularID")]
-    public string TubularID { get; set; }
+    public string? TubularID { get; set; }
 
     /// <summary>
     /// Is the activity optimum? Values are "true" (or "1") and "false" (or "0").
@@ -832,31 +832,31 @@ public class WellOperationsReport_2_1_0_Data_OperationsActivity
     /// The item state for the data object. (Actual, Planned, Unknown and Modeled)
     /// </summary>
     [JsonPropertyName("ItemState")]
-    public string ItemState { get; set; }
+    public string? ItemState { get; set; }
 
     /// <summary>
     /// Comments and remarks.
     /// </summary>
     [JsonPropertyName("Comments")]
-    public string Comments { get; set; }
+    public string? Comments { get; set; }
 
     /// <summary>
     /// Alternate proprietary activity code. For example contractor specific activity code
     /// </summary>
     [JsonPropertyName("ProprietaryActivityCode")]
-    public List<WellOperationsReport_2_1_0_Data_OperationsActivity_ProprietaryActivityCode> ProprietaryActivityCode { get; set; }
+    public List<WellOperationsReport_2_1_0_Data_OperationsActivity_ProprietaryActivityCode>? ProprietaryActivityCode { get; set; }
 
     /// <summary>
     /// The UID of the parent activity
     /// </summary>
     [JsonPropertyName("ParentID")]
-    public string ParentID { get; set; }
+    public string? ParentID { get; set; }
 
     /// <summary>
     /// The UID of the preceding activity
     /// </summary>
     [JsonPropertyName("PredecessorID")]
-    public string PredecessorID { get; set; }
+    public string? PredecessorID { get; set; }
 
     /// <summary>
     /// The planned hole depth at the start of the activity
@@ -886,13 +886,13 @@ public class WellOperationsReport_2_1_0_Data_OperationsActivity
     /// Notes associated with the operation
     /// </summary>
     [JsonPropertyName("OperationalNotes")]
-    public string OperationalNotes { get; set; }
+    public string? OperationalNotes { get; set; }
 
     /// <summary>
     /// Attachments associated with the activity
     /// </summary>
     [JsonPropertyName("AttachmentIDs")]
-    public List<string> AttachmentIDs { get; set; }
+    public List<string>? AttachmentIDs { get; set; }
 
     /// <summary>
     /// The Diameter of the section in which the activity took place
@@ -904,14 +904,14 @@ public class WellOperationsReport_2_1_0_Data_OperationsActivity
     /// link to an external object or document. For example Regulatory submission, Tour sheet.
     /// </summary>
     [JsonPropertyName("ObjectReference")]
-    public string ObjectReference { get; set; }
+    public string? ObjectReference { get; set; }
 
     /// <summary>
     /// A Reference to the wellbore in which the activities take place.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Wellbore:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellboreID")]
-    public string WellboreID { get; set; }
+    public string? WellboreID { get; set; }
 
 }
 
@@ -925,20 +925,20 @@ public class WellOperationsReport_2_1_0_Data_OperationsActivity_ProprietaryActiv
     /// </summary>
     [Required]
     [JsonPropertyName("Identifier")]
-    public string Identifier { get; set; }
+    public required string Identifier { get; set; }
 
     /// <summary>
     /// Description Property
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// Authority property
     /// </summary>
     [Required]
     [JsonPropertyName("Authority")]
-    public string Authority { get; set; }
+    public required string Authority { get; set; }
 
 }
 
@@ -952,20 +952,20 @@ public class WellOperationsReport_2_1_0_Data_WellAlias
     /// </summary>
     [Required]
     [JsonPropertyName("Identifier")]
-    public string Identifier { get; set; }
+    public required string Identifier { get; set; }
 
     /// <summary>
     /// Description Property
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// Authority property
     /// </summary>
     [Required]
     [JsonPropertyName("Authority")]
-    public string Authority { get; set; }
+    public required string Authority { get; set; }
 
 }
 
@@ -979,20 +979,20 @@ public class WellOperationsReport_2_1_0_Data_WellboreAlias
     /// </summary>
     [Required]
     [JsonPropertyName("Identifier")]
-    public string Identifier { get; set; }
+    public required string Identifier { get; set; }
 
     /// <summary>
     /// Description Property
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// Authority property
     /// </summary>
     [Required]
     [JsonPropertyName("Authority")]
-    public string Authority { get; set; }
+    public required string Authority { get; set; }
 
 }
 
@@ -1007,7 +1007,7 @@ public class WellOperationsReport_2_1_0_Data_StatusInfo
     [Required]
     [JsonPropertyName("StatusDateTime")]
     [JsonConverter(typeof(NullableDateTimeOffsetConverter))]
-    public DateTimeOffset StatusDateTime { get; set; }
+    public required DateTimeOffset StatusDateTime { get; set; }
 
     /// <summary>
     /// Wellbore measured depth at the end of the report period.
@@ -1061,7 +1061,7 @@ public class WellOperationsReport_2_1_0_Data_StatusInfo
     /// Type of wellbore.
     /// </summary>
     [JsonPropertyName("TypeWellbore")]
-    public string TypeWellbore { get; set; }
+    public string? TypeWellbore { get; set; }
 
     /// <summary>
     /// Measured depth to the kickoff point of the wellbore.
@@ -1115,7 +1115,7 @@ public class WellOperationsReport_2_1_0_Data_StatusInfo
     /// The type of pressure test that was run.
     /// </summary>
     [JsonPropertyName("PresTestType")]
-    public string PresTestType { get; set; }
+    public string? PresTestType { get; set; }
 
     /// <summary>
     /// The measured depth planned to be reached.
@@ -1133,13 +1133,13 @@ public class WellOperationsReport_2_1_0_Data_StatusInfo
     /// A summary of the activities performed and the status of the ongoing activities.
     /// </summary>
     [JsonPropertyName("Summary24Hr")]
-    public string Summary24Hr { get; set; }
+    public string? Summary24Hr { get; set; }
 
     /// <summary>
     /// A summary of  planned activities for the next reporting period.
     /// </summary>
     [JsonPropertyName("Forecast24Hr")]
-    public string Forecast24Hr { get; set; }
+    public string? Forecast24Hr { get; set; }
 
     /// <summary>
     /// Rate of penetration at the end of the reporting period.
@@ -1151,14 +1151,14 @@ public class WellOperationsReport_2_1_0_Data_StatusInfo
     /// Name of the Rig/Work Unit used for the reporting period
     /// </summary>
     [JsonPropertyName("Rig")]
-    public string Rig { get; set; }
+    public string? Rig { get; set; }
 
     /// <summary>
     /// A pointer to the rig used.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Rig:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("RigID")]
-    public string RigID { get; set; }
+    public string? RigID { get; set; }
 
     /// <summary>
     /// Time from the start of operations (commonly in days).
@@ -1194,19 +1194,19 @@ public class WellOperationsReport_2_1_0_Data_StatusInfo
     /// Name of the rig supervisor
     /// </summary>
     [JsonPropertyName("Supervisor")]
-    public string Supervisor { get; set; }
+    public string? Supervisor { get; set; }
 
     /// <summary>
     /// Name of the operator's drilling engineer.
     /// </summary>
     [JsonPropertyName("Engineer")]
-    public string Engineer { get; set; }
+    public string? Engineer { get; set; }
 
     /// <summary>
     /// Name of operator's wellsite geologist.
     /// </summary>
     [JsonPropertyName("Geologist")]
-    public string Geologist { get; set; }
+    public string? Geologist { get; set; }
 
     /// <summary>
     /// Time spent rotary drilling.
@@ -1302,13 +1302,13 @@ public class WellOperationsReport_2_1_0_Data_StatusInfo
     /// Authorization for expenditure (AFE) number that this cost item applies to.
     /// </summary>
     [JsonPropertyName("NumAFE")]
-    public string NumAFE { get; set; }
+    public string? NumAFE { get; set; }
 
     /// <summary>
     /// Description of the hole condition.
     /// </summary>
     [JsonPropertyName("ConditionHole")]
-    public string ConditionHole { get; set; }
+    public string? ConditionHole { get; set; }
 
     /// <summary>
     /// True vertical depth of a leak off test point.
@@ -1345,14 +1345,14 @@ public class WellOperationsReport_2_1_0_Data_StatusInfo
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:(master-data\-\-TubularAssembly|work-product-component\-\-TubularAssembly):[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TubularID")]
-    public string TubularID { get; set; }
+    public string? TubularID { get; set; }
 
     /// <summary>
     /// A pointer to the latest BHA Run used for this reporting period
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-BHARun:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("BHARunID")]
-    public string BHARunID { get; set; }
+    public string? BHARunID { get; set; }
 
     /// <summary>
     /// The cost per day of the mud used
@@ -1371,7 +1371,7 @@ public class WellOperationsReport_2_1_0_Data_TimedComments
     /// A comment that has been recorded at a particular time
     /// </summary>
     [JsonPropertyName("Comment")]
-    public string Comment { get; set; }
+    public string? Comment { get; set; }
 
     /// <summary>
     /// The time that the comment was made
@@ -1391,7 +1391,7 @@ public class WellOperationsReport_2_1_0_Data_Weather
     /// Name of company that supplied the weather data.
     /// </summary>
     [JsonPropertyName("Agency")]
-    public string Agency { get; set; }
+    public string? Agency { get; set; }
 
     /// <summary>
     /// Amount of precipitation.
@@ -1439,13 +1439,13 @@ public class WellOperationsReport_2_1_0_Data_Weather
     /// Comments and remarks
     /// </summary>
     [JsonPropertyName("Comments")]
-    public string Comments { get; set; }
+    public string? Comments { get; set; }
 
     /// <summary>
     /// Description of cloud cover.
     /// </summary>
     [JsonPropertyName("CloudCover")]
-    public string CloudCover { get; set; }
+    public string? CloudCover { get; set; }
 
     /// <summary>
     /// The speed of the ocean current.
@@ -1459,7 +1459,7 @@ public class WellOperationsReport_2_1_0_Data_Weather
     [Required]
     [JsonPropertyName("DateTime")]
     [JsonConverter(typeof(NullableDateTimeOffsetConverter))]
-    public DateTimeOffset DateTime { get; set; }
+    public required DateTimeOffset DateTime { get; set; }
 
     /// <summary>
     /// Average height of the sea waves.
@@ -1514,7 +1514,7 @@ public class WellOperationsReport_2_1_0_Data_Weather
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WeatherType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WeatherType")]
-    public string WeatherType { get; set; }
+    public string? WeatherType { get; set; }
 
     /// <summary>
     /// Wind speed.
@@ -1541,14 +1541,14 @@ public class WellOperationsReport_2_1_0_Data_Personnel
     [Required]
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("OrganizationID")]
-    public string OrganizationID { get; set; }
+    public required string OrganizationID { get; set; }
 
     /// <summary>
     /// Number of persons on board or on location for the selected company/organization. HeadCount should be reported as a non-negative integer.
     /// </summary>
     [Required]
     [JsonPropertyName("HeadCount")]
-    public double HeadCount { get; set; }
+    public required double HeadCount { get; set; }
 
     /// <summary>
     /// Total time worked by the company (commonly in hours).
@@ -1561,20 +1561,20 @@ public class WellOperationsReport_2_1_0_Data_Personnel
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-PersonnelOrganisationRole:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("OrganizationRole")]
-    public string OrganizationRole { get; set; }
+    public string? OrganizationRole { get; set; }
 
     /// <summary>
     /// Service provided by the company.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-PersonnelServiceType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ServiceType")]
-    public string ServiceType { get; set; }
+    public string? ServiceType { get; set; }
 
     /// <summary>
     /// Comments and remarks
     /// </summary>
     [JsonPropertyName("Comments")]
-    public string Comments { get; set; }
+    public string? Comments { get; set; }
 
 }
 
@@ -1589,7 +1589,7 @@ public class WellOperationsReport_2_1_0_Data_PumpOp
     [Required]
     [JsonPropertyName("DateTime")]
     [JsonConverter(typeof(NullableDateTimeOffsetConverter))]
-    public DateTimeOffset DateTime { get; set; }
+    public required DateTimeOffset DateTime { get; set; }
 
     /// <summary>
     /// Liner inside diameter.
@@ -1625,7 +1625,7 @@ public class WellOperationsReport_2_1_0_Data_PumpOp
     /// The sequence number of the pump (e.g., pump 1)
     /// </summary>
     [JsonPropertyName("PumpNumber")]
-    public string PumpNumber { get; set; }
+    public string? PumpNumber { get; set; }
 
     /// <summary>
     /// Pump output (included for efficiency).
@@ -1644,13 +1644,13 @@ public class WellOperationsReport_2_1_0_Data_PumpOp
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-PumpOpType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("OperationType")]
-    public string OperationType { get; set; }
+    public string? OperationType { get; set; }
 
     /// <summary>
     /// Comments and remarks
     /// </summary>
     [JsonPropertyName("Comments")]
-    public string Comments { get; set; }
+    public string? Comments { get; set; }
 
     /// <summary>
     /// how much fluid is moved by the pump in one cycle
@@ -1662,7 +1662,7 @@ public class WellOperationsReport_2_1_0_Data_PumpOp
     /// The model name for the pump
     /// </summary>
     [JsonPropertyName("PumpModelName")]
-    public string PumpModelName { get; set; }
+    public string? PumpModelName { get; set; }
 
 }
 
@@ -1689,7 +1689,7 @@ public class WellOperationsReport_2_1_0_Data_MudVolume
     [Required]
     [JsonPropertyName("DateTime")]
     [JsonConverter(typeof(NullableDateTimeOffsetConverter))]
-    public DateTimeOffset DateTime { get; set; }
+    public required DateTimeOffset DateTime { get; set; }
 
     /// <summary>
     /// Top measured depth for which the mud volume reading was conducted
@@ -1779,7 +1779,7 @@ public class WellOperationsReport_2_1_0_Data_MudVolume
     /// Comments and remarks
     /// </summary>
     [JsonPropertyName("Comments")]
-    public string Comments { get; set; }
+    public string? Comments { get; set; }
 
 }
 
@@ -1810,7 +1810,7 @@ public class WellOperationsReport_2_1_0_Data_Inventory
     /// Name or type of inventory item.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// Price per item unit, assume same currency for all items.
@@ -1858,13 +1858,13 @@ public class WellOperationsReport_2_1_0_Data_Inventory
     /// Comments and remarks
     /// </summary>
     [JsonPropertyName("Comments")]
-    public string Comments { get; set; }
+    public string? Comments { get; set; }
 
     /// <summary>
     /// Description of the inventory item
     /// </summary>
     [JsonPropertyName("ItemDescription")]
-    public string ItemDescription { get; set; }
+    public string? ItemDescription { get; set; }
 
 }
 
@@ -1877,45 +1877,45 @@ public class WellOperationsReport_2_1_0_Data_Cost
     /// Comments and remarks
     /// </summary>
     [JsonPropertyName("Comments")]
-    public string Comments { get; set; }
+    public string? Comments { get; set; }
 
     /// <summary>
     /// Total cost for the item for this period
     /// </summary>
     [Required]
     [JsonPropertyName("TotalCostAmount")]
-    public double TotalCostAmount { get; set; }
+    public required double TotalCostAmount { get; set; }
 
     /// <summary>
     /// Currency used for Cost Amount
     /// </summary>
     [Required]
     [JsonPropertyName("CostCurrency")]
-    public string CostCurrency { get; set; }
+    public required string CostCurrency { get; set; }
 
     /// <summary>
     /// Cost class code.
     /// </summary>
     [JsonPropertyName("CostClass")]
-    public string CostClass { get; set; }
+    public string? CostClass { get; set; }
 
     /// <summary>
     /// Cost code.
     /// </summary>
     [JsonPropertyName("CostCode")]
-    public string CostCode { get; set; }
+    public string? CostCode { get; set; }
 
     /// <summary>
     /// Cost group code.
     /// </summary>
     [JsonPropertyName("CostGroup")]
-    public string CostGroup { get; set; }
+    public string? CostGroup { get; set; }
 
     /// <summary>
     /// Description of the cost item.
     /// </summary>
     [JsonPropertyName("ItemDescription")]
-    public string ItemDescription { get; set; }
+    public string? ItemDescription { get; set; }
 
     /// <summary>
     /// Cost per item, assume same currency.
@@ -1927,7 +1927,7 @@ public class WellOperationsReport_2_1_0_Data_Cost
     /// Cost subcode.
     /// </summary>
     [JsonPropertyName("CostSubCode")]
-    public string CostSubCode { get; set; }
+    public string? CostSubCode { get; set; }
 
     /// <summary>
     /// Is this an estimated cost?
@@ -1954,7 +1954,7 @@ public class WellOperationsReport_2_1_0_Data_Cost
     /// The kind of cost item specified (e.g., barrel, sack, gallon)
     /// </summary>
     [JsonPropertyName("UnitKind")]
-    public string UnitKind { get; set; }
+    public string? UnitKind { get; set; }
 
     /// <summary>
     /// Quantity of the unit kind (e.g., 50)
@@ -1966,55 +1966,55 @@ public class WellOperationsReport_2_1_0_Data_Cost
     /// An identification tag for the item. A serial number is a type of identification tag; however, some tags contain many pieces of information. This element only identifies the tag and does not describe the contents.
     /// </summary>
     [JsonPropertyName("TagName")]
-    public string TagName { get; set; }
+    public string? TagName { get; set; }
 
     /// <summary>
     /// Name of the vendor.
     /// </summary>
     [JsonPropertyName("VendorName")]
-    public string VendorName { get; set; }
+    public string? VendorName { get; set; }
 
     /// <summary>
     /// AFE number that this cost item applies to.
     /// </summary>
     [JsonPropertyName("AFENumber")]
-    public string AFENumber { get; set; }
+    public string? AFENumber { get; set; }
 
     /// <summary>
     /// Invoice number for cost item; the bill is sent to the operator.
     /// </summary>
     [JsonPropertyName("InvoiceNumber")]
-    public string InvoiceNumber { get; set; }
+    public string? InvoiceNumber { get; set; }
 
     /// <summary>
     /// Purchase order number provided by the operator.
     /// </summary>
     [JsonPropertyName("PONumber")]
-    public string PONumber { get; set; }
+    public string? PONumber { get; set; }
 
     /// <summary>
     /// Serial number.
     /// </summary>
     [JsonPropertyName("ItemSerialNumber")]
-    public string ItemSerialNumber { get; set; }
+    public string? ItemSerialNumber { get; set; }
 
     /// <summary>
     /// The field ticket number issued by the service company on location.
     /// </summary>
     [JsonPropertyName("TicketNumber")]
-    public string TicketNumber { get; set; }
+    public string? TicketNumber { get; set; }
 
     /// <summary>
     /// Vendor number.
     /// </summary>
     [JsonPropertyName("VendorNumber")]
-    public string VendorNumber { get; set; }
+    public string? VendorNumber { get; set; }
 
     /// <summary>
     /// Name of pool/reservoir that this cost item can be accounted to.
     /// </summary>
     [JsonPropertyName("CostPoolName")]
-    public string CostPoolName { get; set; }
+    public string? CostPoolName { get; set; }
 
     /// <summary>
     /// Number of cost items used that day, e.g., 1 rig dayrate, 30 joints of casing.
@@ -2027,7 +2027,7 @@ public class WellOperationsReport_2_1_0_Data_Cost
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WellActivityPhaseType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ActivityPhaseID")]
-    public string ActivityPhaseID { get; set; }
+    public string? ActivityPhaseID { get; set; }
 
     /// <summary>
     /// Used to indicate if Equipment or Service in scope for the Cost Item is being used. Can drive different Standby/In Use Rental Rates where applicable.
@@ -2041,7 +2041,7 @@ public class WellOperationsReport_2_1_0_Data_Cost
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WellSiteProductType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ProductType")]
-    public string ProductType { get; set; }
+    public string? ProductType { get; set; }
 
 }
 
@@ -2054,7 +2054,7 @@ public class WellOperationsReport_2_1_0_Data_HSE
     /// Comments and remarks
     /// </summary>
     [JsonPropertyName("Comments")]
-    public string Comments { get; set; }
+    public string? Comments { get; set; }
 
     /// <summary>
     /// Incident free duration (commonly in days).
@@ -2242,7 +2242,7 @@ public class WellOperationsReport_2_1_0_Data_Incident
     /// Comments and remarks
     /// </summary>
     [JsonPropertyName("Comments")]
-    public string Comments { get; set; }
+    public string? Comments { get; set; }
 
     /// <summary>
     /// Date and time that incident occurred
@@ -2250,13 +2250,13 @@ public class WellOperationsReport_2_1_0_Data_Incident
     [Required]
     [JsonPropertyName("DateTime")]
     [JsonConverter(typeof(NullableDateTimeOffsetConverter))]
-    public DateTimeOffset DateTime { get; set; }
+    public required DateTimeOffset DateTime { get; set; }
 
     /// <summary>
     /// Cause description.
     /// </summary>
     [JsonPropertyName("CauseDescription")]
-    public string CauseDescription { get; set; }
+    public string? CauseDescription { get; set; }
 
     /// <summary>
     /// Gross estimate of the cost incurred due to the incident.
@@ -2268,13 +2268,13 @@ public class WellOperationsReport_2_1_0_Data_Incident
     /// Accident description.
     /// </summary>
     [JsonPropertyName("AccidentDescription")]
-    public string AccidentDescription { get; set; }
+    public string? AccidentDescription { get; set; }
 
     /// <summary>
     /// Location description.
     /// </summary>
     [JsonPropertyName("LocationDescription")]
-    public string LocationDescription { get; set; }
+    public string? LocationDescription { get; set; }
 
     /// <summary>
     /// Number of hours lost due to the incident.
@@ -2311,20 +2311,20 @@ public class WellOperationsReport_2_1_0_Data_Incident
     /// Remedial action description.
     /// </summary>
     [JsonPropertyName("RemedialActionDescription")]
-    public string RemedialActionDescription { get; set; }
+    public string? RemedialActionDescription { get; set; }
 
     /// <summary>
     /// Name of the person who prepared the incident report.
     /// </summary>
     [JsonPropertyName("IncidentReporterName")]
-    public string IncidentReporterName { get; set; }
+    public string? IncidentReporterName { get; set; }
 
     /// <summary>
     /// A reference to the organisation for which is the company primarily involved in managing the incident.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("OrganisationID")]
-    public string OrganisationID { get; set; }
+    public string? OrganisationID { get; set; }
 
 }
 
@@ -2337,7 +2337,7 @@ public class WellOperationsReport_2_1_0_Data_MudLosses
     /// Comments and remarks
     /// </summary>
     [JsonPropertyName("Comments")]
-    public string Comments { get; set; }
+    public string? Comments { get; set; }
 
     /// <summary>
     /// Date and time that the mud loss occurred
@@ -2345,7 +2345,7 @@ public class WellOperationsReport_2_1_0_Data_MudLosses
     [Required]
     [JsonPropertyName("DateTime")]
     [JsonConverter(typeof(NullableDateTimeOffsetConverter))]
-    public DateTimeOffset DateTime { get; set; }
+    public required DateTimeOffset DateTime { get; set; }
 
     /// <summary>
     /// Top measured depth for which the mud loss reading was occurred
@@ -2462,7 +2462,7 @@ public class WellOperationsReport_2_1_0_Data_GasReading
     [Required]
     [JsonPropertyName("DateTime")]
     [JsonConverter(typeof(NullableDateTimeOffsetConverter))]
-    public DateTimeOffset DateTime { get; set; }
+    public required DateTimeOffset DateTime { get; set; }
 
     /// <summary>
     /// The highest gas reading.
@@ -2535,6 +2535,6 @@ public class WellOperationsReport_2_1_0_Data_GasReading
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-GasReadingType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ReadingType")]
-    public string ReadingType { get; set; }
+    public string? ReadingType { get; set; }
 
 }

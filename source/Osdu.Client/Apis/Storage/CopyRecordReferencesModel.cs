@@ -23,12 +23,12 @@ public class CopyRecordReferencesModel
     /// Target collaboration space identifier.
     /// </summary>
     [JsonPropertyName("target")]
-    public string Target { get; set; }
+    public string? Target { get; set; }
 
     /// <summary>
     /// List of record id and version pairs to copy.
     /// </summary>
     [JsonPropertyName("records")]
-    public List<RecordVersionModel> Records { get; set; }
+    public List<RecordVersionModel>? Records { get; set; }
 
 }

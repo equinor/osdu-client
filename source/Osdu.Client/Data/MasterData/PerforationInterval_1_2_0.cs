@@ -25,7 +25,7 @@ public class PerforationInterval_1_2_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-PerforationInterval:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class PerforationInterval_1_2_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class PerforationInterval_1_2_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class PerforationInterval_1_2_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class PerforationInterval_1_2_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class PerforationInterval_1_2_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public PerforationInterval_1_2_0_Data? Data { get; set; }
@@ -101,13 +101,13 @@ public class PerforationInterval_1_2_0_Data : AbstractCommonResources_1_0_0 // A
     /// Alternative names, including historical, by which this master data is/has been known (it should include all the identifiers).
     /// </summary>
     [JsonPropertyName("NameAliases")]
-    public List<AbstractAliasNames_1_0_0> NameAliases { get; set; }
+    public List<AbstractAliasNames_1_0_0>? NameAliases { get; set; }
 
     /// <summary>
     /// List of geographic entities which provide context to the master data. This may include multiple types or multiple values of the same type.
     /// </summary>
     [JsonPropertyName("GeoContexts")]
-    public List<AbstractGeoContext_1_0_0> GeoContexts { get; set; }
+    public List<AbstractGeoContext_1_0_0>? GeoContexts { get; set; }
 
     [JsonPropertyName("SpatialLocation")]
     public AbstractSpatialLocation_1_1_0? SpatialLocation { get; set; }
@@ -116,34 +116,34 @@ public class PerforationInterval_1_2_0_Data : AbstractCommonResources_1_0_0 // A
     /// This describes the reason that caused the creation of a new version of this master data.
     /// </summary>
     [JsonPropertyName("VersionCreationReason")]
-    public string VersionCreationReason { get; set; }
+    public string? VersionCreationReason { get; set; }
 
     /// <summary>
     /// DEPRECATED: (in favor of more nuanced TechnicalAssurances[] array) Describes a master-data record's overall suitability for general business consumption based on data quality. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TechnicalAssuranceType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TechnicalAssuranceTypeID")]
-    public string TechnicalAssuranceTypeID { get; set; }
+    public string? TechnicalAssuranceTypeID { get; set; }
 
     /// <summary>
     /// Describes a record's overall suitability for general business consumption in context of one or more workflows/personas based on data quality and reviewer's decisions. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [JsonPropertyName("TechnicalAssurances")]
-    public List<AbstractTechnicalAssurance_1_2_0> TechnicalAssurances { get; set; }
+    public List<AbstractTechnicalAssurance_1_2_0>? TechnicalAssurances { get; set; }
 
     /// <summary>
     /// Business natural key or code of the parent Wellbore to which this record belongs
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Wellbore:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellboreID")]
-    public string WellboreID { get; set; }
+    public string? WellboreID { get; set; }
 
     /// <summary>
     /// SRN to Job performed to construct the Perf Intervals
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-PerforationJob:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("PerforationJobID")]
-    public string PerforationJobID { get; set; }
+    public string? PerforationJobID { get; set; }
 
     /// <summary>
     /// Sequence Number (guns fired sequence)
@@ -169,7 +169,7 @@ public class PerforationInterval_1_2_0_Data : AbstractCommonResources_1_0_0 // A
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-PerforationIntervalType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("IntervalTypeID")]
-    public string IntervalTypeID { get; set; }
+    public string? IntervalTypeID { get; set; }
 
     [JsonPropertyName("VerticalMeasurement")]
     public AbstractFacilityVerticalMeasurement_1_0_0? VerticalMeasurement { get; set; }
@@ -197,14 +197,14 @@ public class PerforationInterval_1_2_0_Data : AbstractCommonResources_1_0_0 // A
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-PerforationIntervalWLSize:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WirelineDiameterTypeID")]
-    public string WirelineDiameterTypeID { get; set; }
+    public string? WirelineDiameterTypeID { get; set; }
 
     /// <summary>
     /// Interval Reason
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-PerforationIntervalReason:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("IntervalReasonTypeID")]
-    public string IntervalReasonTypeID { get; set; }
+    public string? IntervalReasonTypeID { get; set; }
 
     /// <summary>
     /// Gun diameter
@@ -217,89 +217,89 @@ public class PerforationInterval_1_2_0_Data : AbstractCommonResources_1_0_0 // A
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("GunCarrierManufacturerID")]
-    public string GunCarrierManufacturerID { get; set; }
+    public string? GunCarrierManufacturerID { get; set; }
 
     /// <summary>
     /// Gun Carrier Type
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-PerforationGunCarrierType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("GunCarrierTypeID")]
-    public string GunCarrierTypeID { get; set; }
+    public string? GunCarrierTypeID { get; set; }
 
     /// <summary>
     /// Gun Carrier Model
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-PerforationGunCarrierModel:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("GunCarrierModelID")]
-    public string GunCarrierModelID { get; set; }
+    public string? GunCarrierModelID { get; set; }
 
     /// <summary>
     /// Gun Carrier Category
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-PerforationGunCarrierCategory:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("GunCarrierCategoryTypeID")]
-    public string GunCarrierCategoryTypeID { get; set; }
+    public string? GunCarrierCategoryTypeID { get; set; }
 
     /// <summary>
     /// Gun Carrier Phasing (angle between perfs). Implemented via a reference list in order to standardize the values.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-PerforationGunPhasingType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("GunCarrierPhasing")]
-    public string GunCarrierPhasing { get; set; }
+    public string? GunCarrierPhasing { get; set; }
 
     /// <summary>
     /// Gun Carrier Description
     /// </summary>
     [JsonPropertyName("GunCarrierDescription")]
-    public string GunCarrierDescription { get; set; }
+    public string? GunCarrierDescription { get; set; }
 
     /// <summary>
     /// Gun Firing Head Type
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-PerforationGunFiringHeadType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("GunFiringHeadTypeID")]
-    public string GunFiringHeadTypeID { get; set; }
+    public string? GunFiringHeadTypeID { get; set; }
 
     /// <summary>
     /// Metallurgy of the gun
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-PerforationGunMetallurgyType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("GunMetallurgyTypeID")]
-    public string GunMetallurgyTypeID { get; set; }
+    public string? GunMetallurgyTypeID { get; set; }
 
     /// <summary>
     /// Charge Make/Manufacturer
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ChargeManufacturerID")]
-    public string ChargeManufacturerID { get; set; }
+    public string? ChargeManufacturerID { get; set; }
 
     /// <summary>
     /// Charge Type
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-PerforationGunChargeType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ChargeTypeID")]
-    public string ChargeTypeID { get; set; }
+    public string? ChargeTypeID { get; set; }
 
     /// <summary>
     /// Charge Shape
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-PerforationGunChargeShape:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ChargeShapeID")]
-    public string ChargeShapeID { get; set; }
+    public string? ChargeShapeID { get; set; }
 
     /// <summary>
     /// Charge Size
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-PerforationGunChargeSize:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ChargeSize")]
-    public string ChargeSize { get; set; }
+    public string? ChargeSize { get; set; }
 
     /// <summary>
     /// Charge Description
     /// </summary>
     [JsonPropertyName("ChargeDescription")]
-    public string ChargeDescription { get; set; }
+    public string? ChargeDescription { get; set; }
 
     /// <summary>
     /// Gun Swell Diameter
@@ -379,7 +379,7 @@ public class PerforationInterval_1_2_0_Data : AbstractCommonResources_1_0_0 // A
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-BottomHolePressureType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("BHPressureTypeID")]
-    public string BHPressureTypeID { get; set; }
+    public string? BHPressureTypeID { get; set; }
 
     /// <summary>
     /// Pressure during perforation
@@ -452,19 +452,19 @@ public class PerforationInterval_1_2_0_Data : AbstractCommonResources_1_0_0 // A
     /// Technical Result
     /// </summary>
     [JsonPropertyName("TechnicalResult")]
-    public string TechnicalResult { get; set; }
+    public string? TechnicalResult { get; set; }
 
     /// <summary>
     /// Interval Comments
     /// </summary>
     [JsonPropertyName("IntervalComments")]
-    public string IntervalComments { get; set; }
+    public string? IntervalComments { get; set; }
 
     /// <summary>
     /// The name under which this perforation interval is known.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }

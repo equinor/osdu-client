@@ -29,24 +29,24 @@ public class PatchRecordsResponse
     /// List of record ids that were successfully patched.
     /// </summary>
     [JsonPropertyName("recordIds")]
-    public List<string> RecordIds { get; set; }
+    public List<string>? RecordIds { get; set; }
 
     /// <summary>
     /// List of record ids that were not found.
     /// </summary>
     [JsonPropertyName("notFoundRecordIds")]
-    public List<string> NotFoundRecordIds { get; set; }
+    public List<string>? NotFoundRecordIds { get; set; }
 
     /// <summary>
     /// List of record ids that failed to be patched.
     /// </summary>
     [JsonPropertyName("failedRecordIds")]
-    public List<string> FailedRecordIds { get; set; }
+    public List<string>? FailedRecordIds { get; set; }
 
     /// <summary>
     /// List of error messages for failed records.
     /// </summary>
     [JsonPropertyName("errors")]
-    public List<string> Errors { get; set; }
+    public List<string>? Errors { get; set; }
 
 }

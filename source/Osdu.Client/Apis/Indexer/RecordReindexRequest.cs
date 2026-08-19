@@ -17,9 +17,9 @@ namespace Osdu.Client.Apis.Indexer;
 public class RecordReindexRequest
 {
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public string? Kind { get; set; }
 
     [JsonPropertyName("cursor")]
-    public string Cursor { get; set; }
+    public string? Cursor { get; set; }
 
 }

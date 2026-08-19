@@ -17,9 +17,9 @@ namespace Osdu.Client.Apis.Storage;
 public class RecordVersions
 {
     [JsonPropertyName("recordId")]
-    public string RecordId { get; set; }
+    public string? RecordId { get; set; }
 
     [JsonPropertyName("versions")]
-    public List<long> Versions { get; set; }
+    public List<long>? Versions { get; set; }
 
 }

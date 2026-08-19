@@ -35,7 +35,7 @@ public class UnitEssenceImpl
     /// Unit in y = scale*(x-offset) parameterization
     /// </summary>
     [JsonPropertyName("symbol")]
-    public string Symbol { get; set; }
+    public string? Symbol { get; set; }
 
     [JsonPropertyName("baseMeasurement")]
     public MeasurementEssence? BaseMeasurement { get; set; }
@@ -44,6 +44,6 @@ public class UnitEssenceImpl
     /// The type string for this unit essence, either 'USO' for ScaleOffset or 'UAD' for Abcd
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; }
+    public string? Type { get; set; }
 
 }

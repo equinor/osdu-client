@@ -23,33 +23,33 @@ public class AbstractDecisionQualityElement_1_0_0
     /// A simple text providing the necessary evidence for this aspect of decision quality.
     /// </summary>
     [JsonPropertyName("EvidenceAsText")]
-    public string EvidenceAsText { get; set; }
+    public string? EvidenceAsText { get; set; }
 
     /// <summary>
     /// The related Document holding the evidence for this aspect of decision quality.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-Document:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("EvidenceDocumentID")]
-    public string EvidenceDocumentID { get; set; }
+    public string? EvidenceDocumentID { get; set; }
 
     /// <summary>
     /// The related PersistedCollection, which keeps the data context for this aspect of decision quality.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-PersistedCollection:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("EvidenceDataCollectionID")]
-    public string EvidenceDataCollectionID { get; set; }
+    public string? EvidenceDataCollectionID { get; set; }
 
     /// <summary>
     /// The array of remarks.
     /// </summary>
     [JsonPropertyName("Remarks")]
-    public List<AbstractRemark_1_0_0> Remarks { get; set; }
+    public List<AbstractRemark_1_0_0>? Remarks { get; set; }
 
     /// <summary>
     /// The assessed decision quality (Sufficient, within acceptable range and residual risk, insufficient)
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-AssessedDecisionQuality:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("AssessmentID")]
-    public string AssessmentID { get; set; }
+    public string? AssessmentID { get; set; }
 
 }

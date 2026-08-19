@@ -23,12 +23,12 @@ public class BaseCRS
     /// Record Id of parent CRS
     /// </summary>
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// Name of parent CRS
     /// </summary>
     [JsonPropertyName("name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
 }

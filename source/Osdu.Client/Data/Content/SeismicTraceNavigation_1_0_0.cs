@@ -25,13 +25,13 @@ public class SeismicTraceNavigation_1_0_0 : AbstractContent_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-SeismicLineGeometry:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("OriginalSeismicLineGeometryID")]
-    public string OriginalSeismicLineGeometryID { get; set; }
+    public string? OriginalSeismicLineGeometryID { get; set; }
 
     /// <summary>
     /// The summary data for each line segment. At least one segment is expected. If only one segment is defined, the feature type is AnyCrsLineString/LineString, otherwise AnyCrsMultiLineString/MultiLineString.
     /// </summary>
     [JsonPropertyName("LineSegments")]
-    public List<SeismicTraceNavigation_1_0_0_LineSegments> LineSegments { get; set; }
+    public List<SeismicTraceNavigation_1_0_0_LineSegments>? LineSegments { get; set; }
 
     /// <summary>
     /// The total number of coordinates equalling the total number of traces in the seismic trace dataset.
@@ -53,13 +53,13 @@ public class SeismicTraceNavigation_1_0_0_LineSegments
     /// The original name of the line defined by the navigation.
     /// </summary>
     [JsonPropertyName("NavigationLineName")]
-    public string NavigationLineName { get; set; }
+    public string? NavigationLineName { get; set; }
 
     /// <summary>
     /// The original name of the line defined by the seismic trace data.
     /// </summary>
     [JsonPropertyName("SeismicLineName")]
-    public string SeismicLineName { get; set; }
+    public string? SeismicLineName { get; set; }
 
     /// <summary>
     /// The number of locations/coordinates in the line segment.
@@ -117,14 +117,14 @@ public class SeismicTraceNavigation_1_0_0_LineSegments_ShotPointRange
     /// </summary>
     [Required]
     [JsonPropertyName("Start")]
-    public double Start { get; set; }
+    public required double Start { get; set; }
 
     /// <summary>
     /// The end point number of the range.
     /// </summary>
     [Required]
     [JsonPropertyName("End")]
-    public double End { get; set; }
+    public required double End { get; set; }
 
 }
 
@@ -138,14 +138,14 @@ public class SeismicTraceNavigation_1_0_0_LineSegments_CommonMidPointRange
     /// </summary>
     [Required]
     [JsonPropertyName("Start")]
-    public double Start { get; set; }
+    public required double Start { get; set; }
 
     /// <summary>
     /// The end point number of the range.
     /// </summary>
     [Required]
     [JsonPropertyName("End")]
-    public double End { get; set; }
+    public required double End { get; set; }
 
 }
 
@@ -159,14 +159,14 @@ public class SeismicTraceNavigation_1_0_0_LineSegments_ShotPointCommonMidPointRa
     /// </summary>
     [Required]
     [JsonPropertyName("ShotPoint")]
-    public double ShotPoint { get; set; }
+    public required double ShotPoint { get; set; }
 
     /// <summary>
     /// The divisor in the short point to common mid-point ratio.
     /// </summary>
     [Required]
     [JsonPropertyName("CommonMidPoint")]
-    public double CommonMidPoint { get; set; }
+    public required double CommonMidPoint { get; set; }
 
     /// <summary>
     /// The rounding error for the shot point to common mid-point ratio. If absent the value is assumed to be 0.
@@ -186,13 +186,13 @@ public class SeismicTraceNavigation_1_0_0_LineSegments_GenericLabels
     /// </summary>
     [Required]
     [JsonPropertyName("First")]
-    public string First { get; set; }
+    public required string First { get; set; }
 
     /// <summary>
     /// The last label of the line segment.
     /// </summary>
     [Required]
     [JsonPropertyName("Last")]
-    public string Last { get; set; }
+    public required string Last { get; set; }
 
 }

@@ -24,13 +24,13 @@ public class AbstractGeoBasinContext_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Basin:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("BasinID")]
-    public string BasinID { get; set; }
+    public string? BasinID { get; set; }
 
     /// <summary>
     /// The BasinType reference of the Basin (via BasinID) for application convenience.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-BasinType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("GeoTypeID")]
-    public string GeoTypeID { get; set; }
+    public string? GeoTypeID { get; set; }
 
 }

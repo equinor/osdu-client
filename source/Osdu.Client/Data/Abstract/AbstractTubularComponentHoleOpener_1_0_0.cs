@@ -24,7 +24,7 @@ public class AbstractTubularComponentHoleOpener_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-HoleOpenerType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("HoleOpenerTypeID")]
-    public string HoleOpenerTypeID { get; set; }
+    public string? HoleOpenerTypeID { get; set; }
 
     /// <summary>
     /// Number of cutters on the tool.

@@ -24,7 +24,7 @@ public class AbstractGridRepresentation_1_0_0 : AbstractRepresentation_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-EarthModelInterpretation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("InterpretationID")]
-    public string InterpretationID { get; set; }
+    public string? InterpretationID { get; set; }
 
     /// <summary>
     /// Total count of active cells in the grid. It is an approximation since the real count of active cells can be modified with some properties.
@@ -44,7 +44,7 @@ public class AbstractGridRepresentation_1_0_0 : AbstractRepresentation_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:(work-product-component\-\-GpGridRepresentation|work-product-component\-\-IjkGridRepresentation|work-product-component\-\-UnstructuredColumnLayerGridRepresentation|work-product-component\-\-UnstructuredGridRepresentation):[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ParentGridID")]
-    public string ParentGridID { get; set; }
+    public string? ParentGridID { get; set; }
 
     /// <summary>
     /// Allow to link the K layers (or the "geologic k" property for example in case of K expansion or unstructured grid) of this grid with some stratigraphic units of a stratigraphic organization.
@@ -56,7 +56,7 @@ public class AbstractGridRepresentation_1_0_0 : AbstractRepresentation_1_0_0
     /// References to the RockFluid organization interpretations which this grid relates to.
     /// </summary>
     [JsonPropertyName("RockFluidOrganizationInterpretationIDS")]
-    public List<string> RockFluidOrganizationInterpretationIDS { get; set; }
+    public List<string>? RockFluidOrganizationInterpretationIDS { get; set; }
 
     /// <summary>
     /// Indicate if the grid has got some finite element subnodes for defining higher order grid geometry and properties. This is mainly used in geomechanical context.
@@ -84,7 +84,7 @@ public class AbstractGridRepresentation_1_0_0_StratigraphicUnits
     /// </summary>
     [Required]
     [JsonPropertyName("StratigraphicUnitsIndices")]
-    public List<List<int>> StratigraphicUnitsIndices { get; set; }
+    public required List<List<int>> StratigraphicUnitsIndices { get; set; }
 
     /// <summary>
     /// Reference to the stratigraphic column rank interpretation which this grid is derived from.
@@ -92,6 +92,6 @@ public class AbstractGridRepresentation_1_0_0_StratigraphicUnits
     [Required]
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-StratigraphicColumnRankInterpretation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("StratigraphicColumnRankInterpretationID")]
-    public string StratigraphicColumnRankInterpretationID { get; set; }
+    public required string StratigraphicColumnRankInterpretationID { get; set; }
 
 }

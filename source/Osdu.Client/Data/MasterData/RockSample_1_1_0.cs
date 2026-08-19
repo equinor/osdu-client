@@ -25,7 +25,7 @@ public class RockSample_1_1_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-RockSample:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class RockSample_1_1_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class RockSample_1_1_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class RockSample_1_1_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class RockSample_1_1_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class RockSample_1_1_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public RockSample_1_1_0_Data? Data { get; set; }
@@ -101,13 +101,13 @@ public class RockSample_1_1_0_Data : AbstractCommonResources_1_0_0 // Also compo
     /// Alternative names, including historical, by which this master data is/has been known (it should include all the identifiers).
     /// </summary>
     [JsonPropertyName("NameAliases")]
-    public List<AbstractAliasNames_1_0_0> NameAliases { get; set; }
+    public List<AbstractAliasNames_1_0_0>? NameAliases { get; set; }
 
     /// <summary>
     /// List of geographic entities which provide context to the master data. This may include multiple types or multiple values of the same type.
     /// </summary>
     [JsonPropertyName("GeoContexts")]
-    public List<AbstractGeoContext_1_0_0> GeoContexts { get; set; }
+    public List<AbstractGeoContext_1_0_0>? GeoContexts { get; set; }
 
     [JsonPropertyName("SpatialLocation")]
     public AbstractSpatialLocation_1_1_0? SpatialLocation { get; set; }
@@ -116,53 +116,53 @@ public class RockSample_1_1_0_Data : AbstractCommonResources_1_0_0 // Also compo
     /// This describes the reason that caused the creation of a new version of this master data.
     /// </summary>
     [JsonPropertyName("VersionCreationReason")]
-    public string VersionCreationReason { get; set; }
+    public string? VersionCreationReason { get; set; }
 
     /// <summary>
     /// DEPRECATED: (in favor of more nuanced TechnicalAssurances[] array) Describes a master-data record's overall suitability for general business consumption based on data quality. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TechnicalAssuranceType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TechnicalAssuranceTypeID")]
-    public string TechnicalAssuranceTypeID { get; set; }
+    public string? TechnicalAssuranceTypeID { get; set; }
 
     /// <summary>
     /// Describes a record's overall suitability for general business consumption in context of one or more workflows/personas based on data quality and reviewer's decisions. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [JsonPropertyName("TechnicalAssurances")]
-    public List<AbstractTechnicalAssurance_1_2_0> TechnicalAssurances { get; set; }
+    public List<AbstractTechnicalAssurance_1_2_0>? TechnicalAssurances { get; set; }
 
     /// <summary>
     /// Native identifier from a Master Data Management System or other trusted source external to OSDU - stored here in order to allow for multi-system connection and synchronization. If used, the "Source" property should identify that source system. i.e. this item is optional.
     /// </summary>
     [JsonPropertyName("RockSampleIdentifier")]
-    public string RockSampleIdentifier { get; set; }
+    public string? RockSampleIdentifier { get; set; }
 
     /// <summary>
     /// Unique wellbore identifier. Not required for outcrops.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Wellbore:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellboreID")]
-    public string WellboreID { get; set; }
+    public string? WellboreID { get; set; }
 
     /// <summary>
     /// Identifies the Coring from which this sample is created from it directly. Not populated for outcrops and cuttings.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Coring:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("CoringID")]
-    public string CoringID { get; set; }
+    public string? CoringID { get; set; }
 
     /// <summary>
     /// Identifies the RockSample from which this sample is created from it directly.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-RockSample:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ParentSampleID")]
-    public string ParentSampleID { get; set; }
+    public string? ParentSampleID { get; set; }
 
     /// <summary>
     /// The name of this RockSample.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     [JsonPropertyName("VerticalMeasurement")]
     public AbstractFacilityVerticalMeasurement_1_0_0? VerticalMeasurement { get; set; }
@@ -171,20 +171,20 @@ public class RockSample_1_1_0_Data : AbstractCommonResources_1_0_0 // Also compo
     /// The data vendor assigned sample ID or number.
     /// </summary>
     [JsonPropertyName("LabSampleIdentifier")]
-    public string LabSampleIdentifier { get; set; }
+    public string? LabSampleIdentifier { get; set; }
 
     /// <summary>
     /// The person, vendor or other provider of this information.
     /// </summary>
     [JsonPropertyName("DataSource")]
-    public string DataSource { get; set; }
+    public string? DataSource { get; set; }
 
     /// <summary>
     /// Identifies a rock sample type.  E.g. Core, Cuttings, Core Slab, Core Plug, Core Chip, Slides. Considered mandatory.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-RockSampleType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SampleTypeID")]
-    public string SampleTypeID { get; set; }
+    public string? SampleTypeID { get; set; }
 
     /// <summary>
     /// The depth of the top of the rock sample. For point measurements (slides, sidewall cores), the same value is assigned to TopDepth and BottomDepth.
@@ -215,20 +215,20 @@ public class RockSample_1_1_0_Data : AbstractCommonResources_1_0_0 // Also compo
     /// An array containing the name of the locations where the material sample is stored. It can be stored in more than one location over time.
     /// </summary>
     [JsonPropertyName("SampleStorageLocations")]
-    public List<AbstractStorageLocation_1_0_0> SampleStorageLocations { get; set; }
+    public List<AbstractStorageLocation_1_0_0>? SampleStorageLocations { get; set; }
 
     /// <summary>
     /// An array containing operational or quality comments pertaining to a rock sample.
     /// </summary>
     [JsonPropertyName("SampleRemarks")]
-    public List<RockSample_1_1_0_Data_SampleRemarks> SampleRemarks { get; set; }
+    public List<RockSample_1_1_0_Data_SampleRemarks>? SampleRemarks { get; set; }
 
     /// <summary>
     /// Company and/or organization that owns the sample.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SampleOwnerID")]
-    public string SampleOwnerID { get; set; }
+    public string? SampleOwnerID { get; set; }
 
     /// <summary>
     /// Weight of sample
@@ -274,14 +274,14 @@ public class RockSample_1_1_0_Data : AbstractCommonResources_1_0_0 // Also compo
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CorePreservationType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("PreservationTypeID")]
-    public string PreservationTypeID { get; set; }
+    public string? PreservationTypeID { get; set; }
 
     /// <summary>
     /// The kind of orientation of this sample with respect to the bedding or drilling direction. Typical values are Horizontal, Vertical, Axial.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-SampleOrientationType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SampleOrientationID")]
-    public string SampleOrientationID { get; set; }
+    public string? SampleOrientationID { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
@@ -297,18 +297,18 @@ public class RockSample_1_1_0_Data_SampleRemarks
     /// A unique identifier for each remark record.
     /// </summary>
     [JsonPropertyName("RemarkID")]
-    public string RemarkID { get; set; }
+    public string? RemarkID { get; set; }
 
     /// <summary>
     /// A descriptive comment for this remark.
     /// </summary>
     [JsonPropertyName("Remark")]
-    public string Remark { get; set; }
+    public string? Remark { get; set; }
 
     /// <summary>
     /// The person, vendor, interpreter or other provider of information.
     /// </summary>
     [JsonPropertyName("RemarkSource")]
-    public string RemarkSource { get; set; }
+    public string? RemarkSource { get; set; }
 
 }

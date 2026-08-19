@@ -18,7 +18,7 @@ public class Input
 {
     [Required]
     [JsonPropertyName("operation")]
-    public Input_Operation Operation { get; set; }
+    public required Input_Operation Operation { get; set; }
 
     [JsonPropertyName("groups")]
     public List<string>? Groups { get; set; }

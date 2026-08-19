@@ -25,7 +25,7 @@ public class AbstractActivityParameter_1_1_0
     /// </summary>
     [Required]
     [JsonPropertyName("Title")]
-    public string Title { get; set; }
+    public required string Title { get; set; }
 
     /// <summary>
     /// When parameter is an array, used to indicate the index in the array.
@@ -37,20 +37,20 @@ public class AbstractActivityParameter_1_1_0
     /// Textual description about how this parameter was selected.
     /// </summary>
     [JsonPropertyName("Selection")]
-    public string Selection { get; set; }
+    public string? Selection { get; set; }
 
     /// <summary>
     /// A nested array describing keys used to identify a parameter value. When multiple values are provided for a given parameter, the key provides a way to identify the parameter through its association with an object, a time index or a parameter array member via ParameterKey value.
     /// </summary>
     [JsonPropertyName("Keys")]
-    public List<AbstractActivityParameter_1_1_0_Keys> Keys { get; set; }
+    public List<AbstractActivityParameter_1_1_0_Keys>? Keys { get; set; }
 
     /// <summary>
     /// Parameter referencing to a top level object.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("DataObjectParameter")]
-    public string DataObjectParameter { get; set; }
+    public string? DataObjectParameter { get; set; }
 
     /// <summary>
     /// Parameter containing a double value.
@@ -68,7 +68,7 @@ public class AbstractActivityParameter_1_1_0
     /// Parameter containing a string value.
     /// </summary>
     [JsonPropertyName("StringParameter")]
-    public string StringParameter { get; set; }
+    public string? StringParameter { get; set; }
 
     /// <summary>
     /// Parameter containing a time index value.  It is assumed that all TimeIndexParameters within an Activity have the same date-time format, which is then described by the FrameOfReference mechanism.
@@ -90,21 +90,21 @@ public class AbstractActivityParameter_1_1_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ParameterKind:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ParameterKindID")]
-    public string ParameterKindID { get; set; }
+    public required string ParameterKindID { get; set; }
 
     /// <summary>
     /// Reference data describing how the parameter was used by the activity, such as input, output, control, constraint, agent, predecessor activity, successor activity.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ParameterRole:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ParameterRoleID")]
-    public string ParameterRoleID { get; set; }
+    public string? ParameterRoleID { get; set; }
 
     /// <summary>
     /// Identifies unit of measure for floating point value.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("DataQuantityParameterUOMID")]
-    public string DataQuantityParameterUOMID { get; set; }
+    public string? DataQuantityParameterUOMID { get; set; }
 
 }
 
@@ -119,19 +119,19 @@ public class AbstractActivityParameter_1_1_0_Keys
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ObjectParameterKey")]
-    public string ObjectParameterKey { get; set; }
+    public string? ObjectParameterKey { get; set; }
 
     /// <summary>
     /// The time index acting as parameter key value.
     /// </summary>
     [JsonPropertyName("TimeIndexParameterKey")]
-    public TimeOnly TimeIndexParameterKey { get; set; }
+    public TimeOnly? TimeIndexParameterKey { get; set; }
 
     /// <summary>
     /// The key name, which establishes an association between parameters.
     /// </summary>
     [JsonPropertyName("ParameterKey")]
-    public string ParameterKey { get; set; }
+    public string? ParameterKey { get; set; }
 
     /// <summary>
     /// Integer value from "ParameterKey" parameter, associated with this parameter. Example: {"ParameterKey": "index", "StringParameterKey: 2}.
@@ -143,6 +143,6 @@ public class AbstractActivityParameter_1_1_0_Keys
     /// String value from "ParameterKey" parameter, associated with this parameter. Can be used to associate with parameter values of type string or data quantity. In the later case, the string representation of the quantity value will be used. Example: {"ParameterKey": "facies", "StringParameterKey: "shale"}, {"ParameterKey":"depth", "StringParameterKey":"1545.43m"}.
     /// </summary>
     [JsonPropertyName("StringParameterKey")]
-    public string StringParameterKey { get; set; }
+    public string? StringParameterKey { get; set; }
 
 }

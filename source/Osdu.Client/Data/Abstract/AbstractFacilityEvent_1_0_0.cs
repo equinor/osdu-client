@@ -24,7 +24,7 @@ public class AbstractFacilityEvent_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-FacilityEventType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("FacilityEventTypeID")]
-    public string FacilityEventTypeID { get; set; }
+    public string? FacilityEventTypeID { get; set; }
 
     /// <summary>
     /// The date and time at which the event took place or takes effect.

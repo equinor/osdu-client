@@ -18,14 +18,14 @@ public class ValidationError
 {
     [Required]
     [JsonPropertyName("loc")]
-    public List<object> Loc { get; set; }
+    public required List<object> Loc { get; set; }
 
     [Required]
     [JsonPropertyName("msg")]
-    public string Msg { get; set; }
+    public required string Msg { get; set; }
 
     [Required]
     [JsonPropertyName("type")]
-    public string Type { get; set; }
+    public required string Type { get; set; }
 
 }

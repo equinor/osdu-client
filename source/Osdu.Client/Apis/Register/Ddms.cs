@@ -23,26 +23,26 @@ public class Ddms
     [MinLength(1)]
     [RegularExpression(@"^[A-Za-z0-9-]{2,50}")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public required string Id { get; set; }
 
     [Required]
     [MinLength(1)]
     [RegularExpression(@"^[A-Za-z0-9- ]{2,50}")]
     [JsonPropertyName("name")]
-    public string Name { get; set; }
+    public required string Name { get; set; }
 
     [RegularExpression(@"^[A-Za-z0-9. ]{0,255}")]
     [JsonPropertyName("description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     [JsonPropertyName("contactEmail")]
-    public string ContactEmail { get; set; }
+    public string? ContactEmail { get; set; }
 
     [JsonPropertyName("createdDateTimeEpoch")]
     [JsonConverter(typeof(NullableDateTimeOffsetConverter))]
     public DateTimeOffset? CreatedDateTimeEpoch { get; set; }
 
     [JsonPropertyName("interfaces")]
-    public List<RegisteredInterface> Interfaces { get; set; }
+    public List<RegisteredInterface>? Interfaces { get; set; }
 
 }

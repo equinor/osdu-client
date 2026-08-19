@@ -23,19 +23,19 @@ public class UnitSystemInfoResponse
     /// The array of unit system names
     /// </summary>
     [JsonPropertyName("unitSystemInfoList")]
-    public List<UnitSystemInfo> UnitSystemInfoList { get; set; }
+    public List<UnitSystemInfo>? UnitSystemInfoList { get; set; }
 
     /// <summary>
     /// The total number of elements in the list defined in the catalog
     /// </summary>
     [JsonPropertyName("totalCount")]
-    public string TotalCount { get; set; }
+    public string? TotalCount { get; set; }
 
     /// <summary>
     /// The offset into the list as requested
     /// </summary>
     [JsonPropertyName("offset")]
-    public string Offset { get; set; }
+    public string? Offset { get; set; }
 
     [JsonPropertyName("count")]
     public int? Count { get; set; }

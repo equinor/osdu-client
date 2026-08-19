@@ -45,6 +45,6 @@ public class CreateDataSessionRequest
     /// </summary>
     [Required]
     [JsonPropertyName("mode")]
-    public SessionUpdateMode Mode { get; set; }
+    public required SessionUpdateMode Mode { get; set; }
 
 }

@@ -25,7 +25,7 @@ public class RigSpecifications_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-RigSpecifications:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class RigSpecifications_1_0_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class RigSpecifications_1_0_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class RigSpecifications_1_0_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class RigSpecifications_1_0_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class RigSpecifications_1_0_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public RigSpecifications_1_0_0_Data? Data { get; set; }
@@ -101,13 +101,13 @@ public class RigSpecifications_1_0_0_Data : AbstractCommonResources_1_0_1 // Als
     /// Alternative names, including historical, by which this master data is/has been known (it should include all the identifiers).
     /// </summary>
     [JsonPropertyName("NameAliases")]
-    public List<AbstractAliasNames_1_0_0> NameAliases { get; set; }
+    public List<AbstractAliasNames_1_0_0>? NameAliases { get; set; }
 
     /// <summary>
     /// List of geographic entities which provide context to the master data. This may include multiple types or multiple values of the same type.
     /// </summary>
     [JsonPropertyName("GeoContexts")]
-    public List<AbstractGeoContext_1_0_0> GeoContexts { get; set; }
+    public List<AbstractGeoContext_1_0_0>? GeoContexts { get; set; }
 
     [JsonPropertyName("SpatialLocation")]
     public AbstractSpatialLocation_1_1_0? SpatialLocation { get; set; }
@@ -116,27 +116,27 @@ public class RigSpecifications_1_0_0_Data : AbstractCommonResources_1_0_1 // Als
     /// This describes the reason that caused the creation of a new version of this master data.
     /// </summary>
     [JsonPropertyName("VersionCreationReason")]
-    public string VersionCreationReason { get; set; }
+    public string? VersionCreationReason { get; set; }
 
     /// <summary>
     /// DEPRECATED: (in favor of more nuanced TechnicalAssurances[] array) Describes a master-data record's overall suitability for general business consumption based on data quality. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TechnicalAssuranceType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TechnicalAssuranceTypeID")]
-    public string TechnicalAssuranceTypeID { get; set; }
+    public string? TechnicalAssuranceTypeID { get; set; }
 
     /// <summary>
     /// Describes a record's overall suitability for general business consumption in context of one or more workflows/personas based on data quality and reviewer's decisions. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [JsonPropertyName("TechnicalAssurances")]
-    public List<AbstractTechnicalAssurance_1_2_0> TechnicalAssurances { get; set; }
+    public List<AbstractTechnicalAssurance_1_2_0>? TechnicalAssurances { get; set; }
 
     /// <summary>
     /// Identifier of the Rig this specification applies to
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Rig:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("RigID")]
-    public string RigID { get; set; }
+    public string? RigID { get; set; }
 
     /// <summary>
     /// The start date when this rig specification is valid.
@@ -157,7 +157,7 @@ public class RigSpecifications_1_0_0_Data : AbstractCommonResources_1_0_1 // Als
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("OwnerID")]
-    public string OwnerID { get; set; }
+    public string? OwnerID { get; set; }
 
     /// <summary>
     /// Length of the Rig (offshore)
@@ -181,7 +181,7 @@ public class RigSpecifications_1_0_0_Data : AbstractCommonResources_1_0_1 // Als
     /// Identification number for the rig provided by International Maritime Organization (IMO).
     /// </summary>
     [JsonPropertyName("IMONumber")]
-    public string IMONumber { get; set; }
+    public string? IMONumber { get; set; }
 
     /// <summary>
     /// Indicates that the rig supports Managed Pressure Drilling
@@ -206,7 +206,7 @@ public class RigSpecifications_1_0_0_Data : AbstractCommonResources_1_0_1 // Als
     /// The system that allows jack-up rigs to elevate their hulls above sea level.
     /// </summary>
     [JsonPropertyName("JackingSystem")]
-    public string JackingSystem { get; set; }
+    public string? JackingSystem { get; set; }
 
     /// <summary>
     /// Total number of thrusters supported by the rig.
@@ -226,7 +226,7 @@ public class RigSpecifications_1_0_0_Data : AbstractCommonResources_1_0_1 // Als
     /// The Class of the dynamic positioning system.
     /// </summary>
     [JsonPropertyName("DPSystemClass")]
-    public string DPSystemClass { get; set; }
+    public string? DPSystemClass { get; set; }
 
     /// <summary>
     /// The number of cranes on the rig
@@ -281,7 +281,7 @@ public class RigSpecifications_1_0_0_Data : AbstractCommonResources_1_0_1 // Als
     /// A description of the type of helicopter the helideck is rated to support. Can also include the dimensions of the helideck.
     /// </summary>
     [JsonPropertyName("HelideckRating")]
-    public string HelideckRating { get; set; }
+    public string? HelideckRating { get; set; }
 
     /// <summary>
     /// Number of people that can be accommodated on the rig.
@@ -293,7 +293,7 @@ public class RigSpecifications_1_0_0_Data : AbstractCommonResources_1_0_1 // Als
     /// Number of lifeboats on the rig
     /// </summary>
     [JsonPropertyName("NumLifeboats")]
-    public string NumLifeboats { get; set; }
+    public string? NumLifeboats { get; set; }
 
     /// <summary>
     /// Maximum water depth for the rig.
@@ -324,7 +324,7 @@ public class RigSpecifications_1_0_0_Data : AbstractCommonResources_1_0_1 // Als
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-GantryType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("GantryTypeID")]
-    public string GantryTypeID { get; set; }
+    public string? GantryTypeID { get; set; }
 
     /// <summary>
     /// Description of flare(s).
@@ -332,20 +332,20 @@ public class RigSpecifications_1_0_0_Data : AbstractCommonResources_1_0_1 // Als
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-FlareType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("FlareTypeID")]
-    public string FlareTypeID { get; set; }
+    public string? FlareTypeID { get; set; }
 
     /// <summary>
     /// Method or system used to secure the rig in it's operational location, either temporary or permanently
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-MooringType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("MooringTypeID")]
-    public string MooringTypeID { get; set; }
+    public string? MooringTypeID { get; set; }
 
     /// <summary>
     /// Name/Description of Compensation System
     /// </summary>
     [JsonPropertyName("MotionCompensationName")]
-    public string MotionCompensationName { get; set; }
+    public string? MotionCompensationName { get; set; }
 
     /// <summary>
     /// Minimum motion compensation.
@@ -412,19 +412,19 @@ public class RigSpecifications_1_0_0_Data : AbstractCommonResources_1_0_1 // Als
     /// Systems and technologies used to store energy for operational use, back up power and efficiency optimization like (Compressed air energy storage, Thermal e. st., hydraulic accumulators, Flywheels, batteries)
     /// </summary>
     [JsonPropertyName("EnergyStorage")]
-    public string EnergyStorage { get; set; }
+    public string? EnergyStorage { get; set; }
 
     /// <summary>
     /// The type of engines that provides the primary power source to run essential systems, including drilling operations, power generation, and propulsion
     /// </summary>
     [JsonPropertyName("MainEngine")]
-    public string MainEngine { get; set; }
+    public string? MainEngine { get; set; }
 
     /// <summary>
     /// Description of the electrical power generating system.
     /// </summary>
     [JsonPropertyName("Generator")]
-    public string Generator { get; set; }
+    public string? Generator { get; set; }
 
     /// <summary>
     /// Indicates that the rig has a Programmer Control Room Operating System

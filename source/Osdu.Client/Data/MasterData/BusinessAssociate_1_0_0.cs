@@ -25,7 +25,7 @@ public class BusinessAssociate_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-BusinessAssociate:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class BusinessAssociate_1_0_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class BusinessAssociate_1_0_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class BusinessAssociate_1_0_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class BusinessAssociate_1_0_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class BusinessAssociate_1_0_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public BusinessAssociate_1_0_0_Data? Data { get; set; }
@@ -101,13 +101,13 @@ public class BusinessAssociate_1_0_0_Data : AbstractCommonResources_1_0_0 // Als
     /// Alternative names, including historical, by which this master data is/has been known (it should include all the identifiers).
     /// </summary>
     [JsonPropertyName("NameAliases")]
-    public List<AbstractAliasNames_1_0_0> NameAliases { get; set; }
+    public List<AbstractAliasNames_1_0_0>? NameAliases { get; set; }
 
     /// <summary>
     /// List of geographic entities which provide context to the master data. This may include multiple types or multiple values of the same type.
     /// </summary>
     [JsonPropertyName("GeoContexts")]
-    public List<AbstractGeoContext_1_0_0> GeoContexts { get; set; }
+    public List<AbstractGeoContext_1_0_0>? GeoContexts { get; set; }
 
     [JsonPropertyName("SpatialLocation")]
     public AbstractSpatialLocation_1_1_0? SpatialLocation { get; set; }
@@ -116,70 +116,70 @@ public class BusinessAssociate_1_0_0_Data : AbstractCommonResources_1_0_0 // Als
     /// This describes the reason that caused the creation of a new version of this master data.
     /// </summary>
     [JsonPropertyName("VersionCreationReason")]
-    public string VersionCreationReason { get; set; }
+    public string? VersionCreationReason { get; set; }
 
     /// <summary>
     /// DEPRECATED: (in favor of more nuanced TechnicalAssurances[] array) Describes a master-data record's overall suitability for general business consumption based on data quality. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TechnicalAssuranceType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TechnicalAssuranceTypeID")]
-    public string TechnicalAssuranceTypeID { get; set; }
+    public string? TechnicalAssuranceTypeID { get; set; }
 
     /// <summary>
     /// Describes a record's overall suitability for general business consumption in context of one or more workflows/personas based on data quality and reviewer's decisions. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [JsonPropertyName("TechnicalAssurances")]
-    public List<AbstractTechnicalAssurance_1_2_0> TechnicalAssurances { get; set; }
+    public List<AbstractTechnicalAssurance_1_2_0>? TechnicalAssurances { get; set; }
 
     /// <summary>
     /// Native identifier from a Master Data Management System or other trusted source external to OSDU - stored here in order to allow for multi-system connection and synchronization. If used, the "Source" property should identify that source system.
     /// </summary>
     [JsonPropertyName("BusinessAssociateID")]
-    public string BusinessAssociateID { get; set; }
+    public string? BusinessAssociateID { get; set; }
 
     /// <summary>
     /// The name of the business associate.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// The reason why the business associated was formed.
     /// </summary>
     [JsonPropertyName("PurposeDescription")]
-    public string PurposeDescription { get; set; }
+    public string? PurposeDescription { get; set; }
 
     /// <summary>
     /// Textual description of the nature of the organisation.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// The date and time at which a given business associate becomes effective.
     /// </summary>
     [JsonPropertyName("EffectiveDate")]
-    public DateOnly EffectiveDate { get; set; }
+    public DateOnly? EffectiveDate { get; set; }
 
     /// <summary>
     /// The date and time at which a given business associate is no longer in effect.
     /// </summary>
     [JsonPropertyName("TerminationDate")]
-    public DateOnly TerminationDate { get; set; }
+    public DateOnly? TerminationDate { get; set; }
 
     /// <summary>
     /// Category the organisational structure fits into. Possible values - Operating Unit, Operating sub Unit, A Business, A Department, Government Agency, etc.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-OrganisationType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("OrganisationTypeID")]
-    public string OrganisationTypeID { get; set; }
+    public string? OrganisationTypeID { get; set; }
 
     /// <summary>
     /// If populated, this is the parent business associate of the current business associate. In case of de-mergers/splits, this relationship identified the Business Associate, which was split up.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-BusinessAssociate:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ParentBusinessAssociateID")]
-    public string ParentBusinessAssociateID { get; set; }
+    public string? ParentBusinessAssociateID { get; set; }
 
     /// <summary>
     /// The current status of the Business Associate, such as Active, In Receivership, Sold, Merged. Main sheet
@@ -191,44 +191,44 @@ public class BusinessAssociate_1_0_0_Data : AbstractCommonResources_1_0_0 // Als
     /// The array of historical business associate status together with the time interval of validity and a remark.
     /// </summary>
     [JsonPropertyName("PreviousStates")]
-    public List<BusinessAssociate_1_0_0_Data_PreviousStates> PreviousStates { get; set; }
+    public List<BusinessAssociate_1_0_0_Data_PreviousStates>? PreviousStates { get; set; }
 
     /// <summary>
     /// Narrative remarks about this Business Associate.
     /// </summary>
     [JsonPropertyName("Remark")]
-    public string Remark { get; set; }
+    public string? Remark { get; set; }
 
     /// <summary>
     /// The relationship to an organisation.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("OrganisationID")]
-    public string OrganisationID { get; set; }
+    public string? OrganisationID { get; set; }
 
     /// <summary>
     /// The Addresses array contains information on the address, phone numbers, primary contacts, and location of the business associate, allowing clients to have multiple addresses. For example, companies that have a headquarters and various satellite offices.
     /// </summary>
     [JsonPropertyName("Addresses")]
-    public List<BusinessAssociate_1_0_0_Data_Addresses> Addresses { get; set; }
+    public List<BusinessAssociate_1_0_0_Data_Addresses>? Addresses { get; set; }
 
     /// <summary>
     /// Describes the set of authorities held by a business associate to make payments, sign contracts etc. Considered as business context.
     /// </summary>
     [JsonPropertyName("Authorities")]
-    public List<BusinessAssociate_1_0_0_Data_Authorities> Authorities { get; set; }
+    public List<BusinessAssociate_1_0_0_Data_Authorities>? Authorities { get; set; }
 
     /// <summary>
     /// Represents the contact information for a company. May be a phone number, fax number, EMail address, Web URL etc.
     /// </summary>
     [JsonPropertyName("Contacts")]
-    public List<AbstractContactUserProfile_1_0_0> Contacts { get; set; }
+    public List<AbstractContactUserProfile_1_0_0>? Contacts { get; set; }
 
     /// <summary>
     /// Describes the set of primary services provided by a business associate. For example drilling contractor, logging com pany, seismic broker etc.
     /// </summary>
     [JsonPropertyName("Services")]
-    public List<BusinessAssociate_1_0_0_Data_Services> Services { get; set; }
+    public List<BusinessAssociate_1_0_0_Data_Services>? Services { get; set; }
 
     [JsonPropertyName("Person")]
     public AbstractContactUserProfile_1_0_0? Person { get; set; }
@@ -238,7 +238,7 @@ public class BusinessAssociate_1_0_0_Data : AbstractCommonResources_1_0_0 // Als
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-BusinessAssociate:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SuccessorID")]
-    public string SuccessorID { get; set; }
+    public string? SuccessorID { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
@@ -255,25 +255,25 @@ public class BusinessAssociate_1_0_0_Data_CurrentStatus
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-BusinessAssociateStatusType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("StatusTypeID")]
-    public string StatusTypeID { get; set; }
+    public string? StatusTypeID { get; set; }
 
     /// <summary>
     /// The date and time at which a given business associate status becomes effective.
     /// </summary>
     [JsonPropertyName("EffectiveDate")]
-    public DateOnly EffectiveDate { get; set; }
+    public DateOnly? EffectiveDate { get; set; }
 
     /// <summary>
     /// The date and time at which a given business associate status is no longer in effect.
     /// </summary>
     [JsonPropertyName("TerminationDate")]
-    public DateOnly TerminationDate { get; set; }
+    public DateOnly? TerminationDate { get; set; }
 
     /// <summary>
     /// A remark about the business associate status in time.
     /// </summary>
     [JsonPropertyName("Remark")]
-    public string Remark { get; set; }
+    public string? Remark { get; set; }
 
 }
 
@@ -287,25 +287,25 @@ public class BusinessAssociate_1_0_0_Data_PreviousStates
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-BusinessAssociateStatusType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("StatusTypeID")]
-    public string StatusTypeID { get; set; }
+    public string? StatusTypeID { get; set; }
 
     /// <summary>
     /// The date and time at which a given business associate status becomes effective.
     /// </summary>
     [JsonPropertyName("EffectiveDate")]
-    public DateOnly EffectiveDate { get; set; }
+    public DateOnly? EffectiveDate { get; set; }
 
     /// <summary>
     /// The date and time at which a given business associate status is no longer in effect.
     /// </summary>
     [JsonPropertyName("TerminationDate")]
-    public DateOnly TerminationDate { get; set; }
+    public DateOnly? TerminationDate { get; set; }
 
     /// <summary>
     /// A remark about the business associate status in time.
     /// </summary>
     [JsonPropertyName("Remark")]
-    public string Remark { get; set; }
+    public string? Remark { get; set; }
 
 }
 
@@ -326,19 +326,19 @@ public class BusinessAssociate_1_0_0_Data_Addresses
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-AddressType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("AddressTypeID")]
-    public string AddressTypeID { get; set; }
+    public string? AddressTypeID { get; set; }
 
     /// <summary>
     /// One or more lines of address for a business associate.
     /// </summary>
     [JsonPropertyName("AddressLines")]
-    public List<string> AddressLines { get; set; }
+    public List<string>? AddressLines { get; set; }
 
     /// <summary>
     /// Code number assigned by the postal service identifying a mail delivery zone.
     /// </summary>
     [JsonPropertyName("PostalCode")]
-    public string PostalCode { get; set; }
+    public string? PostalCode { get; set; }
 
     [JsonPropertyName("City")]
     public AbstractGeoPoliticalContext_1_0_0? City { get; set; }
@@ -354,7 +354,7 @@ public class BusinessAssociate_1_0_0_Data_Addresses
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-OfficeType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("OfficeTypeID")]
-    public string OfficeTypeID { get; set; }
+    public string? OfficeTypeID { get; set; }
 
     /// <summary>
     /// A flag indicating this contact information is primary or preferred for the given AddressTypeID.
@@ -367,7 +367,7 @@ public class BusinessAssociate_1_0_0_Data_Addresses
     /// Narrative remarks about this address.
     /// </summary>
     [JsonPropertyName("Remark")]
-    public string Remark { get; set; }
+    public string? Remark { get; set; }
 
     [JsonPropertyName("PrimaryContact")]
     public AbstractContactUserProfile_1_0_0? PrimaryContact { get; set; }
@@ -383,7 +383,7 @@ public class BusinessAssociate_1_0_0_Data_Authorities
     /// Unique identifier for the row that describes the authority that a business associate has over business objects.
     /// </summary>
     [JsonPropertyName("AuthorityID")]
-    public string AuthorityID { get; set; }
+    public string? AuthorityID { get; set; }
 
     /// <summary>
     /// A flag indicating whether this data is currently either active / valid (True) or inactive / invalid (False).
@@ -397,39 +397,39 @@ public class BusinessAssociate_1_0_0_Data_Authorities
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-AuthorityType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("AuthorityTypeID")]
-    public string AuthorityTypeID { get; set; }
+    public string? AuthorityTypeID { get; set; }
 
     /// <summary>
     /// The unique identifier of the BusinessAssociate who authorized this level of authority.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-BusinessAssociate:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("AuthorisedByID")]
-    public string AuthorisedByID { get; set; }
+    public string? AuthorisedByID { get; set; }
 
     /// <summary>
     /// Date on which this Authority came into effect.
     /// </summary>
     [JsonPropertyName("EffectiveDate")]
-    public DateOnly EffectiveDate { get; set; }
+    public DateOnly? EffectiveDate { get; set; }
 
     /// <summary>
     /// Date on which this Authority was no longer in effect.
     /// </summary>
     [JsonPropertyName("TerminationDate")]
-    public DateOnly TerminationDate { get; set; }
+    public DateOnly? TerminationDate { get; set; }
 
     /// <summary>
     /// Narrative remarks about this BusinessAssociate Authority.
     /// </summary>
     [JsonPropertyName("Remark")]
-    public string Remark { get; set; }
+    public string? Remark { get; set; }
 
     /// <summary>
     /// The unique identifier of the BusinessAssociate who the authorized person represents for this authority. May be a subsidiary, a company etc.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-BusinessAssociate:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("RepresentedByID")]
-    public string RepresentedByID { get; set; }
+    public string? RepresentedByID { get; set; }
 
 }
 
@@ -443,7 +443,7 @@ public class BusinessAssociate_1_0_0_Data_Services
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-BusinessAssociateServiceType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ServiceTypeID")]
-    public string ServiceTypeID { get; set; }
+    public string? ServiceTypeID { get; set; }
 
     /// <summary>
     /// A flag indicating whether this Service is currently either active/valid (True) or inactive/invalid (False).
@@ -456,25 +456,25 @@ public class BusinessAssociate_1_0_0_Data_Services
     /// The date on which the service came into effect.
     /// </summary>
     [JsonPropertyName("EffectiveDate")]
-    public DateOnly EffectiveDate { get; set; }
+    public DateOnly? EffectiveDate { get; set; }
 
     /// <summary>
     /// The date on which this service was no longer in effect.
     /// </summary>
     [JsonPropertyName("TerminationDate")]
-    public DateOnly TerminationDate { get; set; }
+    public DateOnly? TerminationDate { get; set; }
 
     /// <summary>
     /// Narrative remarks about this service.
     /// </summary>
     [JsonPropertyName("Remark")]
-    public string Remark { get; set; }
+    public string? Remark { get; set; }
 
     /// <summary>
     /// A code indicating the quality of service received from this service.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-BusinessAssociateServiceQualityType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ServiceQualityTypeID")]
-    public string ServiceQualityTypeID { get; set; }
+    public string? ServiceQualityTypeID { get; set; }
 
 }

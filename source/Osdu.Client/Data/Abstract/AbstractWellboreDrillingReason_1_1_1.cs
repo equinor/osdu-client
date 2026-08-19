@@ -24,14 +24,14 @@ public class AbstractWellboreDrillingReason_1_1_1
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-LaheeClass:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("LaheeClassID")]
-    public string LaheeClassID { get; set; }
+    public string? LaheeClassID { get; set; }
 
     /// <summary>
     /// Identifier of the drilling reason type for the corresponding time period.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-DrillingReasonType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("DrillingReasonTypeID")]
-    public string DrillingReasonTypeID { get; set; }
+    public string? DrillingReasonTypeID { get; set; }
 
     /// <summary>
     /// The date and time at which the event becomes effective.
@@ -51,6 +51,6 @@ public class AbstractWellboreDrillingReason_1_1_1
     /// A remark or comment explaining the drilling reason or LaheeClass assignment.
     /// </summary>
     [JsonPropertyName("Remark")]
-    public string Remark { get; set; }
+    public string? Remark { get; set; }
 
 }

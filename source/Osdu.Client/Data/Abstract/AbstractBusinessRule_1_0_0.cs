@@ -23,13 +23,13 @@ public class AbstractBusinessRule_1_0_0
     /// The list of data rule sets that is relevant for this business process. Each data rule set reference is associated with a run-status.
     /// </summary>
     [JsonPropertyName("DataRuleSets")]
-    public List<AbstractBusinessRule_1_0_0_DataRuleSets> DataRuleSets { get; set; }
+    public List<AbstractBusinessRule_1_0_0_DataRuleSets>? DataRuleSets { get; set; }
 
     /// <summary>
     /// The list of individual data rules that is relevant for this business process. Each data rule reference is associated with a run-status.
     /// </summary>
     [JsonPropertyName("DataRules")]
-    public List<AbstractBusinessRule_1_0_0_DataRules> DataRules { get; set; }
+    public List<AbstractBusinessRule_1_0_0_DataRules>? DataRules { get; set; }
 
 }
 
@@ -43,7 +43,7 @@ public class AbstractBusinessRule_1_0_0_DataRuleSets
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-QualityDataRuleSet:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("DataRuleSetID")]
-    public string DataRuleSetID { get; set; }
+    public string? DataRuleSetID { get; set; }
 
     /// <summary>
     /// True if data ruleset rule has passed, False if data ruleset rule dit not pass.
@@ -64,7 +64,7 @@ public class AbstractBusinessRule_1_0_0_DataRules
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-QualityDataRule:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("DataRuleID")]
-    public string DataRuleID { get; set; }
+    public string? DataRuleID { get; set; }
 
     /// <summary>
     /// True if data rule has passed, False if data rule did not pass.

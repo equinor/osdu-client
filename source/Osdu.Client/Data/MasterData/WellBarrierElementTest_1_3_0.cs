@@ -25,7 +25,7 @@ public class WellBarrierElementTest_1_3_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-WellBarrierElementTest:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class WellBarrierElementTest_1_3_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class WellBarrierElementTest_1_3_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class WellBarrierElementTest_1_3_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class WellBarrierElementTest_1_3_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class WellBarrierElementTest_1_3_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public WellBarrierElementTest_1_3_0_Data? Data { get; set; }
@@ -101,13 +101,13 @@ public class WellBarrierElementTest_1_3_0_Data : AbstractCommonResources_1_0_0 /
     /// Alternative names, including historical, by which this master data is/has been known (it should include all the identifiers).
     /// </summary>
     [JsonPropertyName("NameAliases")]
-    public List<AbstractAliasNames_1_0_0> NameAliases { get; set; }
+    public List<AbstractAliasNames_1_0_0>? NameAliases { get; set; }
 
     /// <summary>
     /// List of geographic entities which provide context to the master data. This may include multiple types or multiple values of the same type.
     /// </summary>
     [JsonPropertyName("GeoContexts")]
-    public List<AbstractGeoContext_1_0_0> GeoContexts { get; set; }
+    public List<AbstractGeoContext_1_0_0>? GeoContexts { get; set; }
 
     [JsonPropertyName("SpatialLocation")]
     public AbstractSpatialLocation_1_1_0? SpatialLocation { get; set; }
@@ -116,44 +116,44 @@ public class WellBarrierElementTest_1_3_0_Data : AbstractCommonResources_1_0_0 /
     /// This describes the reason that caused the creation of a new version of this master data.
     /// </summary>
     [JsonPropertyName("VersionCreationReason")]
-    public string VersionCreationReason { get; set; }
+    public string? VersionCreationReason { get; set; }
 
     /// <summary>
     /// DEPRECATED: (in favor of more nuanced TechnicalAssurances[] array) Describes a master-data record's overall suitability for general business consumption based on data quality. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TechnicalAssuranceType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TechnicalAssuranceTypeID")]
-    public string TechnicalAssuranceTypeID { get; set; }
+    public string? TechnicalAssuranceTypeID { get; set; }
 
     /// <summary>
     /// Describes a record's overall suitability for general business consumption in context of one or more workflows/personas based on data quality and reviewer's decisions. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [JsonPropertyName("TechnicalAssurances")]
-    public List<AbstractTechnicalAssurance_1_2_0> TechnicalAssurances { get; set; }
+    public List<AbstractTechnicalAssurance_1_2_0>? TechnicalAssurances { get; set; }
 
     /// <summary>
     /// Native identifier from a Master Data Management System or other trusted source external to OSDU - stored here in order to allow for multi-system connection and synchronization. If used, the "Source" property should identify that source system.
     /// </summary>
     [JsonPropertyName("ProjectID")]
-    public string ProjectID { get; set; }
+    public string? ProjectID { get; set; }
 
     /// <summary>
     /// The common or preferred name of a Project.
     /// </summary>
     [JsonPropertyName("ProjectName")]
-    public string ProjectName { get; set; }
+    public string? ProjectName { get; set; }
 
     /// <summary>
     /// DEPRECATED: please use data.NameAliases. The history of Project names, codes, and other business identifiers.
     /// </summary>
     [JsonPropertyName("ProjectNames")]
-    public List<AbstractAliasNames_1_0_0> ProjectNames { get; set; }
+    public List<AbstractAliasNames_1_0_0>? ProjectNames { get; set; }
 
     /// <summary>
     /// Description of the objectives of a Project.
     /// </summary>
     [JsonPropertyName("Purpose")]
-    public string Purpose { get; set; }
+    public string? Purpose { get; set; }
 
     /// <summary>
     /// The date and time when the Project was initiated.
@@ -173,79 +173,79 @@ public class WellBarrierElementTest_1_3_0_Data : AbstractCommonResources_1_0_0 /
     /// The history of expenditure approvals.
     /// </summary>
     [JsonPropertyName("FundsAuthorizations")]
-    public List<WellBarrierElementTest_1_3_0_Data_FundsAuthorizations> FundsAuthorizations { get; set; }
+    public List<WellBarrierElementTest_1_3_0_Data_FundsAuthorizations>? FundsAuthorizations { get; set; }
 
     /// <summary>
     /// References to applicable agreements in external contract database system of record.
     /// </summary>
     [JsonPropertyName("ContractIDs")]
-    public List<string> ContractIDs { get; set; }
+    public List<string>? ContractIDs { get; set; }
 
     /// <summary>
     /// The organisation which controlled the conduct of the project.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("Operator")]
-    public string Operator { get; set; }
+    public string? Operator { get; set; }
 
     /// <summary>
     /// References to organisations which supplied services to the Project.
     /// </summary>
     [JsonPropertyName("Contractors")]
-    public List<WellBarrierElementTest_1_3_0_Data_Contractors> Contractors { get; set; }
+    public List<WellBarrierElementTest_1_3_0_Data_Contractors>? Contractors { get; set; }
 
     /// <summary>
     /// List of key individuals supporting the Project.  This could be Abstracted for re-use, and could reference a separate Persons master data object.
     /// </summary>
     [JsonPropertyName("Personnel")]
-    public List<WellBarrierElementTest_1_3_0_Data_Personnel> Personnel { get; set; }
+    public List<WellBarrierElementTest_1_3_0_Data_Personnel>? Personnel { get; set; }
 
     /// <summary>
     /// General parameters defining the configuration of the Project.  In the case of a seismic acquisition project it is like receiver interval, source depth, source type.  In the case of a processing project, it is like replacement velocity, reference datum above mean sea level.
     /// </summary>
     [JsonPropertyName("ProjectSpecifications")]
-    public List<WellBarrierElementTest_1_3_0_Data_ProjectSpecifications> ProjectSpecifications { get; set; }
+    public List<WellBarrierElementTest_1_3_0_Data_ProjectSpecifications>? ProjectSpecifications { get; set; }
 
     /// <summary>
     /// The history of life cycle states that the Project has been through..
     /// </summary>
     [JsonPropertyName("ProjectStates")]
-    public List<WellBarrierElementTest_1_3_0_Data_ProjectStates> ProjectStates { get; set; }
+    public List<WellBarrierElementTest_1_3_0_Data_ProjectStates>? ProjectStates { get; set; }
 
     /// <summary>
     /// The ID of the Rig associated with the test.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-RigUtilization:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("RigUtilizationID")]
-    public string RigUtilizationID { get; set; }
+    public string? RigUtilizationID { get; set; }
 
     /// <summary>
     /// The ID of the Wellbore on which the test was or will be performed. This ID can be used to relate to either the Wellbore or WellPlanningWellbore object, depending on the scenario.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:(master-data\-\-WellPlanningWellbore|master-data\-\-Wellbore):[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellboreID")]
-    public string WellboreID { get; set; }
+    public string? WellboreID { get; set; }
 
     /// <summary>
     /// The ID of the Well Activity associated with the test.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-WellActivity:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellActivityID")]
-    public string WellActivityID { get; set; }
+    public string? WellActivityID { get; set; }
 
     /// <summary>
     /// The ID of the Well Activity Program that holds the Phase description.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-WellActivityProgram:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellActivityProgramID")]
-    public string WellActivityProgramID { get; set; }
+    public string? WellActivityProgramID { get; set; }
 
     /// <summary>
     /// The ID of the Well Operations Report where the barrier element test operation is described.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-WellOperationsReport:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellOperationsReportID")]
-    public string WellOperationsReportID { get; set; }
+    public string? WellOperationsReportID { get; set; }
 
     /// <summary>
     /// Number that identifies the Phase within its WellActivityProgram.
@@ -258,13 +258,13 @@ public class WellBarrierElementTest_1_3_0_Data : AbstractCommonResources_1_0_0 /
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-WellboreArchitecture:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellboreArchitectureID")]
-    public string WellboreArchitectureID { get; set; }
+    public string? WellboreArchitectureID { get; set; }
 
     /// <summary>
     /// The name of the Well Barrier Element Test Plan.
     /// </summary>
     [JsonPropertyName("WBETestPlanName")]
-    public string WBETestPlanName { get; set; }
+    public string? WBETestPlanName { get; set; }
 
     /// <summary>
     /// References an Open reference list for the Well Barrier Element Test Type.
@@ -272,53 +272,53 @@ public class WellBarrierElementTest_1_3_0_Data : AbstractCommonResources_1_0_0 /
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TestType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TestTypeID")]
-    public string TestTypeID { get; set; }
+    public string? TestTypeID { get; set; }
 
     /// <summary>
     /// The Well Barrier Element Test Sub-Type - typically the barrier component being tested. For example, a test of a PackerHanger. Free text or Open list (perhaps local).
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TestSubType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TestSubTypeID")]
-    public string TestSubTypeID { get; set; }
+    public string? TestSubTypeID { get; set; }
 
     /// <summary>
     /// Description or summary text.
     /// </summary>
     [JsonPropertyName("TestDescription")]
-    public string TestDescription { get; set; }
+    public string? TestDescription { get; set; }
 
     /// <summary>
     /// Textual description of the operational procedure and decision points.
     /// </summary>
     [JsonPropertyName("OperationalProcedureDescription")]
-    public string OperationalProcedureDescription { get; set; }
+    public string? OperationalProcedureDescription { get; set; }
 
     /// <summary>
     /// One or more test steps, their parameters and their criteria.
     /// </summary>
     [JsonPropertyName("TestSteps")]
-    public List<WellBarrierElementTest_1_3_0_Data_TestSteps> TestSteps { get; set; }
+    public List<WellBarrierElementTest_1_3_0_Data_TestSteps>? TestSteps { get; set; }
 
     /// <summary>
     /// The ID of the Tubular Assembly associated with the test.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-TubularAssembly:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TubularAssemblyID")]
-    public string TubularAssemblyID { get; set; }
+    public string? TubularAssemblyID { get; set; }
 
     /// <summary>
     /// The ID of the Hole Section in which the test was performed.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-HoleSection:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("HoleSectionID")]
-    public string HoleSectionID { get; set; }
+    public string? HoleSectionID { get; set; }
 
     /// <summary>
     /// The ID of the Blowout Preventer associated with the test.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-BlowOutPreventer:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("BlowOutPreventerID")]
-    public string BlowOutPreventerID { get; set; }
+    public string? BlowOutPreventerID { get; set; }
 
     /// <summary>
     /// Date/time well integrity test was performed.
@@ -331,13 +331,13 @@ public class WellBarrierElementTest_1_3_0_Data : AbstractCommonResources_1_0_0 /
     /// The load case associated with the test.
     /// </summary>
     [JsonPropertyName("TestLoadCase")]
-    public string TestLoadCase { get; set; }
+    public string? TestLoadCase { get; set; }
 
     /// <summary>
     /// The guidance associated with the test.
     /// </summary>
     [JsonPropertyName("TestGuidance")]
-    public string TestGuidance { get; set; }
+    public string? TestGuidance { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
@@ -353,7 +353,7 @@ public class WellBarrierElementTest_1_3_0_Data_FundsAuthorizations
     /// Internal Company control number which identifies the allocation of funds to the Project.
     /// </summary>
     [JsonPropertyName("AuthorizationID")]
-    public string AuthorizationID { get; set; }
+    public string? AuthorizationID { get; set; }
 
     /// <summary>
     /// The date and time when the funds were approved.
@@ -373,7 +373,7 @@ public class WellBarrierElementTest_1_3_0_Data_FundsAuthorizations
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-Currency:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("CurrencyID")]
-    public string CurrencyID { get; set; }
+    public string? CurrencyID { get; set; }
 
 }
 
@@ -387,20 +387,20 @@ public class WellBarrierElementTest_1_3_0_Data_Contractors
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ContractorOrganisationID")]
-    public string ContractorOrganisationID { get; set; }
+    public string? ContractorOrganisationID { get; set; }
 
     /// <summary>
     /// Name of the team, unit, crew, party, or other subdivision of the Contractor that provided services.
     /// </summary>
     [JsonPropertyName("ContractorCrew")]
-    public string ContractorCrew { get; set; }
+    public string? ContractorCrew { get; set; }
 
     /// <summary>
     /// The identifier of a reference value for the role of a contractor providing services, such as Recording, Line Clearing, Positioning, Data Processing.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ContractorType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ContractorTypeID")]
-    public string ContractorTypeID { get; set; }
+    public string? ContractorTypeID { get; set; }
 
 }
 
@@ -413,21 +413,21 @@ public class WellBarrierElementTest_1_3_0_Data_Personnel
     /// Name of an individual supporting the Project.
     /// </summary>
     [JsonPropertyName("PersonName")]
-    public string PersonName { get; set; }
+    public string? PersonName { get; set; }
 
     /// <summary>
     /// Reference to the company which employs Personnel.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("CompanyOrganisationID")]
-    public string CompanyOrganisationID { get; set; }
+    public string? CompanyOrganisationID { get; set; }
 
     /// <summary>
     /// The identifier of a reference value for the role of an individual supporting a Project, such as Project Manager, Party Chief, Client Representative, Senior Observer.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ProjectRole:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ProjectRoleID")]
-    public string ProjectRoleID { get; set; }
+    public string? ProjectRoleID { get; set; }
 
 }
 
@@ -474,21 +474,21 @@ public class WellBarrierElementTest_1_3_0_Data_ProjectSpecifications
     /// The actual text value of the parameter.
     /// </summary>
     [JsonPropertyName("ProjectSpecificationText")]
-    public string ProjectSpecificationText { get; set; }
+    public string? ProjectSpecificationText { get; set; }
 
     /// <summary>
     /// The unit for the quantity parameter if overriding the default for this ParameterType, like metre (m in SI units system) for quantity Length.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("UnitOfMeasureID")]
-    public string UnitOfMeasureID { get; set; }
+    public string? UnitOfMeasureID { get; set; }
 
     /// <summary>
     /// Parameter type of property or characteristic.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ParameterType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ParameterTypeID")]
-    public string ParameterTypeID { get; set; }
+    public string? ParameterTypeID { get; set; }
 
 }
 
@@ -516,7 +516,7 @@ public class WellBarrierElementTest_1_3_0_Data_ProjectStates
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ProjectStateType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ProjectStateTypeID")]
-    public string ProjectStateTypeID { get; set; }
+    public string? ProjectStateTypeID { get; set; }
 
 }
 
@@ -530,113 +530,113 @@ public class WellBarrierElementTest_1_3_0_Data_TestSteps
     /// </summary>
     [Required]
     [JsonPropertyName("StepNumber")]
-    public int StepNumber { get; set; }
+    public required int StepNumber { get; set; }
 
     /// <summary>
     /// The name of a pass/fail or acceptance criteria template that applies for the step
     /// </summary>
     [JsonPropertyName("CriteriaTemplateName")]
-    public string CriteriaTemplateName { get; set; }
+    public string? CriteriaTemplateName { get; set; }
 
     /// <summary>
     /// Link to the object containing the high pressure criteria.
     /// </summary>
     [Required]
     [JsonPropertyName("HighPressureCriteria")]
-    public List<WellBarrierElementTest_1_3_0_Data_TestSteps_HighPressureCriteria> HighPressureCriteria { get; set; }
+    public required List<WellBarrierElementTest_1_3_0_Data_TestSteps_HighPressureCriteria> HighPressureCriteria { get; set; }
 
     /// <summary>
     /// Link to the object containing the low pressure criteria .
     /// </summary>
     [JsonPropertyName("LowPressureCriteria")]
-    public List<WellBarrierElementTest_1_3_0_Data_TestSteps_LowPressureCriteria> LowPressureCriteria { get; set; }
+    public List<WellBarrierElementTest_1_3_0_Data_TestSteps_LowPressureCriteria>? LowPressureCriteria { get; set; }
 
     /// <summary>
     /// Text string for noting the components tested
     /// </summary>
     [JsonPropertyName("ComponentsTested")]
-    public string ComponentsTested { get; set; }
+    public string? ComponentsTested { get; set; }
 
     /// <summary>
     /// Additional notes on the test step
     /// </summary>
     [JsonPropertyName("StepNotes")]
-    public string StepNotes { get; set; }
+    public string? StepNotes { get; set; }
 
     /// <summary>
     /// The ID of a schematic document that describes the pressure path / line-up
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-Document:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SchematicID")]
-    public string SchematicID { get; set; }
+    public string? SchematicID { get; set; }
 
     /// <summary>
     /// For use when executing simultaneous tests using two or more different sets of criteria
     /// </summary>
     [JsonPropertyName("ParallelWBETestStepIDs")]
-    public List<string> ParallelWBETestStepIDs { get; set; }
+    public List<string>? ParallelWBETestStepIDs { get; set; }
 
     /// <summary>
     /// The expected pressure change due to thermal effects
     /// </summary>
     [Required]
     [JsonPropertyName("ExpectedPressureChangeDueToThermalEffects")]
-    public double ExpectedPressureChangeDueToThermalEffects { get; set; }
+    public required double ExpectedPressureChangeDueToThermalEffects { get; set; }
 
     /// <summary>
     /// Comments on the expected pressure change due to thermal effects. Can be used to provide an explanation as to why a value was not entered (e.g. expansion not expected to impact test results)
     /// </summary>
     [JsonPropertyName("ExpectedPressureChangeDueToThermalEffectsComments")]
-    public string ExpectedPressureChangeDueToThermalEffectsComments { get; set; }
+    public string? ExpectedPressureChangeDueToThermalEffectsComments { get; set; }
 
     /// <summary>
     /// The cumulative total volume of the systems lined up for the test
     /// </summary>
     [Required]
     [JsonPropertyName("TotalVolumeTestSystem")]
-    public double TotalVolumeTestSystem { get; set; }
+    public required double TotalVolumeTestSystem { get; set; }
 
     /// <summary>
     /// A list of systems and their volumes.
     /// </summary>
     [JsonPropertyName("ComponentVolumesTestSystem")]
-    public List<WellBarrierElementTest_1_3_0_Data_TestSteps_ComponentVolumesTestSystem> ComponentVolumesTestSystem { get; set; }
+    public List<WellBarrierElementTest_1_3_0_Data_TestSteps_ComponentVolumesTestSystem>? ComponentVolumesTestSystem { get; set; }
 
     /// <summary>
     /// A list of pressures and the expected volume pumped at the given pressure.
     /// </summary>
     [JsonPropertyName("ExpectedVolumesPumped")]
-    public List<WellBarrierElementTest_1_3_0_Data_TestSteps_ExpectedVolumesPumped> ExpectedVolumesPumped { get; set; }
+    public List<WellBarrierElementTest_1_3_0_Data_TestSteps_ExpectedVolumesPumped>? ExpectedVolumesPumped { get; set; }
 
     /// <summary>
     /// A list of pressures and the expected volume bled back at the given pressure.
     /// </summary>
     [JsonPropertyName("ExpectedVolumesBledBack")]
-    public List<WellBarrierElementTest_1_3_0_Data_TestSteps_ExpectedVolumesBledBack> ExpectedVolumesBledBack { get; set; }
+    public List<WellBarrierElementTest_1_3_0_Data_TestSteps_ExpectedVolumesBledBack>? ExpectedVolumesBledBack { get; set; }
 
     /// <summary>
     /// A list of test fluids and their properties.
     /// </summary>
     [JsonPropertyName("TestFluids")]
-    public List<WellBarrierElementTest_1_3_0_Data_TestSteps_TestFluids> TestFluids { get; set; }
+    public List<WellBarrierElementTest_1_3_0_Data_TestSteps_TestFluids>? TestFluids { get; set; }
 
     /// <summary>
     /// A list of pressures and the actual volume pumped at the given pressure.
     /// </summary>
     [JsonPropertyName("ActualVolumesPumped")]
-    public List<WellBarrierElementTest_1_3_0_Data_TestSteps_ActualVolumesPumped> ActualVolumesPumped { get; set; }
+    public List<WellBarrierElementTest_1_3_0_Data_TestSteps_ActualVolumesPumped>? ActualVolumesPumped { get; set; }
 
     /// <summary>
     /// A list of pressures and the actual volume bled back at the given pressure.
     /// </summary>
     [JsonPropertyName("ActualVolumesBledBack")]
-    public List<WellBarrierElementTest_1_3_0_Data_TestSteps_ActualVolumesBledBack> ActualVolumesBledBack { get; set; }
+    public List<WellBarrierElementTest_1_3_0_Data_TestSteps_ActualVolumesBledBack>? ActualVolumesBledBack { get; set; }
 
     /// <summary>
     /// A description of the individual test step.
     /// </summary>
     [JsonPropertyName("StepDescription")]
-    public string StepDescription { get; set; }
+    public string? StepDescription { get; set; }
 
 }
 
@@ -749,14 +749,14 @@ public class WellBarrierElementTest_1_3_0_Data_TestSteps_ComponentVolumesTestSys
     /// e.g. surface lines, choke/kill Lines, BOP, Casing
     /// </summary>
     [JsonPropertyName("SystemComponentName")]
-    public string SystemComponentName { get; set; }
+    public string? SystemComponentName { get; set; }
 
     /// <summary>
     /// The volume of the named system
     /// </summary>
     [Required]
     [JsonPropertyName("SystemComponentVolume")]
-    public double SystemComponentVolume { get; set; }
+    public required double SystemComponentVolume { get; set; }
 
 }
 
@@ -770,7 +770,7 @@ public class WellBarrierElementTest_1_3_0_Data_TestSteps_ExpectedVolumesPumped
     /// </summary>
     [Required]
     [JsonPropertyName("Pressure")]
-    public double Pressure { get; set; }
+    public required double Pressure { get; set; }
 
     /// <summary>
     /// Minimum expected  volume pumped at specified pressure.
@@ -808,7 +808,7 @@ public class WellBarrierElementTest_1_3_0_Data_TestSteps_ExpectedVolumesBledBack
     /// </summary>
     [Required]
     [JsonPropertyName("Pressure")]
-    public double Pressure { get; set; }
+    public required double Pressure { get; set; }
 
     /// <summary>
     /// Minimum expected  volume pumped at specified pressure.
@@ -846,7 +846,7 @@ public class WellBarrierElementTest_1_3_0_Data_TestSteps_TestFluids
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:(reference-data\-\-WellFluidType|reference-data\-\-FluidType):[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TestFluidTypeID")]
-    public string TestFluidTypeID { get; set; }
+    public string? TestFluidTypeID { get; set; }
 
     /// <summary>
     /// Density value for the test fluid

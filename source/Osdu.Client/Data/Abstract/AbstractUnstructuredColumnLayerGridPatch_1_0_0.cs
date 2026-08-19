@@ -24,6 +24,6 @@ public class AbstractUnstructuredColumnLayerGridPatch_1_0_0 : AbstractColumnLaye
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ColumnShapeType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ColumnShapeID")]
-    public string ColumnShapeID { get; set; }
+    public string? ColumnShapeID { get; set; }
 
 }

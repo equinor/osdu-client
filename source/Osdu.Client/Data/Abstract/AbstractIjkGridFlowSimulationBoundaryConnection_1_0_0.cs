@@ -24,7 +24,7 @@ public class AbstractIjkGridFlowSimulationBoundaryConnection_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-IjkGridRepresentation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("GridID")]
-    public string GridID { get; set; }
+    public string? GridID { get; set; }
 
     /// <summary>
     /// The lower included I index of the box of the grid in connection
@@ -67,7 +67,7 @@ public class AbstractIjkGridFlowSimulationBoundaryConnection_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-IjkCellFace:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("Face")]
-    public string Face { get; set; }
+    public string? Face { get; set; }
 
     /// <summary>
     /// The transmissibility multiplier of the connection

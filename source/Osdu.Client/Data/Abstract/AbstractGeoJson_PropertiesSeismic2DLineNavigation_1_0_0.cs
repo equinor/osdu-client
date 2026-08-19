@@ -24,7 +24,7 @@ public class AbstractGeoJson_PropertiesSeismic2DLineNavigation_1_0_0
     /// </summary>
     [Required]
     [JsonPropertyName("Kind")]
-    public AbstractGeoJson_PropertiesSeismic2DLineNavigation_1_0_0_Kind Kind { get; set; }
+    public required AbstractGeoJson_PropertiesSeismic2DLineNavigation_1_0_0_Kind Kind { get; set; }
 
     /// <summary>
     /// Contains trace annotation value arrays for each point each point in the Feature/AnyCrsFeature.
@@ -36,7 +36,7 @@ public class AbstractGeoJson_PropertiesSeismic2DLineNavigation_1_0_0
     /// Used if the line feature consists of multiple segments (MultiLineString). If only one segment/LineString is present this property is not populated and the content is covered by FeatureProperties.
     /// </summary>
     [JsonPropertyName("LineStringProperties")]
-    public List<AbstractGeoJson_PropertiesSeismic2DLineNavigation_1_0_0_LineStringProperties> LineStringProperties { get; set; }
+    public List<AbstractGeoJson_PropertiesSeismic2DLineNavigation_1_0_0_LineStringProperties>? LineStringProperties { get; set; }
 
     /// <summary>
     /// The line annotation for the line in the Feature/AnyCrsFeature. If the feature is a MultiLineString, this applies to all parts.
@@ -66,19 +66,19 @@ public class AbstractGeoJson_PropertiesSeismic2DLineNavigation_1_0_0_PointsPrope
     /// The array of shot point numbers, one number for each coordinate in the LineString or MultiLineString feature.
     /// </summary>
     [JsonPropertyName("ShotPointNumbers")]
-    public List<double> ShotPointNumbers { get; set; }
+    public List<double>? ShotPointNumbers { get; set; }
 
     /// <summary>
     /// The array of common mid-point numbers, one number for each coordinate in the LineString or MultiLineString feature.
     /// </summary>
     [JsonPropertyName("CommonMidPointNumbers")]
-    public List<double> CommonMidPointNumbers { get; set; }
+    public List<double>? CommonMidPointNumbers { get; set; }
 
     /// <summary>
     /// The array of trace labels one number for each coordinate in the LineString or MultiLineString feature.
     /// </summary>
     [JsonPropertyName("Labels")]
-    public List<string> Labels { get; set; }
+    public List<string>? Labels { get; set; }
 
 }
 
@@ -91,7 +91,7 @@ public class AbstractGeoJson_PropertiesSeismic2DLineNavigation_1_0_0_LineStringP
     /// The line segment name used as LineString label. For lines consisting of a single LineString, this property group is redundant and can stay absent. The LineName of the FeatureProperties applies instead.
     /// </summary>
     [JsonPropertyName("LineSegmentName")]
-    public string LineSegmentName { get; set; }
+    public string? LineSegmentName { get; set; }
 
 }
 
@@ -104,12 +104,12 @@ public class AbstractGeoJson_PropertiesSeismic2DLineNavigation_1_0_0_FeatureProp
     /// The line name used as label for the entire feature.
     /// </summary>
     [JsonPropertyName("LineName")]
-    public string LineName { get; set; }
+    public string? LineName { get; set; }
 
     /// <summary>
     /// The names of the populated PointsProperties arrays.
     /// </summary>
     [JsonPropertyName("PointTypes")]
-    public List<string> PointTypes { get; set; }
+    public List<string>? PointTypes { get; set; }
 
 }

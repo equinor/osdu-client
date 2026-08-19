@@ -24,12 +24,12 @@ public class AbstractGeoFieldContext_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Field:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("FieldID")]
-    public string FieldID { get; set; }
+    public string? FieldID { get; set; }
 
     /// <summary>
     /// The fixed type 'Field' for this AbstractGeoFieldContext.
     /// </summary>
     [JsonPropertyName("GeoTypeID")]
-    public string GeoTypeID { get; set; }
+    public string? GeoTypeID { get; set; }
 
 }

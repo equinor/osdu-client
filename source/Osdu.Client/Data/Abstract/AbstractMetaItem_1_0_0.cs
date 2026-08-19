@@ -30,33 +30,33 @@ public class AbstractMetaItem_1_0_0FrameOfReferenceUOM : AbstractMetaItem_1_0_0
     /// </summary>
     [Required]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The unit symbol or name of the unit.
     /// </summary>
     [JsonPropertyName("name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// The self-contained, persistable reference string uniquely identifying the Unit.
     /// </summary>
     [Required]
     [JsonPropertyName("persistableReference")]
-    public string PersistableReference { get; set; }
+    public required string PersistableReference { get; set; }
 
     /// <summary>
     /// SRN to unit of measure reference.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("unitOfMeasureID")]
-    public string UnitOfMeasureID { get; set; }
+    public string? UnitOfMeasureID { get; set; }
 
     /// <summary>
     /// The list of property names, to which this meta data item provides Unit context to. A full path like "StructureA.PropertyB" is required to define a unique context; "data" is omitted since frame-of reference normalization only applies to the data block.
     /// </summary>
     [JsonPropertyName("propertyNames")]
-    public List<string> PropertyNames { get; set; }
+    public List<string>? PropertyNames { get; set; }
 
 }
 
@@ -67,33 +67,33 @@ public class AbstractMetaItem_1_0_0FrameOfReferenceCRS : AbstractMetaItem_1_0_0
     /// </summary>
     [Required]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The name of the CRS.
     /// </summary>
     [JsonPropertyName("name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// The self-contained, persistable reference string uniquely identifying the CRS.
     /// </summary>
     [Required]
     [JsonPropertyName("persistableReference")]
-    public string PersistableReference { get; set; }
+    public required string PersistableReference { get; set; }
 
     /// <summary>
     /// SRN to CRS reference.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CoordinateReferenceSystem:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("coordinateReferenceSystemID")]
-    public string CoordinateReferenceSystemID { get; set; }
+    public string? CoordinateReferenceSystemID { get; set; }
 
     /// <summary>
     /// The list of property names, to which this meta data item provides CRS context to. A full path like "StructureA.PropertyB" is required to define a unique context; "data" is omitted since frame-of reference normalization only applies to the data block.
     /// </summary>
     [JsonPropertyName("propertyNames")]
-    public List<string> PropertyNames { get; set; }
+    public List<string>? PropertyNames { get; set; }
 
 }
 
@@ -104,26 +104,26 @@ public class AbstractMetaItem_1_0_0FrameOfReferenceDateTime : AbstractMetaItem_1
     /// </summary>
     [Required]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The name of the DateTime format and reference.
     /// </summary>
     [JsonPropertyName("name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// The self-contained, persistable reference string uniquely identifying DateTime reference.
     /// </summary>
     [Required]
     [JsonPropertyName("persistableReference")]
-    public string PersistableReference { get; set; }
+    public required string PersistableReference { get; set; }
 
     /// <summary>
     /// The list of property names, to which this meta data item provides DateTime context to. A full path like "StructureA.PropertyB" is required to define a unique context; "data" is omitted since frame-of reference normalization only applies to the data block.
     /// </summary>
     [JsonPropertyName("propertyNames")]
-    public List<string> PropertyNames { get; set; }
+    public List<string>? PropertyNames { get; set; }
 
 }
 
@@ -134,25 +134,25 @@ public class AbstractMetaItem_1_0_0FrameOfReferenceAzimuthReference : AbstractMe
     /// </summary>
     [Required]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The name of the CRS or the symbol/name of the unit.
     /// </summary>
     [JsonPropertyName("name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// The self-contained, persistable reference string uniquely identifying AzimuthReference.
     /// </summary>
     [Required]
     [JsonPropertyName("persistableReference")]
-    public string PersistableReference { get; set; }
+    public required string PersistableReference { get; set; }
 
     /// <summary>
     /// The list of property names, to which this meta data item provides AzimuthReference context to. A full path like "StructureA.PropertyB" is required to define a unique context; "data" is omitted since frame-of reference normalization only applies to the data block.
     /// </summary>
     [JsonPropertyName("propertyNames")]
-    public List<string> PropertyNames { get; set; }
+    public List<string>? PropertyNames { get; set; }
 
 }

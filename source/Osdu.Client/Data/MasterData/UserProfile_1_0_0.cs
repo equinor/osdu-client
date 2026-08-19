@@ -25,7 +25,7 @@ public class UserProfile_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-UserProfile:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class UserProfile_1_0_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class UserProfile_1_0_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class UserProfile_1_0_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class UserProfile_1_0_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class UserProfile_1_0_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public UserProfile_1_0_0_Data? Data { get; set; }
@@ -101,13 +101,13 @@ public class UserProfile_1_0_0_Data : AbstractCommonResources_1_0_0 // Also comp
     /// Alternative names, including historical, by which this master data is/has been known (it should include all the identifiers).
     /// </summary>
     [JsonPropertyName("NameAliases")]
-    public List<AbstractAliasNames_1_0_0> NameAliases { get; set; }
+    public List<AbstractAliasNames_1_0_0>? NameAliases { get; set; }
 
     /// <summary>
     /// List of geographic entities which provide context to the master data. This may include multiple types or multiple values of the same type.
     /// </summary>
     [JsonPropertyName("GeoContexts")]
-    public List<AbstractGeoContext_1_0_0> GeoContexts { get; set; }
+    public List<AbstractGeoContext_1_0_0>? GeoContexts { get; set; }
 
     [JsonPropertyName("SpatialLocation")]
     public AbstractSpatialLocation_1_1_0? SpatialLocation { get; set; }
@@ -116,32 +116,32 @@ public class UserProfile_1_0_0_Data : AbstractCommonResources_1_0_0 // Also comp
     /// This describes the reason that caused the creation of a new version of this master data.
     /// </summary>
     [JsonPropertyName("VersionCreationReason")]
-    public string VersionCreationReason { get; set; }
+    public string? VersionCreationReason { get; set; }
 
     /// <summary>
     /// DEPRECATED: (in favor of more nuanced TechnicalAssurances[] array) Describes a master-data record's overall suitability for general business consumption based on data quality. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TechnicalAssuranceType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TechnicalAssuranceTypeID")]
-    public string TechnicalAssuranceTypeID { get; set; }
+    public string? TechnicalAssuranceTypeID { get; set; }
 
     /// <summary>
     /// Describes a record's overall suitability for general business consumption in context of one or more workflows/personas based on data quality and reviewer's decisions. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [JsonPropertyName("TechnicalAssurances")]
-    public List<AbstractTechnicalAssurance_1_2_0> TechnicalAssurances { get; set; }
+    public List<AbstractTechnicalAssurance_1_2_0>? TechnicalAssurances { get; set; }
 
     /// <summary>
     /// The individual's name. Usually this includes first and last name.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// A unique identifier for this individual within the OSDU platform.
     /// </summary>
     [JsonPropertyName("UserOSDUIdentifier")]
-    public string UserOSDUIdentifier { get; set; }
+    public string? UserOSDUIdentifier { get; set; }
 
     /// <summary>
     /// An indicator of whether this User Profile is currently considered active.
@@ -169,51 +169,51 @@ public class UserProfile_1_0_0_Data : AbstractCommonResources_1_0_0 // Also comp
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-UserProfile:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("UserProfilePredecessorID")]
-    public string UserProfilePredecessorID { get; set; }
+    public string? UserProfilePredecessorID { get; set; }
 
     /// <summary>
     /// The individual's full email address.
     /// </summary>
     [JsonPropertyName("UserEmailAddress")]
-    public string UserEmailAddress { get; set; }
+    public string? UserEmailAddress { get; set; }
 
     /// <summary>
     /// The individual's telephone number.
     /// </summary>
     [JsonPropertyName("UserPhoneNumber")]
-    public string UserPhoneNumber { get; set; }
+    public string? UserPhoneNumber { get; set; }
 
     /// <summary>
     /// The identifier of a reference value for the role of the contact within the associated organisation, such as Account owner, Sales Representative, Technical Support, Project Manager, Party Chief, Client Representative, Senior Observer.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ContactRoleType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("UserContactRoleTypeID")]
-    public string UserContactRoleTypeID { get; set; }
+    public string? UserContactRoleTypeID { get; set; }
 
     /// <summary>
     /// Reference to the company the individual is associated with.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("UserCompanyID")]
-    public string UserCompanyID { get; set; }
+    public string? UserCompanyID { get; set; }
 
     /// <summary>
     /// The business workflow roles in which an individual functions.
     /// </summary>
     [JsonPropertyName("UserWorkflowPersonaTypeIDs")]
-    public List<string> UserWorkflowPersonaTypeIDs { get; set; }
+    public List<string>? UserWorkflowPersonaTypeIDs { get; set; }
 
     /// <summary>
     /// Additional information about the individual user.
     /// </summary>
     [JsonPropertyName("Remark")]
-    public string Remark { get; set; }
+    public string? Remark { get; set; }
 
     /// <summary>
     /// A list of Data Governance roles held by this individual, with the ability to qualify and timebox those roles.
     /// </summary>
     [JsonPropertyName("UserDataGovernanceRoles")]
-    public List<UserProfile_1_0_0_Data_UserDataGovernanceRoles> UserDataGovernanceRoles { get; set; }
+    public List<UserProfile_1_0_0_Data_UserDataGovernanceRoles>? UserDataGovernanceRoles { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
@@ -226,21 +226,21 @@ public class UserProfile_1_0_0_Data_UserDataGovernanceRoles
     /// Internal, unique identifier for the set of attributes describing and qualifying a specific data governance role.
     /// </summary>
     [JsonPropertyName("DataGovernanceRoleIdentifier")]
-    public string DataGovernanceRoleIdentifier { get; set; }
+    public string? DataGovernanceRoleIdentifier { get; set; }
 
     /// <summary>
     /// Reference to the organisation to which this data governance role is associated. For example, a specific business unit.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("OrganisationID")]
-    public string OrganisationID { get; set; }
+    public string? OrganisationID { get; set; }
 
     /// <summary>
     /// Reference to a data governance role assigned to this individual in the associated Organisation.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-DataGovernanceRoleType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("DataGovernanceRoleTypeID")]
-    public string DataGovernanceRoleTypeID { get; set; }
+    public string? DataGovernanceRoleTypeID { get; set; }
 
     /// <summary>
     /// The date and time that this data governance role in this Organisation begins to be considered active.

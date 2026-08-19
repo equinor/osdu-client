@@ -24,7 +24,7 @@ public class AbstractSeismicPrecision_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WordFormatType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WordFormat")]
-    public string WordFormat { get; set; }
+    public string? WordFormat { get; set; }
 
     /// <summary>
     /// Size of the word in bytes.

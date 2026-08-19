@@ -29,18 +29,18 @@ public class AbstractRemark_1_0_0
     /// A descriptive comment for this remark.
     /// </summary>
     [JsonPropertyName("Remark")]
-    public string Remark { get; set; }
+    public string? Remark { get; set; }
 
     /// <summary>
     /// The person, vendor, interpreter or other provider of information.
     /// </summary>
     [JsonPropertyName("RemarkSource")]
-    public string RemarkSource { get; set; }
+    public string? RemarkSource { get; set; }
 
     /// <summary>
     /// The date the remark was issued.
     /// </summary>
     [JsonPropertyName("RemarkDate")]
-    public DateOnly RemarkDate { get; set; }
+    public DateOnly? RemarkDate { get; set; }
 
 }

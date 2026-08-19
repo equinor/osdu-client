@@ -25,7 +25,7 @@ public class SeismicAcquisitionSurvey_1_2_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-SeismicAcquisitionSurvey:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class SeismicAcquisitionSurvey_1_2_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class SeismicAcquisitionSurvey_1_2_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class SeismicAcquisitionSurvey_1_2_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class SeismicAcquisitionSurvey_1_2_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class SeismicAcquisitionSurvey_1_2_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public SeismicAcquisitionSurvey_1_2_0_Data? Data { get; set; }
@@ -101,13 +101,13 @@ public class SeismicAcquisitionSurvey_1_2_0_Data : AbstractCommonResources_1_0_0
     /// Alternative names, including historical, by which this master data is/has been known (it should include all the identifiers).
     /// </summary>
     [JsonPropertyName("NameAliases")]
-    public List<AbstractAliasNames_1_0_0> NameAliases { get; set; }
+    public List<AbstractAliasNames_1_0_0>? NameAliases { get; set; }
 
     /// <summary>
     /// List of geographic entities which provide context to the master data. This may include multiple types or multiple values of the same type.
     /// </summary>
     [JsonPropertyName("GeoContexts")]
-    public List<AbstractGeoContext_1_0_0> GeoContexts { get; set; }
+    public List<AbstractGeoContext_1_0_0>? GeoContexts { get; set; }
 
     [JsonPropertyName("SpatialLocation")]
     public AbstractSpatialLocation_1_1_0? SpatialLocation { get; set; }
@@ -116,38 +116,38 @@ public class SeismicAcquisitionSurvey_1_2_0_Data : AbstractCommonResources_1_0_0
     /// This describes the reason that caused the creation of a new version of this master data.
     /// </summary>
     [JsonPropertyName("VersionCreationReason")]
-    public string VersionCreationReason { get; set; }
+    public string? VersionCreationReason { get; set; }
 
     /// <summary>
     /// Describes a master-data record's overall suitability for general business consumption based on data quality. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TechnicalAssuranceType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TechnicalAssuranceTypeID")]
-    public string TechnicalAssuranceTypeID { get; set; }
+    public string? TechnicalAssuranceTypeID { get; set; }
 
     /// <summary>
     /// Native identifier from a Master Data Management System or other trusted source external to OSDU - stored here in order to allow for multi-system connection and synchronization. If used, the "Source" property should identify that source system.
     /// </summary>
     [JsonPropertyName("ProjectID")]
-    public string ProjectID { get; set; }
+    public string? ProjectID { get; set; }
 
     /// <summary>
     /// The common or preferred name of a Project.
     /// </summary>
     [JsonPropertyName("ProjectName")]
-    public string ProjectName { get; set; }
+    public string? ProjectName { get; set; }
 
     /// <summary>
     /// DEPRECATED: please use data.NameAliases. The history of Project names, codes, and other business identifiers.
     /// </summary>
     [JsonPropertyName("ProjectNames")]
-    public List<AbstractAliasNames_1_0_0> ProjectNames { get; set; }
+    public List<AbstractAliasNames_1_0_0>? ProjectNames { get; set; }
 
     /// <summary>
     /// Description of the objectives of a Project.
     /// </summary>
     [JsonPropertyName("Purpose")]
-    public string Purpose { get; set; }
+    public string? Purpose { get; set; }
 
     /// <summary>
     /// The date and time when the Project was initiated.
@@ -167,85 +167,85 @@ public class SeismicAcquisitionSurvey_1_2_0_Data : AbstractCommonResources_1_0_0
     /// The history of expenditure approvals.
     /// </summary>
     [JsonPropertyName("FundsAuthorizations")]
-    public List<SeismicAcquisitionSurvey_1_2_0_Data_FundsAuthorizations> FundsAuthorizations { get; set; }
+    public List<SeismicAcquisitionSurvey_1_2_0_Data_FundsAuthorizations>? FundsAuthorizations { get; set; }
 
     /// <summary>
     /// References to applicable agreements in external contract database system of record.
     /// </summary>
     [JsonPropertyName("ContractIDs")]
-    public List<string> ContractIDs { get; set; }
+    public List<string>? ContractIDs { get; set; }
 
     /// <summary>
     /// The organisation which controlled the conduct of the project.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("Operator")]
-    public string Operator { get; set; }
+    public string? Operator { get; set; }
 
     /// <summary>
     /// References to organisations which supplied services to the Project.
     /// </summary>
     [JsonPropertyName("Contractors")]
-    public List<SeismicAcquisitionSurvey_1_2_0_Data_Contractors> Contractors { get; set; }
+    public List<SeismicAcquisitionSurvey_1_2_0_Data_Contractors>? Contractors { get; set; }
 
     /// <summary>
     /// List of key individuals supporting the Project.  This could be Abstracted for re-use, and could reference a separate Persons master data object.
     /// </summary>
     [JsonPropertyName("Personnel")]
-    public List<SeismicAcquisitionSurvey_1_2_0_Data_Personnel> Personnel { get; set; }
+    public List<SeismicAcquisitionSurvey_1_2_0_Data_Personnel>? Personnel { get; set; }
 
     /// <summary>
     /// General parameters defining the configuration of the Project.  In the case of a seismic acquisition project it is like receiver interval, source depth, source type.  In the case of a processing project, it is like replacement velocity, reference datum above mean sea level.
     /// </summary>
     [JsonPropertyName("ProjectSpecifications")]
-    public List<SeismicAcquisitionSurvey_1_2_0_Data_ProjectSpecifications> ProjectSpecifications { get; set; }
+    public List<SeismicAcquisitionSurvey_1_2_0_Data_ProjectSpecifications>? ProjectSpecifications { get; set; }
 
     /// <summary>
     /// The history of life cycle states that the Project has been through..
     /// </summary>
     [JsonPropertyName("ProjectStates")]
-    public List<SeismicAcquisitionSurvey_1_2_0_Data_ProjectStates> ProjectStates { get; set; }
+    public List<SeismicAcquisitionSurvey_1_2_0_Data_ProjectStates>? ProjectStates { get; set; }
 
     /// <summary>
     /// The relation to the ActivityTemplate carrying expected parameter definitions and default values.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-ActivityTemplate:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ActivityTemplateID")]
-    public string ActivityTemplateID { get; set; }
+    public string? ActivityTemplateID { get; set; }
 
     /// <summary>
     /// The relationship to a parent project acting as a parent activity.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:(master-data\-\-[\w\-\.]*Project[\w\-\.]*|master-data\-\-[\w\-\.]*Survey[\w\-\.]*):[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ParentProjectID")]
-    public string ParentProjectID { get; set; }
+    public string? ParentProjectID { get; set; }
 
     /// <summary>
     /// General parameter value used in one instance of activity.  Includes reference to data objects which are inputs and outputs of the activity.
     /// </summary>
     [JsonPropertyName("Parameters")]
-    public List<AbstractActivityParameter_1_0_0> Parameters { get; set; }
+    public List<AbstractActivityParameter_1_0_0>? Parameters { get; set; }
 
     /// <summary>
     /// Reference to the standard values for the general layout of the acquisition.  This is an hierarchical value.  The top value is like 2D, 3D, 4D, Borehole, Passive.  The second value is like NATS, WATS, Brick, Crosswell.  Nodes are separated by forward slash.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-SeismicGeometryType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SeismicGeometryTypeID")]
-    public string SeismicGeometryTypeID { get; set; }
+    public string? SeismicGeometryTypeID { get; set; }
 
     /// <summary>
     /// Acquisition approach used Conventional, Wide Azimuth, Multi Azimuth etc.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-SeismicAcquisitionType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("AcquisitionTypeID")]
-    public string AcquisitionTypeID { get; set; }
+    public string? AcquisitionTypeID { get; set; }
 
     /// <summary>
     /// Identifies the setting of acquisition (land, marine, transition zone).
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-OperatingEnvironment:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("OperatingEnvironmentID")]
-    public string OperatingEnvironmentID { get; set; }
+    public string? OperatingEnvironmentID { get; set; }
 
     /// <summary>
     /// The calculated are covered by the survey. This value is calculated during the loading of the survey.
@@ -270,7 +270,7 @@ public class SeismicAcquisitionSurvey_1_2_0_Data : AbstractCommonResources_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-SeismicEnergySourceType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("EnergySourceTypeID")]
-    public string EnergySourceTypeID { get; set; }
+    public string? EnergySourceTypeID { get; set; }
 
     /// <summary>
     /// DEPRECATED: Use SourceConfigurations[].SourceArrayCount. Number of energy sources.
@@ -342,19 +342,19 @@ public class SeismicAcquisitionSurvey_1_2_0_Data : AbstractCommonResources_1_0_0
     /// DEPRECATED: use VesselNames in SourceConfigurations and ReceiverConfigurations. List of names of the seismic acquisition (source and streamer) vessels used (marine environment only).
     /// </summary>
     [JsonPropertyName("VesselNames")]
-    public List<string> VesselNames { get; set; }
+    public List<string>? VesselNames { get; set; }
 
     /// <summary>
     /// The seismic source configurations used for this acquisition project.
     /// </summary>
     [JsonPropertyName("SourceConfigurations")]
-    public List<SeismicAcquisitionSurvey_1_2_0_Data_SourceConfigurations> SourceConfigurations { get; set; }
+    public List<SeismicAcquisitionSurvey_1_2_0_Data_SourceConfigurations>? SourceConfigurations { get; set; }
 
     /// <summary>
     /// The seismic receiver configurations used for this acquisition project.
     /// </summary>
     [JsonPropertyName("ReceiverConfigurations")]
-    public List<SeismicAcquisitionSurvey_1_2_0_Data_ReceiverConfigurations> ReceiverConfigurations { get; set; }
+    public List<SeismicAcquisitionSurvey_1_2_0_Data_ReceiverConfigurations>? ReceiverConfigurations { get; set; }
 
     [JsonPropertyName("VerticalMeasurement")]
     public AbstractFacilityVerticalMeasurement_1_0_0? VerticalMeasurement { get; set; }
@@ -373,7 +373,7 @@ public class SeismicAcquisitionSurvey_1_2_0_Data_FundsAuthorizations
     /// Internal Company control number which identifies the allocation of funds to the Project.
     /// </summary>
     [JsonPropertyName("AuthorizationID")]
-    public string AuthorizationID { get; set; }
+    public string? AuthorizationID { get; set; }
 
     /// <summary>
     /// The date and time when the funds were approved.
@@ -393,7 +393,7 @@ public class SeismicAcquisitionSurvey_1_2_0_Data_FundsAuthorizations
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-Currency:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("CurrencyID")]
-    public string CurrencyID { get; set; }
+    public string? CurrencyID { get; set; }
 
 }
 
@@ -407,20 +407,20 @@ public class SeismicAcquisitionSurvey_1_2_0_Data_Contractors
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ContractorOrganisationID")]
-    public string ContractorOrganisationID { get; set; }
+    public string? ContractorOrganisationID { get; set; }
 
     /// <summary>
     /// Name of the team, unit, crew, party, or other subdivision of the Contractor that provided services.
     /// </summary>
     [JsonPropertyName("ContractorCrew")]
-    public string ContractorCrew { get; set; }
+    public string? ContractorCrew { get; set; }
 
     /// <summary>
     /// The identifier of a reference value for the role of a contractor providing services, such as Recording, Line Clearing, Positioning, Data Processing.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ContractorType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ContractorTypeID")]
-    public string ContractorTypeID { get; set; }
+    public string? ContractorTypeID { get; set; }
 
 }
 
@@ -433,21 +433,21 @@ public class SeismicAcquisitionSurvey_1_2_0_Data_Personnel
     /// Name of an individual supporting the Project.
     /// </summary>
     [JsonPropertyName("PersonName")]
-    public string PersonName { get; set; }
+    public string? PersonName { get; set; }
 
     /// <summary>
     /// Reference to the company which employs Personnel.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("CompanyOrganisationID")]
-    public string CompanyOrganisationID { get; set; }
+    public string? CompanyOrganisationID { get; set; }
 
     /// <summary>
     /// The identifier of a reference value for the role of an individual supporting a Project, such as Project Manager, Party Chief, Client Representative, Senior Observer.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ProjectRole:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ProjectRoleID")]
-    public string ProjectRoleID { get; set; }
+    public string? ProjectRoleID { get; set; }
 
 }
 
@@ -494,21 +494,21 @@ public class SeismicAcquisitionSurvey_1_2_0_Data_ProjectSpecifications
     /// The actual text value of the parameter.
     /// </summary>
     [JsonPropertyName("ProjectSpecificationText")]
-    public string ProjectSpecificationText { get; set; }
+    public string? ProjectSpecificationText { get; set; }
 
     /// <summary>
     /// The unit for the quantity parameter if overriding the default for this ParameterType, like metre (m in SI units system) for quantity Length.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("UnitOfMeasureID")]
-    public string UnitOfMeasureID { get; set; }
+    public string? UnitOfMeasureID { get; set; }
 
     /// <summary>
     /// Parameter type of property or characteristic.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ParameterType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ParameterTypeID")]
-    public string ParameterTypeID { get; set; }
+    public string? ParameterTypeID { get; set; }
 
 }
 
@@ -536,7 +536,7 @@ public class SeismicAcquisitionSurvey_1_2_0_Data_ProjectStates
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ProjectStateType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ProjectStateTypeID")]
-    public string ProjectStateTypeID { get; set; }
+    public string? ProjectStateTypeID { get; set; }
 
 }
 
@@ -549,7 +549,7 @@ public class SeismicAcquisitionSurvey_1_2_0_Data_SourceConfigurations
     /// Name of the source vessel (may be the same as the receiver).  In the case of a VSP, this may be a platform or rig.
     /// </summary>
     [JsonPropertyName("VesselName")]
-    public string VesselName { get; set; }
+    public string? VesselName { get; set; }
 
     /// <summary>
     /// Horizontal distance between shotpoint locations.
@@ -562,7 +562,7 @@ public class SeismicAcquisitionSurvey_1_2_0_Data_SourceConfigurations
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-SeismicEnergySourceType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("EnergySourceTypeID")]
-    public string EnergySourceTypeID { get; set; }
+    public string? EnergySourceTypeID { get; set; }
 
     /// <summary>
     /// Number of energy sources.
@@ -610,14 +610,14 @@ public class SeismicAcquisitionSurvey_1_2_0_Data_SourceConfigurations
     /// Text remarks regarding the Seismic source configuration.
     /// </summary>
     [JsonPropertyName("Remarks")]
-    public string Remarks { get; set; }
+    public string? Remarks { get; set; }
 
     /// <summary>
     /// The relationship to the wellbore, in which the source or sources are located.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Wellbore:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SourceWellboreID")]
-    public string SourceWellboreID { get; set; }
+    public string? SourceWellboreID { get; set; }
 
     /// <summary>
     /// Minimum depth of Sources in a wellbore. Used in conjunction with VSP acquisition.
@@ -642,7 +642,7 @@ public class SeismicAcquisitionSurvey_1_2_0_Data_ReceiverConfigurations
     /// Name of the receiver vessel (may be the same as the source).  In the case of a VSP, this may be a platform or rig.
     /// </summary>
     [JsonPropertyName("VesselName")]
-    public string VesselName { get; set; }
+    public string? VesselName { get; set; }
 
     /// <summary>
     /// Number of receiver arrays (lines).
@@ -673,7 +673,7 @@ public class SeismicAcquisitionSurvey_1_2_0_Data_ReceiverConfigurations
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-SeismicReceiverType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ReceiverTypeID")]
-    public string ReceiverTypeID { get; set; }
+    public string? ReceiverTypeID { get; set; }
 
     /// <summary>
     /// Number of receivers on a cable.
@@ -697,14 +697,14 @@ public class SeismicAcquisitionSurvey_1_2_0_Data_ReceiverConfigurations
     /// Text remarks regarding the Seismic Receiver configuration.
     /// </summary>
     [JsonPropertyName("Remarks")]
-    public string Remarks { get; set; }
+    public string? Remarks { get; set; }
 
     /// <summary>
     /// The relationship to the wellbore, in which the receivers are located. Used in conjunction with VSP acquisition.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Wellbore:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellboreID")]
-    public string WellboreID { get; set; }
+    public string? WellboreID { get; set; }
 
     /// <summary>
     /// Minimum depth of receivers in a wellbore. Used in conjunction with VSP acquisition.

@@ -25,7 +25,7 @@ public class WellPlanningWell_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-WellPlanningWell:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class WellPlanningWell_1_0_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class WellPlanningWell_1_0_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class WellPlanningWell_1_0_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class WellPlanningWell_1_0_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class WellPlanningWell_1_0_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public WellPlanningWell_1_0_0_Data? Data { get; set; }
@@ -102,31 +102,31 @@ public class WellPlanningWell_1_0_0_Data : AbstractCommonResources_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Well:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellID")]
-    public string WellID { get; set; }
+    public string? WellID { get; set; }
 
     /// <summary>
     /// The UTC time zone in which  well is located - expressed as ISO 8601.
     /// </summary>
     [JsonPropertyName("TimeZone")]
-    public string TimeZone { get; set; }
+    public string? TimeZone { get; set; }
 
     /// <summary>
     /// Proposed values : Mining, Petroleum, Scientific, Geothermal, Storage, Surface Coring, Water well
     /// </summary>
     [JsonPropertyName("TypeWell")]
-    public string TypeWell { get; set; }
+    public string? TypeWell { get; set; }
 
     /// <summary>
     /// Legal name of the well as described within the Licence
     /// </summary>
     [JsonPropertyName("LicenceName")]
-    public string LicenceName { get; set; }
+    public string? LicenceName { get; set; }
 
     /// <summary>
     /// License number of the well
     /// </summary>
     [JsonPropertyName("LicenceNumber")]
-    public string LicenceNumber { get; set; }
+    public string? LicenceNumber { get; set; }
 
     /// <summary>
     /// Date and time license was issued
@@ -139,7 +139,7 @@ public class WellPlanningWell_1_0_0_Data : AbstractCommonResources_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-GeoPoliticalEntity:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("BlockID")]
-    public string BlockID { get; set; }
+    public string? BlockID { get; set; }
 
     /// <summary>
     /// Interest for Operator, Commonly in percent
@@ -151,7 +151,7 @@ public class WellPlanningWell_1_0_0_Data : AbstractCommonResources_1_0_0
     /// Name of Well Planning well. Derived from the record identified by WellID.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }

@@ -31,7 +31,7 @@ public class AbstractCompressionInfo_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CompressionMethodType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("CompressionMethodTypeID")]
-    public string CompressionMethodTypeID { get; set; }
+    public string? CompressionMethodTypeID { get; set; }
 
     /// <summary>
     /// Number indicating degree of fidelity present in bulk data resulting from compression.  Meaning of number depends on algorithm.

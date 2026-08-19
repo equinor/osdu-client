@@ -23,54 +23,54 @@ public class VersionInfo
     /// Maven group ID of the service artifact.
     /// </summary>
     [JsonPropertyName("groupId")]
-    public string GroupId { get; set; }
+    public string? GroupId { get; set; }
 
     /// <summary>
     /// Maven artifact ID of the service.
     /// </summary>
     [JsonPropertyName("artifactId")]
-    public string ArtifactId { get; set; }
+    public string? ArtifactId { get; set; }
 
     /// <summary>
     /// Semantic version of the deployed service.
     /// </summary>
     [JsonPropertyName("version")]
-    public string Version { get; set; }
+    public string? Version { get; set; }
 
     /// <summary>
     /// ISO 8601 timestamp of the build.
     /// </summary>
     [JsonPropertyName("buildTime")]
-    public string BuildTime { get; set; }
+    public string? BuildTime { get; set; }
 
     /// <summary>
     /// Source control branch from which the service was built.
     /// </summary>
     [JsonPropertyName("branch")]
-    public string Branch { get; set; }
+    public string? Branch { get; set; }
 
     /// <summary>
     /// Short commit SHA of the build.
     /// </summary>
     [JsonPropertyName("commitId")]
-    public string CommitId { get; set; }
+    public string? CommitId { get; set; }
 
     /// <summary>
     /// Commit message of the build.
     /// </summary>
     [JsonPropertyName("commitMessage")]
-    public string CommitMessage { get; set; }
+    public string? CommitMessage { get; set; }
 
     /// <summary>
     /// List of external services this service depends on.
     /// </summary>
     [JsonPropertyName("connectedOuterServices")]
-    public List<ConnectedOuterService> ConnectedOuterServices { get; set; }
+    public List<ConnectedOuterService>? ConnectedOuterServices { get; set; }
 
     /// <summary>
     /// Current feature flag states for this partition, if any.
     /// </summary>
     [JsonPropertyName("featureFlagStates")]
-    public List<FeatureFlagState> FeatureFlagStates { get; set; }
+    public List<FeatureFlagState>? FeatureFlagStates { get; set; }
 
 }

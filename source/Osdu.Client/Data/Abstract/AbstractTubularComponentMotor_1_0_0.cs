@@ -72,7 +72,7 @@ public class AbstractTubularComponentMotor_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-MudMotorBearingType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("BearingTypeID")]
-    public string BearingTypeID { get; set; }
+    public string? BearingTypeID { get; set; }
 
     /// <summary>
     /// Maximum operating temperature for the mud motor
@@ -123,6 +123,6 @@ public class AbstractTubularComponentMotor_1_0_0
     /// Array of one or more flow rate versus measured pressure loss points used to interpolate pressure loss across the MWD/LWD tool for a given flowrate
     /// </summary>
     [JsonPropertyName("PressureLossCurve")]
-    public List<AbstractTubularComponentPressureLoss_1_0_0> PressureLossCurve { get; set; }
+    public List<AbstractTubularComponentPressureLoss_1_0_0>? PressureLossCurve { get; set; }
 
 }

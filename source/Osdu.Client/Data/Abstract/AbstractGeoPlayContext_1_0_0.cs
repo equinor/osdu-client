@@ -24,13 +24,13 @@ public class AbstractGeoPlayContext_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Play:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("PlayID")]
-    public string PlayID { get; set; }
+    public string? PlayID { get; set; }
 
     /// <summary>
     /// The PlayType reference of the Play (via PlayID) for application convenience.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-PlayType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("GeoTypeID")]
-    public string GeoTypeID { get; set; }
+    public string? GeoTypeID { get; set; }
 
 }

@@ -25,7 +25,7 @@ public class SchemaIdentity
     [Required]
     [RegularExpression(@"^[\w\-\.]+$")]
     [JsonPropertyName("authority")]
-    public string Authority { get; set; }
+    public required string Authority { get; set; }
 
     /// <summary>
     /// Entity source
@@ -33,7 +33,7 @@ public class SchemaIdentity
     [Required]
     [RegularExpression(@"^[\w\-\.]+$")]
     [JsonPropertyName("source")]
-    public string Source { get; set; }
+    public required string Source { get; set; }
 
     /// <summary>
     /// EntityType Code
@@ -41,33 +41,33 @@ public class SchemaIdentity
     [Required]
     [RegularExpression(@"^[\w\-\.]+$")]
     [JsonPropertyName("entityType")]
-    public string EntityType { get; set; }
+    public required string EntityType { get; set; }
 
     /// <summary>
     /// Major Schema Version Number
     /// </summary>
     [Required]
     [JsonPropertyName("schemaVersionMajor")]
-    public long SchemaVersionMajor { get; set; }
+    public required long SchemaVersionMajor { get; set; }
 
     /// <summary>
     /// Minor Schema Version Number
     /// </summary>
     [Required]
     [JsonPropertyName("schemaVersionMinor")]
-    public long SchemaVersionMinor { get; set; }
+    public required long SchemaVersionMinor { get; set; }
 
     /// <summary>
     /// Patch Schema Version Number
     /// </summary>
     [Required]
     [JsonPropertyName("schemaVersionPatch")]
-    public long SchemaVersionPatch { get; set; }
+    public required long SchemaVersionPatch { get; set; }
 
     /// <summary>
     /// A read-only system defined id used for referencing of a schema.
     /// </summary>
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
 }

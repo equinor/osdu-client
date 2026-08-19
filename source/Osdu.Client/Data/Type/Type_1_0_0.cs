@@ -25,7 +25,7 @@ public class Type_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:type\-\-Type:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class Type_1_0_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class Type_1_0_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class Type_1_0_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class Type_1_0_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class Type_1_0_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public Type_1_0_0_Data? Data { get; set; }
@@ -101,37 +101,37 @@ public class Type_1_0_0_Data : AbstractCommonResources_1_0_0
     /// A detailed description of the concept represented by the type and, if necessary, with relationships to other concepts/types defined in the ecosystem.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// The JSON schema version.
     /// </summary>
     [JsonPropertyName("Schema")]
-    public string Schema { get; set; }
+    public string? Schema { get; set; }
 
     /// <summary>
     /// Identifies the natural keys if declared. The keys are identified via the dot notation; example: assume the ProjectName is the natural key for a SeismicAcquisitionSurvey then the natural key reference would be "[data.ProjectName]".
     /// </summary>
     [JsonPropertyName("NaturalKeys")]
-    public List<string> NaturalKeys { get; set; }
+    public List<string>? NaturalKeys { get; set; }
 
     /// <summary>
     /// The schema ID corresponding to the type
     /// </summary>
     [JsonPropertyName("SchemaID")]
-    public string SchemaID { get; set; }
+    public string? SchemaID { get; set; }
 
     /// <summary>
     /// The name of the type, or entity type name. The name represents a concept. It is expected that the concept, e.g. Wellbore, can be described by multiple different schemas, which are closely associated with the original data source. Eventually one normalized schema kind is identified, into which the individual contributions can be merged. It is expected that this schema is or is close to the OSDU data definition where defined.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// The latest schema kind as registered with the schema service. The evaluation is based on the semantic version number of the schema.
     /// </summary>
     [JsonPropertyName("SchemaKind")]
-    public string SchemaKind { get; set; }
+    public string? SchemaKind { get; set; }
 
     /// <summary>
     /// The flag indicating that this type is a reference value type.
@@ -144,13 +144,13 @@ public class Type_1_0_0_Data : AbstractCommonResources_1_0_0
     /// The Authorities governing the contents.
     /// </summary>
     [JsonPropertyName("GovernanceAuthorities")]
-    public List<string> GovernanceAuthorities { get; set; }
+    public List<string>? GovernanceAuthorities { get; set; }
 
     /// <summary>
     /// The style of governance (only relevant for IsReferenceValueType==true) - it can be FIXED (content must not be augmented), OPEN (additions and changes allowed) or LOCAL (content is exclusively governed by operator).
     /// </summary>
     [JsonPropertyName("GovernanceModel")]
-    public Type_1_0_0_Data_GovernanceModel GovernanceModel { get; set; }
+    public Type_1_0_0_Data_GovernanceModel? GovernanceModel { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }

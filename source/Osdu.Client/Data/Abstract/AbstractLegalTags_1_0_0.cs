@@ -24,20 +24,20 @@ public class AbstractLegalTags_1_0_0
     /// </summary>
     [Required]
     [JsonPropertyName("legaltags")]
-    public List<string> Legaltags { get; set; }
+    public required List<string> Legaltags { get; set; }
 
     /// <summary>
     /// The list of other relevant data countries as an array of two-letter country codes, see https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2.
     /// </summary>
     [Required]
     [JsonPropertyName("otherRelevantDataCountries")]
-    public List<string> OtherRelevantDataCountries { get; set; }
+    public required List<string> OtherRelevantDataCountries { get; set; }
 
     /// <summary>
     /// The legal status. Set by the system after evaluation against the compliance rules associated with the "legaltags" using the Compliance Service.
     /// </summary>
     [RegularExpression(@"^(compliant|uncompliant)$")]
     [JsonPropertyName("status")]
-    public string Status { get; set; }
+    public string? Status { get; set; }
 
 }

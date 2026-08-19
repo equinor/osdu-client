@@ -24,27 +24,27 @@ public class AbstractGeologicUnitInterpretation_1_1_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-LithologyType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("LithologyTypeID")]
-    public string LithologyTypeID { get; set; }
+    public string? LithologyTypeID { get; set; }
 
     /// <summary>
     /// Optionally, one ore more LithologyQualifiers further detailing the LithologyType via LithologyTypeID.
     /// </summary>
     [JsonPropertyName("LithologyQualifierIDs")]
-    public List<string> LithologyQualifierIDs { get; set; }
+    public List<string>? LithologyQualifierIDs { get; set; }
 
     /// <summary>
     /// The relationship to the DepositionalEnvironment reference-data record.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-DepositionalEnvironment:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("DepositionalEnvironmentID")]
-    public string DepositionalEnvironmentID { get; set; }
+    public string? DepositionalEnvironmentID { get; set; }
 
     /// <summary>
     /// In addition to DepositionalEnvironmentID, this relation to a DepositionalSubEnvironment reference-data record further specifies the overall depositional environment.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-DepositionalSubEnvironment:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("DepositionalSubEnvironmentID")]
-    public string DepositionalSubEnvironmentID { get; set; }
+    public string? DepositionalSubEnvironmentID { get; set; }
 
     /// <summary>
     /// Corresponding to Energistics GeologicUnitMaterialEmplacement 'intrusive' and 'non-intrusive'.
@@ -58,6 +58,6 @@ public class AbstractGeologicUnitInterpretation_1_1_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-GeologicUnitShapeType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("GeologicUnitShapeTypeID")]
-    public string GeologicUnitShapeTypeID { get; set; }
+    public string? GeologicUnitShapeTypeID { get; set; }
 
 }

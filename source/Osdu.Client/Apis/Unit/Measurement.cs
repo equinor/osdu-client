@@ -17,26 +17,26 @@ namespace Osdu.Client.Apis.Unit;
 public class Measurement
 {
     [JsonPropertyName("name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     [JsonPropertyName("lastModified")]
-    public string LastModified { get; set; }
+    public string? LastModified { get; set; }
 
     [JsonPropertyName("description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     [JsonPropertyName("code")]
-    public string Code { get; set; }
+    public string? Code { get; set; }
 
     [JsonPropertyName("baseMeasurement")]
     [JsonConverter(typeof(BooleanConverter))]
     public bool? BaseMeasurement { get; set; }
 
     [JsonPropertyName("baseMeasurementEssenceJson")]
-    public string BaseMeasurementEssenceJson { get; set; }
+    public string? BaseMeasurementEssenceJson { get; set; }
 
     [JsonPropertyName("dimensionCode")]
-    public string DimensionCode { get; set; }
+    public string? DimensionCode { get; set; }
 
     [JsonPropertyName("essence")]
     public MeasurementEssence? Essence { get; set; }
@@ -45,27 +45,27 @@ public class Measurement
     public MeasurementDeprecationInfo? DeprecationInfo { get; set; }
 
     [JsonPropertyName("unitQuantityCode")]
-    public string UnitQuantityCode { get; set; }
+    public string? UnitQuantityCode { get; set; }
 
     [JsonPropertyName("essenceJson")]
-    public string EssenceJson { get; set; }
+    public string? EssenceJson { get; set; }
 
     [JsonPropertyName("childMeasurementEssenceJsons")]
-    public List<string> ChildMeasurementEssenceJsons { get; set; }
+    public List<string>? ChildMeasurementEssenceJsons { get; set; }
 
     [JsonPropertyName("unitEssenceJsons")]
-    public List<string> UnitEssenceJsons { get; set; }
+    public List<string>? UnitEssenceJsons { get; set; }
 
     [JsonPropertyName("preferredUnitEssenceJsons")]
-    public List<string> PreferredUnitEssenceJsons { get; set; }
+    public List<string>? PreferredUnitEssenceJsons { get; set; }
 
     [JsonPropertyName("parentEssenceJson")]
-    public string ParentEssenceJson { get; set; }
+    public string? ParentEssenceJson { get; set; }
 
     [JsonPropertyName("dimensionAnalysis")]
-    public string DimensionAnalysis { get; set; }
+    public string? DimensionAnalysis { get; set; }
 
     [JsonPropertyName("namespace")]
-    public string Namespace { get; set; }
+    public string? Namespace { get; set; }
 
 }

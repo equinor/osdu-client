@@ -23,25 +23,25 @@ public class AbstractProject_1_0_0
     /// Native identifier from a Master Data Management System or other trusted source external to OSDU - stored here in order to allow for multi-system connection and synchronization. If used, the "Source" property should identify that source system.
     /// </summary>
     [JsonPropertyName("ProjectID")]
-    public string ProjectID { get; set; }
+    public string? ProjectID { get; set; }
 
     /// <summary>
     /// The common or preferred name of a Project.
     /// </summary>
     [JsonPropertyName("ProjectName")]
-    public string ProjectName { get; set; }
+    public string? ProjectName { get; set; }
 
     /// <summary>
     /// DEPRECATED: please use data.NameAliases. The history of Project names, codes, and other business identifiers.
     /// </summary>
     [JsonPropertyName("ProjectNames")]
-    public List<AbstractAliasNames_1_0_0> ProjectNames { get; set; }
+    public List<AbstractAliasNames_1_0_0>? ProjectNames { get; set; }
 
     /// <summary>
     /// Description of the objectives of a Project.
     /// </summary>
     [JsonPropertyName("Purpose")]
-    public string Purpose { get; set; }
+    public string? Purpose { get; set; }
 
     /// <summary>
     /// The date and time when the Project was initiated.
@@ -61,44 +61,44 @@ public class AbstractProject_1_0_0
     /// The history of expenditure approvals.
     /// </summary>
     [JsonPropertyName("FundsAuthorizations")]
-    public List<AbstractProject_1_0_0_FundsAuthorizations> FundsAuthorizations { get; set; }
+    public List<AbstractProject_1_0_0_FundsAuthorizations>? FundsAuthorizations { get; set; }
 
     /// <summary>
     /// References to applicable agreements in external contract database system of record.
     /// </summary>
     [JsonPropertyName("ContractIDs")]
-    public List<string> ContractIDs { get; set; }
+    public List<string>? ContractIDs { get; set; }
 
     /// <summary>
     /// The organisation which controlled the conduct of the project.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("Operator")]
-    public string Operator { get; set; }
+    public string? Operator { get; set; }
 
     /// <summary>
     /// References to organisations which supplied services to the Project.
     /// </summary>
     [JsonPropertyName("Contractors")]
-    public List<AbstractProject_1_0_0_Contractors> Contractors { get; set; }
+    public List<AbstractProject_1_0_0_Contractors>? Contractors { get; set; }
 
     /// <summary>
     /// List of key individuals supporting the Project.  This could be Abstracted for re-use, and could reference a separate Persons master data object.
     /// </summary>
     [JsonPropertyName("Personnel")]
-    public List<AbstractProject_1_0_0_Personnel> Personnel { get; set; }
+    public List<AbstractProject_1_0_0_Personnel>? Personnel { get; set; }
 
     /// <summary>
     /// General parameters defining the configuration of the Project.  In the case of a seismic acquisition project it is like receiver interval, source depth, source type.  In the case of a processing project, it is like replacement velocity, reference datum above mean sea level.
     /// </summary>
     [JsonPropertyName("ProjectSpecifications")]
-    public List<AbstractProject_1_0_0_ProjectSpecifications> ProjectSpecifications { get; set; }
+    public List<AbstractProject_1_0_0_ProjectSpecifications>? ProjectSpecifications { get; set; }
 
     /// <summary>
     /// The history of life cycle states that the Project has been through..
     /// </summary>
     [JsonPropertyName("ProjectStates")]
-    public List<AbstractProject_1_0_0_ProjectStates> ProjectStates { get; set; }
+    public List<AbstractProject_1_0_0_ProjectStates>? ProjectStates { get; set; }
 
 }
 
@@ -111,7 +111,7 @@ public class AbstractProject_1_0_0_FundsAuthorizations
     /// Internal Company control number which identifies the allocation of funds to the Project.
     /// </summary>
     [JsonPropertyName("AuthorizationID")]
-    public string AuthorizationID { get; set; }
+    public string? AuthorizationID { get; set; }
 
     /// <summary>
     /// The date and time when the funds were approved.
@@ -131,7 +131,7 @@ public class AbstractProject_1_0_0_FundsAuthorizations
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-Currency:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("CurrencyID")]
-    public string CurrencyID { get; set; }
+    public string? CurrencyID { get; set; }
 
 }
 
@@ -145,20 +145,20 @@ public class AbstractProject_1_0_0_Contractors
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ContractorOrganisationID")]
-    public string ContractorOrganisationID { get; set; }
+    public string? ContractorOrganisationID { get; set; }
 
     /// <summary>
     /// Name of the team, unit, crew, party, or other subdivision of the Contractor that provided services.
     /// </summary>
     [JsonPropertyName("ContractorCrew")]
-    public string ContractorCrew { get; set; }
+    public string? ContractorCrew { get; set; }
 
     /// <summary>
     /// The identifier of a reference value for the role of a contractor providing services, such as Recording, Line Clearing, Positioning, Data Processing.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ContractorType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ContractorTypeID")]
-    public string ContractorTypeID { get; set; }
+    public string? ContractorTypeID { get; set; }
 
 }
 
@@ -171,21 +171,21 @@ public class AbstractProject_1_0_0_Personnel
     /// Name of an individual supporting the Project.
     /// </summary>
     [JsonPropertyName("PersonName")]
-    public string PersonName { get; set; }
+    public string? PersonName { get; set; }
 
     /// <summary>
     /// Reference to the company which employs Personnel.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("CompanyOrganisationID")]
-    public string CompanyOrganisationID { get; set; }
+    public string? CompanyOrganisationID { get; set; }
 
     /// <summary>
     /// The identifier of a reference value for the role of an individual supporting a Project, such as Project Manager, Party Chief, Client Representative, Senior Observer.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ProjectRole:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ProjectRoleID")]
-    public string ProjectRoleID { get; set; }
+    public string? ProjectRoleID { get; set; }
 
 }
 
@@ -232,21 +232,21 @@ public class AbstractProject_1_0_0_ProjectSpecifications
     /// The actual text value of the parameter.
     /// </summary>
     [JsonPropertyName("ProjectSpecificationText")]
-    public string ProjectSpecificationText { get; set; }
+    public string? ProjectSpecificationText { get; set; }
 
     /// <summary>
     /// The unit for the quantity parameter if overriding the default for this ParameterType, like metre (m in SI units system) for quantity Length.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("UnitOfMeasureID")]
-    public string UnitOfMeasureID { get; set; }
+    public string? UnitOfMeasureID { get; set; }
 
     /// <summary>
     /// Parameter type of property or characteristic.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ParameterType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ParameterTypeID")]
-    public string ParameterTypeID { get; set; }
+    public string? ParameterTypeID { get; set; }
 
 }
 
@@ -274,6 +274,6 @@ public class AbstractProject_1_0_0_ProjectStates
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ProjectStateType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ProjectStateTypeID")]
-    public string ProjectStateTypeID { get; set; }
+    public string? ProjectStateTypeID { get; set; }
 
 }

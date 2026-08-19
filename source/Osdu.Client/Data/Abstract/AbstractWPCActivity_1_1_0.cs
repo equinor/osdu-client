@@ -24,46 +24,46 @@ public class AbstractWPCActivity_1_1_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-ActivityTemplate:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ActivityTemplateID")]
-    public string ActivityTemplateID { get; set; }
+    public string? ActivityTemplateID { get; set; }
 
     /// <summary>
     /// The relationship to a parent project acting as a parent activity.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-[\w\-\.]+:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ParentProjectID")]
-    public string ParentProjectID { get; set; }
+    public string? ParentProjectID { get; set; }
 
     /// <summary>
     /// The relationship to a parent activity.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-[\w\-\.]+:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ParentActivityID")]
-    public string ParentActivityID { get; set; }
+    public string? ParentActivityID { get; set; }
 
     /// <summary>
     /// General parameter value used in one instance of activity.  Includes reference to data objects which are inputs and outputs of the activity.
     /// </summary>
     [Required]
     [JsonPropertyName("Parameters")]
-    public List<AbstractActivityParameter_1_0_0> Parameters { get; set; }
+    public required List<AbstractActivityParameter_1_0_0> Parameters { get; set; }
 
     /// <summary>
     /// The activity or activities feeding results into this activity instance.
     /// </summary>
     [JsonPropertyName("PriorActivityIDs")]
-    public List<string> PriorActivityIDs { get; set; }
+    public List<string>? PriorActivityIDs { get; set; }
 
     /// <summary>
     /// Software names and versions used.
     /// </summary>
     [JsonPropertyName("SoftwareSpecifications")]
-    public List<AbstractWPCActivity_1_1_0_SoftwareSpecifications> SoftwareSpecifications { get; set; }
+    public List<AbstractWPCActivity_1_1_0_SoftwareSpecifications>? SoftwareSpecifications { get; set; }
 
     /// <summary>
     /// The (non-overlapping) historical activity states and effective start and termination dates. The last state is replicated in the single LastActivityState for simpler queries.
     /// </summary>
     [JsonPropertyName("ActivityStates")]
-    public List<AbstractActivityState_1_0_0> ActivityStates { get; set; }
+    public List<AbstractActivityState_1_0_0>? ActivityStates { get; set; }
 
     [JsonPropertyName("LastActivityState")]
     public AbstractActivityState_1_0_0? LastActivityState { get; set; }
@@ -79,12 +79,12 @@ public class AbstractWPCActivity_1_1_0_SoftwareSpecifications
     /// The name of the software, application or plug-in used while performing this activity.
     /// </summary>
     [JsonPropertyName("SoftwareName")]
-    public string SoftwareName { get; set; }
+    public string? SoftwareName { get; set; }
 
     /// <summary>
     /// The version of the software, application or plug-in used while performing this activity.
     /// </summary>
     [JsonPropertyName("Version")]
-    public string Version { get; set; }
+    public string? Version { get; set; }
 
 }

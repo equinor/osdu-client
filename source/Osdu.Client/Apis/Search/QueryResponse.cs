@@ -23,19 +23,19 @@ public class QueryResponse
     /// List of matched records, each represented as a map of field names to values.
     /// </summary>
     [JsonPropertyName("results")]
-    public List<object> Results { get; set; }
+    public List<object>? Results { get; set; }
 
     /// <summary>
     /// Aggregation results keyed by field name, present only when aggregateBy is specified.
     /// </summary>
     [JsonPropertyName("aggregations")]
-    public List<AggregationResponse> Aggregations { get; set; }
+    public List<AggregationResponse>? Aggregations { get; set; }
 
     /// <summary>
     /// Phrase completion suggestions returned when suggestPhrase is specified.
     /// </summary>
     [JsonPropertyName("phraseSuggestions")]
-    public List<string> PhraseSuggestions { get; set; }
+    public List<string>? PhraseSuggestions { get; set; }
 
     /// <summary>
     /// Total number of records matching the query. Capped at 10000 unless trackTotalCount is true.

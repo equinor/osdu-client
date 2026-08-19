@@ -24,25 +24,25 @@ public class DdmsFootprint_1_0_0 : AbstractContent_1_0_0
     /// The version number this footprint belongs to, typically an API version.
     /// </summary>
     [JsonPropertyName("DdmsVersion")]
-    public string DdmsVersion { get; set; }
+    public string? DdmsVersion { get; set; }
 
     /// <summary>
     /// The URL to the DDMS documentation.
     /// </summary>
     [JsonPropertyName("DocumentationURL")]
-    public Uri DocumentationURL { get; set; }
+    public Uri? DocumentationURL { get; set; }
 
     /// <summary>
     /// The data footprint of the DDMS.
     /// </summary>
     [JsonPropertyName("CoveredItems")]
-    public List<DdmsFootprint_1_0_0_CoveredItems> CoveredItems { get; set; }
+    public List<DdmsFootprint_1_0_0_CoveredItems>? CoveredItems { get; set; }
 
     /// <summary>
     /// An optional association of governing authorities to content types.
     /// </summary>
     [JsonPropertyName("AuthorityToContentTypes")]
-    public List<DdmsFootprint_1_0_0_AuthorityToContentTypes> AuthorityToContentTypes { get; set; }
+    public List<DdmsFootprint_1_0_0_AuthorityToContentTypes>? AuthorityToContentTypes { get; set; }
 
 }
 
@@ -56,13 +56,13 @@ public class DdmsFootprint_1_0_0_CoveredItems
     /// </summary>
     [Required]
     [JsonPropertyName("WKS")]
-    public string WKS { get; set; }
+    public required string WKS { get; set; }
 
     /// <summary>
     /// The content types or schemas served by the DDMS, which are associated with the OSDU well-known schema WKS.
     /// </summary>
     [JsonPropertyName("ContentTypes")]
-    public List<string> ContentTypes { get; set; }
+    public List<string>? ContentTypes { get; set; }
 
 }
 
@@ -76,25 +76,25 @@ public class DdmsFootprint_1_0_0_AuthorityToContentTypes
     /// </summary>
     [Required]
     [JsonPropertyName("Authority")]
-    public string Authority { get; set; }
+    public required string Authority { get; set; }
 
     /// <summary>
     /// Optional description for the authority.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// An optional URL providing additional information or context about the authority.
     /// </summary>
     [JsonPropertyName("AuthorityURL")]
-    public Uri AuthorityURL { get; set; }
+    public Uri? AuthorityURL { get; set; }
 
     /// <summary>
     /// The array of content type-documentation URL pairs for schemas served by the DDMS, governed by the Authority. The association to OSDU well-known schemas WKS is done via CoveredItems[].
     /// </summary>
     [JsonPropertyName("ContentTypeURLs")]
-    public List<DdmsFootprint_1_0_0_AuthorityToContentTypes_ContentTypeURLs> ContentTypeURLs { get; set; }
+    public List<DdmsFootprint_1_0_0_AuthorityToContentTypes_ContentTypeURLs>? ContentTypeURLs { get; set; }
 
 }
 
@@ -108,12 +108,12 @@ public class DdmsFootprint_1_0_0_AuthorityToContentTypes_ContentTypeURLs
     /// </summary>
     [Required]
     [JsonPropertyName("ContentType")]
-    public string ContentType { get; set; }
+    public required string ContentType { get; set; }
 
     /// <summary>
     /// An optional URL to provide more documentation about the content type.
     /// </summary>
     [JsonPropertyName("URL")]
-    public Uri URL { get; set; }
+    public Uri? URL { get; set; }
 
 }

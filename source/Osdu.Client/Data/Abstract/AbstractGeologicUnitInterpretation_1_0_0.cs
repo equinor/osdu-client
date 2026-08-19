@@ -24,7 +24,7 @@ public class AbstractGeologicUnitInterpretation_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-LithologyType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("LithologyTypeID")]
-    public string LithologyTypeID { get; set; }
+    public string? LithologyTypeID { get; set; }
 
     /// <summary>
     /// Corresponding to Energistics GeologicUnitMaterialEmplacement 'intrusive' and 'non-intrusive'.
@@ -38,6 +38,6 @@ public class AbstractGeologicUnitInterpretation_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-GeologicUnitShapeType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("GeologicUnitShapeTypeID")]
-    public string GeologicUnitShapeTypeID { get; set; }
+    public string? GeologicUnitShapeTypeID { get; set; }
 
 }

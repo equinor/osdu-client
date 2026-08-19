@@ -25,7 +25,7 @@ public class GeoLabelType_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-GeoLabelType:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class GeoLabelType_1_0_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class GeoLabelType_1_0_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class GeoLabelType_1_0_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class GeoLabelType_1_0_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class GeoLabelType_1_0_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public GeoLabelType_1_0_0_Data? Data { get; set; }
@@ -101,19 +101,19 @@ public class GeoLabelType_1_0_0_Data : AbstractCommonResources_1_0_0 // Also com
     /// The name of the entity instance.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// Alternative names, including historical, by which this entity instance is/has been known.
     /// </summary>
     [JsonPropertyName("NameAlias")]
-    public List<AbstractAliasNames_1_0_0> NameAlias { get; set; }
+    public List<AbstractAliasNames_1_0_0>? NameAlias { get; set; }
 
     /// <summary>
     /// Native identifier from a Master Data Management System or other trusted source external to OSDU - stored here in order to allow for multi-system connection and synchronization. If used, the "Source" property should identify that source system.
     /// </summary>
     [JsonPropertyName("ID")]
-    public string ID { get; set; }
+    public string? ID { get; set; }
 
     /// <summary>
     /// By default reference values are considered as 'active'. An absent 'InactiveIndicator' property value means the reference value is in active use. When 'InactiveIndicator' is set true the reverence value is no longer in use and should no longer be offered as a choice.
@@ -126,31 +126,31 @@ public class GeoLabelType_1_0_0_Data : AbstractCommonResources_1_0_0 // Also com
     /// The text which describes a NAME TYPE in detail.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// The abbreviation or mnemonic for a reference type if defined. Example: WELL and WLBR.
     /// </summary>
     [JsonPropertyName("Code")]
-    public string Code { get; set; }
+    public string? Code { get; set; }
 
     /// <summary>
     /// Name of the authority, or organisation, which governs the entity value and from which it is sourced.
     /// </summary>
     [JsonPropertyName("AttributionAuthority")]
-    public string AttributionAuthority { get; set; }
+    public string? AttributionAuthority { get; set; }
 
     /// <summary>
     /// Name, URL, or other identifier of the publication, or repository, of the attribution source organisation from which the entity value is sourced.
     /// </summary>
     [JsonPropertyName("AttributionPublication")]
-    public string AttributionPublication { get; set; }
+    public string? AttributionPublication { get; set; }
 
     /// <summary>
     /// The distinct instance of the attribution publication, by version number, sequence number, date of publication, etc., that was used for the entity value.
     /// </summary>
     [JsonPropertyName("AttributionRevision")]
-    public string AttributionRevision { get; set; }
+    public string? AttributionRevision { get; set; }
 
     /// <summary>
     /// For reference values published and governed by OSDU: The date and time the record was committed into the OSDU member GitLab reference-values repository. The sole purpose of this date is to optimise the OSDU milestone upgrades. It allows the upgrade code to figure out whether or not the record must be PUT into reference value storage.
@@ -163,7 +163,7 @@ public class GeoLabelType_1_0_0_Data : AbstractCommonResources_1_0_0 // Also com
     /// The type of value to expect for this reference property, either "number" (floating point number), "integer",  "string", or "boolean".
     /// </summary>
     [JsonPropertyName("ValueType")]
-    public string ValueType { get; set; }
+    public string? ValueType { get; set; }
 
     /// <summary>
     /// The number of values in a tuple, e.g. For coordinates. The default is 1.
@@ -176,14 +176,14 @@ public class GeoLabelType_1_0_0_Data : AbstractCommonResources_1_0_0 // Also com
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("UnitOfMeasureID")]
-    public string UnitOfMeasureID { get; set; }
+    public string? UnitOfMeasureID { get; set; }
 
     /// <summary>
     /// Only populated of the ValueType is "number". It holds the UnitQuantity associated with this reference property type. It is a relationship to UnitQuantity record.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitQuantity:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("UnitQuantityID")]
-    public string UnitQuantityID { get; set; }
+    public string? UnitQuantityID { get; set; }
 
     [JsonPropertyName("PropertyType")]
     public AbstractPropertyType_1_0_0? PropertyType { get; set; }
@@ -193,7 +193,7 @@ public class GeoLabelType_1_0_0_Data : AbstractCommonResources_1_0_0 // Also com
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:([0-9]+)?(\.)?([0-9]+)?(\.)?([0-9]+)?$")]
     [JsonPropertyName("RelationshipTargetKind")]
-    public string RelationshipTargetKind { get; set; }
+    public string? RelationshipTargetKind { get; set; }
 
     /// <summary>
     /// Ordered array with: FacetType, FacetRole, both calling specific references
@@ -201,13 +201,13 @@ public class GeoLabelType_1_0_0_Data : AbstractCommonResources_1_0_0 // Also com
     /// FacetRole: Additional context about the nature of a property type. The purpose of such attribute is to minimize the need to create specialized property types by mutualizing some well known qualifiers such as "maximum", "minimum" which apply to a lot of different property types.
     /// </summary>
     [JsonPropertyName("FacetIDs")]
-    public List<AbstractFacet_1_0_0> FacetIDs { get; set; }
+    public List<AbstractFacet_1_0_0>? FacetIDs { get; set; }
 
     /// <summary>
     /// When describing a table column, e.g., in an associated dataset, this optional property allows the association of the record column definition(s) to dataset table column(s).
     /// </summary>
     [JsonPropertyName("ColumnName")]
-    public string ColumnName { get; set; }
+    public string? ColumnName { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }

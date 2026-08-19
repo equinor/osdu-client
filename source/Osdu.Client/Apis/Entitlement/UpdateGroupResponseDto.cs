@@ -23,18 +23,18 @@ public class UpdateGroupResponseDto
     /// Name of the Updated Group
     /// </summary>
     [JsonPropertyName("name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// Email of the Updated Group
     /// </summary>
     [JsonPropertyName("email")]
-    public string Email { get; set; }
+    public string? Email { get; set; }
 
     /// <summary>
     /// List of AppId of the Updated Group
     /// </summary>
     [JsonPropertyName("appIds")]
-    public List<string> AppIds { get; set; }
+    public List<string>? AppIds { get; set; }
 
 }

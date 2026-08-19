@@ -17,7 +17,7 @@ namespace Osdu.Client.Apis.Search;
 public class AggregationResponse
 {
     [JsonPropertyName("key")]
-    public string Key { get; set; }
+    public string? Key { get; set; }
 
     [JsonPropertyName("count")]
     public long? Count { get; set; }

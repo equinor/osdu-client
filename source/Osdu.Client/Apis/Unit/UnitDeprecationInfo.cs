@@ -17,12 +17,12 @@ namespace Osdu.Client.Apis.Unit;
 public class UnitDeprecationInfo
 {
     [JsonPropertyName("state")]
-    public string State { get; set; }
+    public string? State { get; set; }
 
     [JsonPropertyName("supersededByUnit")]
-    public string SupersededByUnit { get; set; }
+    public string? SupersededByUnit { get; set; }
 
     [JsonPropertyName("remarks")]
-    public string Remarks { get; set; }
+    public string? Remarks { get; set; }
 
 }

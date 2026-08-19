@@ -35,12 +35,12 @@ public class ConversionABCDRequest
     /// The persistable reference string (JSON serialized Unit 'essence') representing toe 'from Unit'. Either 'fromUnitPersistableReference' or 'fromUnit' must be populated.
     /// </summary>
     [JsonPropertyName("fromUnitPersistableReference")]
-    public string FromUnitPersistableReference { get; set; }
+    public string? FromUnitPersistableReference { get; set; }
 
     /// <summary>
     /// The persistable reference string (JSON serialized Unit 'essence') representing toe 'to Unit'. Either 'toUnitPersistableReference' or 'toUnit' must be populated.
     /// </summary>
     [JsonPropertyName("toUnitPersistableReference")]
-    public string ToUnitPersistableReference { get; set; }
+    public string? ToUnitPersistableReference { get; set; }
 
 }

@@ -23,19 +23,19 @@ public class AbstractVectorHeaderMapping_1_1_0
     /// Array of objects which define the meaning and format of a tabular structure used in a binary file as a header.  The initial use case is the trace headers of a SEG-Y file.  Note that some of this information may be repeated in the SEG-Y EBCDIC header.
     /// </summary>
     [JsonPropertyName("VectorHeaderMapping")]
-    public List<AbstractVectorHeaderMapping_1_1_0_VectorHeaderMapping> VectorHeaderMapping { get; set; }
+    public List<AbstractVectorHeaderMapping_1_1_0_VectorHeaderMapping>? VectorHeaderMapping { get; set; }
 
     /// <summary>
     /// Trace header override definitions.
     /// </summary>
     [JsonPropertyName("TraceHeaderOverrides")]
-    public List<AbstractVectorHeaderMapping_1_1_0_TraceHeaderOverrides> TraceHeaderOverrides { get; set; }
+    public List<AbstractVectorHeaderMapping_1_1_0_TraceHeaderOverrides>? TraceHeaderOverrides { get; set; }
 
     /// <summary>
     /// Binary header override definitions.
     /// </summary>
     [JsonPropertyName("BinaryHeaderOverrides")]
-    public List<AbstractVectorHeaderMapping_1_1_0_BinaryHeaderOverrides> BinaryHeaderOverrides { get; set; }
+    public List<AbstractVectorHeaderMapping_1_1_0_BinaryHeaderOverrides>? BinaryHeaderOverrides { get; set; }
 
 }
 
@@ -49,14 +49,14 @@ public class AbstractVectorHeaderMapping_1_1_0_VectorHeaderMapping
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-HeaderKeyName:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("KeyName")]
-    public string KeyName { get; set; }
+    public string? KeyName { get; set; }
 
     /// <summary>
     /// Relationship to a reference value for binary data types, such as INT, UINT, FLOAT, IBM_FLOAT, ASCII, EBCDIC.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WordFormatType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WordFormat")]
-    public string WordFormat { get; set; }
+    public string? WordFormat { get; set; }
 
     /// <summary>
     /// Size of the word in bytes.
@@ -75,13 +75,13 @@ public class AbstractVectorHeaderMapping_1_1_0_VectorHeaderMapping
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("UoM")]
-    public string UoM { get; set; }
+    public string? UoM { get; set; }
 
     /// <summary>
     /// Enumerated string indicating whether to use the normal scalar field for scaling this field (STANDARD), no scaling (NOSCALE), or override scalar (OVERRIDE).  Default is current STANDARD (such as SEG-Y rev2).
     /// </summary>
     [JsonPropertyName("ScalarIndicator")]
-    public AbstractVectorHeaderMapping_1_1_0_VectorHeaderMapping_ScalarIndicator ScalarIndicator { get; set; }
+    public AbstractVectorHeaderMapping_1_1_0_VectorHeaderMapping_ScalarIndicator? ScalarIndicator { get; set; }
 
     /// <summary>
     /// Scalar value (as defined by standard) when a value present in the header needs to be overwritten for this value.
@@ -118,7 +118,7 @@ public class AbstractVectorHeaderMapping_1_1_0_TraceHeaderOverrides
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-HeaderKeyName:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("KeyName")]
-    public string KeyName { get; set; }
+    public string? KeyName { get; set; }
 
     /// <summary>
     /// The constant value to be assigned to the position. If populated, the OverrideByExpressions must be empty.
@@ -130,7 +130,7 @@ public class AbstractVectorHeaderMapping_1_1_0_TraceHeaderOverrides
     /// The value to be overridden is computed by evaluating the sequence of expressions. If populated, the OverrideByConstant must be empty.
     /// </summary>
     [JsonPropertyName("OverrideByExpressions")]
-    public List<AbstractVectorHeaderMapping_1_1_0_TraceHeaderOverrides_OverrideByExpressions> OverrideByExpressions { get; set; }
+    public List<AbstractVectorHeaderMapping_1_1_0_TraceHeaderOverrides_OverrideByExpressions>? OverrideByExpressions { get; set; }
 
 }
 
@@ -144,13 +144,13 @@ public class AbstractVectorHeaderMapping_1_1_0_TraceHeaderOverrides_OverrideByEx
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-HeaderKeyName:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("Input")]
-    public string Input { get; set; }
+    public string? Input { get; set; }
 
     /// <summary>
     /// The operator 1, an enumeration with permitted values of Plus, Minus, DivideBy, DivideByInteger, MultiplyBy,  Modulo, Equals.
     /// </summary>
     [JsonPropertyName("Operator1")]
-    public AbstractVectorHeaderMapping_1_1_0_TraceHeaderOverrides_OverrideByExpressions_Operator1 Operator1 { get; set; }
+    public AbstractVectorHeaderMapping_1_1_0_TraceHeaderOverrides_OverrideByExpressions_Operator1? Operator1 { get; set; }
 
     /// <summary>
     /// The constant operand 1 value.  If populated, Operand1Variable must be absent.
@@ -163,13 +163,13 @@ public class AbstractVectorHeaderMapping_1_1_0_TraceHeaderOverrides_OverrideByEx
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-HeaderKeyName:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("Operand1Variable")]
-    public string Operand1Variable { get; set; }
+    public string? Operand1Variable { get; set; }
 
     /// <summary>
     /// The operator 2, an enumeration with permitted values of Plus, Minus, DivideBy, DivideByInteger, MultiplyBy,  Modulo, Equals.
     /// </summary>
     [JsonPropertyName("Operator2")]
-    public AbstractVectorHeaderMapping_1_1_0_TraceHeaderOverrides_OverrideByExpressions_Operator2 Operator2 { get; set; }
+    public AbstractVectorHeaderMapping_1_1_0_TraceHeaderOverrides_OverrideByExpressions_Operator2? Operator2 { get; set; }
 
     /// <summary>
     /// The constant operand 2 value. If populated, Operand2Variable must be absent.
@@ -182,13 +182,13 @@ public class AbstractVectorHeaderMapping_1_1_0_TraceHeaderOverrides_OverrideByEx
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-HeaderKeyName:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("Operand2Variable")]
-    public string Operand2Variable { get; set; }
+    public string? Operand2Variable { get; set; }
 
     /// <summary>
     /// An optional remark explaining the intention or purpose of this expression.
     /// </summary>
     [JsonPropertyName("Remark")]
-    public string Remark { get; set; }
+    public string? Remark { get; set; }
 
 }
 
@@ -260,7 +260,7 @@ public class AbstractVectorHeaderMapping_1_1_0_BinaryHeaderOverrides
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-HeaderKeyName:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("KeyName")]
-    public string KeyName { get; set; }
+    public string? KeyName { get; set; }
 
     /// <summary>
     /// The constant value to be assigned to the position.

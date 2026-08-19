@@ -24,20 +24,20 @@ public class DataCollection_1_0_0
     /// </summary>
     [Required]
     [JsonPropertyName("Resources")]
-    public List<string> Resources { get; set; }
+    public required List<string> Resources { get; set; }
 
     /// <summary>
     /// Name
     /// </summary>
     [Required]
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public required string Name { get; set; }
 
     /// <summary>
     /// Description
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// Creation DateTime
@@ -50,32 +50,32 @@ public class DataCollection_1_0_0
     /// Array of Tag Names
     /// </summary>
     [JsonPropertyName("Tags")]
-    public List<string> Tags { get; set; }
+    public List<string>? Tags { get; set; }
 
     /// <summary>
     /// Submitter Name
     /// </summary>
     [JsonPropertyName("SubmitterName")]
-    public string SubmitterName { get; set; }
+    public string? SubmitterName { get; set; }
 
     /// <summary>
     /// Array of Author IDs
     /// </summary>
     [JsonPropertyName("AuthorIDs")]
-    public List<string> AuthorIDs { get; set; }
+    public List<string>? AuthorIDs { get; set; }
 
     /// <summary>
     /// ID of the User who owns the Collection
     /// </summary>
     [Required]
     [JsonPropertyName("OwnerID")]
-    public string OwnerID { get; set; }
+    public required string OwnerID { get; set; }
 
     /// <summary>
     /// Collection Workspace
     /// </summary>
     [JsonPropertyName("WorkSpaceID")]
-    public string WorkSpaceID { get; set; }
+    public string? WorkSpaceID { get; set; }
 
     /// <summary>
     /// Collection Filter Specification

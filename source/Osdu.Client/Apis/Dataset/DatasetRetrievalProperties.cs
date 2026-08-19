@@ -17,12 +17,12 @@ namespace Osdu.Client.Apis.Dataset;
 public class DatasetRetrievalProperties
 {
     [JsonPropertyName("datasetRegistryId")]
-    public string DatasetRegistryId { get; set; }
+    public string? DatasetRegistryId { get; set; }
 
     [JsonPropertyName("retrievalProperties")]
     public Dictionary<string, object>? RetrievalProperties { get; set; }
 
     [JsonPropertyName("providerKey")]
-    public string ProviderKey { get; set; }
+    public string? ProviderKey { get; set; }
 
 }

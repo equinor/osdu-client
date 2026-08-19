@@ -23,7 +23,7 @@ public class AbstractReferencePropertyType_1_1_0
     /// The type of value to expect for this reference property, either "number" (floating point number), "integer",  "string", or "boolean".
     /// </summary>
     [JsonPropertyName("ValueType")]
-    public string ValueType { get; set; }
+    public string? ValueType { get; set; }
 
     /// <summary>
     /// The number of values in a tuple, e.g. For coordinates. The default is 1.
@@ -36,7 +36,7 @@ public class AbstractReferencePropertyType_1_1_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitQuantity:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("UnitQuantityID")]
-    public string UnitQuantityID { get; set; }
+    public string? UnitQuantityID { get; set; }
 
     [JsonPropertyName("PropertyType")]
     public AbstractPropertyType_1_0_0? PropertyType { get; set; }
@@ -46,7 +46,7 @@ public class AbstractReferencePropertyType_1_1_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:([0-9]+)?(\.)?([0-9]+)?(\.)?([0-9]+)?$")]
     [JsonPropertyName("RelationshipTargetKind")]
-    public string RelationshipTargetKind { get; set; }
+    public string? RelationshipTargetKind { get; set; }
 
     /// <summary>
     /// Ordered array with: FacetType, FacetRole, both calling specific references
@@ -54,6 +54,6 @@ public class AbstractReferencePropertyType_1_1_0
     /// FacetRole: Additional context about the nature of a property type. The purpose of such attribute is to minimize the need to create specialized property types by mutualizing some well known qualifiers such as "maximum", "minimum" which apply to a lot of different property types.
     /// </summary>
     [JsonPropertyName("FacetIDs")]
-    public List<AbstractFacet_1_0_0> FacetIDs { get; set; }
+    public List<AbstractFacet_1_0_0>? FacetIDs { get; set; }
 
 }

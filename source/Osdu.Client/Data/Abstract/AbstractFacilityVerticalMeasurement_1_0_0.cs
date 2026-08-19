@@ -44,60 +44,60 @@ public class AbstractFacilityVerticalMeasurement_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-VerticalMeasurementType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("VerticalMeasurementTypeID")]
-    public string VerticalMeasurementTypeID { get; set; }
+    public string? VerticalMeasurementTypeID { get; set; }
 
     /// <summary>
     /// Specifies Measured Depth, True Vertical Depth, or Elevation.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-VerticalMeasurementPath:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("VerticalMeasurementPathID")]
-    public string VerticalMeasurementPathID { get; set; }
+    public string? VerticalMeasurementPathID { get; set; }
 
     /// <summary>
     /// Specifies Driller vs Logger.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-VerticalMeasurementSource:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("VerticalMeasurementSourceID")]
-    public string VerticalMeasurementSourceID { get; set; }
+    public string? VerticalMeasurementSourceID { get; set; }
 
     /// <summary>
     /// Specifies what directional survey or wellpath was used to calculate the TVD.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-WellboreTrajectory:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellboreTVDTrajectoryID")]
-    public string WellboreTVDTrajectoryID { get; set; }
+    public string? WellboreTVDTrajectoryID { get; set; }
 
     /// <summary>
     /// The unit of measure for the vertical measurement. If a unit of measure and a vertical CRS are provided, the unit of measure provided is taken over the unit of measure from the CRS.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("VerticalMeasurementUnitOfMeasureID")]
-    public string VerticalMeasurementUnitOfMeasureID { get; set; }
+    public string? VerticalMeasurementUnitOfMeasureID { get; set; }
 
     /// <summary>
     /// A vertical coordinate reference system defines the origin for height or depth values. It is expected that either VerticalCRSID or VerticalReferenceID reference is provided in a given vertical measurement array object, but not both.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CoordinateReferenceSystem:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("VerticalCRSID")]
-    public string VerticalCRSID { get; set; }
+    public string? VerticalCRSID { get; set; }
 
     /// <summary>
     /// The reference point from which the relative vertical measurement is made. This is only populated if the measurement has no VerticalCRSID specified. The value entered must match the VerticalMeasurementID for another vertical measurement array element in Wellbore or Well or in a related parent facility. The relationship should be  declared explicitly in VerticalReferenceEntityID. Any chain of measurements must ultimately resolve to a Vertical CRS. It is expected that a VerticalCRSID or a VerticalReferenceID is provided in a given vertical measurement array object, but not both.
     /// </summary>
     [JsonPropertyName("VerticalReferenceID")]
-    public string VerticalReferenceID { get; set; }
+    public string? VerticalReferenceID { get; set; }
 
     /// <summary>
     /// This relationship identifies the entity (aka record) in which the VerticalReferenceID is found; It could be a different OSDU entity or a self-reference. For example, a Wellbore VerticalMeasurement may reference a member of a VerticalMeasurements[] array in its parent Well record. Alternatively, VerticalReferenceEntityID may be populated with the ID of its own Wellbore record to make explicit that VerticalReferenceID is intended to be found in this record, not another.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:(master-data\-\-Wellbore|master-data\-\-Well|master-data\-\-Rig):[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("VerticalReferenceEntityID")]
-    public string VerticalReferenceEntityID { get; set; }
+    public string? VerticalReferenceEntityID { get; set; }
 
     /// <summary>
     /// Text which describes a vertical measurement in detail.
     /// </summary>
     [JsonPropertyName("VerticalMeasurementDescription")]
-    public string VerticalMeasurementDescription { get; set; }
+    public string? VerticalMeasurementDescription { get; set; }
 
 }

@@ -24,26 +24,26 @@ public class AbstractProjectActivity_1_2_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-ActivityTemplate:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ActivityTemplateID")]
-    public string ActivityTemplateID { get; set; }
+    public string? ActivityTemplateID { get; set; }
 
     /// <summary>
     /// The relationship to a parent project acting as a parent activity.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-[\w\-\.]+:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ParentProjectID")]
-    public string ParentProjectID { get; set; }
+    public string? ParentProjectID { get; set; }
 
     /// <summary>
     /// General parameter value used in one instance of activity.  Includes reference to data objects which are inputs and outputs of the activity.
     /// </summary>
     [JsonPropertyName("Parameters")]
-    public List<AbstractActivityParameter_1_1_0> Parameters { get; set; }
+    public List<AbstractActivityParameter_1_1_0>? Parameters { get; set; }
 
     /// <summary>
     /// The (non-overlapping) historical activity states and effective start and termination dates. The last state is replicated in the single LastActivityState for simpler queries.
     /// </summary>
     [JsonPropertyName("ActivityStates")]
-    public List<AbstractActivityState_1_0_0> ActivityStates { get; set; }
+    public List<AbstractActivityState_1_0_0>? ActivityStates { get; set; }
 
     [JsonPropertyName("LastActivityState")]
     public AbstractActivityState_1_0_0? LastActivityState { get; set; }

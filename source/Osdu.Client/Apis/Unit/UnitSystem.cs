@@ -17,34 +17,34 @@ namespace Osdu.Client.Apis.Unit;
 public class UnitSystem
 {
     [JsonPropertyName("name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     [JsonPropertyName("offset")]
     public int? Offset { get; set; }
 
     [JsonPropertyName("lastModified")]
-    public string LastModified { get; set; }
+    public string? LastModified { get; set; }
 
     [JsonPropertyName("source")]
-    public string Source { get; set; }
+    public string? Source { get; set; }
 
     [JsonPropertyName("description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     [JsonPropertyName("ancestry")]
-    public string Ancestry { get; set; }
+    public string? Ancestry { get; set; }
 
     [JsonPropertyName("persistableReference")]
-    public string PersistableReference { get; set; }
+    public string? PersistableReference { get; set; }
 
     [JsonPropertyName("unitAssignmentCount")]
     public int? UnitAssignmentCount { get; set; }
 
     [JsonPropertyName("referenceUnitSystem")]
-    public string ReferenceUnitSystem { get; set; }
+    public string? ReferenceUnitSystem { get; set; }
 
     [JsonPropertyName("unitAssignments")]
-    public List<UnitAssignment> UnitAssignments { get; set; }
+    public List<UnitAssignment>? UnitAssignments { get; set; }
 
     [JsonPropertyName("unitAssignmentCountInResponse")]
     public int? UnitAssignmentCountInResponse { get; set; }

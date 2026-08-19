@@ -25,7 +25,7 @@ public class ExternalUnitOfMeasure_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ExternalUnitOfMeasure:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class ExternalUnitOfMeasure_1_0_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class ExternalUnitOfMeasure_1_0_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class ExternalUnitOfMeasure_1_0_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class ExternalUnitOfMeasure_1_0_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class ExternalUnitOfMeasure_1_0_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public ExternalUnitOfMeasure_1_0_0_Data? Data { get; set; }
@@ -101,19 +101,19 @@ public class ExternalUnitOfMeasure_1_0_0_Data : AbstractCommonResources_1_0_0 //
     /// The name of the entity instance.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// Alternative names, including historical, by which this entity instance is/has been known.
     /// </summary>
     [JsonPropertyName("NameAlias")]
-    public List<AbstractAliasNames_1_0_0> NameAlias { get; set; }
+    public List<AbstractAliasNames_1_0_0>? NameAlias { get; set; }
 
     /// <summary>
     /// Native identifier from a Master Data Management System or other trusted source external to OSDU - stored here in order to allow for multi-system connection and synchronization. If used, the "Source" property should identify that source system.
     /// </summary>
     [JsonPropertyName("ID")]
-    public string ID { get; set; }
+    public string? ID { get; set; }
 
     /// <summary>
     /// By default reference values are considered as 'active'. An absent 'InactiveIndicator' property value means the reference value is in active use. When 'InactiveIndicator' is set true the reverence value is no longer in use and should no longer be offered as a choice.
@@ -126,31 +126,31 @@ public class ExternalUnitOfMeasure_1_0_0_Data : AbstractCommonResources_1_0_0 //
     /// The text which describes a NAME TYPE in detail.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// The abbreviation or mnemonic for a reference type if defined. Example: WELL and WLBR.
     /// </summary>
     [JsonPropertyName("Code")]
-    public string Code { get; set; }
+    public string? Code { get; set; }
 
     /// <summary>
     /// Name of the authority, or organisation, which governs the entity value and from which it is sourced.
     /// </summary>
     [JsonPropertyName("AttributionAuthority")]
-    public string AttributionAuthority { get; set; }
+    public string? AttributionAuthority { get; set; }
 
     /// <summary>
     /// Name, URL, or other identifier of the publication, or repository, of the attribution source organisation from which the entity value is sourced.
     /// </summary>
     [JsonPropertyName("AttributionPublication")]
-    public string AttributionPublication { get; set; }
+    public string? AttributionPublication { get; set; }
 
     /// <summary>
     /// The distinct instance of the attribution publication, by version number, sequence number, date of publication, etc., that was used for the entity value.
     /// </summary>
     [JsonPropertyName("AttributionRevision")]
-    public string AttributionRevision { get; set; }
+    public string? AttributionRevision { get; set; }
 
     /// <summary>
     /// For reference values published and governed by OSDU: The date and time the record was committed into the OSDU member GitLab reference-values repository. The sole purpose of this date is to optimise the OSDU milestone upgrades. It allows the upgrade code to figure out whether or not the record must be PUT into reference value storage.
@@ -164,48 +164,48 @@ public class ExternalUnitOfMeasure_1_0_0_Data : AbstractCommonResources_1_0_0 //
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ExternalCatalogNamespace:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("NamespaceID")]
-    public string NamespaceID { get; set; }
+    public string? NamespaceID { get; set; }
 
     /// <summary>
     /// The mapping status declaring whether the mapping is straight forward, direct (identical) or whether special treatment is required (corrected). Items, which are known not to be mappable are declared as unsupported. In the latter case the UnitOfMeasureID is not expected to be populated.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CatalogMapStateType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("MapStateID")]
-    public string MapStateID { get; set; }
+    public string? MapStateID { get; set; }
 
     /// <summary>
     /// For CatalogMapStateType:Corrected or CatalogMapStateType:Convert, use a conversion to this intermediate unit before swapping the reference to the platform standard UnitOfMeasure. Absent for other map states.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ExternalUnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("CorrectToExternalUnitOfMeasureID")]
-    public string CorrectToExternalUnitOfMeasureID { get; set; }
+    public string? CorrectToExternalUnitOfMeasureID { get; set; }
 
     /// <summary>
     /// The platform standard UnitOfMeasure record, to which this ExternalUnitOfMeasure record is mapped. This record may be understood as an alias to the standard UnitOfMeasure.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("UnitOfMeasureID")]
-    public string UnitOfMeasureID { get; set; }
+    public string? UnitOfMeasureID { get; set; }
 
     /// <summary>
     /// The External Unit Quantity is a semantic description of the quantity this ExternalUnitOfMeasure is describing ('Length' for instance).
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ExternalUnitQuantity:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ExternalUnitQuantityID")]
-    public string ExternalUnitQuantityID { get; set; }
+    public string? ExternalUnitQuantityID { get; set; }
 
     /// <summary>
     /// De-normalized, mapped platform standard UnitQuantity, is the ExternalUnitQuantity was indeed mappable.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitQuantity:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("UnitQuantityID")]
-    public string UnitQuantityID { get; set; }
+    public string? UnitQuantityID { get; set; }
 
     /// <summary>
     /// The dimensionality using the symbols for dimension as defined in https://www.bipm.org/utils/common/documents/jcgm/JCGM_200_2012.pdf, i.e. L for length, M for mass, T for time, I for electric current, N for amount of substance, J for luminous intensity; except Θ for thermodynamic temperature, which is replaced by the symbol K, the additional symbol D for temperature difference and the additional symbol 0 for no dimension.
     /// </summary>
     [JsonPropertyName("UnitDimensionCode")]
-    public string UnitDimensionCode { get; set; }
+    public string? UnitDimensionCode { get; set; }
 
     /// <summary>
     /// True if the unit is a base unit for the unit quantity. If the property is absent, it means the unit is not a base unit.
@@ -218,7 +218,7 @@ public class ExternalUnitOfMeasure_1_0_0_Data : AbstractCommonResources_1_0_0 //
     /// The name of the unit dimension concept.
     /// </summary>
     [JsonPropertyName("UnitDimensionName")]
-    public string UnitDimensionName { get; set; }
+    public string? UnitDimensionName { get; set; }
 
     /// <summary>
     /// The A parameter; formula: y = (A+B*x)/(C+D*x)
@@ -248,7 +248,7 @@ public class ExternalUnitOfMeasure_1_0_0_Data : AbstractCommonResources_1_0_0 //
     /// The self-contained, stringified JSON reference for the unit. This value can be attached to data values and data records and carry the unit reference independent of a UnitOfMeasure instance.
     /// </summary>
     [JsonPropertyName("PersistableReference")]
-    public string PersistableReference { get; set; }
+    public string? PersistableReference { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }

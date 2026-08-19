@@ -36,7 +36,7 @@ public class AbstractTubularComponentRSS_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-RotarySteerableDeflectionMethod:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("DeflectionMethodID")]
-    public string DeflectionMethodID { get; set; }
+    public string? DeflectionMethodID { get; set; }
 
     /// <summary>
     /// Minimum flow rate for programming the tool.
@@ -138,6 +138,6 @@ public class AbstractTubularComponentRSS_1_0_0
     /// Array of one or more pressure loss versus flowrate points used to interpolate pressure loss across the MWD/LWD tool.
     /// </summary>
     [JsonPropertyName("PressureLossCurve")]
-    public List<AbstractTubularComponentPressureLoss_1_0_0> PressureLossCurve { get; set; }
+    public List<AbstractTubularComponentPressureLoss_1_0_0>? PressureLossCurve { get; set; }
 
 }

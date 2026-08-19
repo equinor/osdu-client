@@ -23,7 +23,7 @@ public class AbstractProppantAgent_1_0_0
     /// The name of the proppant.
     /// </summary>
     [JsonPropertyName("ProppantName")]
-    public string ProppantName { get; set; }
+    public string? ProppantName { get; set; }
 
     /// <summary>
     /// Laminar flow friction coefficient.
@@ -60,7 +60,7 @@ public class AbstractProppantAgent_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-StimProppantAgentType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ProppantTypeID")]
-    public string ProppantTypeID { get; set; }
+    public string? ProppantTypeID { get; set; }
 
     /// <summary>
     /// The unconfined compressive strength of the proppant.
@@ -69,35 +69,35 @@ public class AbstractProppantAgent_1_0_0
     public double? UnconfinedCompressiveStrength { get; set; }
 
     [JsonPropertyName("ISO13503_2Properties")]
-    public List<AbstractProppantAgent_1_0_0_ISO135032Properties> ISO135032Properties { get; set; }
+    public List<AbstractProppantAgent_1_0_0_ISO135032Properties>? ISO135032Properties { get; set; }
 
     [JsonPropertyName("ISO13503_5Point")]
-    public List<AbstractProppantAgent_1_0_0_ISO135035Point> ISO135035Point { get; set; }
+    public List<AbstractProppantAgent_1_0_0_ISO135035Point>? ISO135035Point { get; set; }
 
     /// <summary>
     /// The name of the proppant supplier.
     /// </summary>
     [JsonPropertyName("SupplierName")]
-    public string SupplierName { get; set; }
+    public string? SupplierName { get; set; }
 
     /// <summary>
     /// Identifier of service company organisation providing this proppant agent for the stimulation job.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SupplierID")]
-    public string SupplierID { get; set; }
+    public string? SupplierID { get; set; }
 
     /// <summary>
     /// Supplier's product number/code.
     /// </summary>
     [JsonPropertyName("SupplierProductCode")]
-    public string SupplierProductCode { get; set; }
+    public string? SupplierProductCode { get; set; }
 
     /// <summary>
     /// General remarks about this proppant agent.
     /// </summary>
     [JsonPropertyName("Remarks")]
-    public string Remarks { get; set; }
+    public string? Remarks { get; set; }
 
 }
 
@@ -140,7 +140,7 @@ public class AbstractProppantAgent_1_0_0_ISO135032Properties
     /// Crush Test Data
     /// </summary>
     [JsonPropertyName("CrushTestData")]
-    public List<AbstractProppantAgent_1_0_0_ISO135032Properties_CrushTestData> CrushTestData { get; set; }
+    public List<AbstractProppantAgent_1_0_0_ISO135032Properties_CrushTestData>? CrushTestData { get; set; }
 
     /// <summary>
     /// Crush test classification indicating the highest stress level at which a proppant generated no more than 10% crushed material rounded down to the nearest 1,000 psi during a crush test. For example, a value of 14 means 14k which is 14000 psi.
@@ -176,7 +176,7 @@ public class AbstractProppantAgent_1_0_0_ISO135032Properties
     /// Sieve Analysis Data
     /// </summary>
     [JsonPropertyName("SieveAnalysisData")]
-    public List<AbstractProppantAgent_1_0_0_ISO135032Properties_SieveAnalysisData> SieveAnalysisData { get; set; }
+    public List<AbstractProppantAgent_1_0_0_ISO135032Properties_SieveAnalysisData>? SieveAnalysisData { get; set; }
 
     /// <summary>
     /// Not formally part of ISO 13503.2 properties, the specific gravity is the apparent density of the proppant divided by the density of water.

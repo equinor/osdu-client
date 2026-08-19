@@ -25,7 +25,7 @@ public class CementJob_1_3_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-CementJob:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class CementJob_1_3_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class CementJob_1_3_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class CementJob_1_3_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class CementJob_1_3_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class CementJob_1_3_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public CementJob_1_3_0_Data? Data { get; set; }
@@ -101,19 +101,19 @@ public class CementJob_1_3_0_Data : AbstractCommonResources_1_0_0 // Also compos
     /// The record id, which identifies this OSDU File or dataset resource.
     /// </summary>
     [JsonPropertyName("Datasets")]
-    public List<string> Datasets { get; set; }
+    public List<string>? Datasets { get; set; }
 
     /// <summary>
     /// An array of references to content in Domain Data Management Services represented by this work-product-component. The references are formed as URI following https://www.rfc-editor.org/rfc/rfc3986#page-16. This property is exclusively populated by DDMSs. If a work-product-component is represented in more than one DDMS, DDMSs are obliged to find the specific reference by inspecting the URI's authority values matching the DDMS id.
     /// </summary>
     [JsonPropertyName("DDMSDatasets")]
-    public List<string> DDMSDatasets { get; set; }
+    public List<string>? DDMSDatasets { get; set; }
 
     /// <summary>
     /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
     /// </summary>
     [JsonPropertyName("Artefacts")]
-    public List<CementJob_1_3_0_Data_Artefacts> Artefacts { get; set; }
+    public List<CementJob_1_3_0_Data_Artefacts>? Artefacts { get; set; }
 
     /// <summary>
     /// A flag that indicates if the work product component is undergoing an extended load.  It reflects the fact that the work product component is in an early stage and may be updated before finalization.
@@ -133,25 +133,25 @@ public class CementJob_1_3_0_Data : AbstractCommonResources_1_0_0 // Also compos
     /// Describes a record's overall suitability for general business consumption based on data quality. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [JsonPropertyName("TechnicalAssurances")]
-    public List<AbstractTechnicalAssurance_1_2_0> TechnicalAssurances { get; set; }
+    public List<AbstractTechnicalAssurance_1_2_0>? TechnicalAssurances { get; set; }
 
     /// <summary>
     /// Alternative names, including historical, by which this work-product-component is/has been known (it should include all the identifiers).
     /// </summary>
     [JsonPropertyName("NameAliases")]
-    public List<AbstractAliasNames_1_0_0> NameAliases { get; set; }
+    public List<AbstractAliasNames_1_0_0>? NameAliases { get; set; }
 
     /// <summary>
     /// Name
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// Description.  Summary of the work product component.  Not the same as Remark which captures thoughts of creator about the wpc.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// Date that a resource (work  product component here) is formed outside of OSDU before loading (e.g. publication date).
@@ -164,7 +164,7 @@ public class CementJob_1_3_0_Data : AbstractCommonResources_1_0_0 // Also compos
     /// Array of key words to identify the work product, especially to help in search.
     /// </summary>
     [JsonPropertyName("Tags")]
-    public List<string> Tags { get; set; }
+    public List<string>? Tags { get; set; }
 
     [JsonPropertyName("SpatialPoint")]
     public AbstractSpatialLocation_1_1_0? SpatialPoint { get; set; }
@@ -176,45 +176,45 @@ public class CementJob_1_3_0_Data : AbstractCommonResources_1_0_0 // Also compos
     /// List of geographic entities which provide context to the WPC.  This may include multiple types or multiple values of the same type.
     /// </summary>
     [JsonPropertyName("GeoContexts")]
-    public List<AbstractGeoContext_1_0_0> GeoContexts { get; set; }
+    public List<AbstractGeoContext_1_0_0>? GeoContexts { get; set; }
 
     /// <summary>
     /// Name of the person that first submitted the work product component to OSDU.
     /// </summary>
     [JsonPropertyName("SubmitterName")]
-    public string SubmitterName { get; set; }
+    public string? SubmitterName { get; set; }
 
     /// <summary>
     /// Array of business processes/workflows that the work product component has been through (ex. well planning, exploration).
     /// </summary>
     [JsonPropertyName("BusinessActivities")]
-    public List<string> BusinessActivities { get; set; }
+    public List<string>? BusinessActivities { get; set; }
 
     /// <summary>
     /// Array of Authors' names of the work product component.  Could be a person or company entity.
     /// </summary>
     [JsonPropertyName("AuthorIDs")]
-    public List<string> AuthorIDs { get; set; }
+    public List<string>? AuthorIDs { get; set; }
 
     /// <summary>
     /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
     /// </summary>
     [JsonPropertyName("LineageAssertions")]
-    public List<CementJob_1_3_0_Data_LineageAssertions> LineageAssertions { get; set; }
+    public List<CementJob_1_3_0_Data_LineageAssertions>? LineageAssertions { get; set; }
 
     /// <summary>
     /// Reference to the parent Wellbore. Cemented TubularAssembly would be installed to same Wellbore.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Wellbore:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellboreID")]
-    public string WellboreID { get; set; }
+    public string? WellboreID { get; set; }
 
     /// <summary>
     /// Identifier of the parent Well Activity in which the Cement Job was performed
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-WellActivity:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellActivityID")]
-    public string WellActivityID { get; set; }
+    public string? WellActivityID { get; set; }
 
     [JsonPropertyName("VerticalMeasurement")]
     public AbstractFacilityVerticalMeasurement_1_0_0? VerticalMeasurement { get; set; }
@@ -224,28 +224,28 @@ public class CementJob_1_3_0_Data : AbstractCommonResources_1_0_0 // Also compos
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:(master-data\-\-TubularAssembly|work-product-component\-\-TubularAssembly):[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellboreTubularID")]
-    public string WellboreTubularID { get; set; }
+    public string? WellboreTubularID { get; set; }
 
     /// <summary>
     /// Hole Section Assembly installed in and cement job performed in
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-HoleSection:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("HoleSectionID")]
-    public string HoleSectionID { get; set; }
+    public string? HoleSectionID { get; set; }
 
     /// <summary>
     /// Identifier of the TubularAssembly that describes the cement work string
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:(master-data\-\-TubularAssembly|work-product-component\-\-TubularAssembly):[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WorkStringID")]
-    public string WorkStringID { get; set; }
+    public string? WorkStringID { get; set; }
 
     /// <summary>
     /// Type of cement job
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CementJobType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("JobTypeID")]
-    public string JobTypeID { get; set; }
+    public string? JobTypeID { get; set; }
 
     /// <summary>
     /// Job Start Date/time
@@ -265,52 +265,52 @@ public class CementJob_1_3_0_Data : AbstractCommonResources_1_0_0 // Also compos
     /// Job configuration/description
     /// </summary>
     [JsonPropertyName("JobConfiguration")]
-    public string JobConfiguration { get; set; }
+    public string? JobConfiguration { get; set; }
 
     /// <summary>
     /// Association to Planned Cement Job
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-PlannedCementJob:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("PlannedCementJobID")]
-    public string PlannedCementJobID { get; set; }
+    public string? PlannedCementJobID { get; set; }
 
     /// <summary>
     /// Pump Through Equipment
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CementPumpThroughEquipmentType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("PumpThroughEquipmentID")]
-    public string PumpThroughEquipmentID { get; set; }
+    public string? PumpThroughEquipmentID { get; set; }
 
     /// <summary>
     /// Identifier of cementing contractor.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ContractorID")]
-    public string ContractorID { get; set; }
+    public string? ContractorID { get; set; }
 
     /// <summary>
     /// Name of lead cementer
     /// </summary>
     [JsonPropertyName("LeadCementerName")]
-    public string LeadCementerName { get; set; }
+    public string? LeadCementerName { get; set; }
 
     /// <summary>
     /// Name of Operator Representative/Supervisor
     /// </summary>
     [JsonPropertyName("OperatorRepresentative")]
-    public string OperatorRepresentative { get; set; }
+    public string? OperatorRepresentative { get; set; }
 
     /// <summary>
     /// Contractor Job ID
     /// </summary>
     [JsonPropertyName("ContractorJobID")]
-    public string ContractorJobID { get; set; }
+    public string? ContractorJobID { get; set; }
 
     /// <summary>
     /// Operator Representative Remarks
     /// </summary>
     [JsonPropertyName("OperatorRepresentativeRemarks")]
-    public string OperatorRepresentativeRemarks { get; set; }
+    public string? OperatorRepresentativeRemarks { get; set; }
 
     /// <summary>
     /// Were fluid circulated/returned to seabed. Values are "true" (or "1") and "false" (or "0").
@@ -453,7 +453,7 @@ public class CementJob_1_3_0_Data : AbstractCommonResources_1_0_0 // Also compos
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CementPlugType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("PlugTypeID")]
-    public string PlugTypeID { get; set; }
+    public string? PlugTypeID { get; set; }
 
     /// <summary>
     /// Plug fully drilled out
@@ -474,27 +474,27 @@ public class CementJob_1_3_0_Data : AbstractCommonResources_1_0_0 // Also compos
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CementPlugBaseSupportType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("PlugBaseSupportTypeID")]
-    public string PlugBaseSupportTypeID { get; set; }
+    public string? PlugBaseSupportTypeID { get; set; }
 
     /// <summary>
     /// Cement Plug Status History
     /// </summary>
     [JsonPropertyName("CementPlugStates")]
-    public List<CementJob_1_3_0_Data_CementPlugStates> CementPlugStates { get; set; }
+    public List<CementJob_1_3_0_Data_CementPlugStates>? CementPlugStates { get; set; }
 
     /// <summary>
     /// Type of squeeze.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CementSqueezeType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SqueezeTypeID")]
-    public string SqueezeTypeID { get; set; }
+    public string? SqueezeTypeID { get; set; }
 
     /// <summary>
     /// Method used to perform squeeze
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CementSqueezeMethod:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SqueezeMethodID")]
-    public string SqueezeMethodID { get; set; }
+    public string? SqueezeMethodID { get; set; }
 
     /// <summary>
     /// Top Measured depth of squeeze e.g. long perforated interval. Single depth when specific point squeezed (top &amp; base are same).
@@ -506,7 +506,7 @@ public class CementJob_1_3_0_Data : AbstractCommonResources_1_0_0 // Also compos
     /// ID of Wellbore Opening(s) through which Cement Squeezed
     /// </summary>
     [JsonPropertyName("SqueezeWellboreOpeningID")]
-    public List<string> SqueezeWellboreOpeningID { get; set; }
+    public List<string>? SqueezeWellboreOpeningID { get; set; }
 
     /// <summary>
     /// Coiled Tubing Used in the job (true=CTU used). Values are "true" (or "1") and "false" (or "0").
@@ -526,7 +526,7 @@ public class CementJob_1_3_0_Data : AbstractCommonResources_1_0_0 // Also compos
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:(master-data\-\-TubularComponent|work-product-component\-\-TubularComponent):[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("CementToolTubularComponentID")]
-    public string CementToolTubularComponentID { get; set; }
+    public string? CementToolTubularComponentID { get; set; }
 
     /// <summary>
     /// Is the pipe pulled wet (or dry) from cementing operation depth to surface for Plugs
@@ -545,7 +545,7 @@ public class CementJob_1_3_0_Data : AbstractCommonResources_1_0_0 // Also compos
     /// DEPRECATED: Use the new PipePulledRateAvg instead as this constant string property is malformed for the purpose.  Rate pulled from cementing operation depth to surface
     /// </summary>
     [JsonPropertyName("PipePulledRate")]
-    public string PipePulledRate { get; set; }
+    public string? PipePulledRate { get; set; }
 
     /// <summary>
     /// Is Viscous Pilled Used
@@ -564,20 +564,20 @@ public class CementJob_1_3_0_Data : AbstractCommonResources_1_0_0 // Also compos
     /// DEPRECATED: Please use PackerStingerMeasureDepth instead as this string constant string property is malformed for the purpose. Packer or Stinger Measured Depth.
     /// </summary>
     [JsonPropertyName("PackerStingerMeasuredDepth")]
-    public string PackerStingerMeasuredDepth { get; set; }
+    public string? PackerStingerMeasuredDepth { get; set; }
 
     /// <summary>
     /// Cement Tool Type
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CementToolType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("CementToolTypeID")]
-    public string CementToolTypeID { get; set; }
+    public string? CementToolTypeID { get; set; }
 
     /// <summary>
     /// Set of stages for the job (usually 1 or 2).
     /// </summary>
     [JsonPropertyName("CementStages")]
-    public List<CementJob_1_3_0_Data_CementStages> CementStages { get; set; }
+    public List<CementJob_1_3_0_Data_CementStages>? CementStages { get; set; }
 
     /// <summary>
     /// Casing Pressure Test
@@ -589,7 +589,7 @@ public class CementJob_1_3_0_Data : AbstractCommonResources_1_0_0 // Also compos
     /// Log Evaluation
     /// </summary>
     [JsonPropertyName("LogEvaluation")]
-    public List<CementJob_1_3_0_Data_LogEvaluation> LogEvaluation { get; set; }
+    public List<CementJob_1_3_0_Data_LogEvaluation>? LogEvaluation { get; set; }
 
     /// <summary>
     /// Shoe Test
@@ -620,7 +620,7 @@ public class CementJob_1_3_0_Data : AbstractCommonResources_1_0_0 // Also compos
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CementJobQuality:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("CementJobRating")]
-    public string CementJobRating { get; set; }
+    public string? CementJobRating { get; set; }
 
     /// <summary>
     /// ROV Measured pH at Seabed
@@ -632,13 +632,13 @@ public class CementJob_1_3_0_Data : AbstractCommonResources_1_0_0 // Also compos
     /// Cement Fluid Line Configuration
     /// </summary>
     [JsonPropertyName("CementFluidLineConfiguration")]
-    public string CementFluidLineConfiguration { get; set; }
+    public string? CementFluidLineConfiguration { get; set; }
 
     /// <summary>
     /// Remarks
     /// </summary>
     [JsonPropertyName("Remarks")]
-    public string Remarks { get; set; }
+    public string? Remarks { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
@@ -655,21 +655,21 @@ public class CementJob_1_3_0_Data_Artefacts
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ArtefactRole:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("RoleID")]
-    public string RoleID { get; set; }
+    public string? RoleID { get; set; }
 
     /// <summary>
     /// The kind or schema ID of the artefact. Resolvable with the Schema Service.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("ResourceKind")]
-    public string ResourceKind { get; set; }
+    public string? ResourceKind { get; set; }
 
     /// <summary>
     /// The SRN which identifies this OSDU Artefact resource.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:dataset\-\-[\w\-\.]+:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ResourceID")]
-    public string ResourceID { get; set; }
+    public string? ResourceID { get; set; }
 
 }
 
@@ -683,14 +683,14 @@ public class CementJob_1_3_0_Data_LineageAssertions
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ID")]
-    public string ID { get; set; }
+    public string? ID { get; set; }
 
     /// <summary>
     /// Used by LineageAssertion to describe the nature of the line of descent of a work product component from a prior Resource, such as DIRECT, INDIRECT, REFERENCE.  It is not for proximity (number of nodes away), it is not to cover all the relationships in a full ontology or graph, and it is not to describe the type of activity that created the asserting WPC.  LineageAssertion does not encompass a full provenance, process history, or activity model.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-LineageRelationshipType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("LineageRelationshipType")]
-    public string LineageRelationshipType { get; set; }
+    public string? LineageRelationshipType { get; set; }
 
 }
 
@@ -704,7 +704,7 @@ public class CementJob_1_3_0_Data_CementPlugStates
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CementPlugStatusType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("PlugStatusTypeID")]
-    public string PlugStatusTypeID { get; set; }
+    public string? PlugStatusTypeID { get; set; }
 
     /// <summary>
     /// Status date/time
@@ -717,7 +717,7 @@ public class CementJob_1_3_0_Data_CementPlugStates
     /// Status Remarks
     /// </summary>
     [JsonPropertyName("PlugStatusRemarks")]
-    public string PlugStatusRemarks { get; set; }
+    public string? PlugStatusRemarks { get; set; }
 
     /// <summary>
     /// Plug Status Top MD
@@ -743,7 +743,7 @@ public class CementJob_1_3_0_Data_CementStages
     /// </summary>
     [Required]
     [JsonPropertyName("StageNumber")]
-    public double StageNumber { get; set; }
+    public required double StageNumber { get; set; }
 
     /// <summary>
     /// Stage type.
@@ -751,7 +751,7 @@ public class CementJob_1_3_0_Data_CementStages
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CementStageType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("StageTypeID")]
-    public string StageTypeID { get; set; }
+    public required string StageTypeID { get; set; }
 
     /// <summary>
     /// Final placement measured depth at top of interval.
@@ -821,7 +821,7 @@ public class CementJob_1_3_0_Data_CementStages
     /// Displacement fluid name.
     /// </summary>
     [JsonPropertyName("DisplacementFluidName")]
-    public string DisplacementFluidName { get; set; }
+    public string? DisplacementFluidName { get; set; }
 
     /// <summary>
     /// Density of displacement fluid.
@@ -875,7 +875,7 @@ public class CementJob_1_3_0_Data_CementStages
     /// Array of fluids worked in the stage - displaced mud, washers and spacers, cement (lead &amp; tail)
     /// </summary>
     [JsonPropertyName("CementingFluid")]
-    public List<CementJob_1_3_0_Data_CementStages_CementingFluid> CementingFluid { get; set; }
+    public List<CementJob_1_3_0_Data_CementStages_CementingFluid>? CementingFluid { get; set; }
 
     /// <summary>
     /// Bottom measured depth in primary cement job (multi-stage cement job).
@@ -918,7 +918,7 @@ public class CementJob_1_3_0_Data_CementStages
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-MudBaseType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("OriginalMudTypeID")]
-    public string OriginalMudTypeID { get; set; }
+    public string? OriginalMudTypeID { get; set; }
 
     /// <summary>
     /// Volume of mud circulated prior to cement job
@@ -1021,7 +1021,7 @@ public class CementJob_1_3_0_Data_CementStages
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CementSlurryMixMethod:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("MixMethod")]
-    public string MixMethod { get; set; }
+    public string? MixMethod { get; set; }
 
     /// <summary>
     /// Pill below cement plug?
@@ -1048,20 +1048,20 @@ public class CementJob_1_3_0_Data_CementStages
     /// Hesitation Reason during operation
     /// </summary>
     [JsonPropertyName("HesitationReason")]
-    public string HesitationReason { get; set; }
+    public string? HesitationReason { get; set; }
 
     /// <summary>
     /// Hesitation Squeeze array
     /// </summary>
     [JsonPropertyName("HesitationSqueeze")]
-    public List<CementJob_1_3_0_Data_CementStages_HesitationSqueeze> HesitationSqueeze { get; set; }
+    public List<CementJob_1_3_0_Data_CementStages_HesitationSqueeze>? HesitationSqueeze { get; set; }
 
     /// <summary>
     /// Plug Manufacturer
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("PlugManufacturer")]
-    public string PlugManufacturer { get; set; }
+    public string? PlugManufacturer { get; set; }
 
     /// <summary>
     /// Volume pumped to landing Bottom Dart
@@ -1200,7 +1200,7 @@ public class CementJob_1_3_0_Data_CementStages
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CementExcessVolCalcMethod:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ExcessVolumeCalcMethodID")]
-    public string ExcessVolumeCalcMethodID { get; set; }
+    public string? ExcessVolumeCalcMethodID { get; set; }
 
     /// <summary>
     /// Circulate out measured depth from top of cement plug
@@ -1269,7 +1269,7 @@ public class CementJob_1_3_0_Data_CementStages
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CementSqueezeObjective:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SqueezeObjective")]
-    public string SqueezeObjective { get; set; }
+    public string? SqueezeObjective { get; set; }
 
     /// <summary>
     /// Squeeze Tool Measured Depth e.g. Packer or Retainer
@@ -1354,7 +1354,7 @@ public class CementJob_1_3_0_Data_CementStages
     /// Squeeze Remarks
     /// </summary>
     [JsonPropertyName("SqueezeRemarks")]
-    public string SqueezeRemarks { get; set; }
+    public string? SqueezeRemarks { get; set; }
 
     /// <summary>
     /// Shoe Track Length
@@ -1444,7 +1444,7 @@ public class CementJob_1_3_0_Data_CementStages
     /// Remarks
     /// </summary>
     [JsonPropertyName("StageRemarks")]
-    public string StageRemarks { get; set; }
+    public string? StageRemarks { get; set; }
 
     /// <summary>
     /// Length of the cement column
@@ -1465,60 +1465,60 @@ public class CementJob_1_3_0_Data_CementStages_CementingFluid
     /// </summary>
     [Required]
     [JsonPropertyName("FluidIndex")]
-    public int FluidIndex { get; set; }
+    public required int FluidIndex { get; set; }
 
     /// <summary>
     /// High level fluid type
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CementFluidType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("FluidTypeID")]
-    public string FluidTypeID { get; set; }
+    public string? FluidTypeID { get; set; }
 
     /// <summary>
     /// Detailed level fluid type
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CementMudType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("MudTypeID")]
-    public string MudTypeID { get; set; }
+    public string? MudTypeID { get; set; }
 
     /// <summary>
     /// Name of Fluid e.g. Lead or Tail Slurry
     /// </summary>
     [JsonPropertyName("FluidName")]
-    public string FluidName { get; set; }
+    public string? FluidName { get; set; }
 
     /// <summary>
     /// Commercial product or trade name of fluid
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CementFluidProductName:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("FluidCommercialNameID")]
-    public string FluidCommercialNameID { get; set; }
+    public string? FluidCommercialNameID { get; set; }
 
     /// <summary>
     /// Fluid description.
     /// </summary>
     [JsonPropertyName("FluidDescription")]
-    public string FluidDescription { get; set; }
+    public string? FluidDescription { get; set; }
 
     /// <summary>
     /// Fluid Supplier.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("FluidSupplier")]
-    public string FluidSupplier { get; set; }
+    public string? FluidSupplier { get; set; }
 
     /// <summary>
     /// Fluid purpose description.
     /// </summary>
     [JsonPropertyName("FluidPurpose")]
-    public string FluidPurpose { get; set; }
+    public string? FluidPurpose { get; set; }
 
     /// <summary>
     /// Slurry Type
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CementSlurryType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SlurryTypeID")]
-    public string SlurryTypeID { get; set; }
+    public string? SlurryTypeID { get; set; }
 
     /// <summary>
     /// Estimated Measured depth at top of fluid placement at end of Stage.
@@ -1549,7 +1549,7 @@ public class CementJob_1_3_0_Data_CementStages_CementingFluid
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CementSlurryMixMethod:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SlurryMixMethodID")]
-    public string SlurryMixMethodID { get; set; }
+    public string? SlurryMixMethodID { get; set; }
 
     /// <summary>
     /// Mix Fluid Concentration
@@ -1610,7 +1610,7 @@ public class CementJob_1_3_0_Data_CementStages_CementingFluid
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CementExcessVolCalcMethod:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ExcessSlurryVolumeMeasureTypeID")]
-    public string ExcessSlurryVolumeMeasureTypeID { get; set; }
+    public string? ExcessSlurryVolumeMeasureTypeID { get; set; }
 
     /// <summary>
     /// Gauge Hole Size for estimating annular volume
@@ -1623,13 +1623,13 @@ public class CementJob_1_3_0_Data_CementStages_CementingFluid
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-FluidRheologicalModelType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("FluidRheologicalModelID")]
-    public string FluidRheologicalModelID { get; set; }
+    public string? FluidRheologicalModelID { get; set; }
 
     /// <summary>
     /// Fluid Fann Viscometer Rheology
     /// </summary>
     [JsonPropertyName("Rheometer")]
-    public List<CementJob_1_3_0_Data_CementStages_CementingFluid_Rheometer> Rheometer { get; set; }
+    public List<CementJob_1_3_0_Data_CementStages_CementingFluid_Rheometer>? Rheometer { get; set; }
 
     /// <summary>
     /// Design fluid density
@@ -1648,7 +1648,7 @@ public class CementJob_1_3_0_Data_CementStages_CementingFluid
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-FluidDensityMeasurementMethod:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("DensityMethodID")]
-    public string DensityMethodID { get; set; }
+    public string? DensityMethodID { get; set; }
 
     /// <summary>
     /// Fluid Density Measurement Temperature
@@ -1739,7 +1739,7 @@ public class CementJob_1_3_0_Data_CementStages_CementingFluid
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-FluidType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("BaseFluidTypeID")]
-    public string BaseFluidTypeID { get; set; }
+    public string? BaseFluidTypeID { get; set; }
 
     /// <summary>
     /// Density of base fluid.
@@ -1752,26 +1752,26 @@ public class CementJob_1_3_0_Data_CementStages_CementingFluid
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CementMixFluidType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("MixFluidTypeID")]
-    public string MixFluidTypeID { get; set; }
+    public string? MixFluidTypeID { get; set; }
 
     /// <summary>
     /// Name of dry blend.
     /// </summary>
     [JsonPropertyName("DryBlendName")]
-    public string DryBlendName { get; set; }
+    public string? DryBlendName { get; set; }
 
     /// <summary>
     /// Description of dry blend.
     /// </summary>
     [JsonPropertyName("DryBlendDescription")]
-    public string DryBlendDescription { get; set; }
+    public string? DryBlendDescription { get; set; }
 
     /// <summary>
     /// Dry blend cement slurry class
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CementSlurryClass:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("DryBlendCementSlurryClassID")]
-    public string DryBlendCementSlurryClassID { get; set; }
+    public string? DryBlendCementSlurryClassID { get; set; }
 
     /// <summary>
     /// Total mass of dry blend including additives: the volume is not constant.
@@ -1796,7 +1796,7 @@ public class CementJob_1_3_0_Data_CementStages_CementingFluid
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CementMassUnitType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("CementMassUnitTypeID")]
-    public string CementMassUnitTypeID { get; set; }
+    public string? CementMassUnitTypeID { get; set; }
 
     /// <summary>
     /// Units/Amount of Dry Blend Calculated
@@ -1834,7 +1834,7 @@ public class CementJob_1_3_0_Data_CementStages_CementingFluid
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CementGasFoamType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("GasFoamTypeID")]
-    public string GasFoamTypeID { get; set; }
+    public string? GasFoamTypeID { get; set; }
 
     /// <summary>
     /// Volume of gas used for foam job
@@ -1859,7 +1859,7 @@ public class CementJob_1_3_0_Data_CementStages_CementingFluid
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CementConstantGasMethod:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("DensityConstantGasMethodID")]
-    public string DensityConstantGasMethodID { get; set; }
+    public string? DensityConstantGasMethodID { get; set; }
 
     /// <summary>
     /// Gas foam method ratio
@@ -1883,13 +1883,13 @@ public class CementJob_1_3_0_Data_CementStages_CementingFluid
     /// Compressive Strength Pressure/Temperature/Thickening
     /// </summary>
     [JsonPropertyName("CompressiveStrengthTest")]
-    public List<CementJob_1_3_0_Data_CementStages_CementingFluid_CompressiveStrengthTest> CompressiveStrengthTest { get; set; }
+    public List<CementJob_1_3_0_Data_CementStages_CementingFluid_CompressiveStrengthTest>? CompressiveStrengthTest { get; set; }
 
     /// <summary>
     /// Thickening Test - Pressure, Temperature, Consistency (Bc) v Elapsed Time
     /// </summary>
     [JsonPropertyName("ThickeningTimeTest")]
-    public List<CementJob_1_3_0_Data_CementStages_CementingFluid_ThickeningTimeTest> ThickeningTimeTest { get; set; }
+    public List<CementJob_1_3_0_Data_CementStages_CementingFluid_ThickeningTimeTest>? ThickeningTimeTest { get; set; }
 
     /// <summary>
     /// The elapsed time from initiation of the static portion of the test until the slurry attains a gel strength of 100lbf/100sq ft.
@@ -1967,7 +1967,7 @@ public class CementJob_1_3_0_Data_CementStages_CementingFluid
     /// Water source description
     /// </summary>
     [JsonPropertyName("SourceWaterDescription")]
-    public string SourceWaterDescription { get; set; }
+    public string? SourceWaterDescription { get; set; }
 
     /// <summary>
     /// Source Water Temperature
@@ -2003,25 +2003,25 @@ public class CementJob_1_3_0_Data_CementStages_CementingFluid
     /// Cement Additives list. Additives can be added in slurry but also in spacers, washes, mud.
     /// </summary>
     [JsonPropertyName("CementAdditives")]
-    public List<CementJob_1_3_0_Data_CementStages_CementingFluid_CementAdditives> CementAdditives { get; set; }
+    public List<CementJob_1_3_0_Data_CementStages_CementingFluid_CementAdditives>? CementAdditives { get; set; }
 
     /// <summary>
     /// Set of (Time / Rate / Back Pressure).
     /// </summary>
     [JsonPropertyName("CementPumpSchedules")]
-    public List<CementJob_1_3_0_Data_CementStages_CementingFluid_CementPumpSchedules> CementPumpSchedules { get; set; }
+    public List<CementJob_1_3_0_Data_CementStages_CementingFluid_CementPumpSchedules>? CementPumpSchedules { get; set; }
 
     /// <summary>
     /// Cement Test Lab ID Number
     /// </summary>
     [JsonPropertyName("CementTestLabID")]
-    public string CementTestLabID { get; set; }
+    public string? CementTestLabID { get; set; }
 
     /// <summary>
     /// Comments or Remarks
     /// </summary>
     [JsonPropertyName("CementFluidRemark")]
-    public string CementFluidRemark { get; set; }
+    public string? CementFluidRemark { get; set; }
 
     /// <summary>
     /// True Vertical Depth at top of fluid placement at the end of Stage.
@@ -2065,7 +2065,7 @@ public class CementJob_1_3_0_Data_CementStages_CementingFluid_Rheometer
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-FluidRheometerTempDirection:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ViscometerTemperatureDirection")]
-    public string ViscometerTemperatureDirection { get; set; }
+    public string? ViscometerTemperatureDirection { get; set; }
 
     /// <summary>
     /// Viscometer Pressure
@@ -2133,7 +2133,7 @@ public class CementJob_1_3_0_Data_CementStages_CementingFluid_CompressiveStrengt
     /// </summary>
     [Required]
     [JsonPropertyName("CompressiveStrengthIndex")]
-    public int CompressiveStrengthIndex { get; set; }
+    public required int CompressiveStrengthIndex { get; set; }
 
     /// <summary>
     /// Pressure held during Compressive Strength test
@@ -2177,7 +2177,7 @@ public class CementJob_1_3_0_Data_CementStages_CementingFluid_ThickeningTimeTest
     /// </summary>
     [Required]
     [JsonPropertyName("TestIndex")]
-    public int TestIndex { get; set; }
+    public required int TestIndex { get; set; }
 
     /// <summary>
     /// Thickening text consistency/slurry viscosity: Bearden Consistency (Bc) 0 to 100.
@@ -2215,7 +2215,7 @@ public class CementJob_1_3_0_Data_CementStages_CementingFluid_CementAdditives
     /// </summary>
     [Required]
     [JsonPropertyName("AdditiveIndex")]
-    public int AdditiveIndex { get; set; }
+    public required int AdditiveIndex { get; set; }
 
     /// <summary>
     /// Relationship to a FluidAdditiveName reference-data record.
@@ -2223,41 +2223,41 @@ public class CementJob_1_3_0_Data_CementStages_CementingFluid_CementAdditives
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-FluidAdditiveName:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("AdditiveNameID")]
-    public string AdditiveNameID { get; set; }
+    public required string AdditiveNameID { get; set; }
 
     /// <summary>
     /// Vendor/Supplier of additive
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("AdditiveVendorID")]
-    public string AdditiveVendorID { get; set; }
+    public string? AdditiveVendorID { get; set; }
 
     /// <summary>
     /// Additive Code
     /// </summary>
     [JsonPropertyName("AdditiveCode")]
-    public string AdditiveCode { get; set; }
+    public string? AdditiveCode { get; set; }
 
     /// <summary>
     /// The liquid, solid or gaseous substance used to manipulate the function or properties of a fluid.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-AdditiveType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("AdditiveTypeID")]
-    public string AdditiveTypeID { get; set; }
+    public string? AdditiveTypeID { get; set; }
 
     /// <summary>
     /// The chief purpose or reason for adding a substance to a fluid used in a downhole operation.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-AdditiveRole:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("AdditiveRoleID")]
-    public string AdditiveRoleID { get; set; }
+    public string? AdditiveRoleID { get; set; }
 
     /// <summary>
     /// Additive Formulation - Wet or Dry.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-FluidAdditiveFormulationType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("AdditiveFormulationID")]
-    public string AdditiveFormulationID { get; set; }
+    public string? AdditiveFormulationID { get; set; }
 
     /// <summary>
     /// Additive density
@@ -2276,14 +2276,14 @@ public class CementJob_1_3_0_Data_CementStages_CementingFluid_CementAdditives
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-FluidAdditiveUnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("AdditiveAmountUoM")]
-    public string AdditiveAmountUoM { get; set; }
+    public string? AdditiveAmountUoM { get; set; }
 
     /// <summary>
     /// ConcentrationType: %BWOC (%By weight of Cement), %BWOB (%By weight of blend), %BWOW (%By weight of water), %BWOBF (%By weight of base fluid)
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-FluidAdditiveConcentrationType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("AdditiveTypeConcentrationID")]
-    public string AdditiveTypeConcentrationID { get; set; }
+    public string? AdditiveTypeConcentrationID { get; set; }
 
     /// <summary>
     /// Concentration Amount: unit type depends on typeConc.
@@ -2296,7 +2296,7 @@ public class CementJob_1_3_0_Data_CementStages_CementingFluid_CementAdditives
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-FluidAdditiveConcUnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("AdditiveConcentrationUnitOfMeasureID")]
-    public string AdditiveConcentrationUnitOfMeasureID { get; set; }
+    public string? AdditiveConcentrationUnitOfMeasureID { get; set; }
 
     /// <summary>
     /// Mass of Sack
@@ -2314,13 +2314,13 @@ public class CementJob_1_3_0_Data_CementStages_CementingFluid_CementAdditives
     /// ID of or URL to Material Safety Data Sheet
     /// </summary>
     [JsonPropertyName("AdditiveMSDSID")]
-    public string AdditiveMSDSID { get; set; }
+    public string? AdditiveMSDSID { get; set; }
 
     /// <summary>
     /// Comments or Remarks.
     /// </summary>
     [JsonPropertyName("AdditiveRemark")]
-    public string AdditiveRemark { get; set; }
+    public string? AdditiveRemark { get; set; }
 
 }
 
@@ -2360,14 +2360,14 @@ public class CementJob_1_3_0_Data_CementStages_CementingFluid_CementPumpSchedule
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CementPlacementMethod:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("PlacementMethod")]
-    public string PlacementMethod { get; set; }
+    public string? PlacementMethod { get; set; }
 
     /// <summary>
     /// Pumping Equipment Type
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CementPumpEquipmentType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("PumpEquipmentType")]
-    public string PumpEquipmentType { get; set; }
+    public string? PumpEquipmentType { get; set; }
 
     /// <summary>
     /// Minimum Rate fluid is pumped. 0 means it is a pause.
@@ -2457,7 +2457,7 @@ public class CementJob_1_3_0_Data_CementStages_CementingFluid_CementPumpSchedule
     /// Remarks
     /// </summary>
     [JsonPropertyName("Remark")]
-    public string Remark { get; set; }
+    public string? Remark { get; set; }
 
 }
 
@@ -2500,7 +2500,7 @@ public class CementJob_1_3_0_Data_CementStages_HesitationSqueeze
     /// Remarks
     /// </summary>
     [JsonPropertyName("Remarks")]
-    public string Remarks { get; set; }
+    public string? Remarks { get; set; }
 
 }
 
@@ -2586,13 +2586,13 @@ public class CementJob_1_3_0_Data_CasingPressureTest
     /// Test Criteria
     /// </summary>
     [JsonPropertyName("TestCriteria")]
-    public string TestCriteria { get; set; }
+    public string? TestCriteria { get; set; }
 
     /// <summary>
     /// Comments or Remarks
     /// </summary>
     [JsonPropertyName("Remarks")]
-    public string Remarks { get; set; }
+    public string? Remarks { get; set; }
 
 }
 
@@ -2613,7 +2613,7 @@ public class CementJob_1_3_0_Data_LogEvaluation
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CementEvalLogType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("LogType")]
-    public string LogType { get; set; }
+    public string? LogType { get; set; }
 
     /// <summary>
     /// Bottom Hole Temperature Log Run?
@@ -2646,7 +2646,7 @@ public class CementJob_1_3_0_Data_LogEvaluation
     /// Cement bond log quality description.
     /// </summary>
     [JsonPropertyName("CBLLogQuality")]
-    public string CBLLogQuality { get; set; }
+    public string? CBLLogQuality { get; set; }
 
     /// <summary>
     /// Elapsed Time Before Log from end of Cement Job
@@ -2659,13 +2659,13 @@ public class CementJob_1_3_0_Data_LogEvaluation
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-WellLog:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("LogID")]
-    public string LogID { get; set; }
+    public string? LogID { get; set; }
 
     /// <summary>
     /// Log Evaluation Depths
     /// </summary>
     [JsonPropertyName("LogEvaluationDepths")]
-    public List<CementJob_1_3_0_Data_LogEvaluation_LogEvaluationDepths> LogEvaluationDepths { get; set; }
+    public List<CementJob_1_3_0_Data_LogEvaluation_LogEvaluationDepths>? LogEvaluationDepths { get; set; }
 
     /// <summary>
     /// Cement Found On Tool during Evaluation Log run
@@ -2685,7 +2685,7 @@ public class CementJob_1_3_0_Data_LogEvaluation
     /// Log Evaluation Results
     /// </summary>
     [JsonPropertyName("LogEvaluationResults")]
-    public string LogEvaluationResults { get; set; }
+    public string? LogEvaluationResults { get; set; }
 
 }
 
@@ -2717,7 +2717,7 @@ public class CementJob_1_3_0_Data_LogEvaluation_LogEvaluationDepths
     /// Remarks
     /// </summary>
     [JsonPropertyName("Remarks")]
-    public string Remarks { get; set; }
+    public string? Remarks { get; set; }
 
 }
 
@@ -2756,13 +2756,13 @@ public class CementJob_1_3_0_Data_ShoeTest
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CementShoeTestType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ShoeTestTypeID")]
-    public string ShoeTestTypeID { get; set; }
+    public string? ShoeTestTypeID { get; set; }
 
     /// <summary>
     /// Comments or Remarks
     /// </summary>
     [JsonPropertyName("ShoeTestComments")]
-    public string ShoeTestComments { get; set; }
+    public string? ShoeTestComments { get; set; }
 
 }
 
@@ -2813,32 +2813,32 @@ public class CementJob_1_3_0_Data_TOCInterpretation
     /// Remedial Type
     /// </summary>
     [JsonPropertyName("RemedialType")]
-    public string RemedialType { get; set; }
+    public string? RemedialType { get; set; }
 
     /// <summary>
     /// Top of Cement Locate Method
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CementTOCLocateMethod:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TopOfCementLocateMethodID")]
-    public string TopOfCementLocateMethodID { get; set; }
+    public string? TopOfCementLocateMethodID { get; set; }
 
     /// <summary>
     /// Interpreter
     /// </summary>
     [JsonPropertyName("Interpreter")]
-    public string Interpreter { get; set; }
+    public string? Interpreter { get; set; }
 
     /// <summary>
     /// TOC Interpretation
     /// </summary>
     [JsonPropertyName("Interpretation")]
-    public string Interpretation { get; set; }
+    public string? Interpretation { get; set; }
 
     /// <summary>
     /// Comments or Remarks of the TOC Interpretation
     /// </summary>
     [JsonPropertyName("InterpretationRemarks")]
-    public string InterpretationRemarks { get; set; }
+    public string? InterpretationRemarks { get; set; }
 
 }
 
@@ -2887,7 +2887,7 @@ public class CementJob_1_3_0_Data_LinerTopTest
     /// Liner Negative Test Tool
     /// </summary>
     [JsonPropertyName("LinerNegativeTestTool")]
-    public string LinerNegativeTestTool { get; set; }
+    public string? LinerNegativeTestTool { get; set; }
 
     /// <summary>
     /// Liner Negative Test Equivalent Mud Weight
@@ -2899,7 +2899,7 @@ public class CementJob_1_3_0_Data_LinerTopTest
     /// Liner Positive Test Tool
     /// </summary>
     [JsonPropertyName("LinerPositiveTestTool")]
-    public string LinerPositiveTestTool { get; set; }
+    public string? LinerPositiveTestTool { get; set; }
 
     /// <summary>
     /// Liner Positive Test Equivalent Mud Weight
@@ -2918,7 +2918,7 @@ public class CementJob_1_3_0_Data_LinerTopTest
     /// Comments or Remarks
     /// </summary>
     [JsonPropertyName("LinerTopTestRemarks")]
-    public string LinerTopTestRemarks { get; set; }
+    public string? LinerTopTestRemarks { get; set; }
 
 }
 
@@ -2975,6 +2975,6 @@ public class CementJob_1_3_0_Data_ShoetrackCement
     /// Comments or Remarks
     /// </summary>
     [JsonPropertyName("ShoetrackCementTestRemarks")]
-    public string ShoetrackCementTestRemarks { get; set; }
+    public string? ShoetrackCementTestRemarks { get; set; }
 
 }

@@ -23,13 +23,13 @@ public class AbstractCollaborationLifecycleEvent_1_0_0
     /// A unique identifier of this event element in a sequence of events as, e.g., in CollaborationProject.
     /// </summary>
     [JsonPropertyName("EventID")]
-    public string EventID { get; set; }
+    public string? EventID { get; set; }
 
     /// <summary>
     /// A user-given event name.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// The date and time of the event.
@@ -42,20 +42,20 @@ public class AbstractCollaborationLifecycleEvent_1_0_0
     /// A user defined remark associated with this event.
     /// </summary>
     [JsonPropertyName("Remark")]
-    public string Remark { get; set; }
+    public string? Remark { get; set; }
 
     /// <summary>
     /// The relationship to a CollaborationProjectCollection containing the System of Record resources used by the project.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-CollaborationProjectCollection:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ResourceCollectionID")]
-    public string ResourceCollectionID { get; set; }
+    public string? ResourceCollectionID { get; set; }
 
     /// <summary>
     /// The relationship to a CollaborationProjectCollection containing the Work in Progress resources published in the context of the project.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-CollaborationProjectCollection:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WIPResourceCollectionID")]
-    public string WIPResourceCollectionID { get; set; }
+    public string? WIPResourceCollectionID { get; set; }
 
 }

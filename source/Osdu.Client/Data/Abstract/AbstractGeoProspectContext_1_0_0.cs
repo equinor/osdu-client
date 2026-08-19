@@ -24,13 +24,13 @@ public class AbstractGeoProspectContext_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Prospect:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ProspectID")]
-    public string ProspectID { get; set; }
+    public string? ProspectID { get; set; }
 
     /// <summary>
     /// The ProspectType reference of the Prospect (via ProspectID) for application convenience.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ProspectType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("GeoTypeID")]
-    public string GeoTypeID { get; set; }
+    public string? GeoTypeID { get; set; }
 
 }

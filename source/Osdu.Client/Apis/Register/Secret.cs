@@ -24,6 +24,6 @@ public class Secret
 {
     [Required]
     [JsonPropertyName("secretType")]
-    public string SecretType { get; set; }
+    public required string SecretType { get; set; }
 
 }

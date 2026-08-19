@@ -20,9 +20,9 @@ namespace Osdu.Client.Apis.Register;
 public class ParsedAction
 {
     [JsonPropertyName("url")]
-    public string Url { get; set; }
+    public string? Url { get; set; }
 
     [JsonPropertyName("errors")]
-    public string Errors { get; set; }
+    public string? Errors { get; set; }
 
 }

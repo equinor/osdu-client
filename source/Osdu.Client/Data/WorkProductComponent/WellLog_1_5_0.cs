@@ -25,7 +25,7 @@ public class WellLog_1_5_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-WellLog:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class WellLog_1_5_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class WellLog_1_5_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class WellLog_1_5_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class WellLog_1_5_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class WellLog_1_5_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public WellLog_1_5_0_Data? Data { get; set; }
@@ -101,19 +101,19 @@ public class WellLog_1_5_0_Data : AbstractCommonResources_1_0_0 // Also composes
     /// The record id, which identifies this OSDU File or dataset resource.
     /// </summary>
     [JsonPropertyName("Datasets")]
-    public List<string> Datasets { get; set; }
+    public List<string>? Datasets { get; set; }
 
     /// <summary>
     /// An array of references to content in Domain Data Management Services represented by this work-product-component. The references are formed as URI following https://www.rfc-editor.org/rfc/rfc3986#page-16. This property is exclusively populated by DDMSs. If a work-product-component is represented in more than one DDMS, DDMSs are obliged to find the specific reference by inspecting the URI's authority values matching the DDMS id.
     /// </summary>
     [JsonPropertyName("DDMSDatasets")]
-    public List<string> DDMSDatasets { get; set; }
+    public List<string>? DDMSDatasets { get; set; }
 
     /// <summary>
     /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
     /// </summary>
     [JsonPropertyName("Artefacts")]
-    public List<WellLog_1_5_0_Data_Artefacts> Artefacts { get; set; }
+    public List<WellLog_1_5_0_Data_Artefacts>? Artefacts { get; set; }
 
     /// <summary>
     /// A flag that indicates if the work product component is undergoing an extended load.  It reflects the fact that the work product component is in an early stage and may be updated before finalization.
@@ -133,25 +133,25 @@ public class WellLog_1_5_0_Data : AbstractCommonResources_1_0_0 // Also composes
     /// Describes a record's overall suitability for general business consumption based on data quality. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [JsonPropertyName("TechnicalAssurances")]
-    public List<AbstractTechnicalAssurance_1_2_0> TechnicalAssurances { get; set; }
+    public List<AbstractTechnicalAssurance_1_2_0>? TechnicalAssurances { get; set; }
 
     /// <summary>
     /// Alternative names, including historical, by which this work-product-component is/has been known (it should include all the identifiers).
     /// </summary>
     [JsonPropertyName("NameAliases")]
-    public List<AbstractAliasNames_1_0_0> NameAliases { get; set; }
+    public List<AbstractAliasNames_1_0_0>? NameAliases { get; set; }
 
     /// <summary>
     /// Name
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// Description.  Summary of the work product component.  Not the same as Remark which captures thoughts of creator about the wpc.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// Date that a resource (work  product component here) is formed outside of OSDU before loading (e.g. publication date).
@@ -164,7 +164,7 @@ public class WellLog_1_5_0_Data : AbstractCommonResources_1_0_0 // Also composes
     /// Array of key words to identify the work product, especially to help in search.
     /// </summary>
     [JsonPropertyName("Tags")]
-    public List<string> Tags { get; set; }
+    public List<string>? Tags { get; set; }
 
     [JsonPropertyName("SpatialPoint")]
     public AbstractSpatialLocation_1_1_0? SpatialPoint { get; set; }
@@ -176,58 +176,58 @@ public class WellLog_1_5_0_Data : AbstractCommonResources_1_0_0 // Also composes
     /// List of geographic entities which provide context to the WPC.  This may include multiple types or multiple values of the same type.
     /// </summary>
     [JsonPropertyName("GeoContexts")]
-    public List<AbstractGeoContext_1_0_0> GeoContexts { get; set; }
+    public List<AbstractGeoContext_1_0_0>? GeoContexts { get; set; }
 
     /// <summary>
     /// Name of the person that first submitted the work product component to OSDU.
     /// </summary>
     [JsonPropertyName("SubmitterName")]
-    public string SubmitterName { get; set; }
+    public string? SubmitterName { get; set; }
 
     /// <summary>
     /// Array of business processes/workflows that the work product component has been through (ex. well planning, exploration).
     /// </summary>
     [JsonPropertyName("BusinessActivities")]
-    public List<string> BusinessActivities { get; set; }
+    public List<string>? BusinessActivities { get; set; }
 
     /// <summary>
     /// Array of Authors' names of the work product component.  Could be a person or company entity.
     /// </summary>
     [JsonPropertyName("AuthorIDs")]
-    public List<string> AuthorIDs { get; set; }
+    public List<string>? AuthorIDs { get; set; }
 
     /// <summary>
     /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
     /// </summary>
     [JsonPropertyName("LineageAssertions")]
-    public List<WellLog_1_5_0_Data_LineageAssertions> LineageAssertions { get; set; }
+    public List<WellLog_1_5_0_Data_LineageAssertions>? LineageAssertions { get; set; }
 
     /// <summary>
     /// The Wellbore where the Well Log Work Product Component was recorded
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Wellbore:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellboreID")]
-    public string WellboreID { get; set; }
+    public string? WellboreID { get; set; }
 
     /// <summary>
     /// Identifies the WellLogClass or business domain of this Well Log and associated set of curves. Examples include, Petrophysical Logs, Drilling Logs and Production Logs.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WellLogClass:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellLogClassID")]
-    public string WellLogClassID { get; set; }
+    public string? WellLogClassID { get; set; }
 
     /// <summary>
     /// Well Log Type short Description such as Raw; Evaluated; Composite;....
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-LogType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellLogTypeID")]
-    public string WellLogTypeID { get; set; }
+    public string? WellLogTypeID { get; set; }
 
     /// <summary>
     /// The value used within curves to indicate there is no data over specific depth ranges.
     /// </summary>
     [JsonPropertyName("NullValue")]
-    public string NullValue { get; set; }
+    public string? NullValue { get; set; }
 
     /// <summary>
     /// DEPRECATED: Use the `SamplingStart` property. The `SamplingStart` is defined as the start value or first value of the ReferenceCurveID, typically the smallest value that represents the depth or time of the logging. Informational Top Measured Depth of the Well Log. Always populate SamplingStart and SamplingStop, which represents the real sampling of the WellLog, including  non-depth sampling.
@@ -247,37 +247,37 @@ public class WellLog_1_5_0_Data : AbstractCommonResources_1_0_0 // Also composes
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ServiceCompanyID")]
-    public string ServiceCompanyID { get; set; }
+    public string? ServiceCompanyID { get; set; }
 
     /// <summary>
     /// DEPRECATED: Use the `source` of the individual record. OSDU Native Log Source - will be updated for later releases - not to be used yet
     /// </summary>
     [JsonPropertyName("LogSource")]
-    public string LogSource { get; set; }
+    public string? LogSource { get; set; }
 
     /// <summary>
     /// DEPRECATED: Use the Well Log Acquisition schema `LogRuns[].LogPasses[].PassTypeID` property. This is now a reference value. Log Activity, used to describe the type of pass such as Calibration Pass - Main Pass - Repeated Pass
     /// </summary>
     [JsonPropertyName("LogActivity")]
-    public string LogActivity { get; set; }
+    public string? LogActivity { get; set; }
 
     /// <summary>
     /// DEPRECATED: Use the Well Log Acquisition schema `LogRun[]` array and the`LogRunID`. Log Run - describe the run of the log - can be a number, but may be also a alphanumeric description such as a version name
     /// </summary>
     [JsonPropertyName("LogRun")]
-    public string LogRun { get; set; }
+    public string? LogRun { get; set; }
 
     /// <summary>
     /// DEPRECATED: Refer to the `version` of the individual record. Log Version
     /// </summary>
     [JsonPropertyName("LogVersion")]
-    public string LogVersion { get; set; }
+    public string? LogVersion { get; set; }
 
     /// <summary>
     /// DEPRECATED:  Use the Well Log Acquisition schema `LogRun[].GenericToolTypeIDs[]` reference value list to capture the generic tool types or logging services for a particular Log Run. Tool mnemonics can also be captured using the `LogRun[].ToolMnemonicIDs[]` reference value list. Logging Service - mainly a short concatenation of the names of the tools
     /// </summary>
     [JsonPropertyName("LoggingService")]
-    public string LoggingService { get; set; }
+    public string? LoggingService { get; set; }
 
     /// <summary>
     /// An interval built from two nested values : StartDate and EndDate. It applies to the whole log services and may apply to composite logs as [start of the first run job] and [end of the last run job]Log Service Date
@@ -289,13 +289,13 @@ public class WellLog_1_5_0_Data : AbstractCommonResources_1_0_0 // Also composes
     /// DEPRECATED:  Use the Well Log Acquisition schema `LogRun[].GenericToolTypeIDs[]` to capture the generic tool types used in a particular Log Run. Tool mnemonics can also be captured using the `LogRun[].ToolMnemonicIDs[]` reference value list. Tool String Description - a long concatenation of the tools used for logging services such as GammaRay+NeutronPorosity
     /// </summary>
     [JsonPropertyName("ToolStringDescription")]
-    public string ToolStringDescription { get; set; }
+    public string? ToolStringDescription { get; set; }
 
     /// <summary>
     /// DEPRECATED:  Use the Well Log Acquisition schema `LogRun[].LogPasses[].LoggingDirectionID` reference value. Specifies whether curves were collected downward or upward
     /// </summary>
     [JsonPropertyName("LoggingDirection")]
-    public string LoggingDirection { get; set; }
+    public string? LoggingDirection { get; set; }
 
     /// <summary>
     /// DEPRECATED:  Use the Well Log Acquisition schema `LogRuns[].LogPasses[].PassTypeID` property. This is now a reference value to a specific pass such as "Main Pass" or "Repeated Pass", etc. Indicates if the Pass is the Main one (1) or a repeated one - and it's level repetition
@@ -307,58 +307,58 @@ public class WellLog_1_5_0_Data : AbstractCommonResources_1_0_0 // Also composes
     /// General method or circumstance of logging - MWD, completion, etc. This is free text string. Use the Use Well Log Acquisition schema `LogRuns[].ConveyanceMethodID` property where possible to capture the conveyance method.
     /// </summary>
     [JsonPropertyName("ActivityType")]
-    public string ActivityType { get; set; }
+    public string? ActivityType { get; set; }
 
     /// <summary>
     /// DEPRECATED: Use Well Log Acquisition schema `WellboreFluidTypeID` property. Type of mud at time of logging (oil, water based,...)
     /// </summary>
     [JsonPropertyName("DrillingFluidProperty")]
-    public string DrillingFluidProperty { get; set; }
+    public string? DrillingFluidProperty { get; set; }
 
     /// <summary>
     /// DEPRECATED: Use Well Log Acquisition schema `WellboreFluidTypeID` property. Type of mud at time of logging (oil, water based,...)
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WellboreFluidType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellboreFluidTypeID")]
-    public string WellboreFluidTypeID { get; set; }
+    public string? WellboreFluidTypeID { get; set; }
 
     /// <summary>
     /// DEPRECATED: Use Well Log Acquisition schema `LogRuns[].ConveyanceMethodID` property. The conveyance method used to acquire the log data - if not an acquired log leave empty/absent.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ConveyanceMethod:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ConveyanceMethodID")]
-    public string ConveyanceMethodID { get; set; }
+    public string? ConveyanceMethodID { get; set; }
 
     /// <summary>
     /// DEPRECATED: Use Well Log Acquisition schema `LogRuns[].LogPasses[].HoleTypeID` property. This is now a reference value list. Description of the hole related type of logging - POSSIBLE VALUE : OpenHole / CasedHole / CementedHole
     /// </summary>
     [RegularExpression(@"^OPENHOLE|CASEDHOLE|CEMENTEDHOLE$")]
     [JsonPropertyName("HoleTypeLogging")]
-    public string HoleTypeLogging { get; set; }
+    public string? HoleTypeLogging { get; set; }
 
     /// <summary>
     /// DEPRECATED: Use data.VerticalMeasurement.VerticalReferenceID instead. References an entry in the Vertical Measurement array for the Wellbore identified by WellboreID, which defines the vertical reference datum for all curve measured depths. Either VerticalMeasurementID or VerticalMeasurement are populated.
     /// </summary>
     [JsonPropertyName("VerticalMeasurementID")]
-    public string VerticalMeasurementID { get; set; }
+    public string? VerticalMeasurementID { get; set; }
 
     [JsonPropertyName("VerticalMeasurement")]
     public AbstractFacilityVerticalMeasurement_1_0_0? VerticalMeasurement { get; set; }
 
     [JsonPropertyName("Curves")]
-    public List<WellLog_1_5_0_Data_Curves> Curves { get; set; }
+    public List<WellLog_1_5_0_Data_Curves>? Curves { get; set; }
 
     /// <summary>
     /// Required for complex DLIS format files defined by having multiple Logical Files and/or multiple Frames.  The Frame Identifier is a numerical attribute that represents the interval spacing of the data within the frame.
     /// </summary>
     [JsonPropertyName("FrameIdentifier")]
-    public string FrameIdentifier { get; set; }
+    public string? FrameIdentifier { get; set; }
 
     /// <summary>
     /// Required for complex DLIS format files defined by having multiple Logical Files and/or multiple Frames.  The Logical File Identifier is a numerical attribute that represents the collection of a series of data groups (e.g. logging passes within a single logging run), and each Logical File may contain one or multiple Frames.
     /// </summary>
     [JsonPropertyName("LogicalFileIdentifier")]
-    public string LogicalFileIdentifier { get; set; }
+    public string? LogicalFileIdentifier { get; set; }
 
     /// <summary>
     /// For regularly sampled curves this property holds the sampling interval. For non regular sampled data this property is not set. This property can be captured here for composite log sets and within the Well Log Acquisition schema for raw data for each Log Run using the `LogRun[].SamplingInterval`. The IsRegular flag indicates whether SamplingInterval is required.
@@ -370,7 +370,7 @@ public class WellLog_1_5_0_Data : AbstractCommonResources_1_0_0 // Also composes
     /// The name of the curve that holds the primary index (reference) values.
     /// </summary>
     [JsonPropertyName("ReferenceCurveID")]
-    public string ReferenceCurveID { get; set; }
+    public string? ReferenceCurveID { get; set; }
 
     /// <summary>
     /// The start value/first value of the ReferenceCurveID, typically the smallest value that represents the depth or time of the logging. At Well Log level, this is designed to represent the smallest sampling interval of any and all individual logging runs and passes.
@@ -389,20 +389,20 @@ public class WellLog_1_5_0_Data : AbstractCommonResources_1_0_0 // Also composes
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WellLogSamplingDomainType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SamplingDomainTypeID")]
-    public string SamplingDomainTypeID { get; set; }
+    public string? SamplingDomainTypeID { get; set; }
 
     /// <summary>
     /// DEPRECATED: Use the Well Log Acquisition schema `Project.Contractors[]` array, or the `LogRuns[].ContractorCompanyID` property if a specific log run is unique to another contractor. The relationship to company who engaged the service company (ServiceCompanyID) to perform the logging.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("CompanyID")]
-    public string CompanyID { get; set; }
+    public string? CompanyID { get; set; }
 
     /// <summary>
     /// These are candidate reference curves, not real indices, which can be used to create look-up/transformation tables. These candidate reference curves are generally not populated, except in the cases where multiple reference curves are present, e.g. measured depth and time. Supported use cases can be found in WorkedExamples.
     /// </summary>
     [JsonPropertyName("CandidateReferenceCurveIDs")]
-    public List<string> CandidateReferenceCurveIDs { get; set; }
+    public List<string>? CandidateReferenceCurveIDs { get; set; }
 
     /// <summary>
     /// Optional time reference for (calendar) time logs. The ISO date time string representing zero time. Not to be confused with seismic travel time zero. The latter is defined by SeismicReferenceDatum.
@@ -425,7 +425,7 @@ public class WellLog_1_5_0_Data : AbstractCommonResources_1_0_0 // Also composes
     /// DEPRECATED: Use the `Remarks` property which utilizes the AbstractRemark fragment, capturing more information about a remark or comment. Log remark provides contextual information during the actual log object acquisition. Explains how the measurement in the wellbore is taken on a point in time or depth. Additional information may be included such as bad weather, tool failure, etc. Usually a part of the log header, log remark contains info specific for an acquisition run, specific for a given logging tool (multiple measurements) and/or a specific interval. In essence, log remark represents the external factors and operational environment, directly or indirectly affecting the measurement quality/uncertainty (dynamically over time/depth) - adding both noise and bias to the measurements.
     /// </summary>
     [JsonPropertyName("LogRemark")]
-    public string LogRemark { get; set; }
+    public string? LogRemark { get; set; }
 
     /// <summary>
     /// The Well Log Acquisition details object captures Information relevant to the well log acquisition, such as the specific acquisition job, log runs and log passes that this  well log information derives from.
@@ -437,7 +437,7 @@ public class WellLog_1_5_0_Data : AbstractCommonResources_1_0_0 // Also composes
     /// A remark array for contextual information during the actual log object acquisition. Explains how the measurement in the wellbore is taken on a point in time or depth. Additional information may be included such as bad weather, tool failure, etc. Usually a part of the log header, log remark contains info specific for an acquisition run, specific for a given logging tool (multiple measurements) and/or a specific interval. In essence, log remark represents the external factors and operational environment, directly or indirectly affecting the measurement quality/uncertainty (dynamically over time/depth) - adding both noise and bias to the measurements.
     /// </summary>
     [JsonPropertyName("Remarks")]
-    public List<AbstractRemark_1_0_0> Remarks { get; set; }
+    public List<AbstractRemark_1_0_0>? Remarks { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
@@ -454,21 +454,21 @@ public class WellLog_1_5_0_Data_Artefacts
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ArtefactRole:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("RoleID")]
-    public string RoleID { get; set; }
+    public string? RoleID { get; set; }
 
     /// <summary>
     /// The kind or schema ID of the artefact. Resolvable with the Schema Service.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("ResourceKind")]
-    public string ResourceKind { get; set; }
+    public string? ResourceKind { get; set; }
 
     /// <summary>
     /// The SRN which identifies this OSDU Artefact resource.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:dataset\-\-[\w\-\.]+:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ResourceID")]
-    public string ResourceID { get; set; }
+    public string? ResourceID { get; set; }
 
 }
 
@@ -482,14 +482,14 @@ public class WellLog_1_5_0_Data_LineageAssertions
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ID")]
-    public string ID { get; set; }
+    public string? ID { get; set; }
 
     /// <summary>
     /// Used by LineageAssertion to describe the nature of the line of descent of a work product component from a prior Resource, such as DIRECT, INDIRECT, REFERENCE.  It is not for proximity (number of nodes away), it is not to cover all the relationships in a full ontology or graph, and it is not to describe the type of activity that created the asserting WPC.  LineageAssertion does not encompass a full provenance, process history, or activity model.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-LineageRelationshipType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("LineageRelationshipType")]
-    public string LineageRelationshipType { get; set; }
+    public string? LineageRelationshipType { get; set; }
 
 }
 
@@ -523,7 +523,7 @@ public class WellLog_1_5_0_Data_Curves
     /// The ID of the Well Log Curve
     /// </summary>
     [JsonPropertyName("CurveID")]
-    public string CurveID { get; set; }
+    public string? CurveID { get; set; }
 
     /// <summary>
     /// Date curve was created in the database
@@ -536,19 +536,19 @@ public class WellLog_1_5_0_Data_Curves
     /// DEPRECATED: Refer to the `version` of the individual record. Log Version
     /// </summary>
     [JsonPropertyName("CurveVersion")]
-    public string CurveVersion { get; set; }
+    public string? CurveVersion { get; set; }
 
     /// <summary>
     /// The Quality of the Log Curve.
     /// </summary>
     [JsonPropertyName("CurveQuality")]
-    public string CurveQuality { get; set; }
+    public string? CurveQuality { get; set; }
 
     /// <summary>
     /// The name of person who generated, improved or QC'd this Log Curve.  This excludes the name of the person who loaded or ingested the data.
     /// </summary>
     [JsonPropertyName("InterpreterName")]
-    public string InterpreterName { get; set; }
+    public string? InterpreterName { get; set; }
 
     /// <summary>
     /// Indicates if the curve is regularly or irregularly sampled. Not to be confused with the `data.IsRegular` attribute at Log Level which indicates regularity of the reference curve only.
@@ -576,7 +576,7 @@ public class WellLog_1_5_0_Data_Curves
     /// </summary>
     [RegularExpression(@"^REGULAR|DISCRETE$")]
     [JsonPropertyName("DepthCoding")]
-    public string DepthCoding { get; set; }
+    public string? DepthCoding { get; set; }
 
     /// <summary>
     /// DEPRECATED: Any curve can be interpreted. Whether curve can be interpolated or not
@@ -614,48 +614,48 @@ public class WellLog_1_5_0_Data_Curves
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("DepthUnit")]
-    public string DepthUnit { get; set; }
+    public string? DepthUnit { get; set; }
 
     /// <summary>
     /// Unit of Measure for the Log Curve
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitOfMeasure:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("CurveUnit")]
-    public string CurveUnit { get; set; }
+    public string? CurveUnit { get; set; }
 
     /// <summary>
     /// A short or abbreviated form of the curve name, typically provided by the logging vendor or the processing company.  Curve mnemonics have meaning to expert users.
     /// </summary>
     [JsonPropertyName("Mnemonic")]
-    public string Mnemonic { get; set; }
+    public string? Mnemonic { get; set; }
 
     /// <summary>
     /// DEPRECATED:  Please use the `LogCurveMainCurveFamily` and the `LogCurveFamily` properties. This property is duplication. The related record id of the Log Curve Type - which is the standard mnemonic chosen by the company - OSDU provides an initial list
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-LogCurveType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("LogCurveTypeID")]
-    public string LogCurveTypeID { get; set; }
+    public string? LogCurveTypeID { get; set; }
 
     /// <summary>
     /// The related record id of the Log Curve Business Value Type.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-LogCurveBusinessValue:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("LogCurveBusinessValueID")]
-    public string LogCurveBusinessValueID { get; set; }
+    public string? LogCurveBusinessValueID { get; set; }
 
     /// <summary>
     /// The related record id of the Log Curve Main Family Type - which is the Geological Physical Quantity measured - such as porosity.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-LogCurveMainFamily:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("LogCurveMainFamilyID")]
-    public string LogCurveMainFamilyID { get; set; }
+    public string? LogCurveMainFamilyID { get; set; }
 
     /// <summary>
     /// The related record id of the Log Curve Family - which is the detailed Geological Physical Quantity Measured - such as neutron porosity
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-LogCurveFamily:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("LogCurveFamilyID")]
-    public string LogCurveFamilyID { get; set; }
+    public string? LogCurveFamilyID { get; set; }
 
     /// <summary>
     /// The number of columns present in this Curve for a single reference value.  Most curves only have one column per curve.  A single curve may contain an array of columns, and these are commonly present in curves that display as images, for example Borehole Image logs or Variable Density Logs.
@@ -668,13 +668,13 @@ public class WellLog_1_5_0_Data_Curves
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CurveSampleType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("CurveSampleTypeID")]
-    public string CurveSampleTypeID { get; set; }
+    public string? CurveSampleTypeID { get; set; }
 
     /// <summary>
     /// Curve description is specific to that single curve mnemonic. In essence, curve description defines the internal factors such as what the "curve" or measurement ideally is representing, how is it calculated, what are the assumptions and the "constants".
     /// </summary>
     [JsonPropertyName("CurveDescription")]
-    public string CurveDescription { get; set; }
+    public string? CurveDescription { get; set; }
 
 }
 
@@ -688,20 +688,20 @@ public class WellLog_1_5_0_Data_WellLogAcquisitionDetails
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-WellLogAcquisition:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellLogAcquisitionID")]
-    public string WellLogAcquisitionID { get; set; }
+    public string? WellLogAcquisitionID { get; set; }
 
     /// <summary>
     /// A relationship to particular LogRunIDs specified within the Well Log Acquisition. There can be one or many LogRuns.
     /// Human readable reference only e.g. no reference value or pattern is available. Data quality rules can be established to assist in managing this relationship.
     /// </summary>
     [JsonPropertyName("LogRunIDs")]
-    public List<string> LogRunIDs { get; set; }
+    public List<string>? LogRunIDs { get; set; }
 
     /// <summary>
     /// A relationship to particular LogPassIDs specified within the Well Log Acquisition. There can be one or many LogPasses.
     /// Human readable reference only e.g. no reference value or pattern is available. Data quality rules can be established to assist in managing this relationship.
     /// </summary>
     [JsonPropertyName("LogPassIDs")]
-    public List<string> LogPassIDs { get; set; }
+    public List<string>? LogPassIDs { get; set; }
 
 }

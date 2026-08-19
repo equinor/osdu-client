@@ -18,14 +18,14 @@ public class MainFamilyCatalogItem
 {
     [Required]
     [JsonPropertyName("MainFamily")]
-    public string MainFamily { get; set; }
+    public required string MainFamily { get; set; }
 
     [Required]
     [JsonPropertyName("Family")]
-    public string Family { get; set; }
+    public required string Family { get; set; }
 
     [Required]
     [JsonPropertyName("Unit")]
-    public string Unit { get; set; }
+    public required string Unit { get; set; }
 
 }

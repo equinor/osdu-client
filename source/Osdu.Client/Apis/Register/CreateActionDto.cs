@@ -21,26 +21,26 @@ public class CreateActionDto
 {
     [RegularExpression(@"^[A-Za-z0-9-]{2,50}")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     [Required]
     [MinLength(1)]
     [RegularExpression(@"^[A-Za-z0-9- ]{2,50}")]
     [JsonPropertyName("name")]
-    public string Name { get; set; }
+    public required string Name { get; set; }
 
     [RegularExpression(@"^[A-Za-z0-9. ]{0,255}")]
     [JsonPropertyName("description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     [JsonPropertyName("img")]
-    public string Img { get; set; }
+    public string? Img { get; set; }
 
     [JsonPropertyName("url")]
-    public string Url { get; set; }
+    public string? Url { get; set; }
 
     [JsonPropertyName("contactEmail")]
-    public string ContactEmail { get; set; }
+    public string? ContactEmail { get; set; }
 
     /// <summary>
     /// Represents a model for Filter

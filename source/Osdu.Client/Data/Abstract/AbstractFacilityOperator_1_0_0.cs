@@ -23,14 +23,14 @@ public class AbstractFacilityOperator_1_0_0
     /// Internal, unique identifier for an item 'AbstractFacilityOperator'. This identifier is used by 'AbstractFacility.CurrentOperatorID' and 'AbstractFacility.InitialOperatorID'.
     /// </summary>
     [JsonPropertyName("FacilityOperatorID")]
-    public string FacilityOperatorID { get; set; }
+    public string? FacilityOperatorID { get; set; }
 
     /// <summary>
     /// The company that currently operates, or previously operated the facility
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("FacilityOperatorOrganisationID")]
-    public string FacilityOperatorOrganisationID { get; set; }
+    public string? FacilityOperatorOrganisationID { get; set; }
 
     /// <summary>
     /// The date and time at which the facility operator becomes effective.

@@ -25,7 +25,7 @@ public class WellboreHoldUpDepth_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-WellboreHoldUpDepth:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class WellboreHoldUpDepth_1_0_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class WellboreHoldUpDepth_1_0_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class WellboreHoldUpDepth_1_0_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class WellboreHoldUpDepth_1_0_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class WellboreHoldUpDepth_1_0_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public WellboreHoldUpDepth_1_0_0_Data? Data { get; set; }
@@ -101,13 +101,13 @@ public class WellboreHoldUpDepth_1_0_0_Data : AbstractCommonResources_1_0_0 // A
     /// Alternative names, including historical, by which this master data is/has been known (it should include all the identifiers).
     /// </summary>
     [JsonPropertyName("NameAliases")]
-    public List<AbstractAliasNames_1_0_0> NameAliases { get; set; }
+    public List<AbstractAliasNames_1_0_0>? NameAliases { get; set; }
 
     /// <summary>
     /// List of geographic entities which provide context to the master data. This may include multiple types or multiple values of the same type.
     /// </summary>
     [JsonPropertyName("GeoContexts")]
-    public List<AbstractGeoContext_1_0_0> GeoContexts { get; set; }
+    public List<AbstractGeoContext_1_0_0>? GeoContexts { get; set; }
 
     [JsonPropertyName("SpatialLocation")]
     public AbstractSpatialLocation_1_1_0? SpatialLocation { get; set; }
@@ -116,45 +116,45 @@ public class WellboreHoldUpDepth_1_0_0_Data : AbstractCommonResources_1_0_0 // A
     /// This describes the reason that caused the creation of a new version of this master data.
     /// </summary>
     [JsonPropertyName("VersionCreationReason")]
-    public string VersionCreationReason { get; set; }
+    public string? VersionCreationReason { get; set; }
 
     /// <summary>
     /// DEPRECATED: (in favor of more nuanced TechnicalAssurances[] array) Describes a master-data record's overall suitability for general business consumption based on data quality. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TechnicalAssuranceType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TechnicalAssuranceTypeID")]
-    public string TechnicalAssuranceTypeID { get; set; }
+    public string? TechnicalAssuranceTypeID { get; set; }
 
     /// <summary>
     /// Describes a record's overall suitability for general business consumption in context of one or more workflows/personas based on data quality and reviewer's decisions. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [JsonPropertyName("TechnicalAssurances")]
-    public List<AbstractTechnicalAssurance_1_2_0> TechnicalAssurances { get; set; }
+    public List<AbstractTechnicalAssurance_1_2_0>? TechnicalAssurances { get; set; }
 
     /// <summary>
     /// Business natural key or code of the Wellbore to which this record belongs
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Wellbore:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellboreID")]
-    public string WellboreID { get; set; }
+    public string? WellboreID { get; set; }
 
     /// <summary>
     /// Hold Up Depth interval name
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// A remark, comment or generic description.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// The life cycle state (status) history the Hold Up Depth has been through.
     /// </summary>
     [JsonPropertyName("HoldUpDepthStatesID")]
-    public List<WellboreHoldUpDepth_1_0_0_Data_HoldUpDepthStatesID> HoldUpDepthStatesID { get; set; }
+    public List<WellboreHoldUpDepth_1_0_0_Data_HoldUpDepthStatesID>? HoldUpDepthStatesID { get; set; }
 
     [JsonPropertyName("VerticalMeasurement")]
     public AbstractFacilityVerticalMeasurement_1_0_0? VerticalMeasurement { get; set; }
@@ -163,21 +163,21 @@ public class WellboreHoldUpDepth_1_0_0_Data : AbstractCommonResources_1_0_0 // A
     /// ID of associated TubularAssembly(ies)
     /// </summary>
     [JsonPropertyName("TubularAssemblyID")]
-    public List<string> TubularAssemblyID { get; set; }
+    public List<string>? TubularAssemblyID { get; set; }
 
     /// <summary>
     /// Type of Hold Up Depth
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-HoldUpDepthType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("HoldUpDepthTypeID")]
-    public string HoldUpDepthTypeID { get; set; }
+    public string? HoldUpDepthTypeID { get; set; }
 
     /// <summary>
     /// Hold Up Depth Category - HUD or Fish
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-HoldUpDepthCategory:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("HoldUpDepthCategoryID")]
-    public string HoldUpDepthCategoryID { get; set; }
+    public string? HoldUpDepthCategoryID { get; set; }
 
     /// <summary>
     /// Top depth of the Hold Up interval. Should always been known.
@@ -203,13 +203,13 @@ public class WellboreHoldUpDepth_1_0_0_Data : AbstractCommonResources_1_0_0 // A
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-DepthMeasurementType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("DepthMeasurementTypeID")]
-    public string DepthMeasurementTypeID { get; set; }
+    public string? DepthMeasurementTypeID { get; set; }
 
     /// <summary>
     /// Description of how pipe become stuck
     /// </summary>
     [JsonPropertyName("StuckMethodDescription")]
-    public string StuckMethodDescription { get; set; }
+    public string? StuckMethodDescription { get; set; }
 
     /// <summary>
     /// Outer diameter (OD) of the top of the hold up depth
@@ -234,7 +234,7 @@ public class WellboreHoldUpDepth_1_0_0_Data : AbstractCommonResources_1_0_0 // A
     /// Fishing Neck Description
     /// </summary>
     [JsonPropertyName("FishNeckDescription")]
-    public string FishNeckDescription { get; set; }
+    public string? FishNeckDescription { get; set; }
 
     /// <summary>
     /// Number of Fishing Jobs Attempted
@@ -246,7 +246,7 @@ public class WellboreHoldUpDepth_1_0_0_Data : AbstractCommonResources_1_0_0 // A
     /// Other comments for the hold up depth
     /// </summary>
     [JsonPropertyName("Remarks")]
-    public List<AbstractRemark_1_0_0> Remarks { get; set; }
+    public List<AbstractRemark_1_0_0>? Remarks { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
@@ -277,12 +277,12 @@ public class WellboreHoldUpDepth_1_0_0_Data_HoldUpDepthStatesID
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TubularAssemblyStatusType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("HoldUpDepthStateTypeID")]
-    public string HoldUpDepthStateTypeID { get; set; }
+    public string? HoldUpDepthStateTypeID { get; set; }
 
     /// <summary>
     /// A comment or remark attributed to the Hold Up Depth state.
     /// </summary>
     [JsonPropertyName("Remark")]
-    public string Remark { get; set; }
+    public string? Remark { get; set; }
 
 }

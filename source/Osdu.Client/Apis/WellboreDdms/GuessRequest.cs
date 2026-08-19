@@ -18,7 +18,7 @@ public class GuessRequest
 {
     [Required]
     [JsonPropertyName("label")]
-    public string Label { get; set; }
+    public required string Label { get; set; }
 
     [JsonPropertyName("log_unit")]
     public string? LogUnit { get; set; }

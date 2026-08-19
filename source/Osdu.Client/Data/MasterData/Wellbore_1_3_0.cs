@@ -25,7 +25,7 @@ public class Wellbore_1_3_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Wellbore:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class Wellbore_1_3_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class Wellbore_1_3_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class Wellbore_1_3_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class Wellbore_1_3_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class Wellbore_1_3_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public Wellbore_1_3_0_Data? Data { get; set; }
@@ -101,13 +101,13 @@ public class Wellbore_1_3_0_Data : AbstractCommonResources_1_0_0 // Also compose
     /// Alternative names, including historical, by which this master data is/has been known (it should include all the identifiers).
     /// </summary>
     [JsonPropertyName("NameAliases")]
-    public List<AbstractAliasNames_1_0_0> NameAliases { get; set; }
+    public List<AbstractAliasNames_1_0_0>? NameAliases { get; set; }
 
     /// <summary>
     /// List of geographic entities which provide context to the master data. This may include multiple types or multiple values of the same type.
     /// </summary>
     [JsonPropertyName("GeoContexts")]
-    public List<AbstractGeoContext_1_0_0> GeoContexts { get; set; }
+    public List<AbstractGeoContext_1_0_0>? GeoContexts { get; set; }
 
     [JsonPropertyName("SpatialLocation")]
     public AbstractSpatialLocation_1_1_0? SpatialLocation { get; set; }
@@ -116,101 +116,101 @@ public class Wellbore_1_3_0_Data : AbstractCommonResources_1_0_0 // Also compose
     /// This describes the reason that caused the creation of a new version of this master data.
     /// </summary>
     [JsonPropertyName("VersionCreationReason")]
-    public string VersionCreationReason { get; set; }
+    public string? VersionCreationReason { get; set; }
 
     /// <summary>
     /// Describes a master-data record's overall suitability for general business consumption based on data quality. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TechnicalAssuranceType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TechnicalAssuranceTypeID")]
-    public string TechnicalAssuranceTypeID { get; set; }
+    public string? TechnicalAssuranceTypeID { get; set; }
 
     /// <summary>
     /// Native identifier from a Master Data Management System or other trusted source external to OSDU - stored here in order to allow for multi-system connection and synchronization. If used, the "Source" property should identify that source system.
     /// </summary>
     [JsonPropertyName("FacilityID")]
-    public string FacilityID { get; set; }
+    public string? FacilityID { get; set; }
 
     /// <summary>
     /// The definition of a kind of capability to perform a business function or a service.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-FacilityType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("FacilityTypeID")]
-    public string FacilityTypeID { get; set; }
+    public string? FacilityTypeID { get; set; }
 
     /// <summary>
     /// The history of operator organizations of the facility.
     /// </summary>
     [JsonPropertyName("FacilityOperators")]
-    public List<AbstractFacilityOperator_1_1_0> FacilityOperators { get; set; }
+    public List<AbstractFacilityOperator_1_1_0>? FacilityOperators { get; set; }
 
     /// <summary>
     /// A initial operator organization ID; the organization ID may also be found in the FacilityOperatorOrganisationID of the FacilityOperator array providing the actual dates.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("InitialOperatorID")]
-    public string InitialOperatorID { get; set; }
+    public string? InitialOperatorID { get; set; }
 
     /// <summary>
     /// The current operator organization ID; the organization ID may also be found in the FacilityOperatorOrganisationID of the FacilityOperator array providing the actual dates.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("CurrentOperatorID")]
-    public string CurrentOperatorID { get; set; }
+    public string? CurrentOperatorID { get; set; }
 
     /// <summary>
     /// The main source of the header information.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("DataSourceOrganisationID")]
-    public string DataSourceOrganisationID { get; set; }
+    public string? DataSourceOrganisationID { get; set; }
 
     /// <summary>
     /// Identifies the Facility's general location as being onshore vs. offshore.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-OperatingEnvironment:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("OperatingEnvironmentID")]
-    public string OperatingEnvironmentID { get; set; }
+    public string? OperatingEnvironmentID { get; set; }
 
     /// <summary>
     /// Name of the Facility.
     /// </summary>
     [JsonPropertyName("FacilityName")]
-    public string FacilityName { get; set; }
+    public string? FacilityName { get; set; }
 
     /// <summary>
     /// A descriptive text or remark about the Facility.
     /// </summary>
     [JsonPropertyName("FacilityDescription")]
-    public string FacilityDescription { get; set; }
+    public string? FacilityDescription { get; set; }
 
     /// <summary>
     /// DEPRECATED: please use data.NameAliases. Alternative names, including historical, by which this facility is/has been known.
     /// </summary>
     [JsonPropertyName("FacilityNameAliases")]
-    public List<AbstractAliasNames_1_0_0> FacilityNameAliases { get; set; }
+    public List<AbstractAliasNames_1_0_0>? FacilityNameAliases { get; set; }
 
     /// <summary>
     /// The history of life cycle states the facility has been through.
     /// </summary>
     [JsonPropertyName("FacilityStates")]
-    public List<AbstractFacilityState_1_1_0> FacilityStates { get; set; }
+    public List<AbstractFacilityState_1_1_0>? FacilityStates { get; set; }
 
     /// <summary>
     /// A list of key facility events.
     /// </summary>
     [JsonPropertyName("FacilityEvents")]
-    public List<AbstractFacilityEvent_1_1_0> FacilityEvents { get; set; }
+    public List<AbstractFacilityEvent_1_1_0>? FacilityEvents { get; set; }
 
     /// <summary>
     /// facilitySpecification maintains the specification like slot name, wellbore drilling permit number, rig name etc.
     /// </summary>
     [JsonPropertyName("FacilitySpecifications")]
-    public List<AbstractFacilitySpecification_1_0_0> FacilitySpecifications { get; set; }
+    public List<AbstractFacilitySpecification_1_0_0>? FacilitySpecifications { get; set; }
 
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Well:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellID")]
-    public string WellID { get; set; }
+    public string? WellID { get; set; }
 
     /// <summary>
     /// A number that indicates the order in which wellbores were drilled.
@@ -222,67 +222,67 @@ public class Wellbore_1_3_0_Data : AbstractCommonResources_1_0_0 // Also compose
     /// List of all depths and elevations pertaining to the wellbore, like, plug back measured depth, total measured depth, KB elevation
     /// </summary>
     [JsonPropertyName("VerticalMeasurements")]
-    public List<Wellbore_1_3_0_Data_VerticalMeasurements> VerticalMeasurements { get; set; }
+    public List<Wellbore_1_3_0_Data_VerticalMeasurements>? VerticalMeasurements { get; set; }
 
     /// <summary>
     /// The history of drilling reasons of the wellbore.
     /// </summary>
     [JsonPropertyName("DrillingReasons")]
-    public List<AbstractWellboreDrillingReason_1_1_0> DrillingReasons { get; set; }
+    public List<AbstractWellboreDrillingReason_1_1_0>? DrillingReasons { get; set; }
 
     /// <summary>
     /// The relationship to a reference-data record explaining the reason why this wellbore was drilled.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WellboreReason:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellboreReasonID")]
-    public string WellboreReasonID { get; set; }
+    public string? WellboreReasonID { get; set; }
 
     /// <summary>
     /// This is a pointer to the parent wellbore. The wellbore that starts from top has no parent.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Wellbore:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("KickOffWellbore")]
-    public string KickOffWellbore { get; set; }
+    public string? KickOffWellbore { get; set; }
 
     /// <summary>
     /// Profile Type [Wellbore Trajectory Type] is the general geometry of the wellbore relative to the vertical plane. The specific criteria for Profile Type may vary by operator or regulator. The facet value may change if conditions encountered during drilling are not what was planned or permitted.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WellboreTrajectoryType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TrajectoryTypeID")]
-    public string TrajectoryTypeID { get; set; }
+    public string? TrajectoryTypeID { get; set; }
 
     /// <summary>
     /// SRN of Wellbore Trajectory which is considered the authoritative or preferred version.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-WellboreTrajectory:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("DefinitiveTrajectoryID")]
-    public string DefinitiveTrajectoryID { get; set; }
+    public string? DefinitiveTrajectoryID { get; set; }
 
     /// <summary>
     /// The Formation of interest for which the Wellbore is drilled to interact with. The Wellbore may terminate in a lower formation if the requirement is to drill through the entirety of the target formation, therefore this is not necessarily the Formation at TD.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-GeologicalFormation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TargetFormation")]
-    public string TargetFormation { get; set; }
+    public string? TargetFormation { get; set; }
 
     /// <summary>
     /// The name of the formation encountered at total depth. The value is not controlled by any reference value list.
     /// </summary>
     [JsonPropertyName("FormationNameAtTotalDepth")]
-    public string FormationNameAtTotalDepth { get; set; }
+    public string? FormationNameAtTotalDepth { get; set; }
 
     /// <summary>
     /// DEPRECATED: Please use PrimaryProductTypeID instead, which refers to the narrower WellProductType. The primary material injected/produced from the wellbore.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-MaterialType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("PrimaryMaterialID")]
-    public string PrimaryMaterialID { get; set; }
+    public string? PrimaryMaterialID { get; set; }
 
     /// <summary>
     /// The default datum reference point, or zero depth point, used to determine other points vertically in a wellbore.  References an entry in the Vertical Measurements array of this wellbore.
     /// </summary>
     [JsonPropertyName("DefaultVerticalMeasurementID")]
-    public string DefaultVerticalMeasurementID { get; set; }
+    public string? DefaultVerticalMeasurementID { get; set; }
 
     [JsonPropertyName("ProjectedBottomHoleLocation")]
     public AbstractSpatialLocation_1_1_0? ProjectedBottomHoleLocation { get; set; }
@@ -295,27 +295,27 @@ public class Wellbore_1_3_0_Data : AbstractCommonResources_1_0_0 // Also compose
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WellBusinessIntention:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("BusinessIntentionID")]
-    public string BusinessIntentionID { get; set; }
+    public string? BusinessIntentionID { get; set; }
 
     /// <summary>
     /// Role [Well Role] is the current purpose, whether planned or actual. If there are multiple Roles among a wellbore's components, the well may be assigned the facet value with the highest significance. The value of Role may change over the Life Cycle.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WellRole:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("RoleID")]
-    public string RoleID { get; set; }
+    public string? RoleID { get; set; }
 
     /// <summary>
     /// Business Interest [Well Interest Type] describes whether a company currently considers a wellbore entity or its data to be a real or planned asset, and if so, the nature of and motivation for that company's interest.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WellInterestType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("InterestTypeID")]
-    public string InterestTypeID { get; set; }
+    public string? InterestTypeID { get; set; }
 
     /// <summary>
     /// The list of past and present interests associated with the time period they were/are valid
     /// </summary>
     [JsonPropertyName("HistoricalInterests")]
-    public List<Wellbore_1_3_0_Data_HistoricalInterests> HistoricalInterests { get; set; }
+    public List<Wellbore_1_3_0_Data_HistoricalInterests>? HistoricalInterests { get; set; }
 
     /// <summary>
     /// Identifies, for the purpose of current use, if the Business Interest [Well Interest Type] for this Well has ever been FinancialOperated in the past.
@@ -350,69 +350,69 @@ public class Wellbore_1_3_0_Data : AbstractCommonResources_1_0_0 // Also compose
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WellboreTrajectoryType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellboreTrajectoryTypeID")]
-    public string WellboreTrajectoryTypeID { get; set; }
+    public string? WellboreTrajectoryTypeID { get; set; }
 
     /// <summary>
     /// Product Type [Well Product Type] is the physical product(s) that can be attributed to any wellbore component. A Primary Product Significance identifies the Product Type that is most significant.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WellProductType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("PrimaryProductTypeID")]
-    public string PrimaryProductTypeID { get; set; }
+    public string? PrimaryProductTypeID { get; set; }
 
     /// <summary>
     /// Product Type [Well Product Type] is the physical product(s) that can be attributed to any wellbore component. A Secondary Product Significance identifies the Product Type that is the second most significant.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WellProductType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SecondaryProductTypeID")]
-    public string SecondaryProductTypeID { get; set; }
+    public string? SecondaryProductTypeID { get; set; }
 
     /// <summary>
     /// Product Type [Well Product Type] is the physical product(s) that can be attributed to any wellbore component. A Tertiary Product Significance identifies the Product Type that is the third most significant.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WellProductType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TertiaryProductTypeID")]
-    public string TertiaryProductTypeID { get; set; }
+    public string? TertiaryProductTypeID { get; set; }
 
     /// <summary>
     /// Product Type [Well Product Type] is the physical product(s) that can be attributed to any wellbore component. A Show Product Significance identifies a Product Type present in non-commercial quantity.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WellProductType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ShowProductTypeID")]
-    public string ShowProductTypeID { get; set; }
+    public string? ShowProductTypeID { get; set; }
 
     /// <summary>
     /// Condition [Well Condition] is the operational state of a wellbore component relative to the Role [Well Role].
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WellCondition:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ConditionID")]
-    public string ConditionID { get; set; }
+    public string? ConditionID { get; set; }
 
     /// <summary>
     /// Fluid Direction [Well Fluid Direction] is the flow direction of the wellhead stream. The facet value can change over the life of the wellbore.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WellFluidDirection:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("FluidDirectionID")]
-    public string FluidDirectionID { get; set; }
+    public string? FluidDirectionID { get; set; }
 
     /// <summary>
     /// Outcome [Well Drilling Outcome] is the result of attempting to accomplish the Business Intention [Well Business Intention].
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WellBusinessIntentionOutcome:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("OutcomeID")]
-    public string OutcomeID { get; set; }
+    public string? OutcomeID { get; set; }
 
     /// <summary>
     /// Identifies the status of a wellbore component in a way that may combine and-or summarize concepts found in other status facets. For example, a Wellbore Status Summary of Gas Injector Shut-in, which contains commonly desired business information, combines concepts from Product Type, Fluid Direction, and Condition.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WellStatusSummary:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("StatusSummaryID")]
-    public string StatusSummaryID { get; set; }
+    public string? StatusSummaryID { get; set; }
 
     /// <summary>
     /// The array of WellActivityPhaseType and associated Cost values.
     /// </summary>
     [JsonPropertyName("WellboreCosts")]
-    public List<Wellbore_1_3_0_Data_WellboreCosts> WellboreCosts { get; set; }
+    public List<Wellbore_1_3_0_Data_WellboreCosts>? WellboreCosts { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
@@ -425,14 +425,14 @@ public class Wellbore_1_3_0_Data_VerticalMeasurements : AbstractFacilityVertical
     /// The ID for a distinct vertical measurement within the Wellbore VerticalMeasurements array so that it may be referenced by other vertical measurements if necessary.
     /// </summary>
     [JsonPropertyName("VerticalMeasurementID")]
-    public string VerticalMeasurementID { get; set; }
+    public string? VerticalMeasurementID { get; set; }
 
     /// <summary>
     /// The relationship to the rig, which was used while this vertical measurement was in active use.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Rig:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("RigID")]
-    public string RigID { get; set; }
+    public string? RigID { get; set; }
 
 }
 
@@ -446,19 +446,19 @@ public class Wellbore_1_3_0_Data_HistoricalInterests
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WellInterestType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("InterestTypeID")]
-    public string InterestTypeID { get; set; }
+    public string? InterestTypeID { get; set; }
 
     /// <summary>
     /// The date and time at which the well interest type becomes effective.
     /// </summary>
     [JsonPropertyName("EffectiveDateTime")]
-    public DateOnly EffectiveDateTime { get; set; }
+    public DateOnly? EffectiveDateTime { get; set; }
 
     /// <summary>
     /// The date and time at which the well interest type is no longer in effect.
     /// </summary>
     [JsonPropertyName("TerminationDateTime")]
-    public DateOnly TerminationDateTime { get; set; }
+    public DateOnly? TerminationDateTime { get; set; }
 
 }
 
@@ -472,7 +472,7 @@ public class Wellbore_1_3_0_Data_WellboreCosts
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WellActivityPhaseType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ActivityTypeID")]
-    public string ActivityTypeID { get; set; }
+    public string? ActivityTypeID { get; set; }
 
     /// <summary>
     /// The cost value associated with the WellActivityPhaseType.

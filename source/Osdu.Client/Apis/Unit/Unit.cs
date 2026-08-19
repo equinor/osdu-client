@@ -17,16 +17,16 @@ namespace Osdu.Client.Apis.Unit;
 public class Unit
 {
     [JsonPropertyName("name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     [JsonPropertyName("lastModified")]
-    public string LastModified { get; set; }
+    public string? LastModified { get; set; }
 
     [JsonPropertyName("source")]
-    public string Source { get; set; }
+    public string? Source { get; set; }
 
     [JsonPropertyName("description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     [JsonPropertyName("essence")]
     public UnitEssence? Essence { get; set; }
@@ -35,12 +35,12 @@ public class Unit
     public UnitDeprecationInfo? DeprecationInfo { get; set; }
 
     [JsonPropertyName("essenceJson")]
-    public string EssenceJson { get; set; }
+    public string? EssenceJson { get; set; }
 
     [JsonPropertyName("displaySymbol")]
-    public string DisplaySymbol { get; set; }
+    public string? DisplaySymbol { get; set; }
 
     [JsonPropertyName("namespace")]
-    public string Namespace { get; set; }
+    public string? Namespace { get; set; }
 
 }

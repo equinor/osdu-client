@@ -23,77 +23,77 @@ public class AbstractFacility_1_0_0
     /// Native identifier from a Master Data Management System or other trusted source external to OSDU - stored here in order to allow for multi-system connection and synchronization. If used, the "Source" property should identify that source system.
     /// </summary>
     [JsonPropertyName("FacilityID")]
-    public string FacilityID { get; set; }
+    public string? FacilityID { get; set; }
 
     /// <summary>
     /// The definition of a kind of capability to perform a business function or a service.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-FacilityType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("FacilityTypeID")]
-    public string FacilityTypeID { get; set; }
+    public string? FacilityTypeID { get; set; }
 
     /// <summary>
     /// The history of operator organizations of the facility.
     /// </summary>
     [JsonPropertyName("FacilityOperators")]
-    public List<AbstractFacilityOperator_1_0_0> FacilityOperators { get; set; }
+    public List<AbstractFacilityOperator_1_0_0>? FacilityOperators { get; set; }
 
     /// <summary>
     /// A initial operator organization ID; the organization ID may also be found in the FacilityOperatorOrganisationID of the FacilityOperator array providing the actual dates.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("InitialOperatorID")]
-    public string InitialOperatorID { get; set; }
+    public string? InitialOperatorID { get; set; }
 
     /// <summary>
     /// The current operator organization ID; the organization ID may also be found in the FacilityOperatorOrganisationID of the FacilityOperator array providing the actual dates.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("CurrentOperatorID")]
-    public string CurrentOperatorID { get; set; }
+    public string? CurrentOperatorID { get; set; }
 
     /// <summary>
     /// The main source of the header information.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("DataSourceOrganisationID")]
-    public string DataSourceOrganisationID { get; set; }
+    public string? DataSourceOrganisationID { get; set; }
 
     /// <summary>
     /// Identifies the Facility's general location as being onshore vs. offshore.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-OperatingEnvironment:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("OperatingEnvironmentID")]
-    public string OperatingEnvironmentID { get; set; }
+    public string? OperatingEnvironmentID { get; set; }
 
     /// <summary>
     /// Name of the Facility.
     /// </summary>
     [JsonPropertyName("FacilityName")]
-    public string FacilityName { get; set; }
+    public string? FacilityName { get; set; }
 
     /// <summary>
     /// DEPRECATED: please use data.NameAliases. Alternative names, including historical, by which this facility is/has been known.
     /// </summary>
     [JsonPropertyName("FacilityNameAliases")]
-    public List<AbstractAliasNames_1_0_0> FacilityNameAliases { get; set; }
+    public List<AbstractAliasNames_1_0_0>? FacilityNameAliases { get; set; }
 
     /// <summary>
     /// The history of life cycle states the facility has been through.
     /// </summary>
     [JsonPropertyName("FacilityStates")]
-    public List<AbstractFacilityState_1_0_0> FacilityStates { get; set; }
+    public List<AbstractFacilityState_1_0_0>? FacilityStates { get; set; }
 
     /// <summary>
     /// A list of key facility events.
     /// </summary>
     [JsonPropertyName("FacilityEvents")]
-    public List<AbstractFacilityEvent_1_0_0> FacilityEvents { get; set; }
+    public List<AbstractFacilityEvent_1_0_0>? FacilityEvents { get; set; }
 
     /// <summary>
     /// facilitySpecification maintains the specification like slot name, wellbore drilling permit number, rig name etc.
     /// </summary>
     [JsonPropertyName("FacilitySpecifications")]
-    public List<AbstractFacilitySpecification_1_0_0> FacilitySpecifications { get; set; }
+    public List<AbstractFacilitySpecification_1_0_0>? FacilitySpecifications { get; set; }
 
 }

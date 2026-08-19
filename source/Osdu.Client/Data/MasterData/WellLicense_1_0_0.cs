@@ -25,7 +25,7 @@ public class WellLicense_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-WellLicense:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class WellLicense_1_0_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class WellLicense_1_0_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class WellLicense_1_0_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class WellLicense_1_0_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class WellLicense_1_0_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public WellLicense_1_0_0_Data? Data { get; set; }
@@ -101,13 +101,13 @@ public class WellLicense_1_0_0_Data : AbstractCommonResources_1_0_0 // Also comp
     /// Alternative names, including historical, by which this master data is/has been known (it should include all the identifiers).
     /// </summary>
     [JsonPropertyName("NameAliases")]
-    public List<AbstractAliasNames_1_0_0> NameAliases { get; set; }
+    public List<AbstractAliasNames_1_0_0>? NameAliases { get; set; }
 
     /// <summary>
     /// List of geographic entities which provide context to the master data. This may include multiple types or multiple values of the same type.
     /// </summary>
     [JsonPropertyName("GeoContexts")]
-    public List<AbstractGeoContext_1_0_0> GeoContexts { get; set; }
+    public List<AbstractGeoContext_1_0_0>? GeoContexts { get; set; }
 
     [JsonPropertyName("SpatialLocation")]
     public AbstractSpatialLocation_1_1_0? SpatialLocation { get; set; }
@@ -116,20 +116,20 @@ public class WellLicense_1_0_0_Data : AbstractCommonResources_1_0_0 // Also comp
     /// This describes the reason that caused the creation of a new version of this master data.
     /// </summary>
     [JsonPropertyName("VersionCreationReason")]
-    public string VersionCreationReason { get; set; }
+    public string? VersionCreationReason { get; set; }
 
     /// <summary>
     /// DEPRECATED: (in favor of more nuanced TechnicalAssurances[] array) Describes a master-data record's overall suitability for general business consumption based on data quality. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TechnicalAssuranceType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TechnicalAssuranceTypeID")]
-    public string TechnicalAssuranceTypeID { get; set; }
+    public string? TechnicalAssuranceTypeID { get; set; }
 
     /// <summary>
     /// Describes a record's overall suitability for general business consumption in context of one or more workflows/personas based on data quality and reviewer's decisions. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [JsonPropertyName("TechnicalAssurances")]
-    public List<AbstractTechnicalAssurance_1_2_0> TechnicalAssurances { get; set; }
+    public List<AbstractTechnicalAssurance_1_2_0>? TechnicalAssurances { get; set; }
 
     /// <summary>
     /// A Y/N flag indicating whether this license is currently either active / valid (Y) or inactive / invalid (N).
@@ -143,26 +143,26 @@ public class WellLicense_1_0_0_Data : AbstractCommonResources_1_0_0 // Also comp
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-BusinessAssociate:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ApprovedContractorID")]
-    public string ApprovedContractorID { get; set; }
+    public string? ApprovedContractorID { get; set; }
 
     /// <summary>
     /// Number for the approved drill slot on the offshore platform. Platforms have 24 to 32 slots in which to position derricks for drilling. Each slot may require a different license in some jurisdictions, while others approve all operations on a platform at the same time. If this property is absent, the license applies to all slots.
     /// </summary>
     [JsonPropertyName("ApprovedDrillSlot")]
-    public string ApprovedDrillSlot { get; set; }
+    public string? ApprovedDrillSlot { get; set; }
 
     /// <summary>
     /// The approved purpose for the well proposal in narrative form.  This often contains formation or depth information along with aggregated information from the Well Status and Classifications facets Business Intention, Play Type, Role, Product Type and Fluid Direction. The Well License Status subset allows this information to be decomposed into facets for better clarity.
     /// </summary>
     [JsonPropertyName("ApprovedPurposeDescription")]
-    public string ApprovedPurposeDescription { get; set; }
+    public string? ApprovedPurposeDescription { get; set; }
 
     /// <summary>
     /// Sometimes specific rigs may be authorized by a license, particularly where environmental or access restrictions set specific requirements.  This attribute identifies the specific rig approved, where needed.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Rig:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ApprovedRigID")]
-    public string ApprovedRigID { get; set; }
+    public string? ApprovedRigID { get; set; }
 
     /// <summary>
     /// The height of the foundation on which the derrick and engine sits.
@@ -175,32 +175,32 @@ public class WellLicense_1_0_0_Data : AbstractCommonResources_1_0_0 // Also comp
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-RigType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ApprovedRigTypeID")]
-    public string ApprovedRigTypeID { get; set; }
+    public string? ApprovedRigTypeID { get; set; }
 
     /// <summary>
     /// The approved spud date, can be the same as shown on the license application or may be changed as a result of the discussions involved in the approval process or changes to the circumstances surrounding the well plan.
     /// </summary>
     [JsonPropertyName("ApprovedSpudDate")]
-    public DateOnly ApprovedSpudDate { get; set; }
+    public DateOnly? ApprovedSpudDate { get; set; }
 
     /// <summary>
     /// Surveying is a specialized skill that requires certification before it can be practiced in most regions.  The name of the surveyor or surveying company provides evidence that a properly qualified individual will conduct the survey.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-BusinessAssociate:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ApprovedSurveyorID")]
-    public string ApprovedSurveyorID { get; set; }
+    public string? ApprovedSurveyorID { get; set; }
 
     /// <summary>
     /// The WellProductType(s) (e.g., fluid) that is/are approved for the well license.  In some regions, WellProductTypes are approved individually or as a group.  Similarly, in some regions, specific WellProductTypes may be excluded from the well license, particularly if the land right obtained does not include those WellProductTypes.
     /// </summary>
     [JsonPropertyName("ApprovedTargetObjectiveProductIDs")]
-    public List<string> ApprovedTargetObjectiveProductIDs { get; set; }
+    public List<string>? ApprovedTargetObjectiveProductIDs { get; set; }
 
     /// <summary>
     /// A well license may be assigned to an entire planned well configuration at the time the license is granted. Other licenses may be assigned to specific well components.  Where the component is known, specific relationships are needed.
     /// </summary>
     [JsonPropertyName("ApprovedWellIDs")]
-    public List<string> ApprovedWellIDs { get; set; }
+    public List<string>? ApprovedWellIDs { get; set; }
 
     /// <summary>
     /// The number of wells that are approved under this license.  Not all regulators define wells the same way.  Some regulators may identify the number of wellbores, others the number of well origins. Refer to PPDM "What is a Well" for more information about well components.
@@ -212,26 +212,26 @@ public class WellLicense_1_0_0_Data : AbstractCommonResources_1_0_0 // Also comp
     /// A well license may be assigned to one or more wellbores at the time the license is granted. Other licenses may be assigned to specific well components as defined in What is a Well.  Where the component is known, specific relationships are needed.
     /// </summary>
     [JsonPropertyName("ApprovedWellboreIDs")]
-    public List<string> ApprovedWellboreIDs { get; set; }
+    public List<string>? ApprovedWellboreIDs { get; set; }
 
     /// <summary>
     /// The formation authorized for use. May not be the same as the projected formation at the final depth of a wellbore.
     /// </summary>
     [JsonPropertyName("AuthorizedStratigraphicUnit")]
-    public string AuthorizedStratigraphicUnit { get; set; }
+    public string? AuthorizedStratigraphicUnit { get; set; }
 
     /// <summary>
     /// For the formation specified in the license, the use that this formation may be used for, such as production, injection, disposal, storage etc.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-WellRole:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("AuthorizedStratigraphicUnitUseRoleID")]
-    public string AuthorizedStratigraphicUnitUseRoleID { get; set; }
+    public string? AuthorizedStratigraphicUnitUseRoleID { get; set; }
 
     /// <summary>
     /// Bidding round number for drilling rights that resulted in this license.
     /// </summary>
     [JsonPropertyName("BiddingRoundIdentifier")]
-    public string BiddingRoundIdentifier { get; set; }
+    public string? BiddingRoundIdentifier { get; set; }
 
     /// <summary>
     /// When a license is delayed, set this flag to True.  Details about the application can be found in the application object.
@@ -244,7 +244,7 @@ public class WellLicense_1_0_0_Data : AbstractCommonResources_1_0_0 // Also comp
     /// The date on which a license has expired.  Note that this may be different than the due date, particularly where extensions are granted or specific conditions as stated in the license are met or not met.
     /// </summary>
     [JsonPropertyName("ExpiredDate")]
-    public DateOnly ExpiredDate { get; set; }
+    public DateOnly? ExpiredDate { get; set; }
 
     /// <summary>
     /// When the license expires, set the expiry date to the appropriate date, and set this flag to True.
@@ -257,26 +257,26 @@ public class WellLicense_1_0_0_Data : AbstractCommonResources_1_0_0 // Also comp
     /// The date when the license has or is due to expire.  In many cases, the date when the license term will expire is stated in the license.  This date may therefore be a date in the future. There may be conditions under which the license can be extended.  Where this occurs, the extension should usually be captured as a new version of the license.
     /// </summary>
     [JsonPropertyName("ExpiryDueDate")]
-    public DateOnly ExpiryDueDate { get; set; }
+    public DateOnly? ExpiryDueDate { get; set; }
 
     /// <summary>
     /// Identify the business associate, most often a regulator or authorized agency, has granted the license.  In some cases, other authorities may grant licenses, attribute is not intended to be proscriptive.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-BusinessAssociate:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("GrantedByBusinessAssociateID")]
-    public string GrantedByBusinessAssociateID { get; set; }
+    public string? GrantedByBusinessAssociateID { get; set; }
 
     /// <summary>
     /// Date the well license was issued.  This date may not be the same as the date entered into the system.
     /// </summary>
     [JsonPropertyName("LicenseDate")]
-    public DateOnly LicenseDate { get; set; }
+    public DateOnly? LicenseDate { get; set; }
 
     /// <summary>
     /// The date on which the license has been issued and comes into effect.  Normally, no operations that involve surface or subsurface disturbance may be started before this date.
     /// </summary>
     [JsonPropertyName("LicenseIssuedDate")]
-    public DateOnly LicenseIssuedDate { get; set; }
+    public DateOnly? LicenseIssuedDate { get; set; }
 
     /// <summary>
     /// The primary term of the license as set by the agency granting the license.
@@ -288,7 +288,7 @@ public class WellLicense_1_0_0_Data : AbstractCommonResources_1_0_0 // Also comp
     /// The date the permit or license was reissued. The regulatory approval normally expires after the primary term unless an extension is requested and granted.
     /// </summary>
     [JsonPropertyName("LicenseReissueDate")]
-    public DateOnly LicenseReissueDate { get; set; }
+    public DateOnly? LicenseReissueDate { get; set; }
 
     /// <summary>
     /// The secondary term of the license, often 6 - 12 months in duration.  These are granted by the regulatory authority after requests for renewal are submitted by the operator or the address for service.
@@ -300,21 +300,21 @@ public class WellLicense_1_0_0_Data : AbstractCommonResources_1_0_0 // Also comp
     /// The type of license granted is often based on codes and rules set out in legislation or regulation.  This license type attribute should indicate the exact type as specified in the license document.
     /// </summary>
     [JsonPropertyName("LicenseType")]
-    public string LicenseType { get; set; }
+    public string? LicenseType { get; set; }
 
     /// <summary>
     /// The licensee to whom this license has been granted.  Sometimes, the licensees may be an address for service, particularly for confidential operations. This is not necessarily the name of the operator or the owner of the well.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-BusinessAssociate:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("LicenseeID")]
-    public string LicenseeID { get; set; }
+    public string? LicenseeID { get; set; }
 
     /// <summary>
     /// The business associate who is the contact representing the licensee for this license.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-BusinessAssociate:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("LicenseeContactBusinessAssociateID")]
-    public string LicenseeContactBusinessAssociateID { get; set; }
+    public string? LicenseeContactBusinessAssociateID { get; set; }
 
     /// <summary>
     /// Projected measured depth at which the drilling of the primary wellbore is planned to be terminated. When multiple wellbores are planned, this may be the depth of the deepest wellbore, depending on local rules.
@@ -327,7 +327,7 @@ public class WellLicense_1_0_0_Data : AbstractCommonResources_1_0_0 // Also comp
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-StratigraphicUnitInterpretation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ProjectedStratigraphicUnitID")]
-    public string ProjectedStratigraphicUnitID { get; set; }
+    public string? ProjectedStratigraphicUnitID { get; set; }
 
     /// <summary>
     /// Projected true vertical depth of the well determined during the permitting of the well.
@@ -342,7 +342,7 @@ public class WellLicense_1_0_0_Data : AbstractCommonResources_1_0_0 // Also comp
     /// The section of  the regulation under which the license was granted. For Example, the type of permit (such as Rule 37 or Rule 38 in the State of Texas) that is given for the well.
     /// </summary>
     [JsonPropertyName("RegulationSection")]
-    public string RegulationSection { get; set; }
+    public string? RegulationSection { get; set; }
 
     /// <summary>
     /// A reference table describing the overall structure of the rig with respect to the environment and function. For example land, barge, submersible, platform, jackup, drillship, semisub or artificial island.
@@ -350,50 +350,50 @@ public class WellLicense_1_0_0_Data : AbstractCommonResources_1_0_0 // Also comp
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-RigType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("RigTypeID")]
-    public string RigTypeID { get; set; }
+    public string? RigTypeID { get; set; }
 
     /// <summary>
     /// The name of the set of formation names used for interpretations.  Different name sets may exist on a regional or basin basis, or may be developed by regulatory agencies, data vendors or operating companies.  Clarity about which name set is used is critical to ensuring that the name of the formation is not ambiguous.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-StratigraphicColumn:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("StratigraphicColumnID")]
-    public string StratigraphicColumnID { get; set; }
+    public string? StratigraphicColumnID { get; set; }
 
     /// <summary>
     /// The reference to the operating environment of the well/wellbore this license applies to.
     /// </summary>
     [JsonPropertyName("OperatingEnvironmentID")]
-    public string OperatingEnvironmentID { get; set; }
+    public string? OperatingEnvironmentID { get; set; }
 
     /// <summary>
     /// Details about conditions imposed on a license by an authority, a partner or other stakeholder.
     /// </summary>
     [JsonPropertyName("LicenseConditions")]
-    public List<AbstractWellLicenseCondition_1_0_0> LicenseConditions { get; set; }
+    public List<AbstractWellLicenseCondition_1_0_0>? LicenseConditions { get; set; }
 
     /// <summary>
     /// Remarks and narratives associated to the license.
     /// </summary>
     [JsonPropertyName("LicenseRemarks")]
-    public List<AbstractRemark_1_0_0> LicenseRemarks { get; set; }
+    public List<AbstractRemark_1_0_0>? LicenseRemarks { get; set; }
 
     /// <summary>
     /// Services associated with the license.
     /// </summary>
     [JsonPropertyName("LicenseServices")]
-    public List<AbstractWellLicenseService_1_0_0> LicenseServices { get; set; }
+    public List<AbstractWellLicenseService_1_0_0>? LicenseServices { get; set; }
 
     /// <summary>
     /// Details about LicenseStates, past and present.
     /// </summary>
     [JsonPropertyName("LicenseStates")]
-    public List<AbstractWellLicenseStatus_1_0_0> LicenseStates { get; set; }
+    public List<AbstractWellLicenseStatus_1_0_0>? LicenseStates { get; set; }
 
     /// <summary>
     /// Details about violations of conditions, past and present.
     /// </summary>
     [JsonPropertyName("LicenseViolations")]
-    public List<AbstractWellLicenseViolation_1_0_0> LicenseViolations { get; set; }
+    public List<AbstractWellLicenseViolation_1_0_0>? LicenseViolations { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }

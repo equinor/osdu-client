@@ -23,13 +23,13 @@ public class ListGroupsOfPartitionDto
     /// Represents a List of Groups
     /// </summary>
     [JsonPropertyName("groups")]
-    public List<ParentReference> Groups { get; set; }
+    public List<ParentReference>? Groups { get; set; }
 
     /// <summary>
     /// cursor
     /// </summary>
     [JsonPropertyName("cursor")]
-    public string Cursor { get; set; }
+    public string? Cursor { get; set; }
 
     /// <summary>
     /// Total Count

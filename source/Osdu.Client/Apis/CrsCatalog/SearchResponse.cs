@@ -35,6 +35,6 @@ public class SearchResponse
     /// Query string used against Search service
     /// </summary>
     [JsonPropertyName("query")]
-    public string Query { get; set; }
+    public string? Query { get; set; }
 
 }

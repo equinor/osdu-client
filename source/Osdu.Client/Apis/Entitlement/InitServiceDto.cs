@@ -17,6 +17,6 @@ namespace Osdu.Client.Apis.Entitlement;
 public class InitServiceDto
 {
     [JsonPropertyName("aliasMappings")]
-    public List<AliasEntity> AliasMappings { get; set; }
+    public List<AliasEntity>? AliasMappings { get; set; }
 
 }

@@ -20,13 +20,13 @@ public class Properties
     /// List of ISO 3166-1 alpha-2 country codes where the data originated.
     /// </summary>
     [JsonPropertyName("countryOfOrigin")]
-    public List<string> CountryOfOrigin { get; set; }
+    public List<string>? CountryOfOrigin { get; set; }
 
     /// <summary>
     /// The contract id associated with this legal tag.
     /// </summary>
     [JsonPropertyName("contractId")]
-    public string ContractId { get; set; }
+    public string? ContractId { get; set; }
 
     /// <summary>
     /// The date when this legal tag expires. Format: yyyy-MM-dd.
@@ -40,31 +40,31 @@ public class Properties
     /// </summary>
     [RegularExpression(@"^[-. A-Za-z0-9]{3,60}$")]
     [JsonPropertyName("originator")]
-    public string Originator { get; set; }
+    public string? Originator { get; set; }
 
     /// <summary>
     /// The data type classification (e.g. 'Third Party Data', 'First Party Data').
     /// </summary>
     [JsonPropertyName("dataType")]
-    public string DataType { get; set; }
+    public string? DataType { get; set; }
 
     /// <summary>
     /// The security classification (e.g. 'Public', 'Private', 'Confidential').
     /// </summary>
     [JsonPropertyName("securityClassification")]
-    public string SecurityClassification { get; set; }
+    public string? SecurityClassification { get; set; }
 
     /// <summary>
     /// The personal data type classification (e.g. 'No Personal Data', 'Personal Data').
     /// </summary>
     [JsonPropertyName("personalData")]
-    public string PersonalData { get; set; }
+    public string? PersonalData { get; set; }
 
     /// <summary>
     /// The export classification control number (e.g. 'EAR99', 'AT1').
     /// </summary>
     [JsonPropertyName("exportClassification")]
-    public string ExportClassification { get; set; }
+    public string? ExportClassification { get; set; }
 
     [JsonPropertyName("extensionProperties")]
     public object? ExtensionProperties { get; set; }

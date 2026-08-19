@@ -25,7 +25,7 @@ public class ActivityTemplateArc_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-ActivityTemplateArc:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class ActivityTemplateArc_1_0_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class ActivityTemplateArc_1_0_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class ActivityTemplateArc_1_0_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class ActivityTemplateArc_1_0_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class ActivityTemplateArc_1_0_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public ActivityTemplateArc_1_0_0_Data? Data { get; set; }
@@ -101,13 +101,13 @@ public class ActivityTemplateArc_1_0_0_Data : AbstractCommonResources_1_0_0 // A
     /// Alternative names, including historical, by which this master data is/has been known (it should include all the identifiers).
     /// </summary>
     [JsonPropertyName("NameAliases")]
-    public List<AbstractAliasNames_1_0_0> NameAliases { get; set; }
+    public List<AbstractAliasNames_1_0_0>? NameAliases { get; set; }
 
     /// <summary>
     /// List of geographic entities which provide context to the master data. This may include multiple types or multiple values of the same type.
     /// </summary>
     [JsonPropertyName("GeoContexts")]
-    public List<AbstractGeoContext_1_0_0> GeoContexts { get; set; }
+    public List<AbstractGeoContext_1_0_0>? GeoContexts { get; set; }
 
     [JsonPropertyName("SpatialLocation")]
     public AbstractSpatialLocation_1_0_0? SpatialLocation { get; set; }
@@ -116,38 +116,38 @@ public class ActivityTemplateArc_1_0_0_Data : AbstractCommonResources_1_0_0 // A
     /// This describes the reason that caused the creation of a new version of this master data.
     /// </summary>
     [JsonPropertyName("VersionCreationReason")]
-    public string VersionCreationReason { get; set; }
+    public string? VersionCreationReason { get; set; }
 
     /// <summary>
     /// Describes a master-data record's overall suitability for general business consumption based on data quality. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TechnicalAssuranceType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TechnicalAssuranceTypeID")]
-    public string TechnicalAssuranceTypeID { get; set; }
+    public string? TechnicalAssuranceTypeID { get; set; }
 
     /// <summary>
     /// The name of this input/output parameter definition set.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// A detailed textual description of the activity template arc connecting inputs and outputs of workflows (ActivityTemplate).
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// The array of arcs, which associate ActivityTemplate outputs to ActivityTemplate inputs.
     /// </summary>
     [JsonPropertyName("OutputInputArcs")]
-    public List<ActivityTemplateArc_1_0_0_Data_OutputInputArcs> OutputInputArcs { get; set; }
+    public List<ActivityTemplateArc_1_0_0_Data_OutputInputArcs>? OutputInputArcs { get; set; }
 
     /// <summary>
     /// The array of arcs, which link pairs of ActivityTemplate as predecessor and successor.
     /// </summary>
     [JsonPropertyName("ActivityArcs")]
-    public List<ActivityTemplateArc_1_0_0_Data_ActivityArcs> ActivityArcs { get; set; }
+    public List<ActivityTemplateArc_1_0_0_Data_ActivityArcs>? ActivityArcs { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
@@ -165,14 +165,14 @@ public class ActivityTemplateArc_1_0_0_Data_OutputInputArcs
     [Required]
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-ActivityTemplate:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ProducingActivityTemplateID")]
-    public string ProducingActivityTemplateID { get; set; }
+    public required string ProducingActivityTemplateID { get; set; }
 
     /// <summary>
     /// The Title of the producing ActivityTemplate Parameter array element.
     /// </summary>
     [Required]
     [JsonPropertyName("ProducingParameterTitle")]
-    public string ProducingParameterTitle { get; set; }
+    public required string ProducingParameterTitle { get; set; }
 
     /// <summary>
     /// The relationship to the consuming ActivityTemplate.
@@ -180,14 +180,14 @@ public class ActivityTemplateArc_1_0_0_Data_OutputInputArcs
     [Required]
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-ActivityTemplate:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ConsumingActivityTemplateID")]
-    public string ConsumingActivityTemplateID { get; set; }
+    public required string ConsumingActivityTemplateID { get; set; }
 
     /// <summary>
     /// The Title of the consuming ActivityTemplate Parameter array element.
     /// </summary>
     [Required]
     [JsonPropertyName("ConsumingParameterTitle")]
-    public string ConsumingParameterTitle { get; set; }
+    public required string ConsumingParameterTitle { get; set; }
 
 }
 
@@ -202,7 +202,7 @@ public class ActivityTemplateArc_1_0_0_Data_ActivityArcs
     [Required]
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-ActivityTemplate:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("PrecedingActivityTemplateID")]
-    public string PrecedingActivityTemplateID { get; set; }
+    public required string PrecedingActivityTemplateID { get; set; }
 
     /// <summary>
     /// The relationship to the ActivityTemplate succeeding the first ActivityTemplate in the workflow.
@@ -210,6 +210,6 @@ public class ActivityTemplateArc_1_0_0_Data_ActivityArcs
     [Required]
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-ActivityTemplate:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SucceedingActivityTemplateID")]
-    public string SucceedingActivityTemplateID { get; set; }
+    public required string SucceedingActivityTemplateID { get; set; }
 
 }

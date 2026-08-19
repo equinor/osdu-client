@@ -24,13 +24,13 @@ public class AbstractRepresentation_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:(work-product-component\-\-EarthModelInterpretation|work-product-component\-\-GeobodyBoundaryInterpretation|work-product-component\-\-GeobodyInterpretation|work-product-component\-\-HorizonInterpretation|work-product-component\-\-RockFluidOrganizationInterpretation|work-product-component\-\-RockFluidUnitInterpretation|work-product-component\-\-StratigraphicUnitInterpretation|work-product-component\-\-StructuralOrganizationInterpretation|work-product-component\-\-FaultInterpretation|work-product-component\-\-AquiferInterpretation):[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("InterpretationID")]
-    public string InterpretationID { get; set; }
+    public string? InterpretationID { get; set; }
 
     /// <summary>
     /// Name of the interpretation the representation refers to
     /// </summary>
     [JsonPropertyName("InterpretationName")]
-    public string InterpretationName { get; set; }
+    public string? InterpretationName { get; set; }
 
     /// <summary>
     /// Allow to link the geometry of the representation to a particular index of a time series. This is particularly useful for IJK grids used in geomechanical or basin context where the topology and geometry varies against the time.
@@ -48,14 +48,14 @@ public class AbstractRepresentation_1_0_0
     /// Several optional indexable element counts
     /// </summary>
     [JsonPropertyName("IndexableElementCount")]
-    public List<AbstractRepresentation_1_0_0_IndexableElementCount> IndexableElementCount { get; set; }
+    public List<AbstractRepresentation_1_0_0_IndexableElementCount>? IndexableElementCount { get; set; }
 
     /// <summary>
     /// Allow to link a local CRS with this representation
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-LocalModelCompoundCrs:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("LocalModelCompoundCrsID")]
-    public string LocalModelCompoundCrsID { get; set; }
+    public string? LocalModelCompoundCrsID { get; set; }
 
 }
 
@@ -69,7 +69,7 @@ public class AbstractRepresentation_1_0_0_TimeSeries
     /// </summary>
     [Required]
     [JsonPropertyName("TimeIndex")]
-    public int TimeIndex { get; set; }
+    public required int TimeIndex { get; set; }
 
     /// <summary>
     /// Time series the representation is associated to
@@ -77,7 +77,7 @@ public class AbstractRepresentation_1_0_0_TimeSeries
     [Required]
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-TimeSeries:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TimeSeriesID")]
-    public string TimeSeriesID { get; set; }
+    public required string TimeSeriesID { get; set; }
 
 }
 
@@ -91,13 +91,13 @@ public class AbstractRepresentation_1_0_0_IndexableElementCount
     /// </summary>
     [Required]
     [JsonPropertyName("Count")]
-    public int Count { get; set; }
+    public required int Count { get; set; }
 
     /// <summary>
     /// The indexable element which is counted
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-IndexableElement:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("IndexableElementID")]
-    public string IndexableElementID { get; set; }
+    public string? IndexableElementID { get; set; }
 
 }

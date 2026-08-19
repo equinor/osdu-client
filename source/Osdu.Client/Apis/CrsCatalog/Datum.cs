@@ -23,18 +23,18 @@ public class Datum
     /// Name of datum
     /// </summary>
     [JsonPropertyName("name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// Codespace of datum
     /// </summary>
     [JsonPropertyName("codeSpace")]
-    public string CodeSpace { get; set; }
+    public string? CodeSpace { get; set; }
 
     /// <summary>
     /// Code of datum
     /// </summary>
     [JsonPropertyName("code")]
-    public string Code { get; set; }
+    public string? Code { get; set; }
 
 }

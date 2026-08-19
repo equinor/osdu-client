@@ -23,7 +23,7 @@ public class AbstractGenericReservoirUnit_1_0_0
     /// Name of the reservoir or reservoir segment.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// The productive area is the measured or estimated total area of the reservoir unit considered, usually the area within the hydrocarbon-water contact.
@@ -48,7 +48,7 @@ public class AbstractGenericReservoirUnit_1_0_0
     /// Array of Historical Status of a production model element as exploration, appraisal and development. The operational or legal status of the reservoir.
     /// </summary>
     [JsonPropertyName("Status")]
-    public List<AbstractGenericReservoirUnit_1_0_0_Status> Status { get; set; }
+    public List<AbstractGenericReservoirUnit_1_0_0_Status>? Status { get; set; }
 
     /// <summary>
     /// Currently active Status of a production model element as exploration, appraisal and development. The operational or legal status of the reservoir.
@@ -61,14 +61,14 @@ public class AbstractGenericReservoirUnit_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-PersistedCollection:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SectorID")]
-    public string SectorID { get; set; }
+    public string? SectorID { get; set; }
 
     /// <summary>
     /// Identifier linking to the parent reservoir entity (It could be either a segment or a reservoir)
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:(master-data\-\-Reservoir|master-data\-\-ReservoirSegment):[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ParentReservoirEntityID")]
-    public string ParentReservoirEntityID { get; set; }
+    public string? ParentReservoirEntityID { get; set; }
 
 }
 
@@ -82,25 +82,25 @@ public class AbstractGenericReservoirUnit_1_0_0_Status
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ReservoirStatusType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("StatusTypeID")]
-    public string StatusTypeID { get; set; }
+    public string? StatusTypeID { get; set; }
 
     /// <summary>
     /// Date of a status change
     /// </summary>
     [JsonPropertyName("StatusDate")]
-    public DateOnly StatusDate { get; set; }
+    public DateOnly? StatusDate { get; set; }
 
     /// <summary>
     /// The date and time at which the reservoir status type becomes effective.
     /// </summary>
     [JsonPropertyName("EffectiveDateTime")]
-    public DateOnly EffectiveDateTime { get; set; }
+    public DateOnly? EffectiveDateTime { get; set; }
 
     /// <summary>
     /// The date and time at which the reservoir status type is no longer in effect.
     /// </summary>
     [JsonPropertyName("TerminationDateTime")]
-    public DateOnly TerminationDateTime { get; set; }
+    public DateOnly? TerminationDateTime { get; set; }
 
 }
 
@@ -114,24 +114,24 @@ public class AbstractGenericReservoirUnit_1_0_0_CurrentStatus
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ReservoirStatusType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("StatusTypeID")]
-    public string StatusTypeID { get; set; }
+    public string? StatusTypeID { get; set; }
 
     /// <summary>
     /// Date of a status change
     /// </summary>
     [JsonPropertyName("StatusDate")]
-    public DateOnly StatusDate { get; set; }
+    public DateOnly? StatusDate { get; set; }
 
     /// <summary>
     /// The date and time at which the reservoir status type becomes effective.
     /// </summary>
     [JsonPropertyName("EffectiveDateTime")]
-    public DateOnly EffectiveDateTime { get; set; }
+    public DateOnly? EffectiveDateTime { get; set; }
 
     /// <summary>
     /// The date and time at which the reservoir status type is no longer in effect.
     /// </summary>
     [JsonPropertyName("TerminationDateTime")]
-    public DateOnly TerminationDateTime { get; set; }
+    public DateOnly? TerminationDateTime { get; set; }
 
 }

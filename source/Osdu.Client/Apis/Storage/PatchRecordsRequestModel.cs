@@ -24,13 +24,13 @@ public class PatchRecordsRequestModel
     /// </summary>
     [Required]
     [JsonPropertyName("query")]
-    public RecordQueryPatch Query { get; set; }
+    public required RecordQueryPatch Query { get; set; }
 
     /// <summary>
     /// Record patch operations.
     /// </summary>
     [Required]
     [JsonPropertyName("ops")]
-    public JsonPatch Ops { get; set; }
+    public required JsonPatch Ops { get; set; }
 
 }

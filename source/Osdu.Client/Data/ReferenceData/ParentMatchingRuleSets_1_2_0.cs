@@ -25,7 +25,7 @@ public class ParentMatchingRuleSets_1_2_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ParentMatchingRuleSets:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class ParentMatchingRuleSets_1_2_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class ParentMatchingRuleSets_1_2_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class ParentMatchingRuleSets_1_2_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class ParentMatchingRuleSets_1_2_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class ParentMatchingRuleSets_1_2_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public ParentMatchingRuleSets_1_2_0_Data? Data { get; set; }
@@ -101,19 +101,19 @@ public class ParentMatchingRuleSets_1_2_0_Data : AbstractCommonResources_1_0_0 /
     /// The name of the entity instance.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// Alternative names, including historical, by which this entity instance is/has been known.
     /// </summary>
     [JsonPropertyName("NameAlias")]
-    public List<AbstractAliasNames_1_0_0> NameAlias { get; set; }
+    public List<AbstractAliasNames_1_0_0>? NameAlias { get; set; }
 
     /// <summary>
     /// Native identifier from a Master Data Management System or other trusted source external to OSDU - stored here in order to allow for multi-system connection and synchronization. If used, the "Source" property should identify that source system.
     /// </summary>
     [JsonPropertyName("ID")]
-    public string ID { get; set; }
+    public string? ID { get; set; }
 
     /// <summary>
     /// By default reference values are considered as 'active'. An absent 'InactiveIndicator' property value means the reference value is in active use. When 'InactiveIndicator' is set true the reverence value is no longer in use and should no longer be offered as a choice.
@@ -126,31 +126,31 @@ public class ParentMatchingRuleSets_1_2_0_Data : AbstractCommonResources_1_0_0 /
     /// The text which describes a NAME TYPE in detail.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// The abbreviation or mnemonic for a reference type if defined. Example: WELL and WLBR.
     /// </summary>
     [JsonPropertyName("Code")]
-    public string Code { get; set; }
+    public string? Code { get; set; }
 
     /// <summary>
     /// Name of the authority, or organisation, which governs the entity value and from which it is sourced.
     /// </summary>
     [JsonPropertyName("AttributionAuthority")]
-    public string AttributionAuthority { get; set; }
+    public string? AttributionAuthority { get; set; }
 
     /// <summary>
     /// Name, URL, or other identifier of the publication, or repository, of the attribution source organisation from which the entity value is sourced.
     /// </summary>
     [JsonPropertyName("AttributionPublication")]
-    public string AttributionPublication { get; set; }
+    public string? AttributionPublication { get; set; }
 
     /// <summary>
     /// The distinct instance of the attribution publication, by version number, sequence number, date of publication, etc., that was used for the entity value.
     /// </summary>
     [JsonPropertyName("AttributionRevision")]
-    public string AttributionRevision { get; set; }
+    public string? AttributionRevision { get; set; }
 
     /// <summary>
     /// For reference values published and governed by OSDU: The date and time the record was committed into the OSDU member GitLab reference-values repository. The sole purpose of this date is to optimise the OSDU milestone upgrades. It allows the upgrade code to figure out whether or not the record must be PUT into reference value storage.
@@ -164,25 +164,25 @@ public class ParentMatchingRuleSets_1_2_0_Data : AbstractCommonResources_1_0_0 /
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ExternalCatalogNamespace:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("NamespaceID")]
-    public string NamespaceID { get; set; }
+    public string? NamespaceID { get; set; }
 
     /// <summary>
     /// An optional type identifier in the scope of the connected data source.
     /// </summary>
     [JsonPropertyName("SourceKind")]
-    public string SourceKind { get; set; }
+    public string? SourceKind { get; set; }
 
     /// <summary>
     /// An optional type identifier in the scope of the target platform.
     /// </summary>
     [JsonPropertyName("TargetKind")]
-    public string TargetKind { get; set; }
+    public string? TargetKind { get; set; }
 
     /// <summary>
     /// One or multiple, prioritized  matching rule set, which are expected to be applied to find a matching related target object (e.g., a parent Well/Wellbore for a WellLog) given matching criteria.
     /// </summary>
     [JsonPropertyName("MatchingRuleSets")]
-    public List<ParentMatchingRuleSets_1_2_0_Data_MatchingRuleSets> MatchingRuleSets { get; set; }
+    public List<ParentMatchingRuleSets_1_2_0_Data_MatchingRuleSets>? MatchingRuleSets { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
@@ -198,25 +198,25 @@ public class ParentMatchingRuleSets_1_2_0_Data_MatchingRuleSets
     /// The name of the rule (expected to be unique in the array of MatchingRuleSets[]).
     /// </summary>
     [JsonPropertyName("RuleName")]
-    public string RuleName { get; set; }
+    public string? RuleName { get; set; }
 
     /// <summary>
     /// A text explaining the purpose or goal of this MatchingRuleSet.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// The list of conditions, which all have to be met in order to declare a match.
     /// </summary>
     [JsonPropertyName("Conditions")]
-    public List<ParentMatchingRuleSets_1_2_0_Data_MatchingRuleSets_Conditions> Conditions { get; set; }
+    public List<ParentMatchingRuleSets_1_2_0_Data_MatchingRuleSets_Conditions>? Conditions { get; set; }
 
     /// <summary>
     /// DEPRECATED: Combined with Conditions, no longer in use. The specifications for system attribute replacements.
     /// </summary>
     [JsonPropertyName("ReplaceAttributes")]
-    public List<ParentMatchingRuleSets_1_2_0_Data_MatchingRuleSets_ReplaceAttributes> ReplaceAttributes { get; set; }
+    public List<ParentMatchingRuleSets_1_2_0_Data_MatchingRuleSets_ReplaceAttributes>? ReplaceAttributes { get; set; }
 
 }
 
@@ -229,25 +229,25 @@ public class ParentMatchingRuleSets_1_2_0_Data_MatchingRuleSets_Conditions
     /// The source property name to evaluate in the scope of the connected data source.
     /// </summary>
     [JsonPropertyName("SourceProperty")]
-    public string SourceProperty { get; set; }
+    public string? SourceProperty { get; set; }
 
     /// <summary>
     /// The target kind to query for.
     /// </summary>
     [JsonPropertyName("TargetKind")]
-    public string TargetKind { get; set; }
+    public string? TargetKind { get; set; }
 
     /// <summary>
     /// The target property path to search TargetKind instances with the value of the SourceProperty
     /// </summary>
     [JsonPropertyName("TargetProperty")]
-    public string TargetProperty { get; set; }
+    public string? TargetProperty { get; set; }
 
     /// <summary>
     /// This value is used to identify the source property that needs replacing in the source record (see data.SourceKind).
     /// </summary>
     [JsonPropertyName("ReplaceProperty")]
-    public string ReplaceProperty { get; set; }
+    public string? ReplaceProperty { get; set; }
 
     /// <summary>
     /// The optional, numerical tolerance to be used when comparing numbers.
@@ -259,7 +259,7 @@ public class ParentMatchingRuleSets_1_2_0_Data_MatchingRuleSets_Conditions
     /// A descriptive remark about the purpose of the condition.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
 }
 
@@ -272,18 +272,18 @@ public class ParentMatchingRuleSets_1_2_0_Data_MatchingRuleSets_ReplaceAttribute
     /// DEPRECATED: No longer in use. The source system attribute delivering the value to replace.
     /// </summary>
     [JsonPropertyName("SourceSystemAttribute")]
-    public string SourceSystemAttribute { get; set; }
+    public string? SourceSystemAttribute { get; set; }
 
     /// <summary>
     /// DEPRECATED: No longer in use. The target system attribute receiving the value to replace.
     /// </summary>
     [JsonPropertyName("TargetSystemAttribute")]
-    public string TargetSystemAttribute { get; set; }
+    public string? TargetSystemAttribute { get; set; }
 
     /// <summary>
     /// DEPRECATED: No longer in use. An optional descriptive remark explaining the purpose of the replacement.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
 }

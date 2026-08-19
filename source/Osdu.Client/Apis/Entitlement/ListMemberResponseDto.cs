@@ -23,6 +23,6 @@ public class ListMemberResponseDto
     /// List of Members
     /// </summary>
     [JsonPropertyName("members")]
-    public List<MemberDto> Members { get; set; }
+    public List<MemberDto>? Members { get; set; }
 
 }

@@ -23,12 +23,12 @@ public class GsaSecretValue
     /// Target audience claim used when minting the GSA token
     /// </summary>
     [JsonPropertyName("audience")]
-    public string Audience { get; set; }
+    public string? Audience { get; set; }
 
     /// <summary>
     /// Service account key id used to sign the GSA token
     /// </summary>
     [JsonPropertyName("key")]
-    public string Key { get; set; }
+    public string? Key { get; set; }
 
 }

@@ -36,6 +36,6 @@ public class AbstractUnstructuredGridPatch_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CellShapeType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("CellShapeID")]
-    public string CellShapeID { get; set; }
+    public string? CellShapeID { get; set; }
 
 }

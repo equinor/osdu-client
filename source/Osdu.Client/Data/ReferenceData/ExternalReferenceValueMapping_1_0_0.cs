@@ -25,7 +25,7 @@ public class ExternalReferenceValueMapping_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ExternalReferenceValueMapping:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class ExternalReferenceValueMapping_1_0_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class ExternalReferenceValueMapping_1_0_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class ExternalReferenceValueMapping_1_0_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class ExternalReferenceValueMapping_1_0_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class ExternalReferenceValueMapping_1_0_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public ExternalReferenceValueMapping_1_0_0_Data? Data { get; set; }
@@ -101,19 +101,19 @@ public class ExternalReferenceValueMapping_1_0_0_Data : AbstractCommonResources_
     /// The name of the entity instance.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// Alternative names, including historical, by which this entity instance is/has been known.
     /// </summary>
     [JsonPropertyName("NameAlias")]
-    public List<AbstractAliasNames_1_0_0> NameAlias { get; set; }
+    public List<AbstractAliasNames_1_0_0>? NameAlias { get; set; }
 
     /// <summary>
     /// Native identifier from a Master Data Management System or other trusted source external to OSDU - stored here in order to allow for multi-system connection and synchronization. If used, the "Source" property should identify that source system.
     /// </summary>
     [JsonPropertyName("ID")]
-    public string ID { get; set; }
+    public string? ID { get; set; }
 
     /// <summary>
     /// By default reference values are considered as 'active'. An absent 'InactiveIndicator' property value means the reference value is in active use. When 'InactiveIndicator' is set true the reverence value is no longer in use and should no longer be offered as a choice.
@@ -126,31 +126,31 @@ public class ExternalReferenceValueMapping_1_0_0_Data : AbstractCommonResources_
     /// The text which describes a NAME TYPE in detail.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// The abbreviation or mnemonic for a reference type if defined. Example: WELL and WLBR.
     /// </summary>
     [JsonPropertyName("Code")]
-    public string Code { get; set; }
+    public string? Code { get; set; }
 
     /// <summary>
     /// Name of the authority, or organisation, which governs the entity value and from which it is sourced.
     /// </summary>
     [JsonPropertyName("AttributionAuthority")]
-    public string AttributionAuthority { get; set; }
+    public string? AttributionAuthority { get; set; }
 
     /// <summary>
     /// Name, URL, or other identifier of the publication, or repository, of the attribution source organisation from which the entity value is sourced.
     /// </summary>
     [JsonPropertyName("AttributionPublication")]
-    public string AttributionPublication { get; set; }
+    public string? AttributionPublication { get; set; }
 
     /// <summary>
     /// The distinct instance of the attribution publication, by version number, sequence number, date of publication, etc., that was used for the entity value.
     /// </summary>
     [JsonPropertyName("AttributionRevision")]
-    public string AttributionRevision { get; set; }
+    public string? AttributionRevision { get; set; }
 
     /// <summary>
     /// For reference values published and governed by OSDU: The date and time the record was committed into the OSDU member GitLab reference-values repository. The sole purpose of this date is to optimise the OSDU milestone upgrades. It allows the upgrade code to figure out whether or not the record must be PUT into reference value storage.
@@ -164,14 +164,14 @@ public class ExternalReferenceValueMapping_1_0_0_Data : AbstractCommonResources_
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ExternalCatalogNamespace:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("NamespaceID")]
-    public string NamespaceID { get; set; }
+    public string? NamespaceID { get; set; }
 
     /// <summary>
     /// The mapping status declaring whether the mapping is straight forward, direct (identical) or whether special treatment is required (corrected). Items, which are known not to be mappable are declared as unsupported.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CatalogMapStateType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("MapStateID")]
-    public string MapStateID { get; set; }
+    public string? MapStateID { get; set; }
 
     /// <summary>
     /// A flag — if true — indicating that this mapping has global scope and does not apply to specific external entity types only. If false, the Scope is required. Scope should be made part of the Code and id
@@ -184,7 +184,7 @@ public class ExternalReferenceValueMapping_1_0_0_Data : AbstractCommonResources_
     /// The scope of the mapping — Global if HasGlobalScope is true, or the external entity type name, to which this mapping is exclusively assigned.
     /// </summary>
     [JsonPropertyName("Scope")]
-    public string Scope { get; set; }
+    public string? Scope { get; set; }
 
     /// <summary>
     /// The external reference value is mapped to a single OSDU reference value in the target OSDU platform instance.
@@ -196,7 +196,7 @@ public class ExternalReferenceValueMapping_1_0_0_Data : AbstractCommonResources_
     /// One external reference value translates into setting multiple reference values (higher normalization in target OSDU platform instance).
     /// </summary>
     [JsonPropertyName("ComplexMappings")]
-    public List<ExternalReferenceValueMapping_1_0_0_Data_ComplexMappings> ComplexMappings { get; set; }
+    public List<ExternalReferenceValueMapping_1_0_0_Data_ComplexMappings>? ComplexMappings { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
@@ -213,13 +213,13 @@ public class ExternalReferenceValueMapping_1_0_0_Data_SimpleMap
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:([0-9]+)?(\.)?([0-9]+)?(\.)?([0-9]+)?$")]
     [JsonPropertyName("TargetKind")]
-    public string TargetKind { get; set; }
+    public string? TargetKind { get; set; }
 
     /// <summary>
     /// Optional, needed if the Scope is not Global: PropertyName defines the cumulative path (dot-separated for nested structures, [] denoting arrays), to which the PropertyValue is to be assigned in the target record of kind TargetKind.
     /// </summary>
     [JsonPropertyName("PropertyName")]
-    public string PropertyName { get; set; }
+    public string? PropertyName { get; set; }
 
     /// <summary>
     /// Mandatory: the mapped value (reference-data relationship) in the OSDU target platform instance.
@@ -227,7 +227,7 @@ public class ExternalReferenceValueMapping_1_0_0_Data_SimpleMap
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-[\w\-\.]+:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ReferenceValueID")]
-    public string ReferenceValueID { get; set; }
+    public required string ReferenceValueID { get; set; }
 
 }
 
@@ -241,13 +241,13 @@ public class ExternalReferenceValueMapping_1_0_0_Data_ComplexMappings
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:([0-9]+)?(\.)?([0-9]+)?(\.)?([0-9]+)?$")]
     [JsonPropertyName("TargetKind")]
-    public string TargetKind { get; set; }
+    public string? TargetKind { get; set; }
 
     /// <summary>
     /// Optional, needed if the Scope is not Global: PropertyName defines the cumulative path (dot-separated for nested structures, [] denoting arrays), to which the PropertyValue is to be assigned in the target record of kind TargetKind.
     /// </summary>
     [JsonPropertyName("PropertyName")]
-    public string PropertyName { get; set; }
+    public string? PropertyName { get; set; }
 
     /// <summary>
     /// Mandatory: the mapped value (reference-data relationship) in the OSDU target platform instance.
@@ -255,6 +255,6 @@ public class ExternalReferenceValueMapping_1_0_0_Data_ComplexMappings
     [Required]
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-[\w\-\.]+:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ReferenceValueID")]
-    public string ReferenceValueID { get; set; }
+    public required string ReferenceValueID { get; set; }
 
 }

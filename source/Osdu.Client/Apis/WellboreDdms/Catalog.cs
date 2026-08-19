@@ -18,7 +18,7 @@ public class Catalog
 {
     [Required]
     [JsonPropertyName("family_catalog")]
-    public List<CatalogItem> FamilyCatalog { get; set; }
+    public required List<CatalogItem> FamilyCatalog { get; set; }
 
     [JsonPropertyName("main_family_catalog")]
     public List<MainFamilyCatalogItem>? MainFamilyCatalog { get; set; }

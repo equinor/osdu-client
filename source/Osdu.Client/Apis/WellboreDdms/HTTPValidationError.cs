@@ -17,6 +17,6 @@ namespace Osdu.Client.Apis.WellboreDdms;
 public class HTTPValidationError
 {
     [JsonPropertyName("errors")]
-    public List<ValidationError> Errors { get; set; }
+    public List<ValidationError>? Errors { get; set; }
 
 }

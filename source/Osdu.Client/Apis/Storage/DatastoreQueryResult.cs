@@ -17,9 +17,9 @@ namespace Osdu.Client.Apis.Storage;
 public class DatastoreQueryResult
 {
     [JsonPropertyName("cursor")]
-    public string Cursor { get; set; }
+    public string? Cursor { get; set; }
 
     [JsonPropertyName("results")]
-    public List<string> Results { get; set; }
+    public List<string>? Results { get; set; }
 
 }

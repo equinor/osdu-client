@@ -24,13 +24,13 @@ public class SchemaRequest
     /// </summary>
     [Required]
     [JsonPropertyName("schemaInfo")]
-    public SchemaInfo SchemaInfo { get; set; }
+    public required SchemaInfo SchemaInfo { get; set; }
 
     /// <summary>
     /// The JSON Schema definition as a JSON object
     /// </summary>
     [Required]
     [JsonPropertyName("schema")]
-    public string Schema { get; set; }
+    public required string Schema { get; set; }
 
 }

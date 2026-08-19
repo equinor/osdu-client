@@ -22,7 +22,7 @@ public class Legal
     [Required]
     [MinLength(1)]
     [JsonPropertyName("legaltags")]
-    public List<string> Legaltags { get; set; }
+    public required List<string> Legaltags { get; set; }
 
     /// <summary>
     /// ISO 3166-1 alpha-2 country codes of other relevant data countries.
@@ -30,13 +30,13 @@ public class Legal
     [Required]
     [MinLength(1)]
     [JsonPropertyName("otherRelevantDataCountries")]
-    public List<string> OtherRelevantDataCountries { get; set; }
+    public required List<string> OtherRelevantDataCountries { get; set; }
 
     /// <summary>
     /// Compliance status of the legal tags, assigned by the server.
     /// </summary>
     [JsonPropertyName("status")]
-    public Legal_Status Status { get; set; }
+    public Legal_Status? Status { get; set; }
 
 }
 

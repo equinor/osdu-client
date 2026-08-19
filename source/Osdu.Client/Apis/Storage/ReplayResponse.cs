@@ -23,6 +23,6 @@ public class ReplayResponse
     /// Unique identifier for the triggered replay operation.
     /// </summary>
     [JsonPropertyName("replayId")]
-    public string ReplayId { get; set; }
+    public string? ReplayId { get; set; }
 
 }

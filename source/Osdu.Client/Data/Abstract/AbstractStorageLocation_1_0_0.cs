@@ -23,38 +23,38 @@ public class AbstractStorageLocation_1_0_0
     /// The name of the location where the item is stored. It can be stored in more than one location over time.
     /// </summary>
     [JsonPropertyName("StorageLocationDescription")]
-    public string StorageLocationDescription { get; set; }
+    public string? StorageLocationDescription { get; set; }
 
     /// <summary>
     /// Identifies the warehouse in which the item is stored.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-StorageFacility:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("StorageFacilityID")]
-    public string StorageFacilityID { get; set; }
+    public string? StorageFacilityID { get; set; }
 
     /// <summary>
     /// Identifies the organisation with which the item is stored.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("StorageOrganisationID")]
-    public string StorageOrganisationID { get; set; }
+    public string? StorageOrganisationID { get; set; }
 
     /// <summary>
     /// The date the item arrived at the storage location.
     /// </summary>
     [JsonPropertyName("EffectiveDateTime")]
-    public DateOnly EffectiveDateTime { get; set; }
+    public DateOnly? EffectiveDateTime { get; set; }
 
     /// <summary>
     /// The date and time at which the item is  no longer stored in the given location.  If the item is still in this storage, the 'TerminationDateTime' is left absent.
     /// </summary>
     [JsonPropertyName("TerminationDateTime")]
-    public DateOnly TerminationDateTime { get; set; }
+    public DateOnly? TerminationDateTime { get; set; }
 
     /// <summary>
     /// The item (sample, tape)  identifier, for example a barcode, which identifies the item in the StorageFacility.
     /// </summary>
     [JsonPropertyName("SampleIdentifier")]
-    public string SampleIdentifier { get; set; }
+    public string? SampleIdentifier { get; set; }
 
 }

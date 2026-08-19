@@ -18,7 +18,7 @@ public class InfoOut
 {
     [Required]
     [JsonPropertyName("version")]
-    public string Version { get; set; }
+    public required string Version { get; set; }
 
     [JsonPropertyName("artifactId")]
     public string? ArtifactId { get; set; }
@@ -43,6 +43,6 @@ public class InfoOut
 
     [Required]
     [JsonPropertyName("connectedOuterServices")]
-    public Services ConnectedOuterServices { get; set; }
+    public required Services ConnectedOuterServices { get; set; }
 
 }

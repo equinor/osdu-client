@@ -22,15 +22,15 @@ public class AbstractFeatureCollection_1_0_0
     [JsonIgnore]
     [Required]
     [JsonPropertyName("type")]
-    public AbstractFeatureCollection_1_0_0_Type Type { get; set; }
+    public required AbstractFeatureCollection_1_0_0_Type Type { get; set; }
 
     [Required]
     [JsonPropertyName("features")]
-    public List<AbstractFeatureCollection_1_0_0_Features> Features { get; set; }
+    public required List<AbstractFeatureCollection_1_0_0_Features> Features { get; set; }
 
     [MinLength(4)]
     [JsonPropertyName("bbox")]
-    public List<double> Bbox { get; set; }
+    public List<double>? Bbox { get; set; }
 
 }
 
@@ -47,19 +47,19 @@ public class AbstractFeatureCollection_1_0_0_Features
     [JsonIgnore]
     [Required]
     [JsonPropertyName("type")]
-    public AbstractFeatureCollection_1_0_0_Features_Type Type { get; set; }
+    public required AbstractFeatureCollection_1_0_0_Features_Type Type { get; set; }
 
     [Required]
     [JsonPropertyName("properties")]
-    public object Properties { get; set; }
+    public required object Properties { get; set; }
 
     [Required]
     [JsonPropertyName("geometry")]
-    public AbstractFeatureCollection_1_0_0_Features_Geometry Geometry { get; set; }
+    public required AbstractFeatureCollection_1_0_0_Features_Geometry Geometry { get; set; }
 
     [MinLength(4)]
     [JsonPropertyName("bbox")]
-    public List<double> Bbox { get; set; }
+    public List<double>? Bbox { get; set; }
 
 }
 
@@ -88,16 +88,16 @@ public class AbstractFeatureCollection_1_0_0_Features_GeometryGeoJSONPoint : Abs
     [JsonIgnore]
     [Required]
     [JsonPropertyName("type")]
-    public AbstractFeatureCollection_1_0_0_Features_GeometryGeoJSONPoint_Type Type { get; set; }
+    public required AbstractFeatureCollection_1_0_0_Features_GeometryGeoJSONPoint_Type Type { get; set; }
 
     [Required]
     [MinLength(2)]
     [JsonPropertyName("coordinates")]
-    public List<double> Coordinates { get; set; }
+    public required List<double> Coordinates { get; set; }
 
     [MinLength(4)]
     [JsonPropertyName("bbox")]
-    public List<double> Bbox { get; set; }
+    public List<double>? Bbox { get; set; }
 
 }
 
@@ -114,16 +114,16 @@ public class AbstractFeatureCollection_1_0_0_Features_GeometryGeoJSONLineString 
     [JsonIgnore]
     [Required]
     [JsonPropertyName("type")]
-    public AbstractFeatureCollection_1_0_0_Features_GeometryGeoJSONLineString_Type Type { get; set; }
+    public required AbstractFeatureCollection_1_0_0_Features_GeometryGeoJSONLineString_Type Type { get; set; }
 
     [Required]
     [MinLength(2)]
     [JsonPropertyName("coordinates")]
-    public List<List<double>> Coordinates { get; set; }
+    public required List<List<double>> Coordinates { get; set; }
 
     [MinLength(4)]
     [JsonPropertyName("bbox")]
-    public List<double> Bbox { get; set; }
+    public List<double>? Bbox { get; set; }
 
 }
 
@@ -140,15 +140,15 @@ public class AbstractFeatureCollection_1_0_0_Features_GeometryGeoJSONPolygon : A
     [JsonIgnore]
     [Required]
     [JsonPropertyName("type")]
-    public AbstractFeatureCollection_1_0_0_Features_GeometryGeoJSONPolygon_Type Type { get; set; }
+    public required AbstractFeatureCollection_1_0_0_Features_GeometryGeoJSONPolygon_Type Type { get; set; }
 
     [Required]
     [JsonPropertyName("coordinates")]
-    public List<List<List<double>>> Coordinates { get; set; }
+    public required List<List<List<double>>> Coordinates { get; set; }
 
     [MinLength(4)]
     [JsonPropertyName("bbox")]
-    public List<double> Bbox { get; set; }
+    public List<double>? Bbox { get; set; }
 
 }
 
@@ -165,15 +165,15 @@ public class AbstractFeatureCollection_1_0_0_Features_GeometryGeoJSONMultiPoint 
     [JsonIgnore]
     [Required]
     [JsonPropertyName("type")]
-    public AbstractFeatureCollection_1_0_0_Features_GeometryGeoJSONMultiPoint_Type Type { get; set; }
+    public required AbstractFeatureCollection_1_0_0_Features_GeometryGeoJSONMultiPoint_Type Type { get; set; }
 
     [Required]
     [JsonPropertyName("coordinates")]
-    public List<List<double>> Coordinates { get; set; }
+    public required List<List<double>> Coordinates { get; set; }
 
     [MinLength(4)]
     [JsonPropertyName("bbox")]
-    public List<double> Bbox { get; set; }
+    public List<double>? Bbox { get; set; }
 
 }
 
@@ -190,15 +190,15 @@ public class AbstractFeatureCollection_1_0_0_Features_GeometryGeoJSONMultiLineSt
     [JsonIgnore]
     [Required]
     [JsonPropertyName("type")]
-    public AbstractFeatureCollection_1_0_0_Features_GeometryGeoJSONMultiLineString_Type Type { get; set; }
+    public required AbstractFeatureCollection_1_0_0_Features_GeometryGeoJSONMultiLineString_Type Type { get; set; }
 
     [Required]
     [JsonPropertyName("coordinates")]
-    public List<List<List<double>>> Coordinates { get; set; }
+    public required List<List<List<double>>> Coordinates { get; set; }
 
     [MinLength(4)]
     [JsonPropertyName("bbox")]
-    public List<double> Bbox { get; set; }
+    public List<double>? Bbox { get; set; }
 
 }
 
@@ -215,15 +215,15 @@ public class AbstractFeatureCollection_1_0_0_Features_GeometryGeoJSONMultiPolygo
     [JsonIgnore]
     [Required]
     [JsonPropertyName("type")]
-    public AbstractFeatureCollection_1_0_0_Features_GeometryGeoJSONMultiPolygon_Type Type { get; set; }
+    public required AbstractFeatureCollection_1_0_0_Features_GeometryGeoJSONMultiPolygon_Type Type { get; set; }
 
     [Required]
     [JsonPropertyName("coordinates")]
-    public List<List<List<List<double>>>> Coordinates { get; set; }
+    public required List<List<List<List<double>>>> Coordinates { get; set; }
 
     [MinLength(4)]
     [JsonPropertyName("bbox")]
-    public List<double> Bbox { get; set; }
+    public List<double>? Bbox { get; set; }
 
 }
 
@@ -240,15 +240,15 @@ public class AbstractFeatureCollection_1_0_0_Features_GeometryGeoJSONGeometryCol
     [JsonIgnore]
     [Required]
     [JsonPropertyName("type")]
-    public AbstractFeatureCollection_1_0_0_Features_GeometryGeoJSONGeometryCollection_Type Type { get; set; }
+    public required AbstractFeatureCollection_1_0_0_Features_GeometryGeoJSONGeometryCollection_Type Type { get; set; }
 
     [Required]
     [JsonPropertyName("geometries")]
-    public List<AbstractFeatureCollection_1_0_0_Features_GeometryGeoJSONGeometryCollection_Geometries> Geometries { get; set; }
+    public required List<AbstractFeatureCollection_1_0_0_Features_GeometryGeoJSONGeometryCollection_Geometries> Geometries { get; set; }
 
     [MinLength(4)]
     [JsonPropertyName("bbox")]
-    public List<double> Bbox { get; set; }
+    public List<double>? Bbox { get; set; }
 
 }
 
@@ -276,16 +276,16 @@ public class AbstractFeatureCollection_1_0_0_Features_GeometryGeoJSONGeometryCol
     [JsonIgnore]
     [Required]
     [JsonPropertyName("type")]
-    public AbstractFeatureCollection_1_0_0_Features_GeometryGeoJSONGeometryCollection_GeometriesGeoJSONPoint_Type Type { get; set; }
+    public required AbstractFeatureCollection_1_0_0_Features_GeometryGeoJSONGeometryCollection_GeometriesGeoJSONPoint_Type Type { get; set; }
 
     [Required]
     [MinLength(2)]
     [JsonPropertyName("coordinates")]
-    public List<double> Coordinates { get; set; }
+    public required List<double> Coordinates { get; set; }
 
     [MinLength(4)]
     [JsonPropertyName("bbox")]
-    public List<double> Bbox { get; set; }
+    public List<double>? Bbox { get; set; }
 
 }
 
@@ -302,16 +302,16 @@ public class AbstractFeatureCollection_1_0_0_Features_GeometryGeoJSONGeometryCol
     [JsonIgnore]
     [Required]
     [JsonPropertyName("type")]
-    public AbstractFeatureCollection_1_0_0_Features_GeometryGeoJSONGeometryCollection_GeometriesGeoJSONLineString_Type Type { get; set; }
+    public required AbstractFeatureCollection_1_0_0_Features_GeometryGeoJSONGeometryCollection_GeometriesGeoJSONLineString_Type Type { get; set; }
 
     [Required]
     [MinLength(2)]
     [JsonPropertyName("coordinates")]
-    public List<List<double>> Coordinates { get; set; }
+    public required List<List<double>> Coordinates { get; set; }
 
     [MinLength(4)]
     [JsonPropertyName("bbox")]
-    public List<double> Bbox { get; set; }
+    public List<double>? Bbox { get; set; }
 
 }
 
@@ -328,15 +328,15 @@ public class AbstractFeatureCollection_1_0_0_Features_GeometryGeoJSONGeometryCol
     [JsonIgnore]
     [Required]
     [JsonPropertyName("type")]
-    public AbstractFeatureCollection_1_0_0_Features_GeometryGeoJSONGeometryCollection_GeometriesGeoJSONPolygon_Type Type { get; set; }
+    public required AbstractFeatureCollection_1_0_0_Features_GeometryGeoJSONGeometryCollection_GeometriesGeoJSONPolygon_Type Type { get; set; }
 
     [Required]
     [JsonPropertyName("coordinates")]
-    public List<List<List<double>>> Coordinates { get; set; }
+    public required List<List<List<double>>> Coordinates { get; set; }
 
     [MinLength(4)]
     [JsonPropertyName("bbox")]
-    public List<double> Bbox { get; set; }
+    public List<double>? Bbox { get; set; }
 
 }
 
@@ -353,15 +353,15 @@ public class AbstractFeatureCollection_1_0_0_Features_GeometryGeoJSONGeometryCol
     [JsonIgnore]
     [Required]
     [JsonPropertyName("type")]
-    public AbstractFeatureCollection_1_0_0_Features_GeometryGeoJSONGeometryCollection_GeometriesGeoJSONMultiPoint_Type Type { get; set; }
+    public required AbstractFeatureCollection_1_0_0_Features_GeometryGeoJSONGeometryCollection_GeometriesGeoJSONMultiPoint_Type Type { get; set; }
 
     [Required]
     [JsonPropertyName("coordinates")]
-    public List<List<double>> Coordinates { get; set; }
+    public required List<List<double>> Coordinates { get; set; }
 
     [MinLength(4)]
     [JsonPropertyName("bbox")]
-    public List<double> Bbox { get; set; }
+    public List<double>? Bbox { get; set; }
 
 }
 
@@ -378,15 +378,15 @@ public class AbstractFeatureCollection_1_0_0_Features_GeometryGeoJSONGeometryCol
     [JsonIgnore]
     [Required]
     [JsonPropertyName("type")]
-    public AbstractFeatureCollection_1_0_0_Features_GeometryGeoJSONGeometryCollection_GeometriesGeoJSONMultiLineString_Type Type { get; set; }
+    public required AbstractFeatureCollection_1_0_0_Features_GeometryGeoJSONGeometryCollection_GeometriesGeoJSONMultiLineString_Type Type { get; set; }
 
     [Required]
     [JsonPropertyName("coordinates")]
-    public List<List<List<double>>> Coordinates { get; set; }
+    public required List<List<List<double>>> Coordinates { get; set; }
 
     [MinLength(4)]
     [JsonPropertyName("bbox")]
-    public List<double> Bbox { get; set; }
+    public List<double>? Bbox { get; set; }
 
 }
 
@@ -403,15 +403,15 @@ public class AbstractFeatureCollection_1_0_0_Features_GeometryGeoJSONGeometryCol
     [JsonIgnore]
     [Required]
     [JsonPropertyName("type")]
-    public AbstractFeatureCollection_1_0_0_Features_GeometryGeoJSONGeometryCollection_GeometriesGeoJSONMultiPolygon_Type Type { get; set; }
+    public required AbstractFeatureCollection_1_0_0_Features_GeometryGeoJSONGeometryCollection_GeometriesGeoJSONMultiPolygon_Type Type { get; set; }
 
     [Required]
     [JsonPropertyName("coordinates")]
-    public List<List<List<List<double>>>> Coordinates { get; set; }
+    public required List<List<List<List<double>>>> Coordinates { get; set; }
 
     [MinLength(4)]
     [JsonPropertyName("bbox")]
-    public List<double> Bbox { get; set; }
+    public List<double>? Bbox { get; set; }
 
 }
 

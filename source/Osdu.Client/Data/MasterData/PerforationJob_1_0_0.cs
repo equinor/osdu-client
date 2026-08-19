@@ -25,7 +25,7 @@ public class PerforationJob_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-PerforationJob:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class PerforationJob_1_0_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class PerforationJob_1_0_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class PerforationJob_1_0_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class PerforationJob_1_0_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class PerforationJob_1_0_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public PerforationJob_1_0_0_Data? Data { get; set; }
@@ -101,13 +101,13 @@ public class PerforationJob_1_0_0_Data : AbstractCommonResources_1_0_0 // Also c
     /// Alternative names, including historical, by which this master data is/has been known (it should include all the identifiers).
     /// </summary>
     [JsonPropertyName("NameAliases")]
-    public List<AbstractAliasNames_1_0_0> NameAliases { get; set; }
+    public List<AbstractAliasNames_1_0_0>? NameAliases { get; set; }
 
     /// <summary>
     /// List of geographic entities which provide context to the master data. This may include multiple types or multiple values of the same type.
     /// </summary>
     [JsonPropertyName("GeoContexts")]
-    public List<AbstractGeoContext_1_0_0> GeoContexts { get; set; }
+    public List<AbstractGeoContext_1_0_0>? GeoContexts { get; set; }
 
     [JsonPropertyName("SpatialLocation")]
     public AbstractSpatialLocation_1_1_0? SpatialLocation { get; set; }
@@ -116,21 +116,21 @@ public class PerforationJob_1_0_0_Data : AbstractCommonResources_1_0_0 // Also c
     /// This describes the reason that caused the creation of a new version of this master data.
     /// </summary>
     [JsonPropertyName("VersionCreationReason")]
-    public string VersionCreationReason { get; set; }
+    public string? VersionCreationReason { get; set; }
 
     /// <summary>
     /// Describes a master-data record's overall suitability for general business consumption based on data quality. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TechnicalAssuranceType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TechnicalAssuranceTypeID")]
-    public string TechnicalAssuranceTypeID { get; set; }
+    public string? TechnicalAssuranceTypeID { get; set; }
 
     /// <summary>
     /// Business natural key or code of the parent Wellbore to which this record belongs
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Wellbore:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellboreID")]
-    public string WellboreID { get; set; }
+    public string? WellboreID { get; set; }
 
     [JsonPropertyName("VerticalMeasurement")]
     public AbstractFacilityVerticalMeasurement_1_0_0? VerticalMeasurement { get; set; }
@@ -140,34 +140,34 @@ public class PerforationJob_1_0_0_Data : AbstractCommonResources_1_0_0 // Also c
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-TubularAssembly:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("WellboreTubularID")]
-    public string WellboreTubularID { get; set; }
+    public string? WellboreTubularID { get; set; }
 
     /// <summary>
     /// Name of company performing the perf job
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ContractorID")]
-    public string ContractorID { get; set; }
+    public string? ContractorID { get; set; }
 
     /// <summary>
     /// Name of contractor supervisor overseeing the job
     /// </summary>
     [JsonPropertyName("ContractorSupervisor")]
-    public string ContractorSupervisor { get; set; }
+    public string? ContractorSupervisor { get; set; }
 
     /// <summary>
     /// Perforation job method, often the brand name of the service offered by the contractor
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-PerforationIntervalType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("MethodID")]
-    public string MethodID { get; set; }
+    public string? MethodID { get; set; }
 
     /// <summary>
     /// How guns are conveyed
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-PerforationConveyedMethod:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ConveyedMethodID")]
-    public string ConveyedMethodID { get; set; }
+    public string? ConveyedMethodID { get; set; }
 
     /// <summary>
     /// Is a tractor used during the job to help convey guns
@@ -225,7 +225,7 @@ public class PerforationJob_1_0_0_Data : AbstractCommonResources_1_0_0 // Also c
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-AnnularFluidType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("AnnulusFluidTypeID")]
-    public string AnnulusFluidTypeID { get; set; }
+    public string? AnnulusFluidTypeID { get; set; }
 
     /// <summary>
     /// Annulus Fluid Density used to calculate hydrostatic pressure
@@ -288,7 +288,7 @@ public class PerforationJob_1_0_0_Data : AbstractCommonResources_1_0_0 // Also c
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-PerforationPillType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("PillTypeID")]
-    public string PillTypeID { get; set; }
+    public string? PillTypeID { get; set; }
 
     /// <summary>
     /// Date when Reference Log run
@@ -302,13 +302,13 @@ public class PerforationJob_1_0_0_Data : AbstractCommonResources_1_0_0 // Also c
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:work-product-component\-\-WellLog:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("ReferenceLogID")]
-    public string ReferenceLogID { get; set; }
+    public string? ReferenceLogID { get; set; }
 
     /// <summary>
     /// Reference Log description/name
     /// </summary>
     [JsonPropertyName("ReferenceLogDescription")]
-    public string ReferenceLogDescription { get; set; }
+    public string? ReferenceLogDescription { get; set; }
 
     /// <summary>
     /// Top Measured Depth of all perfed intervals
@@ -357,19 +357,19 @@ public class PerforationJob_1_0_0_Data : AbstractCommonResources_1_0_0 // Also c
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-PerforationCentralizationMethodType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("CentralizationMethodID")]
-    public string CentralizationMethodID { get; set; }
+    public string? CentralizationMethodID { get; set; }
 
     /// <summary>
     /// Perforation job comments
     /// </summary>
     [JsonPropertyName("Comment")]
-    public string Comment { get; set; }
+    public string? Comment { get; set; }
 
     /// <summary>
     /// The name under which this perforation job is known.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }

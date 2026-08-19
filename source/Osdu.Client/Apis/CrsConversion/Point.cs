@@ -24,20 +24,20 @@ public class Point
     /// </summary>
     [Required]
     [JsonPropertyName("x")]
-    public string X { get; set; }
+    public required string X { get; set; }
 
     /// <summary>
     /// Y coordinate value. For geographic CRS: latitude in degrees (-90 to +90). For projected CRS: northing in CRS units (typically meters).
     /// </summary>
     [Required]
     [JsonPropertyName("y")]
-    public string Y { get; set; }
+    public required string Y { get; set; }
 
     /// <summary>
     /// Z coordinate value representing elevation or depth. Unit specified by unitZ. Positive typically indicates height above reference surface.
     /// </summary>
     [Required]
     [JsonPropertyName("z")]
-    public string Z { get; set; }
+    public required string Z { get; set; }
 
 }

@@ -23,36 +23,36 @@ public class TrajectoryStationInV4
     /// Measured Depth - distance along the wellbore from the reference point (e.g., kelly bushing). Unit specified by unitMD or unitZ. Required for most inputKind values.
     /// </summary>
     [JsonPropertyName("md")]
-    public string Md { get; set; }
+    public string? Md { get; set; }
 
     /// <summary>
     /// Wellbore inclination angle in degrees. 0° = vertical (down), 90° = horizontal, 180° = vertical (up). Range: 0-180. Required for MD_Incl_Azim and MD_Incl inputKind.
     /// </summary>
     [JsonPropertyName("inclination")]
-    public string Inclination { get; set; }
+    public string? Inclination { get; set; }
 
     /// <summary>
     /// Wellbore azimuth (direction) angle in degrees. 0°/360° = North, 90° = East, 180° = South, 270° = West. Range: 0-360. Reference (True North or Grid North) specified by azimuthReference.
     /// </summary>
     [JsonPropertyName("azimuth")]
-    public string Azimuth { get; set; }
+    public string? Azimuth { get; set; }
 
     /// <summary>
     /// East-West displacement from well reference point. Positive = East. Used for dX_dY_dZ and MD_dX_dY_dZ inputKind. Unit specified by unitXY.
     /// </summary>
     [JsonPropertyName("dx")]
-    public string Dx { get; set; }
+    public string? Dx { get; set; }
 
     /// <summary>
     /// North-South displacement from well reference point. Positive = North. Y-axis alignment (True North or Grid North) depends on azimuthReference. Unit specified by unitXY.
     /// </summary>
     [JsonPropertyName("dy")]
-    public string Dy { get; set; }
+    public string? Dy { get; set; }
 
     /// <summary>
     /// True Vertical Depth (TVD) from well reference point. Positive = deeper/downward. Unit specified by unitZ.
     /// </summary>
     [JsonPropertyName("dz")]
-    public string Dz { get; set; }
+    public string? Dz { get; set; }
 
 }

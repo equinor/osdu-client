@@ -25,7 +25,7 @@ public class CoordinateTransformation_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CoordinateTransformation:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class CoordinateTransformation_1_0_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class CoordinateTransformation_1_0_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class CoordinateTransformation_1_0_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class CoordinateTransformation_1_0_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class CoordinateTransformation_1_0_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public CoordinateTransformation_1_0_0_Data? Data { get; set; }
@@ -101,19 +101,19 @@ public class CoordinateTransformation_1_0_0_Data : AbstractCommonResources_1_0_0
     /// The name of the entity instance.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// Alternative names, including historical, by which this entity instance is/has been known.
     /// </summary>
     [JsonPropertyName("NameAlias")]
-    public List<AbstractAliasNames_1_0_0> NameAlias { get; set; }
+    public List<AbstractAliasNames_1_0_0>? NameAlias { get; set; }
 
     /// <summary>
     /// Native identifier from a Master Data Management System or other trusted source external to OSDU - stored here in order to allow for multi-system connection and synchronization. If used, the "Source" property should identify that source system.
     /// </summary>
     [JsonPropertyName("ID")]
-    public string ID { get; set; }
+    public string? ID { get; set; }
 
     /// <summary>
     /// By default reference values are considered as 'active'. An absent 'InactiveIndicator' property value means the reference value is in active use. When 'InactiveIndicator' is set true the reverence value is no longer in use and should no longer be offered as a choice.
@@ -126,31 +126,31 @@ public class CoordinateTransformation_1_0_0_Data : AbstractCommonResources_1_0_0
     /// The text which describes a NAME TYPE in detail.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// The abbreviation or mnemonic for a reference type if defined. Example: WELL and WLBR.
     /// </summary>
     [JsonPropertyName("Code")]
-    public string Code { get; set; }
+    public string? Code { get; set; }
 
     /// <summary>
     /// Name of the authority, or organisation, which governs the entity value and from which it is sourced.
     /// </summary>
     [JsonPropertyName("AttributionAuthority")]
-    public string AttributionAuthority { get; set; }
+    public string? AttributionAuthority { get; set; }
 
     /// <summary>
     /// Name, URL, or other identifier of the publication, or repository, of the attribution source organisation from which the entity value is sourced.
     /// </summary>
     [JsonPropertyName("AttributionPublication")]
-    public string AttributionPublication { get; set; }
+    public string? AttributionPublication { get; set; }
 
     /// <summary>
     /// The distinct instance of the attribution publication, by version number, sequence number, date of publication, etc., that was used for the entity value.
     /// </summary>
     [JsonPropertyName("AttributionRevision")]
-    public string AttributionRevision { get; set; }
+    public string? AttributionRevision { get; set; }
 
     /// <summary>
     /// For reference values published and governed by OSDU: The date and time the record was committed into the OSDU member GitLab reference-values repository. The sole purpose of this date is to optimise the OSDU milestone upgrades. It allows the upgrade code to figure out whether or not the record must be PUT into reference value storage.
@@ -163,7 +163,7 @@ public class CoordinateTransformation_1_0_0_Data : AbstractCommonResources_1_0_0
     /// The name of the transformation version or variant
     /// </summary>
     [JsonPropertyName("CoordTfmVersion")]
-    public string CoordTfmVersion { get; set; }
+    public string? CoordTfmVersion { get; set; }
 
     /// <summary>
     /// The Transformation variant number.
@@ -187,19 +187,19 @@ public class CoordinateTransformation_1_0_0_Data : AbstractCommonResources_1_0_0
     /// The namespace or authority name governing this Transformation definition, e.g. EPSG for contents from the EPSG Geodetic Parameter Dataset.
     /// </summary>
     [JsonPropertyName("CodeSpace")]
-    public string CodeSpace { get; set; }
+    public string? CodeSpace { get; set; }
 
     /// <summary>
     /// Only populated for CoordinateTransformationType == ConcatenatedOperation: the ordered list of chained transformations.
     /// </summary>
     [JsonPropertyName("ConcatenatedTransformations")]
-    public List<CoordinateTransformation_1_0_0_Data_ConcatenatedTransformations> ConcatenatedTransformations { get; set; }
+    public List<CoordinateTransformation_1_0_0_Data_ConcatenatedTransformations>? ConcatenatedTransformations { get; set; }
 
     /// <summary>
     /// The InformationSource providing the Transformation definition if different from AttributionAuthority.
     /// </summary>
     [JsonPropertyName("InformationSource")]
-    public string InformationSource { get; set; }
+    public string? InformationSource { get; set; }
 
     /// <summary>
     /// The revision date of this Transformation.
@@ -212,7 +212,7 @@ public class CoordinateTransformation_1_0_0_Data : AbstractCommonResources_1_0_0
     /// The kind of Transformation, e.g. Transformation, Concatenated Transformation.
     /// </summary>
     [JsonPropertyName("Kind")]
-    public string Kind { get; set; }
+    public string? Kind { get; set; }
 
     /// <summary>
     /// The code as number as opposed to the Code defined as a string.
@@ -224,7 +224,7 @@ public class CoordinateTransformation_1_0_0_Data : AbstractCommonResources_1_0_0
     /// The type of coordinate transformation. This is an enumeration of concrete sub-types. Transformation is a single operation between a source and a target geodetic CRS; ConcatenatedOperation is a chained set of Transformations.
     /// </summary>
     [JsonPropertyName("CoordinateTransformationType")]
-    public CoordinateTransformation_1_0_0_Data_CoordinateTransformationType CoordinateTransformationType { get; set; }
+    public CoordinateTransformation_1_0_0_Data_CoordinateTransformationType? CoordinateTransformationType { get; set; }
 
     /// <summary>
     /// The source CRS of the Transformation.
@@ -242,7 +242,7 @@ public class CoordinateTransformation_1_0_0_Data : AbstractCommonResources_1_0_0
     /// Contextual information about scope and extent/area of use.
     /// </summary>
     [JsonPropertyName("Usages")]
-    public List<CoordinateTransformation_1_0_0_Data_Usages> Usages { get; set; }
+    public List<CoordinateTransformation_1_0_0_Data_Usages>? Usages { get; set; }
 
     /// <summary>
     /// Scope and extent information about the described transformation.
@@ -254,7 +254,7 @@ public class CoordinateTransformation_1_0_0_Data : AbstractCommonResources_1_0_0
     /// Used for export and actionable instructions to a conversion/transformation engine. It is initially based on Esri well-known text (WKT). Eventually, when Esri WKT are convertible into ISO WKT and vice versa, the definition can be replaced by https://proj.org/schemas/v0.2/projjson.schema.json.
     /// </summary>
     [JsonPropertyName("PersistableReference")]
-    public string PersistableReference { get; set; }
+    public string? PersistableReference { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
@@ -276,7 +276,7 @@ public class CoordinateTransformation_1_0_0_Data_Method
     /// The Transformation method name; "Concatenated" for CoordinateTransformationType == ConcatenatedOperation; EPSG method code and name for CoordinateTransformationType == Transformation.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
 }
 
@@ -289,7 +289,7 @@ public class CoordinateTransformation_1_0_0_Data_Method_AuthorityCode
     /// The authority governing the 'Code'.
     /// </summary>
     [JsonPropertyName("Authority")]
-    public string Authority { get; set; }
+    public string? Authority { get; set; }
 
     /// <summary>
     /// EPSG Method code in case of CoordinateTransformationType == Transformation
@@ -311,14 +311,14 @@ public class CoordinateTransformation_1_0_0_Data_ConcatenatedTransformations
     /// The Transformation name as part of this concatenated operation list.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// The relationship to the single Transformation item in the list of concatenated transformations.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CoordinateTransformation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TransformationID")]
-    public string TransformationID { get; set; }
+    public string? TransformationID { get; set; }
 
 }
 
@@ -331,7 +331,7 @@ public class CoordinateTransformation_1_0_0_Data_ConcatenatedTransformations_Aut
     /// The transformation authority governing the 'Code'.
     /// </summary>
     [JsonPropertyName("Authority")]
-    public string Authority { get; set; }
+    public string? Authority { get; set; }
 
     /// <summary>
     /// The transformation code assigned by the 'Authority'.
@@ -370,14 +370,14 @@ public class CoordinateTransformation_1_0_0_Data_SourceCRS
     /// The name of the source CRS.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// The relationship to the source CoordinateReferenceSystem.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CoordinateReferenceSystem:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("SourceCRSID")]
-    public string SourceCRSID { get; set; }
+    public string? SourceCRSID { get; set; }
 
 }
 
@@ -390,7 +390,7 @@ public class CoordinateTransformation_1_0_0_Data_SourceCRS_AuthorityCode
     /// The authority governing the 'Code'.
     /// </summary>
     [JsonPropertyName("Authority")]
-    public string Authority { get; set; }
+    public string? Authority { get; set; }
 
     /// <summary>
     /// The code assigned by the 'Authority'.
@@ -415,14 +415,14 @@ public class CoordinateTransformation_1_0_0_Data_TargetCRS
     /// The name of the target CRS.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// The relationship to the target CRS.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CoordinateReferenceSystem:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TargetCRSID")]
-    public string TargetCRSID { get; set; }
+    public string? TargetCRSID { get; set; }
 
 }
 
@@ -435,7 +435,7 @@ public class CoordinateTransformation_1_0_0_Data_TargetCRS_AuthorityCode
     /// The authority governing the 'Code'.
     /// </summary>
     [JsonPropertyName("Authority")]
-    public string Authority { get; set; }
+    public string? Authority { get; set; }
 
     /// <summary>
     /// The code assigned by the 'Authority'.
@@ -460,7 +460,7 @@ public class CoordinateTransformation_1_0_0_Data_Usages
     /// The name of the Usage.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// Extent or area of use information.
@@ -484,7 +484,7 @@ public class CoordinateTransformation_1_0_0_Data_Usages_AuthorityCode
     /// The authority governing the 'Code'.
     /// </summary>
     [JsonPropertyName("Authority")]
-    public string Authority { get; set; }
+    public string? Authority { get; set; }
 
     /// <summary>
     /// The code assigned by the 'Authority'.
@@ -509,13 +509,13 @@ public class CoordinateTransformation_1_0_0_Data_Usages_Extent
     /// The name of the Extent.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// The description of the Extent.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// Southern latitude limit of the bounding box in degrees based on WGS 84
@@ -552,7 +552,7 @@ public class CoordinateTransformation_1_0_0_Data_Usages_Extent_AuthorityCode
     /// The authority governing the 'Code'.
     /// </summary>
     [JsonPropertyName("Authority")]
-    public string Authority { get; set; }
+    public string? Authority { get; set; }
 
     /// <summary>
     /// The code assigned by the 'Authority'.
@@ -576,7 +576,7 @@ public class CoordinateTransformation_1_0_0_Data_Usages_Scope
     /// The name of the Scope.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
 }
 
@@ -589,7 +589,7 @@ public class CoordinateTransformation_1_0_0_Data_Usages_Scope_AuthorityCode
     /// The authority governing the 'Code'.
     /// </summary>
     [JsonPropertyName("Authority")]
-    public string Authority { get; set; }
+    public string? Authority { get; set; }
 
     /// <summary>
     /// The code assigned by the 'Authority'.
@@ -614,7 +614,7 @@ public class CoordinateTransformation_1_0_0_Data_PreferredUsage
     /// The name of the Usage.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// Extent or area of use information.
@@ -638,7 +638,7 @@ public class CoordinateTransformation_1_0_0_Data_PreferredUsage_AuthorityCode
     /// The authority governing the 'Code'.
     /// </summary>
     [JsonPropertyName("Authority")]
-    public string Authority { get; set; }
+    public string? Authority { get; set; }
 
     /// <summary>
     /// The code assigned by the 'Authority'.
@@ -663,13 +663,13 @@ public class CoordinateTransformation_1_0_0_Data_PreferredUsage_Extent
     /// The name of the Extent.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// The description of the Extent.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// Southern latitude limit of the bounding box in degrees based on WGS 84
@@ -706,7 +706,7 @@ public class CoordinateTransformation_1_0_0_Data_PreferredUsage_Extent_Authority
     /// The authority governing the 'Code'.
     /// </summary>
     [JsonPropertyName("Authority")]
-    public string Authority { get; set; }
+    public string? Authority { get; set; }
 
     /// <summary>
     /// The code assigned by the 'Authority'.
@@ -730,7 +730,7 @@ public class CoordinateTransformation_1_0_0_Data_PreferredUsage_Scope
     /// The name of the Scope.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
 }
 
@@ -743,7 +743,7 @@ public class CoordinateTransformation_1_0_0_Data_PreferredUsage_Scope_AuthorityC
     /// The authority governing the 'Code'.
     /// </summary>
     [JsonPropertyName("Authority")]
-    public string Authority { get; set; }
+    public string? Authority { get; set; }
 
     /// <summary>
     /// The code assigned by the 'Authority'.

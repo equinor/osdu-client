@@ -23,38 +23,38 @@ public class AbstractContact_1_0_0
     /// Contact email address. Property may be left empty where it is inappropriate to provide personally identifiable information.
     /// </summary>
     [JsonPropertyName("EmailAddress")]
-    public string EmailAddress { get; set; }
+    public string? EmailAddress { get; set; }
 
     /// <summary>
     /// Contact phone number. Property may be left empty where it is inappropriate to provide personally identifiable information.
     /// </summary>
     [JsonPropertyName("PhoneNumber")]
-    public string PhoneNumber { get; set; }
+    public string? PhoneNumber { get; set; }
 
     /// <summary>
     /// The identifier of a reference value for the role of the contact within the associated organisation, such as Account owner, Sales Representative, Technical Support, Project Manager, Party Chief, Client Representative, Senior Observer.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ContactRoleType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("RoleTypeID")]
-    public string RoleTypeID { get; set; }
+    public string? RoleTypeID { get; set; }
 
     /// <summary>
     /// Additional information about the contact
     /// </summary>
     [JsonPropertyName("Comment")]
-    public string Comment { get; set; }
+    public string? Comment { get; set; }
 
     /// <summary>
     /// Reference to the company the contact is associated with.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-Organisation:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("OrganisationID")]
-    public string OrganisationID { get; set; }
+    public string? OrganisationID { get; set; }
 
     /// <summary>
     /// Name of the individual contact. Property may be left empty where it is inappropriate to provide personally identifiable information.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
 }

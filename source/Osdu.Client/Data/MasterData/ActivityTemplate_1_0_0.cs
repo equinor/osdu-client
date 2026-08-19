@@ -25,7 +25,7 @@ public class ActivityTemplate_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-ActivityTemplate:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class ActivityTemplate_1_0_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class ActivityTemplate_1_0_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class ActivityTemplate_1_0_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class ActivityTemplate_1_0_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class ActivityTemplate_1_0_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public ActivityTemplate_1_0_0_Data? Data { get; set; }
@@ -101,13 +101,13 @@ public class ActivityTemplate_1_0_0_Data : AbstractCommonResources_1_0_0 // Also
     /// Alternative names, including historical, by which this master data is/has been known (it should include all the identifiers).
     /// </summary>
     [JsonPropertyName("NameAliases")]
-    public List<AbstractAliasNames_1_0_0> NameAliases { get; set; }
+    public List<AbstractAliasNames_1_0_0>? NameAliases { get; set; }
 
     /// <summary>
     /// List of geographic entities which provide context to the master data. This may include multiple types or multiple values of the same type.
     /// </summary>
     [JsonPropertyName("GeoContexts")]
-    public List<AbstractGeoContext_1_0_0> GeoContexts { get; set; }
+    public List<AbstractGeoContext_1_0_0>? GeoContexts { get; set; }
 
     [JsonPropertyName("SpatialLocation")]
     public AbstractSpatialLocation_1_0_0? SpatialLocation { get; set; }
@@ -116,32 +116,32 @@ public class ActivityTemplate_1_0_0_Data : AbstractCommonResources_1_0_0 // Also
     /// This describes the reason that caused the creation of a new version of this master data.
     /// </summary>
     [JsonPropertyName("VersionCreationReason")]
-    public string VersionCreationReason { get; set; }
+    public string? VersionCreationReason { get; set; }
 
     /// <summary>
     /// Describes a master-data record's overall suitability for general business consumption based on data quality. Clarifications: Since Certified is the highest classification of suitable quality, any further change or versioning of a Certified record should be carefully considered and justified. If a Technical Assurance value is not populated then one can assume the data has not been evaluated or its quality is unknown (=Unevaluated). Technical Assurance values are not intended to be used for the identification of a single "preferred" or "definitive" record by comparison with other records.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-TechnicalAssuranceType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("TechnicalAssuranceTypeID")]
-    public string TechnicalAssuranceTypeID { get; set; }
+    public string? TechnicalAssuranceTypeID { get; set; }
 
     /// <summary>
     /// The descriptive name of this activity template or work-step in a workflow.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// A detailed textual description of this activity template or workflow.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// The parameters that participate in this type of activity.
     /// </summary>
     [JsonPropertyName("Parameters")]
-    public List<ActivityTemplate_1_0_0_Data_Parameters> Parameters { get; set; }
+    public List<ActivityTemplate_1_0_0_Data_Parameters>? Parameters { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
@@ -158,7 +158,7 @@ public class ActivityTemplate_1_0_0_Data_Parameters
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-ParameterKind:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("AllowedParameterKind")]
-    public string AllowedParameterKind { get; set; }
+    public string? AllowedParameterKind { get; set; }
 
     /// <summary>
     /// Indicates if the parameter is an input of the activity. If the parameter is a data object and is also an output of the activity, it is strongly advised to use two parameters : one for input and one for output. The reason is to be able to give two different versions strings for the input and output data object which has got obviously the same UUID.
@@ -166,13 +166,13 @@ public class ActivityTemplate_1_0_0_Data_Parameters
     [Required]
     [JsonPropertyName("IsInput")]
     [JsonConverter(typeof(BooleanConverter))]
-    public bool IsInput { get; set; }
+    public required bool IsInput { get; set; }
 
     /// <summary>
     /// Allows to indicate that, in the same activity, this parameter template must be associated to another parameter template identified by its title. The associated parameter value constrains this parameter.
     /// </summary>
     [JsonPropertyName("KeyConstraints")]
-    public List<string> KeyConstraints { get; set; }
+    public List<string>? KeyConstraints { get; set; }
 
     /// <summary>
     /// Indicates if the parameter is an output of the activity. If the parameter is a data object and is also an input of the activity, it is strongly advised to use two parameters : one for input and one for output. The reason is to be able to give two different versions strings for the input and output data object which has got obviously the same UUID.
@@ -180,40 +180,40 @@ public class ActivityTemplate_1_0_0_Data_Parameters
     [Required]
     [JsonPropertyName("IsOutput")]
     [JsonConverter(typeof(BooleanConverter))]
-    public bool IsOutput { get; set; }
+    public required bool IsOutput { get; set; }
 
     /// <summary>
     /// Name of the parameter in the activity. Key to identify parameter.
     /// </summary>
     [Required]
     [JsonPropertyName("Title")]
-    public string Title { get; set; }
+    public required string Title { get; set; }
 
     /// <summary>
     /// When parameter is limited to data object of given types, describe the allowed types. Used only when ParameterType is dataObject.  String is an OSDU kind of work product component.
     /// </summary>
     [JsonPropertyName("DataObjectContentType")]
-    public List<string> DataObjectContentType { get; set; }
+    public List<string>? DataObjectContentType { get; set; }
 
     /// <summary>
     /// Maximum number of parameters of this type allowed in the activity. If the maximum number of parameters is infinite, use -1 value.
     /// </summary>
     [Required]
     [JsonPropertyName("MaxOccurs")]
-    public int MaxOccurs { get; set; }
+    public required int MaxOccurs { get; set; }
 
     /// <summary>
     /// Minimum number of parameter of this type required by the activity. If the minimum number of parameters is infinite, use -1 value.
     /// </summary>
     [Required]
     [JsonPropertyName("MinOccurs")]
-    public int MinOccurs { get; set; }
+    public required int MinOccurs { get; set; }
 
     /// <summary>
     /// Textual description of additional constraint associated with the parameter. (note that it will be better to have a formal description of the constraint)
     /// </summary>
     [JsonPropertyName("Constraint")]
-    public string Constraint { get; set; }
+    public string? Constraint { get; set; }
 
     [JsonPropertyName("DefaultValue")]
     public AbstractActivityParameter_1_0_0? DefaultValue { get; set; }
@@ -226,6 +226,6 @@ public class ActivityTemplate_1_0_0_Data_Parameters
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-UnitQuantity:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("UnitQuantityID")]
-    public string UnitQuantityID { get; set; }
+    public string? UnitQuantityID { get; set; }
 
 }

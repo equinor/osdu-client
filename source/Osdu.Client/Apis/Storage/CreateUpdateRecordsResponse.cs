@@ -29,18 +29,18 @@ public class CreateUpdateRecordsResponse
     /// List of record ids that were successfully created or updated.
     /// </summary>
     [JsonPropertyName("recordIds")]
-    public List<string> RecordIds { get; set; }
+    public List<string>? RecordIds { get; set; }
 
     /// <summary>
     /// List of record ids that were skipped (e.g. duplicates).
     /// </summary>
     [JsonPropertyName("skippedRecordIds")]
-    public List<string> SkippedRecordIds { get; set; }
+    public List<string>? SkippedRecordIds { get; set; }
 
     /// <summary>
     /// List of record id:version pairs for the created or updated records.
     /// </summary>
     [JsonPropertyName("recordIdVersions")]
-    public List<string> RecordIdVersions { get; set; }
+    public List<string>? RecordIdVersions { get; set; }
 
 }

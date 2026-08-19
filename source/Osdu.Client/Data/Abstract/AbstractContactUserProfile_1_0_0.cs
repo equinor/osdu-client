@@ -24,6 +24,6 @@ public class AbstractContactUserProfile_1_0_0 : AbstractContact_1_1_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:master-data\-\-UserProfile:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("UserProfileID")]
-    public string UserProfileID { get; set; }
+    public string? UserProfileID { get; set; }
 
 }

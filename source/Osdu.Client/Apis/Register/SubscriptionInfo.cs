@@ -20,24 +20,24 @@ namespace Osdu.Client.Apis.Register;
 public class SubscriptionInfo
 {
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     [JsonPropertyName("name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     [JsonPropertyName("description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     [JsonPropertyName("topic")]
-    public string Topic { get; set; }
+    public string? Topic { get; set; }
 
     [JsonPropertyName("pushEndpoint")]
-    public string PushEndpoint { get; set; }
+    public string? PushEndpoint { get; set; }
 
     [JsonPropertyName("createdBy")]
-    public string CreatedBy { get; set; }
+    public string? CreatedBy { get; set; }
 
     [JsonPropertyName("notificationId")]
-    public string NotificationId { get; set; }
+    public string? NotificationId { get; set; }
 
 }

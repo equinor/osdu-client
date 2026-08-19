@@ -38,6 +38,6 @@ public class AbstractFacilityState_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-FacilityStateType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("FacilityStateTypeID")]
-    public string FacilityStateTypeID { get; set; }
+    public string? FacilityStateTypeID { get; set; }
 
 }

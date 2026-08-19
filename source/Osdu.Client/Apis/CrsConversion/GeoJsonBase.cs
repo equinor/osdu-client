@@ -25,15 +25,15 @@ namespace Osdu.Client.Apis.CrsConversion;
 public class GeoJsonBase
 {
     [JsonPropertyName("geoJsonVariantInternal")]
-    public GeoJsonBase_GeoJsonVariantInternal GeoJsonVariantInternal { get; set; }
+    public GeoJsonBase_GeoJsonVariantInternal? GeoJsonVariantInternal { get; set; }
 
     [Required]
     [MinLength(1)]
     [JsonPropertyName("type")]
-    public string Type { get; set; }
+    public required string Type { get; set; }
 
     [JsonPropertyName("bbox")]
-    public List<double> Bbox { get; set; }
+    public List<double>? Bbox { get; set; }
 
 }
 

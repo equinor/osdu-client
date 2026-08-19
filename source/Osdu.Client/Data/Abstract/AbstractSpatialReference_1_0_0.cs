@@ -24,31 +24,31 @@ public class AbstractSpatialReference_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CoordinateReferenceSystem:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("CoordinateReferenceSystemID")]
-    public string CoordinateReferenceSystemID { get; set; }
+    public string? CoordinateReferenceSystemID { get; set; }
 
     /// <summary>
     /// The explicit VerticalCRS reference into the CoordinateReferenceSystem reference list. This property stays empty for 2D geometries. Absent or empty values for 3D geometries mean the context may be provided by a CompoundCRS in 'CoordinateReferenceSystemID' or implicitly EPSG:5714 MSL height
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CoordinateReferenceSystem:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("VerticalCoordinateReferenceSystemID")]
-    public string VerticalCoordinateReferenceSystemID { get; set; }
+    public string? VerticalCoordinateReferenceSystemID { get; set; }
 
     /// <summary>
     /// The CRS reference as persistableReference string. If populated, the CoordinateReferenceSystemID takes precedence.
     /// </summary>
     [JsonPropertyName("PersistableReferenceCRS")]
-    public string PersistableReferenceCRS { get; set; }
+    public string? PersistableReferenceCRS { get; set; }
 
     /// <summary>
     /// The VerticalCRS reference as persistableReference string. If populated, the VerticalCoordinateReferenceSystemID takes precedence. The property is null or empty for 2D geometries. For 3D geometries and absent or null persistableReferenceVerticalCrs the vertical CRS is either provided via persistableReferenceCrs's CompoundCRS or it is implicitly defined as EPSG:5714 MSL height.
     /// </summary>
     [JsonPropertyName("PersistableReferenceVerticalCRS")]
-    public string PersistableReferenceVerticalCRS { get; set; }
+    public string? PersistableReferenceVerticalCRS { get; set; }
 
     /// <summary>
     /// The unit of measure for the Z-axis (only for 3-dimensional coordinates, where the CRS does not describe the vertical unit). Note that the direction is upwards positive, i.e. Z means height.
     /// </summary>
     [JsonPropertyName("PersistableReferenceUnitZ")]
-    public string PersistableReferenceUnitZ { get; set; }
+    public string? PersistableReferenceUnitZ { get; set; }
 
 }

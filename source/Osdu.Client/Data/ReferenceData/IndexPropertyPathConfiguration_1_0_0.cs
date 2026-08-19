@@ -25,7 +25,7 @@ public class IndexPropertyPathConfiguration_1_0_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-IndexPropertyPathConfiguration:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The schema identification for the OSDU resource object following the pattern {Namespace}:{Source}:{Type}:{VersionMajor}.{VersionMinor}.{VersionPatch}. The versioning scheme follows the semantic versioning, https://semver.org/.
@@ -33,7 +33,7 @@ public class IndexPropertyPathConfiguration_1_0_0
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// The version number of this OSDU resource; set by the framework.
@@ -43,11 +43,11 @@ public class IndexPropertyPathConfiguration_1_0_0
 
     [Required]
     [JsonPropertyName("acl")]
-    public AbstractAccessControlList_1_0_0 Acl { get; set; }
+    public required AbstractAccessControlList_1_0_0 Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public AbstractLegalTags_1_0_0 Legal { get; set; }
+    public required AbstractLegalTags_1_0_0 Legal { get; set; }
 
     /// <summary>
     /// A generic dictionary of string keys mapping to string value. Only strings are permitted as keys and values.
@@ -66,7 +66,7 @@ public class IndexPropertyPathConfiguration_1_0_0
     /// The user reference, which created the first version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// Timestamp of the time at which this version of the OSDU resource object was created. Set by the System. The value is a combined date-time string in ISO-8601 given in UTC.
@@ -79,7 +79,7 @@ public class IndexPropertyPathConfiguration_1_0_0
     /// The user reference, which created this version of this resource object. Set by the System.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     [JsonPropertyName("ancestry")]
     public AbstractLegalParentList_1_0_0? Ancestry { get; set; }
@@ -88,7 +88,7 @@ public class IndexPropertyPathConfiguration_1_0_0
     /// The Frame of Reference meta data section linking the named properties to self-contained definitions.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<AbstractMetaItem_1_0_0> Meta { get; set; }
+    public List<AbstractMetaItem_1_0_0>? Meta { get; set; }
 
     [JsonPropertyName("data")]
     public IndexPropertyPathConfiguration_1_0_0_Data? Data { get; set; }
@@ -101,19 +101,19 @@ public class IndexPropertyPathConfiguration_1_0_0_Data : AbstractCommonResources
     /// The name of the entity instance.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// Alternative names, including historical, by which this entity instance is/has been known.
     /// </summary>
     [JsonPropertyName("NameAlias")]
-    public List<AbstractAliasNames_1_0_0> NameAlias { get; set; }
+    public List<AbstractAliasNames_1_0_0>? NameAlias { get; set; }
 
     /// <summary>
     /// Native identifier from a Master Data Management System or other trusted source external to OSDU - stored here in order to allow for multi-system connection and synchronization. If used, the "Source" property should identify that source system.
     /// </summary>
     [JsonPropertyName("ID")]
-    public string ID { get; set; }
+    public string? ID { get; set; }
 
     /// <summary>
     /// By default reference values are considered as 'active'. An absent 'InactiveIndicator' property value means the reference value is in active use. When 'InactiveIndicator' is set true the reverence value is no longer in use and should no longer be offered as a choice.
@@ -126,31 +126,31 @@ public class IndexPropertyPathConfiguration_1_0_0_Data : AbstractCommonResources
     /// The text which describes a NAME TYPE in detail.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// The abbreviation or mnemonic for a reference type if defined. Example: WELL and WLBR.
     /// </summary>
     [JsonPropertyName("Code")]
-    public string Code { get; set; }
+    public string? Code { get; set; }
 
     /// <summary>
     /// Name of the authority, or organisation, which governs the entity value and from which it is sourced.
     /// </summary>
     [JsonPropertyName("AttributionAuthority")]
-    public string AttributionAuthority { get; set; }
+    public string? AttributionAuthority { get; set; }
 
     /// <summary>
     /// Name, URL, or other identifier of the publication, or repository, of the attribution source organisation from which the entity value is sourced.
     /// </summary>
     [JsonPropertyName("AttributionPublication")]
-    public string AttributionPublication { get; set; }
+    public string? AttributionPublication { get; set; }
 
     /// <summary>
     /// The distinct instance of the attribution publication, by version number, sequence number, date of publication, etc., that was used for the entity value.
     /// </summary>
     [JsonPropertyName("AttributionRevision")]
-    public string AttributionRevision { get; set; }
+    public string? AttributionRevision { get; set; }
 
     /// <summary>
     /// For reference values published and governed by OSDU: The date and time the record was committed into the OSDU member GitLab reference-values repository. The sole purpose of this date is to optimise the OSDU milestone upgrades. It allows the upgrade code to figure out whether or not the record must be PUT into reference value storage.
@@ -163,7 +163,7 @@ public class IndexPropertyPathConfiguration_1_0_0_Data : AbstractCommonResources
     /// The list of index property configurations for the specific kind.
     /// </summary>
     [JsonPropertyName("Configurations")]
-    public List<IndexPropertyPathConfiguration_1_0_0_Data_Configurations> Configurations { get; set; }
+    public List<IndexPropertyPathConfiguration_1_0_0_Data_Configurations>? Configurations { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
@@ -179,26 +179,26 @@ public class IndexPropertyPathConfiguration_1_0_0_Data_Configurations
     /// The name of the indexed property, i.e., this is the property name used in Search.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// The use case description this configuration satisfies.
     /// </summary>
     [JsonPropertyName("UseCase")]
-    public string UseCase { get; set; }
+    public string? UseCase { get; set; }
 
     /// <summary>
     /// Current supported policies are 'ExtractAllMatches' resulting in an array of values or 'ExtractFirstMatch' single value. The policy applies only to the Paths[].ValueExtraction.
     /// </summary>
     [RegularExpression(@"^(ExtractFirstMatch|ExtractAllMatches)$")]
     [JsonPropertyName("Policy")]
-    public string Policy { get; set; }
+    public string? Policy { get; set; }
 
     /// <summary>
     /// The list of path definitions to derive the property value from.
     /// </summary>
     [JsonPropertyName("Paths")]
-    public List<IndexPropertyPathConfiguration_1_0_0_Data_Configurations_Paths> Paths { get; set; }
+    public List<IndexPropertyPathConfiguration_1_0_0_Data_Configurations_Paths>? Paths { get; set; }
 
 }
 
@@ -218,7 +218,7 @@ public class IndexPropertyPathConfiguration_1_0_0_Data_Configurations_Paths
     /// </summary>
     [Required]
     [JsonPropertyName("ValueExtraction")]
-    public IndexPropertyPathConfiguration_1_0_0_Data_Configurations_Paths_ValueExtraction ValueExtraction { get; set; }
+    public required IndexPropertyPathConfiguration_1_0_0_Data_Configurations_Paths_ValueExtraction ValueExtraction { get; set; }
 
 }
 
@@ -231,33 +231,33 @@ public class IndexPropertyPathConfiguration_1_0_0_Data_Configurations_Paths_Rela
     /// The path to the property containing the ID of the target record to chase. This property is only populated if the property is extracted from a related object, which must be chased. If the property is derived from 'within' the same record, which triggered the indexing, the RelatedObjectID is left absent.
     /// </summary>
     [JsonPropertyName("RelatedObjectID")]
-    public string RelatedObjectID { get; set; }
+    public string? RelatedObjectID { get; set; }
 
     /// <summary>
     /// The kind or schema id expected as the target object type. This property is only populated if the property is extracted from a related object, which must be chased. If the property is derived from 'within' the same record, which triggered the indexing, the RelatedObjectKind is left absent.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.$")]
     [JsonPropertyName("RelatedObjectKind")]
-    public string RelatedObjectKind { get; set; }
+    public string? RelatedObjectKind { get; set; }
 
     /// <summary>
     /// The direction of the relationship definition seen from the object being indexed.  'ChildToParent' assumes an outgoing relationship with the target record defined in the object being indexed. 'ParentToChildren' assumes that the related objects have a relationship by RelatedObjectID to the id of the record being indexed.
     /// </summary>
     [RegularExpression(@"^(ChildToParent|ParentToChildren)$")]
     [JsonPropertyName("RelationshipDirection")]
-    public string RelationshipDirection { get; set; }
+    public string? RelationshipDirection { get; set; }
 
     /// <summary>
     /// The property path of the target record data block, which needs subjected to the conditional matching. The data prefix is not required.
     /// </summary>
     [JsonPropertyName("RelatedConditionProperty")]
-    public string RelatedConditionProperty { get; set; }
+    public string? RelatedConditionProperty { get; set; }
 
     /// <summary>
     /// The RelatedConditionProperty values, which need to match in order to be accepted as de-normalized value(s). If the Policy is ExtractFirstMatch, the list is prioritized and the first match is accepted as final value. Policy ExtractAllMatches collects all matching values as array.
     /// </summary>
     [JsonPropertyName("RelatedConditionMatches")]
-    public List<string> RelatedConditionMatches { get; set; }
+    public List<string>? RelatedConditionMatches { get; set; }
 
 }
 
@@ -270,19 +270,19 @@ public class IndexPropertyPathConfiguration_1_0_0_Data_Configurations_Paths_Valu
     /// The property path of the target record data block, which needs to be subjected to the conditional matching. The data prefix is not required in the path.
     /// </summary>
     [JsonPropertyName("RelatedConditionProperty")]
-    public string RelatedConditionProperty { get; set; }
+    public string? RelatedConditionProperty { get; set; }
 
     /// <summary>
     /// The RelatedConditionProperty values, which need to match in order to be accepted as de-normalized value(s). If the Policy is ExtractFirstMatch, the list is prioritized and the first match is accepted as final value. Policy ExtractAllMatches collects all matching values as array.
     /// </summary>
     [JsonPropertyName("RelatedConditionMatches")]
-    public List<string> RelatedConditionMatches { get; set; }
+    public List<string>? RelatedConditionMatches { get; set; }
 
     /// <summary>
     /// The path to the property from where to extract the de-normalized value. The data prefix is not required in the path.
     /// </summary>
     [Required]
     [JsonPropertyName("ValuePath")]
-    public string ValuePath { get; set; }
+    public required string ValuePath { get; set; }
 
 }

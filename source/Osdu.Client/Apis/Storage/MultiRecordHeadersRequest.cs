@@ -23,7 +23,7 @@ public class MultiRecordHeadersRequest
     [MinLength(1)]
     [MaxLength(1000)]
     [JsonPropertyName("records")]
-    public List<string> Records { get; set; }
+    public required List<string> Records { get; set; }
 
     /// <summary>
     /// Filter/projection: list of record header attributes to return. If specified, only these attributes (plus 'id') will be returned. If omitted or empty, all record header fields are returned.
@@ -31,7 +31,7 @@ public class MultiRecordHeadersRequest
     [MinLength(0)]
     [MaxLength(10)]
     [JsonPropertyName("attributes")]
-    public List<MultiRecordHeadersRequest_Attributes> Attributes { get; set; }
+    public List<MultiRecordHeadersRequest_Attributes>? Attributes { get; set; }
 
 }
 

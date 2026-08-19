@@ -26,6 +26,6 @@ public class ReindexRecordsRequest
     [MinLength(1)]
     [MaxLength(1000)]
     [JsonPropertyName("recordIds")]
-    public List<string> RecordIds { get; set; }
+    public required List<string> RecordIds { get; set; }
 
 }

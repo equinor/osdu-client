@@ -31,7 +31,7 @@ public class AbstractCompressionInfo_1_1_0
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-CompressionMethodType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("CompressionMethodTypeID")]
-    public string CompressionMethodTypeID { get; set; }
+    public string? CompressionMethodTypeID { get; set; }
 
     /// <summary>
     /// Number indicating degree of fidelity present in bulk data resulting from compression.  Meaning of number depends on algorithm.
@@ -44,13 +44,13 @@ public class AbstractCompressionInfo_1_1_0
     /// </summary>
     [RegularExpression(@"^[0-9]+$")]
     [JsonPropertyName("CompressedByteCount")]
-    public string CompressedByteCount { get; set; }
+    public string? CompressedByteCount { get; set; }
 
     /// <summary>
     /// The byte count of the dataset prior to compression. The value type is string, but it must be convertible to a long integer.
     /// </summary>
     [RegularExpression(@"^[0-9]+$")]
     [JsonPropertyName("UncompressedByteCount")]
-    public string UncompressedByteCount { get; set; }
+    public string? UncompressedByteCount { get; set; }
 
 }

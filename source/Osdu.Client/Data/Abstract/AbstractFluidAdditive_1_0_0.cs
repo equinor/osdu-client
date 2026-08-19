@@ -24,56 +24,56 @@ public class AbstractFluidAdditive_1_0_0
     /// </summary>
     [Required]
     [JsonPropertyName("AdditiveName")]
-    public string AdditiveName { get; set; }
+    public required string AdditiveName { get; set; }
 
     /// <summary>
     /// The additive material type.
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-StimMaterialType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("MaterialTypeID")]
-    public string MaterialTypeID { get; set; }
+    public string? MaterialTypeID { get; set; }
 
     /// <summary>
     /// Additive type or function
     /// </summary>
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-StimAdditiveType:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("AdditiveKindID")]
-    public string AdditiveKindID { get; set; }
+    public string? AdditiveKindID { get; set; }
 
     /// <summary>
     /// The type of additive that is used, which can represent a suppliers description or type of AdditiveKind. For example, 5% HCl could be the type when AdditiveKind=acid.
     /// </summary>
     [JsonPropertyName("AdditiveType")]
-    public string AdditiveType { get; set; }
+    public string? AdditiveType { get; set; }
 
     /// <summary>
     /// The name of the additive supplier.
     /// </summary>
     [JsonPropertyName("SupplierName")]
-    public string SupplierName { get; set; }
+    public string? SupplierName { get; set; }
 
     /// <summary>
     /// A code used to identify the supplier of the additive.
     /// </summary>
     [JsonPropertyName("SupplierCode")]
-    public string SupplierCode { get; set; }
+    public string? SupplierCode { get; set; }
 
     /// <summary>
     /// Code to identify additive by supplier's product number/code.
     /// </summary>
     [JsonPropertyName("AdditiveCode")]
-    public string AdditiveCode { get; set; }
+    public string? AdditiveCode { get; set; }
 
     /// <summary>
     /// The chemical abstract service number for this additive (CAS registry number).
     /// </summary>
     [JsonPropertyName("ChemicalAbstractServiceNumber")]
-    public string ChemicalAbstractServiceNumber { get; set; }
+    public string? ChemicalAbstractServiceNumber { get; set; }
 
     /// <summary>
     /// General remarks about this fluid additive.
     /// </summary>
     [JsonPropertyName("Remarks")]
-    public string Remarks { get; set; }
+    public string? Remarks { get; set; }
 
 }
