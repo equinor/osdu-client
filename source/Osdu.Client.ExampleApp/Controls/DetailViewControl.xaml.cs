@@ -33,6 +33,10 @@ public partial class DetailViewControl : UserControl
         // Re-render if data is present so detail sections pick up new theme
         if (MasterGrid.ItemsSource is ObservableCollection<MasterDetailRow> rows && rows.Count > 0)
         {
+            // Invalidate all materialized detail sections so they rebuild with the new theme
+            foreach (var row in rows)
+                row.InvalidateDetailSections();
+
             MasterGrid.RowDetailsTemplate = BuildRowDetailsTemplate();
         }
     }
@@ -246,7 +250,7 @@ public partial class DetailViewControl : UserControl
         var template = new DataTemplate();
 
         var borderFactory = new FrameworkElementFactory(typeof(Border));
-        borderFactory.SetValue(Border.BackgroundProperty, _theme.SurfaceBrush);
+        borderFactory.SetValue(Border.BackgroundProperty, _theme.SidebarBrush);
         borderFactory.SetValue(Border.PaddingProperty, new Thickness(12, 8, 12, 8));
         borderFactory.SetValue(Border.BorderBrushProperty, _theme.BorderBrush);
         borderFactory.SetValue(Border.BorderThicknessProperty, new Thickness(0, 1, 0, 0));
@@ -318,6 +322,16 @@ public partial class DetailViewControl : UserControl
             DetailSections = DetailSectionDefs
                 .Select(d => new DetailSection(d.Name, d.Raw, theme))
                 .ToList();
+        }
+
+        /// <summary>
+        /// Invalidates materialized detail sections so they are rebuilt with the current theme
+        /// on next expansion.
+        /// </summary>
+        public void InvalidateDetailSections()
+        {
+            _detailsMaterialized = false;
+            DetailSections = null;
         }
 
         public string DetailSummary => DetailSectionDefs.Count > 0
@@ -438,7 +452,7 @@ public partial class DetailViewControl : UserControl
             {
                 BorderBrush = theme.BorderBrush,
                 BorderThickness = new Thickness(1),
-                CornerRadius = new CornerRadius(4),
+                CornerRadius = new CornerRadius(3),
                 Background = theme.CardBrush,
                 Padding = new Thickness(4),
                 Margin = new Thickness(0, 2, 0, 2),
@@ -473,9 +487,10 @@ public partial class DetailViewControl : UserControl
             var expandAllBtn = new Button
             {
                 Content = "▼ Expand All",
-                Background = theme.CardBrush,
+                Background = theme.ButtonBgBrush,
                 Foreground = theme.TextPrimaryBrush,
                 BorderBrush = theme.BorderBrush,
+                BorderThickness = new Thickness(1),
                 Padding = new Thickness(4, 1, 4, 1),
                 Margin = new Thickness(0, 0, 4, 0),
                 FontSize = 11,
@@ -493,9 +508,10 @@ public partial class DetailViewControl : UserControl
             var collapseAllBtn = new Button
             {
                 Content = "▲ Collapse All",
-                Background = theme.CardBrush,
+                Background = theme.ButtonBgBrush,
                 Foreground = theme.TextPrimaryBrush,
                 BorderBrush = theme.BorderBrush,
+                BorderThickness = new Thickness(1),
                 Padding = new Thickness(4, 1, 4, 1),
                 FontSize = 11,
                 Cursor = Cursors.Hand
