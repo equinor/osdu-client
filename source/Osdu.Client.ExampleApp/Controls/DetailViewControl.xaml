@@ -18,8 +18,10 @@
               BorderThickness="0"
               RowDetailsVisibilityMode="Collapsed"
               ScrollViewer.CanContentScroll="True"
+              ScrollViewer.IsDeferredScrollingEnabled="True"
               VirtualizingPanel.IsVirtualizing="True"
               VirtualizingPanel.VirtualizationMode="Recycling"
+              VirtualizingPanel.ScrollUnit="Pixel"
               EnableRowVirtualization="True"
               EnableColumnVirtualization="True" />
 </UserControl>

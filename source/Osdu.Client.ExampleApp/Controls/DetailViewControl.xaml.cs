@@ -1,18 +1,18 @@
-﻿using System.Collections.ObjectModel;
+﻿using Osdu.Client.ExampleApp.Helpers;
+using System.Collections.ObjectModel;
 using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
-using Osdu.Client.ExampleApp.Helpers;
 
 namespace Osdu.Client.ExampleApp.Controls;
 
 public partial class DetailViewControl : UserControl
 {
     private AppTheme _theme = AppTheme.Light;
-    private DataGridRow? _expandedRow;
 
     public DetailViewControl()
     {
@@ -42,7 +42,6 @@ public partial class DetailViewControl : UserControl
         MasterGrid.Columns.Clear();
         MasterGrid.RowDetailsTemplate = null;
         MasterGrid.ItemsSource = null;
-        _expandedRow = null;
 
         if (records.Count == 0) return;
 
@@ -126,48 +125,106 @@ public partial class DetailViewControl : UserControl
         MasterGrid.Columns.Clear();
         MasterGrid.RowDetailsTemplate = null;
         MasterGrid.ItemsSource = null;
-        _expandedRow = null;
     }
 
     private void MasterGrid_LoadingRow(object? sender, DataGridRowEventArgs e)
     {
         e.Row.MouseLeftButtonUp += Row_MouseLeftButtonUp;
-        e.Row.DetailsVisibility = Visibility.Collapsed;
+        e.Row.DataContextChanged += Row_DataContextChanged;
+        RestoreRowDetailsState(e.Row);
     }
 
     private void MasterGrid_UnloadingRow(object? sender, DataGridRowEventArgs e)
     {
         e.Row.MouseLeftButtonUp -= Row_MouseLeftButtonUp;
-        // If this row was the expanded one, clear the reference
-        if (_expandedRow == e.Row)
-            _expandedRow = null;
+        e.Row.DataContextChanged -= Row_DataContextChanged;
+    }
+
+    private void Row_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+    {
+        if (sender is DataGridRow row)
+            RestoreRowDetailsState(row);
+    }
+
+    private void RestoreRowDetailsState(DataGridRow row)
+    {
+        if (row.DataContext is MasterDetailRow masterRow && masterRow.IsExpanded)
+        {
+            masterRow.EnsureDetailSections(_theme);
+            row.DetailsVisibility = Visibility.Visible;
+        }
+        else
+        {
+            row.DetailsVisibility = Visibility.Collapsed;
+        }
     }
 
     private void Row_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
     {
         if (sender is not DataGridRow row) return;
 
-        if (_expandedRow == row)
+        // Ignore clicks that originated inside the row details area
+        if (e.OriginalSource is DependencyObject originalSource &&
+            IsInRowDetails(originalSource, row))
         {
-            // Collapse the currently expanded row
+            return;
+        }
+
+        if (row.DataContext is not MasterDetailRow masterRow) return;
+
+        if (masterRow.IsExpanded)
+        {
+            masterRow.IsExpanded = false;
             row.DetailsVisibility = Visibility.Collapsed;
-            _expandedRow = null;
         }
         else
         {
-            // Collapse the previously expanded row
-            if (_expandedRow is not null)
-                _expandedRow.DetailsVisibility = Visibility.Collapsed;
+            // Collapse previously expanded row
+            CollapseCurrentlyExpanded();
 
-            // Ensure detail sections are materialized on first expand
-            if (row.DataContext is MasterDetailRow masterRow)
-                masterRow.EnsureDetailSections(_theme);
-
+            masterRow.EnsureDetailSections(_theme);
+            masterRow.IsExpanded = true;
             row.DetailsVisibility = Visibility.Visible;
-            _expandedRow = row;
         }
 
         e.Handled = true;
+    }
+
+    /// <summary>
+    /// Checks whether the given element is inside the row details presenter.
+    /// </summary>
+    private static bool IsInRowDetails(DependencyObject element, DataGridRow row)
+    {
+        var current = element;
+        while (current is not null && current != row)
+        {
+            if (current is DataGridDetailsPresenter)
+                return true;
+            current = VisualTreeHelper.GetParent(current);
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// Collapses any currently expanded row by scanning the data source.
+    /// </summary>
+    private void CollapseCurrentlyExpanded()
+    {
+        if (MasterGrid.ItemsSource is not ObservableCollection<MasterDetailRow> rows) return;
+
+        foreach (var item in rows)
+        {
+            if (!item.IsExpanded) continue;
+
+            item.IsExpanded = false;
+
+            // Try to update the visual row if it's realized
+            if (MasterGrid.ItemContainerGenerator.ContainerFromItem(item) is DataGridRow visualRow)
+                visualRow.DetailsVisibility = Visibility.Collapsed;
+
+            break; // Only one expanded at a time
+        }
     }
 
     private DataTemplate BuildRowDetailsTemplate()
@@ -211,349 +268,359 @@ public partial class DetailViewControl : UserControl
         template.VisualTree = borderFactory;
         return template;
     }
-}
-
-/// <summary>
-/// Lightweight definition for a detail section — raw data only, no UI until needed.
-/// </summary>
-public class DetailSectionDef(string name, JsonElement raw)
-{
-    public string Name { get; } = name;
-    public JsonElement Raw { get; } = raw;
-}
-
-/// <summary>
-/// Represents a row with scalar values displayed in the master grid
-/// and complex detail sections shown in row details.
-/// </summary>
-public class MasterDetailRow
-{
-    public Dictionary<string, string?> ScalarValues { get; } = new();
-    public List<DetailSectionDef> DetailSectionDefs { get; } = [];
-    public List<DetailSection>? DetailSections { get; private set; }
-
-    private bool _detailsMaterialized;
 
     /// <summary>
-    /// Materializes detail sections on first access (lazy to avoid creating UI for all rows).
+    /// Lightweight definition for a detail section — raw data only, no UI until needed.
     /// </summary>
-    public void EnsureDetailSections(AppTheme theme)
+    public class DetailSectionDef(string name, JsonElement raw)
     {
-        if (_detailsMaterialized) return;
-        _detailsMaterialized = true;
-        DetailSections = DetailSectionDefs
-            .Select(d => new DetailSection(d.Name, d.Raw, theme))
-            .ToList();
-    }
-
-    public string DetailSummary => DetailSectionDefs.Count > 0
-        ? $"▸ {DetailSectionDefs.Count} section(s): {string.Join(", ", DetailSectionDefs.Select(d => d.Name))}"
-        : "";
-}
-
-/// <summary>
-/// A named detail section containing a complex JSON value rendered as a UI element.
-/// </summary>
-public class DetailSection
-{
-    public string Name { get; }
-    public JsonElement Raw { get; }
-    private readonly AppTheme _theme;
-
-    public DetailSection(string name, JsonElement raw, AppTheme theme)
-    {
-        Name = name;
-        Raw = raw;
-        _theme = theme;
+        public string Name { get; } = name;
+        public JsonElement Raw { get; } = raw;
     }
 
     /// <summary>
-    /// Lazily renders the JSON value as a WPF element for display in row details.
+    /// Represents a row with scalar values displayed in the master grid
+    /// and complex detail sections shown in row details.
     /// </summary>
-    public object RenderedContent => BuildContent(Raw, _theme);
-
-    private static object BuildContent(JsonElement element, AppTheme theme)
+    public class MasterDetailRow
     {
-        return element.ValueKind switch
+        public Dictionary<string, string?> ScalarValues { get; } = new();
+        public List<DetailSectionDef> DetailSectionDefs { get; } = [];
+        public List<DetailSection>? DetailSections { get; private set; }
+
+        /// <summary>
+        /// Tracks whether this row's details are expanded (survives row virtualization).
+        /// </summary>
+        public bool IsExpanded { get; set; }
+
+        private bool _detailsMaterialized;
+
+        /// <summary>
+        /// Materializes detail sections on first access (lazy to avoid creating UI for all rows).
+        /// </summary>
+        public void EnsureDetailSections(AppTheme theme)
         {
-            JsonValueKind.Object => BuildObjectGrid(element, theme),
-            JsonValueKind.Array => BuildArrayContent(element, theme).Content,
-            _ => new TextBlock
-            {
-                Text = element.ToString(),
-                Foreground = theme.TextPrimaryBrush,
-                TextWrapping = TextWrapping.Wrap,
-                Margin = new Thickness(4, 2, 4, 2)
-            }
-        };
+            if (_detailsMaterialized) return;
+            _detailsMaterialized = true;
+            DetailSections = DetailSectionDefs
+                .Select(d => new DetailSection(d.Name, d.Raw, theme))
+                .ToList();
+        }
+
+        public string DetailSummary => DetailSectionDefs.Count > 0
+            ? $"▸ {DetailSectionDefs.Count} section(s): {string.Join(", ", DetailSectionDefs.Select(d => d.Name))}"
+            : "";
     }
 
-    private static UIElement BuildObjectGrid(JsonElement obj, AppTheme theme)
+    /// <summary>
+    /// A named detail section containing a complex JSON value rendered as a UI element.
+    /// </summary>
+    public class DetailSection
     {
-        var grid = new Grid();
-        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
-        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+        public string Name { get; }
+        public JsonElement Raw { get; }
+        private readonly AppTheme _theme;
 
-        int row = 0;
-        foreach (var prop in obj.EnumerateObject())
+        public DetailSection(string name, JsonElement raw, AppTheme theme)
         {
-            grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+            Name = name;
+            Raw = raw;
+            _theme = theme;
+        }
 
-            var keyBlock = new TextBlock
-            {
-                Text = prop.Name,
-                FontWeight = FontWeights.SemiBold,
-                Foreground = theme.TextSecondaryBrush,
-                Margin = new Thickness(4, 2, 12, 2),
-                VerticalAlignment = VerticalAlignment.Top
-            };
-            Grid.SetRow(keyBlock, row);
-            Grid.SetColumn(keyBlock, 0);
-            grid.Children.Add(keyBlock);
+        /// <summary>
+        /// Lazily renders the JSON value as a WPF element for display in row details.
+        /// </summary>
+        public object RenderedContent => BuildContent(Raw, _theme);
 
-            UIElement valueElement;
-            if (prop.Value.ValueKind is JsonValueKind.Object or JsonValueKind.Array)
+        private static object BuildContent(JsonElement element, AppTheme theme)
+        {
+            return element.ValueKind switch
             {
-                if (prop.Value.ValueKind == JsonValueKind.Array)
+                JsonValueKind.Object => BuildObjectGrid(element, theme),
+                JsonValueKind.Array => BuildArrayContent(element, theme).Content,
+                _ => new TextBlock
                 {
-                    var (content, childExpanders) = BuildArrayContent(prop.Value, theme);
-                    var expander = new Expander
+                    Text = element.ToString(),
+                    Foreground = theme.TextPrimaryBrush,
+                    TextWrapping = TextWrapping.Wrap,
+                    Margin = new Thickness(4, 2, 4, 2)
+                }
+            };
+        }
+
+        private static UIElement BuildObjectGrid(JsonElement obj, AppTheme theme)
+        {
+            var grid = new Grid();
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+
+            int row = 0;
+            foreach (var prop in obj.EnumerateObject())
+            {
+                grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+
+                var keyBlock = new TextBlock
+                {
+                    Text = prop.Name,
+                    FontWeight = FontWeights.SemiBold,
+                    Foreground = theme.TextSecondaryBrush,
+                    Margin = new Thickness(4, 2, 12, 2),
+                    VerticalAlignment = VerticalAlignment.Top
+                };
+                Grid.SetRow(keyBlock, row);
+                Grid.SetColumn(keyBlock, 0);
+                grid.Children.Add(keyBlock);
+
+                UIElement valueElement;
+                if (prop.Value.ValueKind is JsonValueKind.Object or JsonValueKind.Array)
+                {
+                    if (prop.Value.ValueKind == JsonValueKind.Array)
                     {
-                        Header = BuildArrayExpanderHeader(
-                            $"[{prop.Value.GetArrayLength()} items]", childExpanders, theme),
-                        IsExpanded = false,
-                        Foreground = theme.TextPrimaryBrush,
-                        Margin = new Thickness(0, 2, 4, 2),
-                        Content = content
-                    };
-                    valueElement = expander;
+                        var (content, childExpanders) = BuildArrayContent(prop.Value, theme);
+                        var expander = new Expander
+                        {
+                            Header = BuildArrayExpanderHeader(
+                                $"[{prop.Value.GetArrayLength()} items]", childExpanders, theme),
+                            IsExpanded = false,
+                            Foreground = theme.TextPrimaryBrush,
+                            Margin = new Thickness(0, 2, 4, 2),
+                            Content = content
+                        };
+                        valueElement = expander;
+                    }
+                    else
+                    {
+                        var expander = new Expander
+                        {
+                            Header = "{...}",
+                            IsExpanded = false,
+                            Foreground = theme.TextPrimaryBrush,
+                            Margin = new Thickness(0, 2, 4, 2),
+                            Content = BuildContent(prop.Value, theme)
+                        };
+                        valueElement = expander;
+                    }
                 }
                 else
                 {
-                    var expander = new Expander
+                    valueElement = new TextBlock
                     {
-                        Header = "{...}",
-                        IsExpanded = false,
+                        Text = prop.Value.ToString(),
                         Foreground = theme.TextPrimaryBrush,
-                        Margin = new Thickness(0, 2, 4, 2),
-                        Content = BuildContent(prop.Value, theme)
+                        TextWrapping = TextWrapping.Wrap,
+                        Margin = new Thickness(4, 2, 4, 2),
+                        VerticalAlignment = VerticalAlignment.Top
                     };
-                    valueElement = expander;
                 }
+
+                Grid.SetRow(valueElement, row);
+                Grid.SetColumn(valueElement, 1);
+                grid.Children.Add(valueElement);
+
+                row++;
             }
-            else
+
+            var border = new Border
             {
-                valueElement = new TextBlock
+                BorderBrush = theme.BorderBrush,
+                BorderThickness = new Thickness(1),
+                CornerRadius = new CornerRadius(4),
+                Background = theme.CardBrush,
+                Padding = new Thickness(4),
+                Margin = new Thickness(0, 2, 0, 2),
+                Child = grid
+            };
+
+            return border;
+        }
+
+        /// <summary>
+        /// Builds a header panel with the label text and Expand All / Collapse All buttons.
+        /// </summary>
+        private static UIElement BuildArrayExpanderHeader(string label, List<Expander> expanders, AppTheme theme)
+        {
+            if (expanders.Count == 0)
+                return new TextBlock { Text = label, Foreground = theme.TextPrimaryBrush };
+
+            var panel = new StackPanel
+            {
+                Orientation = Orientation.Horizontal,
+                VerticalAlignment = VerticalAlignment.Center
+            };
+
+            panel.Children.Add(new TextBlock
+            {
+                Text = label,
+                Foreground = theme.TextPrimaryBrush,
+                VerticalAlignment = VerticalAlignment.Center,
+                Margin = new Thickness(0, 0, 10, 0)
+            });
+
+            var expandAllBtn = new Button
+            {
+                Content = "▼ Expand All",
+                Background = theme.CardBrush,
+                Foreground = theme.TextPrimaryBrush,
+                BorderBrush = theme.BorderBrush,
+                Padding = new Thickness(4, 1, 4, 1),
+                Margin = new Thickness(0, 0, 4, 0),
+                FontSize = 11,
+                Cursor = Cursors.Hand
+            };
+            expandAllBtn.Click += (s, e) =>
+            {
+                foreach (var exp in expanders)
+                    SetExpandedRecursive(exp, true);
+                var parentExpander = FindAncestor<Expander>((DependencyObject)s!);
+                parentExpander?.Dispatcher.BeginInvoke(() => parentExpander.IsExpanded = true);
+                e.Handled = true;
+            };
+
+            var collapseAllBtn = new Button
+            {
+                Content = "▲ Collapse All",
+                Background = theme.CardBrush,
+                Foreground = theme.TextPrimaryBrush,
+                BorderBrush = theme.BorderBrush,
+                Padding = new Thickness(4, 1, 4, 1),
+                FontSize = 11,
+                Cursor = Cursors.Hand
+            };
+            collapseAllBtn.Click += (s, e) =>
+            {
+                foreach (var exp in expanders)
+                    SetExpandedRecursive(exp, false);
+                var parentExpander = FindAncestor<Expander>((DependencyObject)s!);
+                parentExpander?.Dispatcher.BeginInvoke(() => parentExpander.IsExpanded = true);
+                e.Handled = true;
+            };
+
+            panel.Children.Add(expandAllBtn);
+            panel.Children.Add(collapseAllBtn);
+            return panel;
+        }
+
+        /// <summary>
+        /// Walks up the visual tree to find the nearest ancestor of type T.
+        /// </summary>
+        private static T? FindAncestor<T>(DependencyObject element) where T : DependencyObject
+        {
+            var current = VisualTreeHelper.GetParent(element);
+            while (current is not null)
+            {
+                if (current is T match)
+                    return match;
+                current = VisualTreeHelper.GetParent(current);
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Recursively sets IsExpanded on an expander and all nested expanders within it.
+        /// </summary>
+        private static void SetExpandedRecursive(Expander expander, bool isExpanded)
+        {
+            expander.IsExpanded = isExpanded;
+
+            if (expander.Content is DependencyObject content)
+                SetExpandedRecursiveVisual(content, isExpanded);
+        }
+
+        private static void SetExpandedRecursiveVisual(DependencyObject parent, bool isExpanded)
+        {
+            int childCount = VisualTreeHelper.GetChildrenCount(parent);
+
+            // If not yet in the visual tree, walk the logical tree instead
+            if (childCount == 0 && parent is Panel panel)
+            {
+                foreach (UIElement child in panel.Children)
                 {
-                    Text = prop.Value.ToString(),
-                    Foreground = theme.TextPrimaryBrush,
-                    TextWrapping = TextWrapping.Wrap,
-                    Margin = new Thickness(4, 2, 4, 2),
-                    VerticalAlignment = VerticalAlignment.Top
-                };
+                    if (child is Expander childExpander)
+                        SetExpandedRecursive(childExpander, isExpanded);
+                    else if (child is DependencyObject dep)
+                        SetExpandedRecursiveVisual(dep, isExpanded);
+                }
+
+                return;
             }
 
-            Grid.SetRow(valueElement, row);
-            Grid.SetColumn(valueElement, 1);
-            grid.Children.Add(valueElement);
-
-            row++;
-        }
-
-        var border = new Border
-        {
-            BorderBrush = theme.BorderBrush,
-            BorderThickness = new Thickness(1),
-            CornerRadius = new CornerRadius(4),
-            Background = theme.CardBrush,
-            Padding = new Thickness(4),
-            Margin = new Thickness(0, 2, 0, 2),
-            Child = grid
-        };
-
-        return border;
-    }
-
-    /// <summary>
-    /// Builds a header panel with the label text and Expand All / Collapse All buttons.
-    /// </summary>
-    private static UIElement BuildArrayExpanderHeader(string label, List<Expander> expanders, AppTheme theme)
-    {
-        if (expanders.Count == 0)
-            return new TextBlock { Text = label, Foreground = theme.TextPrimaryBrush };
-
-        var panel = new StackPanel
-        {
-            Orientation = Orientation.Horizontal,
-            VerticalAlignment = VerticalAlignment.Center
-        };
-
-        panel.Children.Add(new TextBlock
-        {
-            Text = label,
-            Foreground = theme.TextPrimaryBrush,
-            VerticalAlignment = VerticalAlignment.Center,
-            Margin = new Thickness(0, 0, 10, 0)
-        });
-
-        var expandAllBtn = new Button
-        {
-            Content = "▼ Expand All",
-            Background = theme.CardBrush,
-            Foreground = theme.TextPrimaryBrush,
-            BorderBrush = theme.BorderBrush,
-            Padding = new Thickness(4, 1, 4, 1),
-            Margin = new Thickness(0, 0, 4, 0),
-            FontSize = 11,
-            Cursor = Cursors.Hand
-        };
-        expandAllBtn.Click += (s, e) =>
-        {
-            foreach (var exp in expanders)
-                SetExpandedRecursive(exp, true);
-            var parentExpander = FindAncestor<Expander>((DependencyObject)s!);
-            parentExpander?.Dispatcher.BeginInvoke(() => parentExpander.IsExpanded = true);
-            e.Handled = true;
-        };
-
-        var collapseAllBtn = new Button
-        {
-            Content = "▲ Collapse All",
-            Background = theme.CardBrush,
-            Foreground = theme.TextPrimaryBrush,
-            BorderBrush = theme.BorderBrush,
-            Padding = new Thickness(4, 1, 4, 1),
-            FontSize = 11,
-            Cursor = Cursors.Hand
-        };
-        collapseAllBtn.Click += (s, e) =>
-        {
-            foreach (var exp in expanders)
-                SetExpandedRecursive(exp, false);
-            var parentExpander = FindAncestor<Expander>((DependencyObject)s!);
-            parentExpander?.Dispatcher.BeginInvoke(() => parentExpander.IsExpanded = true);
-            e.Handled = true;
-        };
-
-        panel.Children.Add(expandAllBtn);
-        panel.Children.Add(collapseAllBtn);
-        return panel;
-    }
-
-    /// <summary>
-    /// Walks up the visual tree to find the nearest ancestor of type T.
-    /// </summary>
-    private static T? FindAncestor<T>(DependencyObject element) where T : DependencyObject
-    {
-        var current = VisualTreeHelper.GetParent(element);
-        while (current is not null)
-        {
-            if (current is T match)
-                return match;
-            current = VisualTreeHelper.GetParent(current);
-        }
-        return null;
-    }
-
-    /// <summary>
-    /// Recursively sets IsExpanded on an expander and all nested expanders within it.
-    /// </summary>
-    private static void SetExpandedRecursive(Expander expander, bool isExpanded)
-    {
-        expander.IsExpanded = isExpanded;
-
-        if (expander.Content is DependencyObject content)
-            SetExpandedRecursiveVisual(content, isExpanded);
-    }
-
-    private static void SetExpandedRecursiveVisual(DependencyObject parent, bool isExpanded)
-    {
-        int childCount = VisualTreeHelper.GetChildrenCount(parent);
-
-        // If not yet in the visual tree, walk the logical tree instead
-        if (childCount == 0 && parent is Panel panel)
-        {
-            foreach (UIElement child in panel.Children)
+            for (int i = 0; i < childCount; i++)
             {
-                if (child is Expander childExpander)
-                    SetExpandedRecursive(childExpander, isExpanded);
-                else if (child is DependencyObject dep)
-                    SetExpandedRecursiveVisual(dep, isExpanded);
-            }
-            return;
-        }
-
-        for (int i = 0; i < childCount; i++)
-        {
-            var child = VisualTreeHelper.GetChild(parent, i);
-            if (child is Expander childExp)
-                SetExpandedRecursive(childExp, isExpanded);
-            else
-                SetExpandedRecursiveVisual(child, isExpanded);
-        }
-    }
-
-    private static (UIElement Content, List<Expander> Expanders) BuildArrayContent(JsonElement array, AppTheme theme)
-    {
-        var panel = new StackPanel();
-        var expanders = new List<Expander>();
-        int index = 0;
-
-        // Check if it's a simple array (all primitives/strings)
-        bool allSimple = true;
-        foreach (var item in array.EnumerateArray())
-        {
-            if (item.ValueKind is JsonValueKind.Object or JsonValueKind.Array)
-            {
-                allSimple = false;
-                break;
+                var child = VisualTreeHelper.GetChild(parent, i);
+                if (child is Expander childExp)
+                    SetExpandedRecursive(childExp, isExpanded);
+                else
+                    SetExpandedRecursiveVisual(child, isExpanded);
             }
         }
 
-        if (allSimple)
+        private static (UIElement Content, List<Expander> Expanders) BuildArrayContent(JsonElement array,
+            AppTheme theme)
         {
-            // Render as a simple list
+            var panel = new StackPanel();
+            var expanders = new List<Expander>();
+            int index = 0;
+
+            // Check if it's a simple array (all primitives/strings)
+            bool allSimple = true;
             foreach (var item in array.EnumerateArray())
             {
-                panel.Children.Add(new TextBlock
+                if (item.ValueKind is JsonValueKind.Object or JsonValueKind.Array)
                 {
-                    Text = $"• {item}",
-                    Foreground = theme.TextPrimaryBrush,
-                    Margin = new Thickness(8, 1, 4, 1),
-                    TextWrapping = TextWrapping.Wrap
-                });
+                    allSimple = false;
+                    break;
+                }
             }
+
+            if (allSimple)
+            {
+                // Render as a simple list
+                foreach (var item in array.EnumerateArray())
+                {
+                    panel.Children.Add(new TextBlock
+                    {
+                        Text = $"• {item}",
+                        Foreground = theme.TextPrimaryBrush,
+                        Margin = new Thickness(8, 1, 4, 1),
+                        TextWrapping = TextWrapping.Wrap
+                    });
+                }
+
+                return (panel, expanders);
+            }
+
+            // Complex array — render each item in an expander
+            foreach (var item in array.EnumerateArray())
+            {
+                if (item.ValueKind is JsonValueKind.Object or JsonValueKind.Array)
+                {
+                    var expander = new Expander
+                    {
+                        Header = $"[{index}]",
+                        IsExpanded = false,
+                        Foreground = theme.TextPrimaryBrush,
+                        Margin = new Thickness(0, 2, 0, 2),
+                        Content = BuildContent(item, theme)
+                    };
+                    expanders.Add(expander);
+                    panel.Children.Add(expander);
+                }
+                else
+                {
+                    panel.Children.Add(new TextBlock
+                    {
+                        Text = $"[{index}] {item}",
+                        Foreground = theme.TextPrimaryBrush,
+                        Margin = new Thickness(8, 1, 4, 1)
+                    });
+                }
+
+                index++;
+            }
+
             return (panel, expanders);
         }
-
-        // Complex array — render each item in an expander
-        foreach (var item in array.EnumerateArray())
-        {
-            if (item.ValueKind is JsonValueKind.Object or JsonValueKind.Array)
-            {
-                var expander = new Expander
-                {
-                    Header = $"[{index}]",
-                    IsExpanded = false,
-                    Foreground = theme.TextPrimaryBrush,
-                    Margin = new Thickness(0, 2, 0, 2),
-                    Content = BuildContent(item, theme)
-                };
-                expanders.Add(expander);
-                panel.Children.Add(expander);
-            }
-            else
-            {
-                panel.Children.Add(new TextBlock
-                {
-                    Text = $"[{index}] {item}",
-                    Foreground = theme.TextPrimaryBrush,
-                    Margin = new Thickness(8, 1, 4, 1)
-                });
-            }
-            index++;
-        }
-
-        return (panel, expanders);
     }
 }
