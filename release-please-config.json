@@ -3,6 +3,7 @@
   "release-type": "simple",
   "separate-pull-requests": true,
   "pull-request-title-pattern": "chore: release ${component} v${version}",
+  "component-no-space": true,
   "changelog-sections": [
     {
       "type": "feat",
