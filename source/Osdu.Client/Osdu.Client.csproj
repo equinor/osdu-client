@@ -4,24 +4,24 @@
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <Description>A .NET client library providing typed HTTP clients for OSDU platform APIs.</Description>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\LICENSE" Pack="true" PackagePath="" />
-    <None Include="..\..\README.md" Pack="true" PackagePath="" />
+    <None Include="..\..\LICENSE" Pack="true" PackagePath=""/>
+    <None Include="..\..\README.md" Pack="true" PackagePath=""/>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Azure.Identity" Version="1.21.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.10" />
-    <PackageReference Include="Microsoft.Extensions.Http" Version="10.0.10" />
-    <PackageReference Include="Microsoft.Identity.Client" Version="4.87.0" />
+    <PackageReference Include="Azure.Identity" Version="1.21.0"/>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.10"/>
+    <PackageReference Include="Microsoft.Extensions.Http" Version="10.0.10"/>
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.87.0"/>
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Apis\" />
+    <Folder Include="Apis\"/>
   </ItemGroup>
 
 </Project>
