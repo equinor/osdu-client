@@ -8,7 +8,7 @@ updates:
     cooldown:
       default-days: 7
     commit-message:
-      prefix: deps(github-actions)
+      prefix: ci(github-actions)
     groups:
       github-actions:
         patterns: ["*"]
