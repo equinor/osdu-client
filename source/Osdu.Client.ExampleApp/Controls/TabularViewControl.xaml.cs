@@ -77,13 +77,7 @@ public partial class TabularViewControl : UserControl
 
         foreach (var col in columns)
         {
-            var binding = new Binding($"[{col}]") { Mode = BindingMode.OneWay };
-            var column = new DataGridTextColumn
-            {
-                Header = col,
-                Binding = binding,
-                MaxWidth = 400
-            };
+            var column = CreateColumn(col);
             DataGrid.Columns.Add(column);
         }
 
@@ -92,6 +86,73 @@ public partial class TabularViewControl : UserControl
         DataGrid.MouseDoubleClick += DataGrid_MouseDoubleClick;
 
         UpdateBreadcrumbs(label);
+    }
+
+    private DataGridColumn CreateColumn(string col)
+    {
+        var factory = new FrameworkElementFactory(typeof(TextBlock));
+        factory.SetBinding(TextBlock.TextProperty, new Binding($"[{col}]") { Mode = BindingMode.OneWay });
+        factory.AddHandler(TextBlock.MouseLeftButtonUpEvent, new MouseButtonEventHandler((sender, e) =>
+        {
+            if (sender is not TextBlock tb) return;
+            if (DataGrid.CurrentItem is not RowData row) return;
+            if (!row.TryGetValue(col, out var val) || val is not CellValue cell || !cell.IsExpandable) return;
+
+            _navStack.Push((BreadcrumbPanel.Tag as string ?? "Root", _currentData));
+            var childRecords = new List<JsonElement>();
+            if (cell.Raw.ValueKind == JsonValueKind.Array)
+            {
+                foreach (var item in cell.Raw.EnumerateArray())
+                    childRecords.Add(item);
+            }
+            else if (cell.Raw.ValueKind == JsonValueKind.Object)
+            {
+                childRecords.Add(cell.Raw);
+            }
+            ShowData(childRecords, col);
+        }));
+
+        // Style expandable cells as hyperlinks via a DataTrigger isn't straightforward,
+        // so we use a multi-binding style approach in code.
+        factory.SetValue(TextBlock.CursorProperty, Cursors.Arrow);
+
+        var template = new DataTemplate { VisualTree = factory };
+
+        // Create a second factory for expandable cells styled as hyperlinks
+        var linkFactory = new FrameworkElementFactory(typeof(TextBlock));
+        linkFactory.SetBinding(TextBlock.TextProperty, new Binding($"[{col}]") { Mode = BindingMode.OneWay });
+        linkFactory.SetValue(TextBlock.ForegroundProperty, _theme.AccentBrush);
+        linkFactory.SetValue(TextBlock.TextDecorationsProperty, TextDecorations.Underline);
+        linkFactory.SetValue(TextBlock.CursorProperty, Cursors.Hand);
+        linkFactory.AddHandler(TextBlock.MouseLeftButtonUpEvent, new MouseButtonEventHandler((sender, e) =>
+        {
+            if (DataGrid.CurrentItem is not RowData row) return;
+            if (!row.TryGetValue(col, out var val) || val is not CellValue cell || !cell.IsExpandable) return;
+
+            _navStack.Push((BreadcrumbPanel.Tag as string ?? "Root", _currentData));
+            var childRecords = new List<JsonElement>();
+            if (cell.Raw.ValueKind == JsonValueKind.Array)
+            {
+                foreach (var item in cell.Raw.EnumerateArray())
+                    childRecords.Add(item);
+            }
+            else if (cell.Raw.ValueKind == JsonValueKind.Object)
+            {
+                childRecords.Add(cell.Raw);
+            }
+            ShowData(childRecords, col);
+        }));
+        var linkTemplate = new DataTemplate { VisualTree = linkFactory };
+
+        // Use a CellTemplateSelector to pick the right template
+        var templateColumn = new DataGridTemplateColumn
+        {
+            Header = col,
+            MaxWidth = 400,
+            CellTemplateSelector = new ExpandableCellTemplateSelector(col, template, linkTemplate)
+        };
+
+        return templateColumn;
     }
 
     private void ShowSimpleList(IReadOnlyList<JsonElement> records, string label)
@@ -218,5 +279,31 @@ public class RowData : Dictionary<string, CellValue?>
         }
         value = null;
         return false;
+    }
+}
+
+public class ExpandableCellTemplateSelector : DataTemplateSelector
+{
+    private readonly string _column;
+    private readonly DataTemplate _normalTemplate;
+    private readonly DataTemplate _linkTemplate;
+
+    public ExpandableCellTemplateSelector(string column, DataTemplate normalTemplate, DataTemplate linkTemplate)
+    {
+        _column = column;
+        _normalTemplate = normalTemplate;
+        _linkTemplate = linkTemplate;
+    }
+
+    public override DataTemplate SelectTemplate(object item, DependencyObject container)
+    {
+        if (item is RowData row &&
+            row.TryGetValue(_column, out var val) &&
+            val is CellValue cell &&
+            cell.IsExpandable)
+        {
+            return _linkTemplate;
+        }
+        return _normalTemplate;
     }
 }
