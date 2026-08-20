@@ -15,9 +15,6 @@
             <Button x:Name="RefreshButton" Content="⟳ Refresh Kinds" Click="RefreshButton_Click"
                     Padding="8,2" Margin="4,0" />
             <Separator />
-            <Button x:Name="FetchAllButton" Content="⬇ Fetch All" Click="FetchAllButton_Click"
-                    Padding="8,2" Margin="4,0" IsEnabled="False" />
-            <Separator />
             <ToggleButton x:Name="ThemeToggle" Content="🌙 Dark" Click="ThemeToggle_Click"
                           Padding="8,2" Margin="4,0" />
         </ToolBar>
@@ -26,10 +23,6 @@
         <StatusBar x:Name="MainStatusBar" DockPanel.Dock="Bottom" Height="26">
             <StatusBarItem>
                 <TextBlock x:Name="StatusText" Text="Ready" />
-            </StatusBarItem>
-            <Separator />
-            <StatusBarItem>
-                <TextBlock x:Name="RecordCountText" Text="" />
             </StatusBarItem>
             <Separator />
             <StatusBarItem HorizontalAlignment="Right">
@@ -54,31 +47,90 @@
                           HorizontalAlignment="Center" VerticalAlignment="Stretch"
                           ResizeBehavior="PreviousAndNext" />
 
-            <!-- Right: Tabs -->
-            <TabControl x:Name="ContentTabs" Grid.Column="2" Margin="0">
-                <TabItem Header="Raw">
-                    <controls:RawViewControl x:Name="RawView" />
-                </TabItem>
-                <TabItem Header="Tabular">
-                    <controls:TabularViewControl x:Name="TabularView" />
-                </TabItem>
-                <TabItem Header="Tree">
-                    <controls:TreeViewTab x:Name="TreeView" />
-                </TabItem>
-                <TabItem Header="Detail">
-                    <controls:DetailViewControl x:Name="DetailView" />
-                </TabItem>
-            </TabControl>
+            <!-- Right: Tabs + Paging Bar -->
+            <DockPanel Grid.Column="2">
+                <!-- Paging Bar at Bottom -->
+                <Border x:Name="PagingBar" DockPanel.Dock="Bottom" Padding="8,4"
+                        BorderThickness="0,1,0,0" BorderBrush="#CCCCCC"
+                        Visibility="Collapsed">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
 
-            <!-- Paging overlay on right panel bottom -->
-            <DockPanel Grid.Column="2" VerticalAlignment="Bottom"
-                       HorizontalAlignment="Center" Margin="0,0,0,8">
-                <Button x:Name="PrevPageButton" Content="◄ Prev" Click="PrevPage_Click"
-                        Padding="10,4" Margin="4,0" IsEnabled="False" />
-                <TextBlock x:Name="PageInfoText" VerticalAlignment="Center"
-                           Margin="8,0" FontSize="12" />
-                <Button x:Name="NextPageButton" Content="Next ►" Click="NextPage_Click"
-                        Padding="10,4" Margin="4,0" IsEnabled="False" />
+                        <!-- Left: Record info -->
+                        <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock x:Name="RecordCountText" Text="" VerticalAlignment="Center"
+                                       Margin="0,0,12,0" FontSize="12" />
+                            <TextBlock Text="Page size:" VerticalAlignment="Center" Margin="0,0,4,0"
+                                       FontSize="12" x:Name="PageSizeLabel" />
+                            <ComboBox x:Name="PageSizeCombo" Width="70" VerticalAlignment="Center"
+                                      SelectionChanged="PageSizeCombo_SelectionChanged">
+                                <ComboBoxItem Content="25" />
+                                <ComboBoxItem Content="50" />
+                                <ComboBoxItem Content="100" IsSelected="True" />
+                                <ComboBoxItem Content="250" />
+                                <ComboBoxItem Content="500" />
+                            </ComboBox>
+                        </StackPanel>
+
+                        <!-- Center: Navigation -->
+                        <StackPanel Grid.Column="1" Orientation="Horizontal"
+                                    HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Button x:Name="FirstPageButton" Content="⏮" Click="FirstPage_Click"
+                                    Padding="6,2" Margin="2,0" IsEnabled="False"
+                                    ToolTip="First page" FontSize="14" MinWidth="30" />
+                            <Button x:Name="PrevPageButton" Content="◀" Click="PrevPage_Click"
+                                    Padding="6,2" Margin="2,0" IsEnabled="False"
+                                    ToolTip="Previous page" FontSize="14" MinWidth="30" />
+
+                            <TextBlock x:Name="PageInfoText" VerticalAlignment="Center"
+                                       Margin="10,0" FontSize="12" />
+
+                            <Button x:Name="NextPageButton" Content="▶" Click="NextPage_Click"
+                                    Padding="6,2" Margin="2,0" IsEnabled="False"
+                                    ToolTip="Next page" FontSize="14" MinWidth="30" />
+                            <Button x:Name="LastPageButton" Content="⏭" Click="LastPage_Click"
+                                    Padding="6,2" Margin="2,0" IsEnabled="False"
+                                    ToolTip="Last page (fetches all)" FontSize="14" MinWidth="30" />
+
+                            <Separator Margin="10,0" />
+
+                            <TextBlock Text="Go to:" VerticalAlignment="Center" Margin="0,0,4,0"
+                                       FontSize="12" x:Name="GoToLabel" />
+                            <TextBox x:Name="GoToPageBox" Width="45" VerticalAlignment="Center"
+                                     VerticalContentAlignment="Center" FontSize="12"
+                                     KeyDown="GoToPageBox_KeyDown" />
+                            <Button Content="Go" Click="GoToPage_Click" Padding="6,2" Margin="4,0"
+                                    VerticalAlignment="Center" />
+                        </StackPanel>
+
+                        <!-- Right: Fetch All -->
+                        <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+                            <Button x:Name="FetchAllButton" Content="⬇ Fetch All"
+                                    Click="FetchAllButton_Click" Padding="8,2" Margin="4,0"
+                                    IsEnabled="False" ToolTip="Fetch all records for this kind" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <!-- Tabs fill remaining space -->
+                <TabControl x:Name="ContentTabs" Margin="0">
+                    <TabItem Header="Raw">
+                        <controls:RawViewControl x:Name="RawView" />
+                    </TabItem>
+                    <TabItem Header="Tabular">
+                        <controls:TabularViewControl x:Name="TabularView" />
+                    </TabItem>
+                    <TabItem Header="Tree">
+                        <controls:TreeViewTab x:Name="TreeView" />
+                    </TabItem>
+                    <TabItem Header="Detail">
+                        <controls:DetailViewControl x:Name="DetailView" />
+                    </TabItem>
+                </TabControl>
             </DockPanel>
         </Grid>
     </DockPanel>
