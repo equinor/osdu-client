@@ -64,16 +64,28 @@ public partial class TabularViewControl : UserControl
         var columns = JsonHelper.ExtractColumns(records);
         var rows = new ObservableCollection<RowData>();
 
+        int rowIndex = 1;
         foreach (var record in records)
         {
             var flat = JsonHelper.FlattenRecord(record);
             var row = new RowData();
+            row["#"] = new CellValue(rowIndex.ToString(), default);
             foreach (var col in columns)
             {
                 row[col] = flat.TryGetValue(col, out var cell) ? cell : null;
             }
             rows.Add(row);
+            rowIndex++;
         }
+
+        // Add row number column
+        DataGrid.Columns.Add(new DataGridTextColumn
+        {
+            Header = "#",
+            Binding = new Binding("[#]") { Mode = BindingMode.OneWay },
+            MaxWidth = 60,
+            IsReadOnly = true
+        });
 
         foreach (var col in columns)
         {
@@ -88,83 +100,26 @@ public partial class TabularViewControl : UserControl
         UpdateBreadcrumbs(label);
     }
 
-    private DataGridColumn CreateColumn(string col)
-    {
-        var factory = new FrameworkElementFactory(typeof(TextBlock));
-        factory.SetBinding(TextBlock.TextProperty, new Binding($"[{col}]") { Mode = BindingMode.OneWay });
-        factory.AddHandler(TextBlock.MouseLeftButtonUpEvent, new MouseButtonEventHandler((sender, e) =>
-        {
-            if (sender is not TextBlock tb) return;
-            if (DataGrid.CurrentItem is not RowData row) return;
-            if (!row.TryGetValue(col, out var val) || val is not CellValue cell || !cell.IsExpandable) return;
-
-            _navStack.Push((BreadcrumbPanel.Tag as string ?? "Root", _currentData));
-            var childRecords = new List<JsonElement>();
-            if (cell.Raw.ValueKind == JsonValueKind.Array)
-            {
-                foreach (var item in cell.Raw.EnumerateArray())
-                    childRecords.Add(item);
-            }
-            else if (cell.Raw.ValueKind == JsonValueKind.Object)
-            {
-                childRecords.Add(cell.Raw);
-            }
-            ShowData(childRecords, col);
-        }));
-
-        // Style expandable cells as hyperlinks via a DataTrigger isn't straightforward,
-        // so we use a multi-binding style approach in code.
-        factory.SetValue(TextBlock.CursorProperty, Cursors.Arrow);
-
-        var template = new DataTemplate { VisualTree = factory };
-
-        // Create a second factory for expandable cells styled as hyperlinks
-        var linkFactory = new FrameworkElementFactory(typeof(TextBlock));
-        linkFactory.SetBinding(TextBlock.TextProperty, new Binding($"[{col}]") { Mode = BindingMode.OneWay });
-        linkFactory.SetValue(TextBlock.ForegroundProperty, _theme.AccentBrush);
-        linkFactory.SetValue(TextBlock.TextDecorationsProperty, TextDecorations.Underline);
-        linkFactory.SetValue(TextBlock.CursorProperty, Cursors.Hand);
-        linkFactory.AddHandler(TextBlock.MouseLeftButtonUpEvent, new MouseButtonEventHandler((sender, e) =>
-        {
-            if (DataGrid.CurrentItem is not RowData row) return;
-            if (!row.TryGetValue(col, out var val) || val is not CellValue cell || !cell.IsExpandable) return;
-
-            _navStack.Push((BreadcrumbPanel.Tag as string ?? "Root", _currentData));
-            var childRecords = new List<JsonElement>();
-            if (cell.Raw.ValueKind == JsonValueKind.Array)
-            {
-                foreach (var item in cell.Raw.EnumerateArray())
-                    childRecords.Add(item);
-            }
-            else if (cell.Raw.ValueKind == JsonValueKind.Object)
-            {
-                childRecords.Add(cell.Raw);
-            }
-            ShowData(childRecords, col);
-        }));
-        var linkTemplate = new DataTemplate { VisualTree = linkFactory };
-
-        // Use a CellTemplateSelector to pick the right template
-        var templateColumn = new DataGridTemplateColumn
-        {
-            Header = col,
-            MaxWidth = 400,
-            CellTemplateSelector = new ExpandableCellTemplateSelector(col, template, linkTemplate)
-        };
-
-        return templateColumn;
-    }
-
     private void ShowSimpleList(IReadOnlyList<JsonElement> records, string label)
     {
         var rows = new ObservableCollection<RowData>();
+        int rowIndex = 1;
         foreach (var record in records)
         {
             var row = new RowData();
+            row["#"] = new CellValue(rowIndex.ToString(), default);
             row["Value"] = new CellValue(record.ToString(), record);
             rows.Add(row);
+            rowIndex++;
         }
 
+        DataGrid.Columns.Add(new DataGridTextColumn
+        {
+            Header = "#",
+            Binding = new Binding("[#]") { Mode = BindingMode.OneWay },
+            MaxWidth = 60,
+            IsReadOnly = true
+        });
         DataGrid.Columns.Add(new DataGridTextColumn
         {
             Header = "Value",
@@ -245,6 +200,49 @@ public partial class TabularViewControl : UserControl
             FontWeight = FontWeights.SemiBold,
             FontSize = 13
         });
+    }
+
+    private DataGridColumn CreateColumn(string col)
+    {
+        var factory = new FrameworkElementFactory(typeof(TextBlock));
+        factory.SetBinding(TextBlock.TextProperty, new Binding($"[{col}]") { Mode = BindingMode.OneWay });
+        factory.SetValue(TextBlock.CursorProperty, Cursors.Arrow);
+        var template = new DataTemplate { VisualTree = factory };
+
+        // Create a second factory for expandable cells styled as hyperlinks
+        var linkFactory = new FrameworkElementFactory(typeof(TextBlock));
+        linkFactory.SetBinding(TextBlock.TextProperty, new Binding($"[{col}]") { Mode = BindingMode.OneWay });
+        linkFactory.SetValue(TextBlock.ForegroundProperty, _theme.AccentBrush);
+        linkFactory.SetValue(TextBlock.TextDecorationsProperty, TextDecorations.Underline);
+        linkFactory.SetValue(TextBlock.CursorProperty, Cursors.Hand);
+        linkFactory.AddHandler(TextBlock.MouseLeftButtonUpEvent, new MouseButtonEventHandler((sender, e) =>
+        {
+            if (DataGrid.CurrentItem is not RowData row) return;
+            if (!row.TryGetValue(col, out var val) || val is not CellValue cell || !cell.IsExpandable) return;
+
+            _navStack.Push((BreadcrumbPanel.Tag as string ?? "Root", _currentData));
+            var childRecords = new List<JsonElement>();
+            if (cell.Raw.ValueKind == JsonValueKind.Array)
+            {
+                foreach (var item in cell.Raw.EnumerateArray())
+                    childRecords.Add(item);
+            }
+            else if (cell.Raw.ValueKind == JsonValueKind.Object)
+            {
+                childRecords.Add(cell.Raw);
+            }
+            ShowData(childRecords, col);
+        }));
+        var linkTemplate = new DataTemplate { VisualTree = linkFactory };
+
+        var templateColumn = new DataGridTemplateColumn
+        {
+            Header = col,
+            MaxWidth = 400,
+            CellTemplateSelector = new ExpandableCellTemplateSelector(col, template, linkTemplate)
+        };
+
+        return templateColumn;
     }
 }
 
