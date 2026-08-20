@@ -20,18 +20,18 @@ namespace Osdu.Client.Apis.Unit;
 public class MeasurementEssenceImpl
 {
     [JsonPropertyName("baseMeasurementCode")]
-    public string BaseMeasurementCode { get; set; }
+    public string? BaseMeasurementCode { get; set; }
 
     /// <summary>
     /// The measurement ancestry, i.e. the parent codes separated by a period symbol.
     /// </summary>
     [JsonPropertyName("ancestry")]
-    public string Ancestry { get; set; }
+    public string? Ancestry { get; set; }
 
     /// <summary>
     /// The type string for this measurement
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; }
+    public string? Type { get; set; }
 
 }

@@ -1,10 +1,10 @@
-using System.Diagnostics;
-using System.Text.Encodings.Web;
-using System.Text.Json;
+using Osdu.Client.Data.MasterData;
 using Osdu.Client.ExampleApp.ExamplesBuilder;
 using Osdu.Client.ExampleApp.Extensions;
 using Osdu.Client.Extensions.Querying;
-using Osdu.Client.Schemas.MasterData;
+using System.Diagnostics;
+using System.Text.Encodings.Web;
+using System.Text.Json;
 
 namespace Osdu.Client.ExampleApp.Examples.Querying;
 

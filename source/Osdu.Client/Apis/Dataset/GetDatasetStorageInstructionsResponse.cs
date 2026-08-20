@@ -20,6 +20,6 @@ public class GetDatasetStorageInstructionsResponse
     public Dictionary<string, object>? StorageLocation { get; set; }
 
     [JsonPropertyName("providerKey")]
-    public string ProviderKey { get; set; }
+    public string? ProviderKey { get; set; }
 
 }

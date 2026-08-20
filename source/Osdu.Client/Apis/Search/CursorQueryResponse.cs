@@ -23,13 +23,13 @@ public class CursorQueryResponse
     /// Search context to retrieve the next page of results. Null when there are no more results.
     /// </summary>
     [JsonPropertyName("cursor")]
-    public string Cursor { get; set; }
+    public string? Cursor { get; set; }
 
     /// <summary>
     /// List of matched records, each represented as a map of field names to values.
     /// </summary>
     [JsonPropertyName("results")]
-    public List<object> Results { get; set; }
+    public List<object>? Results { get; set; }
 
     /// <summary>
     /// Total number of records matching the query. Capped at 10000 unless trackTotalCount is true.

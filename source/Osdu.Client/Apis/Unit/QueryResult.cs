@@ -23,19 +23,19 @@ public class QueryResult
     public int? Count { get; set; }
 
     [JsonPropertyName("units")]
-    public List<Unit> Units { get; set; }
+    public List<Unit>? Units { get; set; }
 
     [JsonPropertyName("measurements")]
-    public List<Measurement> Measurements { get; set; }
+    public List<Measurement>? Measurements { get; set; }
 
     [JsonPropertyName("unitMapItems")]
-    public List<UnitMapItem> UnitMapItems { get; set; }
+    public List<UnitMapItem>? UnitMapItems { get; set; }
 
     [JsonPropertyName("measurementMapItems")]
-    public List<MeasurementMapItem> MeasurementMapItems { get; set; }
+    public List<MeasurementMapItem>? MeasurementMapItems { get; set; }
 
     [JsonPropertyName("mapStates")]
-    public List<MapState> MapStates { get; set; }
+    public List<MapState>? MapStates { get; set; }
 
     [JsonPropertyName("totalCount")]
     public int? TotalCount { get; set; }

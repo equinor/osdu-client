@@ -20,22 +20,22 @@ namespace Osdu.Client.Apis.Register;
 public class Action
 {
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     [JsonPropertyName("name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     [JsonPropertyName("description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     [JsonPropertyName("img")]
-    public string Img { get; set; }
+    public string? Img { get; set; }
 
     [JsonPropertyName("url")]
-    public string Url { get; set; }
+    public string? Url { get; set; }
 
     [JsonPropertyName("contactEmail")]
-    public string ContactEmail { get; set; }
+    public string? ContactEmail { get; set; }
 
     [JsonPropertyName("createdOnEpoch")]
     [JsonConverter(typeof(NullableDateTimeOffsetConverter))]

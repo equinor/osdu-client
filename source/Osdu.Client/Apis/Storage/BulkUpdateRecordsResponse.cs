@@ -29,24 +29,24 @@ public class BulkUpdateRecordsResponse
     /// List of record ids that were successfully updated.
     /// </summary>
     [JsonPropertyName("recordIds")]
-    public List<string> RecordIds { get; set; }
+    public List<string>? RecordIds { get; set; }
 
     /// <summary>
     /// List of record ids that were not found.
     /// </summary>
     [JsonPropertyName("notFoundRecordIds")]
-    public List<string> NotFoundRecordIds { get; set; }
+    public List<string>? NotFoundRecordIds { get; set; }
 
     /// <summary>
     /// List of record ids that the caller is not authorized to update.
     /// </summary>
     [JsonPropertyName("unAuthorizedRecordIds")]
-    public List<string> UnAuthorizedRecordIds { get; set; }
+    public List<string>? UnAuthorizedRecordIds { get; set; }
 
     /// <summary>
     /// List of record ids that are currently locked and cannot be updated.
     /// </summary>
     [JsonPropertyName("lockedRecordIds")]
-    public List<string> LockedRecordIds { get; set; }
+    public List<string>? LockedRecordIds { get; set; }
 
 }

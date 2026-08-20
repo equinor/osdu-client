@@ -18,14 +18,14 @@ public class StorageUpsertResponse
 {
     [Required]
     [JsonPropertyName("record_count")]
-    public int RecordCount { get; set; }
+    public required int RecordCount { get; set; }
 
     [Required]
     [JsonPropertyName("record_id_versions")]
-    public List<string> RecordIdVersions { get; set; }
+    public required List<string> RecordIdVersions { get; set; }
 
     [Required]
     [JsonPropertyName("skipped_record_count")]
-    public int SkippedRecordCount { get; set; }
+    public required int SkippedRecordCount { get; set; }
 
 }

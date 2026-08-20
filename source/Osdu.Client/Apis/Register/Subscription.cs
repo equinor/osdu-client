@@ -23,33 +23,33 @@ public class Subscription
     /// Subscription Id
     /// </summary>
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     [Required]
     [MinLength(1)]
     [RegularExpression(@"^[A-Za-z0-9- ]{2,50}")]
     [JsonPropertyName("name")]
-    public string Name { get; set; }
+    public required string Name { get; set; }
 
     [RegularExpression(@"^[A-Za-z0-9. ]{0,255}")]
     [JsonPropertyName("description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     [Required]
     [MinLength(1)]
     [JsonPropertyName("topic")]
-    public string Topic { get; set; }
+    public required string Topic { get; set; }
 
     [Required]
     [MinLength(1)]
     [JsonPropertyName("pushEndpoint")]
-    public string PushEndpoint { get; set; }
+    public required string PushEndpoint { get; set; }
 
     [JsonPropertyName("createdBy")]
-    public string CreatedBy { get; set; }
+    public string? CreatedBy { get; set; }
 
     [JsonPropertyName("notificationId")]
-    public string NotificationId { get; set; }
+    public string? NotificationId { get; set; }
 
     [JsonPropertyName("secret")]
     public Secret? Secret { get; set; }

@@ -25,7 +25,7 @@ public class ConvertPointsRequestV4
     [Required]
     [MinLength(1)]
     [JsonPropertyName("fromCRS")]
-    public string FromCRS { get; set; }
+    public required string FromCRS { get; set; }
 
     /// <summary>
     /// Target CRS as persistable reference string
@@ -33,7 +33,7 @@ public class ConvertPointsRequestV4
     [Required]
     [MinLength(1)]
     [JsonPropertyName("toCRS")]
-    public string ToCRS { get; set; }
+    public required string ToCRS { get; set; }
 
     /// <summary>
     /// List of points to be converted
@@ -41,12 +41,12 @@ public class ConvertPointsRequestV4
     [Required]
     [MinLength(1)]
     [JsonPropertyName("points")]
-    public List<Point> Points { get; set; }
+    public required List<Point> Points { get; set; }
 
     /// <summary>
     /// CRS Transform
     /// </summary>
     [JsonPropertyName("transformation")]
-    public string Transformation { get; set; }
+    public string? Transformation { get; set; }
 
 }

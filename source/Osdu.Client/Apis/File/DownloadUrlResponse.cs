@@ -23,6 +23,6 @@ public class DownloadUrlResponse
     /// Signed URL
     /// </summary>
     [JsonPropertyName("SignedUrl")]
-    public string SignedUrl { get; set; }
+    public string? SignedUrl { get; set; }
 
 }

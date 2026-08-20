@@ -25,25 +25,25 @@ public class ConvertGeoJsonRequestV4
     [Required]
     [MinLength(1)]
     [JsonPropertyName("toCRS")]
-    public string ToCRS { get; set; }
+    public required string ToCRS { get; set; }
 
     /// <summary>
     /// Optional: the target Z-unit for the z-axis scaling.
     /// </summary>
     [JsonPropertyName("toUnitZ")]
-    public string ToUnitZ { get; set; }
+    public string? ToUnitZ { get; set; }
 
     /// <summary>
     /// Explicit Transformation as persistable reference string or record id, its optional and if given it will override Bound Transformation
     /// </summary>
     [JsonPropertyName("transformation")]
-    public string Transformation { get; set; }
+    public string? Transformation { get; set; }
 
     /// <summary>
     /// The GeoJSON FeatureCollection or AnyCrsFeatureCollection structure to be converted/transformed. GeoJSON is always based on WGS 84; AnyCrsFeatureCollection carries the CRS context in the persistableReferenceCrs property. GeoJSON WGS 84 or the persistableReferenceCrs are taken as the 'fromCRS'.
     /// </summary>
     [Required]
     [JsonPropertyName("featureCollection")]
-    public GeoJsonFeatureCollection FeatureCollection { get; set; }
+    public required GeoJsonFeatureCollection FeatureCollection { get; set; }
 
 }

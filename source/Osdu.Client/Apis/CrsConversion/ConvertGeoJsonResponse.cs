@@ -23,13 +23,13 @@ public class ConvertGeoJsonResponse
     /// The number of coordinates in the GeoJSON FeatureCollection or AnyCrsFeatureCollection successfully converted/transformed. If this number is less than totalCount then conversion/transformation errors have occurred.
     /// </summary>
     [JsonPropertyName("successCount")]
-    public string SuccessCount { get; set; }
+    public string? SuccessCount { get; set; }
 
     /// <summary>
     /// The total number of coordinates in the GeoJSON FeatureCollection or AnyCrsFeatureCollection.
     /// </summary>
     [JsonPropertyName("totalCount")]
-    public string TotalCount { get; set; }
+    public string? TotalCount { get; set; }
 
     /// <summary>
     /// The converted GeoJSON FeatureCollection or AnyCrsFeatureCollection with 'toCRS' context; length and order of the structure is the same as in the request. Points, which failed to convert, are returned as NaN.
@@ -41,6 +41,6 @@ public class ConvertGeoJsonResponse
     /// The list of operations performed on the points as a list of strings
     /// </summary>
     [JsonPropertyName("operationsApplied")]
-    public List<string> OperationsApplied { get; set; }
+    public List<string>? OperationsApplied { get; set; }
 
 }

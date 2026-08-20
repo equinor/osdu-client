@@ -25,7 +25,7 @@ public class Record
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.\:\%]+$")]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public required string Id { get; set; }
 
     /// <summary>
     /// Record version number, assigned by the server on each update.
@@ -39,28 +39,28 @@ public class Record
     [Required]
     [RegularExpression(@"^[\w\-\.]+:[\w\-\.]+:[\w\-\.]+:[0-9]+.[0-9]+.[0-9]+$")]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     /// <summary>
     /// Access control lists for viewers and owners.
     /// </summary>
     [Required]
     [JsonPropertyName("acl")]
-    public Acl Acl { get; set; }
+    public required Acl Acl { get; set; }
 
     /// <summary>
     /// Legal tags and other relevant data countries.
     /// </summary>
     [Required]
     [JsonPropertyName("legal")]
-    public Legal Legal { get; set; }
+    public required Legal Legal { get; set; }
 
     /// <summary>
     /// The record payload as a free-form JSON object.
     /// </summary>
     [Required]
     [JsonPropertyName("data")]
-    public object Data { get; set; }
+    public required object Data { get; set; }
 
     /// <summary>
     /// Ancestry information listing parent record IDs.
@@ -72,7 +72,7 @@ public class Record
     /// Optional array of meta sub-objects.
     /// </summary>
     [JsonPropertyName("meta")]
-    public List<object> Meta { get; set; }
+    public List<object>? Meta { get; set; }
 
     /// <summary>
     /// User-defined tags as key-value pairs.
@@ -84,7 +84,7 @@ public class Record
     /// User who created this record.
     /// </summary>
     [JsonPropertyName("createUser")]
-    public string CreateUser { get; set; }
+    public string? CreateUser { get; set; }
 
     /// <summary>
     /// ISO 8601 timestamp of record creation.
@@ -97,7 +97,7 @@ public class Record
     /// User who last modified this record.
     /// </summary>
     [JsonPropertyName("modifyUser")]
-    public string ModifyUser { get; set; }
+    public string? ModifyUser { get; set; }
 
     /// <summary>
     /// ISO 8601 timestamp of the last modification.

@@ -29,6 +29,6 @@ public class UnitSystemRequest
     /// The unit system's persistable reference string
     /// </summary>
     [JsonPropertyName("persistableReference")]
-    public string PersistableReference { get; set; }
+    public string? PersistableReference { get; set; }
 
 }

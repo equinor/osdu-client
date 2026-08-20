@@ -23,18 +23,18 @@ public class ScaleConvergence
     /// Point scale factor at this location. Ratio of grid distance to true ground distance. For UTM, typically ~0.9996 at central meridian.
     /// </summary>
     [JsonPropertyName("scalefactor")]
-    public string Scalefactor { get; set; }
+    public string? Scalefactor { get; set; }
 
     /// <summary>
     /// Grid convergence angle in degrees. Angle between True North and Grid North at this location. Used to convert between TN and GN azimuths.
     /// </summary>
     [JsonPropertyName("convergence")]
-    public string Convergence { get; set; }
+    public string? Convergence { get; set; }
 
     /// <summary>
     /// Absolute 3D coordinates in trajectoryCRS. x/y in CRS units, z in unitZ (elevation above reference, negative for depth below).
     /// </summary>
     [JsonPropertyName("point")]
-    public string Point { get; set; }
+    public string? Point { get; set; }
 
 }

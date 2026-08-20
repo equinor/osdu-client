@@ -23,12 +23,12 @@ public class ConnectedOuterService
     /// Name of the connected external service.
     /// </summary>
     [JsonPropertyName("name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// Version of the connected external service.
     /// </summary>
     [JsonPropertyName("version")]
-    public string Version { get; set; }
+    public string? Version { get; set; }
 
 }

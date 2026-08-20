@@ -23,6 +23,6 @@ public class UnitSystemEssenceImpl
     /// The full ancestry of this unit system.
     /// </summary>
     [JsonPropertyName("ancestry")]
-    public string Ancestry { get; set; }
+    public string? Ancestry { get; set; }
 
 }

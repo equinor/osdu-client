@@ -17,7 +17,7 @@ namespace Osdu.Client.Apis.Unit;
 public class UnitAssignment
 {
     [JsonPropertyName("lastModified")]
-    public string LastModified { get; set; }
+    public string? LastModified { get; set; }
 
     [JsonPropertyName("measurement")]
     public Measurement? Measurement { get; set; }

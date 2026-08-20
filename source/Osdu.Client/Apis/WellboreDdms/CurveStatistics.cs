@@ -18,38 +18,38 @@ public class CurveStatistics
 {
     [Required]
     [JsonPropertyName("mean")]
-    public string Mean { get; set; }
+    public required string Mean { get; set; }
 
     [Required]
     [JsonPropertyName("std")]
-    public string Std { get; set; }
+    public required string Std { get; set; }
 
     [Required]
     [JsonPropertyName("min")]
-    public string Min { get; set; }
+    public required string Min { get; set; }
 
     [Required]
     [JsonPropertyName("10%")]
-    public string _10 { get; set; }
+    public required string _10 { get; set; }
 
     [Required]
     [JsonPropertyName("50%")]
-    public string _50 { get; set; }
+    public required string _50 { get; set; }
 
     [Required]
     [JsonPropertyName("90%")]
-    public string _90 { get; set; }
+    public required string _90 { get; set; }
 
     [Required]
     [JsonPropertyName("max")]
-    public string Max { get; set; }
+    public required string Max { get; set; }
 
     [Required]
     [JsonPropertyName("totalCount")]
-    public string TotalCount { get; set; }
+    public required string TotalCount { get; set; }
 
     [Required]
     [JsonPropertyName("nonAbsentValuesCount")]
-    public string NonAbsentValuesCount { get; set; }
+    public required string NonAbsentValuesCount { get; set; }
 
 }

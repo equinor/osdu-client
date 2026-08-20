@@ -17,7 +17,7 @@ namespace Osdu.Client.Apis.File;
 public class LocationResponse
 {
     [JsonPropertyName("FileID")]
-    public string FileID { get; set; }
+    public string? FileID { get; set; }
 
     [JsonPropertyName("Location")]
     public Dictionary<string, string>? Location { get; set; }

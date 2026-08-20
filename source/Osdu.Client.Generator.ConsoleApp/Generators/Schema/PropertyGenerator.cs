@@ -49,13 +49,14 @@ public class PropertyGenerator
         if (typeName == "DateTimeOffset")
             sb.AppendLine($"{prefix}[JsonConverter(typeof(NullableDateTimeOffsetConverter))]");
 
-        var nullable = !isRequired && SchemaHelpers.IsNullableType(propSchema) ? "?" : "";
+        // Non-required properties are nullable; required properties are not.
+        bool isNullable = !isRequired || SchemaHelpers.IsExplicitlyNullable(propSchema);
+        var nullable = isNullable ? "?" : "";
 
-        // DateTimeOffset properties should always be nullable since the API may return empty/invalid values
-        if (typeName == "DateTimeOffset" && !isRequired)
-            nullable = "?";
+        // Use C# 'required' keyword for required properties to enforce compile-time initialization
+        var requiredModifier = isRequired ? "required " : "";
 
-        sb.AppendLine($"{prefix}public {typeName}{nullable} {csharpName} {{ get; set; }}");
+        sb.AppendLine($"{prefix}public {requiredModifier}{typeName}{nullable} {csharpName} {{ get; set; }}");
         sb.AppendLine();
     }
 

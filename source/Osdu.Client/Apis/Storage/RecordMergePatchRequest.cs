@@ -23,7 +23,7 @@ public class RecordMergePatchRequest
     /// Record kind
     /// </summary>
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public string? Kind { get; set; }
 
     /// <summary>
     /// Access Control List for the record
@@ -66,6 +66,6 @@ public class RecordMergePatchRequest
     /// Deletion timestamp - set to null to undelete
     /// </summary>
     [JsonPropertyName("deletedAt")]
-    public string DeletedAt { get; set; }
+    public string? DeletedAt { get; set; }
 
 }

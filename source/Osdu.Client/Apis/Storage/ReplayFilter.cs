@@ -25,6 +25,6 @@ public class ReplayFilter
     [MinLength(1)]
     [MaxLength(1)]
     [JsonPropertyName("kinds")]
-    public List<string> Kinds { get; set; }
+    public List<string>? Kinds { get; set; }
 
 }

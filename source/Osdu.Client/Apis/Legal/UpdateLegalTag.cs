@@ -23,19 +23,19 @@ public class UpdateLegalTag
     /// The name of the LegalTag
     /// </summary>
     [JsonPropertyName("name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// The Id of the physical contract associated with the data being ingested.
     /// </summary>
     [JsonPropertyName("contractId")]
-    public string ContractId { get; set; }
+    public string? ContractId { get; set; }
 
     /// <summary>
     /// The optional description if the LegalTag to allow for easier discoverability of Legaltags overtime.
     /// </summary>
     [JsonPropertyName("description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// The optional expiration date of the contract in the format YYYY-MM-DD

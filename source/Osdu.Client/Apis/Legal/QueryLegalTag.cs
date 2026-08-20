@@ -24,25 +24,25 @@ public class QueryLegalTag
     /// </summary>
     [Required]
     [JsonPropertyName("queryList")]
-    public List<string> QueryList { get; set; }
+    public required List<string> QueryList { get; set; }
 
     /// <summary>
     /// If there are multiple conditions need to be joined in by logical operators
     /// </summary>
     [JsonPropertyName("operatorList")]
-    public List<string> OperatorList { get; set; }
+    public List<string>? OperatorList { get; set; }
 
     /// <summary>
     /// The field to sort results by
     /// </summary>
     [JsonPropertyName("sortBy")]
-    public string SortBy { get; set; }
+    public string? SortBy { get; set; }
 
     /// <summary>
     /// The sort order, e.g. 'ASC' or 'DESC'
     /// </summary>
     [JsonPropertyName("sortOrder")]
-    public string SortOrder { get; set; }
+    public string? SortOrder { get; set; }
 
     /// <summary>
     /// The maximum number of LegalTags to return

@@ -23,7 +23,7 @@ public class ConvertTrajectoryResponseV4
     /// Unit of measure for Measured Depth (MD) values. Optional - defaults to unitZ if not specified.
     /// </summary>
     [JsonPropertyName("unitMD")]
-    public string UnitMD { get; set; }
+    public string? UnitMD { get; set; }
 
     /// <summary>
     /// Coordinate reference system for the reference point; typically the CRS is a projected CRS; if a geographic CRS is provided, the unitXY must be defined and the azimuthReference must be TRUE_NORTH.
@@ -31,7 +31,7 @@ public class ConvertTrajectoryResponseV4
     [Required]
     [MinLength(1)]
     [JsonPropertyName("trajectoryCRS")]
-    public string TrajectoryCRS { get; set; }
+    public required string TrajectoryCRS { get; set; }
 
     /// <summary>
     /// Unit of measure for horizontal deviations (dxTN, dyTN) in output trajectory stations.
@@ -39,7 +39,7 @@ public class ConvertTrajectoryResponseV4
     [Required]
     [MinLength(1)]
     [JsonPropertyName("unitXY")]
-    public string UnitXY { get; set; }
+    public required string UnitXY { get; set; }
 
     /// <summary>
     /// Unit of measure for vertical deviation (dZ) and point.z elevation in output trajectory stations.
@@ -47,7 +47,7 @@ public class ConvertTrajectoryResponseV4
     [Required]
     [MinLength(1)]
     [JsonPropertyName("unitZ")]
-    public string UnitZ { get; set; }
+    public required string UnitZ { get; set; }
 
     /// <summary>
     /// Unit of measure for Dog Leg Severity (DLS) values. Automatically set to deg/100ft (non-metric) or deg/30m (metric) based on unitZ.
@@ -55,7 +55,7 @@ public class ConvertTrajectoryResponseV4
     [Required]
     [MinLength(1)]
     [JsonPropertyName("unitDls")]
-    public string UnitDls { get; set; }
+    public required string UnitDls { get; set; }
 
     /// <summary>
     /// Computed trajectory stations from original input. Each station includes absolute coordinates, local deviations, and WGS84 lat/long.
@@ -63,7 +63,7 @@ public class ConvertTrajectoryResponseV4
     [Required]
     [MinLength(1)]
     [JsonPropertyName("stations")]
-    public List<TrajectoryStationOut> Stations { get; set; }
+    public required List<TrajectoryStationOut> Stations { get; set; }
 
     /// <summary>
     /// Local Azimuthal Equidistant CRS centered at the well's surface location. True North oriented, true distance engineering CRS.
@@ -71,7 +71,7 @@ public class ConvertTrajectoryResponseV4
     [Required]
     [MinLength(1)]
     [JsonPropertyName("localCRS")]
-    public string LocalCRS { get; set; }
+    public required string LocalCRS { get; set; }
 
     /// <summary>
     /// The computation method used. AzimuthalEquidistant or LMP (Lee's Modified Proposal).
@@ -79,30 +79,30 @@ public class ConvertTrajectoryResponseV4
     [Required]
     [MinLength(1)]
     [JsonPropertyName("method")]
-    public string Method { get; set; }
+    public required string Method { get; set; }
 
     /// <summary>
     /// The list of operations performed on the points as a list of strings
     /// </summary>
     [JsonPropertyName("operationsApplied")]
-    public List<string> OperationsApplied { get; set; }
+    public List<string>? OperationsApplied { get; set; }
 
     /// <summary>
     /// Interpolated trajectory stations at MD_i depths. Only present when interpolation was requested. Same structure as main stations.
     /// </summary>
     [JsonPropertyName("stations_i")]
-    public List<TrajectoryStationOut> StationsI { get; set; }
+    public List<TrajectoryStationOut>? StationsI { get; set; }
 
     /// <summary>
     /// Scale factor and convergence values computed at first and last stations. Used for precise surveying calculations.
     /// </summary>
     [JsonPropertyName("scaleConvergenceList")]
-    public List<ScaleConvergence> ScaleConvergenceList { get; set; }
+    public List<ScaleConvergence>? ScaleConvergenceList { get; set; }
 
     /// <summary>
     /// Format of input data: MD_Incl_Azim (default) - measured depth with inclination and azimuth angles. MD_dX_dY_dZ - measured depth with local deviations. dX_dY_dZ - deviations only (MD computed via inverse minimum curvature). MD_Incl - inclination-only surveys (no azimuth).
     /// </summary>
     [JsonPropertyName("inputKind")]
-    public string InputKind { get; set; }
+    public string? InputKind { get; set; }
 
 }

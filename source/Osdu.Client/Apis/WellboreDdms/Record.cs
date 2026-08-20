@@ -24,22 +24,22 @@ public class Record
 
     [Required]
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public required string Kind { get; set; }
 
     [Required]
     [JsonPropertyName("acl")]
-    public StorageAcl Acl { get; set; }
+    public required StorageAcl Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public Legal Legal { get; set; }
+    public required Legal Legal { get; set; }
 
     [JsonPropertyName("meta")]
     public List<object>? Meta { get; set; }
 
     [Required]
     [JsonPropertyName("data")]
-    public object Data { get; set; }
+    public required object Data { get; set; }
 
     [JsonPropertyName("ancestry")]
     public RecordAncestry? Ancestry { get; set; }

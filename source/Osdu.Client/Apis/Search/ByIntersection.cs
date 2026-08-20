@@ -24,6 +24,6 @@ public class ByIntersection
     /// </summary>
     [Required]
     [JsonPropertyName("polygons")]
-    public List<Polygon> Polygons { get; set; }
+    public required List<Polygon> Polygons { get; set; }
 
 }

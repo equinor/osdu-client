@@ -23,6 +23,6 @@ public class Polygon
     /// List of points making up a polygon
     /// </summary>
     [JsonPropertyName("points")]
-    public List<Point> Points { get; set; }
+    public List<Point>? Points { get; set; }
 
 }

@@ -18,6 +18,6 @@ public class Services
 {
     [Required]
     [JsonPropertyName("opa")]
-    public ServiceDetail Opa { get; set; }
+    public required ServiceDetail Opa { get; set; }
 
 }

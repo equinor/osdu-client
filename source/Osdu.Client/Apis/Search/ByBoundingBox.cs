@@ -24,13 +24,13 @@ public class ByBoundingBox
     /// </summary>
     [Required]
     [JsonPropertyName("topLeft")]
-    public Point TopLeft { get; set; }
+    public required Point TopLeft { get; set; }
 
     /// <summary>
     /// Bottom right corner of the bounding box.
     /// </summary>
     [Required]
     [JsonPropertyName("bottomRight")]
-    public Point BottomRight { get; set; }
+    public required Point BottomRight { get; set; }
 
 }

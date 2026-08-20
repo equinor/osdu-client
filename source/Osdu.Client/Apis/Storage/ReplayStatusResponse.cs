@@ -23,13 +23,13 @@ public class ReplayStatusResponse
     /// Unique identifier of the replay operation.
     /// </summary>
     [JsonPropertyName("replayId")]
-    public string ReplayId { get; set; }
+    public string? ReplayId { get; set; }
 
     /// <summary>
     /// The operation type that was requested.
     /// </summary>
     [JsonPropertyName("operation")]
-    public string Operation { get; set; }
+    public string? Operation { get; set; }
 
     /// <summary>
     /// Total number of records to be processed.
@@ -48,7 +48,7 @@ public class ReplayStatusResponse
     /// Human-readable elapsed time since the operation started.
     /// </summary>
     [JsonPropertyName("elapsedTime")]
-    public string ElapsedTime { get; set; }
+    public string? ElapsedTime { get; set; }
 
     /// <summary>
     /// Number of records processed so far.
@@ -60,7 +60,7 @@ public class ReplayStatusResponse
     /// Overall state of the replay operation.
     /// </summary>
     [JsonPropertyName("overallState")]
-    public string OverallState { get; set; }
+    public string? OverallState { get; set; }
 
     /// <summary>
     /// Filter that was applied to the replay operation.
@@ -72,6 +72,6 @@ public class ReplayStatusResponse
     /// Per-kind status breakdown of the replay operation.
     /// </summary>
     [JsonPropertyName("status")]
-    public List<ReplayStatus> Status { get; set; }
+    public List<ReplayStatus>? Status { get; set; }
 
 }

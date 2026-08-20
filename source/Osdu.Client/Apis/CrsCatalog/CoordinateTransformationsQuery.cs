@@ -23,84 +23,84 @@ public class CoordinateTransformationsQuery
     /// Corresponds to CodeSpace field on CT records
     /// </summary>
     [JsonPropertyName("codeSpace")]
-    public string CodeSpace { get; set; }
+    public string? CodeSpace { get; set; }
 
     /// <summary>
     /// Corresponds to Name field on CT records. All entities with name containing the search string will be returned. Wildcard is not supported
     /// </summary>
     [JsonPropertyName("name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// Corresponds to ID field on CT records
     /// </summary>
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// Corresponds to Code field on CT records
     /// </summary>
     [JsonPropertyName("code")]
-    public string Code { get; set; }
+    public string? Code { get; set; }
 
     /// <summary>
     /// Corresponds to the Kind field on CT records. Default is to not return CT records with Kind "VerticalTransformation". Viable options include "Transformation", "ConcatenatedOperation", "VerticalTransformation", "ExcludeVertical" (default) and "All". "All" is a special value which indicates returning records of all kinds.
     /// </summary>
     [JsonPropertyName("kind")]
-    public string Kind { get; set; }
+    public string? Kind { get; set; }
 
     /// <summary>
     /// Corresponds to SourceCRS.SourceCRSID (record id), e.g., "osdu:reference-data--CoordinateReferenceSystem:Geographic2D:EPSG::4198:". As SourceCRS and TargetCRS are interchangeable, it will also search TargetCRS.TargetCRSID
     /// </summary>
     [JsonPropertyName("sourceCRS")]
-    public string SourceCRS { get; set; }
+    public string? SourceCRS { get; set; }
 
     /// <summary>
     /// Corresponds to TargetCRS.TargetCRSID (record id), e.g., "osdu:reference-data--CoordinateReferenceSystem:Geographic2D:EPSG::4198:". As SourceCRS and TargetCRS are interchangeable, it will also search SourceCRS.SourceCRSID
     /// </summary>
     [JsonPropertyName("targetCRS")]
-    public string TargetCRS { get; set; }
+    public string? TargetCRS { get; set; }
 
     /// <summary>
     /// Returns all entities for which the (Latitude, Longitude) is inside the Extent bounding box. Must also provide longitude
     /// </summary>
     [JsonPropertyName("latitude")]
-    public string Latitude { get; set; }
+    public string? Latitude { get; set; }
 
     /// <summary>
     /// See latitude
     /// </summary>
     [JsonPropertyName("longitude")]
-    public string Longitude { get; set; }
+    public string? Longitude { get; set; }
 
     /// <summary>
     /// Whether to return deprecated records marked with InactiveIndicator=true. Default is false.
     /// </summary>
     [JsonPropertyName("includeDeprecated")]
-    public string IncludeDeprecated { get; set; }
+    public string? IncludeDeprecated { get; set; }
 
     /// <summary>
     /// Corresponds to offset on search service
     /// </summary>
     [JsonPropertyName("offset")]
-    public string Offset { get; set; }
+    public string? Offset { get; set; }
 
     /// <summary>
     /// Corresponds to limit on search service. Default is to return all found entities.
     /// </summary>
     [JsonPropertyName("limit")]
-    public string Limit { get; set; }
+    public string? Limit { get; set; }
 
     /// <summary>
     /// Whether to return all fields in the record. Default is false and only a subset is returned
     /// </summary>
     [JsonPropertyName("returnAllFields")]
-    public string ReturnAllFields { get; set; }
+    public string? ReturnAllFields { get; set; }
 
     /// <summary>
     /// List of specific fields to return. Overridden when returnAllFields is true.
     /// </summary>
     [JsonPropertyName("returnedFields")]
-    public List<string> ReturnedFields { get; set; }
+    public List<string>? ReturnedFields { get; set; }
 
 }

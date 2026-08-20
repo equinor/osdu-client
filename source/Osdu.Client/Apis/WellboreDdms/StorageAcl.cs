@@ -18,10 +18,10 @@ public class StorageAcl
 {
     [Required]
     [JsonPropertyName("viewers")]
-    public List<string> Viewers { get; set; }
+    public required List<string> Viewers { get; set; }
 
     [Required]
     [JsonPropertyName("owners")]
-    public List<string> Owners { get; set; }
+    public required List<string> Owners { get; set; }
 
 }

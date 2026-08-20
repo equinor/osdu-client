@@ -20,54 +20,54 @@ public class DeleteRecordsException
     public DeleteRecordsException_Cause? Cause { get; set; }
 
     [JsonPropertyName("stackTrace")]
-    public List<DeleteRecordsException_StackTrace> StackTrace { get; set; }
+    public List<DeleteRecordsException_StackTrace>? StackTrace { get; set; }
 
     [JsonPropertyName("notDeletedRecords")]
-    public List<PairStringString> NotDeletedRecords { get; set; }
+    public List<PairStringString>? NotDeletedRecords { get; set; }
 
     [JsonPropertyName("message")]
-    public string Message { get; set; }
+    public string? Message { get; set; }
 
     [JsonPropertyName("suppressed")]
-    public List<DeleteRecordsException_Suppressed> Suppressed { get; set; }
+    public List<DeleteRecordsException_Suppressed>? Suppressed { get; set; }
 
     [JsonPropertyName("localizedMessage")]
-    public string LocalizedMessage { get; set; }
+    public string? LocalizedMessage { get; set; }
 
 }
 
 public class DeleteRecordsException_Cause
 {
     [JsonPropertyName("stackTrace")]
-    public List<DeleteRecordsException_Cause_StackTrace> StackTrace { get; set; }
+    public List<DeleteRecordsException_Cause_StackTrace>? StackTrace { get; set; }
 
     [JsonPropertyName("message")]
-    public string Message { get; set; }
+    public string? Message { get; set; }
 
     [JsonPropertyName("suppressed")]
-    public List<DeleteRecordsException_Cause_Suppressed> Suppressed { get; set; }
+    public List<DeleteRecordsException_Cause_Suppressed>? Suppressed { get; set; }
 
     [JsonPropertyName("localizedMessage")]
-    public string LocalizedMessage { get; set; }
+    public string? LocalizedMessage { get; set; }
 
 }
 
 public class DeleteRecordsException_Cause_StackTrace
 {
     [JsonPropertyName("classLoaderName")]
-    public string ClassLoaderName { get; set; }
+    public string? ClassLoaderName { get; set; }
 
     [JsonPropertyName("moduleName")]
-    public string ModuleName { get; set; }
+    public string? ModuleName { get; set; }
 
     [JsonPropertyName("moduleVersion")]
-    public string ModuleVersion { get; set; }
+    public string? ModuleVersion { get; set; }
 
     [JsonPropertyName("methodName")]
-    public string MethodName { get; set; }
+    public string? MethodName { get; set; }
 
     [JsonPropertyName("fileName")]
-    public string FileName { get; set; }
+    public string? FileName { get; set; }
 
     [JsonPropertyName("lineNumber")]
     public int? LineNumber { get; set; }
@@ -77,39 +77,39 @@ public class DeleteRecordsException_Cause_StackTrace
     public bool? NativeMethod { get; set; }
 
     [JsonPropertyName("className")]
-    public string ClassName { get; set; }
+    public string? ClassName { get; set; }
 
 }
 
 public class DeleteRecordsException_Cause_Suppressed
 {
     [JsonPropertyName("stackTrace")]
-    public List<DeleteRecordsException_Cause_Suppressed_StackTrace> StackTrace { get; set; }
+    public List<DeleteRecordsException_Cause_Suppressed_StackTrace>? StackTrace { get; set; }
 
     [JsonPropertyName("message")]
-    public string Message { get; set; }
+    public string? Message { get; set; }
 
     [JsonPropertyName("localizedMessage")]
-    public string LocalizedMessage { get; set; }
+    public string? LocalizedMessage { get; set; }
 
 }
 
 public class DeleteRecordsException_Cause_Suppressed_StackTrace
 {
     [JsonPropertyName("classLoaderName")]
-    public string ClassLoaderName { get; set; }
+    public string? ClassLoaderName { get; set; }
 
     [JsonPropertyName("moduleName")]
-    public string ModuleName { get; set; }
+    public string? ModuleName { get; set; }
 
     [JsonPropertyName("moduleVersion")]
-    public string ModuleVersion { get; set; }
+    public string? ModuleVersion { get; set; }
 
     [JsonPropertyName("methodName")]
-    public string MethodName { get; set; }
+    public string? MethodName { get; set; }
 
     [JsonPropertyName("fileName")]
-    public string FileName { get; set; }
+    public string? FileName { get; set; }
 
     [JsonPropertyName("lineNumber")]
     public int? LineNumber { get; set; }
@@ -119,26 +119,26 @@ public class DeleteRecordsException_Cause_Suppressed_StackTrace
     public bool? NativeMethod { get; set; }
 
     [JsonPropertyName("className")]
-    public string ClassName { get; set; }
+    public string? ClassName { get; set; }
 
 }
 
 public class DeleteRecordsException_StackTrace
 {
     [JsonPropertyName("classLoaderName")]
-    public string ClassLoaderName { get; set; }
+    public string? ClassLoaderName { get; set; }
 
     [JsonPropertyName("moduleName")]
-    public string ModuleName { get; set; }
+    public string? ModuleName { get; set; }
 
     [JsonPropertyName("moduleVersion")]
-    public string ModuleVersion { get; set; }
+    public string? ModuleVersion { get; set; }
 
     [JsonPropertyName("methodName")]
-    public string MethodName { get; set; }
+    public string? MethodName { get; set; }
 
     [JsonPropertyName("fileName")]
-    public string FileName { get; set; }
+    public string? FileName { get; set; }
 
     [JsonPropertyName("lineNumber")]
     public int? LineNumber { get; set; }
@@ -148,39 +148,39 @@ public class DeleteRecordsException_StackTrace
     public bool? NativeMethod { get; set; }
 
     [JsonPropertyName("className")]
-    public string ClassName { get; set; }
+    public string? ClassName { get; set; }
 
 }
 
 public class DeleteRecordsException_Suppressed
 {
     [JsonPropertyName("stackTrace")]
-    public List<DeleteRecordsException_Suppressed_StackTrace> StackTrace { get; set; }
+    public List<DeleteRecordsException_Suppressed_StackTrace>? StackTrace { get; set; }
 
     [JsonPropertyName("message")]
-    public string Message { get; set; }
+    public string? Message { get; set; }
 
     [JsonPropertyName("localizedMessage")]
-    public string LocalizedMessage { get; set; }
+    public string? LocalizedMessage { get; set; }
 
 }
 
 public class DeleteRecordsException_Suppressed_StackTrace
 {
     [JsonPropertyName("classLoaderName")]
-    public string ClassLoaderName { get; set; }
+    public string? ClassLoaderName { get; set; }
 
     [JsonPropertyName("moduleName")]
-    public string ModuleName { get; set; }
+    public string? ModuleName { get; set; }
 
     [JsonPropertyName("moduleVersion")]
-    public string ModuleVersion { get; set; }
+    public string? ModuleVersion { get; set; }
 
     [JsonPropertyName("methodName")]
-    public string MethodName { get; set; }
+    public string? MethodName { get; set; }
 
     [JsonPropertyName("fileName")]
-    public string FileName { get; set; }
+    public string? FileName { get; set; }
 
     [JsonPropertyName("lineNumber")]
     public int? LineNumber { get; set; }
@@ -190,6 +190,6 @@ public class DeleteRecordsException_Suppressed_StackTrace
     public bool? NativeMethod { get; set; }
 
     [JsonPropertyName("className")]
-    public string ClassName { get; set; }
+    public string? ClassName { get; set; }
 
 }

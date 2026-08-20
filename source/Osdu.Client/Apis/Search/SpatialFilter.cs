@@ -24,7 +24,7 @@ public class SpatialFilter
     /// </summary>
     [Required]
     [JsonPropertyName("field")]
-    public string Field { get; set; }
+    public required string Field { get; set; }
 
     /// <summary>
     /// A query allowing to filter hits based on a point location within a bounding box.

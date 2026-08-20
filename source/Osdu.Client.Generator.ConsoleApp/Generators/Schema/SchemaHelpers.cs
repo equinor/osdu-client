@@ -12,11 +12,80 @@ public static class SchemaHelpers
     public static bool HasFlag(JsonSchemaType type, JsonSchemaType flag)
         => (type & flag) == flag;
 
-    public static bool IsNullableType(IOpenApiSchema schema)
+    /// <summary>
+    /// Returns true if the schema explicitly allows null values.
+    /// Handles both OpenAPI 3.0 (nullable: true) and 3.1 (type includes "null").
+    /// In Microsoft.OpenApi v3.x, both representations are unified into
+    /// JsonSchemaType.Null being present in the Type flags.
+    /// </summary>
+    public static bool IsExplicitlyNullable(IOpenApiSchema schema)
     {
-        var type = schema is OpenApiSchemaReference ? JsonSchemaType.Object : (schema.Type ?? JsonSchemaType.Null);
-        if (HasFlag(type, JsonSchemaType.Null)) return true;
-        return !HasFlag(type, JsonSchemaType.String) && !HasFlag(type, JsonSchemaType.Array);
+        // Resolve through $ref to get the actual schema's type information
+        var resolved = schema is OpenApiSchemaReference schemaRef
+            ? schemaRef.Target
+            : schema;
+
+        if (resolved is null)
+            return false;
+
+        // If the schema has no explicit type (e.g., allOf/oneOf compositions),
+        // it is not explicitly nullable — nullability is not implied by absence of type.
+        if (resolved.Type is null)
+            return false;
+
+        // OpenAPI 3.0: nullable: true → converted to JsonSchemaType.Null by Microsoft.OpenApi v3.x
+        // OpenAPI 3.1: type: ["string", "null"] → JsonSchemaType.Null is present in the flags
+        return HasFlag(resolved.Type.Value, JsonSchemaType.Null);
+    }
+
+    /// <summary>
+    /// Extracts the reference ID (schema name) from a $ref schema, or null if not a reference.
+    /// </summary>
+    public static string? GetSchemaReferenceName(IOpenApiSchema schema)
+        => schema is OpenApiSchemaReference schemaRef ? schemaRef.Reference.Id : null;
+
+    /// <summary>
+    /// Patches a generated class's code to add inheritance from the given base class.
+    /// If the class already has a base class, the code is left unchanged.
+    /// </summary>
+    public static string PatchClassInheritance(string code, string className, string baseClassName)
+    {
+        // Match "public class ClassName" or "public class ClassName : ExistingBase"
+        var pattern = $"public class {className}";
+        var idx = code.IndexOf(pattern, StringComparison.Ordinal);
+        if (idx < 0)
+            return code;
+
+        var afterClass = idx + pattern.Length;
+        var lineEnd = code.IndexOf('\n', afterClass);
+        if (lineEnd < 0) lineEnd = code.Length;
+
+        var remainder = code[afterClass..lineEnd].TrimEnd('\r');
+
+        if (remainder.TrimStart().StartsWith(':'))
+        {
+            // Already has base class — don't change (it already inherits from something)
+            return code;
+        }
+        else
+        {
+            // No base class — add one
+            return code[..afterClass] + $" : {baseClassName}" + code[afterClass..];
+        }
+    }
+
+    /// <summary>
+    /// Computes a stable cache key for a set of oneOf/anyOf variants based on their $ref names.
+    /// Returns null if any variant is not a $ref (inline schemas can't be deduplicated this way).
+    /// </summary>
+    public static string? GetOneOfSignature(IList<IOpenApiSchema> variants)
+    {
+        var refs = variants.OfType<OpenApiSchemaReference>().ToList();
+        if (refs.Count != variants.Count || refs.Count == 0)
+            return null;
+
+        var names = refs.Select(r => r.Reference.Id).OrderBy(n => n, StringComparer.Ordinal);
+        return string.Join("|", names);
     }
 
     public static string Sanitize(string? name)
@@ -56,41 +125,5 @@ public static class SchemaHelpers
             sb.AppendLine($"{prefix}/// {EscapeXml(line.Trim())}");
         }
         sb.AppendLine($"{prefix}/// </summary>");
-    }
-
-    public static string? GetSchemaReferenceName(IOpenApiSchema schema)
-        => schema is OpenApiSchemaReference schemaRef ? schemaRef.Reference.Id : null;
-
-    public static string? GetOneOfSignature(IList<IOpenApiSchema> variants)
-    {
-        var refs = variants.OfType<OpenApiSchemaReference>().ToList();
-        if (refs.Count != variants.Count || refs.Count == 0)
-            return null;
-
-        var names = refs.Select(r => r.Reference.Id).OrderBy(n => n, StringComparer.Ordinal);
-        return string.Join("|", names);
-    }
-
-    public static string PatchClassInheritance(string code, string className, string baseClassName)
-    {
-        var pattern = $"public class {className}";
-        var idx = code.IndexOf(pattern, StringComparison.Ordinal);
-        if (idx < 0)
-            return code;
-
-        var afterClass = idx + pattern.Length;
-        var lineEnd = code.IndexOf('\n', afterClass);
-        if (lineEnd < 0) lineEnd = code.Length;
-
-        var remainder = code[afterClass..lineEnd].TrimEnd('\r');
-
-        if (remainder.TrimStart().StartsWith(":"))
-        {
-            return code;
-        }
-        else
-        {
-            return code[..afterClass] + $" : {baseClassName}" + code[afterClass..];
-        }
     }
 }

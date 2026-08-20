@@ -24,14 +24,14 @@ public class PatchOperation
     /// </summary>
     [Required]
     [JsonPropertyName("op")]
-    public string Op { get; set; }
+    public required string Op { get; set; }
 
     /// <summary>
     /// Bulk update record path.
     /// </summary>
     [Required]
     [JsonPropertyName("path")]
-    public string Path { get; set; }
+    public required string Path { get; set; }
 
     /// <summary>
     /// Bulk update record value(s).
@@ -39,6 +39,6 @@ public class PatchOperation
     [Required]
     [MinLength(1)]
     [JsonPropertyName("value")]
-    public List<string> Value { get; set; }
+    public required List<string> Value { get; set; }
 
 }

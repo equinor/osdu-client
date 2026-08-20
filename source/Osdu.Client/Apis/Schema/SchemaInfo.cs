@@ -24,13 +24,13 @@ public class SchemaInfo
     /// </summary>
     [Required]
     [JsonPropertyName("schemaIdentity")]
-    public SchemaIdentity SchemaIdentity { get; set; }
+    public required SchemaIdentity SchemaIdentity { get; set; }
 
     /// <summary>
     /// The user who created the schema. This value is taken from API caller token.
     /// </summary>
     [JsonPropertyName("createdBy")]
-    public string CreatedBy { get; set; }
+    public string? CreatedBy { get; set; }
 
     /// <summary>
     /// The UTC date time of the entity creation
@@ -44,13 +44,13 @@ public class SchemaInfo
     /// </summary>
     [Required]
     [JsonPropertyName("status")]
-    public SchemaInfo_Status Status { get; set; }
+    public required SchemaInfo_Status Status { get; set; }
 
     /// <summary>
     /// Schema visibility — INTERNAL (partition-scoped) or SHARED (platform-wide). System-assigned based on the partition-id.
     /// </summary>
     [JsonPropertyName("scope")]
-    public SchemaInfo_Scope Scope { get; set; }
+    public SchemaInfo_Scope? Scope { get; set; }
 
     /// <summary>
     /// The schema identity of the schema that supersedes this one. Present only when this schema has been superseded.

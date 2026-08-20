@@ -31,19 +31,19 @@ public class ConvertTrajectoryRequestV4
     [Required]
     [MinLength(1)]
     [JsonPropertyName("trajectoryCRS")]
-    public string TrajectoryCRS { get; set; }
+    public required string TrajectoryCRS { get; set; }
 
     /// <summary>
     /// Reference direction for azimuth angles. TRUE_NORTH (TN): measured from geographic true north. GRID_NORTH (GN): measured from map projection grid north. The difference is the grid convergence angle.
     /// </summary>
     [JsonPropertyName("azimuthReference")]
-    public string AzimuthReference { get; set; }
+    public string? AzimuthReference { get; set; }
 
     /// <summary>
     /// Unit of measure for horizontal displacements (dx, dy). Required for dX_dY_dZ input kinds. Can be OSDU record ID (e.g., 'osdu:reference-data--UnitOfMeasure:m:') or persistable reference JSON. Auto-derived from projected CRS if not specified.
     /// </summary>
     [JsonPropertyName("unitXY")]
-    public string UnitXY { get; set; }
+    public string? UnitXY { get; set; }
 
     /// <summary>
     /// Unit of measure for vertical values (dz) and measured depth. Required field. Can be OSDU record ID (e.g., 'osdu:reference-data--UnitOfMeasure:m:') or persistable reference JSON.
@@ -51,7 +51,7 @@ public class ConvertTrajectoryRequestV4
     [Required]
     [MinLength(1)]
     [JsonPropertyName("unitZ")]
-    public string UnitZ { get; set; }
+    public required string UnitZ { get; set; }
 
     /// <summary>
     /// The 3D reference point in the 'trajectoryCRS' where MD==0.
@@ -65,7 +65,7 @@ public class ConvertTrajectoryRequestV4
     [Required]
     [MinLength(1)]
     [JsonPropertyName("inputStations")]
-    public List<TrajectoryStationInV4> InputStations { get; set; }
+    public required List<TrajectoryStationInV4> InputStations { get; set; }
 
     /// <summary>
     /// Computation method: 'AzimuthalEquidistant' (default) - standard method using azimuthal equidistant projection centered at well location. 'LMP' - Lee's Modified Proposal (SPE96813) for improved accuracy at extreme latitudes.
@@ -73,19 +73,19 @@ public class ConvertTrajectoryRequestV4
     [Required]
     [MinLength(1)]
     [JsonPropertyName("method")]
-    public string Method { get; set; }
+    public required string Method { get; set; }
 
     /// <summary>
     /// Format of input data: MD_Incl_Azim (default) - measured depth with inclination and azimuth angles. MD_dX_dY_dZ - measured depth with local deviations. dX_dY_dZ - deviations only (MD computed via inverse minimum curvature). MD_Incl - inclination-only surveys (no azimuth).
     /// </summary>
     [JsonPropertyName("inputKind")]
-    public string InputKind { get; set; }
+    public string? InputKind { get; set; }
 
     /// <summary>
     /// When true (default), interpolates additional stations at MD values specified in MD_i. When false, only original input stations are processed and MD_i is ignored.
     /// </summary>
     [JsonPropertyName("interpolate")]
-    public string Interpolate { get; set; }
+    public string? Interpolate { get; set; }
 
     /// <summary>
     /// Specifies measured depths where additional trajectory stations should be interpolated. Only used when 'interpolate' is true. Provide either explicit MD values (md_i array) or a regular interval (md_interval).
@@ -97,6 +97,6 @@ public class ConvertTrajectoryRequestV4
     /// Unit of measure for Measured Depth (MD) values. Optional - defaults to unitZ if not specified.
     /// </summary>
     [JsonPropertyName("unitMD")]
-    public string UnitMD { get; set; }
+    public string? UnitMD { get; set; }
 
 }

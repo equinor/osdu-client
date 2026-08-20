@@ -23,6 +23,6 @@ public class InvalidTagsWithReason
     /// A collection of invalid LegalTags
     /// </summary>
     [JsonPropertyName("invalidLegalTags")]
-    public List<InvalidTagWithReason> InvalidLegalTags { get; set; }
+    public List<InvalidTagWithReason>? InvalidLegalTags { get; set; }
 
 }

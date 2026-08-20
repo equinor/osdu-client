@@ -21,6 +21,6 @@ public class UnsupportedMediaTypeResponse
 
     [Required]
     [JsonPropertyName("reason")]
-    public string Reason { get; set; }
+    public required string Reason { get; set; }
 
 }

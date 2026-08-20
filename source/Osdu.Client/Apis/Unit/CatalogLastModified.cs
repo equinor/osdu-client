@@ -17,6 +17,6 @@ namespace Osdu.Client.Apis.Unit;
 public class CatalogLastModified
 {
     [JsonPropertyName("lastModified")]
-    public string LastModified { get; set; }
+    public string? LastModified { get; set; }
 
 }

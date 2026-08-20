@@ -23,96 +23,96 @@ public class FileData
     /// An optional name of the dataset, e.g. a user friendly file or file collection name.
     /// </summary>
     [JsonPropertyName("Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// An optional, textual description of the dataset.
     /// </summary>
     [JsonPropertyName("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// Total size of the dataset in bytes; for files it is the same as declared in FileSourceInfo.FileSize or the sum of all individual files. Implemented as string. The value must be convertible to a long integer (sizes can become very large).
     /// </summary>
     [RegularExpression(@"^[0-9]+$")]
     [JsonPropertyName("TotalSize")]
-    public string TotalSize { get; set; }
+    public string? TotalSize { get; set; }
 
     /// <summary>
     /// Encoding Format Type ID
     /// </summary>
     [RegularExpression(@"^srn:<namespace>:reference-data\\/EncodingFormatType:[^:]+:[0-9]*$")]
     [JsonPropertyName("EncodingFormatTypeID")]
-    public string EncodingFormatTypeID { get; set; }
+    public string? EncodingFormatTypeID { get; set; }
 
     /// <summary>
     /// Schema Format Type ID
     /// </summary>
     [RegularExpression(@"^srn:<namespace>:reference-data\\/SchemaFormatType:[^:]+:[0-9]*$")]
     [JsonPropertyName("SchemaFormatTypeID")]
-    public string SchemaFormatTypeID { get; set; }
+    public string? SchemaFormatTypeID { get; set; }
 
     /// <summary>
     /// Resource Home Region ID
     /// </summary>
     [JsonPropertyName("ResourceHomeRegionID")]
-    public string ResourceHomeRegionID { get; set; }
+    public string? ResourceHomeRegionID { get; set; }
 
     /// <summary>
     /// Resource Host Region IDs
     /// </summary>
     [JsonPropertyName("ResourceHostRegionIDs")]
-    public List<string> ResourceHostRegionIDs { get; set; }
+    public List<string>? ResourceHostRegionIDs { get; set; }
 
     /// <summary>
     /// Resource Curation Status
     /// </summary>
     [JsonPropertyName("ResourceCurationStatus")]
-    public string ResourceCurationStatus { get; set; }
+    public string? ResourceCurationStatus { get; set; }
 
     /// <summary>
     /// Resource Lifecycle Status
     /// </summary>
     [JsonPropertyName("ResourceLifecycleStatus")]
-    public string ResourceLifecycleStatus { get; set; }
+    public string? ResourceLifecycleStatus { get; set; }
 
     /// <summary>
     /// Resource Security Classification
     /// </summary>
     [JsonPropertyName("ResourceSecurityClassification")]
-    public string ResourceSecurityClassification { get; set; }
+    public string? ResourceSecurityClassification { get; set; }
 
     /// <summary>
     /// Source
     /// </summary>
     [JsonPropertyName("Source")]
-    public string Source { get; set; }
+    public string? Source { get; set; }
 
     /// <summary>
     /// Dataset Properties
     /// </summary>
     [Required]
     [JsonPropertyName("DatasetProperties")]
-    public DatasetProperties DatasetProperties { get; set; }
+    public required DatasetProperties DatasetProperties { get; set; }
 
     /// <summary>
     /// Existence Kind
     /// </summary>
     [JsonPropertyName("ExistenceKind")]
-    public string ExistenceKind { get; set; }
+    public string? ExistenceKind { get; set; }
 
     /// <summary>
     /// Endianness of binary value. Enumeration- \BIG\ \LITTLE\.  If absent applications will need to interpret from context indicators.
     /// </summary>
     [JsonPropertyName("Endian")]
-    public FileData_Endian Endian { get; set; }
+    public FileData_Endian? Endian { get; set; }
 
     /// <summary>
     /// MD5 checksum of file bytes - a 32 byte hexadecimal number
     /// </summary>
     [RegularExpression(@"^[0-9a-fA-F]32}$")]
     [JsonPropertyName("Checksum")]
-    public string Checksum { get; set; }
+    public string? Checksum { get; set; }
 
     /// <summary>
     /// File DMS Extension Properties

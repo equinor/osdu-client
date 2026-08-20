@@ -23,12 +23,12 @@ public class InvalidTagWithReason
     /// The name of the LegalTag.
     /// </summary>
     [JsonPropertyName("name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// The reason the LegalTag is currently invalid.
     /// </summary>
     [JsonPropertyName("reason")]
-    public string Reason { get; set; }
+    public string? Reason { get; set; }
 
 }

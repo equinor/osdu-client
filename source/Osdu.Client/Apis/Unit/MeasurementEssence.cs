@@ -17,9 +17,9 @@ namespace Osdu.Client.Apis.Unit;
 public class MeasurementEssence
 {
     [JsonPropertyName("type")]
-    public string Type { get; set; }
+    public string? Type { get; set; }
 
     [JsonPropertyName("ancestry")]
-    public string Ancestry { get; set; }
+    public string? Ancestry { get; set; }
 
 }

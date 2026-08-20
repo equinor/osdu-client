@@ -19,6 +19,6 @@ public class Body_validate_policy_api_policy_v1_validate__policy_id__put
     [Required]
     [MinLength(10)]
     [JsonPropertyName("file")]
-    public string File { get; set; }
+    public required string File { get; set; }
 
 }

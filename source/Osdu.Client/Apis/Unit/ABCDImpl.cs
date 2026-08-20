@@ -23,24 +23,24 @@ public class ABCDImpl
     /// Coefficient A in the Energistics unit parameterization y = (A+Bx)/(C+Dx)
     /// </summary>
     [JsonPropertyName("a")]
-    public string A { get; set; }
+    public string? A { get; set; }
 
     /// <summary>
     /// Coefficient B in the Energistics unit parameterization y = (A+Bx)/(C+Dx)
     /// </summary>
     [JsonPropertyName("b")]
-    public string B { get; set; }
+    public string? B { get; set; }
 
     /// <summary>
     /// Coefficient C in the Energistics unit parameterization y = (A+Bx)/(C+Dx)
     /// </summary>
     [JsonPropertyName("c")]
-    public string C { get; set; }
+    public string? C { get; set; }
 
     /// <summary>
     /// Coefficient D in the Energistics unit parameterization y = (A+Bx)/(C+Dx)
     /// </summary>
     [JsonPropertyName("d")]
-    public string D { get; set; }
+    public string? D { get; set; }
 
 }

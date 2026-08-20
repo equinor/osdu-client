@@ -23,6 +23,6 @@ public class CreateDatasetRegistryRequest
     [MinLength(1)]
     [MaxLength(20)]
     [JsonPropertyName("datasetRegistries")]
-    public List<Record> DatasetRegistries { get; set; }
+    public required List<Record> DatasetRegistries { get; set; }
 
 }

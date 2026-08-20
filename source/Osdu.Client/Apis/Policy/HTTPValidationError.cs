@@ -18,6 +18,6 @@ public class HTTPValidationError
 {
     [Required]
     [JsonPropertyName("detail")]
-    public List<ValidationError> Detail { get; set; }
+    public required List<ValidationError> Detail { get; set; }
 
 }

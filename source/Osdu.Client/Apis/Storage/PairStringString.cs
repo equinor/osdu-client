@@ -17,15 +17,15 @@ namespace Osdu.Client.Apis.Storage;
 public class PairStringString
 {
     [JsonPropertyName("left")]
-    public string Left { get; set; }
+    public string? Left { get; set; }
 
     [JsonPropertyName("value")]
-    public string Value { get; set; }
+    public string? Value { get; set; }
 
     [JsonPropertyName("key")]
-    public string Key { get; set; }
+    public string? Key { get; set; }
 
     [JsonPropertyName("right")]
-    public string Right { get; set; }
+    public string? Right { get; set; }
 
 }

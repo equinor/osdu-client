@@ -20,7 +20,7 @@ namespace Osdu.Client.Apis.Schema;
 public class SchemaInfoResponse
 {
     [JsonPropertyName("schemaInfos")]
-    public List<SchemaInfo> SchemaInfos { get; set; }
+    public List<SchemaInfo>? SchemaInfos { get; set; }
 
     /// <summary>
     /// The offset for the next query

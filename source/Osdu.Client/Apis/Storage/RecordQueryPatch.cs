@@ -24,6 +24,6 @@ public class RecordQueryPatch
     /// </summary>
     [Required]
     [JsonPropertyName("ids")]
-    public List<string> Ids { get; set; }
+    public required List<string> Ids { get; set; }
 
 }

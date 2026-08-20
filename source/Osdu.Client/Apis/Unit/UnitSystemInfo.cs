@@ -23,24 +23,24 @@ public class UnitSystemInfo
     /// The unit system name
     /// </summary>
     [JsonPropertyName("name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// The unit system description
     /// </summary>
     [JsonPropertyName("description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// The unit system ancestry, i.e. names separated by '.'
     /// </summary>
     [JsonPropertyName("ancestry")]
-    public string Ancestry { get; set; }
+    public string? Ancestry { get; set; }
 
     /// <summary>
     /// The unit system's persistable reference string.
     /// </summary>
     [JsonPropertyName("persistableReference")]
-    public string PersistableReference { get; set; }
+    public string? PersistableReference { get; set; }
 
 }

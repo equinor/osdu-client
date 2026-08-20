@@ -23,6 +23,6 @@ public class GetDatasetRegistryRequest
     [MinLength(1)]
     [MaxLength(20)]
     [JsonPropertyName("datasetRegistryIds")]
-    public List<string> DatasetRegistryIds { get; set; }
+    public required List<string> DatasetRegistryIds { get; set; }
 
 }

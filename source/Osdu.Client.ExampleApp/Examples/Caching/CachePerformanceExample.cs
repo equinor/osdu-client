@@ -1,11 +1,11 @@
-using System.Diagnostics;
-using System.Text;
-using System.Text.Encodings.Web;
-using System.Text.Json;
+using Osdu.Client.Data.ReferenceData;
 using Osdu.Client.ExampleApp.ExamplesBuilder;
 using Osdu.Client.ExampleApp.Extensions;
 using Osdu.Client.Extensions.Caching;
-using Osdu.Client.Schemas.ReferenceData;
+using System.Diagnostics;
+using System.Text.Encodings.Web;
+using System.Text.Json;
+
 
 namespace Osdu.Client.ExampleApp.Examples.Caching;
 

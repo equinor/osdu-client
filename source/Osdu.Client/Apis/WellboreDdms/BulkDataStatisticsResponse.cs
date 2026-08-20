@@ -22,25 +22,25 @@ public class BulkDataStatisticsResponse
     [Required]
     [JsonPropertyName("computationStartDatetime")]
     [JsonConverter(typeof(NullableDateTimeOffsetConverter))]
-    public DateTimeOffset ComputationStartDatetime { get; set; }
+    public required DateTimeOffset ComputationStartDatetime { get; set; }
 
     [Required]
     [JsonPropertyName("recordId")]
-    public string RecordId { get; set; }
+    public required string RecordId { get; set; }
 
     [Required]
     [JsonPropertyName("recordVersion")]
-    public long RecordVersion { get; set; }
+    public required long RecordVersion { get; set; }
 
     /// <summary>
     /// Status available for computation of bulk data statistics
     /// </summary>
     [Required]
     [JsonPropertyName("computationStatus")]
-    public BulkStatisticsStatus ComputationStatus { get; set; }
+    public required BulkStatisticsStatus ComputationStatus { get; set; }
 
     [Required]
     [JsonPropertyName("data")]
-    public Dictionary<string, CurveStatistics> Data { get; set; }
+    public required Dictionary<string, CurveStatistics> Data { get; set; }
 
 }

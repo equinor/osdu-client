@@ -23,36 +23,36 @@ public class InPolygonQuery
     /// Record of CRS or CT to check points against
     /// </summary>
     [JsonPropertyName("recordId")]
-    public string RecordId { get; set; }
+    public string? RecordId { get; set; }
 
     /// <summary>
     /// Searches on id for CRS records
     /// </summary>
     [JsonPropertyName("dataId")]
-    public string DataId { get; set; }
+    public string? DataId { get; set; }
 
     /// <summary>
     /// List of points to check against CRS or CT bounding boxes
     /// </summary>
     [JsonPropertyName("points")]
-    public List<Point> Points { get; set; }
+    public List<Point>? Points { get; set; }
 
     /// <summary>
     /// Corresponds to offset on search service
     /// </summary>
     [JsonPropertyName("offset")]
-    public string Offset { get; set; }
+    public string? Offset { get; set; }
 
     /// <summary>
     /// Corresponds to limit on search service. Default is to return all found entities.
     /// </summary>
     [JsonPropertyName("limit")]
-    public string Limit { get; set; }
+    public string? Limit { get; set; }
 
     /// <summary>
     /// List of specific fields to return.
     /// </summary>
     [JsonPropertyName("returnedFields")]
-    public List<string> ReturnedFields { get; set; }
+    public List<string>? ReturnedFields { get; set; }
 
 }

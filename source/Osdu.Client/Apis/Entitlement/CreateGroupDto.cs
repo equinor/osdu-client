@@ -25,13 +25,13 @@ public class CreateGroupDto
     [Required]
     [RegularExpression(@"^[A-Za-z0-9_.-]{3,128}$")]
     [JsonPropertyName("name")]
-    public string Name { get; set; }
+    public required string Name { get; set; }
 
     /// <summary>
     /// Description of the Group
     /// </summary>
     [RegularExpression(@"^[-A-Za-z0-9 _./,;:'""!@&+%#$]{0,255}$")]
     [JsonPropertyName("description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
 }

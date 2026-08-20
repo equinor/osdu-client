@@ -17,6 +17,6 @@ namespace Osdu.Client.Apis.CrsConversion;
 public class GeoJsonMultiLineString : GeoJsonBase
 {
     [JsonPropertyName("coordinates")]
-    public List<List<List<double>>> Coordinates { get; set; }
+    public List<List<List<double>>>? Coordinates { get; set; }
 
 }

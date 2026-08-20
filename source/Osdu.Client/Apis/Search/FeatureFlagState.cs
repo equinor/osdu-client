@@ -23,7 +23,7 @@ public class FeatureFlagState
     /// Name of the feature flag.
     /// </summary>
     [JsonPropertyName("name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// Whether the feature flag is currently enabled.
@@ -36,12 +36,12 @@ public class FeatureFlagState
     /// Data partition this flag applies to.
     /// </summary>
     [JsonPropertyName("partition")]
-    public string Partition { get; set; }
+    public string? Partition { get; set; }
 
     /// <summary>
     /// Source configuration that provided this flag state.
     /// </summary>
     [JsonPropertyName("source")]
-    public string Source { get; set; }
+    public string? Source { get; set; }
 
 }

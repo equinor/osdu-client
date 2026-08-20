@@ -23,18 +23,18 @@ public class ListGroupResponseDto
     /// desId
     /// </summary>
     [JsonPropertyName("desId")]
-    public string DesId { get; set; }
+    public string? DesId { get; set; }
 
     /// <summary>
     /// member email
     /// </summary>
     [JsonPropertyName("memberEmail")]
-    public string MemberEmail { get; set; }
+    public string? MemberEmail { get; set; }
 
     /// <summary>
     /// Represents a List of Groups
     /// </summary>
     [JsonPropertyName("groups")]
-    public List<ParentReference> Groups { get; set; }
+    public List<ParentReference>? Groups { get; set; }
 
 }

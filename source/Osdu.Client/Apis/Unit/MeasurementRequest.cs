@@ -26,6 +26,6 @@ public class MeasurementRequest
     public MeasurementEssenceImpl? Essence { get; set; }
 
     [JsonPropertyName("persistableReference")]
-    public string PersistableReference { get; set; }
+    public string? PersistableReference { get; set; }
 
 }

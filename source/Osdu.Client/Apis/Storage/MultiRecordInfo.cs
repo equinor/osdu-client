@@ -17,12 +17,12 @@ namespace Osdu.Client.Apis.Storage;
 public class MultiRecordInfo
 {
     [JsonPropertyName("records")]
-    public List<Record> Records { get; set; }
+    public List<Record>? Records { get; set; }
 
     [JsonPropertyName("invalidRecords")]
-    public List<string> InvalidRecords { get; set; }
+    public List<string>? InvalidRecords { get; set; }
 
     [JsonPropertyName("retryRecords")]
-    public List<string> RetryRecords { get; set; }
+    public List<string>? RetryRecords { get; set; }
 
 }

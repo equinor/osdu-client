@@ -19,6 +19,6 @@ public class Body_evaluate_policy_api_policy_v1_evaluations_query_post
     [Required]
     [MinLength(10)]
     [JsonPropertyName("file")]
-    public string File { get; set; }
+    public required string File { get; set; }
 
 }

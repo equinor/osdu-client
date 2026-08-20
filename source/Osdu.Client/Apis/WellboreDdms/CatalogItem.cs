@@ -18,13 +18,13 @@ public class CatalogItem
 {
     [Required]
     [JsonPropertyName("unit")]
-    public string Unit { get; set; }
+    public required string Unit { get; set; }
 
     [JsonPropertyName("family")]
     public string? Family { get; set; }
 
     [Required]
     [JsonPropertyName("rule")]
-    public string Rule { get; set; }
+    public required string Rule { get; set; }
 
 }

@@ -18,14 +18,14 @@ public class CatalogRecord
 {
     [Required]
     [JsonPropertyName("acl")]
-    public StorageAcl Acl { get; set; }
+    public required StorageAcl Acl { get; set; }
 
     [Required]
     [JsonPropertyName("legal")]
-    public Legal Legal { get; set; }
+    public required Legal Legal { get; set; }
 
     [Required]
     [JsonPropertyName("data")]
-    public Catalog Data { get; set; }
+    public required Catalog Data { get; set; }
 
 }

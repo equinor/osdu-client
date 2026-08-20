@@ -23,18 +23,18 @@ public class ConvertPointsResponse
     /// Number of points successfully converted. If the number is less than the request array length conversion/transformation failures occurred.
     /// </summary>
     [JsonPropertyName("successCount")]
-    public string SuccessCount { get; set; }
+    public string? SuccessCount { get; set; }
 
     /// <summary>
     /// Converted points; length and order of the array is the same as in the request. Points, which failed to convert, are returned as NaN.
     /// </summary>
     [JsonPropertyName("points")]
-    public List<Point> Points { get; set; }
+    public List<Point>? Points { get; set; }
 
     /// <summary>
     /// The list of operations performed on the points as a list of strings
     /// </summary>
     [JsonPropertyName("operationsApplied")]
-    public List<string> OperationsApplied { get; set; }
+    public List<string>? OperationsApplied { get; set; }
 
 }

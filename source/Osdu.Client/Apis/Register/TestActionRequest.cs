@@ -30,6 +30,6 @@ public class TestActionRequest
     /// </summary>
     [Required]
     [JsonPropertyName("testPayload")]
-    public JsonNode TestPayload { get; set; }
+    public required JsonNode TestPayload { get; set; }
 
 }

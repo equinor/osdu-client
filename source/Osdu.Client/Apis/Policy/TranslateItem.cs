@@ -20,14 +20,14 @@ public class TranslateItem
     [MinLength(1)]
     [RegularExpression(@"^data\.osdu\.partition(\[""[^""]+""\]|\.[A-Za-z][A-Za-z0-9_-]*)\.[A-Za-z][A-Za-z0-9_]*\.(allow|deny)")]
     [JsonPropertyName("query")]
-    public string Query { get; set; }
+    public required string Query { get; set; }
 
     [Required]
     [JsonPropertyName("input")]
-    public Input Input { get; set; }
+    public required Input Input { get; set; }
 
     [Required]
     [JsonPropertyName("unknowns")]
-    public List<string> Unknowns { get; set; }
+    public required List<string> Unknowns { get; set; }
 
 }

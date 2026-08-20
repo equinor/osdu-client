@@ -23,18 +23,18 @@ public class UpdateGroupOperation
     /// Update Group Path
     /// </summary>
     [JsonPropertyName("path")]
-    public string Path { get; set; }
+    public string? Path { get; set; }
 
     /// <summary>
     /// list of values to be updated
     /// </summary>
     [JsonPropertyName("value")]
-    public List<string> Value { get; set; }
+    public List<string>? Value { get; set; }
 
     /// <summary>
     /// Update Group Operation
     /// </summary>
     [JsonPropertyName("op")]
-    public string Op { get; set; }
+    public string? Op { get; set; }
 
 }

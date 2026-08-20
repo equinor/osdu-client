@@ -23,6 +23,6 @@ public class Ancestry
     /// An array of one or more entity references in the data lake.
     /// </summary>
     [JsonPropertyName("parents")]
-    public List<string> Parents { get; set; }
+    public List<string>? Parents { get; set; }
 
 }

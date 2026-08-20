@@ -17,41 +17,41 @@ namespace Osdu.Client.Apis.CrsConversion;
 public class GeoJsonFeatureCollection
 {
     [JsonPropertyName("coordinateReferenceSystemID")]
-    public string coordinateReferenceSystemID { get; set; }
+    public string? coordinateReferenceSystemID { get; set; }
 
     [JsonPropertyName("verticalUnitID")]
-    public string verticalUnitID { get; set; }
+    public string? verticalUnitID { get; set; }
 
     [JsonPropertyName("geoJsonVariantInternal")]
-    public GeoJsonFeatureCollection_GeoJsonVariantInternal GeoJsonVariantInternal { get; set; }
+    public GeoJsonFeatureCollection_GeoJsonVariantInternal? GeoJsonVariantInternal { get; set; }
 
     [Required]
     [MinLength(1)]
     [JsonIgnore]
     [JsonPropertyName("type")]
-    public string Type { get; set; }
+    public required string Type { get; set; }
 
     [JsonPropertyName("bbox")]
-    public List<double> Bbox { get; set; }
+    public List<double>? Bbox { get; set; }
 
     [Required]
     [JsonPropertyName("features")]
-    public List<GeoJsonFeature> Features { get; set; }
+    public required List<GeoJsonFeature> Features { get; set; }
 
     [JsonPropertyName("properties")]
     public object? Properties { get; set; }
 
     [JsonPropertyName("persistableReferenceCrs")]
-    public string PersistableReferenceCrs { get; set; }
+    public string? PersistableReferenceCrs { get; set; }
 
     [JsonPropertyName("CoordinateReferenceSystemID")]
-    public string CoordinateReferenceSystemID { get; set; }
+    public string? CoordinateReferenceSystemID { get; set; }
 
     [JsonPropertyName("VerticalUnitID")]
-    public string VerticalUnitID { get; set; }
+    public string? VerticalUnitID { get; set; }
 
     [JsonPropertyName("persistableReferenceUnitZ")]
-    public string PersistableReferenceUnitZ { get; set; }
+    public string? PersistableReferenceUnitZ { get; set; }
 
 }
 

@@ -23,7 +23,7 @@ public class UnitRequest
     /// The persistable reference string for the unit; optional, only one 'persistableReference' or 'essence' must be defined
     /// </summary>
     [JsonPropertyName("persistableReference")]
-    public string PersistableReference { get; set; }
+    public string? PersistableReference { get; set; }
 
     /// <summary>
     /// The essence of a unit parameterization

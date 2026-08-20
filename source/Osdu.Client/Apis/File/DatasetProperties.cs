@@ -24,6 +24,6 @@ public class DatasetProperties
     /// </summary>
     [Required]
     [JsonPropertyName("FileSourceInfo")]
-    public FileSourceInfo FileSourceInfo { get; set; }
+    public required FileSourceInfo FileSourceInfo { get; set; }
 
 }

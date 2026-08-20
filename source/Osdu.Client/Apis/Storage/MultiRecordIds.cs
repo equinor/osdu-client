@@ -23,9 +23,9 @@ public class MultiRecordIds
     [MinLength(0)]
     [MaxLength(100)]
     [JsonPropertyName("records")]
-    public List<string> Records { get; set; }
+    public required List<string> Records { get; set; }
 
     [JsonPropertyName("attributes")]
-    public List<string> Attributes { get; set; }
+    public List<string>? Attributes { get; set; }
 
 }

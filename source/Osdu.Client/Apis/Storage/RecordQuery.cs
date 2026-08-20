@@ -26,6 +26,6 @@ public class RecordQuery
     [MinLength(1)]
     [MaxLength(500)]
     [JsonPropertyName("ids")]
-    public List<string> Ids { get; set; }
+    public required List<string> Ids { get; set; }
 
 }

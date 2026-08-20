@@ -23,6 +23,6 @@ public class SearchRequest
     /// The Lucene style query string with keywords
     /// </summary>
     [JsonPropertyName("query")]
-    public string Query { get; set; }
+    public string? Query { get; set; }
 
 }

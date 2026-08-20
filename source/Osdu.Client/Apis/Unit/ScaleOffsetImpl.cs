@@ -23,12 +23,12 @@ public class ScaleOffsetImpl
     /// The offset in y = scale*(x-offset)
     /// </summary>
     [JsonPropertyName("scale")]
-    public string Scale { get; set; }
+    public string? Scale { get; set; }
 
     /// <summary>
     /// The scale in y = scale*(x-offset)
     /// </summary>
     [JsonPropertyName("offset")]
-    public string Offset { get; set; }
+    public string? Offset { get; set; }
 
 }

@@ -23,7 +23,7 @@ public class ReplayRequest
     /// Optional client-supplied replay identifier. If omitted, the server generates one.
     /// </summary>
     [JsonPropertyName("replayId")]
-    public string ReplayId { get; set; }
+    public string? ReplayId { get; set; }
 
     /// <summary>
     /// The operation to perform. Valid values: 'replay', 'reindex'.
@@ -31,7 +31,7 @@ public class ReplayRequest
     [Required]
     [MinLength(1)]
     [JsonPropertyName("operation")]
-    public string Operation { get; set; }
+    public required string Operation { get; set; }
 
     /// <summary>
     /// Optional filter to restrict the replay to specific kinds.

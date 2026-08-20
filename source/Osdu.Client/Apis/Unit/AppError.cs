@@ -29,12 +29,12 @@ public class AppError
     /// Short error reason.
     /// </summary>
     [JsonPropertyName("reason")]
-    public string Reason { get; set; }
+    public string? Reason { get; set; }
 
     /// <summary>
     /// Detailed error message.
     /// </summary>
     [JsonPropertyName("message")]
-    public string Message { get; set; }
+    public string? Message { get; set; }
 
 }

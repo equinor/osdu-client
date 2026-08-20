@@ -17,12 +17,12 @@ namespace Osdu.Client.Apis.Storage;
 public class MultiRecordHeadersInfo
 {
     [JsonPropertyName("records")]
-    public List<RecordHeadersDTO> Records { get; set; }
+    public List<RecordHeadersDTO>? Records { get; set; }
 
     [JsonPropertyName("notFound")]
-    public List<string> NotFound { get; set; }
+    public List<string>? NotFound { get; set; }
 
     [JsonPropertyName("invalidRecords")]
-    public List<string> InvalidRecords { get; set; }
+    public List<string>? InvalidRecords { get; set; }
 
 }

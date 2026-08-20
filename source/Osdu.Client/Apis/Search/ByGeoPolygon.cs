@@ -25,6 +25,6 @@ public class ByGeoPolygon
     [Required]
     [MinLength(1)]
     [JsonPropertyName("points")]
-    public List<Point> Points { get; set; }
+    public required List<Point> Points { get; set; }
 
 }

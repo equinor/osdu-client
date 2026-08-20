@@ -17,6 +17,6 @@ namespace Osdu.Client.Apis.CrsConversion;
 public class GeoJsonGeometryCollection : GeoJsonBase
 {
     [JsonPropertyName("geometries")]
-    public List<GeoJsonFeature_Geometry> Geometries { get; set; }
+    public List<GeoJsonFeature_Geometry>? Geometries { get; set; }
 
 }

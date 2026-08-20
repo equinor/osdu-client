@@ -23,6 +23,6 @@ public class LegalTagDtos
     /// A collection of complete LegalTags
     /// </summary>
     [JsonPropertyName("legalTags")]
-    public List<LegalTagDto> LegalTags { get; set; }
+    public List<LegalTagDto>? LegalTags { get; set; }
 
 }

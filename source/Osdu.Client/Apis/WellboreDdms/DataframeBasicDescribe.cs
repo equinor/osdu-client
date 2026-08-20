@@ -18,29 +18,29 @@ public class DataframeBasicDescribe
 {
     [Required]
     [JsonPropertyName("rowCount")]
-    public long RowCount { get; set; }
+    public required long RowCount { get; set; }
 
     [Required]
     [JsonPropertyName("columnCount")]
-    public long ColumnCount { get; set; }
+    public required long ColumnCount { get; set; }
 
     /// <summary>
     /// list of column. May be truncated if too many columns, then contains the firsts and lasts once
     /// </summary>
     [Required]
     [JsonPropertyName("columns")]
-    public List<string> Columns { get; set; }
+    public required List<string> Columns { get; set; }
 
     [Required]
     [JsonPropertyName("indexStart")]
-    public string IndexStart { get; set; }
+    public required string IndexStart { get; set; }
 
     [Required]
     [JsonPropertyName("indexEnd")]
-    public string IndexEnd { get; set; }
+    public required string IndexEnd { get; set; }
 
     [Required]
     [JsonPropertyName("indexType")]
-    public string IndexType { get; set; }
+    public required string IndexType { get; set; }
 
 }

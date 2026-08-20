@@ -24,6 +24,6 @@ public class ByWithinPolygon
     /// </summary>
     [Required]
     [JsonPropertyName("points")]
-    public List<Point> Points { get; set; }
+    public required List<Point> Points { get; set; }
 
 }

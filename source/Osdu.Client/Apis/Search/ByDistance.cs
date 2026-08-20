@@ -25,13 +25,13 @@ public class ByDistance
     [Required]
     [Range(0, 9223372036854775807)]
     [JsonPropertyName("distance")]
-    public double Distance { get; set; }
+    public required double Distance { get; set; }
 
     /// <summary>
     /// Center point of the query.
     /// </summary>
     [Required]
     [JsonPropertyName("point")]
-    public Point Point { get; set; }
+    public required Point Point { get; set; }
 
 }

@@ -20,12 +20,12 @@ namespace Osdu.Client.Apis.Register;
 public class Filter
 {
     [JsonPropertyName("entityType")]
-    public List<string> EntityType { get; set; }
+    public List<string>? EntityType { get; set; }
 
     [JsonPropertyName("source")]
-    public List<string> Source { get; set; }
+    public List<string>? Source { get; set; }
 
     [JsonPropertyName("version")]
-    public List<string> Version { get; set; }
+    public List<string>? Version { get; set; }
 
 }

@@ -21,6 +21,6 @@ public class UpdateSessionState
     /// </summary>
     [Required]
     [JsonPropertyName("state")]
-    public UpdateSessionStateValue State { get; set; }
+    public required UpdateSessionStateValue State { get; set; }
 
 }

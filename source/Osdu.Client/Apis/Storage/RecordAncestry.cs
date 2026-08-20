@@ -23,6 +23,6 @@ public class RecordAncestry
     /// List of parent records. Must follow the naming convention: {parent-record-id}:{parent-record-version}.
     /// </summary>
     [JsonPropertyName("parents")]
-    public List<string> Parents { get; set; }
+    public List<string>? Parents { get; set; }
 
 }

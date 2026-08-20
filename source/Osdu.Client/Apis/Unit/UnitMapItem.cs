@@ -17,13 +17,13 @@ namespace Osdu.Client.Apis.Unit;
 public class UnitMapItem
 {
     [JsonPropertyName("state")]
-    public string State { get; set; }
+    public string? State { get; set; }
 
     [JsonPropertyName("fromNamespace")]
-    public string FromNamespace { get; set; }
+    public string? FromNamespace { get; set; }
 
     [JsonPropertyName("toNamespace")]
-    public string ToNamespace { get; set; }
+    public string? ToNamespace { get; set; }
 
     [JsonPropertyName("fromUnit")]
     public Unit? FromUnit { get; set; }
@@ -32,6 +32,6 @@ public class UnitMapItem
     public Unit? ToUnit { get; set; }
 
     [JsonPropertyName("note")]
-    public string Note { get; set; }
+    public string? Note { get; set; }
 
 }

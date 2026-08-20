@@ -23,24 +23,24 @@ public class Topic
     /// Unique name of the topic.
     /// </summary>
     [JsonPropertyName("name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// Human-readable description of the topic.
     /// </summary>
     [JsonPropertyName("description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// Current state of the topic (e.g. ACTIVE).
     /// </summary>
     [JsonPropertyName("state")]
-    public string State { get; set; }
+    public string? State { get; set; }
 
     /// <summary>
     /// An example payload for this topic.
     /// </summary>
     [JsonPropertyName("example")]
-    public string Example { get; set; }
+    public string? Example { get; set; }
 
 }

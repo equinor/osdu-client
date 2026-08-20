@@ -17,25 +17,25 @@ namespace Osdu.Client.Apis.Unit;
 public class Catalog
 {
     [JsonPropertyName("units")]
-    public List<Unit> Units { get; set; }
+    public List<Unit>? Units { get; set; }
 
     [JsonPropertyName("lastModified")]
-    public string LastModified { get; set; }
+    public string? LastModified { get; set; }
 
     [JsonPropertyName("measurements")]
-    public List<Measurement> Measurements { get; set; }
+    public List<Measurement>? Measurements { get; set; }
 
     [JsonPropertyName("unitMaps")]
-    public List<UnitMap> UnitMaps { get; set; }
+    public List<UnitMap>? UnitMaps { get; set; }
 
     [JsonPropertyName("measurementMaps")]
-    public List<MeasurementMap> MeasurementMaps { get; set; }
+    public List<MeasurementMap>? MeasurementMaps { get; set; }
 
     [JsonPropertyName("mapStates")]
-    public List<MapState> MapStates { get; set; }
+    public List<MapState>? MapStates { get; set; }
 
     [JsonPropertyName("unitSystemInfos")]
-    public List<UnitSystemInfo> UnitSystemInfos { get; set; }
+    public List<UnitSystemInfo>? UnitSystemInfos { get; set; }
 
     [JsonPropertyName("totalUnitCount")]
     public int? TotalUnitCount { get; set; }
