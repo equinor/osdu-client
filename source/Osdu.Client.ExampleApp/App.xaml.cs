@@ -88,10 +88,12 @@ public partial class App : Application
 
         services.AddTransient<MainWindow>();
         services.AddTransient<ApiTestWindow>();
+        services.AddTransient<DataBrowserWindow>();
 
         Services = services.BuildServiceProvider();
 
-        var window = Services.GetRequiredService<ApiTestWindow>();
+        //var window = Services.GetRequiredService<ApiTestWindow>();
+        var window = Services.GetRequiredService<DataBrowserWindow>();
         window.Show();
     }
 }
