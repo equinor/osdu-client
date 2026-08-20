@@ -7,6 +7,8 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <UseWPF>true</UseWPF>
         <UserSecretsId>55b978a3-6edf-48a2-a246-204b25d233ae</UserSecretsId>
+        <!-- Allows restoring/building on non-Windows machines. -->
+        <EnableWindowsTargeting>true</EnableWindowsTargeting>
     </PropertyGroup>
 
     <Target Name="CopyApiDefinitions" AfterTargets="PostBuildEvent">
