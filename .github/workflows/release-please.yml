@@ -15,3 +15,14 @@ jobs:
       contents: write # Required to update changelog file
       pull-requests: write # Required to create release PRs
     uses: equinor/ops-actions/.github/workflows/release-please-manifest.yml@2198d70491e461c59dd3560b9ea10b1080d863c5 # v9.39.6
+
+  publish-nuget:
+    name: Publish NuGet Package
+    needs: release-please
+    if: needs.release-please.outputs.releases_created == 'true'
+    permissions:
+      contents: read # Required to checkout code
+      packages: write # Required to publish packages to GitHub Packages
+    uses: ./.github/workflows/publish-nuget.yml
+    with:
+      release-path: ${{ needs.release-please.outputs.paths_released }}

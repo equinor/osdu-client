@@ -1,8 +1,12 @@
 name: Publish NuGet Package
 
 on:
-  release:
-    types: [released]
+  workflow_call:
+    inputs:
+      release-path:
+        description: JSON array of paths that had releases created, e.g. ["source/Osdu.Client"]
+        required: true
+        type: string
   workflow_dispatch:
     inputs:
       package:
@@ -22,16 +26,16 @@ jobs:
     outputs:
       package: ${{ steps.get-release.outputs.package }}
     steps:
-      - name: Determine package from release tag
+      - name: Determine package
         id: get-release
         env:
-          RELEASE_TAG: ${{ github.event.release.tag_name }}
+          RELEASE_PATH: ${{ inputs.release-path }}
           INPUT_PACKAGE: ${{ inputs.package }}
         run: |
-          if [[ "${GITHUB_EVENT_NAME}" == "release" ]]; then
-            # release-please tags releases as "<package-name>-v<version>",
-            # e.g. "Osdu.Client-v1.0.0" or "Osdu.Client.Extensions-v1.0.0".
-            package="${RELEASE_TAG%%-v*}"
+          if [[ -n "${RELEASE_PATH}" ]]; then
+            # release-path is a JSON array of paths, e.g. ["source/Osdu.Client"].
+            path=$(echo "${RELEASE_PATH}" | jq -r '.[0]')
+            package="$(basename "${path}")"
           else
             package="${INPUT_PACKAGE}"
           fi
