@@ -8,7 +8,9 @@
         xmlns:controls="clr-namespace:Osdu.Client.ExampleApp.Controls"
         Title="Osdu Data Browser"
         Width="1400" Height="850"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        FontFamily="Segoe UI"
+        FontSize="13">
     <DockPanel>
         <!-- Toolbar -->
         <ToolBar x:Name="MainToolbar" DockPanel.Dock="Top" Height="36">

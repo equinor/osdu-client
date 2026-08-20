@@ -18,6 +18,8 @@ public class DataGridWindow : Window
         Height = 500;
         WindowStartupLocation = WindowStartupLocation.CenterOwner;
         Background = theme.SurfaceBrush;
+        FontFamily = AppTheme.FontFamily;
+        FontSize = AppTheme.FontSize;
 
         var grid = new Grid { Margin = new Thickness(16) };
         grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
@@ -27,7 +29,7 @@ public class DataGridWindow : Window
         var header = new TextBlock
         {
             Text = title,
-            FontSize = 18,
+            FontSize = AppTheme.FontSizeLarge + 4,
             FontWeight = FontWeights.SemiBold,
             Foreground = theme.TextPrimaryBrush,
             Margin = new Thickness(0, 0, 0, 12)
@@ -47,7 +49,6 @@ public class DataGridWindow : Window
             HeadersVisibility = DataGridHeadersVisibility.Column,
             GridLinesVisibility = DataGridGridLinesVisibility.Horizontal,
             BorderThickness = new Thickness(1),
-            FontSize = 13,
             RowHeight = 32,
             SelectionMode = DataGridSelectionMode.Single,
             SelectionUnit = DataGridSelectionUnit.FullRow,

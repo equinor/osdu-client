@@ -17,16 +17,22 @@ public partial class KindTreeControl : UserControl
     public KindTreeControl()
     {
         InitializeComponent();
+        FontFamily = AppTheme.FontFamily;
+        FontSize = AppTheme.FontSize;
     }
 
     public void ApplyTheme(AppTheme theme)
     {
         _theme = theme;
+        FontFamily = AppTheme.FontFamily;
+        FontSize = AppTheme.FontSize;
         Background = theme.SidebarBrush;
         FilterBox.Background = theme.InputFieldBrush;
         FilterBox.Foreground = theme.TextPrimaryBrush;
         FilterBox.BorderBrush = theme.BorderBrush;
         FilterBox.CaretBrush = theme.TextPrimaryBrush;
+        FilterBox.FontFamily = AppTheme.FontFamily;
+        FilterBox.FontSize = AppTheme.FontSize;
         RebuildTree();
     }
 
@@ -54,8 +60,17 @@ public partial class KindTreeControl : UserControl
 
             var expander = new Expander
             {
-                Header = $"{group.Category} ({filtered.Count})",
+                Header = new TextBlock
+                {
+                    Text = $"{group.Category} ({filtered.Count})",
+                    FontFamily = AppTheme.FontFamily,
+                    FontSize = AppTheme.FontSize,
+                    Foreground = _theme.TextPrimaryBrush,
+                    FontWeight = FontWeights.SemiBold
+                },
                 IsExpanded = !string.IsNullOrEmpty(filter),
+                FontFamily = AppTheme.FontFamily,
+                FontSize = AppTheme.FontSize,
                 Foreground = _theme.TextPrimaryBrush,
                 Margin = new Thickness(0, 2, 0, 0)
             };
@@ -64,7 +79,9 @@ public partial class KindTreeControl : UserControl
             {
                 Background = Brushes.Transparent,
                 BorderThickness = new Thickness(0),
-                Margin = new Thickness(12, 0, 0, 0)
+                Margin = new Thickness(12, 0, 0, 0),
+                FontFamily = AppTheme.FontFamily,
+                FontSize = AppTheme.FontSizeSmall
             };
 
             foreach (var kind in filtered)
@@ -76,8 +93,7 @@ public partial class KindTreeControl : UserControl
                     ToolTip = kind.KindId,
                     Foreground = _theme.TextSecondaryBrush,
                     Padding = new Thickness(6, 3, 6, 3),
-                    Cursor = Cursors.Hand,
-                    FontSize = 12
+                    Cursor = Cursors.Hand
                 };
                 item.MouseLeftButtonUp += (_, _) =>
                 {

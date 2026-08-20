@@ -412,6 +412,10 @@ public partial class DataBrowserWindow : Window
 
     private void ApplyTheme(AppTheme theme)
     {
+        // Apply font to the window so all children inherit it
+        FontFamily = AppTheme.FontFamily;
+        FontSize = AppTheme.FontSize;
+
         Background = theme.SurfaceBrush;
 
         // Toolbar

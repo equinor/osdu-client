@@ -14,11 +14,15 @@ public partial class TreeViewTab : UserControl
     public TreeViewTab()
     {
         InitializeComponent();
+        FontFamily = AppTheme.FontFamily;
+        FontSize = AppTheme.FontSize;
     }
 
     public void ApplyTheme(AppTheme theme)
     {
         _theme = theme;
+        FontFamily = AppTheme.FontFamily;
+        FontSize = AppTheme.FontSize;
         Background = theme.SurfaceBrush;
         JsonTree.Background = theme.SurfaceBrush;
         JsonTree.Foreground = theme.TextPrimaryBrush;
@@ -68,15 +72,13 @@ public partial class TreeViewTab : UserControl
         {
             Text = node.Key + ": ",
             FontWeight = FontWeights.SemiBold,
-            Foreground = _theme.AccentBrush,
-            FontSize = 12
+            Foreground = _theme.AccentBrush
         });
 
         panel.Children.Add(new TextBlock
         {
             Text = node.DisplayValue,
-            Foreground = node.IsLeaf ? _theme.TextPrimaryBrush : _theme.TextSecondaryBrush,
-            FontSize = 12
+            Foreground = node.IsLeaf ? _theme.TextPrimaryBrush : _theme.TextSecondaryBrush
         });
 
         var item = new TreeViewItem { Header = panel };

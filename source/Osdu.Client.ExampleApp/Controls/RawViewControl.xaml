@@ -11,7 +11,5 @@
              VerticalScrollBarVisibility="Auto"
              HorizontalScrollBarVisibility="Auto"
              TextWrapping="NoWrap"
-             FontFamily="Cascadia Code,Consolas,Courier New"
-             FontSize="12"
              Padding="8" />
 </UserControl>

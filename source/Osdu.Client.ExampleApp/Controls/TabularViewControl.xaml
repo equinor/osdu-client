@@ -19,7 +19,6 @@
                   GridLinesVisibility="Horizontal"
                   HeadersVisibility="Column"
                   RowHeight="28"
-                  FontSize="12"
                   BorderThickness="0" />
     </DockPanel>
 </UserControl>

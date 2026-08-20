@@ -18,6 +18,8 @@ public partial class TabularViewControl : UserControl
     public TabularViewControl()
     {
         InitializeComponent();
+        DataGrid.FontFamily = AppTheme.FontFamily;
+        DataGrid.FontSize = AppTheme.FontSize;
     }
 
     public void ApplyTheme(AppTheme theme)
@@ -26,6 +28,8 @@ public partial class TabularViewControl : UserControl
         Background = theme.SurfaceBrush;
         BreadcrumbPanel.Background = theme.SurfaceBrush;
         theme.ApplyToDataGrid(DataGrid);
+        DataGrid.FontFamily = AppTheme.FontFamily;
+        DataGrid.FontSize = AppTheme.FontSize;
 
         // Re-apply scrollbar style at the UserControl level so it persists across data reloads
         theme.ApplyScrollBarStyle(this);
@@ -196,7 +200,8 @@ public partial class TabularViewControl : UserControl
                 Foreground = _theme.AccentBrush,
                 Cursor = Cursors.Hand,
                 Margin = new Thickness(0, 0, 4, 0),
-                FontSize = 13
+                FontFamily = AppTheme.FontFamily,
+                FontSize = AppTheme.FontSize
             };
             link.MouseLeftButtonUp += (_, _) =>
             {
@@ -212,7 +217,8 @@ public partial class TabularViewControl : UserControl
                 Text = " > ",
                 Foreground = _theme.TextMutedBrush,
                 Margin = new Thickness(0, 0, 4, 0),
-                FontSize = 13
+                FontFamily = AppTheme.FontFamily,
+                FontSize = AppTheme.FontSize
             });
         }
 
@@ -221,7 +227,8 @@ public partial class TabularViewControl : UserControl
             Text = currentLabel,
             Foreground = _theme.TextPrimaryBrush,
             FontWeight = FontWeights.SemiBold,
-            FontSize = 13
+            FontFamily = AppTheme.FontFamily,
+            FontSize = AppTheme.FontSize
         });
     }
 

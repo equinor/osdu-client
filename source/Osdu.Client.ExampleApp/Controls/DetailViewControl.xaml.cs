@@ -17,6 +17,8 @@ public partial class DetailViewControl : UserControl
     public DetailViewControl()
     {
         InitializeComponent();
+        FontFamily = AppTheme.FontFamily;
+        FontSize = AppTheme.FontSize;
         MasterGrid.LoadingRow += MasterGrid_LoadingRow;
         MasterGrid.UnloadingRow += MasterGrid_UnloadingRow;
     }
@@ -24,6 +26,8 @@ public partial class DetailViewControl : UserControl
     public void ApplyTheme(AppTheme theme)
     {
         _theme = theme;
+        FontFamily = AppTheme.FontFamily;
+        FontSize = AppTheme.FontSize;
         Background = theme.SurfaceBrush;
         theme.ApplyToDataGrid(MasterGrid);
 
@@ -268,7 +272,7 @@ public partial class DetailViewControl : UserControl
         var headerFactory = new FrameworkElementFactory(typeof(TextBlock));
         headerFactory.SetBinding(TextBlock.TextProperty, new Binding("Name"));
         headerFactory.SetValue(TextBlock.FontWeightProperty, FontWeights.SemiBold);
-        headerFactory.SetValue(TextBlock.FontSizeProperty, 13.0);
+        headerFactory.SetValue(TextBlock.FontSizeProperty, AppTheme.FontSize);
         headerFactory.SetValue(TextBlock.ForegroundProperty, _theme.TextPrimaryBrush);
         headerFactory.SetValue(TextBlock.MarginProperty, new Thickness(0, 0, 0, 4));
         sectionFactory.AppendChild(headerFactory);
@@ -493,7 +497,8 @@ public partial class DetailViewControl : UserControl
                 BorderThickness = new Thickness(1),
                 Padding = new Thickness(4, 1, 4, 1),
                 Margin = new Thickness(0, 0, 4, 0),
-                FontSize = 11,
+                FontFamily = AppTheme.FontFamily,
+                FontSize = AppTheme.FontSizeXSmall,
                 Cursor = Cursors.Hand
             };
             expandAllBtn.Click += (s, e) =>
@@ -513,7 +518,8 @@ public partial class DetailViewControl : UserControl
                 BorderBrush = theme.BorderBrush,
                 BorderThickness = new Thickness(1),
                 Padding = new Thickness(4, 1, 4, 1),
-                FontSize = 11,
+                FontFamily = AppTheme.FontFamily,
+                FontSize = AppTheme.FontSizeXSmall,
                 Cursor = Cursors.Hand
             };
             collapseAllBtn.Click += (s, e) =>

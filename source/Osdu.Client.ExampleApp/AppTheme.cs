@@ -140,6 +140,14 @@ public class AppTheme
     public SolidColorBrush SelectionBgBrush => new(SelectionBg);
     public SolidColorBrush SelectionTextBrush => new(SelectionText);
 
+    // Font constants
+    public static FontFamily FontFamily { get; } = new("Segoe UI");
+    public static FontFamily MonoFontFamily { get; } = new("Cascadia Code,Consolas,Courier New");
+    public static double FontSize => 13;
+    public static double FontSizeSmall => 12;
+    public static double FontSizeXSmall => 11;
+    public static double FontSizeLarge => 14;
+
     /// <summary>
     /// Applies full theming to a DataGrid including headers, cells, selection, and hover styles.
     /// </summary>
@@ -162,7 +170,8 @@ public class AppTheme
         columnHeaderStyle.Setters.Add(new Setter(DataGridColumnHeader.BackgroundProperty, new SolidColorBrush(Tag)));
         columnHeaderStyle.Setters.Add(new Setter(DataGridColumnHeader.ForegroundProperty, TextPrimaryBrush));
         columnHeaderStyle.Setters.Add(new Setter(DataGridColumnHeader.FontWeightProperty, FontWeights.SemiBold));
-        columnHeaderStyle.Setters.Add(new Setter(DataGridColumnHeader.FontSizeProperty, 12.0));
+        columnHeaderStyle.Setters.Add(new Setter(DataGridColumnHeader.FontSizeProperty, FontSizeSmall));
+        columnHeaderStyle.Setters.Add(new Setter(DataGridColumnHeader.FontFamilyProperty, FontFamily));
         columnHeaderStyle.Setters.Add(new Setter(DataGridColumnHeader.PaddingProperty, new Thickness(8, 5, 8, 5)));
         columnHeaderStyle.Setters.Add(new Setter(DataGridColumnHeader.BorderBrushProperty, BorderBrush));
         columnHeaderStyle.Setters.Add(new Setter(DataGridColumnHeader.BorderThicknessProperty, new Thickness(0, 0, 0, 1)));
@@ -229,7 +238,8 @@ public class AppTheme
         tabItemStyle.Setters.Add(new Setter(TabItem.BorderThicknessProperty, new Thickness(0)));
         tabItemStyle.Setters.Add(new Setter(TabItem.PaddingProperty, new Thickness(12, 6, 12, 6)));
         tabItemStyle.Setters.Add(new Setter(TabItem.MarginProperty, new Thickness(0)));
-        tabItemStyle.Setters.Add(new Setter(TabItem.FontSizeProperty, 12.0));
+        tabItemStyle.Setters.Add(new Setter(TabItem.FontSizeProperty, FontSizeSmall));
+        tabItemStyle.Setters.Add(new Setter(TabItem.FontFamilyProperty, FontFamily));
 
         var selectedTabTrigger = new Trigger { Property = TabItem.IsSelectedProperty, Value = true };
         selectedTabTrigger.Setters.Add(new Setter(TabItem.BackgroundProperty, SurfaceBrush));
