@@ -52,7 +52,7 @@
       "extra-files": [
         {
           "type": "xml",
-          "path": "source/Osdu.Client/Osdu.Client.csproj",
+          "path": "Osdu.Client.csproj",
           "xpath": "/Project/PropertyGroup/Version"
         }
       ]
@@ -62,7 +62,7 @@
       "extra-files": [
         {
           "type": "xml",
-          "path": "source/Osdu.Client.Extensions/Osdu.Client.Extensions.csproj",
+          "path": "Osdu.Client.Extensions.csproj",
           "xpath": "/Project/PropertyGroup/Version"
         }
       ]
