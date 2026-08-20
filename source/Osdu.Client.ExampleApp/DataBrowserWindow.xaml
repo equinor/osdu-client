@@ -65,6 +65,9 @@
                 <TabItem Header="Tree">
                     <controls:TreeViewTab x:Name="TreeView" />
                 </TabItem>
+                <TabItem Header="DataGrid">
+                    <controls:DataGridViewControl x:Name="DataGridView" />
+                </TabItem>
             </TabControl>
 
             <!-- Paging overlay on right panel bottom -->

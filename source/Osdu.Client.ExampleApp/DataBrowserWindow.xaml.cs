@@ -99,6 +99,7 @@ public partial class DataBrowserWindow : Window
         RawView.SetData(_currentRecords, _totalCount);
         TabularView.SetData(_currentRecords);
         TreeView.SetData(_currentRecords);
+        DataGridView.SetData(_currentRecords);
     }
 
     private void UpdatePagingControls()
@@ -201,6 +202,7 @@ public partial class DataBrowserWindow : Window
         RawView.ApplyTheme(theme);
         TabularView.ApplyTheme(theme);
         TreeView.ApplyTheme(theme);
+        DataGridView.ApplyTheme(theme);
     }
 
     private void ClearContent()
@@ -208,6 +210,7 @@ public partial class DataBrowserWindow : Window
         RawView.Clear();
         TabularView.Clear();
         TreeView.Clear();
+        DataGridView.Clear();
         _selectedKind = null;
         _currentRecords.Clear();
         RecordCountText.Text = "";
