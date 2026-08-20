@@ -75,10 +75,13 @@ public partial class DetailViewControl : UserControl
 
         // Build rows — defer detail parsing until expansion for performance
         var rows = new ObservableCollection<MasterDetailRow>();
+        int rowIndex = 1;
         foreach (var record in records)
         {
             var flat = JsonHelper.FlattenRecord(record);
             var row = new MasterDetailRow();
+
+            row.ScalarValues["#"] = rowIndex.ToString();
 
             foreach (var col in scalarColumns)
                 row.ScalarValues[col] = flat.TryGetValue(col, out var cell) ? cell.Display : null;
@@ -90,7 +93,17 @@ public partial class DetailViewControl : UserControl
             }
 
             rows.Add(row);
+            rowIndex++;
         }
+
+        // Add row number column
+        MasterGrid.Columns.Add(new DataGridTextColumn
+        {
+            Header = "#",
+            Binding = new Binding("ScalarValues[#]") { Mode = BindingMode.OneWay },
+            MaxWidth = 60,
+            IsReadOnly = true
+        });
 
         // Add scalar columns to the grid
         foreach (var col in scalarColumns)
