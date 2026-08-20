@@ -9,11 +9,11 @@ using Osdu.Client.ExampleApp.Helpers;
 
 namespace Osdu.Client.ExampleApp.Controls;
 
-public partial class DataGridViewControl : UserControl
+public partial class DetailViewControl : UserControl
 {
     private AppTheme _theme = AppTheme.Light;
 
-    public DataGridViewControl()
+    public DetailViewControl()
     {
         InitializeComponent();
         MasterGrid.LoadingRow += MasterGrid_LoadingRow;
