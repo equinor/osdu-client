@@ -144,5 +144,108 @@ public class AppTheme
         rowHeaderStyle.Setters.Add(new Setter(DataGridRowHeader.BackgroundProperty, CardBrush));
         rowHeaderStyle.Setters.Add(new Setter(DataGridRowHeader.BorderBrushProperty, BorderBrush));
         dataGrid.RowHeaderStyle = rowHeaderStyle;
+
+        // ScrollBar theming
+        ApplyScrollBarStyle(dataGrid);
+    }
+
+    /// <summary>
+    /// Applies themed ScrollBar styles to a control's local resources so that
+    /// scrollbars within it pick up the current theme colors.
+    /// </summary>
+    public void ApplyScrollBarStyle(FrameworkElement target)
+    {
+        var thumbBrush = new SolidColorBrush(IsDark
+            ? Color.FromRgb(80, 80, 95)
+            : Color.FromRgb(180, 182, 195));
+        var thumbHoverBrush = new SolidColorBrush(IsDark
+            ? Color.FromRgb(110, 110, 130)
+            : Color.FromRgb(150, 152, 165));
+        var trackBrush = new SolidColorBrush(IsDark
+            ? Color.FromRgb(30, 30, 35)
+            : Color.FromRgb(240, 241, 245));
+
+        // Thumb style with hover trigger
+        var thumbStyle = new Style(typeof(System.Windows.Controls.Primitives.Thumb));
+        var thumbTemplate = CreateScrollBarThumbTemplate(thumbBrush, thumbHoverBrush);
+        thumbStyle.Setters.Add(new Setter(Control.TemplateProperty, thumbTemplate));
+
+        // ScrollBar style — color only, no custom template to avoid IAddChild issues
+        var scrollBarStyle = new Style(typeof(System.Windows.Controls.Primitives.ScrollBar));
+        scrollBarStyle.Setters.Add(new Setter(Control.BackgroundProperty, trackBrush));
+        scrollBarStyle.Setters.Add(new Setter(Control.BorderBrushProperty, Brushes.Transparent));
+        scrollBarStyle.Setters.Add(new Setter(FrameworkElement.WidthProperty, 10.0));
+        scrollBarStyle.Setters.Add(new Setter(FrameworkElement.MinWidthProperty, 10.0));
+
+        // For horizontal scrollbar
+        var horizontalTrigger = new Trigger
+        {
+            Property = System.Windows.Controls.Primitives.ScrollBar.OrientationProperty,
+            Value = System.Windows.Controls.Orientation.Horizontal
+        };
+        horizontalTrigger.Setters.Add(new Setter(FrameworkElement.WidthProperty, double.NaN));
+        horizontalTrigger.Setters.Add(new Setter(FrameworkElement.HeightProperty, 10.0));
+        horizontalTrigger.Setters.Add(new Setter(FrameworkElement.MinHeightProperty, 10.0));
+        scrollBarStyle.Triggers.Add(horizontalTrigger);
+
+        // ScrollViewer style to remove extra chrome
+        var scrollViewerStyle = new Style(typeof(ScrollViewer));
+        scrollViewerStyle.Setters.Add(new Setter(Control.BackgroundProperty, SurfaceBrush));
+
+        target.Resources[typeof(System.Windows.Controls.Primitives.ScrollBar)] = scrollBarStyle;
+        target.Resources[typeof(System.Windows.Controls.Primitives.Thumb)] = thumbStyle;
+        target.Resources[typeof(ScrollViewer)] = scrollViewerStyle;
+    }
+
+    private static ControlTemplate CreateScrollBarTemplate(SolidColorBrush trackBrush, bool horizontal = false)
+    {
+        var template = new ControlTemplate(typeof(System.Windows.Controls.Primitives.ScrollBar));
+
+        var borderFactory = new FrameworkElementFactory(typeof(System.Windows.Controls.Border));
+        borderFactory.SetValue(System.Windows.Controls.Border.BackgroundProperty, trackBrush);
+        borderFactory.SetValue(System.Windows.Controls.Border.CornerRadiusProperty, new CornerRadius(4));
+
+        var trackFactory = new FrameworkElementFactory(typeof(System.Windows.Controls.Primitives.Track));
+        trackFactory.Name = "PART_Track";
+        trackFactory.SetValue(System.Windows.Controls.Primitives.Track.IsDirectionReversedProperty, !horizontal);
+
+        var thumbFactory = new FrameworkElementFactory(typeof(System.Windows.Controls.Primitives.Thumb));
+        thumbFactory.SetValue(FrameworkElement.MinHeightProperty, horizontal ? 0.0 : 20.0);
+        thumbFactory.SetValue(FrameworkElement.MinWidthProperty, horizontal ? 20.0 : 0.0);
+
+        // Assign the Thumb to the Track via the factory tree
+        trackFactory.AppendChild(thumbFactory);
+        borderFactory.AppendChild(trackFactory);
+
+        template.VisualTree = borderFactory;
+        return template;
+    }
+
+    private static ControlTemplate CreateScrollBarThumbTemplate(
+        SolidColorBrush normalBrush, SolidColorBrush hoverBrush)
+    {
+        var template = new ControlTemplate(typeof(System.Windows.Controls.Primitives.Thumb));
+
+        var borderFactory = new FrameworkElementFactory(typeof(System.Windows.Controls.Border));
+        borderFactory.SetValue(System.Windows.Controls.Border.BackgroundProperty, normalBrush);
+        borderFactory.SetValue(System.Windows.Controls.Border.CornerRadiusProperty, new CornerRadius(4));
+        borderFactory.SetValue(FrameworkElement.MarginProperty, new Thickness(1));
+        borderFactory.Name = "ThumbBorder";
+
+        template.VisualTree = borderFactory;
+
+        // Hover trigger
+        var hoverTrigger = new Trigger
+        {
+            Property = UIElement.IsMouseOverProperty,
+            Value = true
+        };
+        hoverTrigger.Setters.Add(new Setter(System.Windows.Controls.Border.BackgroundProperty, hoverBrush)
+        {
+            TargetName = "ThumbBorder"
+        });
+        template.Triggers.Add(hoverTrigger);
+
+        return template;
     }
 }

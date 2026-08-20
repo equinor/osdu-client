@@ -432,6 +432,8 @@ public partial class DataBrowserWindow : Window
         // StatusBar
         MainStatusBar.Background = new SolidColorBrush(theme.Sidebar);
         MainStatusBar.Foreground = theme.TextPrimaryBrush;
+        MainStatusBar.BorderBrush = theme.BorderBrush;
+        MainStatusBar.BorderThickness = new Thickness(0, 1, 0, 0);
         StatusText.Foreground = theme.TextSecondaryBrush;
         RecordCountText.Foreground = theme.TextSecondaryBrush;
         PageInfoText.Foreground = theme.TextSecondaryBrush;
@@ -461,8 +463,11 @@ public partial class DataBrowserWindow : Window
         ProgressBar.Background = theme.InputBrush;
         ProgressBar.BorderBrush = theme.BorderBrush;
 
-        // Child controls
+        // Child controls — KindTree sidebar gets a right border to separate from content
         KindTree.ApplyTheme(theme);
+        KindTree.BorderBrush = theme.BorderBrush;
+        KindTree.BorderThickness = new Thickness(0, 0, 1, 0);
+
         RawView.ApplyTheme(theme);
         TabularView.ApplyTheme(theme);
         TreeView.ApplyTheme(theme);

@@ -26,6 +26,9 @@ public partial class DetailViewControl : UserControl
         Background = theme.SurfaceBrush;
         theme.ApplyToDataGrid(MasterGrid);
 
+        // Apply scrollbar style at the control level so it persists
+        theme.ApplyScrollBarStyle(this);
+
         // Re-render if data is present so detail sections pick up new theme
         if (MasterGrid.ItemsSource is ObservableCollection<MasterDetailRow> rows && rows.Count > 0)
         {

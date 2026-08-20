@@ -26,6 +26,16 @@ public partial class TabularViewControl : UserControl
         Background = theme.SurfaceBrush;
         BreadcrumbPanel.Background = theme.SurfaceBrush;
         theme.ApplyToDataGrid(DataGrid);
+
+        // Re-apply scrollbar style at the UserControl level so it persists across data reloads
+        theme.ApplyScrollBarStyle(this);
+
+        // Re-render data so hyperlink columns pick up new theme colors
+        if (_currentData.Count > 0)
+        {
+            var currentLabel = BreadcrumbPanel.Tag as string ?? "Root";
+            ShowData(_currentData, currentLabel);
+        }
     }
 
     public void SetData(IReadOnlyList<JsonElement> records, string label = "Root")
