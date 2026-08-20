@@ -451,9 +451,11 @@ public partial class DataBrowserWindow : Window
         // Paging buttons and inputs
         StylePagingControls(theme);
 
-        // TabControl
+        // TabControl — flat VS 2026 style
         ContentTabs.Background = theme.SurfaceBrush;
-        ContentTabs.BorderBrush = theme.BorderBrush;
+        ContentTabs.BorderBrush = Brushes.Transparent;
+        ContentTabs.BorderThickness = new Thickness(0);
+        StyleTabControl(theme);
 
         // GridSplitter
         var splitter = FindVisualChild<GridSplitter>(this);
@@ -476,6 +478,54 @@ public partial class DataBrowserWindow : Window
         TabularView.ApplyTheme(theme);
         TreeView.ApplyTheme(theme);
         DetailView.ApplyTheme(theme);
+    }
+
+    private void StyleTabControl(AppTheme theme)
+    {
+        var tabItemStyle = new Style(typeof(TabItem));
+
+        var template = new ControlTemplate(typeof(TabItem));
+        var borderFactory = new FrameworkElementFactory(typeof(Border), "TabBorder");
+        borderFactory.SetValue(Border.PaddingProperty, new Thickness(14, 7, 14, 7));
+        borderFactory.SetValue(Border.MarginProperty, new Thickness(0, 0, 1, 0));
+        borderFactory.SetValue(Border.BackgroundProperty, Brushes.Transparent);
+        borderFactory.SetValue(Border.BorderThicknessProperty, new Thickness(0, 0, 0, 2));
+        borderFactory.SetValue(Border.BorderBrushProperty, Brushes.Transparent);
+        borderFactory.SetValue(Border.CursorProperty, Cursors.Hand);
+
+        var textFactory = new FrameworkElementFactory(typeof(TextBlock), "TabText");
+        textFactory.SetValue(TextBlock.FontSizeProperty, AppTheme.FontSizeSmall);
+        textFactory.SetValue(TextBlock.FontWeightProperty, FontWeights.Normal);
+        textFactory.SetValue(TextBlock.ForegroundProperty, theme.TabInactiveTextBrush);
+        textFactory.SetValue(TextBlock.VerticalAlignmentProperty, VerticalAlignment.Center);
+        textFactory.SetBinding(TextBlock.TextProperty, new System.Windows.Data.Binding("Header")
+        {
+            RelativeSource = new System.Windows.Data.RelativeSource(System.Windows.Data.RelativeSourceMode.TemplatedParent)
+        });
+
+        borderFactory.AppendChild(textFactory);
+        template.VisualTree = borderFactory;
+
+        // Selected trigger
+        var selectedTrigger = new Trigger { Property = TabItem.IsSelectedProperty, Value = true };
+        selectedTrigger.Setters.Add(new Setter(Border.BorderBrushProperty, theme.TabActiveBrush, "TabBorder"));
+        selectedTrigger.Setters.Add(new Setter(Border.BackgroundProperty, theme.SurfaceBrush, "TabBorder"));
+        selectedTrigger.Setters.Add(new Setter(TextBlock.FontWeightProperty, FontWeights.SemiBold, "TabText"));
+        selectedTrigger.Setters.Add(new Setter(TextBlock.ForegroundProperty, theme.TextPrimaryBrush, "TabText"));
+        template.Triggers.Add(selectedTrigger);
+
+        // Hover trigger
+        var hoverTrigger = new Trigger { Property = TabItem.IsMouseOverProperty, Value = true };
+        hoverTrigger.Setters.Add(new Setter(Border.BackgroundProperty, new SolidColorBrush(Color.FromArgb(20, theme.Accent.R, theme.Accent.G, theme.Accent.B)), "TabBorder"));
+        template.Triggers.Add(hoverTrigger);
+
+        tabItemStyle.Setters.Add(new Setter(TabItem.TemplateProperty, template));
+
+        // Apply to all tab items
+        foreach (TabItem tab in ContentTabs.Items)
+        {
+            tab.Style = tabItemStyle;
+        }
     }
 
     private void StylePagingControls(AppTheme theme)
