@@ -15,7 +15,8 @@ public partial class DataBrowserWindow : Window
     private string? _selectedKind;
     private string? _nextCursor;
     private readonly List<string?> _cursorByPage = []; // cursor to fetch page[i]
-    private List<JsonElement> _currentRecords = [];
+    private List<JsonElement> _allRecords = [];        // accumulated records across pages
+    private List<JsonElement> _currentPageRecords = [];
     private long _totalCount;
     private int _pageIndex;
     private int _pageSize = 100;
@@ -30,6 +31,9 @@ public partial class DataBrowserWindow : Window
     }
 
     private int TotalPages => _totalCount > 0 ? (int)Math.Ceiling((double)_totalCount / _pageSize) : 0;
+
+    /// <summary>Gets the starting row index for a given page.</summary>
+    private int PageStartRow(int pageIdx) => pageIdx * _pageSize;
 
     private async Task LoadKindsAsync()
     {
@@ -61,16 +65,35 @@ public partial class DataBrowserWindow : Window
         _selectedKind = kindId;
         _cursorByPage.Clear();
         _cursorByPage.Add(null); // page 0 starts with null cursor
+        _allRecords.Clear();
         _nextCursor = null;
         _pageIndex = 0;
         FetchAllButton.IsEnabled = true;
         PagingBar.Visibility = Visibility.Visible;
-        await FetchPageAsync(null);
+        await FetchAndAppendPageAsync(null);
     }
 
-    private async Task FetchPageAsync(string? cursor)
+    /// <summary>
+    /// Fetches a page and appends it to the accumulated records.
+    /// Only fetches if data for this page hasn't been loaded yet.
+    /// </summary>
+    private async Task FetchAndAppendPageAsync(string? cursor)
     {
         if (_selectedKind is null) return;
+
+        // Check if we already have data for this page
+        int expectedStart = PageStartRow(_pageIndex);
+        if (expectedStart < _allRecords.Count)
+        {
+            // Data already loaded — just display the slice and scroll
+            int count = Math.Min(_pageSize, _allRecords.Count - expectedStart);
+            _currentPageRecords = _allRecords.GetRange(expectedStart, count);
+            DisplayAllAccumulated();
+            ScrollToPageStart();
+            UpdatePagingControls();
+            SetStatus($"Kind: {_selectedKind}");
+            return;
+        }
 
         try
         {
@@ -79,17 +102,21 @@ public partial class DataBrowserWindow : Window
             ProgressBar.Visibility = Visibility.Visible;
 
             var page = await _service.SearchByKindAsync(_selectedKind, _pageSize, cursor);
-            _currentRecords = page.Results;
+            _currentPageRecords = page.Results;
             _totalCount = page.TotalCount;
             _nextCursor = page.Cursor;
 
-            // Store the cursor for the next page if we haven't seen it yet
+            // Append new records to accumulated list
+            _allRecords.AddRange(page.Results);
+
+            // Store cursor for next page
             if (!string.IsNullOrEmpty(_nextCursor) && _cursorByPage.Count <= _pageIndex + 1)
             {
                 _cursorByPage.Add(_nextCursor);
             }
 
-            DisplayRecords();
+            DisplayAllAccumulated();
+            ScrollToPageStart();
             UpdatePagingControls();
             SetStatus($"Kind: {_selectedKind}");
         }
@@ -104,12 +131,20 @@ public partial class DataBrowserWindow : Window
         }
     }
 
-    private void DisplayRecords()
+    /// <summary>Displays all accumulated records in all views.</summary>
+    private void DisplayAllAccumulated()
     {
-        RawView.SetData(_currentRecords, _totalCount);
-        TabularView.SetData(_currentRecords);
-        TreeView.SetData(_currentRecords);
-        DetailView.SetData(_currentRecords);
+        RawView.SetData(_allRecords, _totalCount);
+        TabularView.SetData(_allRecords);
+        TreeView.SetData(_allRecords);
+        DetailView.SetData(_allRecords);
+    }
+
+    /// <summary>Scrolls the tabular view to the first row of the current page and selects it.</summary>
+    private void ScrollToPageStart()
+    {
+        int startRow = PageStartRow(_pageIndex);
+        TabularView.ScrollToRowAndHighlight(startRow);
     }
 
     private void UpdatePagingControls()
@@ -123,7 +158,7 @@ public partial class DataBrowserWindow : Window
         LastPageButton.IsEnabled = hasNext;
 
         int from = _pageIndex * _pageSize + 1;
-        int to = _pageIndex * _pageSize + _currentRecords.Count;
+        int to = _pageIndex * _pageSize + _currentPageRecords.Count;
         int totalPages = TotalPages;
 
         PageInfoText.Text = _totalCount > 0
@@ -131,33 +166,37 @@ public partial class DataBrowserWindow : Window
             : "No results";
 
         RecordCountText.Text = _totalCount > 0
-            ? $"Showing {_currentRecords.Count} of {_totalCount}"
+            ? $"Showing {_allRecords.Count} of {_totalCount} (loaded)"
             : "";
     }
 
     private async void FirstPage_Click(object sender, RoutedEventArgs e)
     {
         _pageIndex = 0;
-        await FetchPageAsync(_cursorByPage[0]);
+        await FetchAndAppendPageAsync(_cursorByPage[0]);
     }
 
     private async void NextPage_Click(object sender, RoutedEventArgs e)
     {
         _pageIndex++;
-        await FetchPageAsync(_nextCursor);
+        await FetchAndAppendPageAsync(_nextCursor);
     }
 
     private async void PrevPage_Click(object sender, RoutedEventArgs e)
     {
         if (_pageIndex <= 0) return;
         _pageIndex--;
-        var cursor = _pageIndex < _cursorByPage.Count ? _cursorByPage[_pageIndex] : null;
-        await FetchPageAsync(cursor);
+        // Data is already accumulated — just scroll back
+        int startRow = PageStartRow(_pageIndex);
+        int count = Math.Min(_pageSize, _allRecords.Count - startRow);
+        _currentPageRecords = _allRecords.GetRange(startRow, count);
+        ScrollToPageStart();
+        UpdatePagingControls();
+        SetStatus($"Kind: {_selectedKind}");
     }
 
     private async void LastPage_Click(object sender, RoutedEventArgs e)
     {
-        // Fetch all to reach the last page, then display only the last page's worth
         if (_selectedKind is null) return;
 
         try
@@ -175,7 +214,8 @@ public partial class DataBrowserWindow : Window
                     _cursorByPage.Add(cursor);
 
                 var page = await _service.SearchByKindAsync(_selectedKind, _pageSize, cursor);
-                _currentRecords = page.Results;
+                _allRecords.AddRange(page.Results);
+                _currentPageRecords = page.Results;
                 _totalCount = page.TotalCount;
                 _nextCursor = page.Cursor;
                 cursor = _nextCursor;
@@ -184,7 +224,8 @@ public partial class DataBrowserWindow : Window
                     _cursorByPage.Add(_nextCursor);
             }
 
-            DisplayRecords();
+            DisplayAllAccumulated();
+            ScrollToPageStart();
             UpdatePagingControls();
             SetStatus($"Kind: {_selectedKind}");
         }
@@ -219,18 +260,22 @@ public partial class DataBrowserWindow : Window
         }
 
         int targetIndex = targetPage - 1;
-
         if (targetIndex == _pageIndex) return;
 
-        // If we already have the cursor for that page, jump directly
-        if (targetIndex < _cursorByPage.Count)
+        // If data is already loaded for this page, just scroll
+        int targetStart = PageStartRow(targetIndex);
+        if (targetStart < _allRecords.Count)
         {
             _pageIndex = targetIndex;
-            await FetchPageAsync(_cursorByPage[_pageIndex]);
+            int count = Math.Min(_pageSize, _allRecords.Count - targetStart);
+            _currentPageRecords = _allRecords.GetRange(targetStart, count);
+            ScrollToPageStart();
+            UpdatePagingControls();
+            SetStatus($"Kind: {_selectedKind}");
             return;
         }
 
-        // Otherwise walk forward from the furthest known page
+        // If we have the cursor, walk forward fetching and appending
         try
         {
             SetStatus($"Navigating to page {targetPage}...");
@@ -247,15 +292,18 @@ public partial class DataBrowserWindow : Window
                 _totalCount = page.TotalCount;
                 currentIdx++;
 
-                if (!string.IsNullOrEmpty(page.Cursor) && _cursorByPage.Count <= currentIdx)
+                if (_cursorByPage.Count <= currentIdx && !string.IsNullOrEmpty(page.Cursor))
                     _cursorByPage.Add(page.Cursor);
+
+                _allRecords.AddRange(page.Results);
 
                 if (currentIdx == targetIndex)
                 {
-                    _currentRecords = page.Results;
+                    _currentPageRecords = page.Results;
                     _nextCursor = page.Cursor;
                     _pageIndex = targetIndex;
-                    DisplayRecords();
+                    DisplayAllAccumulated();
+                    ScrollToPageStart();
                     UpdatePagingControls();
                     SetStatus($"Kind: {_selectedKind}");
                     return;
@@ -264,13 +312,13 @@ public partial class DataBrowserWindow : Window
                 cursor = page.Cursor;
                 if (string.IsNullOrEmpty(cursor))
                 {
-                    // Reached the end before the target page
-                    _currentRecords = page.Results;
+                    _currentPageRecords = page.Results;
                     _nextCursor = null;
-                    _pageIndex = currentIdx - 1;
-                    DisplayRecords();
+                    _pageIndex = currentIdx;
+                    DisplayAllAccumulated();
+                    ScrollToPageStart();
                     UpdatePagingControls();
-                    SetStatus($"Only {currentIdx} pages available.");
+                    SetStatus($"Only {currentIdx + 1} pages available.");
                     return;
                 }
             }
@@ -296,8 +344,9 @@ public partial class DataBrowserWindow : Window
         _pageIndex = 0;
         _cursorByPage.Clear();
         _cursorByPage.Add(null);
+        _allRecords.Clear();
         _nextCursor = null;
-        await FetchPageAsync(null);
+        await FetchAndAppendPageAsync(null);
     }
 
     private async void FetchAllButton_Click(object sender, RoutedEventArgs e)
@@ -320,12 +369,13 @@ public partial class DataBrowserWindow : Window
             });
 
             var all = await _service.FetchAllAsync(_selectedKind, progress);
-            _currentRecords = all;
+            _allRecords = all;
+            _currentPageRecords = all;
             _totalCount = all.Count;
             _nextCursor = null;
             _pageIndex = 0;
 
-            DisplayRecords();
+            DisplayAllAccumulated();
 
             FirstPageButton.IsEnabled = false;
             PrevPageButton.IsEnabled = false;
@@ -394,7 +444,8 @@ public partial class DataBrowserWindow : Window
         TreeView.Clear();
         DetailView.Clear();
         _selectedKind = null;
-        _currentRecords.Clear();
+        _allRecords.Clear();
+        _currentPageRecords.Clear();
         RecordCountText.Text = "";
         PageInfoText.Text = "";
         FetchAllButton.IsEnabled = false;

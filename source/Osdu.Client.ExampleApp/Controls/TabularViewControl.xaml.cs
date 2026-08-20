@@ -38,6 +38,23 @@ public partial class TabularViewControl : UserControl
         ShowData(records, label);
     }
 
+    /// <summary>
+    /// Scrolls to the specified row index and highlights (selects) it.
+    /// </summary>
+    public void ScrollToRowAndHighlight(int rowIndex)
+    {
+        if (DataGrid.Items.Count == 0 || rowIndex < 0 || rowIndex >= DataGrid.Items.Count)
+            return;
+
+        DataGrid.SelectedIndex = rowIndex;
+        DataGrid.ScrollIntoView(DataGrid.Items[rowIndex]);
+
+        // Focus the row for visual highlight
+        DataGrid.UpdateLayout();
+        var row = DataGrid.ItemContainerGenerator.ContainerFromIndex(rowIndex) as DataGridRow;
+        row?.Focus();
+    }
+
     public void Clear()
     {
         DataGrid.Columns.Clear();
