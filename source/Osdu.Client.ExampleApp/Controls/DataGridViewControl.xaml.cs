@@ -206,7 +206,7 @@ public class DetailSection
         return element.ValueKind switch
         {
             JsonValueKind.Object => BuildObjectGrid(element),
-            JsonValueKind.Array => BuildArrayContent(element),
+            JsonValueKind.Array => BuildArrayContent(element).Content,
             _ => new TextBlock
             {
                 Text = element.ToString(),
@@ -241,17 +241,30 @@ public class DetailSection
             UIElement valueElement;
             if (prop.Value.ValueKind is JsonValueKind.Object or JsonValueKind.Array)
             {
-                // Nest recursively inside an expander
-                var expander = new Expander
+                if (prop.Value.ValueKind == JsonValueKind.Array)
                 {
-                    Header = prop.Value.ValueKind == JsonValueKind.Array
-                        ? $"[{prop.Value.GetArrayLength()} items]"
-                        : "{...}",
-                    IsExpanded = false,
-                    Margin = new Thickness(0, 2, 4, 2),
-                    Content = BuildContent(prop.Value)
-                };
-                valueElement = expander;
+                    var (content, childExpanders) = BuildArrayContent(prop.Value);
+                    var expander = new Expander
+                    {
+                        Header = BuildArrayExpanderHeader(
+                            $"[{prop.Value.GetArrayLength()} items]", childExpanders),
+                        IsExpanded = false,
+                        Margin = new Thickness(0, 2, 4, 2),
+                        Content = content
+                    };
+                    valueElement = expander;
+                }
+                else
+                {
+                    var expander = new Expander
+                    {
+                        Header = "{...}",
+                        IsExpanded = false,
+                        Margin = new Thickness(0, 2, 4, 2),
+                        Content = BuildContent(prop.Value)
+                    };
+                    valueElement = expander;
+                }
             }
             else
             {
@@ -284,9 +297,124 @@ public class DetailSection
         return border;
     }
 
-    private static UIElement BuildArrayContent(JsonElement array)
+    /// <summary>
+    /// Builds a header panel with the label text and Expand All / Collapse All buttons.
+    /// </summary>
+    private static UIElement BuildArrayExpanderHeader(string label, List<Expander> expanders)
+    {
+        if (expanders.Count == 0)
+            return new TextBlock { Text = label };
+
+        var panel = new StackPanel
+        {
+            Orientation = Orientation.Horizontal,
+            VerticalAlignment = VerticalAlignment.Center
+        };
+
+        panel.Children.Add(new TextBlock
+        {
+            Text = label,
+            VerticalAlignment = VerticalAlignment.Center,
+            Margin = new Thickness(0, 0, 10, 0)
+        });
+
+        var expandAllBtn = new Button
+        {
+            Content = "▼ Expand All",
+            Padding = new Thickness(4, 1, 4, 1),
+            Margin = new Thickness(0, 0, 4, 0),
+            FontSize = 11,
+            Cursor = Cursors.Hand
+        };
+        expandAllBtn.Click += (s, e) =>
+        {
+            foreach (var exp in expanders)
+                SetExpandedRecursive(exp, true);
+            // The click also toggles the parent Expander — restore it on the next dispatcher frame
+            var parentExpander = FindAncestor<Expander>((DependencyObject)s!);
+            parentExpander?.Dispatcher.BeginInvoke(() => parentExpander.IsExpanded = true);
+            e.Handled = true;
+        };
+
+        var collapseAllBtn = new Button
+        {
+            Content = "▲ Collapse All",
+            Padding = new Thickness(4, 1, 4, 1),
+            FontSize = 11,
+            Cursor = Cursors.Hand
+        };
+        collapseAllBtn.Click += (s, e) =>
+        {
+            foreach (var exp in expanders)
+                SetExpandedRecursive(exp, false);
+            // Restore parent Expander to expanded so the collapsed children remain visible
+            var parentExpander = FindAncestor<Expander>((DependencyObject)s!);
+            parentExpander?.Dispatcher.BeginInvoke(() => parentExpander.IsExpanded = true);
+            e.Handled = true;
+        };
+
+        panel.Children.Add(expandAllBtn);
+        panel.Children.Add(collapseAllBtn);
+        return panel;
+    }
+
+    /// <summary>
+    /// Walks up the visual tree to find the nearest ancestor of type T.
+    /// </summary>
+    private static T? FindAncestor<T>(DependencyObject element) where T : DependencyObject
+    {
+        var current = VisualTreeHelper.GetParent(element);
+        while (current is not null)
+        {
+            if (current is T match)
+                return match;
+            current = VisualTreeHelper.GetParent(current);
+        }
+        return null;
+    }
+
+    /// <summary>
+    /// Recursively sets IsExpanded on an expander and all nested expanders within it.
+    /// </summary>
+    private static void SetExpandedRecursive(Expander expander, bool isExpanded)
+    {
+        expander.IsExpanded = isExpanded;
+
+        if (expander.Content is DependencyObject content)
+            SetExpandedRecursiveVisual(content, isExpanded);
+    }
+
+    private static void SetExpandedRecursiveVisual(DependencyObject parent, bool isExpanded)
+    {
+        int childCount = VisualTreeHelper.GetChildrenCount(parent);
+
+        // If not yet in the visual tree, walk the logical tree instead
+        if (childCount == 0 && parent is Panel panel)
+        {
+            foreach (UIElement child in panel.Children)
+            {
+                if (child is Expander childExpander)
+                    SetExpandedRecursive(childExpander, isExpanded);
+                else if (child is DependencyObject dep)
+                    SetExpandedRecursiveVisual(dep, isExpanded);
+            }
+            return;
+        }
+
+        for (int i = 0; i < childCount; i++)
+        {
+            var child = VisualTreeHelper.GetChild(parent, i);
+            if (child is Expander childExp)
+                SetExpandedRecursive(childExp, isExpanded);
+            else
+                SetExpandedRecursiveVisual(child, isExpanded);
+        }
+    }
+
+    private static (UIElement Content, List<Expander> Expanders) BuildArrayContent(JsonElement array)
     {
         var panel = new StackPanel();
+        var expanders = new List<Expander>();
         int index = 0;
 
         // Check if it's a simple array (all primitives/strings)
@@ -312,7 +440,7 @@ public class DetailSection
                     TextWrapping = TextWrapping.Wrap
                 });
             }
-            return panel;
+            return (panel, expanders);
         }
 
         // Complex array — render each item in an expander
@@ -327,6 +455,7 @@ public class DetailSection
                     Margin = new Thickness(0, 2, 0, 2),
                     Content = BuildContent(item)
                 };
+                expanders.Add(expander);
                 panel.Children.Add(expander);
             }
             else
@@ -340,6 +469,6 @@ public class DetailSection
             index++;
         }
 
-        return panel;
+        return (panel, expanders);
     }
 }
