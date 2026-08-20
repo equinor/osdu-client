@@ -1,0 +1,13 @@
+﻿<Project>
+
+  <PropertyGroup>
+    <Authors>Equinor</Authors>
+    <Company>Equinor</Company>
+    <PackageProjectUrl>https://github.com/equinor/osdu-client</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/equinor/osdu-client</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+</Project>

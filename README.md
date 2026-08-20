@@ -1,6 +1,6 @@
 # OSDU Client
 
-[![SCM Compliance]()](https://developer.equinor.com/governance/scm-policy/)
+[![SCM Compliance](https://scm-compliance-api.radix.equinor.com/repos/equinor/b7f13276-ed4d-4e8f-a084-9dd9c2377080/badge)](https://developer.equinor.com/governance/scm-policy/)
 
 ## Installation
 
