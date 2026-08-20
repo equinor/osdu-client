@@ -1,8 +1,10 @@
-﻿using System.Text.Json;
+﻿using System.Diagnostics;
+using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Threading;
 using Osdu.Client.ExampleApp.Services;
 
 namespace Osdu.Client.ExampleApp;
@@ -12,23 +14,53 @@ public partial class DataBrowserWindow : Window
     private readonly DataBrowserService _service;
     private AppTheme _theme = AppTheme.Light;
 
+    // Elapsed timer
+    private readonly Stopwatch _stopwatch = new();
+    private readonly DispatcherTimer _elapsedTimer = new() { Interval = TimeSpan.FromMilliseconds(47) };
+
     // Paging state
     private string? _selectedKind;
     private string? _nextCursor;
     private readonly List<string?> _cursorByPage = []; // cursor to fetch page[i]
-    private List<JsonElement> _allRecords = [];        // accumulated records across pages
+    private RecordStore _store = new();                 // file-backed record store
     private List<JsonElement> _currentPageRecords = [];
     private long _totalCount;
     private int _pageIndex;
     private int _pageSize = 100;
+    private bool _allFetched;
+    private CancellationTokenSource? _fetchCts;
+
+    // Track which tabs have been populated for the current dataset
+    private readonly HashSet<int> _populatedTabs = [];
 
     public DataBrowserWindow(IOsduClient osduClient)
     {
         InitializeComponent();
         _service = new DataBrowserService(osduClient);
         KindTree.KindSelected += OnKindSelected;
+        ContentTabs.SelectionChanged += ContentTabs_SelectionChanged;
+        _elapsedTimer.Tick += (_, _) => ElapsedText.Text = _stopwatch.Elapsed.ToString(@"hh\:mm\:ss\.fff");
         ApplyTheme(_theme);
         Loaded += async (_, _) => await LoadKindsAsync();
+        Closed += (_, _) => _store.Dispose();
+    }
+
+    private void ShowProgress(bool indeterminate = true)
+    {
+        ProgressBar.IsIndeterminate = indeterminate;
+        ProgressBar.Visibility = Visibility.Visible;
+        _stopwatch.Restart();
+        _elapsedTimer.Start();
+        ElapsedText.Text = "00:00:00.000";
+    }
+
+    private void HideProgress()
+    {
+        _elapsedTimer.Stop();
+        _stopwatch.Stop();
+        ElapsedText.Text = _stopwatch.Elapsed.ToString(@"hh\:mm\:ss\.fff");
+        ProgressBar.IsIndeterminate = false;
+        ProgressBar.Visibility = Visibility.Collapsed;
     }
 
     private int TotalPages => _totalCount > 0 ? (int)Math.Ceiling((double)_totalCount / _pageSize) : 0;
@@ -41,8 +73,7 @@ public partial class DataBrowserWindow : Window
         try
         {
             SetStatus("Loading kinds...");
-            ProgressBar.IsIndeterminate = true;
-            ProgressBar.Visibility = Visibility.Visible;
+            ShowProgress();
 
             var groups = await _service.GetGroupedKindsAsync();
             KindTree.LoadKinds(groups);
@@ -56,26 +87,27 @@ public partial class DataBrowserWindow : Window
         }
         finally
         {
-            ProgressBar.IsIndeterminate = false;
-            ProgressBar.Visibility = Visibility.Collapsed;
+            HideProgress();
         }
     }
 
     private async void OnKindSelected(string kindId)
     {
+        CancelFetch();
         _selectedKind = kindId;
         _cursorByPage.Clear();
         _cursorByPage.Add(null); // page 0 starts with null cursor
-        _allRecords.Clear();
+        _store.Clear();
         _nextCursor = null;
         _pageIndex = 0;
+        _allFetched = false;
         FetchAllButton.IsEnabled = true;
         PagingBar.Visibility = Visibility.Visible;
         await FetchAndAppendPageAsync(null);
     }
 
     /// <summary>
-    /// Fetches a page and appends it to the accumulated records.
+    /// Fetches a page and appends it to the store.
     /// Only fetches if data for this page hasn't been loaded yet.
     /// </summary>
     private async Task FetchAndAppendPageAsync(string? cursor)
@@ -84,13 +116,12 @@ public partial class DataBrowserWindow : Window
 
         // Check if we already have data for this page
         int expectedStart = PageStartRow(_pageIndex);
-        if (expectedStart < _allRecords.Count)
+        if (expectedStart < _store.Count)
         {
-            // Data already loaded — just display the slice and scroll
-            int count = Math.Min(_pageSize, _allRecords.Count - expectedStart);
-            _currentPageRecords = _allRecords.GetRange(expectedStart, count);
-            DisplayAllAccumulated();
-            ScrollToPageStart();
+            // Data already loaded — read the slice from disk
+            _currentPageRecords = _store.GetPage(expectedStart, _pageSize);
+            InvalidateAllTabs();
+            DisplayCurrentPage();
             UpdatePagingControls();
             SetStatus($"Kind: {_selectedKind}");
             return;
@@ -99,16 +130,15 @@ public partial class DataBrowserWindow : Window
         try
         {
             SetStatus($"Querying {_selectedKind}...");
-            ProgressBar.IsIndeterminate = true;
-            ProgressBar.Visibility = Visibility.Visible;
+            ShowProgress();
 
             var page = await _service.SearchByKindAsync(_selectedKind, _pageSize, cursor);
             _currentPageRecords = page.Results;
             _totalCount = page.TotalCount;
             _nextCursor = page.Cursor;
 
-            // Append new records to accumulated list
-            _allRecords.AddRange(page.Results);
+            // Append new records to file-backed store
+            _store.Append(page.Results);
 
             // Store cursor for next page
             if (!string.IsNullOrEmpty(_nextCursor) && _cursorByPage.Count <= _pageIndex + 1)
@@ -116,8 +146,8 @@ public partial class DataBrowserWindow : Window
                 _cursorByPage.Add(_nextCursor);
             }
 
-            DisplayAllAccumulated();
-            ScrollToPageStart();
+            InvalidateAllTabs();
+            DisplayCurrentPage();
             UpdatePagingControls();
             SetStatus($"Kind: {_selectedKind}");
         }
@@ -127,36 +157,94 @@ public partial class DataBrowserWindow : Window
         }
         finally
         {
-            ProgressBar.IsIndeterminate = false;
-            ProgressBar.Visibility = Visibility.Collapsed;
+            HideProgress();
         }
     }
 
-    /// <summary>Displays all accumulated records in all views.</summary>
-    private void DisplayAllAccumulated()
+    /// <summary>Marks all tabs as needing a refresh.</summary>
+    private void InvalidateAllTabs()
     {
-        RawView.SetData(_allRecords, _totalCount);
-        TabularView.SetData(_allRecords);
-        TreeView.SetData(_allRecords);
-        DetailView.SetData(_allRecords);
+        _populatedTabs.Clear();
+    }
+
+    /// <summary>Gets the records to display — always the current page slice.</summary>
+    private IReadOnlyList<JsonElement> DisplayRecords => _currentPageRecords;
+
+    /// <summary>Populates only the currently active tab with data.</summary>
+    private void DisplayCurrentPage()
+    {
+        int tabIndex = ContentTabs.SelectedIndex;
+        if (tabIndex < 0) tabIndex = 0;
+
+        var data = DisplayRecords;
+        PopulateTab(tabIndex, data);
+    }
+
+    /// <summary>Populates a specific tab if it hasn't been populated yet for the current dataset.</summary>
+    private void PopulateTab(int tabIndex, IReadOnlyList<JsonElement> data)
+    {
+        if (_populatedTabs.Contains(tabIndex)) return;
+
+        switch (tabIndex)
+        {
+            case 0: // Raw
+                RawView.SetData(data, _totalCount);
+                break;
+            case 1: // Tabular
+                TabularView.SetData(data);
+                break;
+            case 2: // Tree
+                TreeView.SetData(data);
+                break;
+            case 3: // Detail
+                DetailView.SetData(data);
+                break;
+        }
+
+        _populatedTabs.Add(tabIndex);
+    }
+
+    /// <summary>Lazily loads data into the tab when the user switches tabs.</summary>
+    private void ContentTabs_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (e.Source != ContentTabs) return;
+        if (_store.Count == 0 && _currentPageRecords.Count == 0) return;
+
+        int tabIndex = ContentTabs.SelectedIndex;
+        if (tabIndex < 0) return;
+
+        var data = DisplayRecords;
+        PopulateTab(tabIndex, data);
     }
 
     /// <summary>Scrolls the tabular view to the first row of the current page and selects it.</summary>
     private void ScrollToPageStart()
     {
-        int startRow = PageStartRow(_pageIndex);
-        TabularView.ScrollToRowAndHighlight(startRow);
+        TabularView.ScrollToRowAndHighlight(0);
     }
 
     private void UpdatePagingControls()
     {
-        bool hasPrev = _pageIndex > 0;
-        bool hasNext = !string.IsNullOrEmpty(_nextCursor);
+        if (_allFetched)
+        {
+            bool hasPrev = _pageIndex > 0;
+            bool hasNext = PageStartRow(_pageIndex + 1) < _store.Count;
 
-        FirstPageButton.IsEnabled = hasPrev;
-        PrevPageButton.IsEnabled = hasPrev;
-        NextPageButton.IsEnabled = hasNext;
-        LastPageButton.IsEnabled = hasNext;
+            FirstPageButton.IsEnabled = hasPrev;
+            PrevPageButton.IsEnabled = hasPrev;
+            NextPageButton.IsEnabled = hasNext;
+            LastPageButton.IsEnabled = hasNext;
+        }
+        else
+        {
+            bool hasPrev = _pageIndex > 0;
+            bool hasNext = !string.IsNullOrEmpty(_nextCursor);
+
+            FirstPageButton.IsEnabled = hasPrev;
+            PrevPageButton.IsEnabled = hasPrev;
+            NextPageButton.IsEnabled = hasNext;
+            LastPageButton.IsEnabled = hasNext;
+        }
 
         int from = _pageIndex * _pageSize + 1;
         int to = _pageIndex * _pageSize + _currentPageRecords.Count;
@@ -167,19 +255,29 @@ public partial class DataBrowserWindow : Window
             : "No results";
 
         RecordCountText.Text = _totalCount > 0
-            ? $"Showing {_allRecords.Count} of {_totalCount} (loaded)"
+            ? $"Showing {_store.Count} of {_totalCount} (loaded)"
             : "";
     }
 
     private async void FirstPage_Click(object sender, RoutedEventArgs e)
     {
         _pageIndex = 0;
+        if (_allFetched)
+        {
+            NavigateInMemory();
+            return;
+        }
         await FetchAndAppendPageAsync(_cursorByPage[0]);
     }
 
     private async void NextPage_Click(object sender, RoutedEventArgs e)
     {
         _pageIndex++;
+        if (_allFetched)
+        {
+            NavigateInMemory();
+            return;
+        }
         await FetchAndAppendPageAsync(_nextCursor);
     }
 
@@ -187,11 +285,15 @@ public partial class DataBrowserWindow : Window
     {
         if (_pageIndex <= 0) return;
         _pageIndex--;
-        // Data is already accumulated — just scroll back
+        if (_allFetched)
+        {
+            NavigateInMemory();
+            return;
+        }
         int startRow = PageStartRow(_pageIndex);
-        int count = Math.Min(_pageSize, _allRecords.Count - startRow);
-        _currentPageRecords = _allRecords.GetRange(startRow, count);
-        ScrollToPageStart();
+        _currentPageRecords = _store.GetPage(startRow, _pageSize);
+        InvalidateAllTabs();
+        DisplayCurrentPage();
         UpdatePagingControls();
         SetStatus($"Kind: {_selectedKind}");
     }
@@ -200,13 +302,18 @@ public partial class DataBrowserWindow : Window
     {
         if (_selectedKind is null) return;
 
+        if (_allFetched)
+        {
+            _pageIndex = TotalPages - 1;
+            NavigateInMemory();
+            return;
+        }
+
         try
         {
             SetStatus("Navigating to last page...");
-            ProgressBar.IsIndeterminate = true;
-            ProgressBar.Visibility = Visibility.Visible;
+            ShowProgress();
 
-            // Walk through pages until we reach the end
             string? cursor = _nextCursor;
             while (!string.IsNullOrEmpty(cursor))
             {
@@ -215,7 +322,7 @@ public partial class DataBrowserWindow : Window
                     _cursorByPage.Add(cursor);
 
                 var page = await _service.SearchByKindAsync(_selectedKind, _pageSize, cursor);
-                _allRecords.AddRange(page.Results);
+                _store.Append(page.Results);
                 _currentPageRecords = page.Results;
                 _totalCount = page.TotalCount;
                 _nextCursor = page.Cursor;
@@ -225,7 +332,11 @@ public partial class DataBrowserWindow : Window
                     _cursorByPage.Add(_nextCursor);
             }
 
-            DisplayAllAccumulated();
+            // Re-read last page from store to stay consistent
+            int startRow = PageStartRow(_pageIndex);
+            _currentPageRecords = _store.GetPage(startRow, _pageSize);
+            InvalidateAllTabs();
+            DisplayCurrentPage();
             ScrollToPageStart();
             UpdatePagingControls();
             SetStatus($"Kind: {_selectedKind}");
@@ -236,9 +347,28 @@ public partial class DataBrowserWindow : Window
         }
         finally
         {
-            ProgressBar.IsIndeterminate = false;
-            ProgressBar.Visibility = Visibility.Collapsed;
+            HideProgress();
         }
+    }
+
+    /// <summary>
+    /// Navigates to the current _pageIndex using file-backed data (used after Fetch All).
+    /// </summary>
+    private void NavigateInMemory()
+    {
+        int startRow = PageStartRow(_pageIndex);
+        _currentPageRecords = _store.GetPage(startRow, _pageSize);
+        InvalidateAllTabs();
+        DisplayCurrentPage();
+        UpdatePagingControls();
+        SetStatus($"Kind: {_selectedKind}");
+    }
+
+    private void CancelFetch()
+    {
+        _fetchCts?.Cancel();
+        _fetchCts?.Dispose();
+        _fetchCts = null;
     }
 
     private async void GoToPageBox_KeyDown(object sender, KeyEventArgs e)
@@ -263,27 +393,37 @@ public partial class DataBrowserWindow : Window
         int targetIndex = targetPage - 1;
         if (targetIndex == _pageIndex) return;
 
-        // If data is already loaded for this page, just scroll
+        if (_allFetched)
+        {
+            if (targetIndex >= TotalPages)
+            {
+                SetStatus($"Only {TotalPages} pages available.");
+                return;
+            }
+            _pageIndex = targetIndex;
+            NavigateInMemory();
+            return;
+        }
+
+        // If data is already loaded for this page, read from store
         int targetStart = PageStartRow(targetIndex);
-        if (targetStart < _allRecords.Count)
+        if (targetStart < _store.Count)
         {
             _pageIndex = targetIndex;
-            int count = Math.Min(_pageSize, _allRecords.Count - targetStart);
-            _currentPageRecords = _allRecords.GetRange(targetStart, count);
-            ScrollToPageStart();
+            _currentPageRecords = _store.GetPage(targetStart, _pageSize);
+            InvalidateAllTabs();
+            DisplayCurrentPage();
             UpdatePagingControls();
             SetStatus($"Kind: {_selectedKind}");
             return;
         }
 
-        // If we have the cursor, walk forward fetching and appending
+        // Walk forward fetching and appending
         try
         {
             SetStatus($"Navigating to page {targetPage}...");
-            ProgressBar.IsIndeterminate = true;
-            ProgressBar.Visibility = Visibility.Visible;
+            ShowProgress();
 
-            // Start from the last known cursor
             int currentIdx = _cursorByPage.Count - 1;
             string? cursor = _cursorByPage[currentIdx];
 
@@ -296,15 +436,15 @@ public partial class DataBrowserWindow : Window
                 if (_cursorByPage.Count <= currentIdx && !string.IsNullOrEmpty(page.Cursor))
                     _cursorByPage.Add(page.Cursor);
 
-                _allRecords.AddRange(page.Results);
+                _store.Append(page.Results);
 
                 if (currentIdx == targetIndex)
                 {
                     _currentPageRecords = page.Results;
                     _nextCursor = page.Cursor;
                     _pageIndex = targetIndex;
-                    DisplayAllAccumulated();
-                    ScrollToPageStart();
+                    InvalidateAllTabs();
+                    DisplayCurrentPage();
                     UpdatePagingControls();
                     SetStatus($"Kind: {_selectedKind}");
                     return;
@@ -316,8 +456,8 @@ public partial class DataBrowserWindow : Window
                     _currentPageRecords = page.Results;
                     _nextCursor = null;
                     _pageIndex = currentIdx;
-                    DisplayAllAccumulated();
-                    ScrollToPageStart();
+                    InvalidateAllTabs();
+                    DisplayCurrentPage();
                     UpdatePagingControls();
                     SetStatus($"Only {currentIdx + 1} pages available.");
                     return;
@@ -330,8 +470,7 @@ public partial class DataBrowserWindow : Window
         }
         finally
         {
-            ProgressBar.IsIndeterminate = false;
-            ProgressBar.Visibility = Visibility.Collapsed;
+            HideProgress();
         }
     }
 
@@ -343,9 +482,16 @@ public partial class DataBrowserWindow : Window
 
         _pageSize = newSize;
         _pageIndex = 0;
+
+        if (_allFetched)
+        {
+            NavigateInMemory();
+            return;
+        }
+
         _cursorByPage.Clear();
         _cursorByPage.Add(null);
-        _allRecords.Clear();
+        _store.Clear();
         _nextCursor = null;
         await FetchAndAppendPageAsync(null);
     }
@@ -354,37 +500,72 @@ public partial class DataBrowserWindow : Window
     {
         if (_selectedKind is null) return;
 
+        CancelFetch();
+        _fetchCts = new CancellationTokenSource();
+        var ct = _fetchCts.Token;
+
         try
         {
             FetchAllButton.IsEnabled = false;
+            FetchAllButton.Content = "⏹ Cancel";
+            FetchAllButton.IsEnabled = true;
+            FetchAllButton.Click -= FetchAllButton_Click;
+            FetchAllButton.Click += CancelFetch_Click;
+
             ProgressBar.IsIndeterminate = false;
             ProgressBar.Maximum = _totalCount > 0 ? _totalCount : 1000;
-            ProgressBar.Value = 0;
+            ProgressBar.Value = _store.Count;
             ProgressBar.Visibility = Visibility.Visible;
+            _stopwatch.Restart();
+            _elapsedTimer.Start();
             SetStatus($"Fetching all records for {_selectedKind}...");
 
-            var progress = new Progress<int>(count =>
+            // Continue from where we left off
+            string? cursor = _nextCursor;
+            while (!string.IsNullOrEmpty(cursor))
             {
-                ProgressBar.Value = count;
-                RecordCountText.Text = $"Fetched {count}...";
-            });
+                ct.ThrowIfCancellationRequested();
 
-            var all = await _service.FetchAllAsync(_selectedKind, progress);
-            _allRecords = all;
-            _currentPageRecords = all;
-            _totalCount = all.Count;
+                var page = await _service.SearchByKindAsync(_selectedKind, 1000, cursor, ct);
+                _store.Append(page.Results);
+                _totalCount = page.TotalCount;
+                cursor = page.Cursor;
+
+                ProgressBar.Maximum = _totalCount;
+                ProgressBar.Value = _store.Count;
+                RecordCountText.Text = $"Fetched {_store.Count} of {_totalCount}...";
+
+                if (string.IsNullOrEmpty(cursor) || page.Results.Count == 0)
+                    break;
+            }
+
             _nextCursor = null;
             _pageIndex = 0;
+            _allFetched = true;
+            _totalCount = _store.Count;
 
-            DisplayAllAccumulated();
+            _cursorByPage.Clear();
+            _cursorByPage.Add(null);
 
-            FirstPageButton.IsEnabled = false;
-            PrevPageButton.IsEnabled = false;
-            NextPageButton.IsEnabled = false;
-            LastPageButton.IsEnabled = false;
-            PageInfoText.Text = $"All {all.Count} records";
-            RecordCountText.Text = $"Total: {all.Count}";
+            _currentPageRecords = _store.GetPage(0, _pageSize);
+            InvalidateAllTabs();
+            DisplayCurrentPage();
+            UpdatePagingControls();
+
+            RecordCountText.Text = $"All {_store.Count} records loaded";
             SetStatus("Fetch all complete");
+        }
+        catch (OperationCanceledException)
+        {
+            _allFetched = _store.Count > 0;
+            _totalCount = _store.Count;
+            _nextCursor = null;
+            _pageIndex = 0;
+            _currentPageRecords = _store.GetPage(0, _pageSize);
+            InvalidateAllTabs();
+            DisplayCurrentPage();
+            UpdatePagingControls();
+            SetStatus($"Fetch cancelled — {_store.Count} records loaded");
         }
         catch (Exception ex)
         {
@@ -392,13 +573,22 @@ public partial class DataBrowserWindow : Window
         }
         finally
         {
-            ProgressBar.Visibility = Visibility.Collapsed;
+            HideProgress();
+            FetchAllButton.Click -= CancelFetch_Click;
+            FetchAllButton.Click += FetchAllButton_Click;
+            FetchAllButton.Content = "⬇ Fetch All";
             FetchAllButton.IsEnabled = true;
         }
     }
 
+    private void CancelFetch_Click(object sender, RoutedEventArgs e)
+    {
+        CancelFetch();
+    }
+
     private async void RefreshButton_Click(object sender, RoutedEventArgs e)
     {
+        CancelFetch();
         ClearContent();
         await LoadKindsAsync();
     }
@@ -439,6 +629,7 @@ public partial class DataBrowserWindow : Window
         MainStatusBar.BorderBrush = theme.BorderBrush;
         MainStatusBar.BorderThickness = new Thickness(0, 1, 0, 0);
         StatusText.Foreground = theme.TextSecondaryBrush;
+        ElapsedText.Foreground = theme.TextSecondaryBrush;
         RecordCountText.Foreground = theme.TextSecondaryBrush;
         PageInfoText.Foreground = theme.TextSecondaryBrush;
 
@@ -580,10 +771,13 @@ public partial class DataBrowserWindow : Window
         TreeView.Clear();
         DetailView.Clear();
         _selectedKind = null;
-        _allRecords.Clear();
+        _store.Clear();
         _currentPageRecords.Clear();
+        _allFetched = false;
+        _populatedTabs.Clear();
         RecordCountText.Text = "";
         PageInfoText.Text = "";
+        ElapsedText.Text = "";
         FetchAllButton.IsEnabled = false;
         PagingBar.Visibility = Visibility.Collapsed;
     }

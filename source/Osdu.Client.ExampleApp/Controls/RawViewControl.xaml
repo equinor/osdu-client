@@ -6,10 +6,33 @@
              xmlns:local="clr-namespace:Osdu.Client.ExampleApp.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <TextBox x:Name="RawText"
-             IsReadOnly="True"
-             VerticalScrollBarVisibility="Auto"
-             HorizontalScrollBarVisibility="Auto"
-             TextWrapping="NoWrap"
-             Padding="8" />
+    <ListBox x:Name="RawText"
+             VirtualizingStackPanel.IsVirtualizing="True"
+             VirtualizingStackPanel.VirtualizationMode="Recycling"
+             ScrollViewer.HorizontalScrollBarVisibility="Auto"
+             ScrollViewer.VerticalScrollBarVisibility="Auto"
+             BorderThickness="1"
+             Padding="8">
+        <ListBox.ContextMenu>
+            <ContextMenu>
+                <MenuItem Header="Copy Value" Click="CopyValue_Click" />
+                <MenuItem Header="Copy Line" Click="CopyLine_Click" />
+                <Separator />
+                <MenuItem Header="Copy All" Click="CopyAll_Click" />
+            </ContextMenu>
+        </ListBox.ContextMenu>
+        <ListBox.ItemContainerStyle>
+            <Style TargetType="ListBoxItem">
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="Margin" Value="0"/>
+                <Setter Property="IsHitTestVisible" Value="True"/>
+                <Setter Property="Focusable" Value="True"/>
+            </Style>
+        </ListBox.ItemContainerStyle>
+        <ListBox.ItemTemplate>
+            <DataTemplate>
+                <TextBlock Text="{Binding}" TextWrapping="NoWrap" />
+            </DataTemplate>
+        </ListBox.ItemTemplate>
+    </ListBox>
 </UserControl>
