@@ -26,6 +26,7 @@ public partial class KindTreeControl : UserControl
         FilterBox.Background = theme.InputFieldBrush;
         FilterBox.Foreground = theme.TextPrimaryBrush;
         FilterBox.BorderBrush = theme.BorderBrush;
+        FilterBox.CaretBrush = theme.TextPrimaryBrush;
         RebuildTree();
     }
 

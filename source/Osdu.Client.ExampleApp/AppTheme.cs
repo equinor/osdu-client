@@ -1,3 +1,6 @@
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 
 namespace Osdu.Client.ExampleApp;
@@ -81,4 +84,65 @@ public class AppTheme
     public SolidColorBrush TextMutedBrush => new(TextMuted);
     public SolidColorBrush AccentBrush => new(Accent);
     public SolidColorBrush RequiredBrush => new(Required);
+
+    /// <summary>
+    /// Applies full theming to a DataGrid including headers, cells, selection, and hover styles.
+    /// </summary>
+    public void ApplyToDataGrid(DataGrid dataGrid)
+    {
+        dataGrid.Background = SurfaceBrush;
+        dataGrid.Foreground = TextPrimaryBrush;
+        dataGrid.RowBackground = CardBrush;
+        dataGrid.AlternatingRowBackground = new SolidColorBrush(Surface);
+        dataGrid.HorizontalGridLinesBrush = BorderBrush;
+        dataGrid.VerticalGridLinesBrush = BorderBrush;
+        dataGrid.BorderBrush = BorderBrush;
+
+        // Column header style
+        var columnHeaderStyle = new Style(typeof(DataGridColumnHeader));
+        columnHeaderStyle.Setters.Add(new Setter(DataGridColumnHeader.BackgroundProperty, TagBrush));
+        columnHeaderStyle.Setters.Add(new Setter(DataGridColumnHeader.ForegroundProperty, TextPrimaryBrush));
+        columnHeaderStyle.Setters.Add(new Setter(DataGridColumnHeader.FontWeightProperty, FontWeights.SemiBold));
+        columnHeaderStyle.Setters.Add(new Setter(DataGridColumnHeader.PaddingProperty, new Thickness(8, 6, 8, 6)));
+        columnHeaderStyle.Setters.Add(new Setter(DataGridColumnHeader.BorderBrushProperty, BorderBrush));
+        columnHeaderStyle.Setters.Add(new Setter(DataGridColumnHeader.BorderThicknessProperty, new Thickness(0, 0, 1, 1)));
+        dataGrid.ColumnHeaderStyle = columnHeaderStyle;
+
+        // Cell style with selection colors
+        var cellStyle = new Style(typeof(DataGridCell));
+        cellStyle.Setters.Add(new Setter(DataGridCell.PaddingProperty, new Thickness(8, 4, 8, 4)));
+        cellStyle.Setters.Add(new Setter(DataGridCell.BorderThicknessProperty, new Thickness(0)));
+        cellStyle.Setters.Add(new Setter(DataGridCell.ForegroundProperty, TextPrimaryBrush));
+        cellStyle.Setters.Add(new Setter(DataGridCell.FocusVisualStyleProperty, null));
+
+        var selectedTrigger = new Trigger { Property = DataGridCell.IsSelectedProperty, Value = true };
+        selectedTrigger.Setters.Add(new Setter(DataGridCell.BackgroundProperty, AccentBrush));
+        selectedTrigger.Setters.Add(new Setter(DataGridCell.ForegroundProperty, new SolidColorBrush(Colors.White)));
+        selectedTrigger.Setters.Add(new Setter(DataGridCell.BorderBrushProperty, AccentBrush));
+        cellStyle.Triggers.Add(selectedTrigger);
+
+        dataGrid.CellStyle = cellStyle;
+
+        // Row style with hover
+        var rowStyle = new Style(typeof(DataGridRow));
+        rowStyle.Setters.Add(new Setter(DataGridRow.BackgroundProperty, CardBrush));
+        rowStyle.Setters.Add(new Setter(DataGridRow.ForegroundProperty, TextPrimaryBrush));
+
+        var hoverTrigger = new Trigger { Property = DataGridRow.IsMouseOverProperty, Value = true };
+        hoverTrigger.Setters.Add(new Setter(DataGridRow.BackgroundProperty, new SolidColorBrush(CardHover)));
+        rowStyle.Triggers.Add(hoverTrigger);
+
+        var selectedRowTrigger = new Trigger { Property = DataGridRow.IsSelectedProperty, Value = true };
+        selectedRowTrigger.Setters.Add(new Setter(DataGridRow.BackgroundProperty, AccentBrush));
+        selectedRowTrigger.Setters.Add(new Setter(DataGridRow.ForegroundProperty, new SolidColorBrush(Colors.White)));
+        rowStyle.Triggers.Add(selectedRowTrigger);
+
+        dataGrid.RowStyle = rowStyle;
+
+        // Row header style (hides the row header gripper area)
+        var rowHeaderStyle = new Style(typeof(DataGridRowHeader));
+        rowHeaderStyle.Setters.Add(new Setter(DataGridRowHeader.BackgroundProperty, CardBrush));
+        rowHeaderStyle.Setters.Add(new Setter(DataGridRowHeader.BorderBrushProperty, BorderBrush));
+        dataGrid.RowHeaderStyle = rowHeaderStyle;
+    }
 }

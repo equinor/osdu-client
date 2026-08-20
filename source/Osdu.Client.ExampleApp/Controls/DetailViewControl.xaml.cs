@@ -24,11 +24,13 @@ public partial class DetailViewControl : UserControl
     {
         _theme = theme;
         Background = theme.SurfaceBrush;
-        MasterGrid.Background = theme.SurfaceBrush;
-        MasterGrid.Foreground = theme.TextPrimaryBrush;
-        MasterGrid.RowBackground = theme.CardBrush;
-        MasterGrid.AlternatingRowBackground = new SolidColorBrush(theme.Surface);
-        MasterGrid.HorizontalGridLinesBrush = theme.BorderBrush;
+        theme.ApplyToDataGrid(MasterGrid);
+
+        // Re-render if data is present so detail sections pick up new theme
+        if (MasterGrid.ItemsSource is ObservableCollection<MasterDetailRow> rows && rows.Count > 0)
+        {
+            MasterGrid.RowDetailsTemplate = BuildRowDetailsTemplate();
+        }
     }
 
     public void SetData(IReadOnlyList<JsonElement> records)
@@ -72,7 +74,7 @@ public partial class DetailViewControl : UserControl
             foreach (var col in detailColumns)
             {
                 if (flat.TryGetValue(col, out var cell))
-                    row.DetailSections.Add(new DetailSection(col, cell.Raw));
+                    row.DetailSections.Add(new DetailSection(col, cell.Raw, _theme));
             }
 
             rows.Add(row);
@@ -116,6 +118,8 @@ public partial class DetailViewControl : UserControl
     private void MasterGrid_LoadingRow(object? sender, DataGridRowEventArgs e)
     {
         e.Row.MouseLeftButtonUp += Row_MouseLeftButtonUp;
+        // Style the row details background
+        e.Row.DetailsVisibility = Visibility.Collapsed;
     }
 
     private void MasterGrid_UnloadingRow(object? sender, DataGridRowEventArgs e)
@@ -127,10 +131,13 @@ public partial class DetailViewControl : UserControl
     {
         if (sender is not DataGridRow row) return;
 
-        // Toggle row details visibility
+        // Only toggle details on double-click or if user clicks the "Details" column area
+        // Use single click to just select; use the expander icon in details column to expand
         row.DetailsVisibility = row.DetailsVisibility == Visibility.Visible
             ? Visibility.Collapsed
             : Visibility.Visible;
+
+        e.Handled = true; // Prevent selection change confusion
     }
 
     private DataTemplate BuildRowDetailsTemplate()
@@ -138,9 +145,15 @@ public partial class DetailViewControl : UserControl
         // Use a FrameworkElementFactory to build the row details dynamically
         var template = new DataTemplate();
 
+        var borderFactory = new FrameworkElementFactory(typeof(Border));
+        borderFactory.SetValue(Border.BackgroundProperty, _theme.SurfaceBrush);
+        borderFactory.SetValue(Border.PaddingProperty, new Thickness(12, 8, 12, 8));
+        borderFactory.SetValue(Border.BorderBrushProperty, _theme.BorderBrush);
+        borderFactory.SetValue(Border.BorderThicknessProperty, new Thickness(0, 1, 0, 0));
+
         var factory = new FrameworkElementFactory(typeof(ItemsControl));
         factory.SetBinding(ItemsControl.ItemsSourceProperty, new Binding("DetailSections"));
-        factory.SetValue(MarginProperty, new Thickness(20, 8, 8, 8));
+        factory.SetValue(FrameworkElement.MarginProperty, new Thickness(8, 0, 8, 0));
 
         // Each detail section is rendered via its own DataTemplate
         var itemTemplate = new DataTemplate();
@@ -152,6 +165,7 @@ public partial class DetailViewControl : UserControl
         headerFactory.SetBinding(TextBlock.TextProperty, new Binding("Name"));
         headerFactory.SetValue(TextBlock.FontWeightProperty, FontWeights.SemiBold);
         headerFactory.SetValue(TextBlock.FontSizeProperty, 13.0);
+        headerFactory.SetValue(TextBlock.ForegroundProperty, _theme.TextPrimaryBrush);
         headerFactory.SetValue(TextBlock.MarginProperty, new Thickness(0, 0, 0, 4));
         sectionFactory.AppendChild(headerFactory);
 
@@ -163,7 +177,8 @@ public partial class DetailViewControl : UserControl
         itemTemplate.VisualTree = sectionFactory;
         factory.SetValue(ItemsControl.ItemTemplateProperty, itemTemplate);
 
-        template.VisualTree = factory;
+        borderFactory.AppendChild(factory);
+        template.VisualTree = borderFactory;
         return template;
     }
 }
@@ -189,34 +204,37 @@ public class DetailSection
 {
     public string Name { get; }
     public JsonElement Raw { get; }
+    private readonly AppTheme _theme;
 
-    public DetailSection(string name, JsonElement raw)
+    public DetailSection(string name, JsonElement raw, AppTheme theme)
     {
         Name = name;
         Raw = raw;
+        _theme = theme;
     }
 
     /// <summary>
     /// Lazily renders the JSON value as a WPF element for display in row details.
     /// </summary>
-    public object RenderedContent => BuildContent(Raw);
+    public object RenderedContent => BuildContent(Raw, _theme);
 
-    private static object BuildContent(JsonElement element)
+    private static object BuildContent(JsonElement element, AppTheme theme)
     {
         return element.ValueKind switch
         {
-            JsonValueKind.Object => BuildObjectGrid(element),
-            JsonValueKind.Array => BuildArrayContent(element).Content,
+            JsonValueKind.Object => BuildObjectGrid(element, theme),
+            JsonValueKind.Array => BuildArrayContent(element, theme).Content,
             _ => new TextBlock
             {
                 Text = element.ToString(),
+                Foreground = theme.TextPrimaryBrush,
                 TextWrapping = TextWrapping.Wrap,
                 Margin = new Thickness(4, 2, 4, 2)
             }
         };
     }
 
-    private static UIElement BuildObjectGrid(JsonElement obj)
+    private static UIElement BuildObjectGrid(JsonElement obj, AppTheme theme)
     {
         var grid = new Grid();
         grid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
@@ -231,6 +249,7 @@ public class DetailSection
             {
                 Text = prop.Name,
                 FontWeight = FontWeights.SemiBold,
+                Foreground = theme.TextSecondaryBrush,
                 Margin = new Thickness(4, 2, 12, 2),
                 VerticalAlignment = VerticalAlignment.Top
             };
@@ -243,12 +262,13 @@ public class DetailSection
             {
                 if (prop.Value.ValueKind == JsonValueKind.Array)
                 {
-                    var (content, childExpanders) = BuildArrayContent(prop.Value);
+                    var (content, childExpanders) = BuildArrayContent(prop.Value, theme);
                     var expander = new Expander
                     {
                         Header = BuildArrayExpanderHeader(
-                            $"[{prop.Value.GetArrayLength()} items]", childExpanders),
+                            $"[{prop.Value.GetArrayLength()} items]", childExpanders, theme),
                         IsExpanded = false,
+                        Foreground = theme.TextPrimaryBrush,
                         Margin = new Thickness(0, 2, 4, 2),
                         Content = content
                     };
@@ -260,8 +280,9 @@ public class DetailSection
                     {
                         Header = "{...}",
                         IsExpanded = false,
+                        Foreground = theme.TextPrimaryBrush,
                         Margin = new Thickness(0, 2, 4, 2),
-                        Content = BuildContent(prop.Value)
+                        Content = BuildContent(prop.Value, theme)
                     };
                     valueElement = expander;
                 }
@@ -271,6 +292,7 @@ public class DetailSection
                 valueElement = new TextBlock
                 {
                     Text = prop.Value.ToString(),
+                    Foreground = theme.TextPrimaryBrush,
                     TextWrapping = TextWrapping.Wrap,
                     Margin = new Thickness(4, 2, 4, 2),
                     VerticalAlignment = VerticalAlignment.Top
@@ -286,9 +308,10 @@ public class DetailSection
 
         var border = new Border
         {
-            BorderBrush = Brushes.Gray,
+            BorderBrush = theme.BorderBrush,
             BorderThickness = new Thickness(1),
             CornerRadius = new CornerRadius(4),
+            Background = theme.CardBrush,
             Padding = new Thickness(4),
             Margin = new Thickness(0, 2, 0, 2),
             Child = grid
@@ -300,10 +323,10 @@ public class DetailSection
     /// <summary>
     /// Builds a header panel with the label text and Expand All / Collapse All buttons.
     /// </summary>
-    private static UIElement BuildArrayExpanderHeader(string label, List<Expander> expanders)
+    private static UIElement BuildArrayExpanderHeader(string label, List<Expander> expanders, AppTheme theme)
     {
         if (expanders.Count == 0)
-            return new TextBlock { Text = label };
+            return new TextBlock { Text = label, Foreground = theme.TextPrimaryBrush };
 
         var panel = new StackPanel
         {
@@ -314,6 +337,7 @@ public class DetailSection
         panel.Children.Add(new TextBlock
         {
             Text = label,
+            Foreground = theme.TextPrimaryBrush,
             VerticalAlignment = VerticalAlignment.Center,
             Margin = new Thickness(0, 0, 10, 0)
         });
@@ -321,6 +345,9 @@ public class DetailSection
         var expandAllBtn = new Button
         {
             Content = "▼ Expand All",
+            Background = theme.CardBrush,
+            Foreground = theme.TextPrimaryBrush,
+            BorderBrush = theme.BorderBrush,
             Padding = new Thickness(4, 1, 4, 1),
             Margin = new Thickness(0, 0, 4, 0),
             FontSize = 11,
@@ -330,7 +357,6 @@ public class DetailSection
         {
             foreach (var exp in expanders)
                 SetExpandedRecursive(exp, true);
-            // The click also toggles the parent Expander — restore it on the next dispatcher frame
             var parentExpander = FindAncestor<Expander>((DependencyObject)s!);
             parentExpander?.Dispatcher.BeginInvoke(() => parentExpander.IsExpanded = true);
             e.Handled = true;
@@ -339,6 +365,9 @@ public class DetailSection
         var collapseAllBtn = new Button
         {
             Content = "▲ Collapse All",
+            Background = theme.CardBrush,
+            Foreground = theme.TextPrimaryBrush,
+            BorderBrush = theme.BorderBrush,
             Padding = new Thickness(4, 1, 4, 1),
             FontSize = 11,
             Cursor = Cursors.Hand
@@ -347,7 +376,6 @@ public class DetailSection
         {
             foreach (var exp in expanders)
                 SetExpandedRecursive(exp, false);
-            // Restore parent Expander to expanded so the collapsed children remain visible
             var parentExpander = FindAncestor<Expander>((DependencyObject)s!);
             parentExpander?.Dispatcher.BeginInvoke(() => parentExpander.IsExpanded = true);
             e.Handled = true;
@@ -411,7 +439,7 @@ public class DetailSection
         }
     }
 
-    private static (UIElement Content, List<Expander> Expanders) BuildArrayContent(JsonElement array)
+    private static (UIElement Content, List<Expander> Expanders) BuildArrayContent(JsonElement array, AppTheme theme)
     {
         var panel = new StackPanel();
         var expanders = new List<Expander>();
@@ -436,6 +464,7 @@ public class DetailSection
                 panel.Children.Add(new TextBlock
                 {
                     Text = $"• {item}",
+                    Foreground = theme.TextPrimaryBrush,
                     Margin = new Thickness(8, 1, 4, 1),
                     TextWrapping = TextWrapping.Wrap
                 });
@@ -452,8 +481,9 @@ public class DetailSection
                 {
                     Header = $"[{index}]",
                     IsExpanded = false,
+                    Foreground = theme.TextPrimaryBrush,
                     Margin = new Thickness(0, 2, 0, 2),
-                    Content = BuildContent(item)
+                    Content = BuildContent(item, theme)
                 };
                 expanders.Add(expander);
                 panel.Children.Add(expander);
@@ -463,6 +493,7 @@ public class DetailSection
                 panel.Children.Add(new TextBlock
                 {
                     Text = $"[{index}] {item}",
+                    Foreground = theme.TextPrimaryBrush,
                     Margin = new Thickness(8, 1, 4, 1)
                 });
             }

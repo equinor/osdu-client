@@ -1,5 +1,6 @@
 ﻿using System.Text.Json;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using Osdu.Client.ExampleApp.Services;
@@ -417,17 +418,48 @@ public partial class DataBrowserWindow : Window
         MainToolbar.Background = theme.SidebarBrush;
         MainToolbar.Foreground = theme.TextPrimaryBrush;
 
+        // Style toolbar buttons
+        foreach (var child in MainToolbar.Items)
+        {
+            if (child is System.Windows.Controls.Primitives.ButtonBase btn)
+            {
+                btn.Background = theme.CardBrush;
+                btn.Foreground = theme.TextPrimaryBrush;
+                btn.BorderBrush = theme.BorderBrush;
+            }
+        }
+
         // StatusBar
         MainStatusBar.Background = new SolidColorBrush(theme.Sidebar);
+        MainStatusBar.Foreground = theme.TextPrimaryBrush;
         StatusText.Foreground = theme.TextSecondaryBrush;
         RecordCountText.Foreground = theme.TextSecondaryBrush;
         PageInfoText.Foreground = theme.TextSecondaryBrush;
 
         // Paging bar
         PagingBar.Background = theme.SidebarBrush;
-        PagingBar.BorderBrush = theme.TextSecondaryBrush;
+        PagingBar.BorderBrush = theme.BorderBrush;
         PageSizeLabel.Foreground = theme.TextSecondaryBrush;
         GoToLabel.Foreground = theme.TextSecondaryBrush;
+
+        // Paging buttons and inputs
+        StylePagingControls(theme);
+
+        // TabControl
+        ContentTabs.Background = theme.SurfaceBrush;
+        ContentTabs.BorderBrush = theme.BorderBrush;
+
+        // GridSplitter
+        var splitter = FindVisualChild<GridSplitter>(this);
+        if (splitter is not null)
+        {
+            splitter.Background = theme.BorderBrush;
+        }
+
+        // ProgressBar
+        ProgressBar.Foreground = theme.AccentBrush;
+        ProgressBar.Background = theme.InputBrush;
+        ProgressBar.BorderBrush = theme.BorderBrush;
 
         // Child controls
         KindTree.ApplyTheme(theme);
@@ -435,6 +467,51 @@ public partial class DataBrowserWindow : Window
         TabularView.ApplyTheme(theme);
         TreeView.ApplyTheme(theme);
         DetailView.ApplyTheme(theme);
+    }
+
+    private void StylePagingControls(AppTheme theme)
+    {
+        // Style all buttons in the paging bar
+        foreach (var btn in new[] { FirstPageButton, PrevPageButton, NextPageButton, LastPageButton, FetchAllButton })
+        {
+            btn.Background = theme.CardBrush;
+            btn.Foreground = theme.TextPrimaryBrush;
+            btn.BorderBrush = theme.BorderBrush;
+        }
+
+        // ComboBox
+        PageSizeCombo.Background = theme.InputFieldBrush;
+        PageSizeCombo.Foreground = theme.TextPrimaryBrush;
+        PageSizeCombo.BorderBrush = theme.BorderBrush;
+
+        // GoTo TextBox
+        GoToPageBox.Background = theme.InputFieldBrush;
+        GoToPageBox.Foreground = theme.TextPrimaryBrush;
+        GoToPageBox.BorderBrush = theme.BorderBrush;
+        GoToPageBox.CaretBrush = theme.TextPrimaryBrush;
+
+        // Go button (find it by content)
+        foreach (var child in LogicalTreeHelper.GetChildren(GoToPageBox.Parent))
+        {
+            if (child is Button goBtn && goBtn.Content?.ToString() == "Go")
+            {
+                goBtn.Background = theme.CardBrush;
+                goBtn.Foreground = theme.TextPrimaryBrush;
+                goBtn.BorderBrush = theme.BorderBrush;
+            }
+        }
+    }
+
+    private static T? FindVisualChild<T>(DependencyObject parent) where T : DependencyObject
+    {
+        for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
+        {
+            var child = VisualTreeHelper.GetChild(parent, i);
+            if (child is T found) return found;
+            var result = FindVisualChild<T>(child);
+            if (result is not null) return result;
+        }
+        return null;
     }
 
     private void ClearContent()

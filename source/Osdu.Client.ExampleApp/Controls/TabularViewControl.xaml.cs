@@ -24,12 +24,8 @@ public partial class TabularViewControl : UserControl
     {
         _theme = theme;
         Background = theme.SurfaceBrush;
-        DataGrid.Background = theme.SurfaceBrush;
-        DataGrid.Foreground = theme.TextPrimaryBrush;
-        DataGrid.RowBackground = theme.CardBrush;
-        DataGrid.AlternatingRowBackground = new SolidColorBrush(theme.Surface);
-        DataGrid.HorizontalGridLinesBrush = theme.BorderBrush;
         BreadcrumbPanel.Background = theme.SurfaceBrush;
+        theme.ApplyToDataGrid(DataGrid);
     }
 
     public void SetData(IReadOnlyList<JsonElement> records, string label = "Root")

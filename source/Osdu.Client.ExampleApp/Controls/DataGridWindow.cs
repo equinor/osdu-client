@@ -47,49 +47,13 @@ public class DataGridWindow : Window
             HeadersVisibility = DataGridHeadersVisibility.Column,
             GridLinesVisibility = DataGridGridLinesVisibility.Horizontal,
             BorderThickness = new Thickness(1),
-            BorderBrush = theme.BorderBrush,
-            Background = theme.CardBrush,
-            Foreground = theme.TextPrimaryBrush,
-            RowBackground = theme.CardBrush,
-            AlternatingRowBackground = new SolidColorBrush(theme.CardHover),
-            HorizontalGridLinesBrush = theme.BorderBrush,
-            VerticalGridLinesBrush = theme.BorderBrush,
             FontSize = 13,
             RowHeight = 32,
             SelectionMode = DataGridSelectionMode.Single,
             SelectionUnit = DataGridSelectionUnit.FullRow,
         };
 
-        // Column header style
-        var columnHeaderStyle = new Style(typeof(DataGridColumnHeader));
-        columnHeaderStyle.Setters.Add(new Setter(DataGridColumnHeader.BackgroundProperty, theme.TagBrush));
-        columnHeaderStyle.Setters.Add(new Setter(DataGridColumnHeader.ForegroundProperty, theme.TextPrimaryBrush));
-        columnHeaderStyle.Setters.Add(new Setter(DataGridColumnHeader.FontWeightProperty, FontWeights.SemiBold));
-        columnHeaderStyle.Setters.Add(new Setter(DataGridColumnHeader.PaddingProperty, new Thickness(8, 6, 8, 6)));
-        columnHeaderStyle.Setters.Add(new Setter(DataGridColumnHeader.BorderBrushProperty, theme.BorderBrush));
-        columnHeaderStyle.Setters.Add(new Setter(DataGridColumnHeader.BorderThicknessProperty, new Thickness(0, 0, 1, 1)));
-        dataGrid.ColumnHeaderStyle = columnHeaderStyle;
-
-        // Cell style
-        var cellStyle = new Style(typeof(DataGridCell));
-        cellStyle.Setters.Add(new Setter(DataGridCell.PaddingProperty, new Thickness(8, 4, 8, 4)));
-        cellStyle.Setters.Add(new Setter(DataGridCell.BorderThicknessProperty, new Thickness(0)));
-        cellStyle.Setters.Add(new Setter(DataGridCell.FocusVisualStyleProperty, null));
-
-        // Selected row highlight
-        var selectedTrigger = new Trigger { Property = DataGridCell.IsSelectedProperty, Value = true };
-        selectedTrigger.Setters.Add(new Setter(DataGridCell.BackgroundProperty, theme.AccentBrush));
-        selectedTrigger.Setters.Add(new Setter(DataGridCell.ForegroundProperty, Brushes.White));
-        cellStyle.Triggers.Add(selectedTrigger);
-
-        dataGrid.CellStyle = cellStyle;
-
-        // Row style
-        var rowStyle = new Style(typeof(DataGridRow));
-        var hoverTrigger = new Trigger { Property = DataGridRow.IsMouseOverProperty, Value = true };
-        hoverTrigger.Setters.Add(new Setter(DataGridRow.BackgroundProperty, new SolidColorBrush(theme.CardHover)));
-        rowStyle.Triggers.Add(hoverTrigger);
-        dataGrid.RowStyle = rowStyle;
+        theme.ApplyToDataGrid(dataGrid);
 
         Grid.SetRow(dataGrid, 1);
         grid.Children.Add(dataGrid);
