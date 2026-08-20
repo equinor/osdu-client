@@ -31,7 +31,34 @@
         </ListBox.ItemContainerStyle>
         <ListBox.ItemTemplate>
             <DataTemplate>
-                <TextBlock Text="{Binding}" TextWrapping="NoWrap" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="{Binding}" TextWrapping="NoWrap" VerticalAlignment="Center" />
+                    <Button x:Name="CopyBtn"
+                            Grid.Column="1"
+                            Click="CopyValueFromButton_Click"
+                            ToolTip="Copy value"
+                            Visibility="Hidden"
+                            Cursor="Hand"
+                            Margin="4,0,0,0"
+                            Padding="2"
+                            VerticalAlignment="Center"
+                            Background="Transparent"
+                            BorderBrush="Transparent"
+                            BorderThickness="0">
+                        <Path Width="14" Height="14" Stretch="Uniform"
+                              Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=ListBoxItem}}"
+                              Data="M4,2 L4,0 L14,0 L14,10 L12,10 L12,2 Z M0,4 L10,4 L10,14 L0,14 Z M1.5,5.5 L8.5,5.5 L8.5,12.5 L1.5,12.5 Z" />
+                    </Button>
+                </Grid>
+                <DataTemplate.Triggers>
+                    <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=ListBoxItem}}" Value="True">
+                        <Setter TargetName="CopyBtn" Property="Visibility" Value="Visible" />
+                    </DataTrigger>
+                </DataTemplate.Triggers>
             </DataTemplate>
         </ListBox.ItemTemplate>
     </ListBox>

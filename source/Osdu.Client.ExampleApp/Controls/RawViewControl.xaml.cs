@@ -50,28 +50,45 @@ public partial class RawViewControl : UserControl
 
     public void Clear() => RawText.ItemsSource = null;
 
-    private void CopyValue_Click(object sender, RoutedEventArgs e)
+    private string? ExtractValue(string? line)
     {
-        if (RawText.SelectedItem is not string line)
-            return;
+        if (line is null)
+            return null;
 
         var trimmed = line.TrimEnd(',').Trim();
 
-        // In pretty-printed JSON, key-value pairs use the pattern  "key": value
-        // Look for '": ' to reliably split key from value without matching colons inside values.
         var separatorIndex = trimmed.IndexOf("\": ");
         if (separatorIndex >= 0)
         {
             trimmed = trimmed[(separatorIndex + 3)..].Trim();
         }
 
-        // Strip surrounding quotes if present
         if (trimmed.Length >= 2 && trimmed[0] == '"' && trimmed[^1] == '"')
         {
             trimmed = trimmed[1..^1];
         }
 
-        Clipboard.SetText(trimmed);
+        return trimmed;
+    }
+
+    private void CopyValueFromButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (sender is Button button && button.DataContext is string line)
+        {
+            var value = ExtractValue(line);
+            if (value is not null)
+                Clipboard.SetText(value);
+        }
+    }
+
+    private void CopyValue_Click(object sender, RoutedEventArgs e)
+    {
+        if (RawText.SelectedItem is not string line)
+            return;
+
+        var value = ExtractValue(line);
+        if (value is not null)
+            Clipboard.SetText(value);
     }
 
     private void CopyLine_Click(object sender, RoutedEventArgs e)

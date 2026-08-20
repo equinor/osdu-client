@@ -254,9 +254,11 @@ public partial class DataBrowserWindow : Window
             ? $"Page {_pageIndex + 1}{(totalPages > 0 ? $" of {totalPages}" : "")}  |  {from}–{to} of {_totalCount}"
             : "No results";
 
-        RecordCountText.Text = _totalCount > 0
-            ? $"Showing {_store.Count} of {_totalCount} (loaded)"
-            : "";
+        RecordCountText.Text = _allFetched
+            ? $"All {_store.Count:#,0} records cached"
+            : _store.Count > 0 && _store.Count < _totalCount
+                ? $"{_store.Count:#,0} of {_totalCount:#,0} records cached"
+                : "";
     }
 
     private async void FirstPage_Click(object sender, RoutedEventArgs e)
@@ -317,22 +319,28 @@ public partial class DataBrowserWindow : Window
             string? cursor = _nextCursor;
             while (!string.IsNullOrEmpty(cursor))
             {
-                _pageIndex++;
-                if (_cursorByPage.Count <= _pageIndex)
-                    _cursorByPage.Add(cursor);
-
                 var page = await _service.SearchByKindAsync(_selectedKind, _pageSize, cursor);
-                _store.Append(page.Results);
-                _currentPageRecords = page.Results;
                 _totalCount = page.TotalCount;
                 _nextCursor = page.Cursor;
                 cursor = _nextCursor;
 
-                if (!string.IsNullOrEmpty(_nextCursor) && _cursorByPage.Count <= _pageIndex + 1)
-                    _cursorByPage.Add(_nextCursor);
+                if (page.Results.Count > 0)
+                {
+                    _store.Append(page.Results);
+                }
+
+                if (string.IsNullOrEmpty(cursor) || page.Results.Count == 0)
+                    break;
             }
 
-            // Re-read last page from store to stay consistent
+            // All pages have been fetched — mark as fully loaded
+            _allFetched = true;
+            _totalCount = _store.Count;
+
+            // Calculate the correct last page index from the store
+            _pageIndex = Math.Max(0, TotalPages - 1);
+
+            // Re-read last page from store
             int startRow = PageStartRow(_pageIndex);
             _currentPageRecords = _store.GetPage(startRow, _pageSize);
             InvalidateAllTabs();
