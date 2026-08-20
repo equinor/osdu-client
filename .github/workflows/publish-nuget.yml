@@ -60,10 +60,14 @@ jobs:
         run: dotnet run --configuration Release < /dev/null
 
       - name: Build
-        run: dotnet build "source/${{ needs.get-release-info.outputs.package }}/${{ needs.get-release-info.outputs.package }}.csproj" --configuration Release
+        env:
+          PACKAGE: ${{ needs.get-release-info.outputs.package }}
+        run: dotnet build "source/${PACKAGE}/${PACKAGE}.csproj" --configuration Release
 
       - name: Pack
-        run: dotnet pack "source/${{ needs.get-release-info.outputs.package }}/${{ needs.get-release-info.outputs.package }}.csproj" --configuration Release --no-build --output nupkgs
+        env:
+          PACKAGE: ${{ needs.get-release-info.outputs.package }}
+        run: dotnet pack "source/${PACKAGE}/${PACKAGE}.csproj" --configuration Release --no-build --output nupkgs
 
       - name: Publish to GitHub Packages
         run: |
