@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/equinor/osdu-client/compare/Osdu.Client-v1.0.0...Osdu.Client-v1.0.1) (2026-08-20)
+
+
+### Bug Fixes
+
+* handle required properties correctly. changed namespace from Osdu.Client.Schemas to Osdu.Client.Data. Also, added initial verion of Osdu DataBrowser ([e1d325b](https://github.com/equinor/osdu-client/commit/e1d325b7b67512d5a1fa6a9748c6551c8c0e994b))
+
 ## 1.0.0 (2026-08-20)
 
 
