@@ -17,6 +17,9 @@
               FontSize="12"
               BorderThickness="0"
               RowDetailsVisibilityMode="Collapsed"
-              ScrollViewer.CanContentScroll="False"
-              VirtualizingPanel.IsVirtualizing="False" />
+              ScrollViewer.CanContentScroll="True"
+              VirtualizingPanel.IsVirtualizing="True"
+              VirtualizingPanel.VirtualizationMode="Recycling"
+              EnableRowVirtualization="True"
+              EnableColumnVirtualization="True" />
 </UserControl>

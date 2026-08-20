@@ -12,6 +12,7 @@ namespace Osdu.Client.ExampleApp.Controls;
 public partial class DetailViewControl : UserControl
 {
     private AppTheme _theme = AppTheme.Light;
+    private DataGridRow? _expandedRow;
 
     public DetailViewControl()
     {
@@ -41,22 +42,31 @@ public partial class DetailViewControl : UserControl
         MasterGrid.Columns.Clear();
         MasterGrid.RowDetailsTemplate = null;
         MasterGrid.ItemsSource = null;
+        _expandedRow = null;
 
         if (records.Count == 0) return;
 
         // Separate scalar columns from complex (detail) columns
+        // Sample up to 100 records for column classification to avoid scanning all rows
         var allColumns = JsonHelper.ExtractColumns(records);
         var scalarColumns = new List<string>();
         var detailColumns = new List<string>();
+        var sampleSize = Math.Min(records.Count, 100);
 
         foreach (var col in allColumns)
         {
-            bool isComplex = records.Any(r =>
+            bool isComplex = false;
+            for (int i = 0; i < sampleSize; i++)
             {
-                if (r.ValueKind != JsonValueKind.Object) return false;
-                if (!r.TryGetProperty(col, out var val)) return false;
-                return val.ValueKind is JsonValueKind.Object or JsonValueKind.Array;
-            });
+                var r = records[i];
+                if (r.ValueKind != JsonValueKind.Object) continue;
+                if (!r.TryGetProperty(col, out var val)) continue;
+                if (val.ValueKind is JsonValueKind.Object or JsonValueKind.Array)
+                {
+                    isComplex = true;
+                    break;
+                }
+            }
 
             if (isComplex)
                 detailColumns.Add(col);
@@ -64,7 +74,7 @@ public partial class DetailViewControl : UserControl
                 scalarColumns.Add(col);
         }
 
-        // Build rows
+        // Build rows — defer detail parsing until expansion for performance
         var rows = new ObservableCollection<MasterDetailRow>();
         foreach (var record in records)
         {
@@ -77,7 +87,7 @@ public partial class DetailViewControl : UserControl
             foreach (var col in detailColumns)
             {
                 if (flat.TryGetValue(col, out var cell))
-                    row.DetailSections.Add(new DetailSection(col, cell.Raw, _theme));
+                    row.DetailSectionDefs.Add(new DetailSectionDef(col, cell.Raw));
             }
 
             rows.Add(row);
@@ -116,31 +126,48 @@ public partial class DetailViewControl : UserControl
         MasterGrid.Columns.Clear();
         MasterGrid.RowDetailsTemplate = null;
         MasterGrid.ItemsSource = null;
+        _expandedRow = null;
     }
 
     private void MasterGrid_LoadingRow(object? sender, DataGridRowEventArgs e)
     {
         e.Row.MouseLeftButtonUp += Row_MouseLeftButtonUp;
-        // Style the row details background
         e.Row.DetailsVisibility = Visibility.Collapsed;
     }
 
     private void MasterGrid_UnloadingRow(object? sender, DataGridRowEventArgs e)
     {
         e.Row.MouseLeftButtonUp -= Row_MouseLeftButtonUp;
+        // If this row was the expanded one, clear the reference
+        if (_expandedRow == e.Row)
+            _expandedRow = null;
     }
 
     private void Row_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
     {
         if (sender is not DataGridRow row) return;
 
-        // Only toggle details on double-click or if user clicks the "Details" column area
-        // Use single click to just select; use the expander icon in details column to expand
-        row.DetailsVisibility = row.DetailsVisibility == Visibility.Visible
-            ? Visibility.Collapsed
-            : Visibility.Visible;
+        if (_expandedRow == row)
+        {
+            // Collapse the currently expanded row
+            row.DetailsVisibility = Visibility.Collapsed;
+            _expandedRow = null;
+        }
+        else
+        {
+            // Collapse the previously expanded row
+            if (_expandedRow is not null)
+                _expandedRow.DetailsVisibility = Visibility.Collapsed;
 
-        e.Handled = true; // Prevent selection change confusion
+            // Ensure detail sections are materialized on first expand
+            if (row.DataContext is MasterDetailRow masterRow)
+                masterRow.EnsureDetailSections(_theme);
+
+            row.DetailsVisibility = Visibility.Visible;
+            _expandedRow = row;
+        }
+
+        e.Handled = true;
     }
 
     private DataTemplate BuildRowDetailsTemplate()
@@ -187,16 +214,40 @@ public partial class DetailViewControl : UserControl
 }
 
 /// <summary>
+/// Lightweight definition for a detail section — raw data only, no UI until needed.
+/// </summary>
+public class DetailSectionDef(string name, JsonElement raw)
+{
+    public string Name { get; } = name;
+    public JsonElement Raw { get; } = raw;
+}
+
+/// <summary>
 /// Represents a row with scalar values displayed in the master grid
 /// and complex detail sections shown in row details.
 /// </summary>
 public class MasterDetailRow
 {
     public Dictionary<string, string?> ScalarValues { get; } = new();
-    public List<DetailSection> DetailSections { get; } = [];
+    public List<DetailSectionDef> DetailSectionDefs { get; } = [];
+    public List<DetailSection>? DetailSections { get; private set; }
 
-    public string DetailSummary => DetailSections.Count > 0
-        ? $"▸ {DetailSections.Count} section(s): {string.Join(", ", DetailSections.Select(d => d.Name))}"
+    private bool _detailsMaterialized;
+
+    /// <summary>
+    /// Materializes detail sections on first access (lazy to avoid creating UI for all rows).
+    /// </summary>
+    public void EnsureDetailSections(AppTheme theme)
+    {
+        if (_detailsMaterialized) return;
+        _detailsMaterialized = true;
+        DetailSections = DetailSectionDefs
+            .Select(d => new DetailSection(d.Name, d.Raw, theme))
+            .ToList();
+    }
+
+    public string DetailSummary => DetailSectionDefs.Count > 0
+        ? $"▸ {DetailSectionDefs.Count} section(s): {string.Join(", ", DetailSectionDefs.Select(d => d.Name))}"
         : "";
 }
 
