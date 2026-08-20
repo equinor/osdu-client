@@ -329,6 +329,9 @@ public partial class DataBrowserWindow : Window
                     _store.Append(page.Results);
                 }
 
+                RecordCountText.Text = $"Fetched {_store.Count:#,0} of {_totalCount:#,0}...";
+                SetStatus($"Fetching {_selectedKind}... {_store.Count:#,0} of {_totalCount:#,0} records");
+
                 if (string.IsNullOrEmpty(cursor) || page.Results.Count == 0)
                     break;
             }

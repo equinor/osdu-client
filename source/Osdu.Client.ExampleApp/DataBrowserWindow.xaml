@@ -96,6 +96,7 @@
                                 <ComboBoxItem Content="100" IsSelected="True" />
                                 <ComboBoxItem Content="250" />
                                 <ComboBoxItem Content="500" />
+                                <ComboBoxItem Content="1000" />
                             </ComboBox>
                         </StackPanel>
 
