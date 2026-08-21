@@ -11,6 +11,7 @@ public partial class KindTreeControl : UserControl
     private AppTheme _theme = AppTheme.Light;
 
     public event Action<string>? KindSelected;
+    public event Action? RefreshRequested;
 
     public KindTreeControl()
     {
@@ -136,4 +137,9 @@ public partial class KindTreeControl : UserControl
     private static string ToPascalCase(string value) =>
         string.Concat(value.Split(['-', '_', ' '], StringSplitOptions.RemoveEmptyEntries)
             .Select(word => $"{char.ToUpperInvariant(word[0])}{word[1..]}"));
+
+    private void RefreshButton_Click(object sender, RoutedEventArgs e)
+    {
+        RefreshRequested?.Invoke();
+    }
 }

@@ -43,6 +43,13 @@ public partial class DataBrowserWindow : Window
         ApplyTheme(_theme);
         Loaded += async (_, _) => await LoadKindsAsync();
         Closed += (_, _) => _store.Dispose();
+
+        KindTree.RefreshRequested += async () =>
+        {
+            CancelFetch();
+            ClearContent();
+            await LoadKindsAsync();
+        };
     }
 
     private void ShowProgress(bool indeterminate = true)
