@@ -110,7 +110,7 @@ public class DataBrowserService(IOsduClient osduClient)
     {
         return entityType.Contains("--")
             ? entityType[..entityType.IndexOf("--")]
-            : "Custom";
+            : "Others";
     }
 }
 

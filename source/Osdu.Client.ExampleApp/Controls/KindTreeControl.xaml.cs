@@ -80,7 +80,8 @@ public partial class KindTreeControl : UserControl
             var filtered = string.IsNullOrEmpty(filter)
                 ? group.Kinds
                 : group.Kinds.Where(k =>
-                    k.KindId.Contains(filter, StringComparison.OrdinalIgnoreCase)).ToList();
+                    k.KindId.Contains(filter, StringComparison.OrdinalIgnoreCase) ||
+                    GetDisplayName(k).Contains(filter, StringComparison.OrdinalIgnoreCase)).ToList();
 
             if (filtered.Count == 0) continue;
 
@@ -109,8 +110,7 @@ public partial class KindTreeControl : UserControl
             {
                 var item = new ListBoxItem
                 {
-                    Content =
-                        $"{(kind.EntityType.Contains("--") ? kind.EntityType[(kind.EntityType.LastIndexOf("--") + 2)..] : kind.EntityType)}{kind.KindId[(kind.KindId.LastIndexOf(':') + 1)..]}",
+                    Content = GetDisplayName(kind),
                     Tag = kind.KindId,
                     ToolTip = kind.KindId,
                     Style = (Style)Resources["KindItemStyle"]
@@ -122,6 +122,15 @@ public partial class KindTreeControl : UserControl
             expander.Content = listBox;
             KindPanel.Children.Add(expander);
         }
+    }
+
+    private static string GetDisplayName(KindEntry kind)
+    {
+        var entityType = kind.EntityType.Contains("--")
+            ? kind.EntityType[(kind.EntityType.LastIndexOf("--") + 2)..]
+            : kind.EntityType;
+        var version = kind.KindId[(kind.KindId.LastIndexOf(':') + 1)..];
+        return $"{entityType}{version}";
     }
 
     private static string ToPascalCase(string value) =>
