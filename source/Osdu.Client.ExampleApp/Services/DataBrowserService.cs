@@ -54,14 +54,16 @@ public class DataBrowserService(IOsduClient osduClient)
     /// Fetches a page of records for a given kind using cursor-based pagination.
     /// </summary>
     public async Task<SearchPage> SearchByKindAsync(
-        string kind, int limit = 100, string? cursor = null, CancellationToken ct = default)
+        string kind, int limit = 100, string? cursor = null,
+        CancellationToken ct = default, string? query = null)
     {
         var response = await osduClient.Search.PostQueryWithCursorAsync(
             new CursorQueryRequest
             {
                 Kind = kind,
                 Limit = limit,
-                Cursor = cursor
+                Cursor = cursor,
+                Query = query
             }, cancellationToken: ct);
 
         var results = new List<JsonElement>();
@@ -83,14 +85,14 @@ public class DataBrowserService(IOsduClient osduClient)
     /// Fetches ALL records for a kind by following cursors to completion.
     /// </summary>
     public async Task<List<JsonElement>> FetchAllAsync(
-        string kind, IProgress<int>? progress = null, CancellationToken ct = default)
+        string kind, IProgress<int>? progress = null, CancellationToken ct = default, string? query = null)
     {
         var all = new List<JsonElement>();
         string? cursor = null;
 
         while (true)
         {
-            var page = await SearchByKindAsync(kind, 1000, cursor, ct);
+            var page = await SearchByKindAsync(kind, 1000, cursor, ct, query);
             all.AddRange(page.Results);
             progress?.Report(all.Count);
 

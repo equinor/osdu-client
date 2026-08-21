@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
+using Osdu.Client.ExampleApp.Controls;
 using Osdu.Client.ExampleApp.Services;
 
 namespace Osdu.Client.ExampleApp;
@@ -29,6 +30,9 @@ public partial class DataBrowserWindow : Window
     private int _pageSize = 100;
     private bool _allFetched;
     private CancellationTokenSource? _fetchCts;
+
+    // Filter state
+    private string? _activeFilterQuery;
 
     // Track which tabs have been populated for the current dataset
     private readonly HashSet<int> _populatedTabs = [];
@@ -102,6 +106,9 @@ public partial class DataBrowserWindow : Window
     {
         CancelFetch();
         _selectedKind = kindId;
+        _activeFilterQuery = null;
+        FilterIndicator.Visibility = Visibility.Collapsed;
+        FilterButton.IsEnabled = true;
         _cursorByPage.Clear();
         _cursorByPage.Add(null); // page 0 starts with null cursor
         _store.Clear();
@@ -139,7 +146,7 @@ public partial class DataBrowserWindow : Window
             SetStatus($"Querying {_selectedKind}...");
             ShowProgress();
 
-            var page = await _service.SearchByKindAsync(_selectedKind, _pageSize, cursor);
+            var page = await _service.SearchByKindAsync(_selectedKind, _pageSize, cursor, default, _activeFilterQuery);
             _currentPageRecords = page.Results;
             _totalCount = page.TotalCount;
             _nextCursor = page.Cursor;
@@ -268,6 +275,33 @@ public partial class DataBrowserWindow : Window
                 : "";
     }
 
+    private async void FilterButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (_selectedKind is null) return;
+
+        var filterWindow = new FilterWindow(_selectedKind, _theme, _activeFilterQuery)
+        {
+            Owner = this
+        };
+
+        if (filterWindow.ShowDialog() == true && filterWindow.Applied)
+        {
+            _activeFilterQuery = filterWindow.ComposedQuery;
+            FilterIndicator.Visibility = string.IsNullOrEmpty(_activeFilterQuery)
+                ? Visibility.Collapsed
+                : Visibility.Visible;
+
+            // Re-fetch with the new filter
+            _cursorByPage.Clear();
+            _cursorByPage.Add(null);
+            _store.Clear();
+            _nextCursor = null;
+            _pageIndex = 0;
+            _allFetched = false;
+            await FetchAndAppendPageAsync(null);
+        }
+    }
+
     private async void FirstPage_Click(object sender, RoutedEventArgs e)
     {
         _pageIndex = 0;
@@ -326,7 +360,7 @@ public partial class DataBrowserWindow : Window
             string? cursor = _nextCursor;
             while (!string.IsNullOrEmpty(cursor))
             {
-                var page = await _service.SearchByKindAsync(_selectedKind, _pageSize, cursor);
+                var page = await _service.SearchByKindAsync(_selectedKind, _pageSize, cursor, default, _activeFilterQuery);
                 _totalCount = page.TotalCount;
                 _nextCursor = page.Cursor;
                 cursor = _nextCursor;
@@ -447,7 +481,7 @@ public partial class DataBrowserWindow : Window
 
             while (currentIdx < targetIndex)
             {
-                var page = await _service.SearchByKindAsync(_selectedKind!, _pageSize, cursor);
+                var page = await _service.SearchByKindAsync(_selectedKind!, _pageSize, cursor, default, _activeFilterQuery);
                 _totalCount = page.TotalCount;
                 currentIdx++;
 
@@ -544,7 +578,7 @@ public partial class DataBrowserWindow : Window
             {
                 ct.ThrowIfCancellationRequested();
 
-                var page = await _service.SearchByKindAsync(_selectedKind, 1000, cursor, ct);
+                var page = await _service.SearchByKindAsync(_selectedKind, 1000, cursor, ct, _activeFilterQuery);
                 _store.Append(page.Results);
                 _totalCount = page.TotalCount;
                 cursor = page.Cursor;
@@ -656,6 +690,9 @@ public partial class DataBrowserWindow : Window
                 }
             }
         }
+
+        // Filter indicator
+        FilterIndicator.Foreground = theme.AccentBrush;
 
         // StatusBar
         MainStatusBar.Background = new SolidColorBrush(theme.Sidebar);
@@ -808,6 +845,9 @@ public partial class DataBrowserWindow : Window
         _store.Clear();
         _currentPageRecords.Clear();
         _allFetched = false;
+        _activeFilterQuery = null;
+        FilterIndicator.Visibility = Visibility.Collapsed;
+        FilterButton.IsEnabled = false;
         _populatedTabs.Clear();
         RecordCountText.Text = "";
         PageInfoText.Text = "";
