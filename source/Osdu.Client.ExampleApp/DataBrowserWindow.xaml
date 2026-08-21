@@ -53,7 +53,10 @@
             </Grid.ColumnDefinitions>
 
             <!-- Left: Kind Tree -->
-            <controls:KindTreeControl x:Name="KindTree" Grid.Column="0" />
+            <Border Grid.Column="0" Margin="8,4,0,4"
+                    BorderThickness="1" BorderBrush="#DDDDDD" CornerRadius="2">
+                <controls:KindTreeControl x:Name="KindTree" />
+            </Border>
 
             <!-- Splitter -->
             <GridSplitter Grid.Column="1" Width="5"
@@ -61,7 +64,7 @@
                           ResizeBehavior="PreviousAndNext" />
 
             <!-- Right: Tabs + Paging Bar -->
-            <DockPanel Grid.Column="2">
+            <DockPanel Grid.Column="2" Margin="0,0,8,4">
                 <!-- Paging Bar at Bottom -->
                 <Border x:Name="PagingBar" DockPanel.Dock="Bottom" Padding="8,4"
                         BorderThickness="0,1,0,0" BorderBrush="#CCCCCC"
