@@ -12,21 +12,41 @@
         FontFamily="Segoe UI"
         FontSize="13">
     <DockPanel>
-        <!-- Toolbar -->
-        <ToolBar x:Name="MainToolbar" DockPanel.Dock="Top" Height="36">
-            <Button x:Name="RefreshButton" Click="RefreshButton_Click"
-                    Padding="8,2" Margin="4,0">
-                <StackPanel Orientation="Horizontal">
-                    <Path Data="M12,4V1L8,5l4,4V6c3.31,0,6,2.69,6,6c0,1.01-0.25,1.97-0.7,2.8l1.46,1.46 C19.54,15.03,20,13.57,20,12C20,7.58,16.42,4,12,4z M12,18c-3.31,0-6-2.69-6-6c0-1.01,0.25-1.97,0.7-2.8L5.24,7.74 C4.46,8.97,4,10.43,4,12c0,4.42,3.58,8,8,8v3l4-4l-4-4V18z"
-                          Width="14" Height="14" Stretch="Uniform"
-                          Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" />
-                    <TextBlock Text=" Refresh Kinds" VerticalAlignment="Center" />
+        <!-- Header Bar -->
+        <Border x:Name="MainToolbar" DockPanel.Dock="Top" Padding="8,6" BorderThickness="0,0,0,1" BorderBrush="#DDDDDD">
+            <DockPanel>
+                <!-- Logo / Title -->
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Left" VerticalAlignment="Center">
+                    <Image Source="Images/Osdu-Logo.png"
+                      Width="48" Height="48" Margin="0,0,8,0"
+                      RenderOptions.BitmapScalingMode="HighQuality">
+                        <Image.OpacityMask>
+                            <ImageBrush ImageSource="Images/Osdu-Logo.png" />
+                        </Image.OpacityMask>
+                    </Image>
+                    <TextBlock Text="Data Explorer" FontSize="16" FontWeight="SemiBold"
+                               VerticalAlignment="Center" />
                 </StackPanel>
-            </Button>
-            <Separator />
-            <ToggleButton x:Name="ThemeToggle" Content="🌙 Dark" Click="ThemeToggle_Click"
-                          Padding="8,2" Margin="4,0" />
-        </ToolBar>
+
+                <!-- Action Buttons (right-aligned) -->
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" HorizontalAlignment="Right"
+                            VerticalAlignment="Center">
+                    <Button x:Name="RefreshButton" Click="RefreshButton_Click"
+                            Width="36" Height="36" Padding="0" Margin="4,0"
+                            ToolTip="Refresh Kinds">
+                        <Path Data="M12,4V1L8,5l4,4V6c3.31,0,6,2.69,6,6c0,1.01-0.25,1.97-0.7,2.8l1.46,1.46 C19.54,15.03,20,13.57,20,12C20,7.58,16.42,4,12,4z M12,18c-3.31,0-6-2.69-6-6c0-1.01,0.25-1.97,0.7-2.8L5.24,7.74 C4.46,8.97,4,10.43,4,12c0,4.42,3.58,8,8,8v3l4-4l-4-4V18z"
+                              Width="16" Height="16" Stretch="Uniform"
+                              Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" />
+                    </Button>
+                    <ToggleButton x:Name="ThemeToggle" Click="ThemeToggle_Click"
+                                  Width="36" Height="36" Padding="0" Margin="4,0"
+                                  ToolTip="Toggle dark/light mode">
+                        <TextBlock Text="🌙" FontSize="16" HorizontalAlignment="Center"
+                                   VerticalAlignment="Center" />
+                    </ToggleButton>
+                </StackPanel>
+            </DockPanel>
+        </Border>
 
         <!-- StatusBar -->
         <StatusBar x:Name="MainStatusBar" DockPanel.Dock="Bottom" Height="26">

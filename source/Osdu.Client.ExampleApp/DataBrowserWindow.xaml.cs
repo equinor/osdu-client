@@ -621,16 +621,32 @@ public partial class DataBrowserWindow : Window
 
         // Toolbar
         MainToolbar.Background = theme.SidebarBrush;
-        MainToolbar.Foreground = theme.TextPrimaryBrush;
+        MainToolbar.BorderBrush = theme.BorderBrush;
 
         // Style toolbar buttons
-        foreach (var child in MainToolbar.Items)
+        foreach (var child in LogicalTreeHelper.GetChildren(MainToolbar))
         {
-            if (child is System.Windows.Controls.Primitives.ButtonBase btn)
+            if (child is DockPanel dock)
             {
-                btn.Background = theme.CardBrush;
-                btn.Foreground = theme.TextPrimaryBrush;
-                btn.BorderBrush = theme.BorderBrush;
+                foreach (var dockChild in LogicalTreeHelper.GetChildren(dock))
+                {
+                    if (dockChild is StackPanel sp)
+                    {
+                        foreach (var item in sp.Children)
+                        {
+                            if (item is System.Windows.Controls.Primitives.ButtonBase btn)
+                            {
+                                btn.Background = theme.CardBrush;
+                                btn.Foreground = theme.TextPrimaryBrush;
+                                btn.BorderBrush = theme.BorderBrush;
+                            }
+                            else if (item is TextBlock tb)
+                            {
+                                tb.Foreground = theme.TextPrimaryBrush;
+                            }
+                        }
+                    }
+                }
             }
         }
 

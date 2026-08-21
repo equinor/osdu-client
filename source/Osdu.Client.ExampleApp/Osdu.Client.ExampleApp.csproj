@@ -19,6 +19,10 @@
     </Target>
 
     <ItemGroup>
+      <None Remove="Images\Osdu-Logo.png" />
+    </ItemGroup>
+
+    <ItemGroup>
         <Content Include="appsettings.json">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
@@ -39,6 +43,9 @@
 
     <ItemGroup>
         <EmbeddedResource Include="ExamplesBuilder\IExample.cs" />
+        <Content Include="Images\Osdu-Logo.png">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
         <Content Include="Examples\Entitlement\GetInfoExample.cs">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
