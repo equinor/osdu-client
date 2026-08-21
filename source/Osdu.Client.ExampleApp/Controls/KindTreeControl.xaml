@@ -13,7 +13,10 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="ToggleButton">
-                        <Border Background="Transparent" Padding="4,6">
+                        <Border x:Name="ToggleBorder"
+                                Background="Transparent"
+                                CornerRadius="3"
+                                Padding="4,6">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
@@ -79,6 +82,7 @@
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter TargetName="Arrow" Property="Stroke" Value="{DynamicResource AccentBrush}"/>
+                                <Setter TargetName="ToggleBorder" Property="Background" Value="{DynamicResource CardHoverBrush}"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -240,6 +244,27 @@
     </UserControl.Resources>
 
     <DockPanel>
+        <StackPanel x:Name="ToolbarPanel" DockPanel.Dock="Top"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Margin="8,4,8,0">
+            <Button x:Name="ExpandAllButton" Click="ExpandAllButton_Click"
+                    ToolTip="Expand All" Cursor="Hand"
+                    Background="Transparent" BorderThickness="0" Padding="4,2">
+                <Path Width="14" Height="14" Stretch="Uniform"
+                      Data="M 0,2 L 7,9 L 14,2 M 0,8 L 7,15 L 14,8"
+                      Stroke="{DynamicResource TextSecondaryBrush}"
+                      StrokeThickness="1.5" Fill="Transparent"/>
+            </Button>
+            <Button x:Name="CollapseAllButton" Click="CollapseAllButton_Click"
+                    ToolTip="Collapse All" Cursor="Hand"
+                    Background="Transparent" BorderThickness="0" Padding="4,2" Margin="4,0,0,0">
+                <Path Width="14" Height="14" Stretch="Uniform"
+                      Data="M 0,9 L 7,2 L 14,9 M 0,15 L 7,8 L 14,15"
+                      Stroke="{DynamicResource TextSecondaryBrush}"
+                      StrokeThickness="1.5" Fill="Transparent"/>
+            </Button>
+        </StackPanel>
         <TextBox x:Name="FilterBox"
                  DockPanel.Dock="Top"
                  Style="{StaticResource FilterBoxStyle}"

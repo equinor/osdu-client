@@ -55,6 +55,21 @@ public partial class KindTreeControl : UserControl
 
     private void FilterBox_TextChanged(object sender, TextChangedEventArgs e) => RebuildTree();
 
+    private void ExpandAllButton_Click(object sender, RoutedEventArgs e) =>
+        SetAllExpanders(true);
+
+    private void CollapseAllButton_Click(object sender, RoutedEventArgs e) =>
+        SetAllExpanders(false);
+
+    private void SetAllExpanders(bool expanded)
+    {
+        foreach (var child in KindPanel.Children)
+        {
+            if (child is Expander expander)
+                expander.IsExpanded = expanded;
+        }
+    }
+
     private void RebuildTree()
     {
         KindPanel.Children.Clear();
@@ -73,9 +88,9 @@ public partial class KindTreeControl : UserControl
             {
                 Header = new TextBlock
                 {
-                    Text = $"{group.Category} ({filtered.Count})",
+                    Text = $"{ToPascalCase(group.Category)} ({filtered.Count})",
                     FontFamily = AppTheme.FontFamily,
-                    FontSize = AppTheme.FontSize,
+                    FontSize = AppTheme.FontSizeLarge,
                     Foreground = _theme.TextPrimaryBrush,
                     FontWeight = FontWeights.SemiBold
                 },
@@ -87,14 +102,15 @@ public partial class KindTreeControl : UserControl
             {
                 Style = (Style)Resources["KindListBoxStyle"],
                 FontFamily = AppTheme.FontFamily,
-                FontSize = AppTheme.FontSizeSmall
+                FontSize = AppTheme.FontSizeLarge
             };
 
             foreach (var kind in filtered)
             {
                 var item = new ListBoxItem
                 {
-                    Content = $"{(kind.EntityType.Contains("--") ? kind.EntityType[(kind.EntityType.LastIndexOf("--") + 2)..] : kind.EntityType)}{kind.KindId[(kind.KindId.LastIndexOf(':') + 1)..]}",
+                    Content =
+                        $"{(kind.EntityType.Contains("--") ? kind.EntityType[(kind.EntityType.LastIndexOf("--") + 2)..] : kind.EntityType)}{kind.KindId[(kind.KindId.LastIndexOf(':') + 1)..]}",
                     Tag = kind.KindId,
                     ToolTip = kind.KindId,
                     Style = (Style)Resources["KindItemStyle"]
@@ -107,4 +123,8 @@ public partial class KindTreeControl : UserControl
             KindPanel.Children.Add(expander);
         }
     }
+
+    private static string ToPascalCase(string value) =>
+        string.Concat(value.Split(['-', '_', ' '], StringSplitOptions.RemoveEmptyEntries)
+            .Select(word => $"{char.ToUpperInvariant(word[0])}{word[1..]}"));
 }
