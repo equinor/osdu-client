@@ -25,7 +25,20 @@ public class FilterConditionViewModel : INotifyPropertyChanged
     public string PropertyPath
     {
         get => _propertyPath;
-        set { _propertyPath = value; OnPropertyChanged(); }
+        set
+        {
+            if (_propertyPath == value) return;
+            _propertyPath = value;
+            OnPropertyChanged();
+
+            // Auto-resolve property info and update operators when path changes
+            var resolved = FindPropertyByPath(_allProperties, value);
+            if (resolved is not null)
+            {
+                PropertyInfo = resolved;
+                UpdateOperators();
+            }
+        }
     }
 
     public string Operator
@@ -78,14 +91,36 @@ public class FilterConditionViewModel : INotifyPropertyChanged
         PropertyInfo = PropertyInfo
     };
 
+    // Operators ordered by reliability in OSDU/Elasticsearch:
+    // - "equals" (phrase match) and "match" (term match) are most reliable
+    // - "starts with" (prefix wildcard) works well
+    // - "contains" and "ends with" use leading wildcards — may not work on all OSDU deployments
     private static List<string> GetStringOperators() =>
-        ["equals", "not equals", "contains", "does not contain", "starts with", "ends with", "is null", "is not null"];
+        ["equals", "not equals", "match", "starts with", "wildcard", "contains", "ends with", "is null", "is not null"];
 
     private static List<string> GetNumericOperators() =>
         ["equals", "not equals", "greater than", "greater than or equal", "less than", "less than or equal", "between", "is null", "is not null"];
 
     private static List<string> GetBooleanOperators() =>
         ["equals", "not equals", "is null", "is not null"];
+
+    /// <summary>Finds a PropertyInfo by its full dot-notation path.</summary>
+    private static PropertyInfo? FindPropertyByPath(List<PropertyInfo> properties, string path)
+    {
+        if (string.IsNullOrWhiteSpace(path)) return null;
+
+        // Try direct match first
+        foreach (var p in properties)
+        {
+            if (p.Path == path) return p;
+            if (p.Children.Count > 0)
+            {
+                var child = FindPropertyByPath(p.Children, path);
+                if (child is not null) return child;
+            }
+        }
+        return null;
+    }
 
     private static List<PropertyInfo> FlattenProperties(List<PropertyInfo> props, int maxDepth = 3)
     {

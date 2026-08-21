@@ -386,45 +386,42 @@ public partial class FilterWindow : Window
         var prop = _lastResolvedProperty ?? ResolvePropertyByPath(propertyPath);
         var kind = prop?.Kind ?? PropertyKind.String;
 
+        // Templates use Lucene syntax that works with OSDU/Elasticsearch.
+        // "equals" uses phrase match ("value"), "match" uses term match (value).
+        // Prefix wildcards (value*) are reliable; leading wildcards (*value) may not work.
         List<string> operators = kind switch
         {
             PropertyKind.Number or PropertyKind.DateTime => new List<string>
             {
-                "\"value\"  (equals)",
-                "[* TO *]  (exists)",
-                ">value  (greater than)",
-                ">=value  (greater than or equal)",
-                "<value  (less than)",
-                "<=value  (less than or equal)",
-                "[value1 TO value2]  (range between)",
-                "{value TO *}  (exclusive greater than)",
-                "{* TO value}  (exclusive less than)",
+                "\"value\"  — equals (phrase match)",
+                "[* TO *]  — exists / not null",
+                "{value TO *}  — greater than",
+                "[value TO *]  — greater than or equal",
+                "{* TO value}  — less than",
+                "[* TO value]  — less than or equal",
+                "[value1 TO value2]  — range between",
             },
             PropertyKind.Boolean => new List<string>
             {
-                "true  (equals true)",
-                "false  (equals false)",
+                "true  — equals true",
+                "false  — equals false",
             },
             _ => new List<string>
             {
-                "\"value\"  (exact match)",
-                "*value*  (contains)",
-                "value*  (starts with)",
-                "*value  (ends with)",
-                "[* TO *]  (exists / not null)",
-                "NOT  (negate next condition)",
+                "\"value\"  — equals (phrase match)",
+                "value  — match (term match)",
+                "value*  — starts with (prefix)",
+                "[* TO *]  — exists / not null",
+                "*value*  — contains (may be slow)",
+                "*value  — ends with (may be slow)",
             }
         };
 
-        // Filter based on what's been typed after the colon (if user started typing a value)
         if (!string.IsNullOrEmpty(typed))
         {
-            // Also add a literal value suggestion showing what the user typed
-            operators.Insert(0, $"{typed}  (literal value)");
-
+            operators.Insert(0, $"{typed}  — literal value");
             operators = operators
-                .Where(o => o.Contains(typed, StringComparison.OrdinalIgnoreCase)
-                         || o.StartsWith(typed, StringComparison.OrdinalIgnoreCase))
+                .Where(o => o.Contains(typed, StringComparison.OrdinalIgnoreCase))
                 .ToList();
         }
 
