@@ -94,7 +94,7 @@ public partial class KindTreeControl : UserControl
             {
                 var item = new ListBoxItem
                 {
-                    Content = kind.EntityType,
+                    Content = $"{(kind.EntityType.Contains("--") ? kind.EntityType[(kind.EntityType.LastIndexOf("--") + 2)..] : kind.EntityType)}{kind.KindId[(kind.KindId.LastIndexOf(':') + 1)..]}",
                     Tag = kind.KindId,
                     ToolTip = kind.KindId,
                     Style = (Style)Resources["KindItemStyle"]
