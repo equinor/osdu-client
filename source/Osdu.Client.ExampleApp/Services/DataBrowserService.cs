@@ -108,17 +108,9 @@ public class DataBrowserService(IOsduClient osduClient)
 
     private static string GetCategory(string entityType)
     {
-        if (entityType.StartsWith("master-data--", StringComparison.OrdinalIgnoreCase))
-            return "MasterData";
-        if (entityType.StartsWith("reference-data--", StringComparison.OrdinalIgnoreCase))
-            return "ReferenceData";
-        if (entityType.StartsWith("work-product-component--", StringComparison.OrdinalIgnoreCase))
-            return "WorkProductComponent";
-        if (entityType.StartsWith("work-product--", StringComparison.OrdinalIgnoreCase))
-            return "WorkProduct";
-        if (entityType.StartsWith("dataset--", StringComparison.OrdinalIgnoreCase))
-            return "Dataset";
-        return "Other";
+        return entityType.Contains("--")
+            ? entityType[..entityType.IndexOf("--")]
+            : "Custom";
     }
 }
 
