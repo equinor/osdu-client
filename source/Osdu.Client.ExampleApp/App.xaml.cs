@@ -92,8 +92,8 @@ public partial class App : Application
 
         Services = services.BuildServiceProvider();
 
-        //var window = Services.GetRequiredService<ApiTestWindow>();
-        var window = Services.GetRequiredService<DataBrowserWindow>();
+        var window = Services.GetRequiredService<ApiTestWindow>();
+        //var window = Services.GetRequiredService<DataBrowserWindow>();
         window.Show();
     }
 }
