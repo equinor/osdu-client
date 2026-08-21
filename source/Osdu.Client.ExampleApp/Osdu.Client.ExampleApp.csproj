@@ -13,9 +13,9 @@
 
     <Target Name="CopyApiDefinitions" AfterTargets="PostBuildEvent">
         <ItemGroup>
-            <ApiDefinitionFiles Include="$(ProjectDir)..\Osdu.Client.Generator.ConsoleApp\Definitions\Api\*.json" />
+            <ApiDefinitionFiles Include="$(ProjectDir)..\Osdu.Client.Generator.ConsoleApp\Specifications\Apis\*.json" />
         </ItemGroup>
-        <Copy SourceFiles="@(ApiDefinitionFiles)" DestinationFolder="$(OutputPath)Definitions\Api" SkipUnchangedFiles="false" />
+        <Copy SourceFiles="@(ApiDefinitionFiles)" DestinationFolder="$(OutputPath)Specifications\Apis" SkipUnchangedFiles="false" />
     </Target>
 
     <ItemGroup>

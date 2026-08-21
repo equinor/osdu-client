@@ -54,7 +54,7 @@ public partial class ApiTestWindow : Window
     public ApiTestWindow(IHttpClientFactory httpClientFactory, IEnumerable<IExample> examples, IOsduClient osduClient)
     {
         InitializeComponent();
-        _definitionsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Definitions", "Api");
+        _definitionsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Specifications", "Apis");
         _httpClient = httpClientFactory.CreateClient("OsduApi");
         _examples = examples;
         _osduClient = osduClient;
