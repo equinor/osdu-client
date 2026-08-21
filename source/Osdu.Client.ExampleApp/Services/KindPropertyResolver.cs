@@ -1,4 +1,5 @@
 using System.Reflection;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Osdu.Client.ExampleApp.Services;
@@ -60,6 +61,20 @@ public static class KindPropertyResolver
         return matchedType;
     }
 
+    /// <summary>
+    /// Resolves the JSON property name from [JsonPropertyName] attribute,
+    /// falling back to camelCase conversion of the C# property name.
+    /// </summary>
+    private static string GetJsonPropertyName(System.Reflection.PropertyInfo prop)
+    {
+        var attr = prop.GetCustomAttribute<JsonPropertyNameAttribute>();
+        if (attr is not null)
+            return attr.Name;
+
+        // Fallback: convert PascalCase to camelCase (OSDU uses camelCase JSON)
+        return JsonNamingPolicy.CamelCase.ConvertName(prop.Name);
+    }
+
     private static List<PropertyInfo> ExtractProperties(Type type, string parentPath, int maxDepth)
     {
         if (maxDepth <= 0) return [];
@@ -68,8 +83,7 @@ public static class KindPropertyResolver
 
         foreach (var prop in type.GetProperties(BindingFlags.Public | BindingFlags.Instance))
         {
-            var jsonAttr = prop.GetCustomAttribute<JsonPropertyNameAttribute>();
-            var jsonName = jsonAttr?.Name ?? prop.Name;
+            var jsonName = GetJsonPropertyName(prop);
             var fullPath = string.IsNullOrEmpty(parentPath) ? jsonName : $"{parentPath}.{jsonName}";
 
             var propInfo = new PropertyInfo

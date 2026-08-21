@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Threading;
 using Osdu.Client.ExampleApp.Services;
 
 namespace Osdu.Client.ExampleApp.Controls;
@@ -13,6 +14,12 @@ public partial class FilterWindow : Window
     private readonly List<PropertyInfo> _properties;
     private readonly AppTheme _theme;
     private readonly ObservableCollection<FilterConditionViewModel> _conditions = [];
+
+    // Intellisense state tracking
+    private enum IntellisenseMode { None, Property, Operator }
+    private IntellisenseMode _intellisenseMode = IntellisenseMode.None;
+    private PropertyInfo? _lastResolvedProperty;
+    private bool _suppressIntellisense;
 
     public string? ComposedQuery { get; private set; }
     public bool Applied { get; private set; }
@@ -128,7 +135,9 @@ public partial class FilterWindow : Window
     {
         if (ManualModeCheck?.IsChecked == true)
         {
-            QueryPreviewBox.Text = ManualQueryBox.Text;
+            // Format the manual query for multiline preview
+            var query = ManualQueryBox.Text?.Trim() ?? "";
+            QueryPreviewBox.Text = string.IsNullOrWhiteSpace(query) ? "(no filter)" : FormatQueryForPreview(query);
             return;
         }
 
@@ -138,9 +147,28 @@ public partial class FilterWindow : Window
             .Where(s => !string.IsNullOrWhiteSpace(s))
             .ToList();
 
-        QueryPreviewBox.Text = parts.Count > 0
-            ? string.Join(" AND ", parts)
-            : "(no filter)";
+        if (parts.Count == 0)
+        {
+            QueryPreviewBox.Text = "(no filter)";
+        }
+        else if (parts.Count == 1)
+        {
+            QueryPreviewBox.Text = parts[0];
+        }
+        else
+        {
+            // Show each condition on its own line for readability
+            QueryPreviewBox.Text = string.Join("\n  AND ", parts);
+        }
+    }
+
+    /// <summary>Formats a raw query string for multiline preview readability.</summary>
+    private static string FormatQueryForPreview(string query)
+    {
+        // Split on AND/OR for readability in preview
+        return query
+            .Replace(" AND ", "\n  AND ", StringComparison.OrdinalIgnoreCase)
+            .Replace(" OR ", "\n  OR ", StringComparison.OrdinalIgnoreCase);
     }
 
     private void ManualModeCheck_Changed(object sender, RoutedEventArgs e)
@@ -159,7 +187,12 @@ public partial class FilterWindow : Window
     private void ManualQueryBox_TextChanged(object sender, TextChangedEventArgs e)
     {
         UpdatePreview();
-        ShowIntellisense();
+
+        if (_suppressIntellisense) return;
+
+        // Defer intellisense to after WPF finishes processing the current input event,
+        // so caret position and layout are up-to-date.
+        Dispatcher.BeginInvoke(DispatcherPriority.Input, ShowIntellisense);
     }
 
     private void ManualQueryBox_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -198,34 +231,204 @@ public partial class FilterWindow : Window
         if (caretIndex <= 0 || string.IsNullOrEmpty(text))
         {
             IntellisensePopup.IsOpen = false;
+            _intellisenseMode = IntellisenseMode.None;
             return;
         }
 
-        // Extract the current word being typed
-        var currentWord = GetCurrentWord(text, caretIndex);
-        if (string.IsNullOrEmpty(currentWord))
+        // Determine context: are we after a colon (operator context) or typing a property?
+        var context = GetIntellisenseContext(text, caretIndex);
+
+        if (context.Mode == IntellisenseMode.Operator)
+        {
+            // Show operator suggestions relevant to the resolved property type
+            var operators = GetOperatorSuggestions(context.PropertyPath, context.TypedText);
+            if (operators.Count == 0)
+            {
+                IntellisensePopup.IsOpen = false;
+                _intellisenseMode = IntellisenseMode.None;
+                return;
+            }
+
+            _intellisenseMode = IntellisenseMode.Operator;
+            IntellisenseList.ItemsSource = operators;
+            IntellisenseList.SelectedIndex = 0;
+            PositionPopup(caretIndex);
+        }
+        else if (context.Mode == IntellisenseMode.Property)
+        {
+            // Show property suggestions
+            var currentWord = context.TypedText;
+            if (string.IsNullOrEmpty(currentWord))
+            {
+                IntellisensePopup.IsOpen = false;
+                _intellisenseMode = IntellisenseMode.None;
+                return;
+            }
+
+            var suggestions = GetSuggestions(currentWord);
+            if (suggestions.Count == 0)
+            {
+                IntellisensePopup.IsOpen = false;
+                _intellisenseMode = IntellisenseMode.None;
+                return;
+            }
+
+            _intellisenseMode = IntellisenseMode.Property;
+            IntellisenseList.ItemsSource = suggestions;
+            IntellisenseList.SelectedIndex = 0;
+            PositionPopup(caretIndex);
+        }
+        else
         {
             IntellisensePopup.IsOpen = false;
-            return;
+            _intellisenseMode = IntellisenseMode.None;
         }
+    }
 
-        // Find matching properties (support dot notation)
-        var suggestions = GetSuggestions(currentWord);
-        if (suggestions.Count == 0)
-        {
-            IntellisensePopup.IsOpen = false;
-            return;
-        }
+    private void PositionPopup(int caretIndex)
+    {
+        // Ensure caret index is within bounds
+        if (caretIndex > ManualQueryBox.Text.Length)
+            caretIndex = ManualQueryBox.Text.Length;
 
-        IntellisenseList.ItemsSource = suggestions;
-        IntellisenseList.SelectedIndex = 0;
-
-        // Position popup near caret
         var rect = ManualQueryBox.GetRectFromCharacterIndex(caretIndex);
+
+        // Fallback if rect is empty (can happen before layout pass)
+        if (rect.IsEmpty)
+        {
+            rect = ManualQueryBox.GetRectFromCharacterIndex(Math.Max(0, caretIndex - 1));
+            if (rect.IsEmpty)
+            {
+                IntellisensePopup.HorizontalOffset = 0;
+                IntellisensePopup.VerticalOffset = ManualQueryBox.FontSize + 4;
+                IntellisensePopup.PlacementTarget = ManualQueryBox;
+                IntellisensePopup.Placement = System.Windows.Controls.Primitives.PlacementMode.Bottom;
+                IntellisensePopup.IsOpen = true;
+                return;
+            }
+        }
+
+        IntellisensePopup.Placement = System.Windows.Controls.Primitives.PlacementMode.RelativePoint;
         IntellisensePopup.PlacementTarget = ManualQueryBox;
         IntellisensePopup.HorizontalOffset = rect.Left;
-        IntellisensePopup.VerticalOffset = rect.Bottom + 2;
+        IntellisensePopup.VerticalOffset = rect.Top + rect.Height + 4;
         IntellisensePopup.IsOpen = true;
+    }
+
+    /// <summary>
+    /// Determines whether intellisense should show properties or operators based on cursor context.
+    /// </summary>
+    private IntellisenseContext GetIntellisenseContext(string text, int caretIndex)
+    {
+        // Look backwards from caret to find the start of the current token
+        int pos = caretIndex - 1;
+        while (pos >= 0 && text[pos] != ' ' && text[pos] != '\n' && text[pos] != '\r')
+            pos--;
+        pos++;
+        var token = text[pos..caretIndex];
+
+        if (string.IsNullOrEmpty(token))
+        {
+            return new IntellisenseContext { Mode = IntellisenseMode.None, PropertyPath = "", TypedText = "" };
+        }
+
+        // Check if there's a colon in the token — indicates we're after "property:"
+        int colonIdx = token.IndexOf(':');
+        if (colonIdx >= 0)
+        {
+            // We're in operator/value context after "property:"
+            var propertyPart = token[..colonIdx];
+            var afterColon = token[(colonIdx + 1)..];
+
+            // Resolve the property to determine its type
+            _lastResolvedProperty = ResolvePropertyByPath(propertyPart);
+
+            return new IntellisenseContext
+            {
+                Mode = IntellisenseMode.Operator,
+                PropertyPath = propertyPart,
+                TypedText = afterColon
+            };
+        }
+
+        // Otherwise we're typing a property name
+        return new IntellisenseContext
+        {
+            Mode = IntellisenseMode.Property,
+            PropertyPath = "",
+            TypedText = token
+        };
+    }
+
+    /// <summary>Resolves a property path (supports dot notation) to its PropertyInfo.</summary>
+    private PropertyInfo? ResolvePropertyByPath(string path)
+    {
+        if (string.IsNullOrWhiteSpace(path)) return null;
+
+        var parts = path.Split('.');
+        var searchIn = _properties;
+        PropertyInfo? found = null;
+
+        foreach (var part in parts)
+        {
+            found = searchIn.FirstOrDefault(p =>
+                p.JsonName.Equals(part, StringComparison.OrdinalIgnoreCase));
+            if (found is null) return null;
+            searchIn = found.Children;
+        }
+
+        return found;
+    }
+
+    /// <summary>Gets operator suggestions based on property type and what user has typed so far.</summary>
+    private List<string> GetOperatorSuggestions(string propertyPath, string typed)
+    {
+        var prop = _lastResolvedProperty ?? ResolvePropertyByPath(propertyPath);
+        var kind = prop?.Kind ?? PropertyKind.String;
+
+        List<string> operators = kind switch
+        {
+            PropertyKind.Number or PropertyKind.DateTime => new List<string>
+            {
+                "\"value\"  (equals)",
+                "[* TO *]  (exists)",
+                ">value  (greater than)",
+                ">=value  (greater than or equal)",
+                "<value  (less than)",
+                "<=value  (less than or equal)",
+                "[value1 TO value2]  (range between)",
+                "{value TO *}  (exclusive greater than)",
+                "{* TO value}  (exclusive less than)",
+            },
+            PropertyKind.Boolean => new List<string>
+            {
+                "true  (equals true)",
+                "false  (equals false)",
+            },
+            _ => new List<string>
+            {
+                "\"value\"  (exact match)",
+                "*value*  (contains)",
+                "value*  (starts with)",
+                "*value  (ends with)",
+                "[* TO *]  (exists / not null)",
+                "NOT  (negate next condition)",
+            }
+        };
+
+        // Filter based on what's been typed after the colon (if user started typing a value)
+        if (!string.IsNullOrEmpty(typed))
+        {
+            // Also add a literal value suggestion showing what the user typed
+            operators.Insert(0, $"{typed}  (literal value)");
+
+            operators = operators
+                .Where(o => o.Contains(typed, StringComparison.OrdinalIgnoreCase)
+                         || o.StartsWith(typed, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+        }
+
+        return operators;
     }
 
     private List<string> GetSuggestions(string currentWord)
@@ -250,7 +453,21 @@ public partial class FilterWindow : Window
         return searchIn
             .Where(p => p.JsonName.Contains(prefix, StringComparison.OrdinalIgnoreCase))
             .Take(15)
-            .Select(p => string.IsNullOrEmpty(parentPath) ? p.JsonName : $"{parentPath}.{p.JsonName}")
+            .Select(p =>
+            {
+                var fullPath = string.IsNullOrEmpty(parentPath) ? p.JsonName : $"{parentPath}.{p.JsonName}";
+                var typeHint = p.Kind switch
+                {
+                    PropertyKind.String => "str",
+                    PropertyKind.Number => "num",
+                    PropertyKind.Boolean => "bool",
+                    PropertyKind.DateTime => "date",
+                    PropertyKind.Object => "{ }",
+                    PropertyKind.Array => "[ ]",
+                    _ => ""
+                };
+                return $"{fullPath}  ({typeHint})";
+            })
             .ToList();
     }
 
@@ -263,18 +480,79 @@ public partial class FilterWindow : Window
         return text[start..caretIndex];
     }
 
+    /// <summary>Gets the current token including colons and special chars for operator context.</summary>
+    private static string GetCurrentToken(string text, int caretIndex)
+    {
+        int start = caretIndex - 1;
+        while (start >= 0 && text[start] != ' ' && text[start] != '\n' && text[start] != '\r')
+            start--;
+        start++;
+        return text[start..caretIndex];
+    }
+
     private void AcceptIntellisense()
     {
         if (IntellisenseList.SelectedItem is not string selected) return;
 
-        var text = ManualQueryBox.Text;
-        var caretIndex = ManualQueryBox.CaretIndex;
-        var currentWord = GetCurrentWord(text, caretIndex);
+        // Suppress intellisense from re-triggering during programmatic text change
+        _suppressIntellisense = true;
 
-        int start = caretIndex - currentWord.Length;
-        ManualQueryBox.Text = text[..start] + selected + text[caretIndex..];
-        ManualQueryBox.CaretIndex = start + selected.Length;
-        IntellisensePopup.IsOpen = false;
+        try
+        {
+            var text = ManualQueryBox.Text;
+            var caretIndex = ManualQueryBox.CaretIndex;
+
+            if (_intellisenseMode == IntellisenseMode.Operator)
+            {
+                // Extract just the operator value (strip the hint in parentheses)
+                var operatorValue = selected.Contains("  (")
+                    ? selected[..selected.IndexOf("  (")].Trim()
+                    : selected.Trim();
+
+                // Replace "value" placeholder with empty string for user to fill in
+                operatorValue = operatorValue
+                    .Replace("value1", "")
+                    .Replace("value2", "")
+                    .Replace("value", "");
+
+                // Replace everything after the colon in the current token
+                var token = GetCurrentToken(text, caretIndex);
+                int colonInToken = token.IndexOf(':');
+                if (colonInToken >= 0)
+                {
+                    int tokenStart = caretIndex - token.Length;
+                    int insertAt = tokenStart + colonInToken + 1;
+                    ManualQueryBox.Text = text[..insertAt] + operatorValue + text[caretIndex..];
+                    ManualQueryBox.CaretIndex = insertAt + operatorValue.Length;
+                }
+                else
+                {
+                    int tokenStart = caretIndex - token.Length;
+                    ManualQueryBox.Text = text[..tokenStart] + operatorValue + text[caretIndex..];
+                    ManualQueryBox.CaretIndex = tokenStart + operatorValue.Length;
+                }
+            }
+            else
+            {
+                // Property mode — extract just the property path (strip type hint)
+                var propertyValue = selected.Contains("  (")
+                    ? selected[..selected.IndexOf("  (")].Trim()
+                    : selected.Trim();
+
+                var currentWord = GetCurrentWord(text, caretIndex);
+                int start = caretIndex - currentWord.Length;
+                ManualQueryBox.Text = text[..start] + propertyValue + text[caretIndex..];
+                ManualQueryBox.CaretIndex = start + propertyValue.Length;
+            }
+
+            IntellisensePopup.IsOpen = false;
+            _intellisenseMode = IntellisenseMode.None;
+        }
+        finally
+        {
+            // Re-enable on next dispatcher cycle so the TextChanged from this edit is ignored
+            Dispatcher.BeginInvoke(DispatcherPriority.Background, () => _suppressIntellisense = false);
+        }
     }
 
     private void IntellisenseList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -291,7 +569,11 @@ public partial class FilterWindow : Window
         }
         else
         {
-            ComposedQuery = query;
+            // Strip formatting newlines for the actual query sent to API
+            ComposedQuery = query
+                .Replace("\n  AND ", " AND ")
+                .Replace("\n  OR ", " OR ")
+                .Trim();
         }
         Applied = true;
         DialogResult = true;
@@ -363,6 +645,18 @@ public partial class FilterWindow : Window
         QueryPreviewBox.Foreground = theme.AccentBrush;
         QueryPreviewBox.BorderBrush = theme.BorderBrush;
         QueryPreviewBox.FontFamily = AppTheme.MonoFontFamily;
+
+        // Intellisense popup styling
+        if (IntellisensePopup.Child is Border popupBorder)
+        {
+            popupBorder.Background = theme.CardBrush;
+            popupBorder.BorderBrush = theme.BorderBrush;
+            if (popupBorder.Child is ListBox lb)
+            {
+                lb.Background = theme.CardBrush;
+                lb.Foreground = theme.TextPrimaryBrush;
+            }
+        }
     }
 
     private static IEnumerable<T> FindVisualChildren<T>(DependencyObject parent) where T : DependencyObject
@@ -374,5 +668,12 @@ public partial class FilterWindow : Window
             foreach (var grandChild in FindVisualChildren<T>(child))
                 yield return grandChild;
         }
+    }
+
+    private record struct IntellisenseContext
+    {
+        public IntellisenseMode Mode { get; init; }
+        public string PropertyPath { get; init; }
+        public string TypedText { get; init; }
     }
 }

@@ -111,7 +111,7 @@
 
                 <!-- Manual Query Editor (hidden by default) -->
                 <DockPanel x:Name="ManualQueryPanel" Visibility="Collapsed">
-                    <TextBlock Text="Enter Lucene Query (type to see suggestions)"
+                    <TextBlock Text="Enter Lucene Query (type to see suggestions for properties and operators)"
                              FontSize="12" DockPanel.Dock="Top" Margin="0,0,0,6" Tag="secondary" />
                     <Grid>
                         <TextBox x:Name="ManualQueryBox" AcceptsReturn="True"
@@ -135,13 +135,15 @@
             </Grid>
         </Grid>
 
-        <!-- Query Preview -->
+        <!-- Query Preview (multiline) -->
         <Border Grid.Row="2" Margin="12,4,12,8" Padding="8,6"
-              BorderThickness="1" BorderBrush="#CCCCCC" CornerRadius="3">
+              BorderThickness="1" BorderBrush="#CCCCCC" CornerRadius="3"
+              MinHeight="60" MaxHeight="120">
             <DockPanel>
                 <TextBlock Text="Preview:" FontWeight="SemiBold" FontSize="12"
                          VerticalAlignment="Top" DockPanel.Dock="Left" Margin="0,0,8,0" Tag="secondary" />
                 <TextBox x:Name="QueryPreviewBox" IsReadOnly="True" TextWrapping="Wrap"
+                       AcceptsReturn="True" VerticalScrollBarVisibility="Auto"
                        BorderThickness="0" FontFamily="Cascadia Code,Consolas"
                        FontSize="12" Background="Transparent" Text="(no filter)" />
             </DockPanel>
