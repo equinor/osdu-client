@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Media;
 using Osdu.Client.ExampleApp.Services;
 
@@ -10,7 +9,6 @@ public partial class KindTreeControl : UserControl
 {
     private List<KindGroup> _allGroups = [];
     private AppTheme _theme = AppTheme.Light;
-    private ListBoxItem? _selectedItem;
 
     public event Action<string>? KindSelected;
 
@@ -33,6 +31,19 @@ public partial class KindTreeControl : UserControl
         FilterBox.CaretBrush = theme.TextPrimaryBrush;
         FilterBox.FontFamily = AppTheme.FontFamily;
         FilterBox.FontSize = AppTheme.FontSize;
+
+        // Update dynamic resources so XAML styles pick up the theme
+        Resources["ExpanderArrowBrush"] = new SolidColorBrush(theme.ExpanderArrow);
+        Resources["AccentBrush"] = theme.AccentBrush;
+        Resources["FolderFillBrush"] = new SolidColorBrush(
+            Color.FromArgb(40, theme.Accent.R, theme.Accent.G, theme.Accent.B));
+        Resources["TextSecondaryBrush"] = theme.TextSecondaryBrush;
+        Resources["TextMutedBrush"] = theme.TextMutedBrush;
+        Resources["TextPrimaryBrush"] = theme.TextPrimaryBrush;
+        Resources["CardHoverBrush"] = new SolidColorBrush(theme.CardHover);
+        Resources["SelectionBgBrush"] = theme.SelectionBgBrush;
+        Resources["SelectionTextBrush"] = theme.SelectionTextBrush;
+
         RebuildTree();
     }
 
@@ -69,17 +80,12 @@ public partial class KindTreeControl : UserControl
                     FontWeight = FontWeights.SemiBold
                 },
                 IsExpanded = !string.IsNullOrEmpty(filter),
-                FontFamily = AppTheme.FontFamily,
-                FontSize = AppTheme.FontSize,
-                Foreground = _theme.TextPrimaryBrush,
-                Margin = new Thickness(0, 2, 0, 0)
+                Style = (Style)Resources["KindExpanderStyle"]
             };
 
             var listBox = new ListBox
             {
-                Background = Brushes.Transparent,
-                BorderThickness = new Thickness(0),
-                Margin = new Thickness(12, 0, 0, 0),
+                Style = (Style)Resources["KindListBoxStyle"],
                 FontFamily = AppTheme.FontFamily,
                 FontSize = AppTheme.FontSizeSmall
             };
@@ -91,19 +97,9 @@ public partial class KindTreeControl : UserControl
                     Content = kind.EntityType,
                     Tag = kind.KindId,
                     ToolTip = kind.KindId,
-                    Foreground = _theme.TextSecondaryBrush,
-                    Padding = new Thickness(6, 3, 6, 3),
-                    Cursor = Cursors.Hand
+                    Style = (Style)Resources["KindItemStyle"]
                 };
-                item.MouseLeftButtonUp += (_, _) =>
-                {
-                    if (_selectedItem is not null)
-                        _selectedItem.Background = Brushes.Transparent;
-
-                    item.Background = new SolidColorBrush(_theme.CardHover);
-                    _selectedItem = item;
-                    KindSelected?.Invoke(kind.KindId);
-                };
+                item.Selected += (_, _) => KindSelected?.Invoke(kind.KindId);
                 listBox.Items.Add(item);
             }
 
