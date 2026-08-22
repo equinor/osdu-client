@@ -24,13 +24,12 @@ public static class KindPropertyResolver
         var type = ResolveType(kindId);
         if (type is null)
         {
-            // Fallback: return common OSDU properties
             var fallback = GetCommonOsduProperties();
             s_cache[kindId] = fallback;
             return fallback;
         }
 
-        var props = ExtractProperties(type, "", maxDepth: 4);
+        var props = ExtractProperties(type, "", maxDepth: 4, parent: null);
         s_cache[kindId] = props;
         return props;
     }
@@ -71,11 +70,10 @@ public static class KindPropertyResolver
         if (attr is not null)
             return attr.Name;
 
-        // Fallback: convert PascalCase to camelCase (OSDU uses camelCase JSON)
         return JsonNamingPolicy.CamelCase.ConvertName(prop.Name);
     }
 
-    private static List<PropertyInfo> ExtractProperties(Type type, string parentPath, int maxDepth)
+    private static List<PropertyInfo> ExtractProperties(Type type, string parentPath, int maxDepth, PropertyInfo? parent)
     {
         if (maxDepth <= 0) return [];
 
@@ -91,7 +89,8 @@ public static class KindPropertyResolver
                 Name = prop.Name,
                 JsonName = jsonName,
                 Path = fullPath,
-                Kind = ResolvePropertyKind(prop.PropertyType)
+                Kind = ResolvePropertyKind(prop.PropertyType),
+                ParentInfo = parent
             };
 
             // If it's an object type, recursively get children
@@ -100,7 +99,7 @@ public static class KindPropertyResolver
                 var innerType = GetInnerType(prop.PropertyType);
                 if (innerType is not null && !innerType.Namespace?.StartsWith("System") == true)
                 {
-                    propInfo.Children = ExtractProperties(innerType, fullPath, maxDepth - 1);
+                    propInfo.Children = ExtractProperties(innerType, fullPath, maxDepth - 1, propInfo);
                 }
             }
             else if (propInfo.Kind == PropertyKind.Array)
@@ -108,7 +107,7 @@ public static class KindPropertyResolver
                 var elementType = GetCollectionElementType(prop.PropertyType);
                 if (elementType is not null && !elementType.Namespace?.StartsWith("System") == true)
                 {
-                    propInfo.Children = ExtractProperties(elementType, fullPath, maxDepth - 1);
+                    propInfo.Children = ExtractProperties(elementType, fullPath, maxDepth - 1, propInfo);
                 }
             }
 
@@ -153,6 +152,20 @@ public static class KindPropertyResolver
 
     private static List<PropertyInfo> GetCommonOsduProperties()
     {
+        var aclProp = new PropertyInfo { Name = "acl", JsonName = "acl", Path = "acl", Kind = PropertyKind.Object };
+        aclProp.Children =
+        [
+            new() { Name = "viewers", JsonName = "viewers", Path = "acl.viewers", Kind = PropertyKind.Array, ParentInfo = aclProp },
+            new() { Name = "owners", JsonName = "owners", Path = "acl.owners", Kind = PropertyKind.Array, ParentInfo = aclProp },
+        ];
+
+        var legalProp = new PropertyInfo { Name = "legal", JsonName = "legal", Path = "legal", Kind = PropertyKind.Object };
+        legalProp.Children =
+        [
+            new() { Name = "legaltags", JsonName = "legaltags", Path = "legal.legaltags", Kind = PropertyKind.Array, ParentInfo = legalProp },
+            new() { Name = "otherRelevantDataCountries", JsonName = "otherRelevantDataCountries", Path = "legal.otherRelevantDataCountries", Kind = PropertyKind.Array, ParentInfo = legalProp },
+        ];
+
         return
         [
             new() { Name = "id", JsonName = "id", Path = "id", Kind = PropertyKind.String },
@@ -162,16 +175,8 @@ public static class KindPropertyResolver
             new() { Name = "modifyTime", JsonName = "modifyTime", Path = "modifyTime", Kind = PropertyKind.DateTime },
             new() { Name = "createUser", JsonName = "createUser", Path = "createUser", Kind = PropertyKind.String },
             new() { Name = "modifyUser", JsonName = "modifyUser", Path = "modifyUser", Kind = PropertyKind.String },
-            new() { Name = "acl", JsonName = "acl", Path = "acl", Kind = PropertyKind.Object, Children =
-            [
-                new() { Name = "viewers", JsonName = "viewers", Path = "acl.viewers", Kind = PropertyKind.Array },
-                new() { Name = "owners", JsonName = "owners", Path = "acl.owners", Kind = PropertyKind.Array },
-            ]},
-            new() { Name = "legal", JsonName = "legal", Path = "legal", Kind = PropertyKind.Object, Children =
-            [
-                new() { Name = "legaltags", JsonName = "legaltags", Path = "legal.legaltags", Kind = PropertyKind.Array },
-                new() { Name = "otherRelevantDataCountries", JsonName = "otherRelevantDataCountries", Path = "legal.otherRelevantDataCountries", Kind = PropertyKind.Array },
-            ]},
+            aclProp,
+            legalProp,
             new() { Name = "data", JsonName = "data", Path = "data", Kind = PropertyKind.Object },
         ];
     }

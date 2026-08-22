@@ -386,9 +386,9 @@ public partial class FilterWindow : Window
         var prop = _lastResolvedProperty ?? ResolvePropertyByPath(propertyPath);
         var kind = prop?.Kind ?? PropertyKind.String;
 
-        // Templates use Lucene syntax that works with OSDU/Elasticsearch.
-        // "equals" uses phrase match ("value"), "match" uses term match (value).
-        // Prefix wildcards (value*) are reliable; leading wildcards (*value) may not work.
+        // Check if this property is inside a nested array (e.g. data.Curves.CurveID)
+        bool isNested = IsNestedArrayProperty(propertyPath);
+
         List<string> operators = kind switch
         {
             PropertyKind.Number or PropertyKind.DateTime => new List<string>
@@ -417,6 +417,16 @@ public partial class FilterWindow : Window
             }
         };
 
+        // Add nested hint if inside an array field
+        if (isNested)
+        {
+            var nestedPath = GetNestedArrayPath(propertyPath);
+            if (nestedPath is not null)
+            {
+                operators.Insert(0, $"nested({nestedPath}, {propertyPath}:\"value\")  — nested array query");
+            }
+        }
+
         if (!string.IsNullOrEmpty(typed))
         {
             operators.Insert(0, $"{typed}  — literal value");
@@ -426,6 +436,45 @@ public partial class FilterWindow : Window
         }
 
         return operators;
+    }
+
+    /// <summary>Checks if the property path traverses through an array field.</summary>
+    private bool IsNestedArrayProperty(string path)
+    {
+        var segments = path.Split('.');
+        var searchIn = _properties;
+
+        for (int i = 0; i < segments.Length - 1; i++)
+        {
+            var match = searchIn.FirstOrDefault(p =>
+                p.JsonName.Equals(segments[i], StringComparison.OrdinalIgnoreCase));
+            if (match is null) return false;
+            if (match.Kind == PropertyKind.Array) return true;
+            searchIn = match.Children;
+        }
+
+        return false;
+    }
+
+    /// <summary>Gets the dot-path of the nearest array ancestor.</summary>
+    private string? GetNestedArrayPath(string path)
+    {
+        var segments = path.Split('.');
+        var searchIn = _properties;
+        var pathParts = new List<string>();
+
+        for (int i = 0; i < segments.Length - 1; i++)
+        {
+            var match = searchIn.FirstOrDefault(p =>
+                p.JsonName.Equals(segments[i], StringComparison.OrdinalIgnoreCase));
+            if (match is null) return null;
+            pathParts.Add(match.JsonName);
+            if (match.Kind == PropertyKind.Array)
+                return string.Join(".", pathParts);
+            searchIn = match.Children;
+        }
+
+        return null;
     }
 
     private List<string> GetSuggestions(string currentWord)

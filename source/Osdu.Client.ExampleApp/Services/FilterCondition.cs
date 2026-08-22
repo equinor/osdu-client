@@ -16,10 +16,7 @@ public class FilterCondition
     {
         if (string.IsNullOrWhiteSpace(PropertyPath)) return "";
 
-        // OSDU Search uses Elasticsearch Lucene syntax.
-        // Most fields are 'keyword' type — exact match or prefix wildcards only.
-        // Leading wildcards (*value) are generally not supported.
-        return Operator switch
+        var rawQuery = Operator switch
         {
             "equals" => $"{PropertyPath}:\"{EscapeValue(Value)}\"",
             "not equals" => $"(NOT {PropertyPath}:\"{EscapeValue(Value)}\")",
@@ -38,6 +35,50 @@ public class FilterCondition
             "is not null" => $"_exists_:{PropertyPath}",
             _ => $"{PropertyPath}:\"{EscapeValue(Value)}\""
         };
+
+        // Wrap in nested() if the path goes through an array field
+        return WrapNestedIfRequired(rawQuery);
+    }
+
+    /// <summary>
+    /// Detects if the property path traverses an array (nested) field and wraps
+    /// the query with OSDU's <c>nested(parentPath, query)</c> syntax.
+    /// <para>
+    /// Example: <c>data.Curves.CurveID:"MD"</c> becomes
+    /// <c>nested(data.Curves, data.Curves.CurveID:"MD")</c>
+    /// </para>
+    /// </summary>
+    private string WrapNestedIfRequired(string query)
+    {
+        // Walk ancestors from PropertyInfo to find if any parent is an Array type
+        if (PropertyInfo is null) return query;
+
+        // Find the nearest array ancestor in the path
+        var nestedPath = FindNestedArrayPath(PropertyPath);
+        if (nestedPath is null) return query;
+
+        return $"nested({nestedPath}, {query})";
+    }
+
+    /// <summary>
+    /// Finds the nested array parent path by checking the PropertyInfo hierarchy.
+    /// For example, for path "data.Curves.CurveID", if "data.Curves" is an Array,
+    /// returns "data.Curves".
+    /// </summary>
+    private string? FindNestedArrayPath(string fullPath)
+    {
+        if (PropertyInfo?.ParentInfo is null) return null;
+
+        // Walk up the parent chain to find the nearest array ancestor
+        var current = PropertyInfo.ParentInfo;
+        while (current is not null)
+        {
+            if (current.Kind == PropertyKind.Array)
+                return current.Path;
+            current = current.ParentInfo;
+        }
+
+        return null;
     }
 
     /// <summary>Escapes special Lucene characters in the value.</summary>
@@ -45,9 +86,6 @@ public class FilterCondition
     {
         if (string.IsNullOrEmpty(value)) return value;
 
-        // Lucene special characters that need escaping in values:
-        // + - && || ! ( ) { } [ ] ^ " ~ * ? : \ /
-        // We escape them with a backslash, but preserve intentional wildcards.
         var sb = new System.Text.StringBuilder(value.Length + 8);
         foreach (var c in value)
         {
@@ -80,6 +118,13 @@ public class PropertyInfo
     public string JsonName { get; set; } = "";
     public PropertyKind Kind { get; set; } = PropertyKind.String;
     public List<PropertyInfo> Children { get; set; } = [];
+
+    /// <summary>
+    /// Reference to the parent property, used to detect nested array ancestors
+    /// for generating <c>nested()</c> query wrappers.
+    /// </summary>
+    public PropertyInfo? ParentInfo { get; set; }
+
     public string DisplayName => string.IsNullOrEmpty(JsonName) ? Name : JsonName;
 }
 
