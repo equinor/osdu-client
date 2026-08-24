@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/equinor/osdu-client/compare/Osdu.Client-v1.0.1...Osdu.Client-v1.0.2) (2026-08-24)
+
+
+### Bug Fixes
+
+* fixed invalid operation exception caused ([#18](https://github.com/equinor/osdu-client/issues/18)) ([90f0bee](https://github.com/equinor/osdu-client/commit/90f0beea9f3debdb5544fd67c2592f122b1d312d))
+
 ## [1.0.1](https://github.com/equinor/osdu-client/compare/Osdu.Client-v1.0.0...Osdu.Client-v1.0.1) (2026-08-20)
 
 
