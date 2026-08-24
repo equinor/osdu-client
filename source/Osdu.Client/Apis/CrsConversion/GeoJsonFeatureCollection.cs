@@ -27,7 +27,6 @@ public class GeoJsonFeatureCollection
 
     [Required]
     [MinLength(1)]
-    [JsonIgnore]
     [JsonPropertyName("type")]
     public required string Type { get; set; }
 

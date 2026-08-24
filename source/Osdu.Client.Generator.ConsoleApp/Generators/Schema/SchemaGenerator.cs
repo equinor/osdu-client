@@ -133,6 +133,12 @@ public class SchemaGenerator
                 if (!code.Contains($"class {derivedTypeName}"))
                     continue;
 
+                // Only apply [JsonIgnore] if this class actually inherits from a polymorphic base
+                // (i.e., the class declaration contains " : SomeBaseClass")
+                var classPattern = new Regex($@"class\s+{Regex.Escape(derivedTypeName)}\s*:\s*\w+");
+                if (!classPattern.IsMatch(code))
+                    continue;
+
                 // Find the [JsonPropertyName("type")] line that matches the discriminator
                 // and insert [JsonIgnore] before it if not already present
                 string propertyNameAttr = $"[JsonPropertyName(\"{discriminatorName}\")]";
@@ -140,8 +146,9 @@ public class SchemaGenerator
                     continue;
 
                 // Add [JsonIgnore] before the [JsonPropertyName("...")] for the discriminator property
+                // and remove [Required] attribute and 'required' modifier since JsonIgnore prevents deserialization
                 var jsonIgnorePattern = new Regex(
-                    @"(?<indent>[ \t]*)(\[Required\]\s*\n[ \t]*)?" +
+                    @"(?<indent>[ \t]*)\[Required\]\s*\n(?<indent2>[ \t]*)" +
                     Regex.Escape(propertyNameAttr));
 
                 code = jsonIgnorePattern.Replace(code, match =>
@@ -156,8 +163,14 @@ public class SchemaGenerator
                     }
 
                     string indent = match.Groups["indent"].Value;
-                    return $"{indent}[JsonIgnore]\n{match.Value}";
+                    string indent2 = match.Groups["indent2"].Value;
+                    return $"{indent}[JsonIgnore]\n{indent2}{propertyNameAttr}";
                 });
+
+                // Remove 'required' modifier from the discriminator property line
+                var requiredModifierPattern = new Regex(
+                    @"(public\s+)required(\s+\S+\s+" + Regex.Escape(SchemaHelpers.Sanitize(discriminatorName.ToPascalCase())) + @"\s*\{)");
+                code = requiredModifierPattern.Replace(code, "$1$2");
 
                 _context.GeneratedTypes[name] = code;
             }
