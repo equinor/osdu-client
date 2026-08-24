@@ -30,8 +30,34 @@ public static class KindPropertyResolver
         }
 
         var props = ExtractProperties(type, "", maxDepth: 4, parent: null);
+
+        // Merge any common OSDU system properties that are missing from the C# type.
+        // Generated classes may lack properties whose JSON names are C# reserved keywords
+        // (e.g. "namespace") or that are injected by the platform at runtime.
+        MergeSystemProperties(props);
+
         s_cache[kindId] = props;
         return props;
+    }
+
+    /// <summary>
+    /// Ensures all standard OSDU system-level properties are present in the list.
+    /// Properties defined in every OSDU record may be absent from generated C# types
+    /// (e.g. "namespace" is a C# reserved keyword, platform-injected fields like "authority" etc.).
+    /// </summary>
+    private static void MergeSystemProperties(List<PropertyInfo> props)
+    {
+        var systemProperties = GetCommonOsduProperties();
+
+        foreach (var sysProp in systemProperties)
+        {
+            if (!props.Any(p => p.JsonName.Equals(sysProp.JsonName, StringComparison.OrdinalIgnoreCase)))
+            {
+                props.Add(sysProp);
+            }
+        }
+
+        props.Sort((a, b) => string.Compare(a.JsonName, b.JsonName, StringComparison.OrdinalIgnoreCase));
     }
 
     private static Type? ResolveType(string kindId)
@@ -170,13 +196,18 @@ public static class KindPropertyResolver
         [
             new() { Name = "id", JsonName = "id", Path = "id", Kind = PropertyKind.String },
             new() { Name = "kind", JsonName = "kind", Path = "kind", Kind = PropertyKind.String },
+            new() { Name = "namespace", JsonName = "namespace", Path = "namespace", Kind = PropertyKind.String },
+            new() { Name = "type", JsonName = "type", Path = "type", Kind = PropertyKind.String },
             new() { Name = "version", JsonName = "version", Path = "version", Kind = PropertyKind.Number },
             new() { Name = "createTime", JsonName = "createTime", Path = "createTime", Kind = PropertyKind.DateTime },
             new() { Name = "modifyTime", JsonName = "modifyTime", Path = "modifyTime", Kind = PropertyKind.DateTime },
             new() { Name = "createUser", JsonName = "createUser", Path = "createUser", Kind = PropertyKind.String },
             new() { Name = "modifyUser", JsonName = "modifyUser", Path = "modifyUser", Kind = PropertyKind.String },
+            new() { Name = "authority", JsonName = "authority", Path = "authority", Kind = PropertyKind.String },
+            new() { Name = "source", JsonName = "source", Path = "source", Kind = PropertyKind.String },
             aclProp,
             legalProp,
+            new() { Name = "tags", JsonName = "tags", Path = "tags", Kind = PropertyKind.Object },
             new() { Name = "data", JsonName = "data", Path = "data", Kind = PropertyKind.Object },
         ];
     }
