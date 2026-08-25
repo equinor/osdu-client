@@ -15,6 +15,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
+using Osdu.Client.Validation;
 
 namespace Osdu.Client.Apis.Indexer;
 
@@ -103,6 +104,8 @@ public partial class IndexerApiClient : IIndexerApiClient
     /// </summary>
     public async Task<object> PostReindexAsync(RecordReindexRequest body, bool? forceClean = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var queryParts = new List<string>();
         if (forceClean.HasValue)
             queryParts.Add($"force_clean={forceClean.Value.ToString().ToLowerInvariant()}");
@@ -149,6 +152,8 @@ public partial class IndexerApiClient : IIndexerApiClient
     /// </summary>
     public async Task<object> PostReindexRecordsAsync(ReindexRecordsRequest body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/reindex/records";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -224,6 +229,8 @@ public partial class IndexerApiClient : IIndexerApiClient
     /// </summary>
     public async Task<string> DeleteIndexAsync(string kind, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(kind, nameof(kind));
+
         var queryParts = new List<string>();
         queryParts.Add($"kind={Uri.EscapeDataString(kind.ToString()!)}");
         var queryString = queryParts.Count > 0 ? "?" + string.Join("&", queryParts) : "";

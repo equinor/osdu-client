@@ -15,6 +15,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
+using Osdu.Client.Validation;
 
 namespace Osdu.Client.Apis.CrsCatalog;
 
@@ -74,6 +75,8 @@ public partial class CrsCatalogApiClient : ICrsCatalogApiClient
     /// </summary>
     public async Task<PointsInAouSearchResult> PostV3PointsInAouAsync(InPolygonQuery body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/v3/points-in-aou";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -119,6 +122,8 @@ public partial class CrsCatalogApiClient : ICrsCatalogApiClient
     /// </summary>
     public async Task<SearchResponse> PostV3CoordinateTransformationAsync(CoordinateTransformationsQuery body = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/v3/coordinate-transformation";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -164,6 +169,8 @@ public partial class CrsCatalogApiClient : ICrsCatalogApiClient
     /// </summary>
     public async Task<SearchResponse> PostV3CoordinateReferenceSystemAsync(CoordinateReferenceSystemsQuery body = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/v3/coordinate-reference-system";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);

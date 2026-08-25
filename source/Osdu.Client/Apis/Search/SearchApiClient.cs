@@ -15,6 +15,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
+using Osdu.Client.Validation;
 
 namespace Osdu.Client.Apis.Search;
 
@@ -74,6 +75,8 @@ public partial class SearchApiClient : ISearchApiClient
     /// </summary>
     public async Task<CursorQueryResponse> PostQueryWithCursorAsync(CursorQueryRequest body, bool? searchAfter = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var queryParts = new List<string>();
         if (searchAfter.HasValue)
             queryParts.Add($"search_after={searchAfter.Value.ToString().ToLowerInvariant()}");
@@ -98,6 +101,8 @@ public partial class SearchApiClient : ISearchApiClient
     /// </summary>
     public async Task<QueryResponse> PostQueryAsync(QueryRequest body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/query";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -173,6 +178,8 @@ public partial class SearchApiClient : ISearchApiClient
     /// </summary>
     public async Task<CursorQueryResponse> DeleteQueryWithCursorByCursorAsync(string cursor, bool? searchAfter = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(cursor, nameof(cursor));
+
         var queryParts = new List<string>();
         if (searchAfter.HasValue)
             queryParts.Add($"search_after={searchAfter.Value.ToString().ToLowerInvariant()}");

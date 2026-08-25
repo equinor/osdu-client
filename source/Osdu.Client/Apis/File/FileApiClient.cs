@@ -15,6 +15,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
+using Osdu.Client.Validation;
 
 namespace Osdu.Client.Apis.File;
 
@@ -89,6 +90,8 @@ public partial class FileApiClient : IFileApiClient
     /// </summary>
     public async Task<string> PostV2FilesRevokeURLAsync(object body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNull(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/v2/files/revokeURL";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -108,6 +111,8 @@ public partial class FileApiClient : IFileApiClient
     /// </summary>
     public async Task<FileMetadataResponse> PostV2FilesMetadataAsync(FileMetadata body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/v2/files/metadata";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -183,6 +188,8 @@ public partial class FileApiClient : IFileApiClient
     /// </summary>
     public async Task<RecordVersion> GetV2FilesMetadataByIdAsync(string id, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(id, nameof(id));
+
         var requestUrl = $"{_baseUrl}/v2/files/{id}/metadata";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -202,6 +209,8 @@ public partial class FileApiClient : IFileApiClient
     /// </summary>
     public async Task<string> DeleteV2FilesMetadataByIdAsync(string id, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(id, nameof(id));
+
         var requestUrl = $"{_baseUrl}/v2/files/{id}/metadata";
 
         using var request = new HttpRequestMessage(HttpMethod.Delete, requestUrl);
@@ -220,6 +229,8 @@ public partial class FileApiClient : IFileApiClient
     /// </summary>
     public async Task<DownloadUrlResponse> GetV2FilesDownloadURLByIdAsync(string id, string expiryTime = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(id, nameof(id));
+
         var queryParts = new List<string>();
         if (expiryTime is not null)
             queryParts.Add($"expiryTime={Uri.EscapeDataString(expiryTime.ToString()!)}");

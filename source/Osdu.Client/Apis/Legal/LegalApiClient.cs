@@ -15,6 +15,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
+using Osdu.Client.Validation;
 
 namespace Osdu.Client.Apis.Legal;
 
@@ -132,6 +133,8 @@ public partial class LegalApiClient : ILegalApiClient
     /// </summary>
     public async Task<LegalTagDto> PutLegaltagsAsync(UpdateLegalTag body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/legaltags";
 
         using var request = new HttpRequestMessage(HttpMethod.Put, requestUrl);
@@ -152,6 +155,8 @@ public partial class LegalApiClient : ILegalApiClient
     /// </summary>
     public async Task<LegalTagDto> PostLegaltagsAsync(LegalTagDto body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/legaltags";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -172,6 +177,8 @@ public partial class LegalApiClient : ILegalApiClient
     /// </summary>
     public async Task<InvalidTagsWithReason> PostLegaltagsValidateAsync(RequestLegalTags body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/legaltags:validate";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -192,6 +199,8 @@ public partial class LegalApiClient : ILegalApiClient
     /// </summary>
     public async Task<LegalTagDtos> PostLegaltagsQueryAsync(QueryLegalTag body, bool? valid = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var queryParts = new List<string>();
         if (valid.HasValue)
             queryParts.Add($"valid={valid.Value.ToString().ToLowerInvariant()}");
@@ -216,6 +225,8 @@ public partial class LegalApiClient : ILegalApiClient
     /// </summary>
     public async Task<LegalTagDtos> PostLegaltagsBatchRetrieveAsync(RequestLegalTags body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/legaltags:batchRetrieve";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -255,6 +266,8 @@ public partial class LegalApiClient : ILegalApiClient
     /// </summary>
     public async Task<LegalTagDto> GetLegaltagsByNameAsync(string name, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(name, nameof(name));
+
         var requestUrl = $"{_baseUrl}/legaltags/{name}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -274,6 +287,8 @@ public partial class LegalApiClient : ILegalApiClient
     /// </summary>
     public async Task<string> DeleteLegaltagsByNameAsync(string name, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(name, nameof(name));
+
         var requestUrl = $"{_baseUrl}/legaltags/{name}";
 
         using var request = new HttpRequestMessage(HttpMethod.Delete, requestUrl);
