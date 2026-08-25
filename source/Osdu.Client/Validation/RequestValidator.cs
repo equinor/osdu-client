@@ -68,7 +68,7 @@ internal static class RequestValidator
 
         if (!Validator.TryValidateObject(instance, context, results, validateAllProperties: true))
         {
-            var errors = string.Join("; ", results.ConvertAll(r => r.ErrorMessage));
+            var errors = string.Join($"{Environment.NewLine}", results.ConvertAll(r => r.ErrorMessage));
             throw new ArgumentException($"Request validation failed: {errors}", parameterName);
         }
 
@@ -98,7 +98,7 @@ internal static class RequestValidator
 
             if (!Validator.TryValidateObject(items[i], context, results, validateAllProperties: true))
             {
-                var errors = string.Join("; ", results.ConvertAll(r => r.ErrorMessage));
+                var errors = string.Join($"{Environment.NewLine}", results.ConvertAll(r => r.ErrorMessage));
                 throw new ArgumentException($"Request validation failed for item at index {i}: {errors}", parameterName);
             }
 
@@ -170,7 +170,7 @@ internal static class RequestValidator
 
         if (!Validator.TryValidateObject(instance, context, results, validateAllProperties: true))
         {
-            var errors = string.Join("; ", results.ConvertAll(r => r.ErrorMessage));
+            var errors = string.Join($"{Environment.NewLine}", results.ConvertAll(r => r.ErrorMessage));
             var prefix = itemIndex.HasValue
                 ? $"Request validation failed for item at index {itemIndex.Value}, property '{propertyName}'"
                 : $"Request validation failed for property '{propertyName}'";
