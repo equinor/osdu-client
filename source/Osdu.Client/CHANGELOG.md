@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.3](https://github.com/equinor/osdu-client/compare/Osdu.Client-v1.0.2...Osdu.Client-v1.0.3) (2026-08-26)
+
+
+### Bug Fixes
+
+* added request and data validations when calling an API endpoint ([#22](https://github.com/equinor/osdu-client/issues/22)) ([ab33fff](https://github.com/equinor/osdu-client/commit/ab33fff1f12b44762ddc16db038bf80109e91e28))
+
 ## [1.0.2](https://github.com/equinor/osdu-client/compare/Osdu.Client-v1.0.1...Osdu.Client-v1.0.2) (2026-08-24)
 
 
