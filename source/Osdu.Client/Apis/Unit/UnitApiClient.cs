@@ -15,6 +15,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
+using Osdu.Client.Validation;
 
 namespace Osdu.Client.Apis.Unit;
 
@@ -199,6 +200,8 @@ public partial class UnitApiClient : IUnitApiClient
     /// </summary>
     public async Task<UnitSystem> GetV3UnitsystemAsync(string name, int? offset = default, int? limit = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(name, nameof(name));
+
         var queryParts = new List<string>();
         queryParts.Add($"name={Uri.EscapeDataString(name.ToString()!)}");
         if (offset is not null)
@@ -225,6 +228,8 @@ public partial class UnitApiClient : IUnitApiClient
     /// </summary>
     public async Task<UnitSystem> PostV3UnitsystemAsync(UnitSystemRequest body, int? offset = default, int? limit = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var queryParts = new List<string>();
         if (offset is not null)
             queryParts.Add($"offset={Uri.EscapeDataString(offset.ToString()!)}");
@@ -276,6 +281,8 @@ public partial class UnitApiClient : IUnitApiClient
     /// </summary>
     public async Task<Unit> PostV3UnitAsync(UnitRequest body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/v3/unit";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -296,6 +303,9 @@ public partial class UnitApiClient : IUnitApiClient
     /// </summary>
     public async Task<Unit> GetV3UnitUnitsystemAsync(string unitSystemName, string ancestry, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(unitSystemName, nameof(unitSystemName));
+        RequestValidator.RequireNotNullOrEmpty(ancestry, nameof(ancestry));
+
         var queryParts = new List<string>();
         queryParts.Add($"unitSystemName={Uri.EscapeDataString(unitSystemName.ToString()!)}");
         queryParts.Add($"ancestry={Uri.EscapeDataString(ancestry.ToString()!)}");
@@ -319,6 +329,9 @@ public partial class UnitApiClient : IUnitApiClient
     /// </summary>
     public async Task<Unit> PostV3UnitUnitsystemAsync(string unitSystemName, MeasurementRequest body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(unitSystemName, nameof(unitSystemName));
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var queryParts = new List<string>();
         queryParts.Add($"unitSystemName={Uri.EscapeDataString(unitSystemName.ToString()!)}");
         var queryString = queryParts.Count > 0 ? "?" + string.Join("&", queryParts) : "";
@@ -342,6 +355,8 @@ public partial class UnitApiClient : IUnitApiClient
     /// </summary>
     public async Task<QueryResult> PostV3UnitSearchAsync(SearchRequest body, int? offset = default, int? limit = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var queryParts = new List<string>();
         if (offset is not null)
             queryParts.Add($"offset={Uri.EscapeDataString(offset.ToString()!)}");
@@ -368,6 +383,8 @@ public partial class UnitApiClient : IUnitApiClient
     /// </summary>
     public async Task<QueryResult> GetV3UnitMeasurementAsync(string ancestry, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(ancestry, nameof(ancestry));
+
         var queryParts = new List<string>();
         queryParts.Add($"ancestry={Uri.EscapeDataString(ancestry.ToString()!)}");
         var queryString = queryParts.Count > 0 ? "?" + string.Join("&", queryParts) : "";
@@ -390,6 +407,8 @@ public partial class UnitApiClient : IUnitApiClient
     /// </summary>
     public async Task<QueryResult> PostV3UnitMeasurementAsync(MeasurementRequest body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/v3/unit/measurement";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -410,6 +429,8 @@ public partial class UnitApiClient : IUnitApiClient
     /// </summary>
     public async Task<QueryResult> GetV3UnitMeasurementPreferredAsync(string ancestry, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(ancestry, nameof(ancestry));
+
         var queryParts = new List<string>();
         queryParts.Add($"ancestry={Uri.EscapeDataString(ancestry.ToString()!)}");
         var queryString = queryParts.Count > 0 ? "?" + string.Join("&", queryParts) : "";
@@ -432,6 +453,8 @@ public partial class UnitApiClient : IUnitApiClient
     /// </summary>
     public async Task<QueryResult> PostV3UnitMeasurementPreferredAsync(MeasurementRequest body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/v3/unit/measurement/preferred";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -452,6 +475,8 @@ public partial class UnitApiClient : IUnitApiClient
     /// </summary>
     public async Task<Measurement> GetV3MeasurementAsync(string ancestry, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(ancestry, nameof(ancestry));
+
         var queryParts = new List<string>();
         queryParts.Add($"ancestry={Uri.EscapeDataString(ancestry.ToString()!)}");
         var queryString = queryParts.Count > 0 ? "?" + string.Join("&", queryParts) : "";
@@ -474,6 +499,8 @@ public partial class UnitApiClient : IUnitApiClient
     /// </summary>
     public async Task<Measurement> PostV3MeasurementAsync(MeasurementRequest body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/v3/measurement";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -494,6 +521,8 @@ public partial class UnitApiClient : IUnitApiClient
     /// </summary>
     public async Task<QueryResult> PostV3MeasurementSearchAsync(SearchRequest body, int? offset = default, int? limit = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var queryParts = new List<string>();
         if (offset is not null)
             queryParts.Add($"offset={Uri.EscapeDataString(offset.ToString()!)}");
@@ -520,6 +549,10 @@ public partial class UnitApiClient : IUnitApiClient
     /// </summary>
     public async Task<ConversionResult> GetV3ConversionScaleAsync(string namespaces, string fromSymbol, string toSymbol, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(namespaces, nameof(namespaces));
+        RequestValidator.RequireNotNullOrEmpty(fromSymbol, nameof(fromSymbol));
+        RequestValidator.RequireNotNullOrEmpty(toSymbol, nameof(toSymbol));
+
         var queryParts = new List<string>();
         queryParts.Add($"namespaces={Uri.EscapeDataString(namespaces.ToString()!)}");
         queryParts.Add($"fromSymbol={Uri.EscapeDataString(fromSymbol.ToString()!)}");
@@ -544,6 +577,8 @@ public partial class UnitApiClient : IUnitApiClient
     /// </summary>
     public async Task<ConversionResult> PostV3ConversionScaleAsync(ConversionScaleOffsetRequest body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/v3/conversion/scale";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -564,6 +599,10 @@ public partial class UnitApiClient : IUnitApiClient
     /// </summary>
     public async Task<ConversionResult> GetV3ConversionAbcdAsync(string namespaces, string fromSymbol, string toSymbol, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(namespaces, nameof(namespaces));
+        RequestValidator.RequireNotNullOrEmpty(fromSymbol, nameof(fromSymbol));
+        RequestValidator.RequireNotNullOrEmpty(toSymbol, nameof(toSymbol));
+
         var queryParts = new List<string>();
         queryParts.Add($"namespaces={Uri.EscapeDataString(namespaces.ToString()!)}");
         queryParts.Add($"fromSymbol={Uri.EscapeDataString(fromSymbol.ToString()!)}");
@@ -588,6 +627,8 @@ public partial class UnitApiClient : IUnitApiClient
     /// </summary>
     public async Task<ConversionResult> PostV3ConversionAbcdAsync(ConversionABCDRequest body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/v3/conversion/abcd";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -608,6 +649,8 @@ public partial class UnitApiClient : IUnitApiClient
     /// </summary>
     public async Task<QueryResult> PostV3CatalogSearchAsync(SearchRequest body, int? offset = default, int? limit = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var queryParts = new List<string>();
         if (offset is not null)
             queryParts.Add($"offset={Uri.EscapeDataString(offset.ToString()!)}");
@@ -659,6 +702,8 @@ public partial class UnitApiClient : IUnitApiClient
     /// </summary>
     public async Task<QueryResult> GetV3UnitSymbolsAsync(string symbol, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(symbol, nameof(symbol));
+
         var queryParts = new List<string>();
         queryParts.Add($"symbol={Uri.EscapeDataString(symbol.ToString()!)}");
         var queryString = queryParts.Count > 0 ? "?" + string.Join("&", queryParts) : "";
@@ -681,6 +726,9 @@ public partial class UnitApiClient : IUnitApiClient
     /// </summary>
     public async Task<Unit> GetV3UnitSymbolAsync(string namespaces, string symbol, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(namespaces, nameof(namespaces));
+        RequestValidator.RequireNotNullOrEmpty(symbol, nameof(symbol));
+
         var queryParts = new List<string>();
         queryParts.Add($"namespaces={Uri.EscapeDataString(namespaces.ToString()!)}");
         queryParts.Add($"symbol={Uri.EscapeDataString(symbol.ToString()!)}");

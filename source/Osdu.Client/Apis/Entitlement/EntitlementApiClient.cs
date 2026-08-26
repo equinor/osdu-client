@@ -15,6 +15,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
+using Osdu.Client.Validation;
 
 namespace Osdu.Client.Apis.Entitlement;
 
@@ -119,6 +120,8 @@ public partial class EntitlementApiClient : IEntitlementApiClient
     /// </summary>
     public async Task<InitServiceDto> PostTenantProvisioningAsync(InitServiceDto body = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/tenant-provisioning";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -162,6 +165,8 @@ public partial class EntitlementApiClient : IEntitlementApiClient
     /// </summary>
     public async Task<GroupDto> PostGroupsAsync(CreateGroupDto body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/groups";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -182,6 +187,8 @@ public partial class EntitlementApiClient : IEntitlementApiClient
     /// </summary>
     public async Task<ListMemberResponseDto> GetGroupsMembersByGroupEmailAsync(string groupEmail, string role = default, bool? includeType = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(groupEmail, nameof(groupEmail));
+
         var queryParts = new List<string>();
         if (role is not null)
             queryParts.Add($"role={Uri.EscapeDataString(role.ToString()!)}");
@@ -207,6 +214,9 @@ public partial class EntitlementApiClient : IEntitlementApiClient
     /// </summary>
     public async Task<AddMemberDto> PostGroupsMembersByGroupEmailAsync(string groupEmail, AddMemberDto body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(groupEmail, nameof(groupEmail));
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/groups/{groupEmail}/members";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -227,6 +237,8 @@ public partial class EntitlementApiClient : IEntitlementApiClient
     /// </summary>
     public async Task<string> DeleteGroupsByGroupEmailAsync(string groupEmail, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(groupEmail, nameof(groupEmail));
+
         var requestUrl = $"{_baseUrl}/groups/{groupEmail}";
 
         using var request = new HttpRequestMessage(HttpMethod.Delete, requestUrl);
@@ -245,6 +257,9 @@ public partial class EntitlementApiClient : IEntitlementApiClient
     /// </summary>
     public async Task<UpdateGroupResponseDto> PatchGroupsByGroupEmailAsync(string groupEmail, List<UpdateGroupOperation> body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(groupEmail, nameof(groupEmail));
+        RequestValidator.ValidateObjectList(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/groups/{groupEmail}";
 
         using var request = new HttpRequestMessage(HttpMethod.Patch, requestUrl);
@@ -265,6 +280,9 @@ public partial class EntitlementApiClient : IEntitlementApiClient
     /// </summary>
     public async Task<ListGroupResponseDto> GetMembersGroupsByMemberEmailAsync(string memberEmail, string type, string appid = default, bool? roleRequired = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(memberEmail, nameof(memberEmail));
+        RequestValidator.RequireNotNullOrEmpty(type, nameof(type));
+
         var queryParts = new List<string>();
         queryParts.Add($"type={Uri.EscapeDataString(type.ToString()!)}");
         if (appid is not null)
@@ -310,6 +328,8 @@ public partial class EntitlementApiClient : IEntitlementApiClient
     /// </summary>
     public async Task<ListMemberResponseDto> GetGroupsMembersCountByGroupEmailAsync(string groupEmail, string role = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(groupEmail, nameof(groupEmail));
+
         var queryParts = new List<string>();
         if (role is not null)
             queryParts.Add($"role={Uri.EscapeDataString(role.ToString()!)}");
@@ -333,6 +353,8 @@ public partial class EntitlementApiClient : IEntitlementApiClient
     /// </summary>
     public async Task<ListGroupsOfPartitionDto> GetGroupsAllAsync(string type, string cursor = default, int? limit = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(type, nameof(type));
+
         var queryParts = new List<string>();
         queryParts.Add($"type={Uri.EscapeDataString(type.ToString()!)}");
         if (cursor is not null)
@@ -395,6 +417,8 @@ public partial class EntitlementApiClient : IEntitlementApiClient
     /// </summary>
     public async Task<string> DeleteMembersByMemberEmailAsync(string memberEmail, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(memberEmail, nameof(memberEmail));
+
         var requestUrl = $"{_baseUrl}/members/{memberEmail}";
 
         using var request = new HttpRequestMessage(HttpMethod.Delete, requestUrl);
@@ -413,6 +437,9 @@ public partial class EntitlementApiClient : IEntitlementApiClient
     /// </summary>
     public async Task<string> DeleteGroupsMembersByGroupEmailAndMemberEmailAsync(string groupEmail, string memberEmail, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(groupEmail, nameof(groupEmail));
+        RequestValidator.RequireNotNullOrEmpty(memberEmail, nameof(memberEmail));
+
         var requestUrl = $"{_baseUrl}/groups/{groupEmail}/members/{memberEmail}";
 
         using var request = new HttpRequestMessage(HttpMethod.Delete, requestUrl);

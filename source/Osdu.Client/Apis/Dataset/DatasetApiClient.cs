@@ -15,6 +15,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
+using Osdu.Client.Validation;
 
 namespace Osdu.Client.Apis.Dataset;
 
@@ -99,6 +100,8 @@ public partial class DatasetApiClient : IDatasetApiClient
     /// </summary>
     public async Task<GetCreateUpdateDatasetRegistryResponse> PutRegisterDatasetAsync(CreateDatasetRegistryRequest body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/registerDataset";
 
         using var request = new HttpRequestMessage(HttpMethod.Put, requestUrl);
@@ -119,6 +122,8 @@ public partial class DatasetApiClient : IDatasetApiClient
     /// </summary>
     public async Task<GetDatasetStorageInstructionsResponse> PostStorageInstructionsAsync(string kindSubType, string expiryTime = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(kindSubType, nameof(kindSubType));
+
         var queryParts = new List<string>();
         queryParts.Add($"kindSubType={Uri.EscapeDataString(kindSubType.ToString()!)}");
         if (expiryTime is not null)
@@ -143,6 +148,9 @@ public partial class DatasetApiClient : IDatasetApiClient
     /// </summary>
     public async Task<string> PostRevokeURLAsync(string kindSubType, object body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(kindSubType, nameof(kindSubType));
+        RequestValidator.RequireNotNull(body, nameof(body));
+
         var queryParts = new List<string>();
         queryParts.Add($"kindSubType={Uri.EscapeDataString(kindSubType.ToString()!)}");
         var queryString = queryParts.Count > 0 ? "?" + string.Join("&", queryParts) : "";
@@ -165,6 +173,8 @@ public partial class DatasetApiClient : IDatasetApiClient
     /// </summary>
     public async Task<RetrievalInstructionsResponse> GetRetrievalInstructionsAsync(string id, string expiryTime = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(id, nameof(id));
+
         var queryParts = new List<string>();
         queryParts.Add($"id={Uri.EscapeDataString(id.ToString()!)}");
         if (expiryTime is not null)
@@ -189,6 +199,8 @@ public partial class DatasetApiClient : IDatasetApiClient
     /// </summary>
     public async Task<RetrievalInstructionsResponse> PostRetrievalInstructionsAsync(GetDatasetRegistryRequest body, string expiryTime = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var queryParts = new List<string>();
         if (expiryTime is not null)
             queryParts.Add($"expiryTime={Uri.EscapeDataString(expiryTime.ToString()!)}");
@@ -213,6 +225,8 @@ public partial class DatasetApiClient : IDatasetApiClient
     /// </summary>
     public async Task<GetCreateUpdateDatasetRegistryResponse> PostMetadataRecordUndeleteByIdAsync(string id, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(id, nameof(id));
+
         var requestUrl = $"{_baseUrl}/metadataRecord/{id}/undelete";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -232,6 +246,8 @@ public partial class DatasetApiClient : IDatasetApiClient
     /// </summary>
     public async Task<string> PostMetadataRecordSoftDeleteByIdAsync(string id, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(id, nameof(id));
+
         var requestUrl = $"{_baseUrl}/metadataRecord/{id}/softDelete";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -250,6 +266,8 @@ public partial class DatasetApiClient : IDatasetApiClient
     /// </summary>
     public async Task<GetCreateUpdateDatasetRegistryResponse> GetGetDatasetRegistryAsync(string id, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(id, nameof(id));
+
         var queryParts = new List<string>();
         queryParts.Add($"id={Uri.EscapeDataString(id.ToString()!)}");
         var queryString = queryParts.Count > 0 ? "?" + string.Join("&", queryParts) : "";
@@ -272,6 +290,8 @@ public partial class DatasetApiClient : IDatasetApiClient
     /// </summary>
     public async Task<GetCreateUpdateDatasetRegistryResponse> PostGetDatasetRegistryAsync(GetDatasetRegistryRequest body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/getDatasetRegistry";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);

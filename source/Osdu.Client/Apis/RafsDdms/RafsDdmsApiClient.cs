@@ -15,6 +15,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
+using Osdu.Client.Validation;
 
 namespace Osdu.Client.Apis.RafsDdms;
 
@@ -373,6 +374,8 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<object> GetSamplesanalysesreportByRecordIdAsync(string recordId, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+
         var requestUrl = $"{_baseUrl}/api/rafs-ddms/v2/samplesanalysesreport/{recordId}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -392,6 +395,8 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<string> DeleteSamplesanalysesreportByRecordIdAsync(string recordId, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+
         var requestUrl = $"{_baseUrl}/api/rafs-ddms/v2/samplesanalysesreport/{recordId}";
 
         using var request = new HttpRequestMessage(HttpMethod.Delete, requestUrl);
@@ -410,6 +415,8 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<object> GetSamplesanalysesreportVersionsByRecordIdAsync(string recordId, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+
         var requestUrl = $"{_baseUrl}/api/rafs-ddms/v2/samplesanalysesreport/{recordId}/versions";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -429,6 +436,8 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<object> GetSamplesanalysesreportVersionsByRecordIdAndVersionAsync(string recordId, int version, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+
         var requestUrl = $"{_baseUrl}/api/rafs-ddms/v2/samplesanalysesreport/{recordId}/versions/{version}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -448,6 +457,8 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<StorageUpsertResponse> PostSamplesanalysesreportAsync(List<object> body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmptyList(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/api/rafs-ddms/v2/samplesanalysesreport";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -468,6 +479,8 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<object> GetSamplesanalysesreportSourceByRecordIdAsync(string recordId, string version = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+
         var queryParts = new List<string>();
         if (version is not null)
             queryParts.Add($"version={Uri.EscapeDataString(version.ToString()!)}");
@@ -510,6 +523,8 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<object> GetSamplesanalysisByRecordIdAsync(string recordId, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+
         var requestUrl = $"{_baseUrl}/api/rafs-ddms/v2/samplesanalysis/{recordId}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -529,6 +544,8 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<string> DeleteSamplesanalysisByRecordIdAsync(string recordId, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+
         var requestUrl = $"{_baseUrl}/api/rafs-ddms/v2/samplesanalysis/{recordId}";
 
         using var request = new HttpRequestMessage(HttpMethod.Delete, requestUrl);
@@ -547,6 +564,8 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<object> GetSamplesanalysisVersionsByRecordIdAsync(string recordId, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+
         var requestUrl = $"{_baseUrl}/api/rafs-ddms/v2/samplesanalysis/{recordId}/versions";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -566,6 +585,8 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<object> GetSamplesanalysisVersionsByRecordIdAndVersionAsync(string recordId, int version, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+
         var requestUrl = $"{_baseUrl}/api/rafs-ddms/v2/samplesanalysis/{recordId}/versions/{version}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -585,6 +606,8 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<StorageUpsertResponse> PostSamplesanalysisAsync(List<object> body = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmptyList(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/api/rafs-ddms/v2/samplesanalysis";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -605,6 +628,8 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<object> GetSamplesanalysisDataSchemaByAnalysistypeAsync(string contentSchemaVersion, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(contentSchemaVersion, nameof(contentSchemaVersion));
+
         var queryParts = new List<string>();
         queryParts.Add($"content_schema_version={Uri.EscapeDataString(contentSchemaVersion.ToString()!)}");
         var queryString = queryParts.Count > 0 ? "?" + string.Join("&", queryParts) : "";
@@ -627,6 +652,11 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<object> GetSamplesanalysisDataByRecordIdAndAnalysisTypeAndContentIdAsync(string analysisType, string contentId, string recordId, string contentSchemaVersion, string depthShiftPolicy = default, string depthShiftId = default, string columnsFilter = default, string rowsFilter = default, string columnsAggregation = default, string orient = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(analysisType, nameof(analysisType));
+        RequestValidator.RequireNotNullOrEmpty(contentId, nameof(contentId));
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+        RequestValidator.RequireNotNullOrEmpty(contentSchemaVersion, nameof(contentSchemaVersion));
+
         var queryParts = new List<string>();
         queryParts.Add($"content_schema_version={Uri.EscapeDataString(contentSchemaVersion.ToString()!)}");
         if (depthShiftPolicy is not null)
@@ -661,6 +691,11 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<object> PostSamplesanalysisDataByRecordIdAndAnalysisTypeAsync(string analysisType, string recordId, string contentSchemaVersion, object body = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(analysisType, nameof(analysisType));
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+        RequestValidator.RequireNotNullOrEmpty(contentSchemaVersion, nameof(contentSchemaVersion));
+        RequestValidator.RequireNotNull(body, nameof(body));
+
         var queryParts = new List<string>();
         queryParts.Add($"content_schema_version={Uri.EscapeDataString(contentSchemaVersion.ToString()!)}");
         var queryString = queryParts.Count > 0 ? "?" + string.Join("&", queryParts) : "";
@@ -684,6 +719,9 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<object> GetSamplesanalysisSearchByAnalysisTypeAsync(string analysisType, string contentSchemaVersion, string basinId = default, string fieldId = default, string wellId = default, string wellboreId = default, string columnsFilter = default, string rowsFilter = default, string columnsAggregation = default, int? offset = default, int? pageLimit = default, string indexedStartDate = default, string indexedEndDate = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(analysisType, nameof(analysisType));
+        RequestValidator.RequireNotNullOrEmpty(contentSchemaVersion, nameof(contentSchemaVersion));
+
         var queryParts = new List<string>();
         queryParts.Add($"content_schema_version={Uri.EscapeDataString(contentSchemaVersion.ToString()!)}");
         if (basinId is not null)
@@ -728,6 +766,9 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<object> GetSamplesanalysisSearchDataByAnalysisTypeAsync(string analysisType, string contentSchemaVersion, string basinId = default, string fieldId = default, string wellId = default, string wellboreId = default, string depthShiftPolicy = default, string depthShiftId = default, string columnsFilter = default, string rowsFilter = default, string columnsAggregation = default, string orient = default, int? offset = default, int? pageLimit = default, string indexedStartDate = default, string indexedEndDate = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(analysisType, nameof(analysisType));
+        RequestValidator.RequireNotNullOrEmpty(contentSchemaVersion, nameof(contentSchemaVersion));
+
         var queryParts = new List<string>();
         queryParts.Add($"content_schema_version={Uri.EscapeDataString(contentSchemaVersion.ToString()!)}");
         if (basinId is not null)
@@ -778,6 +819,8 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<object> GetSaturationfunctionsetSearchAsync(string contentSchemaVersion, string basinId = default, string fieldId = default, string columnsFilter = default, string rowsFilter = default, string columnsAggregation = default, int? offset = default, int? pageLimit = default, string indexedStartDate = default, string indexedEndDate = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(contentSchemaVersion, nameof(contentSchemaVersion));
+
         var queryParts = new List<string>();
         queryParts.Add($"content_schema_version={Uri.EscapeDataString(contentSchemaVersion.ToString()!)}");
         if (basinId is not null)
@@ -818,6 +861,8 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<object> GetSaturationfunctionsetSearchDataAsync(string contentSchemaVersion, string basinId = default, string fieldId = default, string columnsFilter = default, string rowsFilter = default, string columnsAggregation = default, string orient = default, int? offset = default, int? pageLimit = default, string indexedStartDate = default, string indexedEndDate = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(contentSchemaVersion, nameof(contentSchemaVersion));
+
         var queryParts = new List<string>();
         queryParts.Add($"content_schema_version={Uri.EscapeDataString(contentSchemaVersion.ToString()!)}");
         if (basinId is not null)
@@ -860,6 +905,8 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<object> GetSaturationfunctionsetByRecordIdAsync(string recordId, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+
         var requestUrl = $"{_baseUrl}/api/rafs-ddms/v2/saturationfunctionset/{recordId}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -879,6 +926,8 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<string> DeleteSaturationfunctionsetByRecordIdAsync(string recordId, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+
         var requestUrl = $"{_baseUrl}/api/rafs-ddms/v2/saturationfunctionset/{recordId}";
 
         using var request = new HttpRequestMessage(HttpMethod.Delete, requestUrl);
@@ -897,6 +946,8 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<object> GetSaturationfunctionsetVersionsByRecordIdAsync(string recordId, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+
         var requestUrl = $"{_baseUrl}/api/rafs-ddms/v2/saturationfunctionset/{recordId}/versions";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -916,6 +967,8 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<object> GetSaturationfunctionsetVersionsByRecordIdAndVersionAsync(string recordId, int version, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+
         var requestUrl = $"{_baseUrl}/api/rafs-ddms/v2/saturationfunctionset/{recordId}/versions/{version}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -935,6 +988,8 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<StorageUpsertResponse> PostSaturationfunctionsetAsync(List<object> body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmptyList(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/api/rafs-ddms/v2/saturationfunctionset";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -955,6 +1010,8 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<object> GetSaturationfunctionsetDataSchemaAsync(string contentSchemaVersion, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(contentSchemaVersion, nameof(contentSchemaVersion));
+
         var queryParts = new List<string>();
         queryParts.Add($"content_schema_version={Uri.EscapeDataString(contentSchemaVersion.ToString()!)}");
         var queryString = queryParts.Count > 0 ? "?" + string.Join("&", queryParts) : "";
@@ -977,6 +1034,10 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<object> GetSaturationfunctionsetDataByRecordIdAndContentIdAsync(string contentId, string recordId, string contentSchemaVersion, string columnsFilter = default, string rowsFilter = default, string columnsAggregation = default, string orient = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(contentId, nameof(contentId));
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+        RequestValidator.RequireNotNullOrEmpty(contentSchemaVersion, nameof(contentSchemaVersion));
+
         var queryParts = new List<string>();
         queryParts.Add($"content_schema_version={Uri.EscapeDataString(contentSchemaVersion.ToString()!)}");
         if (columnsFilter is not null)
@@ -1007,6 +1068,10 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<object> PostSaturationfunctionsetDataByRecordIdAsync(string recordId, string contentSchemaVersion, object body = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+        RequestValidator.RequireNotNullOrEmpty(contentSchemaVersion, nameof(contentSchemaVersion));
+        RequestValidator.RequireNotNull(body, nameof(body));
+
         var queryParts = new List<string>();
         queryParts.Add($"content_schema_version={Uri.EscapeDataString(contentSchemaVersion.ToString()!)}");
         var queryString = queryParts.Count > 0 ? "?" + string.Join("&", queryParts) : "";
@@ -1030,6 +1095,8 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<object> GetMasterdataByRecordIdAsync(string recordId, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+
         var requestUrl = $"{_baseUrl}/api/rafs-ddms/v2/masterdata/{recordId}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -1049,6 +1116,8 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<string> DeleteMasterdataByRecordIdAsync(string recordId, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+
         var requestUrl = $"{_baseUrl}/api/rafs-ddms/v2/masterdata/{recordId}";
 
         using var request = new HttpRequestMessage(HttpMethod.Delete, requestUrl);
@@ -1067,6 +1136,8 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<object> GetMasterdataVersionsByRecordIdAsync(string recordId, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+
         var requestUrl = $"{_baseUrl}/api/rafs-ddms/v2/masterdata/{recordId}/versions";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -1086,6 +1157,8 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<object> GetMasterdataVersionsByRecordIdAndVersionAsync(string recordId, int version, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+
         var requestUrl = $"{_baseUrl}/api/rafs-ddms/v2/masterdata/{recordId}/versions/{version}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -1105,6 +1178,8 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<StorageUpsertResponse> PostMasterdataAsync(List<object> body = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmptyList(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/api/rafs-ddms/v2/masterdata";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -1125,6 +1200,8 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<object> GetReservoirsimulationrockphysicsmodelSearchAsync(string contentSchemaVersion, string basinId = default, string fieldId = default, string columnsFilter = default, string rowsFilter = default, string columnsAggregation = default, int? offset = default, int? pageLimit = default, string indexedStartDate = default, string indexedEndDate = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(contentSchemaVersion, nameof(contentSchemaVersion));
+
         var queryParts = new List<string>();
         queryParts.Add($"content_schema_version={Uri.EscapeDataString(contentSchemaVersion.ToString()!)}");
         if (basinId is not null)
@@ -1165,6 +1242,8 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<object> GetReservoirsimulationrockphysicsmodelSearchDataAsync(string contentSchemaVersion, string basinId = default, string fieldId = default, string columnsFilter = default, string rowsFilter = default, string columnsAggregation = default, string orient = default, int? offset = default, int? pageLimit = default, string indexedStartDate = default, string indexedEndDate = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(contentSchemaVersion, nameof(contentSchemaVersion));
+
         var queryParts = new List<string>();
         queryParts.Add($"content_schema_version={Uri.EscapeDataString(contentSchemaVersion.ToString()!)}");
         if (basinId is not null)
@@ -1207,6 +1286,8 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<object> GetReservoirsimulationrockphysicsmodelByRecordIdAsync(string recordId, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+
         var requestUrl = $"{_baseUrl}/api/rafs-ddms/v2/reservoirsimulationrockphysicsmodel/{recordId}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -1226,6 +1307,8 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<string> DeleteReservoirsimulationrockphysicsmodelByRecordIdAsync(string recordId, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+
         var requestUrl = $"{_baseUrl}/api/rafs-ddms/v2/reservoirsimulationrockphysicsmodel/{recordId}";
 
         using var request = new HttpRequestMessage(HttpMethod.Delete, requestUrl);
@@ -1244,6 +1327,8 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<object> GetReservoirsimulationrockphysicsmodelVersionsByRecordIdAsync(string recordId, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+
         var requestUrl = $"{_baseUrl}/api/rafs-ddms/v2/reservoirsimulationrockphysicsmodel/{recordId}/versions";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -1263,6 +1348,8 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<object> GetReservoirsimulationrockphysicsmodelVersionsByRecordIdAndVersionAsync(string recordId, int version, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+
         var requestUrl = $"{_baseUrl}/api/rafs-ddms/v2/reservoirsimulationrockphysicsmodel/{recordId}/versions/{version}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -1282,6 +1369,8 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<StorageUpsertResponse> PostReservoirsimulationrockphysicsmodelAsync(List<object> body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmptyList(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/api/rafs-ddms/v2/reservoirsimulationrockphysicsmodel";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -1302,6 +1391,8 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<object> GetReservoirsimulationrockphysicsmodelDataSchemaAsync(string contentSchemaVersion, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(contentSchemaVersion, nameof(contentSchemaVersion));
+
         var queryParts = new List<string>();
         queryParts.Add($"content_schema_version={Uri.EscapeDataString(contentSchemaVersion.ToString()!)}");
         var queryString = queryParts.Count > 0 ? "?" + string.Join("&", queryParts) : "";
@@ -1324,6 +1415,10 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<object> GetReservoirsimulationrockphysicsmodelDataByRecordIdAndContentIdAsync(string contentId, string recordId, string contentSchemaVersion, string columnsFilter = default, string rowsFilter = default, string columnsAggregation = default, string orient = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(contentId, nameof(contentId));
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+        RequestValidator.RequireNotNullOrEmpty(contentSchemaVersion, nameof(contentSchemaVersion));
+
         var queryParts = new List<string>();
         queryParts.Add($"content_schema_version={Uri.EscapeDataString(contentSchemaVersion.ToString()!)}");
         if (columnsFilter is not null)
@@ -1354,6 +1449,10 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<object> PostReservoirsimulationrockphysicsmodelDataByRecordIdAsync(string recordId, string contentSchemaVersion, object body = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+        RequestValidator.RequireNotNullOrEmpty(contentSchemaVersion, nameof(contentSchemaVersion));
+        RequestValidator.RequireNotNull(body, nameof(body));
+
         var queryParts = new List<string>();
         queryParts.Add($"content_schema_version={Uri.EscapeDataString(contentSchemaVersion.ToString()!)}");
         var queryString = queryParts.Count > 0 ? "?" + string.Join("&", queryParts) : "";
@@ -1377,6 +1476,8 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<object> GetFluidmodelByRecordIdAsync(string recordId, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+
         var requestUrl = $"{_baseUrl}/api/rafs-ddms/v2/fluidmodel/{recordId}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -1396,6 +1497,8 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<string> DeleteFluidmodelByRecordIdAsync(string recordId, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+
         var requestUrl = $"{_baseUrl}/api/rafs-ddms/v2/fluidmodel/{recordId}";
 
         using var request = new HttpRequestMessage(HttpMethod.Delete, requestUrl);
@@ -1414,6 +1517,8 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<object> GetFluidmodelVersionsByRecordIdAsync(string recordId, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+
         var requestUrl = $"{_baseUrl}/api/rafs-ddms/v2/fluidmodel/{recordId}/versions";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -1433,6 +1538,8 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<object> GetFluidmodelVersionsByRecordIdAndVersionAsync(string recordId, int version, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+
         var requestUrl = $"{_baseUrl}/api/rafs-ddms/v2/fluidmodel/{recordId}/versions/{version}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -1452,6 +1559,8 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<StorageUpsertResponse> PostFluidmodelAsync(List<object> body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmptyList(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/api/rafs-ddms/v2/fluidmodel";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -1472,6 +1581,8 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<object> GetDepthshiftSearchAsync(string contentSchemaVersion, string basinId = default, string fieldId = default, string wellboreId = default, string columnsFilter = default, string rowsFilter = default, string columnsAggregation = default, int? offset = default, int? pageLimit = default, string indexedStartDate = default, string indexedEndDate = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(contentSchemaVersion, nameof(contentSchemaVersion));
+
         var queryParts = new List<string>();
         queryParts.Add($"content_schema_version={Uri.EscapeDataString(contentSchemaVersion.ToString()!)}");
         if (basinId is not null)
@@ -1514,6 +1625,8 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<object> GetDepthshiftSearchDataAsync(string contentSchemaVersion, string basinId = default, string fieldId = default, string wellboreId = default, string columnsFilter = default, string rowsFilter = default, string columnsAggregation = default, string orient = default, int? offset = default, int? pageLimit = default, string indexedStartDate = default, string indexedEndDate = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(contentSchemaVersion, nameof(contentSchemaVersion));
+
         var queryParts = new List<string>();
         queryParts.Add($"content_schema_version={Uri.EscapeDataString(contentSchemaVersion.ToString()!)}");
         if (basinId is not null)
@@ -1558,6 +1671,8 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<object> GetDepthshiftByRecordIdAsync(string recordId, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+
         var requestUrl = $"{_baseUrl}/api/rafs-ddms/v2/depthshift/{recordId}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -1577,6 +1692,8 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<string> DeleteDepthshiftByRecordIdAsync(string recordId, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+
         var requestUrl = $"{_baseUrl}/api/rafs-ddms/v2/depthshift/{recordId}";
 
         using var request = new HttpRequestMessage(HttpMethod.Delete, requestUrl);
@@ -1595,6 +1712,8 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<object> GetDepthshiftVersionsByRecordIdAsync(string recordId, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+
         var requestUrl = $"{_baseUrl}/api/rafs-ddms/v2/depthshift/{recordId}/versions";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -1614,6 +1733,8 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<object> GetDepthshiftVersionsByRecordIdAndVersionAsync(string recordId, int version, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+
         var requestUrl = $"{_baseUrl}/api/rafs-ddms/v2/depthshift/{recordId}/versions/{version}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -1633,6 +1754,8 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<StorageUpsertResponse> PostDepthshiftAsync(List<object> body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmptyList(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/api/rafs-ddms/v2/depthshift";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -1653,6 +1776,8 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<object> GetDepthshiftDataSchemaAsync(string contentSchemaVersion, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(contentSchemaVersion, nameof(contentSchemaVersion));
+
         var queryParts = new List<string>();
         queryParts.Add($"content_schema_version={Uri.EscapeDataString(contentSchemaVersion.ToString()!)}");
         var queryString = queryParts.Count > 0 ? "?" + string.Join("&", queryParts) : "";
@@ -1675,6 +1800,10 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<object> GetDepthshiftDataByRecordIdAndContentIdAsync(string contentId, string recordId, string contentSchemaVersion, string columnsFilter = default, string rowsFilter = default, string columnsAggregation = default, string orient = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(contentId, nameof(contentId));
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+        RequestValidator.RequireNotNullOrEmpty(contentSchemaVersion, nameof(contentSchemaVersion));
+
         var queryParts = new List<string>();
         queryParts.Add($"content_schema_version={Uri.EscapeDataString(contentSchemaVersion.ToString()!)}");
         if (columnsFilter is not null)
@@ -1705,6 +1834,9 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<object> PostDepthshiftDataByRecordIdAsync(string recordId, string contentSchemaVersion, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+        RequestValidator.RequireNotNullOrEmpty(contentSchemaVersion, nameof(contentSchemaVersion));
+
         var queryParts = new List<string>();
         queryParts.Add($"content_schema_version={Uri.EscapeDataString(contentSchemaVersion.ToString()!)}");
         var queryString = queryParts.Count > 0 ? "?" + string.Join("&", queryParts) : "";
@@ -1727,6 +1859,10 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<object> GetSamplesanalysisDataByRecordIdAndAnalysisTypeAsync(string analysisType, string recordId, string contentSchemaVersion, string columnsFilter = default, string rowsFilter = default, string rowsMultipleFilter = default, string columnsAggregation = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(analysisType, nameof(analysisType));
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+        RequestValidator.RequireNotNullOrEmpty(contentSchemaVersion, nameof(contentSchemaVersion));
+
         var queryParts = new List<string>();
         queryParts.Add($"content_schema_version={Uri.EscapeDataString(contentSchemaVersion.ToString()!)}");
         if (columnsFilter is not null)
@@ -1757,6 +1893,10 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<object> PostSamplesanalysisDataByRecordIdAndAnalysisTypeAsync(string analysisType, string recordId, string contentSchemaVersion, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(analysisType, nameof(analysisType));
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+        RequestValidator.RequireNotNullOrEmpty(contentSchemaVersion, nameof(contentSchemaVersion));
+
         var queryParts = new List<string>();
         queryParts.Add($"content_schema_version={Uri.EscapeDataString(contentSchemaVersion.ToString()!)}");
         var queryString = queryParts.Count > 0 ? "?" + string.Join("&", queryParts) : "";
@@ -1779,6 +1919,9 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<object> GetSamplesanalysisSearchDataByAnalysisTypeAsync(string analysisType, string contentSchemaVersion, string basinId = default, string fieldId = default, string wellId = default, string wellboreId = default, string depthShiftPolicy = default, string depthShiftId = default, string columnsFilter = default, string rowsFilter = default, string rowsMultipleFilter = default, string metadata = default, string columnsAggregation = default, int? offset = default, int? pageLimit = default, string indexedStartDate = default, string indexedEndDate = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(analysisType, nameof(analysisType));
+        RequestValidator.RequireNotNullOrEmpty(contentSchemaVersion, nameof(contentSchemaVersion));
+
         var queryParts = new List<string>();
         queryParts.Add($"content_schema_version={Uri.EscapeDataString(contentSchemaVersion.ToString()!)}");
         if (basinId is not null)
@@ -1831,6 +1974,9 @@ public partial class RafsDdmsApiClient : IRafsDdmsApiClient
     /// </summary>
     public async Task<object> GetSamplesanalysisSearchByAnalysisTypeAsync(string analysisType, string contentSchemaVersion, string basinId = default, string fieldId = default, string wellId = default, string wellboreId = default, string columnsFilter = default, string rowsFilter = default, string rowsMultipleFilter = default, string metadata = default, string columnsAggregation = default, int? offset = default, int? pageLimit = default, string indexedStartDate = default, string indexedEndDate = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(analysisType, nameof(analysisType));
+        RequestValidator.RequireNotNullOrEmpty(contentSchemaVersion, nameof(contentSchemaVersion));
+
         var queryParts = new List<string>();
         queryParts.Add($"content_schema_version={Uri.EscapeDataString(contentSchemaVersion.ToString()!)}");
         if (basinId is not null)

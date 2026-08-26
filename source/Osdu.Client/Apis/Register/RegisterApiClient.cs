@@ -15,6 +15,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
+using Osdu.Client.Validation;
 
 namespace Osdu.Client.Apis.Register;
 
@@ -151,6 +152,9 @@ public partial class RegisterApiClient : IRegisterApiClient
     /// </summary>
     public async Task<string> PutSubscriptionSecretByIdAsync(string id, GsaSecret body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(id, nameof(id));
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/subscription/{id}/secret";
 
         using var request = new HttpRequestMessage(HttpMethod.Put, requestUrl);
@@ -167,6 +171,9 @@ public partial class RegisterApiClient : IRegisterApiClient
 
     public async Task<ChallengeResponse> GetTestGcGsaChallengeByPathAsync(string path, string crc, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(path, nameof(path));
+        RequestValidator.RequireNotNullOrEmpty(crc, nameof(crc));
+
         var queryParts = new List<string>();
         queryParts.Add($"crc={Uri.EscapeDataString(crc.ToString()!)}");
         var queryString = queryParts.Count > 0 ? "?" + string.Join("&", queryParts) : "";
@@ -186,6 +193,9 @@ public partial class RegisterApiClient : IRegisterApiClient
 
     public async Task<string> PostTestGcGsaChallengeByPathAsync(string path, object body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(path, nameof(path));
+        RequestValidator.RequireNotNull(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/test-gc/gsa-challenge/{path}";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -202,6 +212,10 @@ public partial class RegisterApiClient : IRegisterApiClient
 
     public async Task<ChallengeResponse> GetTestGcChallengeByPathAsync(string path, string crc, string hmac, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(path, nameof(path));
+        RequestValidator.RequireNotNullOrEmpty(crc, nameof(crc));
+        RequestValidator.RequireNotNullOrEmpty(hmac, nameof(hmac));
+
         var queryParts = new List<string>();
         queryParts.Add($"crc={Uri.EscapeDataString(crc.ToString()!)}");
         queryParts.Add($"hmac={Uri.EscapeDataString(hmac.ToString()!)}");
@@ -222,6 +236,10 @@ public partial class RegisterApiClient : IRegisterApiClient
 
     public async Task<string> PostTestGcChallengeByPathAsync(string path, string hmac, object body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(path, nameof(path));
+        RequestValidator.RequireNotNullOrEmpty(hmac, nameof(hmac));
+        RequestValidator.RequireNotNull(body, nameof(body));
+
         var queryParts = new List<string>();
         queryParts.Add($"hmac={Uri.EscapeDataString(hmac.ToString()!)}");
         var queryString = queryParts.Count > 0 ? "?" + string.Join("&", queryParts) : "";
@@ -244,6 +262,8 @@ public partial class RegisterApiClient : IRegisterApiClient
     /// </summary>
     public async Task<List<Subscription>> GetSubscriptionAsync(string notificationId, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(notificationId, nameof(notificationId));
+
         var queryParts = new List<string>();
         queryParts.Add($"notificationId={Uri.EscapeDataString(notificationId.ToString()!)}");
         var queryString = queryParts.Count > 0 ? "?" + string.Join("&", queryParts) : "";
@@ -266,6 +286,8 @@ public partial class RegisterApiClient : IRegisterApiClient
     /// </summary>
     public async Task<Subscription> PostSubscriptionAsync(Subscription body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/subscription";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -286,6 +308,8 @@ public partial class RegisterApiClient : IRegisterApiClient
     /// </summary>
     public async Task<List<Ddms>> GetDdmsAsync(string type, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(type, nameof(type));
+
         var queryParts = new List<string>();
         queryParts.Add($"type={Uri.EscapeDataString(type.ToString()!)}");
         var queryString = queryParts.Count > 0 ? "?" + string.Join("&", queryParts) : "";
@@ -308,6 +332,8 @@ public partial class RegisterApiClient : IRegisterApiClient
     /// </summary>
     public async Task<Ddms> PostDdmsAsync(Ddms body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/ddms";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -328,6 +354,8 @@ public partial class RegisterApiClient : IRegisterApiClient
     /// </summary>
     public async Task<Action> PostActionAsync(CreateActionDto body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/action";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -348,6 +376,8 @@ public partial class RegisterApiClient : IRegisterApiClient
     /// </summary>
     public async Task<ParsedAction> PostActionTestAsync(TestActionRequest body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/action:test";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -368,6 +398,8 @@ public partial class RegisterApiClient : IRegisterApiClient
     /// </summary>
     public async Task<List<Action>> PostActionRetrieveAsync(JsonNode body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/action:retrieve";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -439,6 +471,8 @@ public partial class RegisterApiClient : IRegisterApiClient
     /// </summary>
     public async Task<SubscriptionInfo> GetSubscriptionByIdAsync(string id, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(id, nameof(id));
+
         var requestUrl = $"{_baseUrl}/subscription/{id}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -458,6 +492,8 @@ public partial class RegisterApiClient : IRegisterApiClient
     /// </summary>
     public async Task<string> DeleteSubscriptionByIdAsync(string id, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(id, nameof(id));
+
         var requestUrl = $"{_baseUrl}/subscription/{id}";
 
         using var request = new HttpRequestMessage(HttpMethod.Delete, requestUrl);
@@ -495,6 +531,8 @@ public partial class RegisterApiClient : IRegisterApiClient
     /// </summary>
     public async Task<Ddms> GetDdmsByIdAsync(string id, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(id, nameof(id));
+
         var requestUrl = $"{_baseUrl}/ddms/{id}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -514,6 +552,8 @@ public partial class RegisterApiClient : IRegisterApiClient
     /// </summary>
     public async Task<string> DeleteDdmsByIdAsync(string id, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(id, nameof(id));
+
         var requestUrl = $"{_baseUrl}/ddms/{id}";
 
         using var request = new HttpRequestMessage(HttpMethod.Delete, requestUrl);
@@ -532,6 +572,10 @@ public partial class RegisterApiClient : IRegisterApiClient
     /// </summary>
     public async Task<string> GetDdmsByIdAndTypeAndLocalidAsync(string id, string type, string localid, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(id, nameof(id));
+        RequestValidator.RequireNotNullOrEmpty(type, nameof(type));
+        RequestValidator.RequireNotNullOrEmpty(localid, nameof(localid));
+
         var requestUrl = $"{_baseUrl}/ddms/{id}/{type}/{localid}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -586,6 +630,8 @@ public partial class RegisterApiClient : IRegisterApiClient
     /// </summary>
     public async Task<Action> GetActionByIdAsync(string id, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(id, nameof(id));
+
         var requestUrl = $"{_baseUrl}/action/{id}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -605,6 +651,8 @@ public partial class RegisterApiClient : IRegisterApiClient
     /// </summary>
     public async Task<string> DeleteActionByIdAsync(string id, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(id, nameof(id));
+
         var requestUrl = $"{_baseUrl}/action/{id}";
 
         using var request = new HttpRequestMessage(HttpMethod.Delete, requestUrl);

@@ -15,6 +15,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
+using Osdu.Client.Validation;
 
 namespace Osdu.Client.Apis.Storage;
 
@@ -176,6 +177,8 @@ public partial class StorageApiClient : IStorageApiClient
     /// </summary>
     public async Task<CreateUpdateRecordsResponse> PutRecordsAsync(List<Record> body, bool? skipdupes = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObjectList(body, nameof(body));
+
         var queryParts = new List<string>();
         if (skipdupes.HasValue)
             queryParts.Add($"skipdupes={skipdupes.Value.ToString().ToLowerInvariant()}");
@@ -200,6 +203,8 @@ public partial class StorageApiClient : IStorageApiClient
     /// </summary>
     public async Task<PatchRecordsResponse> PatchRecordsAsync(RecordBulkUpdateParam body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/records";
 
         using var request = new HttpRequestMessage(HttpMethod.Patch, requestUrl);
@@ -220,6 +225,8 @@ public partial class StorageApiClient : IStorageApiClient
     /// </summary>
     public async Task<CopyRecordReferencesModel> PutRecordsCopyAsync(CopyRecordReferencesModel body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/records/copy";
 
         using var request = new HttpRequestMessage(HttpMethod.Put, requestUrl);
@@ -240,6 +247,8 @@ public partial class StorageApiClient : IStorageApiClient
     /// </summary>
     public async Task<ReplayResponse> PostReplayAsync(ReplayRequest body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/replay";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -260,6 +269,8 @@ public partial class StorageApiClient : IStorageApiClient
     /// </summary>
     public async Task<string> PostRecordsDeleteByIdAsync(string id, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(id, nameof(id));
+
         var requestUrl = $"{_baseUrl}/records/{id}:delete";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -278,6 +289,8 @@ public partial class StorageApiClient : IStorageApiClient
     /// </summary>
     public async Task<DeleteRecordsException> PostRecordsDeleteAsync(List<string> body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmptyList(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/records/delete";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -298,6 +311,8 @@ public partial class StorageApiClient : IStorageApiClient
     /// </summary>
     public async Task<DatastoreQueryResult> GetQueryRecordsAsync(string kind, string cursor = default, int? limit = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(kind, nameof(kind));
+
         var queryParts = new List<string>();
         queryParts.Add($"kind={Uri.EscapeDataString(kind.ToString()!)}");
         if (cursor is not null)
@@ -324,6 +339,8 @@ public partial class StorageApiClient : IStorageApiClient
     /// </summary>
     public async Task<MultiRecordInfo> PostQueryRecordsAsync(MultiRecordIds body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/query/records";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -344,6 +361,8 @@ public partial class StorageApiClient : IStorageApiClient
     /// </summary>
     public async Task<MultiRecordResponse> PostQueryRecordsBatchAsync(MultiRecordRequest body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/query/records:batch";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -364,6 +383,8 @@ public partial class StorageApiClient : IStorageApiClient
     /// </summary>
     public async Task<MultiRecordHeadersInfo> PostQueryRecordsHeadersAsync(MultiRecordHeadersRequest body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/query/records/headers";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -384,6 +405,8 @@ public partial class StorageApiClient : IStorageApiClient
     /// </summary>
     public async Task<string> GetRecordsByIdAsync(string id, string attribute = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(id, nameof(id));
+
         var queryParts = new List<string>();
         if (attribute is not null)
             queryParts.Add($"attribute={Uri.EscapeDataString(attribute.ToString()!)}");
@@ -406,6 +429,8 @@ public partial class StorageApiClient : IStorageApiClient
     /// </summary>
     public async Task<string> DeleteRecordsByIdAsync(string id, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(id, nameof(id));
+
         var requestUrl = $"{_baseUrl}/records/{id}";
 
         using var request = new HttpRequestMessage(HttpMethod.Delete, requestUrl);
@@ -424,6 +449,9 @@ public partial class StorageApiClient : IStorageApiClient
     /// </summary>
     public async Task<string> PatchRecordsByIdAsync(string id, RecordMergePatchRequest body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(id, nameof(id));
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/records/{id}";
 
         using var request = new HttpRequestMessage(HttpMethod.Patch, requestUrl);
@@ -443,6 +471,8 @@ public partial class StorageApiClient : IStorageApiClient
     /// </summary>
     public async Task<ReplayStatusResponse> GetReplayStatusByIdAsync(string id, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(id, nameof(id));
+
         var requestUrl = $"{_baseUrl}/replay/status/{id}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -462,6 +492,8 @@ public partial class StorageApiClient : IStorageApiClient
     /// </summary>
     public async Task<string> GetRecordsByIdAndVersionAsync(string id, long version, string attribute = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(id, nameof(id));
+
         var queryParts = new List<string>();
         if (attribute is not null)
             queryParts.Add($"attribute={Uri.EscapeDataString(attribute.ToString()!)}");
@@ -484,6 +516,8 @@ public partial class StorageApiClient : IStorageApiClient
     /// </summary>
     public async Task<RecordVersions> GetRecordsVersionsByIdAsync(string id, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(id, nameof(id));
+
         var requestUrl = $"{_baseUrl}/records/versions/{id}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -540,6 +574,8 @@ public partial class StorageApiClient : IStorageApiClient
     /// </summary>
     public async Task<string> DeleteRecordsVersionsByIdAsync(string id, string versionIds = default, int? limit = default, long? from = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(id, nameof(id));
+
         var queryParts = new List<string>();
         if (versionIds is not null)
             queryParts.Add($"versionIds={Uri.EscapeDataString(versionIds.ToString()!)}");

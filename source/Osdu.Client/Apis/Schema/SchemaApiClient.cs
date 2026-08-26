@@ -15,6 +15,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
+using Osdu.Client.Validation;
 
 namespace Osdu.Client.Apis.Schema;
 
@@ -79,6 +80,8 @@ public partial class SchemaApiClient : ISchemaApiClient
     /// </summary>
     public async Task<SchemaInfo> PutSchemasSystemAsync(SchemaRequest body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/schemas/system";
 
         using var request = new HttpRequestMessage(HttpMethod.Put, requestUrl);
@@ -142,6 +145,8 @@ public partial class SchemaApiClient : ISchemaApiClient
     /// </summary>
     public async Task<SchemaInfo> PutSchemaAsync(SchemaRequest body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/schema";
 
         using var request = new HttpRequestMessage(HttpMethod.Put, requestUrl);
@@ -162,6 +167,8 @@ public partial class SchemaApiClient : ISchemaApiClient
     /// </summary>
     public async Task<SchemaInfo> PostSchemaAsync(SchemaRequest body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/schema";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -182,6 +189,8 @@ public partial class SchemaApiClient : ISchemaApiClient
     /// </summary>
     public async Task<object> GetSchemaByIdAsync(string id, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(id, nameof(id));
+
         var requestUrl = $"{_baseUrl}/schema/{id}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);

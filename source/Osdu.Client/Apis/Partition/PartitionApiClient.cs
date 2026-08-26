@@ -15,6 +15,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
+using Osdu.Client.Validation;
 
 namespace Osdu.Client.Apis.Partition;
 
@@ -83,6 +84,8 @@ public partial class PartitionApiClient : IPartitionApiClient
     /// </summary>
     public async Task<Map> GetPartitionsByPartitionIdAsync(string partitionId, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(partitionId, nameof(partitionId));
+
         var requestUrl = $"{_baseUrl}/partitions/{partitionId}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
