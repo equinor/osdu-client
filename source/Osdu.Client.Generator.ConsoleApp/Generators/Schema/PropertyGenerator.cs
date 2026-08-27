@@ -23,8 +23,7 @@ public class PropertyGenerator
         bool isRequired,
         string prefix,
         string parentName,
-        string? csharpNameOverride = null,
-        string? discriminatorPropertyName = null)
+        string? csharpNameOverride = null)
     {
         var csharpName = csharpNameOverride ?? SchemaHelpers.Sanitize(propName.ToPascalCase());
         if (csharpName == "Unknown" && !propName.Any(char.IsLetterOrDigit))
@@ -33,30 +32,8 @@ public class PropertyGenerator
         if (csharpName == SchemaHelpers.Sanitize(parentName))
             csharpName += "Value";
 
-        // If this property's JSON name matches the polymorphic discriminator property name,
-        // it conflicts with System.Text.Json metadata. Add [JsonIgnore] and make it non-required.
-        bool isDiscriminatorConflict = discriminatorPropertyName is not null
-            && string.Equals(propName, discriminatorPropertyName, StringComparison.Ordinal);
-
         if (propSchema.Description is not null)
             SchemaHelpers.AppendSummary(sb, propSchema.Description, prefix);
-
-        if (isDiscriminatorConflict)
-        {
-            sb.AppendLine($"{prefix}[JsonIgnore]");
-            sb.AppendLine($"{prefix}[JsonPropertyName(\"{propName}\")]");
-
-            var typeName = _typeNameResolver.ResolveTypeName(propSchema, parentName, propName);
-
-            if (typeName == "bool")
-                sb.AppendLine($"{prefix}[JsonConverter(typeof(BooleanConverter))]");
-            if (typeName == "DateTimeOffset")
-                sb.AppendLine($"{prefix}[JsonConverter(typeof(NullableDateTimeOffsetConverter))]");
-
-            sb.AppendLine($"{prefix}public {typeName}? {csharpName} {{ get; set; }}");
-            sb.AppendLine();
-            return;
-        }
 
         GenerateValidationAttributes(sb, propSchema, isRequired, prefix);
 
@@ -100,13 +77,18 @@ public class PropertyGenerator
             sb.AppendLine($"{prefix}[Range({schema.Minimum}, {max})]");
         }
 
-        if (schema.Pattern is not null)
-            sb.AppendLine($"{prefix}[RegularExpression(@\"{schema.Pattern.Replace("\"", "\"\"")}\")]");
-
         if (schema.MinItems.HasValue)
             sb.AppendLine($"{prefix}[MinLength({schema.MinItems.Value})]");
 
         if (schema.MaxItems.HasValue)
             sb.AppendLine($"{prefix}[MaxLength({schema.MaxItems.Value})]");
+
+        if (!string.IsNullOrEmpty(schema.Pattern))
+        {
+            // Escape double quotes for C# verbatim string literals (@"...")
+            // where " must be doubled to ""
+            var escapedPattern = schema.Pattern.Replace("\"", "\"\"");
+            sb.AppendLine($"{prefix}[RegularExpression(@\"{escapedPattern}\")]");
+        }
     }
 }
