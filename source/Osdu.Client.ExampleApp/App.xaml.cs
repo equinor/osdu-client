@@ -8,6 +8,8 @@ using Osdu.Client.Extensions.Caching;
 using Osdu.Client.Extensions.Querying;
 using System.Reflection;
 using System.Windows;
+using Osdu.Client.Data.MasterData;
+using Osdu.Client.Extensions.Validations;
 
 
 namespace Osdu.Client.ExampleApp;
@@ -72,9 +74,17 @@ public partial class App : Application
                 Options = new CacheOptions { Expiration = TimeSpan.FromHours(1), CacheAll = true },
                 ItemType = typeof(SampleImageColourSpace_1_0_0)
             });
+
+            descriptors.Add(new OsduCacheDescriptor
+            {
+                Kind = "osdu:wks:master-data--Wellbore:1.3.0",
+                Options = new CacheOptions { Expiration = TimeSpan.FromHours(1), CacheAll = true },
+                ItemType = typeof(Wellbore_1_3_0)
+            });
         });
 
         services.AddOsduQueryExecutor();
+        services.AddOsduDataValidators();
 
         // Auto-discover and register all IExample implementations
         var exampleTypes = Assembly.GetExecutingAssembly()
