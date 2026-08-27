@@ -15,6 +15,12 @@ public class SchemaGeneratorContext
     public Dictionary<string, string> PendingBaseClassPatches { get; } = new();
     public Dictionary<string, string> OneOfUnionCache { get; } = new();
 
+    /// <summary>
+    /// Cross-file inheritance patches: maps sanitized derived type name to (base class name, base namespace).
+    /// NOT cleared on Reset() because these are applied after all files are generated.
+    /// </summary>
+    public Dictionary<string, (string BaseClassName, string BaseNamespace)> CrossFileInheritancePatches { get; } = new();
+
     public void Reset()
     {
         GeneratedTypes.Clear();

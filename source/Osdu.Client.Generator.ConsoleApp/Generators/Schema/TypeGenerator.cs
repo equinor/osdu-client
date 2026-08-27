@@ -53,7 +53,9 @@ public class TypeGenerator
         var derivedTypes = _resolver.FindDerivedSchemas(name, schema);
         if (derivedTypes.Count > 0 && schema.Discriminator is not null)
         {
-            sb.AppendLine($"{prefix}[JsonPolymorphic(TypeDiscriminatorPropertyName = \"{schema.Discriminator.PropertyName ?? "type"}\")]");
+            // FIX: Add UnknownDerivedTypeHandling to match GenerateDiscriminatedUnion behavior
+            // and prevent NotSupportedException when JSON has an unrecognized discriminator value
+            sb.AppendLine($"{prefix}[JsonPolymorphic(TypeDiscriminatorPropertyName = \"{schema.Discriminator.PropertyName ?? "type"}\", UnknownDerivedTypeHandling = JsonUnknownDerivedTypeHandling.FallBackToBaseType)]");
             foreach (var (derivedName, _) in derivedTypes)
             {
                 sb.AppendLine($"{prefix}[JsonDerivedType(typeof({SchemaHelpers.Sanitize(derivedName)}), \"{derivedName}\")]");
@@ -67,6 +69,10 @@ public class TypeGenerator
         var properties = allProperties.Count > 0 ? allProperties : schema.Properties;
         var required = schema.Required ?? new HashSet<string>();
 
+        // Determine if this class is a derived type that inherits from a polymorphic base.
+        // If so, find the discriminator property name to avoid conflicts.
+        string? activeDiscriminatorPropName = FindDiscriminatorForDerivedType(name);
+
         if (properties is not null)
         {
             var pascalCaseGroups = properties.Keys
@@ -78,7 +84,8 @@ public class TypeGenerator
             foreach (var (propName, propSchema) in properties)
             {
                 string? csharpNameOverride = pascalCaseGroups.Contains(propName) ? propName : null;
-                _propertyGenerator.GenerateProperty(sb, propName, propSchema, required.Contains(propName), prefix + "    ", name, csharpNameOverride);
+                _propertyGenerator.GenerateProperty(sb, propName, propSchema, required.Contains(propName), prefix + "    ", name, csharpNameOverride,
+                    discriminatorPropertyName: activeDiscriminatorPropName);
             }
         }
 
@@ -92,6 +99,35 @@ public class TypeGenerator
                 GenerateInlineObjects(sb, propName, propSchema, prefix, name);
             }
         }
+    }
+
+    /// <summary>
+    /// If the given schema name is registered as a derived type of a polymorphic base
+    /// (via FindDerivedSchemas + discriminator), returns the discriminator property name.
+    /// This is used to add [JsonIgnore] to conflicting properties in derived types.
+    /// </summary>
+    private string? FindDiscriminatorForDerivedType(string schemaName)
+    {
+        if (_context.Document.Components?.Schemas is null)
+            return null;
+
+        foreach (var (baseName, baseSchema) in _context.Document.Components.Schemas)
+        {
+            if (baseName == schemaName || baseSchema.Discriminator is null)
+                continue;
+
+            if (baseSchema.AllOf is { Count: > 0 } || baseSchema.OneOf is { Count: > 0 } || baseSchema.AnyOf is { Count: > 0 })
+                continue;
+
+            // Check if this schema has derived types that include our schemaName
+            var derived = _resolver.FindDerivedSchemas(baseName, baseSchema);
+            if (derived.Any(d => d.Name == schemaName))
+            {
+                return baseSchema.Discriminator.PropertyName ?? "type";
+            }
+        }
+
+        return null;
     }
 
     public void GenerateEnum(StringBuilder sb, string name, IOpenApiSchema schema, string prefix)
@@ -131,7 +167,8 @@ public class TypeGenerator
         OpenApiDiscriminator? discriminator,
         string prefix)
     {
-        var resolvedVariants = new List<(string TypeName, string DiscriminatorValue, IOpenApiSchema Schema)>();
+        var discriminatorPropName = discriminator?.PropertyName ?? "type";
+        var resolvedVariants = new List<(string TypeName, string DiscriminatorValue, IOpenApiSchema Schema, bool IsExternal)>();
         int inlineIndex = 0;
 
         foreach (var variant in variants)
@@ -143,7 +180,12 @@ public class TypeGenerator
                 if (resolved is null || !_resolver.SchemaHasSubstance(resolved))
                     continue;
 
-                resolvedVariants.Add((SchemaHelpers.Sanitize(refName.ToPascalCase()), refName, variant));
+                var schemaRef = (OpenApiSchemaReference)variant;
+                bool isExternal = !string.IsNullOrEmpty(schemaRef.Reference?.ExternalResource);
+
+                // Use Sanitize directly (not ToPascalCase) so the type name matches
+                // the class name generated from the schema's own file
+                resolvedVariants.Add((SchemaHelpers.Sanitize(refName), refName, variant, isExternal));
             }
             else
             {
@@ -165,37 +207,48 @@ public class TypeGenerator
                     discriminatorValue = typeName;
                 }
 
-                resolvedVariants.Add((typeName, discriminatorValue, variant));
+                resolvedVariants.Add((typeName, discriminatorValue, variant, false));
             }
         }
 
         if (resolvedVariants.Count < 2)
             return;
 
-        sb.AppendLine($"{prefix}[JsonPolymorphic(TypeDiscriminatorPropertyName = \"{discriminator?.PropertyName ?? "type"}\")]");
+        // Use non-abstract class with FallBackToBaseType so JSON without a type discriminator
+        // deserializes gracefully instead of throwing NotSupportedException
+        sb.AppendLine($"{prefix}[JsonPolymorphic(TypeDiscriminatorPropertyName = \"{discriminatorPropName}\", UnknownDerivedTypeHandling = JsonUnknownDerivedTypeHandling.FallBackToBaseType)]");
 
-        foreach (var (typeName, discriminatorValue, _) in resolvedVariants)
+        foreach (var (typeName, discriminatorValue, _, _) in resolvedVariants)
         {
             sb.AppendLine($"{prefix}[JsonDerivedType(typeof({typeName}), \"{discriminatorValue}\")]");
         }
 
-        sb.AppendLine($"{prefix}public abstract class {SchemaHelpers.Sanitize(name)}");
+        sb.AppendLine($"{prefix}public class {SchemaHelpers.Sanitize(name)}");
         sb.AppendLine($"{prefix}{{");
         sb.AppendLine($"{prefix}}}");
 
-        foreach (var (typeName, _, schema) in resolvedVariants)
+        foreach (var (typeName, _, schema, isExternal) in resolvedVariants)
         {
             var refName = SchemaHelpers.GetSchemaReferenceName(schema);
             if (refName is not null && _context.Document.Components?.Schemas?.ContainsKey(refName) == true)
             {
+                // Internal $ref — patch inheritance in the already-generated (or pending) code
                 if (_context.GeneratedTypes.TryGetValue(refName, out var existingCode))
                 {
-                    _context.GeneratedTypes[refName] = SchemaHelpers.PatchClassInheritance(existingCode, typeName, name);
+                    _context.GeneratedTypes[refName] = SchemaHelpers.PatchClassInheritance(existingCode, typeName, SchemaHelpers.Sanitize(name));
                 }
                 else
                 {
-                    _context.PendingBaseClassPatches[refName] = name;
+                    _context.PendingBaseClassPatches[refName] = SchemaHelpers.Sanitize(name);
                 }
+                continue;
+            }
+
+            if (isExternal)
+            {
+                // External $ref — the type is generated from its own file.
+                // Record a cross-file patch so inheritance is added after all files are generated.
+                _context.CrossFileInheritancePatches[typeName] = (SchemaHelpers.Sanitize(name), _context.Namespace);
                 continue;
             }
 
@@ -205,7 +258,7 @@ public class TypeGenerator
             sb.AppendLine();
 
             var resolvedSchema = schema is OpenApiSchemaReference schemaRef
-                ? _resolver.ResolveReference(schemaRef)
+                ? _resolver.ResolveSchemaFully(schemaRef)
                 : schema;
 
             if (resolvedSchema is null)
@@ -222,7 +275,9 @@ public class TypeGenerator
                 var required = resolvedSchema.Required ?? new HashSet<string>();
                 foreach (var (propName, propSchema) in resolvedSchema.Properties)
                 {
-                    _propertyGenerator.GenerateProperty(sb, propName, propSchema, required.Contains(propName), prefix + "    ", typeName);
+                    // Pass discriminatorPropName so conflicting properties get [JsonIgnore]
+                    _propertyGenerator.GenerateProperty(sb, propName, propSchema, required.Contains(propName), prefix + "    ", typeName,
+                        discriminatorPropertyName: discriminatorPropName);
                 }
             }
 
@@ -279,7 +334,6 @@ public class TypeGenerator
                 var baseClass = SchemaHelpers.Sanitize(refs[0].Reference.Id);
                 var mergedProperties = new Dictionary<string, IOpenApiSchema>();
 
-                // Resolve additional $ref schemas and merge their properties
                 foreach (var refSchema in refs.Skip(1))
                 {
                     var resolved = _resolver.ResolveSchemaFully(refSchema);
@@ -411,7 +465,6 @@ public class TypeGenerator
                                      ?? SchemaHelpers.Sanitize($"{parentName}_{propName.ToPascalCase()}");
                 sb.AppendLine();
                 GenerateDiscriminatedUnion(sb, inlineTypeName, variants, itemSchema.Discriminator, prefix);
-                return;
             }
         }
     }

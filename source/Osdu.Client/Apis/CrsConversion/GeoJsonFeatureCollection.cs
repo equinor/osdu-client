@@ -14,7 +14,7 @@ using Osdu.Client.Converters;
 
 namespace Osdu.Client.Apis.CrsConversion;
 
-public class GeoJsonFeatureCollection
+public class GeoJsonFeatureCollection : GeoJsonFeature_Geometry
 {
     [JsonPropertyName("coordinateReferenceSystemID")]
     public string? coordinateReferenceSystemID { get; set; }
@@ -27,8 +27,9 @@ public class GeoJsonFeatureCollection
 
     [Required]
     [MinLength(1)]
+    [JsonIgnore]
     [JsonPropertyName("type")]
-    public required string Type { get; set; }
+    public  string Type { get; set; }
 
     [JsonPropertyName("bbox")]
     public List<double>? Bbox { get; set; }

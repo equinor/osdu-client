@@ -118,5 +118,8 @@ public class CodeGenerator
             // Generate data schema
             _schemaGenerator.GenerateNew(jsonFile, outputDir, schemaNamespace, false);
         }
+
+        // Apply cross-file inheritance patches after all data schemas are generated
+        _schemaGenerator.ApplyCrossFilePatches(_configuration.Data.OutputDir);
     }
 }

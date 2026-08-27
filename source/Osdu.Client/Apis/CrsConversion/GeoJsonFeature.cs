@@ -14,15 +14,16 @@ using Osdu.Client.Converters;
 
 namespace Osdu.Client.Apis.CrsConversion;
 
-public class GeoJsonFeature
+public class GeoJsonFeature : GeoJsonFeature_Geometry
 {
     [JsonPropertyName("geoJsonVariantInternal")]
     public GeoJsonFeature_GeoJsonVariantInternal? GeoJsonVariantInternal { get; set; }
 
     [Required]
     [MinLength(1)]
+    [JsonIgnore]
     [JsonPropertyName("type")]
-    public required string Type { get; set; }
+    public  string Type { get; set; }
 
     [JsonPropertyName("bbox")]
     public List<double>? Bbox { get; set; }
@@ -47,7 +48,7 @@ public enum GeoJsonFeature_GeoJsonVariantInternal
 
 }
 
-[JsonPolymorphic(TypeDiscriminatorPropertyName = "type")]
+[JsonPolymorphic(TypeDiscriminatorPropertyName = "type", UnknownDerivedTypeHandling = JsonUnknownDerivedTypeHandling.FallBackToBaseType)]
 [JsonDerivedType(typeof(GeoJsonFeature), "GeoJsonFeature")]
 [JsonDerivedType(typeof(GeoJsonFeatureCollection), "GeoJsonFeatureCollection")]
 [JsonDerivedType(typeof(GeoJsonGeometryCollection), "GeoJsonGeometryCollection")]
@@ -57,6 +58,6 @@ public enum GeoJsonFeature_GeoJsonVariantInternal
 [JsonDerivedType(typeof(GeoJsonMultiPolygon), "GeoJsonMultiPolygon")]
 [JsonDerivedType(typeof(GeoJsonPoint), "GeoJsonPoint")]
 [JsonDerivedType(typeof(GeoJsonPolygon), "GeoJsonPolygon")]
-public abstract class GeoJsonFeature_Geometry
+public class GeoJsonFeature_Geometry
 {
 }

@@ -14,12 +14,12 @@ using Osdu.Client.Converters;
 
 namespace Osdu.Client.Data.Abstract;
 
-[JsonPolymorphic(TypeDiscriminatorPropertyName = "type")]
+[JsonPolymorphic(TypeDiscriminatorPropertyName = "type", UnknownDerivedTypeHandling = JsonUnknownDerivedTypeHandling.FallBackToBaseType)]
 [JsonDerivedType(typeof(AbstractMetaItem_1_0_0FrameOfReferenceUOM), "FrameOfReferenceUOM")]
 [JsonDerivedType(typeof(AbstractMetaItem_1_0_0FrameOfReferenceCRS), "FrameOfReferenceCRS")]
 [JsonDerivedType(typeof(AbstractMetaItem_1_0_0FrameOfReferenceDateTime), "FrameOfReferenceDateTime")]
 [JsonDerivedType(typeof(AbstractMetaItem_1_0_0FrameOfReferenceAzimuthReference), "FrameOfReferenceAzimuthReference")]
-public abstract class AbstractMetaItem_1_0_0
+public class AbstractMetaItem_1_0_0
 {
 }
 
