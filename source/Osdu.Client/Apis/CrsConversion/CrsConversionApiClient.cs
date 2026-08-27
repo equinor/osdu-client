@@ -15,6 +15,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
+using Osdu.Client.Validation;
 
 namespace Osdu.Client.Apis.CrsConversion;
 
@@ -59,6 +60,8 @@ public partial class CrsConversionApiClient : ICrsConversionApiClient
     /// </summary>
     public async Task<ConvertPointsResponse> PostV4ConvertAsync(ConvertPointsRequestV4 body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/v4/convert";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -79,6 +82,8 @@ public partial class CrsConversionApiClient : ICrsConversionApiClient
     /// </summary>
     public async Task<ConvertTrajectoryResponseV4> PostV4ConvertTrajectoryAsync(ConvertTrajectoryRequestV4 body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/v4/convertTrajectory";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -99,6 +104,8 @@ public partial class CrsConversionApiClient : ICrsConversionApiClient
     /// </summary>
     public async Task<ConvertGeoJsonResponse> PostV4ConvertGeoJsonAsync(ConvertGeoJsonRequestV4 body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/v4/convertGeoJson";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);

@@ -15,6 +15,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
+using Osdu.Client.Validation;
 
 namespace Osdu.Client.Apis.Policy;
 
@@ -178,6 +179,8 @@ public partial class PolicyApiClient : IPolicyApiClient
     /// </summary>
     public async Task<object> GetPoliciesByPolicyIdAsync(string policyId, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(policyId, nameof(policyId));
+
         var requestUrl = $"{_baseUrl}/api/policy/v1/policies/{policyId}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -197,6 +200,8 @@ public partial class PolicyApiClient : IPolicyApiClient
     /// </summary>
     public async Task<object> GetPoliciesOsduInstanceByPolicyIdAsync(string policyId, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(policyId, nameof(policyId));
+
         var requestUrl = $"{_baseUrl}/api/policy/v1/policies/osdu/instance/{policyId}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -216,6 +221,9 @@ public partial class PolicyApiClient : IPolicyApiClient
     /// </summary>
     public async Task<object> GetPoliciesOsduPartitionByDataPartitionAndPolicyIdAsync(string policyId, string dataPartition, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(policyId, nameof(policyId));
+        RequestValidator.RequireNotNullOrEmpty(dataPartition, nameof(dataPartition));
+
         var requestUrl = $"{_baseUrl}/api/policy/v1/policies/osdu/partition/{dataPartition}/{policyId}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -235,6 +243,9 @@ public partial class PolicyApiClient : IPolicyApiClient
     /// </summary>
     public async Task<object> DeletePoliciesOsduPartitionByDataPartitionAndPolicyIdAsync(string policyId, string dataPartition, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(policyId, nameof(policyId));
+        RequestValidator.RequireNotNullOrEmpty(dataPartition, nameof(dataPartition));
+
         var requestUrl = $"{_baseUrl}/api/policy/v1/policies/osdu/partition/{dataPartition}/{policyId}";
 
         using var request = new HttpRequestMessage(HttpMethod.Delete, requestUrl);
@@ -254,6 +265,10 @@ public partial class PolicyApiClient : IPolicyApiClient
     /// </summary>
     public async Task<object> PutPoliciesOsduPartitionByDataPartitionAndPolicyIdAsync(string policyId, string dataPartition, Body_create_or_update_partition_policy_api_policy_v1_policies_osdu_partition__data_partition___policy_id__put body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(policyId, nameof(policyId));
+        RequestValidator.RequireNotNullOrEmpty(dataPartition, nameof(dataPartition));
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/api/policy/v1/policies/osdu/partition/{dataPartition}/{policyId}";
 
         using var request = new HttpRequestMessage(HttpMethod.Put, requestUrl);
@@ -274,6 +289,9 @@ public partial class PolicyApiClient : IPolicyApiClient
     /// </summary>
     public async Task<object> PostEvaluationsQueryAsync(string policyId, Body_evaluate_policy_api_policy_v1_evaluations_query_post body, bool? includeAuth = default, bool? cache = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(policyId, nameof(policyId));
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var queryParts = new List<string>();
         queryParts.Add($"policy_id={Uri.EscapeDataString(policyId.ToString()!)}");
         if (includeAuth.HasValue)
@@ -301,6 +319,8 @@ public partial class PolicyApiClient : IPolicyApiClient
     /// </summary>
     public async Task<object> PostTranslateAsync(TranslateItem body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/api/policy/v1/translate";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -340,6 +360,8 @@ public partial class PolicyApiClient : IPolicyApiClient
     /// </summary>
     public async Task<object> PostCompileAsync(Body_compile_partially_evaluate_a_query_api_policy_v1_compile_post body, bool? metrics = default, bool? instrument = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var queryParts = new List<string>();
         if (metrics.HasValue)
             queryParts.Add($"metrics={metrics.Value.ToString().ToLowerInvariant()}");
@@ -389,6 +411,8 @@ public partial class PolicyApiClient : IPolicyApiClient
     /// </summary>
     public async Task<object> PutTenantAsync(string service, int? pollingMinDelaySeconds = default, int? pollingMaxDelaySeconds = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(service, nameof(service));
+
         var queryParts = new List<string>();
         queryParts.Add($"service={Uri.EscapeDataString(service.ToString()!)}");
         if (pollingMinDelaySeconds is not null)
@@ -472,6 +496,9 @@ public partial class PolicyApiClient : IPolicyApiClient
     /// </summary>
     public async Task<object> PutValidateByPolicyIdAsync(string policyId, Body_validate_policy_api_policy_v1_validate__policy_id__put body, bool? template = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(policyId, nameof(policyId));
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var queryParts = new List<string>();
         if (template.HasValue)
             queryParts.Add($"template={template.Value.ToString().ToLowerInvariant()}");
@@ -553,6 +580,9 @@ public partial class PolicyApiClient : IPolicyApiClient
     /// </summary>
     public async Task<Detail> PutUserByUserIdAsync(string userId, UserDetailRequestModel body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(userId, nameof(userId));
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/api/policy/v1/user/{userId}";
 
         using var request = new HttpRequestMessage(HttpMethod.Put, requestUrl);
@@ -573,6 +603,8 @@ public partial class PolicyApiClient : IPolicyApiClient
     /// </summary>
     public async Task<UserDetailRequestModel> GetUserByUserIdAsync(string userId, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(userId, nameof(userId));
+
         var requestUrl = $"{_baseUrl}/api/policy/v1/user/{userId}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -592,6 +624,8 @@ public partial class PolicyApiClient : IPolicyApiClient
     /// </summary>
     public async Task<Detail> DeleteUserByUserIdAsync(string userId, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(userId, nameof(userId));
+
         var requestUrl = $"{_baseUrl}/api/policy/v1/user/{userId}";
 
         using var request = new HttpRequestMessage(HttpMethod.Delete, requestUrl);

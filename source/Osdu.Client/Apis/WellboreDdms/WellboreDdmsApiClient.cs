@@ -15,6 +15,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
+using Osdu.Client.Validation;
 
 namespace Osdu.Client.Apis.WellboreDdms;
 
@@ -502,6 +503,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<Record> GetDdmsV3WellboresByWellboreidAsync(string wellboreid, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(wellboreid, nameof(wellboreid));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/wellbores/{wellboreid}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -521,6 +524,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<string> DeleteDdmsV3WellboresByWellboreidAsync(string wellboreid, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(wellboreid, nameof(wellboreid));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/wellbores/{wellboreid}";
 
         using var request = new HttpRequestMessage(HttpMethod.Delete, requestUrl);
@@ -539,6 +544,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<RecordVersions> GetDdmsV3WellboresVersionsByWellboreidAsync(string wellboreid, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(wellboreid, nameof(wellboreid));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/wellbores/{wellboreid}/versions";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -558,6 +565,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<Record> GetDdmsV3WellboresVersionsByWellboreidAndVersionAsync(string wellboreid, long version, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(wellboreid, nameof(wellboreid));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/wellbores/{wellboreid}/versions/{version}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -577,6 +586,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<CreateUpdateRecordsResponse> PostDdmsV3WellboresAsync(List<Record> body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObjectList(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/wellbores";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -597,6 +608,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<Record> GetDdmsV3WellsByWellidAsync(string wellid, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(wellid, nameof(wellid));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/wells/{wellid}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -616,6 +629,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<string> DeleteDdmsV3WellsByWellidAsync(string wellid, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(wellid, nameof(wellid));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/wells/{wellid}";
 
         using var request = new HttpRequestMessage(HttpMethod.Delete, requestUrl);
@@ -634,6 +649,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<RecordVersions> GetDdmsV3WellsVersionsByWellidAsync(string wellid, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(wellid, nameof(wellid));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/wells/{wellid}/versions";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -653,6 +670,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<Record> GetDdmsV3WellsVersionsByWellidAndVersionAsync(string wellid, long version, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(wellid, nameof(wellid));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/wells/{wellid}/versions/{version}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -672,6 +691,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<CreateUpdateRecordsResponse> PostDdmsV3WellsAsync(List<Record> body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObjectList(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/wells";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -692,6 +713,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<Record> GetDdmsV3WellboremarkersetsByWellboremarkersetidAsync(string wellboremarkersetid, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(wellboremarkersetid, nameof(wellboremarkersetid));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/wellboremarkersets/{wellboremarkersetid}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -711,6 +734,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<string> DeleteDdmsV3WellboremarkersetsByWellboremarkersetidAsync(string wellboremarkersetid, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(wellboremarkersetid, nameof(wellboremarkersetid));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/wellboremarkersets/{wellboremarkersetid}";
 
         using var request = new HttpRequestMessage(HttpMethod.Delete, requestUrl);
@@ -729,6 +754,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<RecordVersions> GetDdmsV3WellboremarkersetsVersionsByWellboremarkersetidAsync(string wellboremarkersetid, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(wellboremarkersetid, nameof(wellboremarkersetid));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/wellboremarkersets/{wellboremarkersetid}/versions";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -748,6 +775,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<Record> GetDdmsV3WellboremarkersetsVersionsByWellboremarkersetidAndVersionAsync(string wellboremarkersetid, long version, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(wellboremarkersetid, nameof(wellboremarkersetid));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/wellboremarkersets/{wellboremarkersetid}/versions/{version}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -767,6 +796,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<CreateUpdateRecordsResponse> PostDdmsV3WellboremarkersetsAsync(List<Record> body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObjectList(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/wellboremarkersets";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -787,6 +818,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<Record> GetDdmsV3WellboreintervalsetsByWellboreintervalsetsidAsync(string wellboreintervalsetsid, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(wellboreintervalsetsid, nameof(wellboreintervalsetsid));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/wellboreintervalsets/{wellboreintervalsetsid}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -806,6 +839,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<string> DeleteDdmsV3WellboreintervalsetsByWellboreintervalsetsidAsync(string wellboreintervalsetsid, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(wellboreintervalsetsid, nameof(wellboreintervalsetsid));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/wellboreintervalsets/{wellboreintervalsetsid}";
 
         using var request = new HttpRequestMessage(HttpMethod.Delete, requestUrl);
@@ -824,6 +859,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<RecordVersions> GetDdmsV3WellboreintervalsetsVersionsByWellboreintervalsetsidAsync(string wellboreintervalsetsid, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(wellboreintervalsetsid, nameof(wellboreintervalsetsid));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/wellboreintervalsets/{wellboreintervalsetsid}/versions";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -843,6 +880,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<Record> GetDdmsV3WellboreintervalsetsVersionsByWellboreintervalsetsidAndVersionAsync(string wellboreintervalsetsid, long version, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(wellboreintervalsetsid, nameof(wellboreintervalsetsid));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/wellboreintervalsets/{wellboreintervalsetsid}/versions/{version}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -862,6 +901,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<CreateUpdateRecordsResponse> PostDdmsV3WellboreintervalsetsAsync(List<Record> body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObjectList(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/wellboreintervalsets";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -882,6 +923,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<Record> GetDdmsV3WelllogacquisitionByWelllogacquisitionidAsync(string welllogacquisitionid, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(welllogacquisitionid, nameof(welllogacquisitionid));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/welllogacquisition/{welllogacquisitionid}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -901,6 +944,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<string> DeleteDdmsV3WelllogacquisitionByWelllogacquisitionidAsync(string welllogacquisitionid, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(welllogacquisitionid, nameof(welllogacquisitionid));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/welllogacquisition/{welllogacquisitionid}";
 
         using var request = new HttpRequestMessage(HttpMethod.Delete, requestUrl);
@@ -919,6 +964,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<RecordVersions> GetDdmsV3WelllogacquisitionVersionsByWelllogacquisitionidAsync(string welllogacquisitionid, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(welllogacquisitionid, nameof(welllogacquisitionid));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/welllogacquisition/{welllogacquisitionid}/versions";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -938,6 +985,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<Record> GetDdmsV3WelllogacquisitionVersionsByWelllogacquisitionidAndVersionAsync(string welllogacquisitionid, long version, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(welllogacquisitionid, nameof(welllogacquisitionid));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/welllogacquisition/{welllogacquisitionid}/versions/{version}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -957,6 +1006,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<CreateUpdateRecordsResponse> PostDdmsV3WelllogacquisitionAsync(List<Record> body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObjectList(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/welllogacquisition";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -977,6 +1028,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<Record> GetDdmsV3WelllogsByWelllogidAsync(string welllogid, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(welllogid, nameof(welllogid));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/welllogs/{welllogid}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -996,6 +1049,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<string> DeleteDdmsV3WelllogsByWelllogidAsync(string welllogid, bool? purge = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(welllogid, nameof(welllogid));
+
         var queryParts = new List<string>();
         if (purge.HasValue)
             queryParts.Add($"purge={purge.Value.ToString().ToLowerInvariant()}");
@@ -1018,6 +1073,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<RecordVersions> GetDdmsV3WelllogsVersionsByWelllogidAsync(string welllogid, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(welllogid, nameof(welllogid));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/welllogs/{welllogid}/versions";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -1037,6 +1094,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<Record> GetDdmsV3WelllogsVersionsByWelllogidAndVersionAsync(string welllogid, long version, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(welllogid, nameof(welllogid));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/welllogs/{welllogid}/versions/{version}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -1056,6 +1115,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<CreateUpdateRecordsResponse> PostDdmsV3WelllogsAsync(List<Record> body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObjectList(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/welllogs";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -1076,6 +1137,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<Record> GetDdmsV3WellboretrajectoriesByWellboretrajectoryidAsync(string wellboretrajectoryid, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(wellboretrajectoryid, nameof(wellboretrajectoryid));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/wellboretrajectories/{wellboretrajectoryid}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -1095,6 +1158,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<string> DeleteDdmsV3WellboretrajectoriesByWellboretrajectoryidAsync(string wellboretrajectoryid, bool? purge = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(wellboretrajectoryid, nameof(wellboretrajectoryid));
+
         var queryParts = new List<string>();
         if (purge.HasValue)
             queryParts.Add($"purge={purge.Value.ToString().ToLowerInvariant()}");
@@ -1117,6 +1182,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<RecordVersions> GetDdmsV3WellboretrajectoriesVersionsByWellboretrajectoryidAsync(string wellboretrajectoryid, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(wellboretrajectoryid, nameof(wellboretrajectoryid));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/wellboretrajectories/{wellboretrajectoryid}/versions";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -1136,6 +1203,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<Record> GetDdmsV3WellboretrajectoriesVersionsByWellboretrajectoryidAndVersionAsync(string wellboretrajectoryid, long version, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(wellboretrajectoryid, nameof(wellboretrajectoryid));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/wellboretrajectories/{wellboretrajectoryid}/versions/{version}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -1155,6 +1224,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<CreateUpdateRecordsResponse> PostDdmsV3WellboretrajectoriesAsync(List<Record> body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObjectList(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/wellboretrajectories";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -1175,6 +1246,9 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<Session> PostDdmsV3WelllogsSessionsByRecordIdAsync(string recordId, CreateDataSessionRequest body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/welllogs/{recordId}/sessions";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -1195,6 +1269,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<List<Session>> GetDdmsV3WelllogsSessionsByRecordIdAsync(string recordId, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/welllogs/{recordId}/sessions";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -1214,6 +1290,9 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<Session> GetDdmsV3WelllogsSessionsByRecordIdAndSessionIdAsync(string recordId, string sessionId, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+        RequestValidator.RequireNotNullOrEmpty(sessionId, nameof(sessionId));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/welllogs/{recordId}/sessions/{sessionId}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -1233,6 +1312,10 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<CommitSessionResponse> PatchDdmsV3WelllogsSessionsByRecordIdAndSessionIdAsync(string recordId, string sessionId, UpdateSessionState body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+        RequestValidator.RequireNotNullOrEmpty(sessionId, nameof(sessionId));
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/welllogs/{recordId}/sessions/{sessionId}";
 
         using var request = new HttpRequestMessage(HttpMethod.Patch, requestUrl);
@@ -1253,6 +1336,9 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<object> PostDdmsV3WelllogsDataByRecordIdAsync(string recordId, object body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+        RequestValidator.RequireNotNull(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/welllogs/{recordId}/data";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -1273,6 +1359,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<object> GetDdmsV3WelllogsDataByRecordIdAsync(string recordId, string offset = default, string limit = default, string curves = default, string describe = default, string filter = default, string orient = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+
         var queryParts = new List<string>();
         if (offset is not null)
             queryParts.Add($"offset={Uri.EscapeDataString(offset.ToString()!)}");
@@ -1306,6 +1394,10 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<DataframeBasicDescribe> PostDdmsV3WelllogsSessionsDataByRecordIdAndSessionIdAsync(string recordId, string sessionId, object body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+        RequestValidator.RequireNotNullOrEmpty(sessionId, nameof(sessionId));
+        RequestValidator.RequireNotNull(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/welllogs/{recordId}/sessions/{sessionId}/data";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -1326,6 +1418,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<object> GetDdmsV3WelllogsVersionsDataByRecordIdAndVersionAsync(string recordId, long version, string offset = default, string limit = default, string curves = default, string describe = default, string filter = default, string orient = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+
         var queryParts = new List<string>();
         if (offset is not null)
             queryParts.Add($"offset={Uri.EscapeDataString(offset.ToString()!)}");
@@ -1359,6 +1453,9 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<Session> PostDdmsV3WellboretrajectoriesSessionsByRecordIdAsync(string recordId, CreateDataSessionRequest body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/wellboretrajectories/{recordId}/sessions";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -1379,6 +1476,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<List<Session>> GetDdmsV3WellboretrajectoriesSessionsByRecordIdAsync(string recordId, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/wellboretrajectories/{recordId}/sessions";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -1398,6 +1497,9 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<Session> GetDdmsV3WellboretrajectoriesSessionsByRecordIdAndSessionIdAsync(string recordId, string sessionId, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+        RequestValidator.RequireNotNullOrEmpty(sessionId, nameof(sessionId));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/wellboretrajectories/{recordId}/sessions/{sessionId}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -1417,6 +1519,10 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<CommitSessionResponse> PatchDdmsV3WellboretrajectoriesSessionsByRecordIdAndSessionIdAsync(string recordId, string sessionId, UpdateSessionState body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+        RequestValidator.RequireNotNullOrEmpty(sessionId, nameof(sessionId));
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/wellboretrajectories/{recordId}/sessions/{sessionId}";
 
         using var request = new HttpRequestMessage(HttpMethod.Patch, requestUrl);
@@ -1437,6 +1543,9 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<object> PostDdmsV3WellboretrajectoriesDataByRecordIdAsync(string recordId, object body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+        RequestValidator.RequireNotNull(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/wellboretrajectories/{recordId}/data";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -1457,6 +1566,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<object> GetDdmsV3WellboretrajectoriesDataByRecordIdAsync(string recordId, string offset = default, string limit = default, string curves = default, string describe = default, string filter = default, string orient = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+
         var queryParts = new List<string>();
         if (offset is not null)
             queryParts.Add($"offset={Uri.EscapeDataString(offset.ToString()!)}");
@@ -1490,6 +1601,10 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<DataframeBasicDescribe> PostDdmsV3WellboretrajectoriesSessionsDataByRecordIdAndSessionIdAsync(string recordId, string sessionId, object body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+        RequestValidator.RequireNotNullOrEmpty(sessionId, nameof(sessionId));
+        RequestValidator.RequireNotNull(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/wellboretrajectories/{recordId}/sessions/{sessionId}/data";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -1510,6 +1625,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<object> GetDdmsV3WellboretrajectoriesVersionsDataByRecordIdAndVersionAsync(string recordId, long version, string offset = default, string limit = default, string curves = default, string describe = default, string filter = default, string orient = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+
         var queryParts = new List<string>();
         if (offset is not null)
             queryParts.Add($"offset={Uri.EscapeDataString(offset.ToString()!)}");
@@ -1543,6 +1660,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<BulkDataStatisticsResponse> GetDdmsV3WelllogsDataStatisticsByRecordIdAsync(string recordId, string curves = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+
         var queryParts = new List<string>();
         if (curves is not null)
             queryParts.Add($"curves={Uri.EscapeDataString(curves.ToString()!)}");
@@ -1566,6 +1685,9 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<BulkDataStatisticsResponse> GetDdmsV3WelllogsVersionsDataStatisticsByRecordIdAndVersionAsync(string recordId, string version, string curves = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+        RequestValidator.RequireNotNullOrEmpty(version, nameof(version));
+
         var queryParts = new List<string>();
         if (curves is not null)
             queryParts.Add($"curves={Uri.EscapeDataString(curves.ToString()!)}");
@@ -1589,6 +1711,9 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<object> PostDdmsV3WelllogsVersionsDataStatisticsByRecordIdAndVersionAsync(string recordId, string version, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+        RequestValidator.RequireNotNullOrEmpty(version, nameof(version));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/welllogs/{recordId}/versions/{version}/data/statistics";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -1608,6 +1733,9 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<Session> PostDdmsV3PpfgdatasetSessionsByRecordIdAsync(string recordId, CreateDataSessionRequest body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/ppfgdataset/{recordId}/sessions";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -1628,6 +1756,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<List<Session>> GetDdmsV3PpfgdatasetSessionsByRecordIdAsync(string recordId, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/ppfgdataset/{recordId}/sessions";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -1647,6 +1777,9 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<Session> GetDdmsV3PpfgdatasetSessionsByRecordIdAndSessionIdAsync(string recordId, string sessionId, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+        RequestValidator.RequireNotNullOrEmpty(sessionId, nameof(sessionId));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/ppfgdataset/{recordId}/sessions/{sessionId}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -1666,6 +1799,10 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<CommitSessionResponse> PatchDdmsV3PpfgdatasetSessionsByRecordIdAndSessionIdAsync(string recordId, string sessionId, UpdateSessionState body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+        RequestValidator.RequireNotNullOrEmpty(sessionId, nameof(sessionId));
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/ppfgdataset/{recordId}/sessions/{sessionId}";
 
         using var request = new HttpRequestMessage(HttpMethod.Patch, requestUrl);
@@ -1686,6 +1823,9 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<object> PostDdmsV3PpfgdatasetDataByRecordIdAsync(string recordId, object body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+        RequestValidator.RequireNotNull(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/ppfgdataset/{recordId}/data";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -1706,6 +1846,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<object> GetDdmsV3PpfgdatasetDataByRecordIdAsync(string recordId, string offset = default, string limit = default, string curves = default, string describe = default, string filter = default, string orient = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+
         var queryParts = new List<string>();
         if (offset is not null)
             queryParts.Add($"offset={Uri.EscapeDataString(offset.ToString()!)}");
@@ -1739,6 +1881,10 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<DataframeBasicDescribe> PostDdmsV3PpfgdatasetSessionsDataByRecordIdAndSessionIdAsync(string recordId, string sessionId, object body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+        RequestValidator.RequireNotNullOrEmpty(sessionId, nameof(sessionId));
+        RequestValidator.RequireNotNull(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/ppfgdataset/{recordId}/sessions/{sessionId}/data";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -1759,6 +1905,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<object> GetDdmsV3PpfgdatasetVersionsDataByRecordIdAndVersionAsync(string recordId, long version, string offset = default, string limit = default, string curves = default, string describe = default, string filter = default, string orient = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+
         var queryParts = new List<string>();
         if (offset is not null)
             queryParts.Add($"offset={Uri.EscapeDataString(offset.ToString()!)}");
@@ -1792,6 +1940,9 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<Session> PostDdmsV3WellpressuretestrawmeasurementSessionsByRecordIdAsync(string recordId, CreateDataSessionRequest body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/wellpressuretestrawmeasurement/{recordId}/sessions";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -1812,6 +1963,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<List<Session>> GetDdmsV3WellpressuretestrawmeasurementSessionsByRecordIdAsync(string recordId, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/wellpressuretestrawmeasurement/{recordId}/sessions";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -1831,6 +1984,9 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<Session> GetDdmsV3WellpressuretestrawmeasurementSessionsByRecordIdAndSessionIdAsync(string recordId, string sessionId, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+        RequestValidator.RequireNotNullOrEmpty(sessionId, nameof(sessionId));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/wellpressuretestrawmeasurement/{recordId}/sessions/{sessionId}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -1850,6 +2006,10 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<CommitSessionResponse> PatchDdmsV3WellpressuretestrawmeasurementSessionsByRecordIdAndSessionIdAsync(string recordId, string sessionId, UpdateSessionState body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+        RequestValidator.RequireNotNullOrEmpty(sessionId, nameof(sessionId));
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/wellpressuretestrawmeasurement/{recordId}/sessions/{sessionId}";
 
         using var request = new HttpRequestMessage(HttpMethod.Patch, requestUrl);
@@ -1870,6 +2030,9 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<object> PostDdmsV3WellpressuretestrawmeasurementDataByRecordIdAsync(string recordId, object body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+        RequestValidator.RequireNotNull(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/wellpressuretestrawmeasurement/{recordId}/data";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -1890,6 +2053,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<object> GetDdmsV3WellpressuretestrawmeasurementDataByRecordIdAsync(string recordId, string offset = default, string limit = default, string curves = default, string describe = default, string filter = default, string orient = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+
         var queryParts = new List<string>();
         if (offset is not null)
             queryParts.Add($"offset={Uri.EscapeDataString(offset.ToString()!)}");
@@ -1923,6 +2088,10 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<DataframeBasicDescribe> PostDdmsV3WellpressuretestrawmeasurementSessionsDataByRecordIdAndSessionIdAsync(string recordId, string sessionId, object body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+        RequestValidator.RequireNotNullOrEmpty(sessionId, nameof(sessionId));
+        RequestValidator.RequireNotNull(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/wellpressuretestrawmeasurement/{recordId}/sessions/{sessionId}/data";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -1943,6 +2112,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<object> GetDdmsV3WellpressuretestrawmeasurementVersionsDataByRecordIdAndVersionAsync(string recordId, long version, string offset = default, string limit = default, string curves = default, string describe = default, string filter = default, string orient = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(recordId, nameof(recordId));
+
         var queryParts = new List<string>();
         if (offset is not null)
             queryParts.Add($"offset={Uri.EscapeDataString(offset.ToString()!)}");
@@ -1976,6 +2147,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<Record> GetDdmsV3PpfgdatasetByOsduRecordIdAsync(string osduRecordId, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(osduRecordId, nameof(osduRecordId));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/ppfgdataset/{osduRecordId}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -1995,6 +2168,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<string> DeleteDdmsV3PpfgdatasetByOsduRecordIdAsync(string osduRecordId, bool? purge = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(osduRecordId, nameof(osduRecordId));
+
         var queryParts = new List<string>();
         if (purge.HasValue)
             queryParts.Add($"purge={purge.Value.ToString().ToLowerInvariant()}");
@@ -2017,6 +2192,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<RecordVersions> GetDdmsV3PpfgdatasetVersionsByOsduRecordIdAsync(string osduRecordId, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(osduRecordId, nameof(osduRecordId));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/ppfgdataset/{osduRecordId}/versions";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -2036,6 +2213,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<Record> GetDdmsV3PpfgdatasetVersionsByOsduRecordIdAndVersionAsync(long version, string osduRecordId, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(osduRecordId, nameof(osduRecordId));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/ppfgdataset/{osduRecordId}/versions/{version}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -2055,6 +2234,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<CreateUpdateRecordsResponse> PostDdmsV3PpfgdatasetAsync(List<Record> body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObjectList(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/ppfgdataset";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -2075,6 +2256,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<Record> GetDdmsV3WellpressuretestrawmeasurementByOsduRecordIdAsync(string osduRecordId, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(osduRecordId, nameof(osduRecordId));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/wellpressuretestrawmeasurement/{osduRecordId}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -2094,6 +2277,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<string> DeleteDdmsV3WellpressuretestrawmeasurementByOsduRecordIdAsync(string osduRecordId, bool? purge = default, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(osduRecordId, nameof(osduRecordId));
+
         var queryParts = new List<string>();
         if (purge.HasValue)
             queryParts.Add($"purge={purge.Value.ToString().ToLowerInvariant()}");
@@ -2116,6 +2301,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<RecordVersions> GetDdmsV3WellpressuretestrawmeasurementVersionsByOsduRecordIdAsync(string osduRecordId, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(osduRecordId, nameof(osduRecordId));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/wellpressuretestrawmeasurement/{osduRecordId}/versions";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -2135,6 +2322,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<Record> GetDdmsV3WellpressuretestrawmeasurementVersionsByOsduRecordIdAndVersionAsync(long version, string osduRecordId, CancellationToken cancellationToken = default)
     {
+        RequestValidator.RequireNotNullOrEmpty(osduRecordId, nameof(osduRecordId));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/wellpressuretestrawmeasurement/{osduRecordId}/versions/{version}";
 
         using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -2154,6 +2343,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<CreateUpdateRecordsResponse> PostDdmsV3WellpressuretestrawmeasurementAsync(List<Record> body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObjectList(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/ddms/v3/wellpressuretestrawmeasurement";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -2174,6 +2365,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<GuessResponse> PostLogRecognitionFamilyAsync(GuessRequest body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/log-recognition/family";
 
         using var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -2194,6 +2387,8 @@ public partial class WellboreDdmsApiClient : IWellboreDdmsApiClient
     /// </summary>
     public async Task<CreateUpdateRecordsResponse> PutLogRecognitionUploadCatalogAsync(CatalogRecord body, CancellationToken cancellationToken = default)
     {
+        RequestValidator.ValidateObject(body, nameof(body));
+
         var requestUrl = $"{_baseUrl}/log-recognition/upload-catalog";
 
         using var request = new HttpRequestMessage(HttpMethod.Put, requestUrl);
