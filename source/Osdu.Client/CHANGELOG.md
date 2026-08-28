@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.4](https://github.com/equinor/osdu-client/compare/Osdu.Client-v1.0.3...Osdu.Client-v1.0.4) (2026-08-28)
+
+
+### Bug Fixes
+
+* fixed polymorphic issue, improved enums and shortened the type names ([#24](https://github.com/equinor/osdu-client/issues/24)) ([f994802](https://github.com/equinor/osdu-client/commit/f994802a5e14e90fb8628925ff5b35b15fa6df97))
+
 ## [1.0.3](https://github.com/equinor/osdu-client/compare/Osdu.Client-v1.0.2...Osdu.Client-v1.0.3) (2026-08-26)
 
 
