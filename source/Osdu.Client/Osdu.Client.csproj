@@ -9,19 +9,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\LICENSE" Pack="true" PackagePath=""/>
-    <None Include="..\..\README.md" Pack="true" PackagePath=""/>
+    <None Include="..\..\LICENSE" Pack="true" PackagePath="" />
+    <None Include="..\..\README.md" Pack="true" PackagePath="" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Azure.Identity" Version="1.21.0"/>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.10"/>
-    <PackageReference Include="Microsoft.Extensions.Http" Version="10.0.10"/>
-    <PackageReference Include="Microsoft.Identity.Client" Version="4.87.0"/>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Apis\"/>
+    <PackageReference Include="Azure.Identity" Version="1.21.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.10" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="10.0.10" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.87.0" />
   </ItemGroup>
 
 </Project>

@@ -113,14 +113,14 @@ public class QualityDataRuleSet_1_0_0_Data : AbstractCommonResources_1_0_0
     /// The list of QualityDataRule items that this QualityDataRuleSet consists of.
     /// </summary>
     [JsonPropertyName("DataRules")]
-    public List<QualityDataRuleSet_1_0_0_Data_DataRules>? DataRules { get; set; }
+    public List<QualityDataRuleSet_1_0_0_DataRules>? DataRules { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
 
 }
 
-public class QualityDataRuleSet_1_0_0_Data_DataRules
+public class QualityDataRuleSet_1_0_0_DataRules
 {
     [RegularExpression(@"^[\w\-\.]+:reference-data\-\-QualityDataRule:[\w\-\.\:\%]+:[0-9]*$")]
     [JsonPropertyName("DataRuleID")]

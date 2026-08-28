@@ -69,7 +69,7 @@ public class AbstractVectorHeaderMapping_1_0_0_VectorHeaderMapping
     /// Enumerated string indicating whether to use the normal scalar field for scaling this field (STANDARD), no scaling (NOSCALE), or override scalar (OVERRIDE).  Default is current STANDARD (such as SEG-Y rev2).
     /// </summary>
     [JsonPropertyName("ScalarIndicator")]
-    public AbstractVectorHeaderMapping_1_0_0_VectorHeaderMapping_ScalarIndicator? ScalarIndicator { get; set; }
+    public AbstractVectorHeaderMapping_1_0_0_ScalarIndicator? ScalarIndicator { get; set; }
 
     /// <summary>
     /// Scalar value (as defined by standard) when a value present in the header needs to be overwritten for this value.
@@ -83,7 +83,7 @@ public class AbstractVectorHeaderMapping_1_0_0_VectorHeaderMapping
 /// Enumerated string indicating whether to use the normal scalar field for scaling this field (STANDARD), no scaling (NOSCALE), or override scalar (OVERRIDE).  Default is current STANDARD (such as SEG-Y rev2).
 /// </summary>
 [JsonConverter(typeof(JsonStringEnumConverter))]
-public enum AbstractVectorHeaderMapping_1_0_0_VectorHeaderMapping_ScalarIndicator
+public enum AbstractVectorHeaderMapping_1_0_0_ScalarIndicator
 {
     [JsonStringEnumMemberName("STANDARD")]
     STANDARD,

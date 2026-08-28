@@ -136,7 +136,7 @@ public class FluidsProgram_1_0_0_Data : AbstractCommonResources_1_0_0 // Also co
     /// An array of fluid intervals that in turn describe the target fluid properties that should be implemented
     /// </summary>
     [JsonPropertyName("FluidIntervals")]
-    public List<FluidsProgram_1_0_0_Data_FluidIntervals>? FluidIntervals { get; set; }
+    public List<FluidsProgram_1_0_0_FluidIntervals>? FluidIntervals { get; set; }
 
     /// <summary>
     /// Identifier of the fluids supplier company
@@ -159,7 +159,7 @@ public class FluidsProgram_1_0_0_Data : AbstractCommonResources_1_0_0 // Also co
 /// <summary>
 /// A fluid used in the drilling of a wellbore's section
 /// </summary>
-public class FluidsProgram_1_0_0_Data_FluidIntervals
+public class FluidsProgram_1_0_0_FluidIntervals
 {
     /// <summary>
     /// The name of an interval in which the fluid will be used
@@ -226,14 +226,14 @@ public class FluidsProgram_1_0_0_Data_FluidIntervals
     /// </summary>
     [Required]
     [JsonPropertyName("FluidsSystem")]
-    public required FluidsProgram_1_0_0_Data_FluidIntervals_FluidsSystem FluidsSystem { get; set; }
+    public required FluidsProgram_1_0_0_FluidsSystem FluidsSystem { get; set; }
 
 }
 
 /// <summary>
 /// Provides the overall description of the drilling fluids system.
 /// </summary>
-public class FluidsProgram_1_0_0_Data_FluidIntervals_FluidsSystem
+public class FluidsProgram_1_0_0_FluidsSystem
 {
     /// <summary>
     /// Free text string of the common name or product name of the drilling mud.
@@ -253,13 +253,13 @@ public class FluidsProgram_1_0_0_Data_FluidIntervals_FluidsSystem
     /// </summary>
     [Required]
     [JsonPropertyName("FluidProperties")]
-    public required List<FluidsProgram_1_0_0_Data_FluidIntervals_FluidsSystem_FluidProperties> FluidProperties { get; set; }
+    public required List<FluidsProgram_1_0_0_FluidProperties> FluidProperties { get; set; }
 
     /// <summary>
     /// Description of the formulation to be used for the drilling activity
     /// </summary>
     [JsonPropertyName("BarrelFormulation")]
-    public List<FluidsProgram_1_0_0_Data_FluidIntervals_FluidsSystem_BarrelFormulation>? BarrelFormulation { get; set; }
+    public List<FluidsProgram_1_0_0_BarrelFormulation>? BarrelFormulation { get; set; }
 
     /// <summary>
     /// Type of polymers present in mud system.
@@ -272,7 +272,7 @@ public class FluidsProgram_1_0_0_Data_FluidIntervals_FluidsSystem
 /// <summary>
 /// A description of fluid used in the drilling of a wellbore
 /// </summary>
-public class FluidsProgram_1_0_0_Data_FluidIntervals_FluidsSystem_FluidProperties
+public class FluidsProgram_1_0_0_FluidProperties
 {
     /// <summary>
     /// An open reference list of fluid properties
@@ -287,14 +287,14 @@ public class FluidsProgram_1_0_0_Data_FluidIntervals_FluidsSystem_FluidPropertie
     /// </summary>
     [Required]
     [JsonPropertyName("FluidFacets")]
-    public required List<FluidsProgram_1_0_0_Data_FluidIntervals_FluidsSystem_FluidProperties_FluidFacets> FluidFacets { get; set; }
+    public required List<FluidsProgram_1_0_0_FluidFacets> FluidFacets { get; set; }
 
 }
 
 /// <summary>
 /// A description of an individual facet composing a fluid
 /// </summary>
-public class FluidsProgram_1_0_0_Data_FluidIntervals_FluidsSystem_FluidProperties_FluidFacets
+public class FluidsProgram_1_0_0_FluidFacets
 {
     /// <summary>
     /// Identifier to the list of potential types of Fluid Property Facet (e.g. Measured, Range (Min), Range (Max)
@@ -332,7 +332,7 @@ public class FluidsProgram_1_0_0_Data_FluidIntervals_FluidsSystem_FluidPropertie
 /// <summary>
 /// Description of the formulation of the barrel that will be part of the drilling mud
 /// </summary>
-public class FluidsProgram_1_0_0_Data_FluidIntervals_FluidsSystem_BarrelFormulation
+public class FluidsProgram_1_0_0_BarrelFormulation
 {
     /// <summary>
     /// Name of the Product

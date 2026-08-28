@@ -173,7 +173,7 @@ public class EvaluationPlan_1_1_0_Data : AbstractCommonResources_1_0_0 // Also c
     /// The history of expenditure approvals.
     /// </summary>
     [JsonPropertyName("FundsAuthorizations")]
-    public List<EvaluationPlan_1_1_0_Data_FundsAuthorizations>? FundsAuthorizations { get; set; }
+    public List<EvaluationPlan_1_1_0_FundsAuthorizations>? FundsAuthorizations { get; set; }
 
     /// <summary>
     /// References to applicable agreements in external contract database system of record.
@@ -192,43 +192,43 @@ public class EvaluationPlan_1_1_0_Data : AbstractCommonResources_1_0_0 // Also c
     /// References to organisations which supplied services to the Project.
     /// </summary>
     [JsonPropertyName("Contractors")]
-    public List<EvaluationPlan_1_1_0_Data_Contractors>? Contractors { get; set; }
+    public List<EvaluationPlan_1_1_0_Contractors>? Contractors { get; set; }
 
     /// <summary>
     /// List of key individuals supporting the Project.  This could be Abstracted for re-use, and could reference a separate Persons master data object.
     /// </summary>
     [JsonPropertyName("Personnel")]
-    public List<EvaluationPlan_1_1_0_Data_Personnel>? Personnel { get; set; }
+    public List<EvaluationPlan_1_1_0_Personnel>? Personnel { get; set; }
 
     /// <summary>
     /// General parameters defining the configuration of the Project.  In the case of a seismic acquisition project it is like receiver interval, source depth, source type.  In the case of a processing project, it is like replacement velocity, reference datum above mean sea level.
     /// </summary>
     [JsonPropertyName("ProjectSpecifications")]
-    public List<EvaluationPlan_1_1_0_Data_ProjectSpecifications>? ProjectSpecifications { get; set; }
+    public List<EvaluationPlan_1_1_0_ProjectSpecifications>? ProjectSpecifications { get; set; }
 
     /// <summary>
     /// The history of life cycle states that the Project has been through..
     /// </summary>
     [JsonPropertyName("ProjectStates")]
-    public List<EvaluationPlan_1_1_0_Data_ProjectStates>? ProjectStates { get; set; }
+    public List<EvaluationPlan_1_1_0_ProjectStates>? ProjectStates { get; set; }
 
     /// <summary>
     /// A collection of integrity evaluations made on a formation
     /// </summary>
     [JsonPropertyName("FormationIntegrityEvaluations")]
-    public List<EvaluationPlan_1_1_0_Data_FormationIntegrityEvaluations>? FormationIntegrityEvaluations { get; set; }
+    public List<EvaluationPlan_1_1_0_FormationIntegrityEvaluations>? FormationIntegrityEvaluations { get; set; }
 
     /// <summary>
     /// Information regarding any evaluation made on the formation by analyzing cores
     /// </summary>
     [JsonPropertyName("FormationEvaluationCorings")]
-    public List<EvaluationPlan_1_1_0_Data_FormationEvaluationCorings>? FormationEvaluationCorings { get; set; }
+    public List<EvaluationPlan_1_1_0_FormationEvaluationCorings>? FormationEvaluationCorings { get; set; }
 
     /// <summary>
     /// Information regarding the evaluation of the reservoir
     /// </summary>
     [JsonPropertyName("ReservoirEvaluations")]
-    public List<EvaluationPlan_1_1_0_Data_ReservoirEvaluations>? ReservoirEvaluations { get; set; }
+    public List<EvaluationPlan_1_1_0_ReservoirEvaluations>? ReservoirEvaluations { get; set; }
 
     /// <summary>
     /// Identifier of the planned Wellbore
@@ -245,7 +245,7 @@ public class EvaluationPlan_1_1_0_Data : AbstractCommonResources_1_0_0 // Also c
 /// <summary>
 /// The history of expenditure approvals.
 /// </summary>
-public class EvaluationPlan_1_1_0_Data_FundsAuthorizations
+public class EvaluationPlan_1_1_0_FundsAuthorizations
 {
     /// <summary>
     /// Internal Company control number which identifies the allocation of funds to the Project.
@@ -278,7 +278,7 @@ public class EvaluationPlan_1_1_0_Data_FundsAuthorizations
 /// <summary>
 /// References to organisations which supplied services to the Project.
 /// </summary>
-public class EvaluationPlan_1_1_0_Data_Contractors
+public class EvaluationPlan_1_1_0_Contractors
 {
     /// <summary>
     /// Reference to a company that provided services.
@@ -305,7 +305,7 @@ public class EvaluationPlan_1_1_0_Data_Contractors
 /// <summary>
 /// List of key individuals supporting the Project.  This could be Abstracted for re-use, and could reference a separate Persons master data object.
 /// </summary>
-public class EvaluationPlan_1_1_0_Data_Personnel
+public class EvaluationPlan_1_1_0_Personnel
 {
     /// <summary>
     /// Name of an individual supporting the Project.
@@ -332,7 +332,7 @@ public class EvaluationPlan_1_1_0_Data_Personnel
 /// <summary>
 /// General parameters defining the configuration of the Project.  In the case of a seismic acquisition project it is like receiver interval, source depth, source type.  In the case of a processing project, it is like replacement velocity, reference datum above mean sea level.
 /// </summary>
-public class EvaluationPlan_1_1_0_Data_ProjectSpecifications
+public class EvaluationPlan_1_1_0_ProjectSpecifications
 {
     /// <summary>
     /// The date and time at which a ProjectSpecification becomes effective.
@@ -393,7 +393,7 @@ public class EvaluationPlan_1_1_0_Data_ProjectSpecifications
 /// <summary>
 /// The history of life cycle states that the Project has been through..
 /// </summary>
-public class EvaluationPlan_1_1_0_Data_ProjectStates
+public class EvaluationPlan_1_1_0_ProjectStates
 {
     /// <summary>
     /// The date and time at which the state becomes effective.
@@ -421,7 +421,7 @@ public class EvaluationPlan_1_1_0_Data_ProjectStates
 /// <summary>
 /// A test performed to determine the integrity of a formation
 /// </summary>
-public class EvaluationPlan_1_1_0_Data_FormationIntegrityEvaluations
+public class EvaluationPlan_1_1_0_FormationIntegrityEvaluations
 {
     /// <summary>
     /// The type of pressure test used in the evaluation of the formation
@@ -520,7 +520,7 @@ public class EvaluationPlan_1_1_0_Data_FormationIntegrityEvaluations
 /// <summary>
 /// A rock sample obtained by drilling into the earth with a pipe conveyed hollow bit and core barrel
 /// </summary>
-public class EvaluationPlan_1_1_0_Data_FormationEvaluationCorings
+public class EvaluationPlan_1_1_0_FormationEvaluationCorings
 {
     /// <summary>
     /// The name of the formation from which the core was extracted
@@ -569,7 +569,7 @@ public class EvaluationPlan_1_1_0_Data_FormationEvaluationCorings
 /// <summary>
 /// A test performed on a drillstem
 /// </summary>
-public class EvaluationPlan_1_1_0_Data_ReservoirEvaluations
+public class EvaluationPlan_1_1_0_ReservoirEvaluations
 {
     /// <summary>
     /// The name of the formation in which the test was performed.

@@ -154,7 +154,7 @@ public class ConnectedSourceRegistryEntry_1_0_0_Data : AbstractCommonResources_1
     /// List of security schemes available for use in authorizing against OSDU-compliant APIs of a connected data source.
     /// </summary>
     [JsonPropertyName("SecuritySchemes")]
-    public List<ConnectedSourceRegistryEntry_1_0_0_Data_SecuritySchemes>? SecuritySchemes { get; set; }
+    public List<ConnectedSourceRegistryEntry_1_0_0_SecuritySchemes>? SecuritySchemes { get; set; }
 
     /// <summary>
     /// Identifier of the organisation that the registered source belongs to.
@@ -171,7 +171,7 @@ public class ConnectedSourceRegistryEntry_1_0_0_Data : AbstractCommonResources_1
 /// <summary>
 /// Metadata used to retrieve or generate credentials needed for authorization.
 /// </summary>
-public class ConnectedSourceRegistryEntry_1_0_0_Data_SecuritySchemes
+public class ConnectedSourceRegistryEntry_1_0_0_SecuritySchemes
 {
     /// <summary>
     /// Unique name given to a security scheme

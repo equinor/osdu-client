@@ -163,7 +163,7 @@ public class SEGYHeaderMappingTemplate_1_0_0_Data : AbstractCommonResources_1_0_
     /// Array of objects which define the meaning and format of a tabular structure used in a binary file as a header.  The initial use case is the trace headers of a SEG-Y file.  Note that some of this information may be repeated in the SEG-Y EBCDIC header.
     /// </summary>
     [JsonPropertyName("VectorHeaderMapping")]
-    public List<SEGYHeaderMappingTemplate_1_0_0_Data_VectorHeaderMapping>? VectorHeaderMapping { get; set; }
+    public List<SEGYHeaderMappingTemplate_1_0_0_VectorHeaderMapping>? VectorHeaderMapping { get; set; }
 
     /// <summary>
     /// The SEG-Y standard revision for which the header mapping template is intended for.
@@ -179,7 +179,7 @@ public class SEGYHeaderMappingTemplate_1_0_0_Data : AbstractCommonResources_1_0_
 /// <summary>
 /// Array of objects which define the meaning and format of a tabular structure used in a binary file as a header.  The initial use case is the trace headers of a SEG-Y file.  Note that some of this information may be repeated in the SEG-Y EBCDIC header.
 /// </summary>
-public class SEGYHeaderMappingTemplate_1_0_0_Data_VectorHeaderMapping
+public class SEGYHeaderMappingTemplate_1_0_0_VectorHeaderMapping
 {
     /// <summary>
     /// Relationship to a reference value for a name of a property header such as INLINE, CDPX.
@@ -218,7 +218,7 @@ public class SEGYHeaderMappingTemplate_1_0_0_Data_VectorHeaderMapping
     /// Enumerated string indicating whether to use the normal scalar field for scaling this field (STANDARD), no scaling (NOSCALE), or override scalar (OVERRIDE).  Default is current STANDARD (such as SEG-Y rev2).
     /// </summary>
     [JsonPropertyName("ScalarIndicator")]
-    public SEGYHeaderMappingTemplate_1_0_0_Data_VectorHeaderMapping_ScalarIndicator? ScalarIndicator { get; set; }
+    public SEGYHeaderMappingTemplate_1_0_0_ScalarIndicator? ScalarIndicator { get; set; }
 
     /// <summary>
     /// Scalar value (as defined by standard) when a value present in the header needs to be overwritten for this value.
@@ -232,7 +232,7 @@ public class SEGYHeaderMappingTemplate_1_0_0_Data_VectorHeaderMapping
 /// Enumerated string indicating whether to use the normal scalar field for scaling this field (STANDARD), no scaling (NOSCALE), or override scalar (OVERRIDE).  Default is current STANDARD (such as SEG-Y rev2).
 /// </summary>
 [JsonConverter(typeof(JsonStringEnumConverter))]
-public enum SEGYHeaderMappingTemplate_1_0_0_Data_VectorHeaderMapping_ScalarIndicator
+public enum SEGYHeaderMappingTemplate_1_0_0_ScalarIndicator
 {
     [JsonStringEnumMemberName("STANDARD")]
     STANDARD,

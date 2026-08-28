@@ -74,6 +74,13 @@ public class SchemaGenerator
             _context.GeneratedTypes[name] = code;
         }
 
+        // FIX: Apply pending base class patches for internal $ref variants that were
+        // registered before their target schema was generated in the same file
+        ApplyPendingInternalPatches();
+
+        // Apply any cross-file inheritance patches recorded by earlier files
+        ApplyPendingCrossFilePatches();
+
         // Post-process: add [JsonIgnore] to properties in derived types that conflict
         // with the polymorphic type discriminator property name.
         FixDiscriminatorPropertyConflicts();
@@ -87,16 +94,96 @@ public class SchemaGenerator
     }
 
     /// <summary>
-    /// Finds polymorphic base classes that use [JsonPolymorphic(TypeDiscriminatorPropertyName = "X")]
+    /// Applies pending base class patches for internal $ref variants within the same file.
+    /// These are registered when GenerateDiscriminatedUnion encounters an internal $ref
+    /// variant that hasn't been generated yet at that point.
+    /// </summary>
+    private void ApplyPendingInternalPatches()
+    {
+        foreach (var (schemaName, baseClassName) in _context.PendingBaseClassPatches)
+        {
+            if (_context.GeneratedTypes.TryGetValue(schemaName, out var code))
+            {
+                var typeName = SchemaHelpers.Sanitize(schemaName);
+                _context.GeneratedTypes[schemaName] = SchemaHelpers.PatchClassInheritance(code, typeName, baseClassName);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Applies cross-file inheritance patches to the current file's generated types.
+    /// Called during GenerateNew for types processed after the base was generated.
+    /// </summary>
+    private void ApplyPendingCrossFilePatches()
+    {
+        foreach (var (typeName, (baseClassName, baseNamespace)) in _context.CrossFileInheritancePatches)
+        {
+            foreach (var key in _context.GeneratedTypes.Keys.ToList())
+            {
+                if (SchemaHelpers.Sanitize(key) == typeName)
+                {
+                    var code = _context.GeneratedTypes[key];
+                    code = SchemaHelpers.PatchClassInheritanceWithUsing(code, typeName, baseClassName,
+                        _context.Namespace != baseNamespace ? baseNamespace : null);
+                    _context.GeneratedTypes[key] = code;
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Post-processes already-written files to apply any remaining cross-file inheritance patches.
+    /// Call this after all schema files have been generated.
+    /// </summary>
+    public void ApplyCrossFilePatches(string outputBaseDir)
+    {
+        if (_context.CrossFileInheritancePatches.Count == 0)
+            return;
+
+        _logger.LogInformation("Applying cross-file inheritance patches...");
+
+        var csFiles = Directory.GetFiles(outputBaseDir, "*.cs", SearchOption.AllDirectories);
+
+        foreach (var (typeName, (baseClassName, baseNamespace)) in _context.CrossFileInheritancePatches)
+        {
+            foreach (var csFile in csFiles)
+            {
+                var code = File.ReadAllText(csFile);
+                if (!code.Contains($"public class {typeName}"))
+                    continue;
+
+                if (code.Contains($"public class {typeName} :"))
+                    continue;
+
+                var currentNamespace = ExtractNamespace(code);
+                code = SchemaHelpers.PatchClassInheritanceWithUsing(code, typeName, baseClassName,
+                    currentNamespace != baseNamespace ? baseNamespace : null);
+
+                File.WriteAllText(csFile, code);
+                _logger.LogInformation($"    Patched {Path.GetFileName(csFile)}: {typeName} now inherits {baseClassName}");
+            }
+        }
+    }
+
+    private static string? ExtractNamespace(string code)
+    {
+        var match = Regex.Match(code, @"namespace\s+([\w.]+)\s*;");
+        return match.Success ? match.Groups[1].Value : null;
+    }
+
+    /// <summary>
+    /// Finds polymorphic base classes that use [JsonPolymorphic(TypeDiscriminatorPropertyName = "X" ...)]
     /// and adds [JsonIgnore] to any property in their derived classes whose [JsonPropertyName] matches
     /// the discriminator property name. This prevents System.Text.Json from throwing
     /// InvalidOperationException at runtime.
     /// </summary>
     private void FixDiscriminatorPropertyConflicts()
     {
-        // Pattern to find: [JsonPolymorphic(TypeDiscriminatorPropertyName = "type")]
+        // Pattern to find: [JsonPolymorphic(TypeDiscriminatorPropertyName = "type" ...)]
+        // Must NOT require ")" immediately after the discriminator value — there may be
+        // additional parameters like UnknownDerivedTypeHandling.
         var polymorphicPattern = new Regex(
-            @"\[JsonPolymorphic\(TypeDiscriminatorPropertyName\s*=\s*""(?<disc>[^""]+)""\)\]");
+            @"\[JsonPolymorphic\(TypeDiscriminatorPropertyName\s*=\s*""(?<disc>[^""]+)""");
 
         // Pattern to find derived type class names from [JsonDerivedType(typeof(ClassName), ...)]
         var derivedTypePattern = new Regex(
@@ -126,52 +213,82 @@ public class SchemaGenerator
         foreach (var name in keys)
         {
             string code = _context.GeneratedTypes[name];
+            bool modified = false;
 
-            // Check if any class in this file is a known derived type
             foreach (var (derivedTypeName, discriminatorName) in discriminatorsByDerivedType)
             {
                 if (!code.Contains($"class {derivedTypeName}"))
                     continue;
 
-                // Only apply [JsonIgnore] if this class actually inherits from a polymorphic base
-                // (i.e., the class declaration contains " : SomeBaseClass")
+                // Only apply if this class actually inherits from a polymorphic base
                 var classPattern = new Regex($@"class\s+{Regex.Escape(derivedTypeName)}\s*:\s*\w+");
                 if (!classPattern.IsMatch(code))
                     continue;
 
-                // Find the [JsonPropertyName("type")] line that matches the discriminator
-                // and insert [JsonIgnore] before it if not already present
                 string propertyNameAttr = $"[JsonPropertyName(\"{discriminatorName}\")]";
                 if (!code.Contains(propertyNameAttr))
                     continue;
 
-                // Add [JsonIgnore] before the [JsonPropertyName("...")] for the discriminator property
-                // and remove [Required] attribute and 'required' modifier since JsonIgnore prevents deserialization
-                var jsonIgnorePattern = new Regex(
-                    @"(?<indent>[ \t]*)\[Required\]\s*\n(?<indent2>[ \t]*)" +
+                // Already has [JsonIgnore] for this property — skip
+                // Check within the class body specifically
+                var classIdx = code.IndexOf($"class {derivedTypeName}", StringComparison.Ordinal);
+                if (classIdx < 0) continue;
+                var propIdx = code.IndexOf(propertyNameAttr, classIdx, StringComparison.Ordinal);
+                if (propIdx < 0) continue;
+
+                // Check if [JsonIgnore] is already right before this [JsonPropertyName]
+                int checkStart = Math.Max(classIdx, propIdx - 100);
+                string preceding = code[checkStart..propIdx];
+                if (preceding.Contains("[JsonIgnore]"))
+                    continue;
+
+                // Case 1: [Required]\n    [JsonPropertyName("type")]
+                var withRequiredPattern = new Regex(
+                    @"(?<indent>[ \t]*)\[Required\]\s*\r?\n(?<indent2>[ \t]*)" +
                     Regex.Escape(propertyNameAttr));
 
-                code = jsonIgnorePattern.Replace(code, match =>
+                var withRequiredMatch = withRequiredPattern.Match(code, classIdx);
+                if (withRequiredMatch.Success && withRequiredMatch.Index >= classIdx)
                 {
-                    // Only add if [JsonIgnore] is not already there
-                    if (code.LastIndexOf("[JsonIgnore]", match.Index, StringComparison.Ordinal) >= 0)
-                    {
-                        int checkStart = Math.Max(0, match.Index - 50);
-                        string preceding = code[checkStart..match.Index];
-                        if (preceding.Contains("[JsonIgnore]"))
-                            return match.Value;
-                    }
+                    string indent2 = withRequiredMatch.Groups["indent2"].Value;
+                    code = code[..withRequiredMatch.Index] +
+                           $"{indent2}[JsonIgnore]\n{indent2}{propertyNameAttr}" +
+                           code[(withRequiredMatch.Index + withRequiredMatch.Length)..];
+                    modified = true;
+                }
+                else
+                {
+                    // Case 2: No [Required] — just [JsonPropertyName("type")]
+                    var withoutRequiredPattern = new Regex(
+                        @"(?<indent>[ \t]*)" + Regex.Escape(propertyNameAttr));
 
-                    string indent = match.Groups["indent"].Value;
-                    string indent2 = match.Groups["indent2"].Value;
-                    return $"{indent}[JsonIgnore]\n{indent2}{propertyNameAttr}";
-                });
+                    var withoutRequiredMatch = withoutRequiredPattern.Match(code, classIdx);
+                    if (withoutRequiredMatch.Success && withoutRequiredMatch.Index >= classIdx)
+                    {
+                        string indent = withoutRequiredMatch.Groups["indent"].Value;
+                        code = code[..withoutRequiredMatch.Index] +
+                               $"{indent}[JsonIgnore]\n{indent}{propertyNameAttr}" +
+                               code[(withoutRequiredMatch.Index + withoutRequiredMatch.Length)..];
+                        modified = true;
+                    }
+                }
 
                 // Remove 'required' modifier from the discriminator property line
+                var csharpPropName = SchemaHelpers.Sanitize(discriminatorName.ToPascalCase());
                 var requiredModifierPattern = new Regex(
-                    @"(public\s+)required(\s+\S+\s+" + Regex.Escape(SchemaHelpers.Sanitize(discriminatorName.ToPascalCase())) + @"\s*\{)");
-                code = requiredModifierPattern.Replace(code, "$1$2");
+                    @"(public\s+)required(\s+\S+\s+" + Regex.Escape(csharpPropName) + @"\s*\{)");
+                var reqMatch = requiredModifierPattern.Match(code, classIdx);
+                if (reqMatch.Success)
+                {
+                    code = code[..reqMatch.Index] +
+                           reqMatch.Groups[1].Value + reqMatch.Groups[2].Value +
+                           code[(reqMatch.Index + reqMatch.Length)..];
+                    modified = true;
+                }
+            }
 
+            if (modified)
+            {
                 _context.GeneratedTypes[name] = code;
             }
         }
@@ -180,7 +297,6 @@ public class SchemaGenerator
 
     private string AddOpenApiHeader(string jsonContent, string schemaName)
     {
-        // Wrap the JSON schema in a minimal OpenAPI document so we can reuse SchemaGenerator
         var wrappedJson = $$"""
                             {
                                 "openapi": "3.0.0",
@@ -201,7 +317,6 @@ public class SchemaGenerator
         return name.Replace('-', '_')
             .Replace(' ', '_')
             .Replace('.', '_');
-
     }
 
     private void BuildUsingsAndNamespace(StringBuilder sb, string schemaNamespace, IEnumerable<string> additionalUsings)
@@ -227,6 +342,9 @@ public class SchemaGenerator
         StringBuilder sb = new StringBuilder();
 
         CodeGenerator.BuildAutogenComment(sb);
+
+        // Set the root schema name so all inline types are anchored to it
+        _context.RootSchemaName = SchemaHelpers.Sanitize(name);
 
         var referencedNamespaces = CollectExternalNamespaces(schema);
         BuildUsingsAndNamespace(sb, _context.Namespace, referencedNamespaces);
@@ -305,16 +423,16 @@ public class SchemaGenerator
         try
         {
             string currentDir = Path.GetDirectoryName(_context.JsonFilePath) ?? string.Empty;
-            string fullRefPath = Path.GetFullPath(Path.Combine(currentDir, refPath));
-            string definitionsDir = _configuration.Data.DefinitionsDir;
+            string fullPath = Path.GetFullPath(Path.Combine(currentDir, refPath));
 
-            string relativePath = Path.GetRelativePath(definitionsDir, fullRefPath);
+            string defsDir = _configuration.Data?.DefinitionsDir ?? _configuration.Api?.DefinitionsDir ?? string.Empty;
+            if (string.IsNullOrEmpty(defsDir))
+                return null;
+
+            string relativePath = Path.GetRelativePath(defsDir, fullPath);
             string relativeDir = Path.GetDirectoryName(relativePath)?.ToPascalCase() ?? string.Empty;
 
-            if (string.IsNullOrEmpty(relativeDir))
-                return _configuration.Data.Namespace;
-
-            return $"{_configuration.Data.Namespace}.{relativeDir}";
+            return $"{_configuration.Data?.Namespace ?? _configuration.Api?.Namespace}" + (relativeDir == "" ? "" : $".{relativeDir}");
         }
         catch
         {

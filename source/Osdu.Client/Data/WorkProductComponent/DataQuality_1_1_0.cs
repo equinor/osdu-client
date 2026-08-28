@@ -107,7 +107,7 @@ public class DataQuality_1_1_0_Data : AbstractCommonResources_1_0_0 // Also comp
     /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
     /// </summary>
     [JsonPropertyName("Artefacts")]
-    public List<DataQuality_1_1_0_Data_Artefacts>? Artefacts { get; set; }
+    public List<DataQuality_1_1_0_Artefacts>? Artefacts { get; set; }
 
     /// <summary>
     /// A flag that indicates if the work product component is undergoing an extended load.  It reflects the fact that the work product component is in an early stage and may be updated before finalization.
@@ -188,7 +188,7 @@ public class DataQuality_1_1_0_Data : AbstractCommonResources_1_0_0 // Also comp
     /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
     /// </summary>
     [JsonPropertyName("LineageAssertions")]
-    public List<DataQuality_1_1_0_Data_LineageAssertions>? LineageAssertions { get; set; }
+    public List<DataQuality_1_1_0_LineageAssertions>? LineageAssertions { get; set; }
 
     /// <summary>
     /// The reference to the evaluated data record. The record version number is required.
@@ -211,7 +211,7 @@ public class DataQuality_1_1_0_Data : AbstractCommonResources_1_0_0 // Also comp
 /// <summary>
 /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
 /// </summary>
-public class DataQuality_1_1_0_Data_Artefacts
+public class DataQuality_1_1_0_Artefacts
 {
     /// <summary>
     /// The SRN of this artefact's role.
@@ -239,7 +239,7 @@ public class DataQuality_1_1_0_Data_Artefacts
 /// <summary>
 /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
 /// </summary>
-public class DataQuality_1_1_0_Data_LineageAssertions
+public class DataQuality_1_1_0_LineageAssertions
 {
     /// <summary>
     /// The object reference identifying the DIRECT, INDIRECT, REFERENCE dependency.

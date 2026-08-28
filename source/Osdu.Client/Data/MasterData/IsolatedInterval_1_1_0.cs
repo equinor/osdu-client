@@ -266,7 +266,7 @@ public class IsolatedInterval_1_1_0_Data : AbstractCommonResources_1_0_0 // Also
     /// An array of one or more Wellbore(s) that complete the base of the interval. Can be used for Isolated Intervals that span multiple Wellbores within the same Well.
     /// </summary>
     [JsonPropertyName("IsolatedIntervalBases")]
-    public List<IsolatedInterval_1_1_0_Data_IsolatedIntervalBases>? IsolatedIntervalBases { get; set; }
+    public List<IsolatedInterval_1_1_0_IsolatedIntervalBases>? IsolatedIntervalBases { get; set; }
 
     /// <summary>
     /// A list of associated Wellbore Opening IDs.
@@ -282,7 +282,7 @@ public class IsolatedInterval_1_1_0_Data : AbstractCommonResources_1_0_0 // Also
 /// <summary>
 /// The base of the IsolatedInterval.
 /// </summary>
-public class IsolatedInterval_1_1_0_Data_IsolatedIntervalBases
+public class IsolatedInterval_1_1_0_IsolatedIntervalBases
 {
     /// <summary>
     /// The record id  of the wellbore object, to which this IsolatedIntervalBase element belongs

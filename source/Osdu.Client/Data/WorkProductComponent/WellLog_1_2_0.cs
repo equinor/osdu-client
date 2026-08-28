@@ -107,7 +107,7 @@ public class WellLog_1_2_0_Data : AbstractCommonResources_1_0_0 // Also composes
     /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
     /// </summary>
     [JsonPropertyName("Artefacts")]
-    public List<WellLog_1_2_0_Data_Artefacts>? Artefacts { get; set; }
+    public List<WellLog_1_2_0_Artefacts>? Artefacts { get; set; }
 
     /// <summary>
     /// A flag that indicates if the work product component is undergoing an extended load.  It reflects the fact that the work product component is in an early stage and may be updated before finalization.
@@ -188,7 +188,7 @@ public class WellLog_1_2_0_Data : AbstractCommonResources_1_0_0 // Also composes
     /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
     /// </summary>
     [JsonPropertyName("LineageAssertions")]
-    public List<WellLog_1_2_0_Data_LineageAssertions>? LineageAssertions { get; set; }
+    public List<WellLog_1_2_0_LineageAssertions>? LineageAssertions { get; set; }
 
     /// <summary>
     /// The Wellbore where the Well Log Work Product Component was recorded
@@ -257,7 +257,7 @@ public class WellLog_1_2_0_Data : AbstractCommonResources_1_0_0 // Also composes
     /// An interval built from two nested values : StartDate and EndDate. It applies to the whole log services and may apply to composite logs as [start of the first run job] and [end of the last run job]Log Service Date
     /// </summary>
     [JsonPropertyName("LogServiceDateInterval")]
-    public WellLog_1_2_0_Data_LogServiceDateInterval? LogServiceDateInterval { get; set; }
+    public WellLog_1_2_0_LogServiceDateInterval? LogServiceDateInterval { get; set; }
 
     /// <summary>
     /// Tool String Description - a long concatenation of the tools used for logging services such as GammaRay+NeutronPorosity
@@ -306,7 +306,7 @@ public class WellLog_1_2_0_Data : AbstractCommonResources_1_0_0 // Also composes
     public AbstractFacilityVerticalMeasurement_1_0_0? VerticalMeasurement { get; set; }
 
     [JsonPropertyName("Curves")]
-    public List<WellLog_1_2_0_Data_Curves>? Curves { get; set; }
+    public List<WellLog_1_2_0_Curves>? Curves { get; set; }
 
     /// <summary>
     /// For multi-frame or multi-section files, this identifier defines the source frame in the file. If the identifier is an index number the index starts with zero and is converted to a string for this property.
@@ -389,7 +389,7 @@ public class WellLog_1_2_0_Data : AbstractCommonResources_1_0_0 // Also composes
 /// <summary>
 /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
 /// </summary>
-public class WellLog_1_2_0_Data_Artefacts
+public class WellLog_1_2_0_Artefacts
 {
     /// <summary>
     /// The SRN of this artefact's role.
@@ -417,7 +417,7 @@ public class WellLog_1_2_0_Data_Artefacts
 /// <summary>
 /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
 /// </summary>
-public class WellLog_1_2_0_Data_LineageAssertions
+public class WellLog_1_2_0_LineageAssertions
 {
     /// <summary>
     /// The object reference identifying the DIRECT, INDIRECT, REFERENCE dependency.
@@ -438,7 +438,7 @@ public class WellLog_1_2_0_Data_LineageAssertions
 /// <summary>
 /// An interval built from two nested values : StartDate and EndDate. It applies to the whole log services and may apply to composite logs as [start of the first run job] and [end of the last run job]Log Service Date
 /// </summary>
-public class WellLog_1_2_0_Data_LogServiceDateInterval
+public class WellLog_1_2_0_LogServiceDateInterval
 {
     [JsonPropertyName("StartDate")]
     [JsonConverter(typeof(NullableDateTimeOffsetConverter))]
@@ -450,7 +450,7 @@ public class WellLog_1_2_0_Data_LogServiceDateInterval
 
 }
 
-public class WellLog_1_2_0_Data_Curves
+public class WellLog_1_2_0_Curves
 {
     /// <summary>
     /// The ID of the Well Log Curve

@@ -155,7 +155,7 @@ public class FluidsReport_1_2_0_Data : AbstractCommonResources_1_0_0 // Also com
     /// The drilling fluids that are represented on this report
     /// </summary>
     [JsonPropertyName("Fluid")]
-    public List<FluidsReport_1_2_0_Data_Fluid>? Fluid { get; set; }
+    public List<FluidsReport_1_2_0_Fluid>? Fluid { get; set; }
 
     /// <summary>
     /// Reference to the wellbore that is the subject of this fluids report
@@ -178,7 +178,7 @@ public class FluidsReport_1_2_0_Data : AbstractCommonResources_1_0_0 // Also com
 /// <summary>
 /// Information regarding an individual fluid that is part of the Drilling Report.
 /// </summary>
-public class FluidsReport_1_2_0_Data_Fluid
+public class FluidsReport_1_2_0_Fluid
 {
     /// <summary>
     /// Description for the type of fluid.
@@ -706,14 +706,14 @@ public class FluidsReport_1_2_0_Data_Fluid
     /// Details of the Rheometer tests performed on the fluid sample
     /// </summary>
     [JsonPropertyName("Rheometer")]
-    public List<FluidsReport_1_2_0_Data_Fluid_Rheometer>? Rheometer { get; set; }
+    public List<FluidsReport_1_2_0_Rheometer>? Rheometer { get; set; }
 
 }
 
 /// <summary>
 /// Rheometer values observed
 /// </summary>
-public class FluidsReport_1_2_0_Data_Fluid_Rheometer
+public class FluidsReport_1_2_0_Rheometer
 {
     /// <summary>
     /// The temperature at which the rheometer values were measured
@@ -733,14 +733,14 @@ public class FluidsReport_1_2_0_Data_Fluid_Rheometer
     /// The viscosities recorder during the Rheometer test
     /// </summary>
     [JsonPropertyName("RheometerViscosities")]
-    public List<FluidsReport_1_2_0_Data_Fluid_Rheometer_RheometerViscosities>? RheometerViscosities { get; set; }
+    public List<FluidsReport_1_2_0_RheometerViscosities>? RheometerViscosities { get; set; }
 
 }
 
 /// <summary>
 /// Viscosity values observed
 /// </summary>
-public class FluidsReport_1_2_0_Data_Fluid_Rheometer_RheometerViscosities
+public class FluidsReport_1_2_0_RheometerViscosities
 {
     /// <summary>
     /// Rotational speed of the rheometer, typically in RPM.

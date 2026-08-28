@@ -113,7 +113,7 @@ public class WellboreTrajectory_1_4_0_Data : AbstractCommonResources_1_0_0 // Al
     /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
     /// </summary>
     [JsonPropertyName("Artefacts")]
-    public List<WellboreTrajectory_1_4_0_Data_Artefacts>? Artefacts { get; set; }
+    public List<WellboreTrajectory_1_4_0_Artefacts>? Artefacts { get; set; }
 
     /// <summary>
     /// A flag that indicates if the work product component is undergoing an extended load.  It reflects the fact that the work product component is in an early stage and may be updated before finalization.
@@ -200,7 +200,7 @@ public class WellboreTrajectory_1_4_0_Data : AbstractCommonResources_1_0_0 // Al
     /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
     /// </summary>
     [JsonPropertyName("LineageAssertions")]
-    public List<WellboreTrajectory_1_4_0_Data_LineageAssertions>? LineageAssertions { get; set; }
+    public List<WellboreTrajectory_1_4_0_LineageAssertions>? LineageAssertions { get; set; }
 
     /// <summary>
     /// Name of the Survey Company.
@@ -332,7 +332,7 @@ public class WellboreTrajectory_1_4_0_Data : AbstractCommonResources_1_0_0 // Al
     /// The array of TrajectoryStationProperty definitions describing the available properties for this instance of WellboreTrajectory.
     /// </summary>
     [JsonPropertyName("AvailableTrajectoryStationProperties")]
-    public List<WellboreTrajectory_1_4_0_Data_AvailableTrajectoryStationProperties>? AvailableTrajectoryStationProperties { get; set; }
+    public List<WellboreTrajectory_1_4_0_AvailableTrajectoryStationProperties>? AvailableTrajectoryStationProperties { get; set; }
 
     /// <summary>
     /// The audit trail of operations applied to the station coordinates from the original state to the current state. The list may contain operations applied prior to ingestion as well as the operations applied to produce the Wgs84Coordinates. The text elements refer to ESRI style CRS and Transformation names, which may have to be translated to EPSG standard names.
@@ -514,7 +514,7 @@ public class WellboreTrajectory_1_4_0_Data : AbstractCommonResources_1_0_0 // Al
 /// <summary>
 /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
 /// </summary>
-public class WellboreTrajectory_1_4_0_Data_Artefacts
+public class WellboreTrajectory_1_4_0_Artefacts
 {
     /// <summary>
     /// The record id of this artefact's role.
@@ -542,7 +542,7 @@ public class WellboreTrajectory_1_4_0_Data_Artefacts
 /// <summary>
 /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
 /// </summary>
-public class WellboreTrajectory_1_4_0_Data_LineageAssertions
+public class WellboreTrajectory_1_4_0_LineageAssertions
 {
     /// <summary>
     /// The object reference identifying the DIRECT, INDIRECT, REFERENCE dependency.
@@ -563,7 +563,7 @@ public class WellboreTrajectory_1_4_0_Data_LineageAssertions
 /// <summary>
 /// A set of properties describing a trajectory station property which is available for this instance of a WellboreTrajectory.
 /// </summary>
-public class WellboreTrajectory_1_4_0_Data_AvailableTrajectoryStationProperties
+public class WellboreTrajectory_1_4_0_AvailableTrajectoryStationProperties
 {
     /// <summary>
     /// The reference to a trajectory station property type - or if interpreted as channels, the curve or channel name type, identifying e.g. MD, Inclination, Azimuth. This is a relationship to a reference-data--TrajectoryStationPropertyType record id.

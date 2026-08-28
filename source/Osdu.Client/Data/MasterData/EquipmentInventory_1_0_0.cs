@@ -149,7 +149,7 @@ public class EquipmentInventory_1_0_0_Data : AbstractCommonResources_1_0_0 // Al
     /// The inventory of equipment located on site.
     /// </summary>
     [JsonPropertyName("EquipmentInventory")]
-    public List<EquipmentInventory_1_0_0_Data_EquipmentInventory>? EquipmentInventory { get; set; }
+    public List<EquipmentInventory_1_0_0_EquipmentInventory>? EquipmentInventory { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
@@ -159,7 +159,7 @@ public class EquipmentInventory_1_0_0_Data : AbstractCommonResources_1_0_0 // Al
 /// <summary>
 /// The inventory of equipment located on site.
 /// </summary>
-public class EquipmentInventory_1_0_0_Data_EquipmentInventory
+public class EquipmentInventory_1_0_0_EquipmentInventory
 {
     /// <summary>
     /// A reference to the object defining the equipment included in this inventory.

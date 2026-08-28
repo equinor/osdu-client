@@ -217,7 +217,7 @@ public class Reservoir_2_0_0_Data : AbstractCommonResources_1_0_0 // Also compos
     /// Set of attributes capturing the Life Cycle Statuses of the Reservoir, a concept which is typically chronological.
     /// </summary>
     [JsonPropertyName("LifeCycleStatuses")]
-    public List<Reservoir_2_0_0_Data_LifeCycleStatuses>? LifeCycleStatuses { get; set; }
+    public List<Reservoir_2_0_0_LifeCycleStatuses>? LifeCycleStatuses { get; set; }
 
     [JsonPropertyName("BusinessAssociate")]
     public AbstractContact_1_1_0? BusinessAssociate { get; set; }
@@ -237,7 +237,7 @@ public class Reservoir_2_0_0_Data : AbstractCommonResources_1_0_0 // Also compos
 /// <summary>
 /// Set of attributes capturing the Life Cycle Statuses of the Reservoir, a concept which is typically chronological.
 /// </summary>
-public class Reservoir_2_0_0_Data_LifeCycleStatuses
+public class Reservoir_2_0_0_LifeCycleStatuses
 {
     /// <summary>
     /// The Life Cycle Status of the Reservoir, a concept which is typically chronological.

@@ -173,7 +173,7 @@ public class SeismicProcessingProject_1_4_0_Data : AbstractCommonResources_1_0_1
     /// The history of expenditure approvals.
     /// </summary>
     [JsonPropertyName("FundsAuthorizations")]
-    public List<SeismicProcessingProject_1_4_0_Data_FundsAuthorizations>? FundsAuthorizations { get; set; }
+    public List<SeismicProcessingProject_1_4_0_FundsAuthorizations>? FundsAuthorizations { get; set; }
 
     /// <summary>
     /// References to applicable agreements in external contract database system of record.
@@ -192,25 +192,25 @@ public class SeismicProcessingProject_1_4_0_Data : AbstractCommonResources_1_0_1
     /// References to organisations which supplied services to the Project.
     /// </summary>
     [JsonPropertyName("Contractors")]
-    public List<SeismicProcessingProject_1_4_0_Data_Contractors>? Contractors { get; set; }
+    public List<SeismicProcessingProject_1_4_0_Contractors>? Contractors { get; set; }
 
     /// <summary>
     /// List of key individuals supporting the Project.  This could be Abstracted for re-use, and could reference a separate Persons master data object.
     /// </summary>
     [JsonPropertyName("Personnel")]
-    public List<SeismicProcessingProject_1_4_0_Data_Personnel>? Personnel { get; set; }
+    public List<SeismicProcessingProject_1_4_0_Personnel>? Personnel { get; set; }
 
     /// <summary>
     /// General parameters defining the configuration of the Project.  In the case of a seismic acquisition project it is like receiver interval, source depth, source type.  In the case of a processing project, it is like replacement velocity, reference datum above mean sea level.
     /// </summary>
     [JsonPropertyName("ProjectSpecifications")]
-    public List<SeismicProcessingProject_1_4_0_Data_ProjectSpecifications>? ProjectSpecifications { get; set; }
+    public List<SeismicProcessingProject_1_4_0_ProjectSpecifications>? ProjectSpecifications { get; set; }
 
     /// <summary>
     /// The history of life cycle states that the Project has been through..
     /// </summary>
     [JsonPropertyName("ProjectStates")]
-    public List<SeismicProcessingProject_1_4_0_Data_ProjectStates>? ProjectStates { get; set; }
+    public List<SeismicProcessingProject_1_4_0_ProjectStates>? ProjectStates { get; set; }
 
     /// <summary>
     /// The relation to the ActivityTemplate carrying expected parameter definitions and default values.
@@ -268,7 +268,7 @@ public class SeismicProcessingProject_1_4_0_Data : AbstractCommonResources_1_0_1
 /// <summary>
 /// The history of expenditure approvals.
 /// </summary>
-public class SeismicProcessingProject_1_4_0_Data_FundsAuthorizations
+public class SeismicProcessingProject_1_4_0_FundsAuthorizations
 {
     /// <summary>
     /// Internal Company control number which identifies the allocation of funds to the Project.
@@ -301,7 +301,7 @@ public class SeismicProcessingProject_1_4_0_Data_FundsAuthorizations
 /// <summary>
 /// References to organisations which supplied services to the Project.
 /// </summary>
-public class SeismicProcessingProject_1_4_0_Data_Contractors
+public class SeismicProcessingProject_1_4_0_Contractors
 {
     /// <summary>
     /// Reference to a company that provided services.
@@ -328,7 +328,7 @@ public class SeismicProcessingProject_1_4_0_Data_Contractors
 /// <summary>
 /// List of key individuals supporting the Project.  This could be Abstracted for re-use, and could reference a separate Persons master data object.
 /// </summary>
-public class SeismicProcessingProject_1_4_0_Data_Personnel
+public class SeismicProcessingProject_1_4_0_Personnel
 {
     /// <summary>
     /// Name of an individual supporting the Project.
@@ -355,7 +355,7 @@ public class SeismicProcessingProject_1_4_0_Data_Personnel
 /// <summary>
 /// General parameters defining the configuration of the Project.  In the case of a seismic acquisition project it is like receiver interval, source depth, source type.  In the case of a processing project, it is like replacement velocity, reference datum above mean sea level.
 /// </summary>
-public class SeismicProcessingProject_1_4_0_Data_ProjectSpecifications
+public class SeismicProcessingProject_1_4_0_ProjectSpecifications
 {
     /// <summary>
     /// The date and time at which a ProjectSpecification becomes effective.
@@ -416,7 +416,7 @@ public class SeismicProcessingProject_1_4_0_Data_ProjectSpecifications
 /// <summary>
 /// The history of life cycle states that the Project has been through..
 /// </summary>
-public class SeismicProcessingProject_1_4_0_Data_ProjectStates
+public class SeismicProcessingProject_1_4_0_ProjectStates
 {
     /// <summary>
     /// The date and time at which the state becomes effective.

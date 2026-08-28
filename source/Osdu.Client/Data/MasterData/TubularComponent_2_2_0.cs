@@ -460,13 +460,13 @@ public class TubularComponent_2_2_0_Data : AbstractCommonResources_1_0_0 // Also
     /// Description of the ID of the Nozzle used in the Tubular Component
     /// </summary>
     [JsonPropertyName("Nozzles")]
-    public List<TubularComponent_2_2_0_Data_Nozzles>? Nozzles { get; set; }
+    public List<TubularComponent_2_2_0_Nozzles>? Nozzles { get; set; }
 
     /// <summary>
     /// Description of the type of Sensor for the Tubular Components
     /// </summary>
     [JsonPropertyName("Sensors")]
-    public List<TubularComponent_2_2_0_Data_Sensors>? Sensors { get; set; }
+    public List<TubularComponent_2_2_0_Sensors>? Sensors { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
@@ -476,7 +476,7 @@ public class TubularComponent_2_2_0_Data : AbstractCommonResources_1_0_0 // Also
 /// <summary>
 /// number and size of nozzles / jets in a Tubular Component
 /// </summary>
-public class TubularComponent_2_2_0_Data_Nozzles
+public class TubularComponent_2_2_0_Nozzles
 {
     /// <summary>
     /// Unique identifier for this instance of Nozzle
@@ -526,7 +526,7 @@ public class TubularComponent_2_2_0_Data_Nozzles
 /// <summary>
 /// Tubular Sensor Component Schema
 /// </summary>
-public class TubularComponent_2_2_0_Data_Sensors
+public class TubularComponent_2_2_0_Sensors
 {
     /// <summary>
     /// Unique identifier for this Instance of Sensor log

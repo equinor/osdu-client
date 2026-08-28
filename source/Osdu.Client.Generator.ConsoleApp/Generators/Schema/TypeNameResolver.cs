@@ -17,6 +17,16 @@ public class TypeNameResolver
         _context = context;
     }
 
+    /// <summary>
+    /// Builds a short inline type name anchored to the root schema name.
+    /// </summary>
+    private string BuildInlineName(string parentName, string propertyName)
+    {
+        var pascal = propertyName.ToPascalCase();
+        var shortName = _context.GetShortInlineName(parentName, pascal);
+        return SchemaHelpers.Sanitize(shortName);
+    }
+
     public string ResolveTypeName(IOpenApiSchema schema, string parentName, string propertyName)
     {
         if (schema is OpenApiSchemaReference schemaRef)
@@ -42,7 +52,7 @@ public class TypeNameResolver
             if (signature is not null && _context.OneOfUnionCache.TryGetValue(signature, out var cachedType))
                 return cachedType;
 
-            var unionName = SchemaHelpers.Sanitize($"{parentName}_{propertyName.ToPascalCase()}");
+            var unionName = BuildInlineName(parentName, propertyName);
             if (signature is not null)
                 _context.OneOfUnionCache[signature] = unionName;
 
@@ -69,7 +79,7 @@ public class TypeNameResolver
             if (signature is not null && _context.OneOfUnionCache.TryGetValue(signature, out var cachedType))
                 return cachedType;
 
-            var unionName = SchemaHelpers.Sanitize($"{parentName}_{propertyName.ToPascalCase()}");
+            var unionName = BuildInlineName(parentName, propertyName);
             if (signature is not null)
                 _context.OneOfUnionCache[signature] = unionName;
 
@@ -80,7 +90,7 @@ public class TypeNameResolver
         {
             var refs = schema.AllOf.OfType<OpenApiSchemaReference>().ToList();
             if (refs.Count > 1)
-                return SchemaHelpers.Sanitize($"{parentName}_{propertyName.ToPascalCase()}");
+                return BuildInlineName(parentName, propertyName);
 
             if (refs.Count == 1)
             {
@@ -90,7 +100,7 @@ public class TypeNameResolver
                     .ToList();
 
                 if (inlineProps.Count > 0)
-                    return SchemaHelpers.Sanitize($"{parentName}_{propertyName.ToPascalCase()}");
+                    return BuildInlineName(parentName, propertyName);
 
                 return SchemaHelpers.Sanitize(refs[0].Reference.Id);
             }
@@ -102,7 +112,7 @@ public class TypeNameResolver
         if (SchemaHelpers.HasFlag(type, JsonSchemaType.String))
         {
             if (schema.Enum is { Count: > 0 })
-                return SchemaHelpers.Sanitize($"{parentName}_{propertyName.ToPascalCase()}");
+                return BuildInlineName(parentName, propertyName);
             return format switch
             {
                 "date-time" => "DateTimeOffset",
@@ -151,7 +161,7 @@ public class TypeNameResolver
                     if (signature is not null && _context.OneOfUnionCache.TryGetValue(signature, out var cachedType))
                         return $"List<{cachedType}>";
 
-                    var unionName = SchemaHelpers.Sanitize($"{parentName}_{propertyName.ToPascalCase()}");
+                    var unionName = BuildInlineName(parentName, propertyName);
                     if (signature is not null)
                         _context.OneOfUnionCache[signature] = unionName;
 
@@ -169,7 +179,7 @@ public class TypeNameResolver
             if (schema.AdditionalProperties is not null)
                 return $"Dictionary<string, {ResolveTypeName(schema.AdditionalProperties, parentName, propertyName)}>";
             if (schema.Properties?.Count > 0)
-                return SchemaHelpers.Sanitize($"{parentName}_{propertyName.ToPascalCase()}");
+                return BuildInlineName(parentName, propertyName);
         }
 
         return "object";

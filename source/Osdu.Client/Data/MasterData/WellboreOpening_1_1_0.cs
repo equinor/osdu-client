@@ -148,7 +148,7 @@ public class WellboreOpening_1_1_0_Data : AbstractCommonResources_1_0_0 // Also 
     /// The history of life cycle states this WellboreOpening has been through.
     /// </summary>
     [JsonPropertyName("WellboreOpeningStates")]
-    public List<WellboreOpening_1_1_0_Data_WellboreOpeningStates>? WellboreOpeningStates { get; set; }
+    public List<WellboreOpening_1_1_0_WellboreOpeningStates>? WellboreOpeningStates { get; set; }
 
     [JsonPropertyName("VerticalMeasurement")]
     public AbstractFacilityVerticalMeasurement_1_0_0? VerticalMeasurement { get; set; }
@@ -212,7 +212,7 @@ public class WellboreOpening_1_1_0_Data : AbstractCommonResources_1_0_0 // Also 
 /// <summary>
 /// The life cycle status of a WellboreOpening at some point in time.
 /// </summary>
-public class WellboreOpening_1_1_0_Data_WellboreOpeningStates
+public class WellboreOpening_1_1_0_WellboreOpeningStates
 {
     /// <summary>
     /// The date and time at which the WellboreOpening state becomes effective.

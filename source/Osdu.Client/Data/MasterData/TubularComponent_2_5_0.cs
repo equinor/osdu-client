@@ -478,13 +478,13 @@ public class TubularComponent_2_5_0_Data : AbstractCommonResources_1_0_1 // Also
     /// Description of the Size (ID) of the Nozzle (Jet) used in the Tubular Component
     /// </summary>
     [JsonPropertyName("Nozzles")]
-    public List<TubularComponent_2_5_0_Data_Nozzles>? Nozzles { get; set; }
+    public List<TubularComponent_2_5_0_Nozzles>? Nozzles { get; set; }
 
     /// <summary>
     /// Description of the type of Sensor(s) for the Tubular Components e.g. for MWD/LWD tools
     /// </summary>
     [JsonPropertyName("Sensors")]
-    public List<TubularComponent_2_5_0_Data_Sensors>? Sensors { get; set; }
+    public List<TubularComponent_2_5_0_Sensors>? Sensors { get; set; }
 
     /// <summary>
     /// Top and/or Bottom Connection information
@@ -540,7 +540,7 @@ public class TubularComponent_2_5_0_Data : AbstractCommonResources_1_0_1 // Also
 /// <summary>
 /// number and size of nozzles / jets in a Tubular Component
 /// </summary>
-public class TubularComponent_2_5_0_Data_Nozzles
+public class TubularComponent_2_5_0_Nozzles
 {
     /// <summary>
     /// Unique identifier for this instance of Nozzle
@@ -590,7 +590,7 @@ public class TubularComponent_2_5_0_Data_Nozzles
 /// <summary>
 /// Tubular Sensor Component Schema
 /// </summary>
-public class TubularComponent_2_5_0_Data_Sensors
+public class TubularComponent_2_5_0_Sensors
 {
     /// <summary>
     /// Unique identifier for this Instance of Sensor log

@@ -71,25 +71,25 @@ public class SeismicTraceNavigation_1_0_0_LineSegments
     /// The shot point range.
     /// </summary>
     [JsonPropertyName("ShotPointRange")]
-    public SeismicTraceNavigation_1_0_0_LineSegments_ShotPointRange? ShotPointRange { get; set; }
+    public SeismicTraceNavigation_1_0_0_ShotPointRange? ShotPointRange { get; set; }
 
     /// <summary>
     /// The common mid-point range.
     /// </summary>
     [JsonPropertyName("CommonMidPointRange")]
-    public SeismicTraceNavigation_1_0_0_LineSegments_CommonMidPointRange? CommonMidPointRange { get; set; }
+    public SeismicTraceNavigation_1_0_0_CommonMidPointRange? CommonMidPointRange { get; set; }
 
     /// <summary>
     /// The ratio definition between shot point and common mid-point numbers.
     /// </summary>
     [JsonPropertyName("ShotPointCommonMidPointRatio")]
-    public SeismicTraceNavigation_1_0_0_LineSegments_ShotPointCommonMidPointRatio? ShotPointCommonMidPointRatio { get; set; }
+    public SeismicTraceNavigation_1_0_0_ShotPointCommonMidPointRatio? ShotPointCommonMidPointRatio { get; set; }
 
     /// <summary>
     /// Generic text labels for the first and last coordinate.
     /// </summary>
     [JsonPropertyName("GenericLabels")]
-    public SeismicTraceNavigation_1_0_0_LineSegments_GenericLabels? GenericLabels { get; set; }
+    public SeismicTraceNavigation_1_0_0_GenericLabels? GenericLabels { get; set; }
 
     /// <summary>
     /// Has the segment been extrapolated to cover the entire trace range?
@@ -110,7 +110,7 @@ public class SeismicTraceNavigation_1_0_0_LineSegments
 /// <summary>
 /// The shot point range.
 /// </summary>
-public class SeismicTraceNavigation_1_0_0_LineSegments_ShotPointRange
+public class SeismicTraceNavigation_1_0_0_ShotPointRange
 {
     /// <summary>
     /// The start point number of the range.
@@ -131,7 +131,7 @@ public class SeismicTraceNavigation_1_0_0_LineSegments_ShotPointRange
 /// <summary>
 /// The common mid-point range.
 /// </summary>
-public class SeismicTraceNavigation_1_0_0_LineSegments_CommonMidPointRange
+public class SeismicTraceNavigation_1_0_0_CommonMidPointRange
 {
     /// <summary>
     /// The start point number of the range.
@@ -152,7 +152,7 @@ public class SeismicTraceNavigation_1_0_0_LineSegments_CommonMidPointRange
 /// <summary>
 /// The ratio definition between shot point and common mid-point numbers.
 /// </summary>
-public class SeismicTraceNavigation_1_0_0_LineSegments_ShotPointCommonMidPointRatio
+public class SeismicTraceNavigation_1_0_0_ShotPointCommonMidPointRatio
 {
     /// <summary>
     /// The number of shot point(s) (dividend) per common mid-point.
@@ -179,7 +179,7 @@ public class SeismicTraceNavigation_1_0_0_LineSegments_ShotPointCommonMidPointRa
 /// <summary>
 /// Generic text labels for the first and last coordinate.
 /// </summary>
-public class SeismicTraceNavigation_1_0_0_LineSegments_GenericLabels
+public class SeismicTraceNavigation_1_0_0_GenericLabels
 {
     /// <summary>
     /// The first label of the line segment.

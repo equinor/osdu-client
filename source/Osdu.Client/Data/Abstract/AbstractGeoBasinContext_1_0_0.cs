@@ -17,7 +17,7 @@ namespace Osdu.Client.Data.Abstract;
 /// <summary>
 /// A single, typed basin entity reference, which is 'abstracted' to AbstractGeoContext and then aggregated by GeoContexts properties.
 /// </summary>
-public class AbstractGeoBasinContext_1_0_0
+public class AbstractGeoBasinContext_1_0_0 : AbstractGeoContext_1_0_0
 {
     /// <summary>
     /// Reference to Basin.

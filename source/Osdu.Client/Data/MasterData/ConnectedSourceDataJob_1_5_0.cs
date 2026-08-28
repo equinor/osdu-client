@@ -173,7 +173,7 @@ public class ConnectedSourceDataJob_1_5_0_Data : AbstractCommonResources_1_0_0 /
     /// The history of expenditure approvals.
     /// </summary>
     [JsonPropertyName("FundsAuthorizations")]
-    public List<ConnectedSourceDataJob_1_5_0_Data_FundsAuthorizations>? FundsAuthorizations { get; set; }
+    public List<ConnectedSourceDataJob_1_5_0_FundsAuthorizations>? FundsAuthorizations { get; set; }
 
     /// <summary>
     /// References to applicable agreements in external contract database system of record.
@@ -192,25 +192,25 @@ public class ConnectedSourceDataJob_1_5_0_Data : AbstractCommonResources_1_0_0 /
     /// References to organisations which supplied services to the Project.
     /// </summary>
     [JsonPropertyName("Contractors")]
-    public List<ConnectedSourceDataJob_1_5_0_Data_Contractors>? Contractors { get; set; }
+    public List<ConnectedSourceDataJob_1_5_0_Contractors>? Contractors { get; set; }
 
     /// <summary>
     /// List of key individuals supporting the Project.  This could be Abstracted for re-use, and could reference a separate Persons master data object.
     /// </summary>
     [JsonPropertyName("Personnel")]
-    public List<ConnectedSourceDataJob_1_5_0_Data_Personnel>? Personnel { get; set; }
+    public List<ConnectedSourceDataJob_1_5_0_Personnel>? Personnel { get; set; }
 
     /// <summary>
     /// General parameters defining the configuration of the Project.  In the case of a seismic acquisition project it is like receiver interval, source depth, source type.  In the case of a processing project, it is like replacement velocity, reference datum above mean sea level.
     /// </summary>
     [JsonPropertyName("ProjectSpecifications")]
-    public List<ConnectedSourceDataJob_1_5_0_Data_ProjectSpecifications>? ProjectSpecifications { get; set; }
+    public List<ConnectedSourceDataJob_1_5_0_ProjectSpecifications>? ProjectSpecifications { get; set; }
 
     /// <summary>
     /// The history of life cycle states that the Project has been through..
     /// </summary>
     [JsonPropertyName("ProjectStates")]
-    public List<ConnectedSourceDataJob_1_5_0_Data_ProjectStates>? ProjectStates { get; set; }
+    public List<ConnectedSourceDataJob_1_5_0_ProjectStates>? ProjectStates { get; set; }
 
     /// <summary>
     /// The relation to the ActivityTemplate carrying expected parameter definitions and default values.
@@ -295,7 +295,7 @@ public class ConnectedSourceDataJob_1_5_0_Data : AbstractCommonResources_1_0_0 /
     /// DEPRECATED: Superseded by the contents of appropriate parameters in an ActivityTemplate instance identified by data.ActivityTemplateID. In earlier versions: List of workflows and their configuration used in this scheduled job
     /// </summary>
     [JsonPropertyName("Workflows")]
-    public List<ConnectedSourceDataJob_1_5_0_Data_Workflows>? Workflows { get; set; }
+    public List<ConnectedSourceDataJob_1_5_0_Workflows>? Workflows { get; set; }
 
     [JsonPropertyName("OnIngestionLegalTags")]
     public AbstractLegalTags_1_0_0? OnIngestionLegalTags { get; set; }
@@ -382,7 +382,7 @@ public class ConnectedSourceDataJob_1_5_0_Data : AbstractCommonResources_1_0_0 /
 /// <summary>
 /// The history of expenditure approvals.
 /// </summary>
-public class ConnectedSourceDataJob_1_5_0_Data_FundsAuthorizations
+public class ConnectedSourceDataJob_1_5_0_FundsAuthorizations
 {
     /// <summary>
     /// Internal Company control number which identifies the allocation of funds to the Project.
@@ -415,7 +415,7 @@ public class ConnectedSourceDataJob_1_5_0_Data_FundsAuthorizations
 /// <summary>
 /// References to organisations which supplied services to the Project.
 /// </summary>
-public class ConnectedSourceDataJob_1_5_0_Data_Contractors
+public class ConnectedSourceDataJob_1_5_0_Contractors
 {
     /// <summary>
     /// Reference to a company that provided services.
@@ -442,7 +442,7 @@ public class ConnectedSourceDataJob_1_5_0_Data_Contractors
 /// <summary>
 /// List of key individuals supporting the Project.  This could be Abstracted for re-use, and could reference a separate Persons master data object.
 /// </summary>
-public class ConnectedSourceDataJob_1_5_0_Data_Personnel
+public class ConnectedSourceDataJob_1_5_0_Personnel
 {
     /// <summary>
     /// Name of an individual supporting the Project.
@@ -469,7 +469,7 @@ public class ConnectedSourceDataJob_1_5_0_Data_Personnel
 /// <summary>
 /// General parameters defining the configuration of the Project.  In the case of a seismic acquisition project it is like receiver interval, source depth, source type.  In the case of a processing project, it is like replacement velocity, reference datum above mean sea level.
 /// </summary>
-public class ConnectedSourceDataJob_1_5_0_Data_ProjectSpecifications
+public class ConnectedSourceDataJob_1_5_0_ProjectSpecifications
 {
     /// <summary>
     /// The date and time at which a ProjectSpecification becomes effective.
@@ -530,7 +530,7 @@ public class ConnectedSourceDataJob_1_5_0_Data_ProjectSpecifications
 /// <summary>
 /// The history of life cycle states that the Project has been through..
 /// </summary>
-public class ConnectedSourceDataJob_1_5_0_Data_ProjectStates
+public class ConnectedSourceDataJob_1_5_0_ProjectStates
 {
     /// <summary>
     /// The date and time at which the state becomes effective.
@@ -558,7 +558,7 @@ public class ConnectedSourceDataJob_1_5_0_Data_ProjectStates
 /// <summary>
 /// A workflow configuration in the context of a scheduled job.
 /// </summary>
-public class ConnectedSourceDataJob_1_5_0_Data_Workflows
+public class ConnectedSourceDataJob_1_5_0_Workflows
 {
     /// <summary>
     /// Tag given to a workflow category, such as Fetch, Ingest, Delivery
@@ -576,7 +576,7 @@ public class ConnectedSourceDataJob_1_5_0_Data_Workflows
     /// Name value or object Id
     /// </summary>
     [JsonPropertyName("Parameters")]
-    public List<ConnectedSourceDataJob_1_5_0_Data_Workflows_Parameters>? Parameters { get; set; }
+    public List<ConnectedSourceDataJob_1_5_0_Parameters>? Parameters { get; set; }
 
     /// <summary>
     /// Data source endpoint used in workflow
@@ -596,7 +596,7 @@ public class ConnectedSourceDataJob_1_5_0_Data_Workflows
 /// <summary>
 /// Parameter name value pair.
 /// </summary>
-public class ConnectedSourceDataJob_1_5_0_Data_Workflows_Parameters
+public class ConnectedSourceDataJob_1_5_0_Parameters
 {
     /// <summary>
     /// Name of the parameter the handler expects

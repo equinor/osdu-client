@@ -17,7 +17,7 @@ namespace Osdu.Client.Data.Abstract;
 /// <summary>
 /// A single, typed field entity reference, which is 'abstracted' to AbstractGeoContext and then aggregated by GeoContexts properties.
 /// </summary>
-public class AbstractGeoFieldContext_1_0_0
+public class AbstractGeoFieldContext_1_0_0 : AbstractGeoContext_1_0_0
 {
     /// <summary>
     /// Reference to Field.

@@ -219,7 +219,7 @@ public class Well_1_0_0_Data : AbstractCommonResources_1_0_0 // Also composes: A
     /// List of all depths and elevations pertaining to the well, like, water depth, mud line elevation, etc.
     /// </summary>
     [JsonPropertyName("VerticalMeasurements")]
-    public List<Well_1_0_0_Data_VerticalMeasurements>? VerticalMeasurements { get; set; }
+    public List<Well_1_0_0_VerticalMeasurements>? VerticalMeasurements { get; set; }
 
     /// <summary>
     /// Pre-defined reasons for interest in the well or information about the well.
@@ -233,7 +233,7 @@ public class Well_1_0_0_Data : AbstractCommonResources_1_0_0 // Also composes: A
 
 }
 
-public class Well_1_0_0_Data_VerticalMeasurements : AbstractFacilityVerticalMeasurement_1_0_0
+public class Well_1_0_0_VerticalMeasurements : AbstractFacilityVerticalMeasurement_1_0_0
 {
     /// <summary>
     /// The ID for a distinct vertical measurement within the Wellbore VerticalMeasurements array so that it may be referenced by other vertical measurements if necessary.

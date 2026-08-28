@@ -134,7 +134,7 @@ public class FileCollection_Esri_Shape_1_1_0_Data : AbstractCommonResources_1_0_
     /// Endianness of binary value.  Enumeration: "BIG", "LITTLE".  If absent, applications will need to interpret from context indicators.
     /// </summary>
     [JsonPropertyName("Endian")]
-    public FileCollection_Esri_Shape_1_1_0_Data_Endian? Endian { get; set; }
+    public FileCollection_Esri_Shape_1_1_0_Endian? Endian { get; set; }
 
     /// <summary>
     /// Placeholder for a specialization.
@@ -154,7 +154,7 @@ public class FileCollection_Esri_Shape_1_1_0_Data : AbstractCommonResources_1_0_
 /// Endianness of binary value.  Enumeration: "BIG", "LITTLE".  If absent, applications will need to interpret from context indicators.
 /// </summary>
 [JsonConverter(typeof(JsonStringEnumConverter))]
-public enum FileCollection_Esri_Shape_1_1_0_Data_Endian
+public enum FileCollection_Esri_Shape_1_1_0_Endian
 {
     [JsonStringEnumMemberName("BIG")]
     BIG,

@@ -193,13 +193,13 @@ public class CatalogMaterialGrade_1_0_0_Data : AbstractCommonResources_1_0_1 // 
     /// Tensile yield points at specified temperatures.
     /// </summary>
     [JsonPropertyName("TensileYields")]
-    public List<CatalogMaterialGrade_1_0_0_Data_TensileYields>? TensileYields { get; set; }
+    public List<CatalogMaterialGrade_1_0_0_TensileYields>? TensileYields { get; set; }
 
     /// <summary>
     /// Thermal expansions at specified temperatures.
     /// </summary>
     [JsonPropertyName("ThermalExpansions")]
-    public List<CatalogMaterialGrade_1_0_0_Data_ThermalExpansions>? ThermalExpansions { get; set; }
+    public List<CatalogMaterialGrade_1_0_0_ThermalExpansions>? ThermalExpansions { get; set; }
 
     /// <summary>
     /// Anisotropy radial.
@@ -255,7 +255,7 @@ public class CatalogMaterialGrade_1_0_0_Data : AbstractCommonResources_1_0_1 // 
     /// Density of the material at specified temperatures.
     /// </summary>
     [JsonPropertyName("Densities")]
-    public List<CatalogMaterialGrade_1_0_0_Data_Densities>? Densities { get; set; }
+    public List<CatalogMaterialGrade_1_0_0_Densities>? Densities { get; set; }
 
     /// <summary>
     /// Rushmore code
@@ -277,7 +277,7 @@ public class CatalogMaterialGrade_1_0_0_Data : AbstractCommonResources_1_0_1 // 
 /// <summary>
 /// Tensile yield point at specified temperature.
 /// </summary>
-public class CatalogMaterialGrade_1_0_0_Data_TensileYields
+public class CatalogMaterialGrade_1_0_0_TensileYields
 {
     /// <summary>
     /// Yield points.
@@ -296,7 +296,7 @@ public class CatalogMaterialGrade_1_0_0_Data_TensileYields
 /// <summary>
 /// Thermal expansions at specified temperatures.
 /// </summary>
-public class CatalogMaterialGrade_1_0_0_Data_ThermalExpansions
+public class CatalogMaterialGrade_1_0_0_ThermalExpansions
 {
     /// <summary>
     /// How much a material expands or contracts when its temperature changes.
@@ -315,7 +315,7 @@ public class CatalogMaterialGrade_1_0_0_Data_ThermalExpansions
 /// <summary>
 /// Density of the material at specified temperatures.
 /// </summary>
-public class CatalogMaterialGrade_1_0_0_Data_Densities
+public class CatalogMaterialGrade_1_0_0_Densities
 {
     /// <summary>
     /// The density of the material at a specified temperature.

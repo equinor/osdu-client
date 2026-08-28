@@ -113,7 +113,7 @@ public class DepthShift_1_0_0_Data : AbstractCommonResources_1_0_1 // Also compo
     /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
     /// </summary>
     [JsonPropertyName("Artefacts")]
-    public List<DepthShift_1_0_0_Data_Artefacts>? Artefacts { get; set; }
+    public List<DepthShift_1_0_0_Artefacts>? Artefacts { get; set; }
 
     /// <summary>
     /// A flag that indicates if the work product component is undergoing an extended load.  It reflects the fact that the work product component is in an early stage and may be updated before finalization.
@@ -200,7 +200,7 @@ public class DepthShift_1_0_0_Data : AbstractCommonResources_1_0_1 // Also compo
     /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
     /// </summary>
     [JsonPropertyName("LineageAssertions")]
-    public List<DepthShift_1_0_0_Data_LineageAssertions>? LineageAssertions { get; set; }
+    public List<DepthShift_1_0_0_LineageAssertions>? LineageAssertions { get; set; }
 
     /// <summary>
     /// Identifies the wellbore to which the core and the relevant log belong, which were used for the depth-shift.
@@ -240,7 +240,7 @@ public class DepthShift_1_0_0_Data : AbstractCommonResources_1_0_1 // Also compo
     /// Identifies the samples/specimens to shift as well as the intended usage of the depth shift with the identified samples. This is only to be used when depth-shifting samples, not well logs.
     /// </summary>
     [JsonPropertyName("DepthShiftedSamples")]
-    public List<DepthShift_1_0_0_Data_DepthShiftedSamples>? DepthShiftedSamples { get; set; }
+    public List<DepthShift_1_0_0_DepthShiftedSamples>? DepthShiftedSamples { get; set; }
 
     [JsonPropertyName("AuthorID")]
     public AbstractContact_1_1_0? AuthorID { get; set; }
@@ -259,7 +259,7 @@ public class DepthShift_1_0_0_Data : AbstractCommonResources_1_0_1 // Also compo
 /// <summary>
 /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
 /// </summary>
-public class DepthShift_1_0_0_Data_Artefacts
+public class DepthShift_1_0_0_Artefacts
 {
     /// <summary>
     /// The record id of this artefact's role.
@@ -287,7 +287,7 @@ public class DepthShift_1_0_0_Data_Artefacts
 /// <summary>
 /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
 /// </summary>
-public class DepthShift_1_0_0_Data_LineageAssertions
+public class DepthShift_1_0_0_LineageAssertions
 {
     /// <summary>
     /// The object reference identifying the DIRECT, INDIRECT, REFERENCE dependency.
@@ -308,7 +308,7 @@ public class DepthShift_1_0_0_Data_LineageAssertions
 /// <summary>
 /// Defines the relationship between this depth shift to a sample/specimen (e.g., rock or fluid) as well as the intended usage of the depth shift with the identified sample.
 /// </summary>
-public class DepthShift_1_0_0_Data_DepthShiftedSamples
+public class DepthShift_1_0_0_DepthShiftedSamples
 {
     /// <summary>
     /// Identifies the sample/specimen (e.g., core) to which this depth shift applies.

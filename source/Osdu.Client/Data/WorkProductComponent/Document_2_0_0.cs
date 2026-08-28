@@ -113,7 +113,7 @@ public class Document_2_0_0_Data : AbstractCommonResources_1_0_1 // Also compose
     /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
     /// </summary>
     [JsonPropertyName("Artefacts")]
-    public List<Document_2_0_0_Data_Artefacts>? Artefacts { get; set; }
+    public List<Document_2_0_0_Artefacts>? Artefacts { get; set; }
 
     /// <summary>
     /// A flag that indicates if the work product component is undergoing an extended load.  It reflects the fact that the work product component is in an early stage and may be updated before finalization.
@@ -200,7 +200,7 @@ public class Document_2_0_0_Data : AbstractCommonResources_1_0_1 // Also compose
     /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
     /// </summary>
     [JsonPropertyName("LineageAssertions")]
-    public List<Document_2_0_0_Data_LineageAssertions>? LineageAssertions { get; set; }
+    public List<Document_2_0_0_LineageAssertions>? LineageAssertions { get; set; }
 
     /// <summary>
     /// The Document Taxonomy provides a structured taxonomy for categorising document types. This taxonomy adheres to a consistent naming convention of a DISCIPLINE followed by a document type, using a dot-based nomenclature e.g., &lt;DISCIPLINE&gt;.&lt;Document Type&gt;. This creates a two level hierarchy of the document type to support classification and search. This a recommended property. A Document may have one or more document types (for example, End of Well Reports may contain a wide range of information).
@@ -304,7 +304,7 @@ public class Document_2_0_0_Data : AbstractCommonResources_1_0_1 // Also compose
 /// <summary>
 /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
 /// </summary>
-public class Document_2_0_0_Data_Artefacts
+public class Document_2_0_0_Artefacts
 {
     /// <summary>
     /// The record id of this artefact's role.
@@ -332,7 +332,7 @@ public class Document_2_0_0_Data_Artefacts
 /// <summary>
 /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
 /// </summary>
-public class Document_2_0_0_Data_LineageAssertions
+public class Document_2_0_0_LineageAssertions
 {
     /// <summary>
     /// The object reference identifying the DIRECT, INDIRECT, REFERENCE dependency.

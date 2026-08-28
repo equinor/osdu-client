@@ -14,32 +14,12 @@ using Osdu.Client.Converters;
 
 namespace Osdu.Client.Data.Abstract;
 
-[JsonPolymorphic(TypeDiscriminatorPropertyName = "type")]
-[JsonDerivedType(typeof(AbstractGeoPoliticalContext100Json), "AbstractGeoPoliticalContext.1.0.0.json")]
-[JsonDerivedType(typeof(AbstractGeoBasinContext100Json), "AbstractGeoBasinContext.1.0.0.json")]
-[JsonDerivedType(typeof(AbstractGeoFieldContext100Json), "AbstractGeoFieldContext.1.0.0.json")]
-[JsonDerivedType(typeof(AbstractGeoPlayContext100Json), "AbstractGeoPlayContext.1.0.0.json")]
-[JsonDerivedType(typeof(AbstractGeoProspectContext100Json), "AbstractGeoProspectContext.1.0.0.json")]
-public abstract class AbstractGeoContext_1_0_0
-{
-}
-
-public class AbstractGeoPoliticalContext100Json : AbstractGeoContext_1_0_0
-{
-}
-
-public class AbstractGeoBasinContext100Json : AbstractGeoContext_1_0_0
-{
-}
-
-public class AbstractGeoFieldContext100Json : AbstractGeoContext_1_0_0
-{
-}
-
-public class AbstractGeoPlayContext100Json : AbstractGeoContext_1_0_0
-{
-}
-
-public class AbstractGeoProspectContext100Json : AbstractGeoContext_1_0_0
+[JsonPolymorphic(TypeDiscriminatorPropertyName = "type", UnknownDerivedTypeHandling = JsonUnknownDerivedTypeHandling.FallBackToBaseType)]
+[JsonDerivedType(typeof(AbstractGeoPoliticalContext_1_0_0), "AbstractGeoPoliticalContext.1.0.0.json")]
+[JsonDerivedType(typeof(AbstractGeoBasinContext_1_0_0), "AbstractGeoBasinContext.1.0.0.json")]
+[JsonDerivedType(typeof(AbstractGeoFieldContext_1_0_0), "AbstractGeoFieldContext.1.0.0.json")]
+[JsonDerivedType(typeof(AbstractGeoPlayContext_1_0_0), "AbstractGeoPlayContext.1.0.0.json")]
+[JsonDerivedType(typeof(AbstractGeoProspectContext_1_0_0), "AbstractGeoProspectContext.1.0.0.json")]
+public class AbstractGeoContext_1_0_0
 {
 }

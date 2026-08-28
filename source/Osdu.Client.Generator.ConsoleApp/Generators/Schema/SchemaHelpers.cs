@@ -75,6 +75,31 @@ public static class SchemaHelpers
     }
 
     /// <summary>
+    /// Patches a generated class's code to add inheritance and a using statement if needed.
+    /// </summary>
+    public static string PatchClassInheritanceWithUsing(string code, string className, string baseClassName, string? baseNamespace)
+    {
+        code = PatchClassInheritance(code, className, baseClassName);
+
+        // Add using for the base class namespace if it's not already present
+        if (baseNamespace is not null && !code.Contains($"using {baseNamespace};"))
+        {
+            // Insert after the last existing using statement
+            var lastUsing = code.LastIndexOf("using ", StringComparison.Ordinal);
+            if (lastUsing >= 0)
+            {
+                var endOfLine = code.IndexOf('\n', lastUsing);
+                if (endOfLine >= 0)
+                {
+                    code = code[..(endOfLine + 1)] + $"using {baseNamespace};\n" + code[(endOfLine + 1)..];
+                }
+            }
+        }
+    
+        return code;
+    }
+
+    /// <summary>
     /// Computes a stable cache key for a set of oneOf/anyOf variants based on their $ref names.
     /// Returns null if any variant is not a $ref (inline schemas can't be deduplicated this way).
     /// </summary>
@@ -101,8 +126,10 @@ public static class SchemaHelpers
         }
         if (result.Length == 0)
             return "Unknown";
-        // Remove "json" suffix (from schema file references)
-        var sanitized = result.ToString().Replace("json", "");
+        var sanitized = result.ToString();
+        // Remove trailing "_json" suffix (from schema file references like "Schema.1.0.0.json")
+        if (sanitized.EndsWith("_json", StringComparison.OrdinalIgnoreCase))
+            sanitized = sanitized[..^5];
         // Trim trailing underscores after all replacements
         sanitized = sanitized.TrimEnd('_');
         if (sanitized.Length == 0)

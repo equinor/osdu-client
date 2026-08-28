@@ -140,7 +140,7 @@ public class AbstractProppantAgent_1_0_0_ISO135032Properties
     /// Crush Test Data
     /// </summary>
     [JsonPropertyName("CrushTestData")]
-    public List<AbstractProppantAgent_1_0_0_ISO135032Properties_CrushTestData>? CrushTestData { get; set; }
+    public List<AbstractProppantAgent_1_0_0_CrushTestData>? CrushTestData { get; set; }
 
     /// <summary>
     /// Crush test classification indicating the highest stress level at which a proppant generated no more than 10% crushed material rounded down to the nearest 1,000 psi during a crush test. For example, a value of 14 means 14k which is 14000 psi.
@@ -176,7 +176,7 @@ public class AbstractProppantAgent_1_0_0_ISO135032Properties
     /// Sieve Analysis Data
     /// </summary>
     [JsonPropertyName("SieveAnalysisData")]
-    public List<AbstractProppantAgent_1_0_0_ISO135032Properties_SieveAnalysisData>? SieveAnalysisData { get; set; }
+    public List<AbstractProppantAgent_1_0_0_SieveAnalysisData>? SieveAnalysisData { get; set; }
 
     /// <summary>
     /// Not formally part of ISO 13503.2 properties, the specific gravity is the apparent density of the proppant divided by the density of water.
@@ -207,7 +207,7 @@ public class AbstractProppantAgent_1_0_0_ISO135032Properties
 /// <summary>
 /// ISO13503_2 crush test data for this instance of ISO13503_2 data for the proppant agent.
 /// </summary>
-public class AbstractProppantAgent_1_0_0_ISO135032Properties_CrushTestData
+public class AbstractProppantAgent_1_0_0_CrushTestData
 {
     /// <summary>
     /// Mass percentage of fines after being exposed to stress.
@@ -226,7 +226,7 @@ public class AbstractProppantAgent_1_0_0_ISO135032Properties_CrushTestData
 /// <summary>
 /// ISO13503_2 sieve analysis data for this instance of ISO13503_2 data for the proppant agent.
 /// </summary>
-public class AbstractProppantAgent_1_0_0_ISO135032Properties_SieveAnalysisData
+public class AbstractProppantAgent_1_0_0_SieveAnalysisData
 {
     /// <summary>
     /// The percentage of mass retained in the sieve.

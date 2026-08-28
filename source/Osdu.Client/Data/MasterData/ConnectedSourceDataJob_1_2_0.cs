@@ -179,7 +179,7 @@ public class ConnectedSourceDataJob_1_2_0_Data : AbstractCommonResources_1_0_0 /
     /// List of workflows and their configuration used in this scheduled job
     /// </summary>
     [JsonPropertyName("Workflows")]
-    public List<ConnectedSourceDataJob_1_2_0_Data_Workflows>? Workflows { get; set; }
+    public List<ConnectedSourceDataJob_1_2_0_Workflows>? Workflows { get; set; }
 
     [JsonPropertyName("OnIngestionLegalTags")]
     public AbstractLegalTags_1_0_0? OnIngestionLegalTags { get; set; }
@@ -227,7 +227,7 @@ public class ConnectedSourceDataJob_1_2_0_Data : AbstractCommonResources_1_0_0 /
 /// <summary>
 /// A workflow configuration in the context of a scheduled job.
 /// </summary>
-public class ConnectedSourceDataJob_1_2_0_Data_Workflows
+public class ConnectedSourceDataJob_1_2_0_Workflows
 {
     /// <summary>
     /// Tag given to a workflow category, such as Fetch, Ingest, Delivery
@@ -245,7 +245,7 @@ public class ConnectedSourceDataJob_1_2_0_Data_Workflows
     /// Name value or object Id
     /// </summary>
     [JsonPropertyName("Parameters")]
-    public List<ConnectedSourceDataJob_1_2_0_Data_Workflows_Parameters>? Parameters { get; set; }
+    public List<ConnectedSourceDataJob_1_2_0_Parameters>? Parameters { get; set; }
 
     /// <summary>
     /// Data source endpoint used in workflow
@@ -265,7 +265,7 @@ public class ConnectedSourceDataJob_1_2_0_Data_Workflows
 /// <summary>
 /// Parameter name value pair.
 /// </summary>
-public class ConnectedSourceDataJob_1_2_0_Data_Workflows_Parameters
+public class ConnectedSourceDataJob_1_2_0_Parameters
 {
     /// <summary>
     /// Name of the parameter the handler expects

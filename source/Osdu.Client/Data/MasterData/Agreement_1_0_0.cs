@@ -180,20 +180,20 @@ public class Agreement_1_0_0_Data : AbstractCommonResources_1_0_0 // Also compos
     /// A list of obligations or allowed activities specified by the agreement that apply to stored resources.  These are translated into rules, which the Entitlement Rulebase enforces.  Each rule should reference the agreement it codifies.
     /// </summary>
     [JsonPropertyName("Terms")]
-    public List<Agreement_1_0_0_Data_Terms>? Terms { get; set; }
+    public List<Agreement_1_0_0_Terms>? Terms { get; set; }
 
     /// <summary>
     /// A list of Resources that are governed by the agreement.  Note that different terms may apply to different resources, but that granularity is handled by the Entitlements Rulebase.
     /// </summary>
     [JsonPropertyName("RestrictedResources")]
-    public List<Agreement_1_0_0_Data_RestrictedResources>? RestrictedResources { get; set; }
+    public List<Agreement_1_0_0_RestrictedResources>? RestrictedResources { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
 
 }
 
-public class Agreement_1_0_0_Data_Terms
+public class Agreement_1_0_0_Terms
 {
     /// <summary>
     /// Reference to the general class of obligation, such as nondisclosure, termination of use, non-assignment, export restriction, limitation on derivatives.
@@ -224,7 +224,7 @@ public class Agreement_1_0_0_Data_Terms
 
 }
 
-public class Agreement_1_0_0_Data_RestrictedResources
+public class Agreement_1_0_0_RestrictedResources
 {
     /// <summary>
     /// Reference to an information Resource which is governed by the agreement.

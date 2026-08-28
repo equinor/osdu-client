@@ -107,7 +107,7 @@ public class IjkGridNumericalAquiferRepresentation_1_0_0_Data : AbstractCommonRe
     /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
     /// </summary>
     [JsonPropertyName("Artefacts")]
-    public List<IjkGridNumericalAquiferRepresentation_1_0_0_Data_Artefacts>? Artefacts { get; set; }
+    public List<IjkGridNumericalAquiferRepresentation_1_0_0_Artefacts>? Artefacts { get; set; }
 
     /// <summary>
     /// A flag that indicates if the work product component is undergoing an extended load.  It reflects the fact that the work product component is in an early stage and may be updated before finalization.
@@ -188,7 +188,7 @@ public class IjkGridNumericalAquiferRepresentation_1_0_0_Data : AbstractCommonRe
     /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
     /// </summary>
     [JsonPropertyName("LineageAssertions")]
-    public List<IjkGridNumericalAquiferRepresentation_1_0_0_Data_LineageAssertions>? LineageAssertions { get; set; }
+    public List<IjkGridNumericalAquiferRepresentation_1_0_0_LineageAssertions>? LineageAssertions { get; set; }
 
     /// <summary>
     /// Allow to link an interpretation with this representation
@@ -207,7 +207,7 @@ public class IjkGridNumericalAquiferRepresentation_1_0_0_Data : AbstractCommonRe
     /// Allow to link the geometry of the representation to a particular index of a time series. This is particularly useful for IJK grids used in geomechanical or basin context where the topology and geometry varies against the time.
     /// </summary>
     [JsonPropertyName("TimeSeries")]
-    public IjkGridNumericalAquiferRepresentation_1_0_0_Data_TimeSeries? TimeSeries { get; set; }
+    public IjkGridNumericalAquiferRepresentation_1_0_0_TimeSeries? TimeSeries { get; set; }
 
     /// <summary>
     /// The index of the realization of this representation
@@ -219,7 +219,7 @@ public class IjkGridNumericalAquiferRepresentation_1_0_0_Data : AbstractCommonRe
     /// Several optional indexable element counts
     /// </summary>
     [JsonPropertyName("IndexableElementCount")]
-    public List<IjkGridNumericalAquiferRepresentation_1_0_0_Data_IndexableElementCount>? IndexableElementCount { get; set; }
+    public List<IjkGridNumericalAquiferRepresentation_1_0_0_IndexableElementCount>? IndexableElementCount { get; set; }
 
     /// <summary>
     /// Allow to link a local CRS with this representation
@@ -232,7 +232,7 @@ public class IjkGridNumericalAquiferRepresentation_1_0_0_Data : AbstractCommonRe
     /// Describe the aquifer by means of one to many single cell of reservoir grids
     /// </summary>
     [JsonPropertyName("SingleCellAquiferSet")]
-    public List<IjkGridNumericalAquiferRepresentation_1_0_0_Data_SingleCellAquiferSet>? SingleCellAquiferSet { get; set; }
+    public List<IjkGridNumericalAquiferRepresentation_1_0_0_SingleCellAquiferSet>? SingleCellAquiferSet { get; set; }
 
     /// <summary>
     /// List all connections between the aquifer and reservoir grids.
@@ -248,7 +248,7 @@ public class IjkGridNumericalAquiferRepresentation_1_0_0_Data : AbstractCommonRe
 /// <summary>
 /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
 /// </summary>
-public class IjkGridNumericalAquiferRepresentation_1_0_0_Data_Artefacts
+public class IjkGridNumericalAquiferRepresentation_1_0_0_Artefacts
 {
     /// <summary>
     /// The SRN of this artefact's role.
@@ -276,7 +276,7 @@ public class IjkGridNumericalAquiferRepresentation_1_0_0_Data_Artefacts
 /// <summary>
 /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
 /// </summary>
-public class IjkGridNumericalAquiferRepresentation_1_0_0_Data_LineageAssertions
+public class IjkGridNumericalAquiferRepresentation_1_0_0_LineageAssertions
 {
     /// <summary>
     /// The object reference identifying the DIRECT, INDIRECT, REFERENCE dependency.
@@ -297,7 +297,7 @@ public class IjkGridNumericalAquiferRepresentation_1_0_0_Data_LineageAssertions
 /// <summary>
 /// Allow to link the geometry of the representation to a particular index of a time series. This is particularly useful for IJK grids used in geomechanical or basin context where the topology and geometry varies against the time.
 /// </summary>
-public class IjkGridNumericalAquiferRepresentation_1_0_0_Data_TimeSeries
+public class IjkGridNumericalAquiferRepresentation_1_0_0_TimeSeries
 {
     /// <summary>
     /// Index of the timestamp of the representation in the associated TimeSeries
@@ -319,7 +319,7 @@ public class IjkGridNumericalAquiferRepresentation_1_0_0_Data_TimeSeries
 /// <summary>
 /// Defines the count of a particular indexable element in a representation
 /// </summary>
-public class IjkGridNumericalAquiferRepresentation_1_0_0_Data_IndexableElementCount
+public class IjkGridNumericalAquiferRepresentation_1_0_0_IndexableElementCount
 {
     /// <summary>
     /// The count of indexable element
@@ -340,7 +340,7 @@ public class IjkGridNumericalAquiferRepresentation_1_0_0_Data_IndexableElementCo
 /// <summary>
 /// Describe a cell which is a part or the whole definition of an aquifer.
 /// </summary>
-public class IjkGridNumericalAquiferRepresentation_1_0_0_Data_SingleCellAquiferSet
+public class IjkGridNumericalAquiferRepresentation_1_0_0_SingleCellAquiferSet
 {
     /// <summary>
     /// The grid where the aquifer cell is defined

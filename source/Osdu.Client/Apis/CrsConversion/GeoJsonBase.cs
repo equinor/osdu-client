@@ -14,7 +14,7 @@ using Osdu.Client.Converters;
 
 namespace Osdu.Client.Apis.CrsConversion;
 
-[JsonPolymorphic(TypeDiscriminatorPropertyName = "type")]
+[JsonPolymorphic(TypeDiscriminatorPropertyName = "type", UnknownDerivedTypeHandling = JsonUnknownDerivedTypeHandling.FallBackToBaseType)]
 [JsonDerivedType(typeof(GeoJsonGeometryCollection), "GeoJsonGeometryCollection")]
 [JsonDerivedType(typeof(GeoJsonLineString), "GeoJsonLineString")]
 [JsonDerivedType(typeof(GeoJsonMultiLineString), "GeoJsonMultiLineString")]

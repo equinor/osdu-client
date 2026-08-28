@@ -174,7 +174,7 @@ public class WellPressureTestAcquisitionJob_1_2_0_Data : AbstractCommonResources
     /// The history of expenditure approvals.
     /// </summary>
     [JsonPropertyName("FundsAuthorizations")]
-    public List<WellPressureTestAcquisitionJob_1_2_0_Data_FundsAuthorizations>? FundsAuthorizations { get; set; }
+    public List<WellPressureTestAcquisitionJob_1_2_0_FundsAuthorizations>? FundsAuthorizations { get; set; }
 
     /// <summary>
     /// References to applicable agreements in external contract database system of record.
@@ -193,25 +193,25 @@ public class WellPressureTestAcquisitionJob_1_2_0_Data : AbstractCommonResources
     /// References to organisations which supplied services to the Project.
     /// </summary>
     [JsonPropertyName("Contractors")]
-    public List<WellPressureTestAcquisitionJob_1_2_0_Data_Contractors>? Contractors { get; set; }
+    public List<WellPressureTestAcquisitionJob_1_2_0_Contractors>? Contractors { get; set; }
 
     /// <summary>
     /// List of key individuals supporting the Project.  This could be Abstracted for re-use, and could reference a separate Persons master data object.
     /// </summary>
     [JsonPropertyName("Personnel")]
-    public List<WellPressureTestAcquisitionJob_1_2_0_Data_Personnel>? Personnel { get; set; }
+    public List<WellPressureTestAcquisitionJob_1_2_0_Personnel>? Personnel { get; set; }
 
     /// <summary>
     /// General parameters defining the configuration of the Project.  In the case of a seismic acquisition project it is like receiver interval, source depth, source type.  In the case of a processing project, it is like replacement velocity, reference datum above mean sea level.
     /// </summary>
     [JsonPropertyName("ProjectSpecifications")]
-    public List<WellPressureTestAcquisitionJob_1_2_0_Data_ProjectSpecifications>? ProjectSpecifications { get; set; }
+    public List<WellPressureTestAcquisitionJob_1_2_0_ProjectSpecifications>? ProjectSpecifications { get; set; }
 
     /// <summary>
     /// The history of life cycle states that the Project has been through..
     /// </summary>
     [JsonPropertyName("ProjectStates")]
-    public List<WellPressureTestAcquisitionJob_1_2_0_Data_ProjectStates>? ProjectStates { get; set; }
+    public List<WellPressureTestAcquisitionJob_1_2_0_ProjectStates>? ProjectStates { get; set; }
 
     /// <summary>
     /// The relation to the ActivityTemplate carrying expected parameter definitions and default values.
@@ -258,7 +258,7 @@ public class WellPressureTestAcquisitionJob_1_2_0_Data : AbstractCommonResources
     /// Array of unitary Acquisition Runs - eg. Period of the job included between two consecutive extraction of the acquisition string from the ground.
     /// </summary>
     [JsonPropertyName("PressureTestsAcquisitionRuns")]
-    public List<WellPressureTestAcquisitionJob_1_2_0_Data_PressureTestsAcquisitionRuns>? PressureTestsAcquisitionRuns { get; set; }
+    public List<WellPressureTestAcquisitionJob_1_2_0_PressureTestsAcquisitionRuns>? PressureTestsAcquisitionRuns { get; set; }
 
     /// <summary>
     /// The identifier of the wellbore where Pressure Test was conducted
@@ -289,7 +289,7 @@ public class WellPressureTestAcquisitionJob_1_2_0_Data : AbstractCommonResources
 /// <summary>
 /// The history of expenditure approvals.
 /// </summary>
-public class WellPressureTestAcquisitionJob_1_2_0_Data_FundsAuthorizations
+public class WellPressureTestAcquisitionJob_1_2_0_FundsAuthorizations
 {
     /// <summary>
     /// Internal Company control number which identifies the allocation of funds to the Project.
@@ -322,7 +322,7 @@ public class WellPressureTestAcquisitionJob_1_2_0_Data_FundsAuthorizations
 /// <summary>
 /// References to organisations which supplied services to the Project.
 /// </summary>
-public class WellPressureTestAcquisitionJob_1_2_0_Data_Contractors
+public class WellPressureTestAcquisitionJob_1_2_0_Contractors
 {
     /// <summary>
     /// Reference to a company that provided services.
@@ -349,7 +349,7 @@ public class WellPressureTestAcquisitionJob_1_2_0_Data_Contractors
 /// <summary>
 /// List of key individuals supporting the Project.  This could be Abstracted for re-use, and could reference a separate Persons master data object.
 /// </summary>
-public class WellPressureTestAcquisitionJob_1_2_0_Data_Personnel
+public class WellPressureTestAcquisitionJob_1_2_0_Personnel
 {
     /// <summary>
     /// Name of an individual supporting the Project.
@@ -376,7 +376,7 @@ public class WellPressureTestAcquisitionJob_1_2_0_Data_Personnel
 /// <summary>
 /// General parameters defining the configuration of the Project.  In the case of a seismic acquisition project it is like receiver interval, source depth, source type.  In the case of a processing project, it is like replacement velocity, reference datum above mean sea level.
 /// </summary>
-public class WellPressureTestAcquisitionJob_1_2_0_Data_ProjectSpecifications
+public class WellPressureTestAcquisitionJob_1_2_0_ProjectSpecifications
 {
     /// <summary>
     /// The date and time at which a ProjectSpecification becomes effective.
@@ -437,7 +437,7 @@ public class WellPressureTestAcquisitionJob_1_2_0_Data_ProjectSpecifications
 /// <summary>
 /// The history of life cycle states that the Project has been through..
 /// </summary>
-public class WellPressureTestAcquisitionJob_1_2_0_Data_ProjectStates
+public class WellPressureTestAcquisitionJob_1_2_0_ProjectStates
 {
     /// <summary>
     /// The date and time at which the state becomes effective.
@@ -465,7 +465,7 @@ public class WellPressureTestAcquisitionJob_1_2_0_Data_ProjectStates
 /// <summary>
 /// A Run is defined between two consecutive "extractions" from the ground" from acquisition string - meaning a single run has necessarily the same probes and gauges installed. A run is made of multiple (at least 2) passes.
 /// </summary>
-public class WellPressureTestAcquisitionJob_1_2_0_Data_PressureTestsAcquisitionRuns
+public class WellPressureTestAcquisitionJob_1_2_0_PressureTestsAcquisitionRuns
 {
     /// <summary>
     /// Identifier of this specific run within the Job. (Can be a Sequential Number, a GUID,… but must be unique)
@@ -537,7 +537,7 @@ public class WellPressureTestAcquisitionJob_1_2_0_Data_PressureTestsAcquisitionR
     /// </summary>
     [Required]
     [JsonPropertyName("PressureTestsAcquisitionStations")]
-    public required List<WellPressureTestAcquisitionJob_1_2_0_Data_PressureTestsAcquisitionRuns_PressureTestsAcquisitionStations> PressureTestsAcquisitionStations { get; set; }
+    public required List<WellPressureTestAcquisitionJob_1_2_0_PressureTestsAcquisitionStations> PressureTestsAcquisitionStations { get; set; }
 
     /// <summary>
     /// Identifier of the Tool Name (Branded Model Name) in the associated reference data list
@@ -576,7 +576,7 @@ public class WellPressureTestAcquisitionJob_1_2_0_Data_PressureTestsAcquisitionR
 /// <summary>
 /// A Station is defined as a static point within the pass - where one or many tests can be tried out.
 /// </summary>
-public class WellPressureTestAcquisitionJob_1_2_0_Data_PressureTestsAcquisitionRuns_PressureTestsAcquisitionStations
+public class WellPressureTestAcquisitionJob_1_2_0_PressureTestsAcquisitionStations
 {
     /// <summary>
     /// Unique identifier of the station within the run (must be a sequential number,…) - it must be unique within the run

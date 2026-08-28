@@ -221,7 +221,7 @@ public class RockSample_1_1_1_Data : AbstractCommonResources_1_0_0 // Also compo
     /// An array containing operational or quality comments pertaining to a rock sample.
     /// </summary>
     [JsonPropertyName("SampleRemarks")]
-    public List<RockSample_1_1_1_Data_SampleRemarks>? SampleRemarks { get; set; }
+    public List<RockSample_1_1_1_SampleRemarks>? SampleRemarks { get; set; }
 
     /// <summary>
     /// Company and/or organization that owns the sample.
@@ -291,7 +291,7 @@ public class RockSample_1_1_1_Data : AbstractCommonResources_1_0_0 // Also compo
 /// <summary>
 /// An array containing narrative remarks pertaining to a rock sample.
 /// </summary>
-public class RockSample_1_1_1_Data_SampleRemarks
+public class RockSample_1_1_1_SampleRemarks
 {
     /// <summary>
     /// A unique identifier for each remark record.

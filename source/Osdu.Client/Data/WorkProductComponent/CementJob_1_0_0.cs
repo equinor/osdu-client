@@ -113,7 +113,7 @@ public class CementJob_1_0_0_Data : AbstractCommonResources_1_0_0 // Also compos
     /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
     /// </summary>
     [JsonPropertyName("Artefacts")]
-    public List<CementJob_1_0_0_Data_Artefacts>? Artefacts { get; set; }
+    public List<CementJob_1_0_0_Artefacts>? Artefacts { get; set; }
 
     /// <summary>
     /// A flag that indicates if the work product component is undergoing an extended load.  It reflects the fact that the work product component is in an early stage and may be updated before finalization.
@@ -200,7 +200,7 @@ public class CementJob_1_0_0_Data : AbstractCommonResources_1_0_0 // Also compos
     /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
     /// </summary>
     [JsonPropertyName("LineageAssertions")]
-    public List<CementJob_1_0_0_Data_LineageAssertions>? LineageAssertions { get; set; }
+    public List<CementJob_1_0_0_LineageAssertions>? LineageAssertions { get; set; }
 
     /// <summary>
     /// Reference to the parent Wellbore. Cemented TubularAssembly would be installed to same Wellbore.
@@ -480,7 +480,7 @@ public class CementJob_1_0_0_Data : AbstractCommonResources_1_0_0 // Also compos
     /// Cement Plug Status History
     /// </summary>
     [JsonPropertyName("CementPlugStates")]
-    public List<CementJob_1_0_0_Data_CementPlugStates>? CementPlugStates { get; set; }
+    public List<CementJob_1_0_0_CementPlugStates>? CementPlugStates { get; set; }
 
     /// <summary>
     /// Type of squeeze.
@@ -565,43 +565,43 @@ public class CementJob_1_0_0_Data : AbstractCommonResources_1_0_0 // Also compos
     /// Set of stages for the job (usually 1 or 2).
     /// </summary>
     [JsonPropertyName("CementStages")]
-    public List<CementJob_1_0_0_Data_CementStages>? CementStages { get; set; }
+    public List<CementJob_1_0_0_CementStages>? CementStages { get; set; }
 
     /// <summary>
     /// Casing Pressure Test
     /// </summary>
     [JsonPropertyName("CasingPressureTest")]
-    public CementJob_1_0_0_Data_CasingPressureTest? CasingPressureTest { get; set; }
+    public CementJob_1_0_0_CasingPressureTest? CasingPressureTest { get; set; }
 
     /// <summary>
     /// Log Evaluation
     /// </summary>
     [JsonPropertyName("LogEvaluation")]
-    public List<CementJob_1_0_0_Data_LogEvaluation>? LogEvaluation { get; set; }
+    public List<CementJob_1_0_0_LogEvaluation>? LogEvaluation { get; set; }
 
     /// <summary>
     /// Shoe Test
     /// </summary>
     [JsonPropertyName("ShoeTest")]
-    public CementJob_1_0_0_Data_ShoeTest? ShoeTest { get; set; }
+    public CementJob_1_0_0_ShoeTest? ShoeTest { get; set; }
 
     /// <summary>
     /// TOC Interpretation
     /// </summary>
     [JsonPropertyName("TOCInterpretation")]
-    public CementJob_1_0_0_Data_TOCInterpretation? TOCInterpretation { get; set; }
+    public CementJob_1_0_0_TOCInterpretation? TOCInterpretation { get; set; }
 
     /// <summary>
     /// Liner Top Test
     /// </summary>
     [JsonPropertyName("LinerTopTest")]
-    public CementJob_1_0_0_Data_LinerTopTest? LinerTopTest { get; set; }
+    public CementJob_1_0_0_LinerTopTest? LinerTopTest { get; set; }
 
     /// <summary>
     /// Shoetrack Cement
     /// </summary>
     [JsonPropertyName("ShoetrackCement")]
-    public CementJob_1_0_0_Data_ShoetrackCement? ShoetrackCement { get; set; }
+    public CementJob_1_0_0_ShoetrackCement? ShoetrackCement { get; set; }
 
     /// <summary>
     /// Cement Job Rating
@@ -636,7 +636,7 @@ public class CementJob_1_0_0_Data : AbstractCommonResources_1_0_0 // Also compos
 /// <summary>
 /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
 /// </summary>
-public class CementJob_1_0_0_Data_Artefacts
+public class CementJob_1_0_0_Artefacts
 {
     /// <summary>
     /// The record id of this artefact's role.
@@ -664,7 +664,7 @@ public class CementJob_1_0_0_Data_Artefacts
 /// <summary>
 /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
 /// </summary>
-public class CementJob_1_0_0_Data_LineageAssertions
+public class CementJob_1_0_0_LineageAssertions
 {
     /// <summary>
     /// The object reference identifying the DIRECT, INDIRECT, REFERENCE dependency.
@@ -685,7 +685,7 @@ public class CementJob_1_0_0_Data_LineageAssertions
 /// <summary>
 /// Cement Plug status history
 /// </summary>
-public class CementJob_1_0_0_Data_CementPlugStates
+public class CementJob_1_0_0_CementPlugStates
 {
     /// <summary>
     /// Status Type
@@ -724,7 +724,7 @@ public class CementJob_1_0_0_Data_CementPlugStates
 /// <summary>
 /// A single cement stage performed within a Job.
 /// </summary>
-public class CementJob_1_0_0_Data_CementStages
+public class CementJob_1_0_0_CementStages
 {
     /// <summary>
     /// Stage number.
@@ -863,7 +863,7 @@ public class CementJob_1_0_0_Data_CementStages
     /// Array of fluids worked in the stage - displaced mud, washers and spacers, cement (lead &amp; tail)
     /// </summary>
     [JsonPropertyName("CementingFluid")]
-    public List<CementJob_1_0_0_Data_CementStages_CementingFluid>? CementingFluid { get; set; }
+    public List<CementJob_1_0_0_CementingFluid>? CementingFluid { get; set; }
 
     /// <summary>
     /// Bottom measured depth in primary cement job (multi-stage cement job).
@@ -1042,7 +1042,7 @@ public class CementJob_1_0_0_Data_CementStages
     /// Hesitation Squeeze array
     /// </summary>
     [JsonPropertyName("HesitationSqueeze")]
-    public List<CementJob_1_0_0_Data_CementStages_HesitationSqueeze>? HesitationSqueeze { get; set; }
+    public List<CementJob_1_0_0_HesitationSqueeze>? HesitationSqueeze { get; set; }
 
     /// <summary>
     /// Plug Manufacturer
@@ -1439,7 +1439,7 @@ public class CementJob_1_0_0_Data_CementStages
 /// <summary>
 /// Original mud, washes, spacers, cement and displacement fluid properties.
 /// </summary>
-public class CementJob_1_0_0_Data_CementStages_CementingFluid
+public class CementJob_1_0_0_CementingFluid
 {
     /// <summary>
     /// Cement pumping schedule index or sequence number. Fluid Index: 1: first fluid pumped (=original mud)
@@ -1611,7 +1611,7 @@ public class CementJob_1_0_0_Data_CementStages_CementingFluid
     /// Fluid Fann Viscometer Rheology
     /// </summary>
     [JsonPropertyName("Rheometer")]
-    public List<CementJob_1_0_0_Data_CementStages_CementingFluid_Rheometer>? Rheometer { get; set; }
+    public List<CementJob_1_0_0_Rheometer>? Rheometer { get; set; }
 
     /// <summary>
     /// Design fluid density
@@ -1865,13 +1865,13 @@ public class CementJob_1_0_0_Data_CementStages_CementingFluid
     /// Compressive Strength Pressure/Temperature/Thickening
     /// </summary>
     [JsonPropertyName("CompressiveStrengthTest")]
-    public List<CementJob_1_0_0_Data_CementStages_CementingFluid_CompressiveStrengthTest>? CompressiveStrengthTest { get; set; }
+    public List<CementJob_1_0_0_CompressiveStrengthTest>? CompressiveStrengthTest { get; set; }
 
     /// <summary>
     /// Thickening Test - Pressure, Temperature, Consistency (Bc) v Elapsed Time
     /// </summary>
     [JsonPropertyName("ThickeningTimeTest")]
-    public List<CementJob_1_0_0_Data_CementStages_CementingFluid_ThickeningTimeTest>? ThickeningTimeTest { get; set; }
+    public List<CementJob_1_0_0_ThickeningTimeTest>? ThickeningTimeTest { get; set; }
 
     /// <summary>
     /// The elapsed time from initiation of the static portion of the test until the slurry attains a gel strength of 100lbf/100sq ft.
@@ -1985,13 +1985,13 @@ public class CementJob_1_0_0_Data_CementStages_CementingFluid
     /// Cement Additives list. Additives can be added in slurry but also in spacers, washes, mud.
     /// </summary>
     [JsonPropertyName("CementAdditives")]
-    public List<CementJob_1_0_0_Data_CementStages_CementingFluid_CementAdditives>? CementAdditives { get; set; }
+    public List<CementJob_1_0_0_CementAdditives>? CementAdditives { get; set; }
 
     /// <summary>
     /// Set of (Time / Rate / Back Pressure).
     /// </summary>
     [JsonPropertyName("CementPumpSchedules")]
-    public List<CementJob_1_0_0_Data_CementStages_CementingFluid_CementPumpSchedules>? CementPumpSchedules { get; set; }
+    public List<CementJob_1_0_0_CementPumpSchedules>? CementPumpSchedules { get; set; }
 
     /// <summary>
     /// Cement Test Lab ID Number
@@ -2010,7 +2010,7 @@ public class CementJob_1_0_0_Data_CementStages_CementingFluid
 /// <summary>
 /// Fluid Fann Viscometer Rheology
 /// </summary>
-public class CementJob_1_0_0_Data_CementStages_CementingFluid_Rheometer
+public class CementJob_1_0_0_Rheometer
 {
     /// <summary>
     /// Viscometer index or sequence number. Used to retain order.
@@ -2090,7 +2090,7 @@ public class CementJob_1_0_0_Data_CementStages_CementingFluid_Rheometer
 /// <summary>
 /// Fluid Compressive Strength Test data
 /// </summary>
-public class CementJob_1_0_0_Data_CementStages_CementingFluid_CompressiveStrengthTest
+public class CementJob_1_0_0_CompressiveStrengthTest
 {
     /// <summary>
     /// Compressive Strength Index
@@ -2134,7 +2134,7 @@ public class CementJob_1_0_0_Data_CementStages_CementingFluid_CompressiveStrengt
 /// <summary>
 /// Thickening Time Test data
 /// </summary>
-public class CementJob_1_0_0_Data_CementStages_CementingFluid_ThickeningTimeTest
+public class CementJob_1_0_0_ThickeningTimeTest
 {
     /// <summary>
     /// Compressive Strength Index
@@ -2172,7 +2172,7 @@ public class CementJob_1_0_0_Data_CementStages_CementingFluid_ThickeningTimeTest
 /// <summary>
 /// Additives/chemicals added to a Fluid during a cement job
 /// </summary>
-public class CementJob_1_0_0_Data_CementStages_CementingFluid_CementAdditives
+public class CementJob_1_0_0_CementAdditives
 {
     /// <summary>
     /// Additive index or sequence number. Used to retain order.
@@ -2284,7 +2284,7 @@ public class CementJob_1_0_0_Data_CementStages_CementingFluid_CementAdditives
 /// <summary>
 /// Cement Pump Schedule Parameters
 /// </summary>
-public class CementJob_1_0_0_Data_CementStages_CementingFluid_CementPumpSchedules
+public class CementJob_1_0_0_CementPumpSchedules
 {
     /// <summary>
     /// Sequence Number
@@ -2421,7 +2421,7 @@ public class CementJob_1_0_0_Data_CementStages_CementingFluid_CementPumpSchedule
 /// <summary>
 /// Hesitation Squeeze History
 /// </summary>
-public class CementJob_1_0_0_Data_CementStages_HesitationSqueeze
+public class CementJob_1_0_0_HesitationSqueeze
 {
     /// <summary>
     /// Sequence Number
@@ -2464,7 +2464,7 @@ public class CementJob_1_0_0_Data_CementStages_HesitationSqueeze
 /// <summary>
 /// Casing Pressure Test
 /// </summary>
-public class CementJob_1_0_0_Data_CasingPressureTest
+public class CementJob_1_0_0_CasingPressureTest
 {
     /// <summary>
     /// Test Date/time
@@ -2556,7 +2556,7 @@ public class CementJob_1_0_0_Data_CasingPressureTest
 /// <summary>
 /// Log Evaluation parameters
 /// </summary>
-public class CementJob_1_0_0_Data_LogEvaluation
+public class CementJob_1_0_0_LogEvaluation
 {
     /// <summary>
     /// Evaluation Date/time
@@ -2622,7 +2622,7 @@ public class CementJob_1_0_0_Data_LogEvaluation
     /// Log Evaluation Depths
     /// </summary>
     [JsonPropertyName("LogEvaluationDepths")]
-    public List<CementJob_1_0_0_Data_LogEvaluation_LogEvaluationDepths>? LogEvaluationDepths { get; set; }
+    public List<CementJob_1_0_0_LogEvaluationDepths>? LogEvaluationDepths { get; set; }
 
     /// <summary>
     /// Cement Found On Tool during Evaluation Log run
@@ -2649,7 +2649,7 @@ public class CementJob_1_0_0_Data_LogEvaluation
 /// <summary>
 /// Log Evaluation Depth
 /// </summary>
-public class CementJob_1_0_0_Data_LogEvaluation_LogEvaluationDepths
+public class CementJob_1_0_0_LogEvaluationDepths
 {
     /// <summary>
     /// Evaluated Interval Top Measured Depth
@@ -2681,7 +2681,7 @@ public class CementJob_1_0_0_Data_LogEvaluation_LogEvaluationDepths
 /// <summary>
 /// Shoe Test
 /// </summary>
-public class CementJob_1_0_0_Data_ShoeTest
+public class CementJob_1_0_0_ShoeTest
 {
     /// <summary>
     /// Shoe Test Equivalent Mud Weight
@@ -2726,7 +2726,7 @@ public class CementJob_1_0_0_Data_ShoeTest
 /// <summary>
 /// TOC Interpretation
 /// </summary>
-public class CementJob_1_0_0_Data_TOCInterpretation
+public class CementJob_1_0_0_TOCInterpretation
 {
     /// <summary>
     /// Top of Cement (TOC) Measured Depth
@@ -2802,7 +2802,7 @@ public class CementJob_1_0_0_Data_TOCInterpretation
 /// <summary>
 /// Liner Top Test
 /// </summary>
-public class CementJob_1_0_0_Data_LinerTopTest
+public class CementJob_1_0_0_LinerTopTest
 {
     /// <summary>
     /// Test Top Measured Depth
@@ -2882,7 +2882,7 @@ public class CementJob_1_0_0_Data_LinerTopTest
 /// <summary>
 /// Shoetrack Cement
 /// </summary>
-public class CementJob_1_0_0_Data_ShoetrackCement
+public class CementJob_1_0_0_ShoetrackCement
 {
     /// <summary>
     /// Shoetrack Measured Depth

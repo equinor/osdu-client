@@ -134,7 +134,7 @@ public class PhysicalMedia_1_0_1_Data : AbstractCommonResources_1_0_0 // Also co
     /// Endianness of binary value.  Enumeration: "BIG", "LITTLE".  If absent, applications will need to interpret from context indicators.
     /// </summary>
     [JsonPropertyName("Endian")]
-    public PhysicalMedia_1_0_1_Data_Endian? Endian { get; set; }
+    public PhysicalMedia_1_0_1_Endian? Endian { get; set; }
 
     /// <summary>
     /// Placeholder for a specialization.
@@ -151,7 +151,7 @@ public class PhysicalMedia_1_0_1_Data : AbstractCommonResources_1_0_0 // Also co
 /// Endianness of binary value.  Enumeration: "BIG", "LITTLE".  If absent, applications will need to interpret from context indicators.
 /// </summary>
 [JsonConverter(typeof(JsonStringEnumConverter))]
-public enum PhysicalMedia_1_0_1_Data_Endian
+public enum PhysicalMedia_1_0_1_Endian
 {
     [JsonStringEnumMemberName("BIG")]
     BIG,

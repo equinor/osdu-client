@@ -216,7 +216,7 @@ public class Wellbore_1_0_0_Data : AbstractCommonResources_1_0_0 // Also compose
     /// List of all depths and elevations pertaining to the wellbore, like, plug back measured depth, total measured depth, KB elevation
     /// </summary>
     [JsonPropertyName("VerticalMeasurements")]
-    public List<Wellbore_1_0_0_Data_VerticalMeasurements>? VerticalMeasurements { get; set; }
+    public List<Wellbore_1_0_0_VerticalMeasurements>? VerticalMeasurements { get; set; }
 
     /// <summary>
     /// The history of drilling reasons of the wellbore.
@@ -276,7 +276,7 @@ public class Wellbore_1_0_0_Data : AbstractCommonResources_1_0_0 // Also compose
 
 }
 
-public class Wellbore_1_0_0_Data_VerticalMeasurements : AbstractFacilityVerticalMeasurement_1_0_0
+public class Wellbore_1_0_0_VerticalMeasurements : AbstractFacilityVerticalMeasurement_1_0_0
 {
     /// <summary>
     /// The ID for a distinct vertical measurement within the Wellbore VerticalMeasurements array so that it may be referenced by other vertical measurements if necessary.

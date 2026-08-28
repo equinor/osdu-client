@@ -182,7 +182,7 @@ public class ParentMatchingRuleSets_1_0_0_Data : AbstractCommonResources_1_0_0 /
     /// One or multiple, prioritized  matching rule set, which are expected to be applied to find a matching related target object (e.g., a parent Well/Wellbore for a WellLog) given matching criteria.
     /// </summary>
     [JsonPropertyName("MatchingRuleSets")]
-    public List<ParentMatchingRuleSets_1_0_0_Data_MatchingRuleSets>? MatchingRuleSets { get; set; }
+    public List<ParentMatchingRuleSets_1_0_0_MatchingRuleSets>? MatchingRuleSets { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
@@ -192,7 +192,7 @@ public class ParentMatchingRuleSets_1_0_0_Data : AbstractCommonResources_1_0_0 /
 /// <summary>
 /// One set of  conditions, which have to be matched to determine sufficient equality of an object.
 /// </summary>
-public class ParentMatchingRuleSets_1_0_0_Data_MatchingRuleSets
+public class ParentMatchingRuleSets_1_0_0_MatchingRuleSets
 {
     /// <summary>
     /// The name of the rule (expected to be unique in the array of MatchingRuleSets[]).
@@ -210,14 +210,14 @@ public class ParentMatchingRuleSets_1_0_0_Data_MatchingRuleSets
     /// The list of conditions, which all have to be met in order to declare a match.
     /// </summary>
     [JsonPropertyName("Conditions")]
-    public List<ParentMatchingRuleSets_1_0_0_Data_MatchingRuleSets_Conditions>? Conditions { get; set; }
+    public List<ParentMatchingRuleSets_1_0_0_Conditions>? Conditions { get; set; }
 
 }
 
 /// <summary>
 /// An exact or approximate condition of equality, which is a match requirement.
 /// </summary>
-public class ParentMatchingRuleSets_1_0_0_Data_MatchingRuleSets_Conditions
+public class ParentMatchingRuleSets_1_0_0_Conditions
 {
     /// <summary>
     /// The source property name to evaluate in the scope of the connected data source.

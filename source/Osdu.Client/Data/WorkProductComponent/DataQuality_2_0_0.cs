@@ -113,7 +113,7 @@ public class DataQuality_2_0_0_Data : AbstractCommonResources_1_0_0 // Also comp
     /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
     /// </summary>
     [JsonPropertyName("Artefacts")]
-    public List<DataQuality_2_0_0_Data_Artefacts>? Artefacts { get; set; }
+    public List<DataQuality_2_0_0_Artefacts>? Artefacts { get; set; }
 
     /// <summary>
     /// A flag that indicates if the work product component is undergoing an extended load.  It reflects the fact that the work product component is in an early stage and may be updated before finalization.
@@ -200,7 +200,7 @@ public class DataQuality_2_0_0_Data : AbstractCommonResources_1_0_0 // Also comp
     /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
     /// </summary>
     [JsonPropertyName("LineageAssertions")]
-    public List<DataQuality_2_0_0_Data_LineageAssertions>? LineageAssertions { get; set; }
+    public List<DataQuality_2_0_0_LineageAssertions>? LineageAssertions { get; set; }
 
     /// <summary>
     /// The reference to the evaluated data record. The record version number is required.
@@ -240,7 +240,7 @@ public class DataQuality_2_0_0_Data : AbstractCommonResources_1_0_0 // Also comp
     /// The data rules part of this assessment.
     /// </summary>
     [JsonPropertyName("DataRules")]
-    public List<DataQuality_2_0_0_Data_DataRules>? DataRules { get; set; }
+    public List<DataQuality_2_0_0_DataRules>? DataRules { get; set; }
 
     /// <summary>
     /// The reference to the assessment calculation method.
@@ -259,7 +259,7 @@ public class DataQuality_2_0_0_Data : AbstractCommonResources_1_0_0 // Also comp
     /// The individual scores per dimension.
     /// </summary>
     [JsonPropertyName("DimensionMetrics")]
-    public List<DataQuality_2_0_0_Data_DimensionMetrics>? DimensionMetrics { get; set; }
+    public List<DataQuality_2_0_0_DimensionMetrics>? DimensionMetrics { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
@@ -269,7 +269,7 @@ public class DataQuality_2_0_0_Data : AbstractCommonResources_1_0_0 // Also comp
 /// <summary>
 /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
 /// </summary>
-public class DataQuality_2_0_0_Data_Artefacts
+public class DataQuality_2_0_0_Artefacts
 {
     /// <summary>
     /// The record id of this artefact's role.
@@ -297,7 +297,7 @@ public class DataQuality_2_0_0_Data_Artefacts
 /// <summary>
 /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
 /// </summary>
-public class DataQuality_2_0_0_Data_LineageAssertions
+public class DataQuality_2_0_0_LineageAssertions
 {
     /// <summary>
     /// The object reference identifying the DIRECT, INDIRECT, REFERENCE dependency.
@@ -318,7 +318,7 @@ public class DataQuality_2_0_0_Data_LineageAssertions
 /// <summary>
 /// The DataQualityRule and the DataQualityRule properties captured at the time of assessment.
 /// </summary>
-public class DataQuality_2_0_0_Data_DataRules
+public class DataQuality_2_0_0_DataRules
 {
     /// <summary>
     /// The reference to the individual DataQualityRule record ID. This is a mandatory property value.
@@ -371,14 +371,14 @@ public class DataQuality_2_0_0_Data_DataRules
     /// The assessment results for this this rule.
     /// </summary>
     [JsonPropertyName("AssessmentResults")]
-    public List<DataQuality_2_0_0_Data_DataRules_AssessmentResults>? AssessmentResults { get; set; }
+    public List<DataQuality_2_0_0_AssessmentResults>? AssessmentResults { get; set; }
 
 }
 
 /// <summary>
 /// The assessment of an executed QualityDataRule.
 /// </summary>
-public class DataQuality_2_0_0_Data_DataRules_AssessmentResults
+public class DataQuality_2_0_0_AssessmentResults
 {
     /// <summary>
     /// The assessment state for this rule.
@@ -404,7 +404,7 @@ public class DataQuality_2_0_0_Data_DataRules_AssessmentResults
 /// <summary>
 /// The assessment score per data rule dimension type and its weight.
 /// </summary>
-public class DataQuality_2_0_0_Data_DimensionMetrics
+public class DataQuality_2_0_0_DimensionMetrics
 {
     /// <summary>
     /// The reference to the DataRuleDimensionType, to which score and weight are associated.

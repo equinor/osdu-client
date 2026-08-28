@@ -169,7 +169,7 @@ public class DataQualityRuleSet_1_0_1_Data : AbstractCommonResources_1_0_0 // Al
     /// The list of DataQualityRule items that this DataQualityRuleSet consists of.
     /// </summary>
     [JsonPropertyName("DataRules")]
-    public List<DataQualityRuleSet_1_0_1_Data_DataRules>? DataRules { get; set; }
+    public List<DataQualityRuleSet_1_0_1_DataRules>? DataRules { get; set; }
 
     /// <summary>
     /// The kind of the data this ruleset applies to. Version-specific and non-version-specific kind can be defined. For example, osdu:wks:master-data--Well:1 (requiring only the major version and permits any minor and patch version); osdu:wks:master-data--Wellbore:1.0.0 (this is version-specific); osdu:wks:work-product-component--WellLog (this is unspecific accepting any version). Also note: a total wildcard would have to end with a :  like this: osdu:wks:group-type--EntityType:.
@@ -186,7 +186,7 @@ public class DataQualityRuleSet_1_0_1_Data : AbstractCommonResources_1_0_0 // Al
 /// <summary>
 /// The list of DataQualityRule items that this DataQualityRuleSet consists of.
 /// </summary>
-public class DataQualityRuleSet_1_0_1_Data_DataRules
+public class DataQualityRuleSet_1_0_1_DataRules
 {
     /// <summary>
     /// The reference to the DataQualityRule record.

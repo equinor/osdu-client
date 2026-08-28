@@ -113,7 +113,7 @@ public class FaultInterpretation_1_3_0_Data : AbstractCommonResources_1_0_0 // A
     /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
     /// </summary>
     [JsonPropertyName("Artefacts")]
-    public List<FaultInterpretation_1_3_0_Data_Artefacts>? Artefacts { get; set; }
+    public List<FaultInterpretation_1_3_0_Artefacts>? Artefacts { get; set; }
 
     /// <summary>
     /// A flag that indicates if the work product component is undergoing an extended load.  It reflects the fact that the work product component is in an early stage and may be updated before finalization.
@@ -200,7 +200,7 @@ public class FaultInterpretation_1_3_0_Data : AbstractCommonResources_1_0_0 // A
     /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
     /// </summary>
     [JsonPropertyName("LineageAssertions")]
-    public List<FaultInterpretation_1_3_0_Data_LineageAssertions>? LineageAssertions { get; set; }
+    public List<FaultInterpretation_1_3_0_LineageAssertions>? LineageAssertions { get; set; }
 
     /// <summary>
     /// Represents the older possible age for the interpretation. Expressed in geological time as millions of years [Ma], and the value must be positive. The age value is not subject to normalization.
@@ -244,7 +244,7 @@ public class FaultInterpretation_1_3_0_Data : AbstractCommonResources_1_0_0 // A
     /// Describes the fault throw - as the fault characteristics might vary through time, fault throw is an array of fault throws with their own attributes
     /// </summary>
     [JsonPropertyName("FaultThrowDescriptions")]
-    public List<FaultInterpretation_1_3_0_Data_FaultThrowDescriptions>? FaultThrowDescriptions { get; set; }
+    public List<FaultInterpretation_1_3_0_FaultThrowDescriptions>? FaultThrowDescriptions { get; set; }
 
     /// <summary>
     /// Specifies whether the fault is considered listric
@@ -263,7 +263,7 @@ public class FaultInterpretation_1_3_0_Data : AbstractCommonResources_1_0_0 // A
     /// Indicates the representative azimuth value of the fault plane
     /// </summary>
     [JsonPropertyName("RepresentativeDipDirection")]
-    public FaultInterpretation_1_3_0_Data_RepresentativeDipDirection? RepresentativeDipDirection { get; set; }
+    public FaultInterpretation_1_3_0_RepresentativeDipDirection? RepresentativeDipDirection { get; set; }
 
     /// <summary>
     /// Indicates the representative dip angle value of the fault plane
@@ -304,7 +304,7 @@ public class FaultInterpretation_1_3_0_Data : AbstractCommonResources_1_0_0 // A
 /// <summary>
 /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
 /// </summary>
-public class FaultInterpretation_1_3_0_Data_Artefacts
+public class FaultInterpretation_1_3_0_Artefacts
 {
     /// <summary>
     /// The record id of this artefact's role.
@@ -332,7 +332,7 @@ public class FaultInterpretation_1_3_0_Data_Artefacts
 /// <summary>
 /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
 /// </summary>
-public class FaultInterpretation_1_3_0_Data_LineageAssertions
+public class FaultInterpretation_1_3_0_LineageAssertions
 {
     /// <summary>
     /// The object reference identifying the DIRECT, INDIRECT, REFERENCE dependency.
@@ -353,7 +353,7 @@ public class FaultInterpretation_1_3_0_Data_LineageAssertions
 /// <summary>
 /// A structure carrying descriptions of fault throw characteristics.
 /// </summary>
-public class FaultInterpretation_1_3_0_Data_FaultThrowDescriptions
+public class FaultInterpretation_1_3_0_FaultThrowDescriptions
 {
     /// <summary>
     /// Specifies the fault throw type (reverse, normal etc…)
@@ -379,7 +379,7 @@ public class FaultInterpretation_1_3_0_Data_FaultThrowDescriptions
 /// <summary>
 /// Indicates the representative azimuth value of the fault plane
 /// </summary>
-public class FaultInterpretation_1_3_0_Data_RepresentativeDipDirection
+public class FaultInterpretation_1_3_0_RepresentativeDipDirection
 {
     /// <summary>
     /// The azimuth value

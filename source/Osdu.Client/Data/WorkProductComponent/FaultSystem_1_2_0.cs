@@ -107,7 +107,7 @@ public class FaultSystem_1_2_0_Data : AbstractCommonResources_1_0_0 // Also comp
     /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
     /// </summary>
     [JsonPropertyName("Artefacts")]
-    public List<FaultSystem_1_2_0_Data_Artefacts>? Artefacts { get; set; }
+    public List<FaultSystem_1_2_0_Artefacts>? Artefacts { get; set; }
 
     /// <summary>
     /// A flag that indicates if the work product component is undergoing an extended load.  It reflects the fact that the work product component is in an early stage and may be updated before finalization.
@@ -188,7 +188,7 @@ public class FaultSystem_1_2_0_Data : AbstractCommonResources_1_0_0 // Also comp
     /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
     /// </summary>
     [JsonPropertyName("LineageAssertions")]
-    public List<FaultSystem_1_2_0_Data_LineageAssertions>? LineageAssertions { get; set; }
+    public List<FaultSystem_1_2_0_LineageAssertions>? LineageAssertions { get; set; }
 
     /// <summary>
     /// Method used to pick faults. E.g.Autotracked, Grid, Manual Picked, Mixed.
@@ -266,7 +266,7 @@ public class FaultSystem_1_2_0_Data : AbstractCommonResources_1_0_0 // Also comp
     /// Array of Faults that comprise the Fault System
     /// </summary>
     [JsonPropertyName("Faults")]
-    public List<FaultSystem_1_2_0_Data_Faults>? Faults { get; set; }
+    public List<FaultSystem_1_2_0_Faults>? Faults { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
@@ -276,7 +276,7 @@ public class FaultSystem_1_2_0_Data : AbstractCommonResources_1_0_0 // Also comp
 /// <summary>
 /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
 /// </summary>
-public class FaultSystem_1_2_0_Data_Artefacts
+public class FaultSystem_1_2_0_Artefacts
 {
     /// <summary>
     /// The SRN of this artefact's role.
@@ -304,7 +304,7 @@ public class FaultSystem_1_2_0_Data_Artefacts
 /// <summary>
 /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
 /// </summary>
-public class FaultSystem_1_2_0_Data_LineageAssertions
+public class FaultSystem_1_2_0_LineageAssertions
 {
     /// <summary>
     /// The object reference identifying the DIRECT, INDIRECT, REFERENCE dependency.
@@ -325,7 +325,7 @@ public class FaultSystem_1_2_0_Data_LineageAssertions
 /// <summary>
 /// Array of Faults that comprise the Fault System
 /// </summary>
-public class FaultSystem_1_2_0_Data_Faults
+public class FaultSystem_1_2_0_Faults
 {
     /// <summary>
     /// Name of an individual fault within a fault system.

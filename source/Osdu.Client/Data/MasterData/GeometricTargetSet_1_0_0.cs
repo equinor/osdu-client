@@ -142,7 +142,7 @@ public class GeometricTargetSet_1_0_0_Data : AbstractCommonResources_1_0_0 // Al
     /// A collection of drill targets.
     /// </summary>
     [JsonPropertyName("Targets")]
-    public List<GeometricTargetSet_1_0_0_Data_Targets>? Targets { get; set; }
+    public List<GeometricTargetSet_1_0_0_Targets>? Targets { get; set; }
 
     /// <summary>
     /// Name of Geometric Target Set
@@ -158,7 +158,7 @@ public class GeometricTargetSet_1_0_0_Data : AbstractCommonResources_1_0_0 // Al
 /// <summary>
 /// This is a geometric body describing a volume in the earth intended to be a target of one or more wellbores.
 /// </summary>
-public class GeometricTargetSet_1_0_0_Data_Targets
+public class GeometricTargetSet_1_0_0_Targets
 {
     /// <summary>
     /// Human recognizable context for the target - the name must be unique within the set.
@@ -180,7 +180,7 @@ public class GeometricTargetSet_1_0_0_Data_Targets
     /// The Geometry of the target.
     /// </summary>
     [JsonPropertyName("Geometry")]
-    public GeometricTargetSet_1_0_0_Data_Targets_Geometry? Geometry { get; set; }
+    public GeometricTargetSet_1_0_0_Geometry? Geometry { get; set; }
 
     /// <summary>
     /// A comment or description of the target
@@ -211,7 +211,7 @@ public class GeometricTargetSet_1_0_0_Data_Targets
 /// <summary>
 /// The Geometry of the target.
 /// </summary>
-public class GeometricTargetSet_1_0_0_Data_Targets_Geometry
+public class GeometricTargetSet_1_0_0_Geometry
 {
     /// <summary>
     /// The shape of the target. Examples of this are Elliptical, Point etc
@@ -278,14 +278,14 @@ public class GeometricTargetSet_1_0_0_Data_Targets_Geometry
     /// The geometry sections which define the spatial geometry ot the target
     /// </summary>
     [JsonPropertyName("GeometrySections")]
-    public List<GeometricTargetSet_1_0_0_Data_Targets_Geometry_GeometrySections>? GeometrySections { get; set; }
+    public List<GeometricTargetSet_1_0_0_GeometrySections>? GeometrySections { get; set; }
 
 }
 
 /// <summary>
 /// The geometric sections that combine to define the shape of a complex target
 /// </summary>
-public class GeometricTargetSet_1_0_0_Data_Targets_Geometry_GeometrySections
+public class GeometricTargetSet_1_0_0_GeometrySections
 {
     /// <summary>
     /// Sequence number of the section (1,2,3…)

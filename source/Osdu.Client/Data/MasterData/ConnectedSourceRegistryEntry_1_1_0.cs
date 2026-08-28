@@ -154,13 +154,13 @@ public class ConnectedSourceRegistryEntry_1_1_0_Data : AbstractCommonResources_1
     /// List of security schemes available for use in authorizing against OSDU-compliant APIs of a connected data source.
     /// </summary>
     [JsonPropertyName("SecuritySchemes")]
-    public List<ConnectedSourceRegistryEntry_1_1_0_Data_SecuritySchemes>? SecuritySchemes { get; set; }
+    public List<ConnectedSourceRegistryEntry_1_1_0_SecuritySchemes>? SecuritySchemes { get; set; }
 
     /// <summary>
     /// List of SMTP server schemes available for use in mailing the detailed EDS's report.
     /// </summary>
     [JsonPropertyName("SmtpSchemes")]
-    public List<ConnectedSourceRegistryEntry_1_1_0_Data_SmtpSchemes>? SmtpSchemes { get; set; }
+    public List<ConnectedSourceRegistryEntry_1_1_0_SmtpSchemes>? SmtpSchemes { get; set; }
 
     /// <summary>
     /// Connectivity information for Airflow endpoints to get more information of Manifest Ingestion.
@@ -189,7 +189,7 @@ public class ConnectedSourceRegistryEntry_1_1_0_Data : AbstractCommonResources_1
 /// <summary>
 /// Metadata used to retrieve or generate credentials needed for authorization.
 /// </summary>
-public class ConnectedSourceRegistryEntry_1_1_0_Data_SecuritySchemes
+public class ConnectedSourceRegistryEntry_1_1_0_SecuritySchemes
 {
     /// <summary>
     /// Unique name given to a security scheme
@@ -302,7 +302,7 @@ public class ConnectedSourceRegistryEntry_1_1_0_Data_SecuritySchemes
 /// <summary>
 /// Metadata used to mail the EDS's Report.
 /// </summary>
-public class ConnectedSourceRegistryEntry_1_1_0_Data_SmtpSchemes
+public class ConnectedSourceRegistryEntry_1_1_0_SmtpSchemes
 {
     /// <summary>
     /// Unique name given to a SMTP scheme.

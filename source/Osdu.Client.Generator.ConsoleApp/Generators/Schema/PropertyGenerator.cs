@@ -39,14 +39,14 @@ public class PropertyGenerator
 
         sb.AppendLine($"{prefix}[JsonPropertyName(\"{propName}\")]");
 
-        var typeName = _typeNameResolver.ResolveTypeName(propSchema, parentName, propName);
+        var resolvedTypeName = _typeNameResolver.ResolveTypeName(propSchema, parentName, propName);
 
         // Add FlexibleBooleanConverter for boolean properties to handle non-standard JSON boolean values
-        if (typeName == "bool")
+        if (resolvedTypeName == "bool")
             sb.AppendLine($"{prefix}[JsonConverter(typeof(BooleanConverter))]");
 
         // Add NullableDateTimeOffsetConverter for DateTimeOffset properties to handle empty/invalid date strings
-        if (typeName == "DateTimeOffset")
+        if (resolvedTypeName == "DateTimeOffset")
             sb.AppendLine($"{prefix}[JsonConverter(typeof(NullableDateTimeOffsetConverter))]");
 
         // Non-required properties are nullable; required properties are not.
@@ -56,7 +56,7 @@ public class PropertyGenerator
         // Use C# 'required' keyword for required properties to enforce compile-time initialization
         var requiredModifier = isRequired ? "required " : "";
 
-        sb.AppendLine($"{prefix}public {requiredModifier}{typeName}{nullable} {csharpName} {{ get; set; }}");
+        sb.AppendLine($"{prefix}public {requiredModifier}{resolvedTypeName}{nullable} {csharpName} {{ get; set; }}");
         sb.AppendLine();
     }
 
@@ -77,13 +77,18 @@ public class PropertyGenerator
             sb.AppendLine($"{prefix}[Range({schema.Minimum}, {max})]");
         }
 
-        if (schema.Pattern is not null)
-            sb.AppendLine($"{prefix}[RegularExpression(@\"{schema.Pattern.Replace("\"", "\"\"")}\")]");
-
         if (schema.MinItems.HasValue)
             sb.AppendLine($"{prefix}[MinLength({schema.MinItems.Value})]");
 
         if (schema.MaxItems.HasValue)
             sb.AppendLine($"{prefix}[MaxLength({schema.MaxItems.Value})]");
+
+        if (!string.IsNullOrEmpty(schema.Pattern))
+        {
+            // Escape double quotes for C# verbatim string literals (@"...")
+            // where " must be doubled to ""
+            var escapedPattern = schema.Pattern.Replace("\"", "\"\"");
+            sb.AppendLine($"{prefix}[RegularExpression(@\"{escapedPattern}\")]");
+        }
     }
 }

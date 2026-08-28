@@ -163,7 +163,7 @@ public class IndexPropertyPathConfiguration_1_0_0_Data : AbstractCommonResources
     /// The list of index property configurations for the specific kind.
     /// </summary>
     [JsonPropertyName("Configurations")]
-    public List<IndexPropertyPathConfiguration_1_0_0_Data_Configurations>? Configurations { get; set; }
+    public List<IndexPropertyPathConfiguration_1_0_0_Configurations>? Configurations { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
@@ -173,7 +173,7 @@ public class IndexPropertyPathConfiguration_1_0_0_Data : AbstractCommonResources
 /// <summary>
 /// One single configuration to derive an Search index property value and assign it to the index 'column' with Name.
 /// </summary>
-public class IndexPropertyPathConfiguration_1_0_0_Data_Configurations
+public class IndexPropertyPathConfiguration_1_0_0_Configurations
 {
     /// <summary>
     /// The name of the indexed property, i.e., this is the property name used in Search.
@@ -198,34 +198,34 @@ public class IndexPropertyPathConfiguration_1_0_0_Data_Configurations
     /// The list of path definitions to derive the property value from.
     /// </summary>
     [JsonPropertyName("Paths")]
-    public List<IndexPropertyPathConfiguration_1_0_0_Data_Configurations_Paths>? Paths { get; set; }
+    public List<IndexPropertyPathConfiguration_1_0_0_Paths>? Paths { get; set; }
 
 }
 
 /// <summary>
 /// A single path definition to derive a property value from.
 /// </summary>
-public class IndexPropertyPathConfiguration_1_0_0_Data_Configurations_Paths
+public class IndexPropertyPathConfiguration_1_0_0_Paths
 {
     /// <summary>
     /// The specification to extract related objects, from which to derive the ValueExtraction. If this property is empty or absent, the ValueExtraction is done on the current object to be indexed.
     /// </summary>
     [JsonPropertyName("RelatedObjectsSpec")]
-    public IndexPropertyPathConfiguration_1_0_0_Data_Configurations_Paths_RelatedObjectsSpec? RelatedObjectsSpec { get; set; }
+    public IndexPropertyPathConfiguration_1_0_0_RelatedObjectsSpec? RelatedObjectsSpec { get; set; }
 
     /// <summary>
     /// The instructions from where to derive the value.
     /// </summary>
     [Required]
     [JsonPropertyName("ValueExtraction")]
-    public required IndexPropertyPathConfiguration_1_0_0_Data_Configurations_Paths_ValueExtraction ValueExtraction { get; set; }
+    public required IndexPropertyPathConfiguration_1_0_0_ValueExtraction ValueExtraction { get; set; }
 
 }
 
 /// <summary>
 /// The specification to extract related objects, from which to derive the ValueExtraction. If this property is empty or absent, the ValueExtraction is done on the current object to be indexed.
 /// </summary>
-public class IndexPropertyPathConfiguration_1_0_0_Data_Configurations_Paths_RelatedObjectsSpec
+public class IndexPropertyPathConfiguration_1_0_0_RelatedObjectsSpec
 {
     /// <summary>
     /// The path to the property containing the ID of the target record to chase. This property is only populated if the property is extracted from a related object, which must be chased. If the property is derived from 'within' the same record, which triggered the indexing, the RelatedObjectID is left absent.
@@ -264,7 +264,7 @@ public class IndexPropertyPathConfiguration_1_0_0_Data_Configurations_Paths_Rela
 /// <summary>
 /// The instructions from where to derive the value.
 /// </summary>
-public class IndexPropertyPathConfiguration_1_0_0_Data_Configurations_Paths_ValueExtraction
+public class IndexPropertyPathConfiguration_1_0_0_ValueExtraction
 {
     /// <summary>
     /// The property path of the target record data block, which needs to be subjected to the conditional matching. The data prefix is not required in the path.

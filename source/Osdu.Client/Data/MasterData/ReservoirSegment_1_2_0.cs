@@ -161,13 +161,13 @@ public class ReservoirSegment_1_2_0_Data : AbstractCommonResources_1_0_0 // Also
     /// Array of Historical Status of a production model element as exploration, appraisal and development. The operational or legal status of the reservoir.
     /// </summary>
     [JsonPropertyName("Status")]
-    public List<ReservoirSegment_1_2_0_Data_Status>? Status { get; set; }
+    public List<ReservoirSegment_1_2_0_Status>? Status { get; set; }
 
     /// <summary>
     /// Currently active Status of a production model element as exploration, appraisal and development. The operational or legal status of the reservoir.
     /// </summary>
     [JsonPropertyName("CurrentStatus")]
-    public ReservoirSegment_1_2_0_Data_CurrentStatus? CurrentStatus { get; set; }
+    public ReservoirSegment_1_2_0_CurrentStatus? CurrentStatus { get; set; }
 
     /// <summary>
     /// DEPRECATED: Only used by ReservoirSegment. Identifier of the Persisted Collection in which are referred the whole set of child segments constituting a comprehensive sector.
@@ -249,7 +249,7 @@ public class ReservoirSegment_1_2_0_Data : AbstractCommonResources_1_0_0 // Also
 /// <summary>
 /// The operational or legal status of the reservoir
 /// </summary>
-public class ReservoirSegment_1_2_0_Data_Status
+public class ReservoirSegment_1_2_0_Status
 {
     /// <summary>
     /// Status description, e.g., Discovery, FirstProduction, Active, FirstInjection, Abandonned.
@@ -281,7 +281,7 @@ public class ReservoirSegment_1_2_0_Data_Status
 /// <summary>
 /// Currently active Status of a production model element as exploration, appraisal and development. The operational or legal status of the reservoir.
 /// </summary>
-public class ReservoirSegment_1_2_0_Data_CurrentStatus
+public class ReservoirSegment_1_2_0_CurrentStatus
 {
     /// <summary>
     /// Status description, e.g., Discovery, FirstProduction, Active, FirstInjection, Abandonned.

@@ -39,20 +39,20 @@ public class DeleteRecordsException
 public class DeleteRecordsException_Cause
 {
     [JsonPropertyName("stackTrace")]
-    public List<DeleteRecordsException_Cause_StackTrace>? StackTrace { get; set; }
+    public List<DeleteRecordsException_CauseStackTrace>? StackTrace { get; set; }
 
     [JsonPropertyName("message")]
     public string? Message { get; set; }
 
     [JsonPropertyName("suppressed")]
-    public List<DeleteRecordsException_Cause_Suppressed>? Suppressed { get; set; }
+    public List<DeleteRecordsException_CauseSuppressed>? Suppressed { get; set; }
 
     [JsonPropertyName("localizedMessage")]
     public string? LocalizedMessage { get; set; }
 
 }
 
-public class DeleteRecordsException_Cause_StackTrace
+public class DeleteRecordsException_CauseStackTrace
 {
     [JsonPropertyName("classLoaderName")]
     public string? ClassLoaderName { get; set; }
@@ -81,10 +81,10 @@ public class DeleteRecordsException_Cause_StackTrace
 
 }
 
-public class DeleteRecordsException_Cause_Suppressed
+public class DeleteRecordsException_CauseSuppressed
 {
     [JsonPropertyName("stackTrace")]
-    public List<DeleteRecordsException_Cause_Suppressed_StackTrace>? StackTrace { get; set; }
+    public List<DeleteRecordsException_CauseSuppressedStackTrace>? StackTrace { get; set; }
 
     [JsonPropertyName("message")]
     public string? Message { get; set; }
@@ -94,7 +94,7 @@ public class DeleteRecordsException_Cause_Suppressed
 
 }
 
-public class DeleteRecordsException_Cause_Suppressed_StackTrace
+public class DeleteRecordsException_CauseSuppressedStackTrace
 {
     [JsonPropertyName("classLoaderName")]
     public string? ClassLoaderName { get; set; }
@@ -155,7 +155,7 @@ public class DeleteRecordsException_StackTrace
 public class DeleteRecordsException_Suppressed
 {
     [JsonPropertyName("stackTrace")]
-    public List<DeleteRecordsException_Suppressed_StackTrace>? StackTrace { get; set; }
+    public List<DeleteRecordsException_SuppressedStackTrace>? StackTrace { get; set; }
 
     [JsonPropertyName("message")]
     public string? Message { get; set; }
@@ -165,7 +165,7 @@ public class DeleteRecordsException_Suppressed
 
 }
 
-public class DeleteRecordsException_Suppressed_StackTrace
+public class DeleteRecordsException_SuppressedStackTrace
 {
     [JsonPropertyName("classLoaderName")]
     public string? ClassLoaderName { get; set; }

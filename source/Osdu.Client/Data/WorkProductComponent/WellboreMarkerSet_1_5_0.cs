@@ -113,7 +113,7 @@ public class WellboreMarkerSet_1_5_0_Data : AbstractCommonResources_1_0_0 // Als
     /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
     /// </summary>
     [JsonPropertyName("Artefacts")]
-    public List<WellboreMarkerSet_1_5_0_Data_Artefacts>? Artefacts { get; set; }
+    public List<WellboreMarkerSet_1_5_0_Artefacts>? Artefacts { get; set; }
 
     /// <summary>
     /// A flag that indicates if the work product component is undergoing an extended load.  It reflects the fact that the work product component is in an early stage and may be updated before finalization.
@@ -200,7 +200,7 @@ public class WellboreMarkerSet_1_5_0_Data : AbstractCommonResources_1_0_0 // Als
     /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
     /// </summary>
     [JsonPropertyName("LineageAssertions")]
-    public List<WellboreMarkerSet_1_5_0_Data_LineageAssertions>? LineageAssertions { get; set; }
+    public List<WellboreMarkerSet_1_5_0_LineageAssertions>? LineageAssertions { get; set; }
 
     /// <summary>
     /// The Wellbore ID, to which the markers in this set belong.
@@ -216,13 +216,13 @@ public class WellboreMarkerSet_1_5_0_Data : AbstractCommonResources_1_0_0 // Als
     /// The array of MarkerProperty definitions describing the available properties for this instance of WellboreMarkerSet.
     /// </summary>
     [JsonPropertyName("AvailableMarkerProperties")]
-    public List<WellboreMarkerSet_1_5_0_Data_AvailableMarkerProperties>? AvailableMarkerProperties { get; set; }
+    public List<WellboreMarkerSet_1_5_0_AvailableMarkerProperties>? AvailableMarkerProperties { get; set; }
 
     /// <summary>
     /// The array of marker meta data in this set. Markers are externally identified by data.Markers[].MarkerID, ideally a UUID. Older versions of the WellboreMarkerSet schema do not have this identifier. In this case, the string-converted array index is used as MarkerID. The the first index is "0".
     /// </summary>
     [JsonPropertyName("Markers")]
-    public List<WellboreMarkerSet_1_5_0_Data_Markers>? Markers { get; set; }
+    public List<WellboreMarkerSet_1_5_0_Markers>? Markers { get; set; }
 
     /// <summary>
     /// The optional reference to a stratigraphic column (referring to multiple StratigraphicColumnRankInterpretation) providing the stratigraphic framework for the WellboreMarkerSet. It demonstrates the intent to describe complex, potentially overlapping stratigraphic intervals. Only one of the properties StratigraphicColumnID or StratigraphicColumnRankInterpretationID should be populated.
@@ -252,7 +252,7 @@ public class WellboreMarkerSet_1_5_0_Data : AbstractCommonResources_1_0_0 // Als
 /// <summary>
 /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
 /// </summary>
-public class WellboreMarkerSet_1_5_0_Data_Artefacts
+public class WellboreMarkerSet_1_5_0_Artefacts
 {
     /// <summary>
     /// The record id of this artefact's role.
@@ -280,7 +280,7 @@ public class WellboreMarkerSet_1_5_0_Data_Artefacts
 /// <summary>
 /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
 /// </summary>
-public class WellboreMarkerSet_1_5_0_Data_LineageAssertions
+public class WellboreMarkerSet_1_5_0_LineageAssertions
 {
     /// <summary>
     /// The object reference identifying the DIRECT, INDIRECT, REFERENCE dependency.
@@ -301,7 +301,7 @@ public class WellboreMarkerSet_1_5_0_Data_LineageAssertions
 /// <summary>
 /// A set of properties describing a marker property which is available for this instance of a WellboreMarkerSet.
 /// </summary>
-public class WellboreMarkerSet_1_5_0_Data_AvailableMarkerProperties
+public class WellboreMarkerSet_1_5_0_AvailableMarkerProperties
 {
     /// <summary>
     /// The reference to a marker property type - or if interpreted as CSV columns, the 'well-known column type. It is a relationship to a reference-data--MarkerPropertyType record id.
@@ -328,7 +328,7 @@ public class WellboreMarkerSet_1_5_0_Data_AvailableMarkerProperties
 /// <summary>
 /// The array of marker meta data in this set.
 /// </summary>
-public class WellboreMarkerSet_1_5_0_Data_Markers
+public class WellboreMarkerSet_1_5_0_Markers
 {
     /// <summary>
     /// Name of the Marker

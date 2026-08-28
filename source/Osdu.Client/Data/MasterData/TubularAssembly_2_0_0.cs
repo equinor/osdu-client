@@ -155,13 +155,13 @@ public class TubularAssembly_2_0_0_Data : AbstractCommonResources_1_0_0 // Also 
     /// Reflects the current status of the Assembly - as 'installed', 'pulled', 'planned',... - Applicable to tubing/completions as opposed to drillstrings. Historical states are recorded in TubularAssemblyStates.
     /// </summary>
     [JsonPropertyName("TubularAssemblyStatus")]
-    public TubularAssembly_2_0_0_Data_TubularAssemblyStatus? TubularAssemblyStatus { get; set; }
+    public TubularAssembly_2_0_0_TubularAssemblyStatus? TubularAssemblyStatus { get; set; }
 
     /// <summary>
     /// The full record of historical and current states of the Assembly. The current active state is recorded in TubularAssemblyStatus.
     /// </summary>
     [JsonPropertyName("TubularAssemblyStates")]
-    public List<TubularAssembly_2_0_0_Data_TubularAssemblyStates>? TubularAssemblyStates { get; set; }
+    public List<TubularAssembly_2_0_0_TubularAssemblyStates>? TubularAssemblyStates { get; set; }
 
     [JsonPropertyName("VerticalMeasurement")]
     public AbstractFacilityVerticalMeasurement_1_0_0? VerticalMeasurement { get; set; }
@@ -308,7 +308,7 @@ public class TubularAssembly_2_0_0_Data : AbstractCommonResources_1_0_0 // Also 
 /// <summary>
 /// Reflects the current status of the Assembly - as 'installed', 'pulled', 'planned',... - Applicable to tubing/completions as opposed to drillstrings. Historical states are recorded in TubularAssemblyStates.
 /// </summary>
-public class TubularAssembly_2_0_0_Data_TubularAssemblyStatus
+public class TubularAssembly_2_0_0_TubularAssemblyStatus
 {
     /// <summary>
     /// The relationship to the  reference value status type.
@@ -335,7 +335,7 @@ public class TubularAssembly_2_0_0_Data_TubularAssemblyStatus
 /// <summary>
 /// Record that reflects the status of the Assembly - as 'installed', 'pulled', 'planned',... - Applicable to casing, tubing/completions as opposed to drillstrings
 /// </summary>
-public class TubularAssembly_2_0_0_Data_TubularAssemblyStates
+public class TubularAssembly_2_0_0_TubularAssemblyStates
 {
     /// <summary>
     /// The relationship to the  reference value status type.

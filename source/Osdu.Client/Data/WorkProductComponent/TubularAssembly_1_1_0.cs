@@ -113,7 +113,7 @@ public class TubularAssembly_1_1_0_Data : AbstractCommonResources_1_0_0 // Also 
     /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
     /// </summary>
     [JsonPropertyName("Artefacts")]
-    public List<TubularAssembly_1_1_0_Data_Artefacts>? Artefacts { get; set; }
+    public List<TubularAssembly_1_1_0_Artefacts>? Artefacts { get; set; }
 
     /// <summary>
     /// A flag that indicates if the work product component is undergoing an extended load.  It reflects the fact that the work product component is in an early stage and may be updated before finalization.
@@ -200,7 +200,7 @@ public class TubularAssembly_1_1_0_Data : AbstractCommonResources_1_0_0 // Also 
     /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
     /// </summary>
     [JsonPropertyName("LineageAssertions")]
-    public List<TubularAssembly_1_1_0_Data_LineageAssertions>? LineageAssertions { get; set; }
+    public List<TubularAssembly_1_1_0_LineageAssertions>? LineageAssertions { get; set; }
 
     /// <summary>
     /// Identifier of the wellbore the Component is standing in.
@@ -220,7 +220,7 @@ public class TubularAssembly_1_1_0_Data : AbstractCommonResources_1_0_0 // Also 
     /// Record that reflects the status of the Assembly - as 'installed', 'pulled', 'planned',... - Applicable to tubing/completions as opposed to drillstrings
     /// </summary>
     [JsonPropertyName("TubularAssemblyStatus")]
-    public TubularAssembly_1_1_0_Data_TubularAssemblyStatus? TubularAssemblyStatus { get; set; }
+    public TubularAssembly_1_1_0_TubularAssemblyStatus? TubularAssemblyStatus { get; set; }
 
     [JsonPropertyName("VerticalMeasurement")]
     public AbstractFacilityVerticalMeasurement_1_0_0? VerticalMeasurement { get; set; }
@@ -367,7 +367,7 @@ public class TubularAssembly_1_1_0_Data : AbstractCommonResources_1_0_0 // Also 
 /// <summary>
 /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
 /// </summary>
-public class TubularAssembly_1_1_0_Data_Artefacts
+public class TubularAssembly_1_1_0_Artefacts
 {
     /// <summary>
     /// The record id of this artefact's role.
@@ -395,7 +395,7 @@ public class TubularAssembly_1_1_0_Data_Artefacts
 /// <summary>
 /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
 /// </summary>
-public class TubularAssembly_1_1_0_Data_LineageAssertions
+public class TubularAssembly_1_1_0_LineageAssertions
 {
     /// <summary>
     /// The object reference identifying the DIRECT, INDIRECT, REFERENCE dependency.
@@ -416,7 +416,7 @@ public class TubularAssembly_1_1_0_Data_LineageAssertions
 /// <summary>
 /// Record that reflects the status of the Assembly - as 'installed', 'pulled', 'planned',... - Applicable to tubing/completions as opposed to drillstrings
 /// </summary>
-public class TubularAssembly_1_1_0_Data_TubularAssemblyStatus
+public class TubularAssembly_1_1_0_TubularAssemblyStatus
 {
     /// <summary>
     /// SRN of a reference value status type
