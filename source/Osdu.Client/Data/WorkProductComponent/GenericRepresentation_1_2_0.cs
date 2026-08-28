@@ -113,7 +113,7 @@ public class GenericRepresentation_1_2_0_Data : AbstractCommonResources_1_0_0 //
     /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
     /// </summary>
     [JsonPropertyName("Artefacts")]
-    public List<GenericRepresentation_1_2_0_Data_Artefacts>? Artefacts { get; set; }
+    public List<GenericRepresentation_1_2_0_Artefacts>? Artefacts { get; set; }
 
     /// <summary>
     /// A flag that indicates if the work product component is undergoing an extended load.  It reflects the fact that the work product component is in an early stage and may be updated before finalization.
@@ -200,7 +200,7 @@ public class GenericRepresentation_1_2_0_Data : AbstractCommonResources_1_0_0 //
     /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
     /// </summary>
     [JsonPropertyName("LineageAssertions")]
-    public List<GenericRepresentation_1_2_0_Data_LineageAssertions>? LineageAssertions { get; set; }
+    public List<GenericRepresentation_1_2_0_LineageAssertions>? LineageAssertions { get; set; }
 
     /// <summary>
     /// Allow to link an interpretation with this representation
@@ -219,7 +219,7 @@ public class GenericRepresentation_1_2_0_Data : AbstractCommonResources_1_0_0 //
     /// Allow to link the geometry of the representation to a particular index of a time series. This is particularly useful for IJK grids used in geomechanical or basin context where the topology and geometry varies against the time.
     /// </summary>
     [JsonPropertyName("TimeSeries")]
-    public GenericRepresentation_1_2_0_Data_TimeSeries? TimeSeries { get; set; }
+    public GenericRepresentation_1_2_0_TimeSeries? TimeSeries { get; set; }
 
     /// <summary>
     /// The index of the realization of this representation
@@ -231,7 +231,7 @@ public class GenericRepresentation_1_2_0_Data : AbstractCommonResources_1_0_0 //
     /// Several optional indexable element counts
     /// </summary>
     [JsonPropertyName("IndexableElementCount")]
-    public List<GenericRepresentation_1_2_0_Data_IndexableElementCount>? IndexableElementCount { get; set; }
+    public List<GenericRepresentation_1_2_0_IndexableElementCount>? IndexableElementCount { get; set; }
 
     /// <summary>
     /// Allow to link a local CRS with this representation
@@ -262,7 +262,7 @@ public class GenericRepresentation_1_2_0_Data : AbstractCommonResources_1_0_0 //
 /// <summary>
 /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
 /// </summary>
-public class GenericRepresentation_1_2_0_Data_Artefacts
+public class GenericRepresentation_1_2_0_Artefacts
 {
     /// <summary>
     /// The record id of this artefact's role.
@@ -290,7 +290,7 @@ public class GenericRepresentation_1_2_0_Data_Artefacts
 /// <summary>
 /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
 /// </summary>
-public class GenericRepresentation_1_2_0_Data_LineageAssertions
+public class GenericRepresentation_1_2_0_LineageAssertions
 {
     /// <summary>
     /// The object reference identifying the DIRECT, INDIRECT, REFERENCE dependency.
@@ -311,7 +311,7 @@ public class GenericRepresentation_1_2_0_Data_LineageAssertions
 /// <summary>
 /// Allow to link the geometry of the representation to a particular index of a time series. This is particularly useful for IJK grids used in geomechanical or basin context where the topology and geometry varies against the time.
 /// </summary>
-public class GenericRepresentation_1_2_0_Data_TimeSeries
+public class GenericRepresentation_1_2_0_TimeSeries
 {
     /// <summary>
     /// Index of the timestamp of the representation in the associated TimeSeries
@@ -333,7 +333,7 @@ public class GenericRepresentation_1_2_0_Data_TimeSeries
 /// <summary>
 /// Defines the count of a particular indexable element in a representation
 /// </summary>
-public class GenericRepresentation_1_2_0_Data_IndexableElementCount
+public class GenericRepresentation_1_2_0_IndexableElementCount
 {
     /// <summary>
     /// The count of indexable element

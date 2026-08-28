@@ -175,7 +175,7 @@ public class GravityMagneticAcquisitionSurvey_1_0_0_Data : AbstractCommonResourc
     /// The history of expenditure approvals.
     /// </summary>
     [JsonPropertyName("FundsAuthorizations")]
-    public List<GravityMagneticAcquisitionSurvey_1_0_0_Data_FundsAuthorizations>? FundsAuthorizations { get; set; }
+    public List<GravityMagneticAcquisitionSurvey_1_0_0_FundsAuthorizations>? FundsAuthorizations { get; set; }
 
     /// <summary>
     /// References to applicable agreements in external contract database system of record.
@@ -194,25 +194,25 @@ public class GravityMagneticAcquisitionSurvey_1_0_0_Data : AbstractCommonResourc
     /// References to organisations which supplied services to the Project.
     /// </summary>
     [JsonPropertyName("Contractors")]
-    public List<GravityMagneticAcquisitionSurvey_1_0_0_Data_Contractors>? Contractors { get; set; }
+    public List<GravityMagneticAcquisitionSurvey_1_0_0_Contractors>? Contractors { get; set; }
 
     /// <summary>
     /// List of key individuals supporting the Project.  This could be Abstracted for re-use, and could reference a separate Persons master data object.
     /// </summary>
     [JsonPropertyName("Personnel")]
-    public List<GravityMagneticAcquisitionSurvey_1_0_0_Data_Personnel>? Personnel { get; set; }
+    public List<GravityMagneticAcquisitionSurvey_1_0_0_Personnel>? Personnel { get; set; }
 
     /// <summary>
     /// General parameters defining the configuration of the Project.  In the case of a seismic acquisition project it is like receiver interval, source depth, source type.  In the case of a processing project, it is like replacement velocity, reference datum above mean sea level.
     /// </summary>
     [JsonPropertyName("ProjectSpecifications")]
-    public List<GravityMagneticAcquisitionSurvey_1_0_0_Data_ProjectSpecifications>? ProjectSpecifications { get; set; }
+    public List<GravityMagneticAcquisitionSurvey_1_0_0_ProjectSpecifications>? ProjectSpecifications { get; set; }
 
     /// <summary>
     /// The history of life cycle states that the Project has been through..
     /// </summary>
     [JsonPropertyName("ProjectStates")]
-    public List<GravityMagneticAcquisitionSurvey_1_0_0_Data_ProjectStates>? ProjectStates { get; set; }
+    public List<GravityMagneticAcquisitionSurvey_1_0_0_ProjectStates>? ProjectStates { get; set; }
 
     /// <summary>
     /// The relation to the ActivityTemplate carrying expected parameter definitions and default values.
@@ -285,13 +285,13 @@ public class GravityMagneticAcquisitionSurvey_1_0_0_Data : AbstractCommonResourc
     /// An array that describes the equipment sensors, meters or tools used to acquire the geophysical data. One or more items of equipment may be used in a survey acquisition.
     /// </summary>
     [JsonPropertyName("EquipmentDetails")]
-    public List<GravityMagneticAcquisitionSurvey_1_0_0_Data_EquipmentDetails>? EquipmentDetails { get; set; }
+    public List<GravityMagneticAcquisitionSurvey_1_0_0_EquipmentDetails>? EquipmentDetails { get; set; }
 
     /// <summary>
     /// Describes the start and end date range of the survey acquisition
     /// </summary>
     [JsonPropertyName("AcquisitionDateRange")]
-    public GravityMagneticAcquisitionSurvey_1_0_0_Data_AcquisitionDateRange? AcquisitionDateRange { get; set; }
+    public GravityMagneticAcquisitionSurvey_1_0_0_AcquisitionDateRange? AcquisitionDateRange { get; set; }
 
     /// <summary>
     /// The company or organisation that acquired the survey
@@ -313,7 +313,7 @@ public class GravityMagneticAcquisitionSurvey_1_0_0_Data : AbstractCommonResourc
     /// An array that describes the survey acquisition properties relevant to a moving platform survey, for example, airborne, marine vessel or other moving vehicle
     /// </summary>
     [JsonPropertyName("MovingPlatform")]
-    public GravityMagneticAcquisitionSurvey_1_0_0_Data_MovingPlatform? MovingPlatform { get; set; }
+    public GravityMagneticAcquisitionSurvey_1_0_0_MovingPlatform? MovingPlatform { get; set; }
 
     /// <summary>
     /// If populated, this survey is part of a time-lapse survey sequence. It identifies the preceding Gravity Magnetic Acquisition Survey. The first survey in the sequence has an empty or absent PrecedingTimeLapseSurveyID.
@@ -330,7 +330,7 @@ public class GravityMagneticAcquisitionSurvey_1_0_0_Data : AbstractCommonResourc
 /// <summary>
 /// The history of expenditure approvals.
 /// </summary>
-public class GravityMagneticAcquisitionSurvey_1_0_0_Data_FundsAuthorizations
+public class GravityMagneticAcquisitionSurvey_1_0_0_FundsAuthorizations
 {
     /// <summary>
     /// Internal Company control number which identifies the allocation of funds to the Project.
@@ -363,7 +363,7 @@ public class GravityMagneticAcquisitionSurvey_1_0_0_Data_FundsAuthorizations
 /// <summary>
 /// References to organisations which supplied services to the Project.
 /// </summary>
-public class GravityMagneticAcquisitionSurvey_1_0_0_Data_Contractors
+public class GravityMagneticAcquisitionSurvey_1_0_0_Contractors
 {
     /// <summary>
     /// Reference to a company that provided services.
@@ -390,7 +390,7 @@ public class GravityMagneticAcquisitionSurvey_1_0_0_Data_Contractors
 /// <summary>
 /// List of key individuals supporting the Project.  This could be Abstracted for re-use, and could reference a separate Persons master data object.
 /// </summary>
-public class GravityMagneticAcquisitionSurvey_1_0_0_Data_Personnel
+public class GravityMagneticAcquisitionSurvey_1_0_0_Personnel
 {
     /// <summary>
     /// Name of an individual supporting the Project.
@@ -417,7 +417,7 @@ public class GravityMagneticAcquisitionSurvey_1_0_0_Data_Personnel
 /// <summary>
 /// General parameters defining the configuration of the Project.  In the case of a seismic acquisition project it is like receiver interval, source depth, source type.  In the case of a processing project, it is like replacement velocity, reference datum above mean sea level.
 /// </summary>
-public class GravityMagneticAcquisitionSurvey_1_0_0_Data_ProjectSpecifications
+public class GravityMagneticAcquisitionSurvey_1_0_0_ProjectSpecifications
 {
     /// <summary>
     /// The date and time at which a ProjectSpecification becomes effective.
@@ -478,7 +478,7 @@ public class GravityMagneticAcquisitionSurvey_1_0_0_Data_ProjectSpecifications
 /// <summary>
 /// The history of life cycle states that the Project has been through..
 /// </summary>
-public class GravityMagneticAcquisitionSurvey_1_0_0_Data_ProjectStates
+public class GravityMagneticAcquisitionSurvey_1_0_0_ProjectStates
 {
     /// <summary>
     /// The date and time at which the state becomes effective.
@@ -506,7 +506,7 @@ public class GravityMagneticAcquisitionSurvey_1_0_0_Data_ProjectStates
 /// <summary>
 /// The sensor, meter or tool equipment used to acquire the gravity and magnetic geophysical measurements
 /// </summary>
-public class GravityMagneticAcquisitionSurvey_1_0_0_Data_EquipmentDetails
+public class GravityMagneticAcquisitionSurvey_1_0_0_EquipmentDetails
 {
     /// <summary>
     /// A name given to a sensor, meter or tool used to acquire gravity or magnetics geophysical data. This could be a common or colloquial name.
@@ -544,7 +544,7 @@ public class GravityMagneticAcquisitionSurvey_1_0_0_Data_EquipmentDetails
 /// <summary>
 /// Describes the start and end date range of the survey acquisition
 /// </summary>
-public class GravityMagneticAcquisitionSurvey_1_0_0_Data_AcquisitionDateRange
+public class GravityMagneticAcquisitionSurvey_1_0_0_AcquisitionDateRange
 {
     /// <summary>
     /// The start date of the acquisition survey
@@ -563,7 +563,7 @@ public class GravityMagneticAcquisitionSurvey_1_0_0_Data_AcquisitionDateRange
 /// <summary>
 /// An array that describes the survey acquisition properties relevant to a moving platform survey, for example, airborne, marine vessel or other moving vehicle
 /// </summary>
-public class GravityMagneticAcquisitionSurvey_1_0_0_Data_MovingPlatform
+public class GravityMagneticAcquisitionSurvey_1_0_0_MovingPlatform
 {
     /// <summary>
     /// A boolean flag indicating if the survey was acquired from a moving platform, for example, airborne, marine vessel or other moving vehicle.
@@ -608,7 +608,7 @@ public class GravityMagneticAcquisitionSurvey_1_0_0_Data_MovingPlatform
     /// Captures the average flying height and the flying height parameters such as the instrumentation, datum and the clearance method.
     /// </summary>
     [JsonPropertyName("FlyingHeightParameters")]
-    public GravityMagneticAcquisitionSurvey_1_0_0_Data_MovingPlatform_FlyingHeightParameters? FlyingHeightParameters { get; set; }
+    public GravityMagneticAcquisitionSurvey_1_0_0_FlyingHeightParameters? FlyingHeightParameters { get; set; }
 
     /// <summary>
     /// An association to a seismic acquisition survey when seismic and gravity and magnetic data are acquired simultaneously, typically in the marine environment.
@@ -629,7 +629,7 @@ public class GravityMagneticAcquisitionSurvey_1_0_0_Data_MovingPlatform
 /// <summary>
 /// Captures the average flying height and the flying height parameters such as the instrumentation, datum and the clearance method.
 /// </summary>
-public class GravityMagneticAcquisitionSurvey_1_0_0_Data_MovingPlatform_FlyingHeightParameters
+public class GravityMagneticAcquisitionSurvey_1_0_0_FlyingHeightParameters
 {
     /// <summary>
     /// The airborne survey ground clearance method, for example, constant or drape.

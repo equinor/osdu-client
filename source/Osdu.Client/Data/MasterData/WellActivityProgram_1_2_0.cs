@@ -173,7 +173,7 @@ public class WellActivityProgram_1_2_0_Data : AbstractCommonResources_1_0_0 // A
     /// The history of expenditure approvals.
     /// </summary>
     [JsonPropertyName("FundsAuthorizations")]
-    public List<WellActivityProgram_1_2_0_Data_FundsAuthorizations>? FundsAuthorizations { get; set; }
+    public List<WellActivityProgram_1_2_0_FundsAuthorizations>? FundsAuthorizations { get; set; }
 
     /// <summary>
     /// References to applicable agreements in external contract database system of record.
@@ -192,25 +192,25 @@ public class WellActivityProgram_1_2_0_Data : AbstractCommonResources_1_0_0 // A
     /// References to organisations which supplied services to the Project.
     /// </summary>
     [JsonPropertyName("Contractors")]
-    public List<WellActivityProgram_1_2_0_Data_Contractors>? Contractors { get; set; }
+    public List<WellActivityProgram_1_2_0_Contractors>? Contractors { get; set; }
 
     /// <summary>
     /// List of key individuals supporting the Project.  This could be Abstracted for re-use, and could reference a separate Persons master data object.
     /// </summary>
     [JsonPropertyName("Personnel")]
-    public List<WellActivityProgram_1_2_0_Data_Personnel>? Personnel { get; set; }
+    public List<WellActivityProgram_1_2_0_Personnel>? Personnel { get; set; }
 
     /// <summary>
     /// General parameters defining the configuration of the Project.  In the case of a seismic acquisition project it is like receiver interval, source depth, source type.  In the case of a processing project, it is like replacement velocity, reference datum above mean sea level.
     /// </summary>
     [JsonPropertyName("ProjectSpecifications")]
-    public List<WellActivityProgram_1_2_0_Data_ProjectSpecifications>? ProjectSpecifications { get; set; }
+    public List<WellActivityProgram_1_2_0_ProjectSpecifications>? ProjectSpecifications { get; set; }
 
     /// <summary>
     /// The history of life cycle states that the Project has been through..
     /// </summary>
     [JsonPropertyName("ProjectStates")]
-    public List<WellActivityProgram_1_2_0_Data_ProjectStates>? ProjectStates { get; set; }
+    public List<WellActivityProgram_1_2_0_ProjectStates>? ProjectStates { get; set; }
 
     /// <summary>
     /// A reference to the object that holds the information about the rig used in this drilling program
@@ -230,7 +230,7 @@ public class WellActivityProgram_1_2_0_Data : AbstractCommonResources_1_0_0 // A
     /// (Such as "Drill Surface", "Case Surface", "Acces Well", "Suspend ", "Wellhead Removal "...).
     /// </summary>
     [JsonPropertyName("Phases")]
-    public List<WellActivityProgram_1_2_0_Data_Phases>? Phases { get; set; }
+    public List<WellActivityProgram_1_2_0_Phases>? Phases { get; set; }
 
     /// <summary>
     /// The type of well activity program. The default value for this is "Primary" (For example, they may have  "primary" program and "backup" programs)
@@ -247,7 +247,7 @@ public class WellActivityProgram_1_2_0_Data : AbstractCommonResources_1_0_0 // A
 /// <summary>
 /// The history of expenditure approvals.
 /// </summary>
-public class WellActivityProgram_1_2_0_Data_FundsAuthorizations
+public class WellActivityProgram_1_2_0_FundsAuthorizations
 {
     /// <summary>
     /// Internal Company control number which identifies the allocation of funds to the Project.
@@ -280,7 +280,7 @@ public class WellActivityProgram_1_2_0_Data_FundsAuthorizations
 /// <summary>
 /// References to organisations which supplied services to the Project.
 /// </summary>
-public class WellActivityProgram_1_2_0_Data_Contractors
+public class WellActivityProgram_1_2_0_Contractors
 {
     /// <summary>
     /// Reference to a company that provided services.
@@ -307,7 +307,7 @@ public class WellActivityProgram_1_2_0_Data_Contractors
 /// <summary>
 /// List of key individuals supporting the Project.  This could be Abstracted for re-use, and could reference a separate Persons master data object.
 /// </summary>
-public class WellActivityProgram_1_2_0_Data_Personnel
+public class WellActivityProgram_1_2_0_Personnel
 {
     /// <summary>
     /// Name of an individual supporting the Project.
@@ -334,7 +334,7 @@ public class WellActivityProgram_1_2_0_Data_Personnel
 /// <summary>
 /// General parameters defining the configuration of the Project.  In the case of a seismic acquisition project it is like receiver interval, source depth, source type.  In the case of a processing project, it is like replacement velocity, reference datum above mean sea level.
 /// </summary>
-public class WellActivityProgram_1_2_0_Data_ProjectSpecifications
+public class WellActivityProgram_1_2_0_ProjectSpecifications
 {
     /// <summary>
     /// The date and time at which a ProjectSpecification becomes effective.
@@ -395,7 +395,7 @@ public class WellActivityProgram_1_2_0_Data_ProjectSpecifications
 /// <summary>
 /// The history of life cycle states that the Project has been through..
 /// </summary>
-public class WellActivityProgram_1_2_0_Data_ProjectStates
+public class WellActivityProgram_1_2_0_ProjectStates
 {
     /// <summary>
     /// The date and time at which the state becomes effective.
@@ -424,7 +424,7 @@ public class WellActivityProgram_1_2_0_Data_ProjectStates
 /// Description of an individual phase that compose the WellActivityProgram. A phase describes the key milestones and is usually based on the major sections of the well or non-well-related work.
 /// (Such as "Drill Surface", "Case Surface", "Acces Well", "Suspend ", "Wellhead Removal "...)
 /// </summary>
-public class WellActivityProgram_1_2_0_Data_Phases
+public class WellActivityProgram_1_2_0_Phases
 {
     /// <summary>
     /// Identifier of Rig Utilization object, which defines when the rig is on location during operations.

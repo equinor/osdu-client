@@ -167,7 +167,7 @@ public class ActivityPlan_1_0_0_Data : AbstractCommonResources_1_0_0 // Also com
     /// The history of expenditure approvals.
     /// </summary>
     [JsonPropertyName("FundsAuthorizations")]
-    public List<ActivityPlan_1_0_0_Data_FundsAuthorizations>? FundsAuthorizations { get; set; }
+    public List<ActivityPlan_1_0_0_FundsAuthorizations>? FundsAuthorizations { get; set; }
 
     /// <summary>
     /// References to applicable agreements in external contract database system of record.
@@ -186,25 +186,25 @@ public class ActivityPlan_1_0_0_Data : AbstractCommonResources_1_0_0 // Also com
     /// References to organisations which supplied services to the Project.
     /// </summary>
     [JsonPropertyName("Contractors")]
-    public List<ActivityPlan_1_0_0_Data_Contractors>? Contractors { get; set; }
+    public List<ActivityPlan_1_0_0_Contractors>? Contractors { get; set; }
 
     /// <summary>
     /// List of key individuals supporting the Project.  This could be Abstracted for re-use, and could reference a separate Persons master data object.
     /// </summary>
     [JsonPropertyName("Personnel")]
-    public List<ActivityPlan_1_0_0_Data_Personnel>? Personnel { get; set; }
+    public List<ActivityPlan_1_0_0_Personnel>? Personnel { get; set; }
 
     /// <summary>
     /// General parameters defining the configuration of the Project.  In the case of a seismic acquisition project it is like receiver interval, source depth, source type.  In the case of a processing project, it is like replacement velocity, reference datum above mean sea level.
     /// </summary>
     [JsonPropertyName("ProjectSpecifications")]
-    public List<ActivityPlan_1_0_0_Data_ProjectSpecifications>? ProjectSpecifications { get; set; }
+    public List<ActivityPlan_1_0_0_ProjectSpecifications>? ProjectSpecifications { get; set; }
 
     /// <summary>
     /// The history of life cycle states that the Project has been through..
     /// </summary>
     [JsonPropertyName("ProjectStates")]
-    public List<ActivityPlan_1_0_0_Data_ProjectStates>? ProjectStates { get; set; }
+    public List<ActivityPlan_1_0_0_ProjectStates>? ProjectStates { get; set; }
 
     /// <summary>
     /// A reference to the wellbore that is the subject of this activity plan
@@ -217,7 +217,7 @@ public class ActivityPlan_1_0_0_Data : AbstractCommonResources_1_0_0 // Also com
     /// The activities that compose this plan
     /// </summary>
     [JsonPropertyName("WellPlanningActivities")]
-    public List<ActivityPlan_1_0_0_Data_WellPlanningActivities>? WellPlanningActivities { get; set; }
+    public List<ActivityPlan_1_0_0_WellPlanningActivities>? WellPlanningActivities { get; set; }
 
     /// <summary>
     /// Name of Activity Plan
@@ -233,7 +233,7 @@ public class ActivityPlan_1_0_0_Data : AbstractCommonResources_1_0_0 // Also com
 /// <summary>
 /// The history of expenditure approvals.
 /// </summary>
-public class ActivityPlan_1_0_0_Data_FundsAuthorizations
+public class ActivityPlan_1_0_0_FundsAuthorizations
 {
     /// <summary>
     /// Internal Company control number which identifies the allocation of funds to the Project.
@@ -266,7 +266,7 @@ public class ActivityPlan_1_0_0_Data_FundsAuthorizations
 /// <summary>
 /// References to organisations which supplied services to the Project.
 /// </summary>
-public class ActivityPlan_1_0_0_Data_Contractors
+public class ActivityPlan_1_0_0_Contractors
 {
     /// <summary>
     /// Reference to a company that provided services.
@@ -293,7 +293,7 @@ public class ActivityPlan_1_0_0_Data_Contractors
 /// <summary>
 /// List of key individuals supporting the Project.  This could be Abstracted for re-use, and could reference a separate Persons master data object.
 /// </summary>
-public class ActivityPlan_1_0_0_Data_Personnel
+public class ActivityPlan_1_0_0_Personnel
 {
     /// <summary>
     /// Name of an individual supporting the Project.
@@ -320,7 +320,7 @@ public class ActivityPlan_1_0_0_Data_Personnel
 /// <summary>
 /// General parameters defining the configuration of the Project.  In the case of a seismic acquisition project it is like receiver interval, source depth, source type.  In the case of a processing project, it is like replacement velocity, reference datum above mean sea level.
 /// </summary>
-public class ActivityPlan_1_0_0_Data_ProjectSpecifications
+public class ActivityPlan_1_0_0_ProjectSpecifications
 {
     /// <summary>
     /// The date and time at which a ProjectSpecification becomes effective.
@@ -381,7 +381,7 @@ public class ActivityPlan_1_0_0_Data_ProjectSpecifications
 /// <summary>
 /// The history of life cycle states that the Project has been through..
 /// </summary>
-public class ActivityPlan_1_0_0_Data_ProjectStates
+public class ActivityPlan_1_0_0_ProjectStates
 {
     /// <summary>
     /// The date and time at which the state becomes effective.
@@ -409,7 +409,7 @@ public class ActivityPlan_1_0_0_Data_ProjectStates
 /// <summary>
 /// Information regarding an individual activity that is part of the ActivityPlan
 /// </summary>
-public class ActivityPlan_1_0_0_Data_WellPlanningActivities
+public class ActivityPlan_1_0_0_WellPlanningActivities
 {
     /// <summary>
     /// A name given to this activity
@@ -428,7 +428,7 @@ public class ActivityPlan_1_0_0_Data_WellPlanningActivities
     /// The depth range over which the the activity takes place
     /// </summary>
     [JsonPropertyName("DepthRange")]
-    public ActivityPlan_1_0_0_Data_WellPlanningActivities_DepthRange? DepthRange { get; set; }
+    public ActivityPlan_1_0_0_DepthRange? DepthRange { get; set; }
 
     /// <summary>
     /// The parent activity to this activity
@@ -465,19 +465,19 @@ public class ActivityPlan_1_0_0_Data_WellPlanningActivities
     /// Statistics that define the expected productivity time of this activity
     /// </summary>
     [JsonPropertyName("ProductiveTimeStatistics")]
-    public List<ActivityPlan_1_0_0_Data_WellPlanningActivities_ProductiveTimeStatistics>? ProductiveTimeStatistics { get; set; }
+    public List<ActivityPlan_1_0_0_ProductiveTimeStatistics>? ProductiveTimeStatistics { get; set; }
 
     /// <summary>
     /// Statistics that define the non productive time of this activity
     /// </summary>
     [JsonPropertyName("NonProductiveTimeStatistics")]
-    public List<ActivityPlan_1_0_0_Data_WellPlanningActivities_NonProductiveTimeStatistics>? NonProductiveTimeStatistics { get; set; }
+    public List<ActivityPlan_1_0_0_NonProductiveTimeStatistics>? NonProductiveTimeStatistics { get; set; }
 
     /// <summary>
     /// Statistics that define the rate of penetration of this activity
     /// </summary>
     [JsonPropertyName("RateOfPenetrationStatistics")]
-    public List<ActivityPlan_1_0_0_Data_WellPlanningActivities_RateOfPenetrationStatistics>? RateOfPenetrationStatistics { get; set; }
+    public List<ActivityPlan_1_0_0_RateOfPenetrationStatistics>? RateOfPenetrationStatistics { get; set; }
 
     /// <summary>
     /// Free form comments associated with this activity
@@ -543,7 +543,7 @@ public class ActivityPlan_1_0_0_Data_WellPlanningActivities
 /// <summary>
 /// The depth range over which the the activity takes place
 /// </summary>
-public class ActivityPlan_1_0_0_Data_WellPlanningActivities_DepthRange
+public class ActivityPlan_1_0_0_DepthRange
 {
     /// <summary>
     /// The depth of the hole at the start of the activity. Depth relative to Planned wellbore ZDP. Navigate via WellboreID to the side-car WellPlanningWellbore, which holds the depth reference in data.VerticalMeasurement.
@@ -574,7 +574,7 @@ public class ActivityPlan_1_0_0_Data_WellPlanningActivities_DepthRange
 /// <summary>
 /// Structure that describes a individual statistic record of the operations from an activity.
 /// </summary>
-public class ActivityPlan_1_0_0_Data_WellPlanningActivities_ProductiveTimeStatistics
+public class ActivityPlan_1_0_0_ProductiveTimeStatistics
 {
     /// <summary>
     /// Record of the statistic estimation
@@ -596,7 +596,7 @@ public class ActivityPlan_1_0_0_Data_WellPlanningActivities_ProductiveTimeStatis
 /// <summary>
 /// Structure that describes a individual statistic record of the operations from an activity.
 /// </summary>
-public class ActivityPlan_1_0_0_Data_WellPlanningActivities_NonProductiveTimeStatistics
+public class ActivityPlan_1_0_0_NonProductiveTimeStatistics
 {
     /// <summary>
     /// Record of the statistic estimation
@@ -618,7 +618,7 @@ public class ActivityPlan_1_0_0_Data_WellPlanningActivities_NonProductiveTimeSta
 /// <summary>
 /// Individual Statistics that define the rate of penetration of an activity
 /// </summary>
-public class ActivityPlan_1_0_0_Data_WellPlanningActivities_RateOfPenetrationStatistics
+public class ActivityPlan_1_0_0_RateOfPenetrationStatistics
 {
     /// <summary>
     /// Record of the statistic estimation

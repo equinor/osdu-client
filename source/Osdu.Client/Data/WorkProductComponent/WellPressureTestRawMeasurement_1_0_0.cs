@@ -113,7 +113,7 @@ public class WellPressureTestRawMeasurement_1_0_0_Data : AbstractCommonResources
     /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
     /// </summary>
     [JsonPropertyName("Artefacts")]
-    public List<WellPressureTestRawMeasurement_1_0_0_Data_Artefacts>? Artefacts { get; set; }
+    public List<WellPressureTestRawMeasurement_1_0_0_Artefacts>? Artefacts { get; set; }
 
     /// <summary>
     /// A flag that indicates if the work product component is undergoing an extended load.  It reflects the fact that the work product component is in an early stage and may be updated before finalization.
@@ -200,7 +200,7 @@ public class WellPressureTestRawMeasurement_1_0_0_Data : AbstractCommonResources
     /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
     /// </summary>
     [JsonPropertyName("LineageAssertions")]
-    public List<WellPressureTestRawMeasurement_1_0_0_Data_LineageAssertions>? LineageAssertions { get; set; }
+    public List<WellPressureTestRawMeasurement_1_0_0_LineageAssertions>? LineageAssertions { get; set; }
 
     /// <summary>
     /// Identifier of the acquisition job master data.
@@ -237,13 +237,13 @@ public class WellPressureTestRawMeasurement_1_0_0_Data : AbstractCommonResources
     /// Array of comprehensive description of the well test raw measurement (one entry per gauge's depth)
     /// </summary>
     [JsonPropertyName("Measurements")]
-    public List<WellPressureTestRawMeasurement_1_0_0_Data_Measurements>? Measurements { get; set; }
+    public List<WellPressureTestRawMeasurement_1_0_0_Measurements>? Measurements { get; set; }
 
     /// <summary>
     /// Array of unitary Curve (Pressure against Time) description
     /// </summary>
     [JsonPropertyName("Curves")]
-    public List<WellPressureTestRawMeasurement_1_0_0_Data_Curves>? Curves { get; set; }
+    public List<WellPressureTestRawMeasurement_1_0_0_Curves>? Curves { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
@@ -253,7 +253,7 @@ public class WellPressureTestRawMeasurement_1_0_0_Data : AbstractCommonResources
 /// <summary>
 /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
 /// </summary>
-public class WellPressureTestRawMeasurement_1_0_0_Data_Artefacts
+public class WellPressureTestRawMeasurement_1_0_0_Artefacts
 {
     /// <summary>
     /// The record id of this artefact's role.
@@ -281,7 +281,7 @@ public class WellPressureTestRawMeasurement_1_0_0_Data_Artefacts
 /// <summary>
 /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
 /// </summary>
-public class WellPressureTestRawMeasurement_1_0_0_Data_LineageAssertions
+public class WellPressureTestRawMeasurement_1_0_0_LineageAssertions
 {
     /// <summary>
     /// The object reference identifying the DIRECT, INDIRECT, REFERENCE dependency.
@@ -302,7 +302,7 @@ public class WellPressureTestRawMeasurement_1_0_0_Data_LineageAssertions
 /// <summary>
 /// Unitary Measurement Serie Description
 /// </summary>
-public class WellPressureTestRawMeasurement_1_0_0_Data_Measurements
+public class WellPressureTestRawMeasurement_1_0_0_Measurements
 {
     /// <summary>
     /// Identifier of the Station within the acquisition job captured in the unitary serie
@@ -353,7 +353,7 @@ public class WellPressureTestRawMeasurement_1_0_0_Data_Measurements
     /// array of information to identify pretests measurements within the complete measurement recording.
     /// </summary>
     [JsonPropertyName("PreTests")]
-    public List<WellPressureTestRawMeasurement_1_0_0_Data_Measurements_PreTests>? PreTests { get; set; }
+    public List<WellPressureTestRawMeasurement_1_0_0_PreTests>? PreTests { get; set; }
 
     /// <summary>
     /// Boolean that indicates the measurement is tubular (meaning proceeded inside the installed tubular) - or annular otherwise.
@@ -384,7 +384,7 @@ public class WellPressureTestRawMeasurement_1_0_0_Data_Measurements
 /// <summary>
 /// Describes the pieces of information required to identity individual pretests within the complete record.
 /// </summary>
-public class WellPressureTestRawMeasurement_1_0_0_Data_Measurements_PreTests
+public class WellPressureTestRawMeasurement_1_0_0_PreTests
 {
     /// <summary>
     /// Sequential number identifying the pretest within the record
@@ -409,7 +409,7 @@ public class WellPressureTestRawMeasurement_1_0_0_Data_Measurements_PreTests
 /// <summary>
 /// Describing the characteristics of the "Pressure against Time" recorded curves.
 /// </summary>
-public class WellPressureTestRawMeasurement_1_0_0_Data_Curves
+public class WellPressureTestRawMeasurement_1_0_0_Curves
 {
     /// <summary>
     /// The ID of the Well Log Curve

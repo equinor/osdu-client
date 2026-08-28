@@ -134,7 +134,7 @@ public class FileCollection_TGS_MDIO_1_0_0_Data : AbstractCommonResources_1_0_0 
     /// Endianness of binary value.  Enumeration: "BIG", "LITTLE".  If absent, applications will need to interpret from context indicators.
     /// </summary>
     [JsonPropertyName("Endian")]
-    public FileCollection_TGS_MDIO_1_0_0_Data_Endian? Endian { get; set; }
+    public FileCollection_TGS_MDIO_1_0_0_Endian? Endian { get; set; }
 
     /// <summary>
     /// Placeholder for a specialization.
@@ -166,7 +166,7 @@ public class FileCollection_TGS_MDIO_1_0_0_Data : AbstractCommonResources_1_0_0 
     /// GridOverrides supports processes to re-index and sort seismic data to a logical grid (e.g. 3D Shot Grid or CDP Grid) for SEGY files that lack certain required information in their headers. This is usually used for prestack seismic data.
     /// </summary>
     [JsonPropertyName("GridOverrides")]
-    public FileCollection_TGS_MDIO_1_0_0_Data_GridOverrides? GridOverrides { get; set; }
+    public FileCollection_TGS_MDIO_1_0_0_GridOverrides? GridOverrides { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
@@ -177,7 +177,7 @@ public class FileCollection_TGS_MDIO_1_0_0_Data : AbstractCommonResources_1_0_0 
 /// Endianness of binary value.  Enumeration: "BIG", "LITTLE".  If absent, applications will need to interpret from context indicators.
 /// </summary>
 [JsonConverter(typeof(JsonStringEnumConverter))]
-public enum FileCollection_TGS_MDIO_1_0_0_Data_Endian
+public enum FileCollection_TGS_MDIO_1_0_0_Endian
 {
     [JsonStringEnumMemberName("BIG")]
     BIG,
@@ -190,7 +190,7 @@ public enum FileCollection_TGS_MDIO_1_0_0_Data_Endian
 /// <summary>
 /// GridOverrides supports processes to re-index and sort seismic data to a logical grid (e.g. 3D Shot Grid or CDP Grid) for SEGY files that lack certain required information in their headers. This is usually used for prestack seismic data.
 /// </summary>
-public class FileCollection_TGS_MDIO_1_0_0_Data_GridOverrides
+public class FileCollection_TGS_MDIO_1_0_0_GridOverrides
 {
     /// <summary>
     /// Setting this to “true” directs the system to apply a transformation that maps unwrapped (e.g. one cable ends at channel 20, next cable starts at channel 21) sequential channel header "channel" into a wrapped layout (meaning every cable starts at channel 1) when converting from SEGY to MDIO. This process relies on the total number of channels per cable, specified by “ChannelsPerCable.” Because it overrides the default header-parsing logic, it cannot be enabled at the same time as “AutoChannelWrap.”

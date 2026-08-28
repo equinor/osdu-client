@@ -250,7 +250,7 @@ public class PlannedCementJob_1_1_0_Data : AbstractCommonResources_1_0_0 // Also
     /// Set of stages for the job (usually 1 or 2).
     /// </summary>
     [JsonPropertyName("CementStages")]
-    public List<PlannedCementJob_1_1_0_Data_CementStages>? CementStages { get; set; }
+    public List<PlannedCementJob_1_1_0_CementStages>? CementStages { get; set; }
 
     /// <summary>
     /// Plug type.
@@ -313,7 +313,7 @@ public class PlannedCementJob_1_1_0_Data : AbstractCommonResources_1_0_0 // Also
 /// <summary>
 /// A single cement job.
 /// </summary>
-public class PlannedCementJob_1_1_0_Data_CementStages
+public class PlannedCementJob_1_1_0_CementStages
 {
     /// <summary>
     /// Stage number.
@@ -387,7 +387,7 @@ public class PlannedCementJob_1_1_0_Data_CementStages
     /// Displaced Mud, washes and spacers, cements, displacement mud.
     /// </summary>
     [JsonPropertyName("CementingFluid")]
-    public PlannedCementJob_1_1_0_Data_CementStages_CementingFluid? CementingFluid { get; set; }
+    public PlannedCementJob_1_1_0_CementingFluid? CementingFluid { get; set; }
 
     /// <summary>
     /// Squeeze objective.
@@ -490,7 +490,7 @@ public class PlannedCementJob_1_1_0_Data_CementStages
 /// <summary>
 /// Displaced Mud, washes and spacers, cements, displacement mud.
 /// </summary>
-public class PlannedCementJob_1_1_0_Data_CementStages_CementingFluid
+public class PlannedCementJob_1_1_0_CementingFluid
 {
     /// <summary>
     /// Fluid type: Mud, Wash, Spacer, Slurry.
@@ -563,7 +563,7 @@ public class PlannedCementJob_1_1_0_Data_CementStages_CementingFluid
     /// Set of (Time / Rate / Back Pressure).
     /// </summary>
     [JsonPropertyName("CementPumpSchedule")]
-    public PlannedCementJob_1_1_0_Data_CementStages_CementingFluid_CementPumpSchedule? CementPumpSchedule { get; set; }
+    public PlannedCementJob_1_1_0_CementPumpSchedule? CementPumpSchedule { get; set; }
 
     /// <summary>
     /// Excess Percent.
@@ -708,7 +708,7 @@ public class PlannedCementJob_1_1_0_Data_CementStages_CementingFluid
     /// Additives can be added in slurry but also in spacers, washes, mud.
     /// </summary>
     [JsonPropertyName("CementAdditives")]
-    public List<PlannedCementJob_1_1_0_Data_CementStages_CementingFluid_CementAdditives>? CementAdditives { get; set; }
+    public List<PlannedCementJob_1_1_0_CementAdditives>? CementAdditives { get; set; }
 
     /// <summary>
     /// Foam used indicator.  Values are "true" (or "1") and "false" (or "0").
@@ -740,7 +740,7 @@ public class PlannedCementJob_1_1_0_Data_CementStages_CementingFluid
 /// <summary>
 /// Set of (Time / Rate / Back Pressure).
 /// </summary>
-public class PlannedCementJob_1_1_0_Data_CementStages_CementingFluid_CementPumpSchedule
+public class PlannedCementJob_1_1_0_CementPumpSchedule
 {
     /// <summary>
     /// Rate fluid is pumped. 0 means it is a pause.
@@ -771,7 +771,7 @@ public class PlannedCementJob_1_1_0_Data_CementStages_CementingFluid_CementPumpS
 /// <summary>
 /// Additives used during a cement job
 /// </summary>
-public class PlannedCementJob_1_1_0_Data_CementStages_CementingFluid_CementAdditives
+public class PlannedCementJob_1_1_0_CementAdditives
 {
     /// <summary>
     /// Additive name.

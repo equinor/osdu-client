@@ -218,7 +218,7 @@ public class ReservoirSegment_2_0_0_Data : AbstractCommonResources_1_0_0 // Also
     /// Set of attributes capturing the Life Cycle Statuses of the Reservoir, a concept which is typically chronological.
     /// </summary>
     [JsonPropertyName("LifeCycleStatuses")]
-    public List<ReservoirSegment_2_0_0_Data_LifeCycleStatuses>? LifeCycleStatuses { get; set; }
+    public List<ReservoirSegment_2_0_0_LifeCycleStatuses>? LifeCycleStatuses { get; set; }
 
     /// <summary>
     /// Identifier linking to the parent reservoir entity (It could be either a segment or a reservoir)
@@ -282,7 +282,7 @@ public class ReservoirSegment_2_0_0_Data : AbstractCommonResources_1_0_0 // Also
 /// <summary>
 /// Set of attributes capturing the Life Cycle Statuses of the Reservoir, a concept which is typically chronological.
 /// </summary>
-public class ReservoirSegment_2_0_0_Data_LifeCycleStatuses
+public class ReservoirSegment_2_0_0_LifeCycleStatuses
 {
     /// <summary>
     /// The Life Cycle Status of the Reservoir, a concept which is typically chronological.

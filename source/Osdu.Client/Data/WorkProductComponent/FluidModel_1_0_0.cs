@@ -113,7 +113,7 @@ public class FluidModel_1_0_0_Data : AbstractCommonResources_1_0_1 // Also compo
     /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
     /// </summary>
     [JsonPropertyName("Artefacts")]
-    public List<FluidModel_1_0_0_Data_Artefacts>? Artefacts { get; set; }
+    public List<FluidModel_1_0_0_Artefacts>? Artefacts { get; set; }
 
     /// <summary>
     /// A flag that indicates if the work product component is undergoing an extended load.  It reflects the fact that the work product component is in an early stage and may be updated before finalization.
@@ -200,7 +200,7 @@ public class FluidModel_1_0_0_Data : AbstractCommonResources_1_0_1 // Also compo
     /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
     /// </summary>
     [JsonPropertyName("LineageAssertions")]
-    public List<FluidModel_1_0_0_Data_LineageAssertions>? LineageAssertions { get; set; }
+    public List<FluidModel_1_0_0_LineageAssertions>? LineageAssertions { get; set; }
 
     /// <summary>
     /// Identifies the type of model used. Models can support one or more business contexts. E.g., for Reservoir Simulation, key types of fluid models are Black Oil, Compositional, and Thermal Compositional.
@@ -213,7 +213,7 @@ public class FluidModel_1_0_0_Data : AbstractCommonResources_1_0_1 // Also compo
     /// This set of attributes represents the context surrounding the processes used in running through model characterization.
     /// </summary>
     [JsonPropertyName("BasisOfModelling")]
-    public FluidModel_1_0_0_Data_BasisOfModelling? BasisOfModelling { get; set; }
+    public FluidModel_1_0_0_BasisOfModelling? BasisOfModelling { get; set; }
 
     /// <summary>
     /// This is used, as a form of lineage, to explicitly indicate the fluid model OSDU record from which this fluid model was derived. Only to be used in the case that this fluid model is derived from another.
@@ -276,7 +276,7 @@ public class FluidModel_1_0_0_Data : AbstractCommonResources_1_0_1 // Also compo
 /// <summary>
 /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
 /// </summary>
-public class FluidModel_1_0_0_Data_Artefacts
+public class FluidModel_1_0_0_Artefacts
 {
     /// <summary>
     /// The record id of this artefact's role.
@@ -304,7 +304,7 @@ public class FluidModel_1_0_0_Data_Artefacts
 /// <summary>
 /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
 /// </summary>
-public class FluidModel_1_0_0_Data_LineageAssertions
+public class FluidModel_1_0_0_LineageAssertions
 {
     /// <summary>
     /// The object reference identifying the DIRECT, INDIRECT, REFERENCE dependency.
@@ -325,7 +325,7 @@ public class FluidModel_1_0_0_Data_LineageAssertions
 /// <summary>
 /// This set of attributes represents the context surrounding the processes used in running through model characterization.
 /// </summary>
-public class FluidModel_1_0_0_Data_BasisOfModelling
+public class FluidModel_1_0_0_BasisOfModelling
 {
     /// <summary>
     /// Identifies the Persisted Collection containing relevant data used to derive this model, except for Samples Analysis, which are identified by InputSampleAnalysisIDs.
@@ -338,7 +338,7 @@ public class FluidModel_1_0_0_Data_BasisOfModelling
     /// This provides an array of fluid model definition properties and the methodology used in estimating its property values.
     /// </summary>
     [JsonPropertyName("ModelPropertyFormulationMethods")]
-    public List<FluidModel_1_0_0_Data_BasisOfModelling_ModelPropertyFormulationMethods>? ModelPropertyFormulationMethods { get; set; }
+    public List<FluidModel_1_0_0_ModelPropertyFormulationMethods>? ModelPropertyFormulationMethods { get; set; }
 
     /// <summary>
     /// The software applications used in creating this model. For example, this could be a PVT software application that is used to create the tabular data. Best practice is to also capture the application version.
@@ -398,7 +398,7 @@ public class FluidModel_1_0_0_Data_BasisOfModelling
 /// <summary>
 /// This captures information around the fluid model definition property and the methodology used in estimating its property values.
 /// </summary>
-public class FluidModel_1_0_0_Data_BasisOfModelling_ModelPropertyFormulationMethods
+public class FluidModel_1_0_0_ModelPropertyFormulationMethods
 {
     /// <summary>
     /// Identifies the fluid model property available in the model definition. Typical properties referenced here will include phase equilibrium values, densities, water compressibilities and viscosities.

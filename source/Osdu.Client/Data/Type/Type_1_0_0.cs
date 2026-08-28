@@ -150,7 +150,7 @@ public class Type_1_0_0_Data : AbstractCommonResources_1_0_0
     /// The style of governance (only relevant for IsReferenceValueType==true) - it can be FIXED (content must not be augmented), OPEN (additions and changes allowed) or LOCAL (content is exclusively governed by operator).
     /// </summary>
     [JsonPropertyName("GovernanceModel")]
-    public Type_1_0_0_Data_GovernanceModel? GovernanceModel { get; set; }
+    public Type_1_0_0_GovernanceModel? GovernanceModel { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
@@ -161,7 +161,7 @@ public class Type_1_0_0_Data : AbstractCommonResources_1_0_0
 /// The style of governance (only relevant for IsReferenceValueType==true) - it can be FIXED (content must not be augmented), OPEN (additions and changes allowed) or LOCAL (content is exclusively governed by operator).
 /// </summary>
 [JsonConverter(typeof(JsonStringEnumConverter))]
-public enum Type_1_0_0_Data_GovernanceModel
+public enum Type_1_0_0_GovernanceModel
 {
     [JsonStringEnumMemberName("FIXED")]
     FIXED,

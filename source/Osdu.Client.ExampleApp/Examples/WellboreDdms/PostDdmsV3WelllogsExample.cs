@@ -37,7 +37,7 @@ public class PostDdmsV3WelllogsExample(IOsduClient osduClient) : ExampleBase
             TopMeasuredDepth = 1002.0,
             BottomMeasuredDepth = 2002.0,
             IsRegular = true,
-            Curves = [new WellLog_1_5_0_Data_Curves { CurveID = "MRKCurve1", Mnemonic = "MRKCurve1", CurveDescription = "MRK Curve1", NumberOfColumns = 1 }]
+            Curves = [new WellLog_1_5_0_Curves { CurveID = "MRKCurve1", Mnemonic = "MRKCurve1", CurveDescription = "MRK Curve1", NumberOfColumns = 1 }]
         };
 
         List<Record> records = new List<Record>()

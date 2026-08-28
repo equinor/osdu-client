@@ -190,13 +190,13 @@ public class ExternalReferenceValueMapping_1_0_0_Data : AbstractCommonResources_
     /// The external reference value is mapped to a single OSDU reference value in the target OSDU platform instance.
     /// </summary>
     [JsonPropertyName("SimpleMap")]
-    public ExternalReferenceValueMapping_1_0_0_Data_SimpleMap? SimpleMap { get; set; }
+    public ExternalReferenceValueMapping_1_0_0_SimpleMap? SimpleMap { get; set; }
 
     /// <summary>
     /// One external reference value translates into setting multiple reference values (higher normalization in target OSDU platform instance).
     /// </summary>
     [JsonPropertyName("ComplexMappings")]
-    public List<ExternalReferenceValueMapping_1_0_0_Data_ComplexMappings>? ComplexMappings { get; set; }
+    public List<ExternalReferenceValueMapping_1_0_0_ComplexMappings>? ComplexMappings { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
@@ -206,7 +206,7 @@ public class ExternalReferenceValueMapping_1_0_0_Data : AbstractCommonResources_
 /// <summary>
 /// The external reference value is mapped to a single OSDU reference value in the target OSDU platform instance.
 /// </summary>
-public class ExternalReferenceValueMapping_1_0_0_Data_SimpleMap
+public class ExternalReferenceValueMapping_1_0_0_SimpleMap
 {
     /// <summary>
     /// Optional, needed if the Scope is not Global: TargetKind defines the record kind in which the PropertyValue is assigned to the PropertyName. The kind does not require the specification of the full semantic version number. If specified, it denotes the first and implicitly higher versions, which are required, typically the version the PropertyValue was added.
@@ -234,7 +234,7 @@ public class ExternalReferenceValueMapping_1_0_0_Data_SimpleMap
 /// <summary>
 /// This entity is used to provide a mapping of external reference values to the current platform instance reference values. The scope can be global or specific to an external entity type. It can provide simple mappings or complex mappings, which maps the source value to multiple property values — well status and classification is an example for such complex mappings.
 /// </summary>
-public class ExternalReferenceValueMapping_1_0_0_Data_ComplexMappings
+public class ExternalReferenceValueMapping_1_0_0_ComplexMappings
 {
     /// <summary>
     /// Optional, needed if the Scope is not Global: TargetKind defines the record kind in which the PropertyValue is assigned to the PropertyName. The kind does not require the specification of the full semantic version number. If specified, it denotes the first and implicitly higher versions, which are required, typically the version the PropertyValue was added.

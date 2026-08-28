@@ -113,7 +113,7 @@ public class SamplesAnalysis_2_0_0_Data : AbstractCommonResources_1_0_1 // Also 
     /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
     /// </summary>
     [JsonPropertyName("Artefacts")]
-    public List<SamplesAnalysis_2_0_0_Data_Artefacts>? Artefacts { get; set; }
+    public List<SamplesAnalysis_2_0_0_Artefacts>? Artefacts { get; set; }
 
     /// <summary>
     /// A flag that indicates if the work product component is undergoing an extended load.  It reflects the fact that the work product component is in an early stage and may be updated before finalization.
@@ -200,7 +200,7 @@ public class SamplesAnalysis_2_0_0_Data : AbstractCommonResources_1_0_1 // Also 
     /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
     /// </summary>
     [JsonPropertyName("LineageAssertions")]
-    public List<SamplesAnalysis_2_0_0_Data_LineageAssertions>? LineageAssertions { get; set; }
+    public List<SamplesAnalysis_2_0_0_LineageAssertions>? LineageAssertions { get; set; }
 
     /// <summary>
     /// The relation to the ActivityTemplate carrying expected parameter definitions and default values.
@@ -239,7 +239,7 @@ public class SamplesAnalysis_2_0_0_Data : AbstractCommonResources_1_0_1 // Also 
     /// Software names and versions used.
     /// </summary>
     [JsonPropertyName("SoftwareSpecifications")]
-    public List<SamplesAnalysis_2_0_0_Data_SoftwareSpecifications>? SoftwareSpecifications { get; set; }
+    public List<SamplesAnalysis_2_0_0_SoftwareSpecifications>? SoftwareSpecifications { get; set; }
 
     /// <summary>
     /// The (non-overlapping) historical activity states and effective start and termination dates. The last state is replicated in the single LastActivityState for simpler queries.
@@ -302,7 +302,7 @@ public class SamplesAnalysis_2_0_0_Data : AbstractCommonResources_1_0_1 // Also 
     /// Identifies the report from which this analysis was extracted or multiple reports from which this analysis was reconstructed.
     /// </summary>
     [JsonPropertyName("ParentSamplesAnalysesReports")]
-    public List<SamplesAnalysis_2_0_0_Data_ParentSamplesAnalysesReports>? ParentSamplesAnalysesReports { get; set; }
+    public List<SamplesAnalysis_2_0_0_ParentSamplesAnalysesReports>? ParentSamplesAnalysesReports { get; set; }
 
     /// <summary>
     /// List of higher level grouping terms that are often used within organisations to search for analysis types in addition to the formal Family and Method properties, but which are variable across organisations and therefore do not need to be governed strictly by the OSDU Forum. For example: SCAL, Static SCAL, Dynamic SCAL, Source Rock Analysis. We suggest you use a namespace, like the operators name, like “Shell.SCAL”. BP.SCAL, Equinor.SCAL, Chevron.SCAL, Exxon.SCAL.....
@@ -325,7 +325,7 @@ public class SamplesAnalysis_2_0_0_Data : AbstractCommonResources_1_0_1 // Also 
 /// <summary>
 /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
 /// </summary>
-public class SamplesAnalysis_2_0_0_Data_Artefacts
+public class SamplesAnalysis_2_0_0_Artefacts
 {
     /// <summary>
     /// The record id of this artefact's role.
@@ -353,7 +353,7 @@ public class SamplesAnalysis_2_0_0_Data_Artefacts
 /// <summary>
 /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
 /// </summary>
-public class SamplesAnalysis_2_0_0_Data_LineageAssertions
+public class SamplesAnalysis_2_0_0_LineageAssertions
 {
     /// <summary>
     /// The object reference identifying the DIRECT, INDIRECT, REFERENCE dependency.
@@ -374,7 +374,7 @@ public class SamplesAnalysis_2_0_0_Data_LineageAssertions
 /// <summary>
 /// The name and version of the software being executed in the context of this activity
 /// </summary>
-public class SamplesAnalysis_2_0_0_Data_SoftwareSpecifications
+public class SamplesAnalysis_2_0_0_SoftwareSpecifications
 {
     /// <summary>
     /// The name of the software, application or plug-in used while performing this activity.
@@ -393,7 +393,7 @@ public class SamplesAnalysis_2_0_0_Data_SoftwareSpecifications
 /// <summary>
 /// A pair of properties building a reference to a report combined with a page reference inside the document.
 /// </summary>
-public class SamplesAnalysis_2_0_0_Data_ParentSamplesAnalysesReports
+public class SamplesAnalysis_2_0_0_ParentSamplesAnalysesReports
 {
     /// <summary>
     /// An OSDU Record representing the report from which this analysis was extracted or an OSDU Record from which this analysis was reconstructed.

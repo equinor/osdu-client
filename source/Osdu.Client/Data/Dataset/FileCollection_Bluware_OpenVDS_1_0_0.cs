@@ -134,7 +134,7 @@ public class FileCollection_Bluware_OpenVDS_1_0_0_Data : AbstractCommonResources
     /// Endianness of binary value.  Enumeration: "BIG", "LITTLE".  If absent, applications will need to interpret from context indicators.
     /// </summary>
     [JsonPropertyName("Endian")]
-    public FileCollection_Bluware_OpenVDS_1_0_0_Data_Endian? Endian { get; set; }
+    public FileCollection_Bluware_OpenVDS_1_0_0_Endian? Endian { get; set; }
 
     /// <summary>
     /// Placeholder for a specialization.
@@ -158,7 +158,7 @@ public class FileCollection_Bluware_OpenVDS_1_0_0_Data : AbstractCommonResources
 /// Endianness of binary value.  Enumeration: "BIG", "LITTLE".  If absent, applications will need to interpret from context indicators.
 /// </summary>
 [JsonConverter(typeof(JsonStringEnumConverter))]
-public enum FileCollection_Bluware_OpenVDS_1_0_0_Data_Endian
+public enum FileCollection_Bluware_OpenVDS_1_0_0_Endian
 {
     [JsonStringEnumMemberName("BIG")]
     BIG,

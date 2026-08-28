@@ -107,7 +107,7 @@ public class RockSampleAnalysis_1_0_0_Data : AbstractCommonResources_1_0_0 // Al
     /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
     /// </summary>
     [JsonPropertyName("Artefacts")]
-    public List<RockSampleAnalysis_1_0_0_Data_Artefacts>? Artefacts { get; set; }
+    public List<RockSampleAnalysis_1_0_0_Artefacts>? Artefacts { get; set; }
 
     /// <summary>
     /// A flag that indicates if the work product component is undergoing an extended load.  It reflects the fact that the work product component is in an early stage and may be updated before finalization.
@@ -188,7 +188,7 @@ public class RockSampleAnalysis_1_0_0_Data : AbstractCommonResources_1_0_0 // Al
     /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
     /// </summary>
     [JsonPropertyName("LineageAssertions")]
-    public List<RockSampleAnalysis_1_0_0_Data_LineageAssertions>? LineageAssertions { get; set; }
+    public List<RockSampleAnalysis_1_0_0_LineageAssertions>? LineageAssertions { get; set; }
 
     /// <summary>
     /// The relation to the ActivityTemplate carrying expected parameter definitions and default values.
@@ -227,7 +227,7 @@ public class RockSampleAnalysis_1_0_0_Data : AbstractCommonResources_1_0_0 // Al
     /// Software names and versions used.
     /// </summary>
     [JsonPropertyName("SoftwareSpecifications")]
-    public List<RockSampleAnalysis_1_0_0_Data_SoftwareSpecifications>? SoftwareSpecifications { get; set; }
+    public List<RockSampleAnalysis_1_0_0_SoftwareSpecifications>? SoftwareSpecifications { get; set; }
 
     /// <summary>
     /// Unique wellbore identifier. Required when RockSampleAnalysis does not have relationship with master-data Core.  E.g. analysis for sidewall core.
@@ -282,7 +282,7 @@ public class RockSampleAnalysis_1_0_0_Data : AbstractCommonResources_1_0_0 // Al
     /// Conditions and results of a routine core analysis.
     /// </summary>
     [JsonPropertyName("RoutineCoreAnalysis")]
-    public RockSampleAnalysis_1_0_0_Data_RoutineCoreAnalysis? RoutineCoreAnalysis { get; set; }
+    public RockSampleAnalysis_1_0_0_RoutineCoreAnalysis? RoutineCoreAnalysis { get; set; }
 
     /// <summary>
     /// Name or branch of the laboratory performing the analysis.
@@ -308,7 +308,7 @@ public class RockSampleAnalysis_1_0_0_Data : AbstractCommonResources_1_0_0 // Al
     /// An array containing operational or quality comments pertaining to a rock sample analysis.
     /// </summary>
     [JsonPropertyName("Remarks")]
-    public List<RockSampleAnalysis_1_0_0_Data_Remarks>? Remarks { get; set; }
+    public List<RockSampleAnalysis_1_0_0_Remarks>? Remarks { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
@@ -318,7 +318,7 @@ public class RockSampleAnalysis_1_0_0_Data : AbstractCommonResources_1_0_0 // Al
 /// <summary>
 /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
 /// </summary>
-public class RockSampleAnalysis_1_0_0_Data_Artefacts
+public class RockSampleAnalysis_1_0_0_Artefacts
 {
     /// <summary>
     /// The SRN of this artefact's role.
@@ -346,7 +346,7 @@ public class RockSampleAnalysis_1_0_0_Data_Artefacts
 /// <summary>
 /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
 /// </summary>
-public class RockSampleAnalysis_1_0_0_Data_LineageAssertions
+public class RockSampleAnalysis_1_0_0_LineageAssertions
 {
     /// <summary>
     /// The object reference identifying the DIRECT, INDIRECT, REFERENCE dependency.
@@ -367,7 +367,7 @@ public class RockSampleAnalysis_1_0_0_Data_LineageAssertions
 /// <summary>
 /// The name and version of the software being executed in the context of this activity
 /// </summary>
-public class RockSampleAnalysis_1_0_0_Data_SoftwareSpecifications
+public class RockSampleAnalysis_1_0_0_SoftwareSpecifications
 {
     /// <summary>
     /// The name of the software, application or plug-in used while performing this activity.
@@ -386,13 +386,13 @@ public class RockSampleAnalysis_1_0_0_Data_SoftwareSpecifications
 /// <summary>
 /// Conditions and results of a routine core analysis.
 /// </summary>
-public class RockSampleAnalysis_1_0_0_Data_RoutineCoreAnalysis
+public class RockSampleAnalysis_1_0_0_RoutineCoreAnalysis
 {
     /// <summary>
     /// The conditions under which this analysis has been carried out
     /// </summary>
     [JsonPropertyName("RCAMeasurements")]
-    public List<RockSampleAnalysis_1_0_0_Data_RoutineCoreAnalysis_RCAMeasurements>? RCAMeasurements { get; set; }
+    public List<RockSampleAnalysis_1_0_0_RCAMeasurements>? RCAMeasurements { get; set; }
 
     /// <summary>
     /// Th measured grain density
@@ -443,13 +443,13 @@ public class RockSampleAnalysis_1_0_0_Data_RoutineCoreAnalysis
 /// <summary>
 /// A Routine Core Analysis Measurement.
 /// </summary>
-public class RockSampleAnalysis_1_0_0_Data_RoutineCoreAnalysis_RCAMeasurements
+public class RockSampleAnalysis_1_0_0_RCAMeasurements
 {
     /// <summary>
     /// The conditions under which this analysis has been carried out
     /// </summary>
     [JsonPropertyName("Conditions")]
-    public RockSampleAnalysis_1_0_0_Data_RoutineCoreAnalysis_RCAMeasurements_Conditions? Conditions { get; set; }
+    public RockSampleAnalysis_1_0_0_Conditions? Conditions { get; set; }
 
     /// <summary>
     /// The measured sample permeability.
@@ -467,13 +467,13 @@ public class RockSampleAnalysis_1_0_0_Data_RoutineCoreAnalysis_RCAMeasurements
     /// Other measurements made in the context of this analysis
     /// </summary>
     [JsonPropertyName("OtherMeasurements")]
-    public List<RockSampleAnalysis_1_0_0_Data_RoutineCoreAnalysis_RCAMeasurements_OtherMeasurements>? OtherMeasurements { get; set; }
+    public List<RockSampleAnalysis_1_0_0_OtherMeasurements>? OtherMeasurements { get; set; }
 
     /// <summary>
     /// An array containing operational or quality comments pertaining to a rock sample analysis.
     /// </summary>
     [JsonPropertyName("Remarks")]
-    public List<RockSampleAnalysis_1_0_0_Data_RoutineCoreAnalysis_RCAMeasurements_Remarks>? Remarks { get; set; }
+    public List<RockSampleAnalysis_1_0_0_RCAMeasurementsRemarks>? Remarks { get; set; }
 
     /// <summary>
     /// The measurement type used to obtain the Permeability values.
@@ -494,7 +494,7 @@ public class RockSampleAnalysis_1_0_0_Data_RoutineCoreAnalysis_RCAMeasurements
 /// <summary>
 /// The conditions under which this analysis has been carried out
 /// </summary>
-public class RockSampleAnalysis_1_0_0_Data_RoutineCoreAnalysis_RCAMeasurements_Conditions
+public class RockSampleAnalysis_1_0_0_Conditions
 {
     /// <summary>
     /// The pressure condition for the analysis.
@@ -532,7 +532,7 @@ public class RockSampleAnalysis_1_0_0_Data_RoutineCoreAnalysis_RCAMeasurements_C
 /// <summary>
 /// An array element of an analysis specifying the numeric, text or date-time value associated with a ParameterType.
 /// </summary>
-public class RockSampleAnalysis_1_0_0_Data_RoutineCoreAnalysis_RCAMeasurements_OtherMeasurements
+public class RockSampleAnalysis_1_0_0_OtherMeasurements
 {
     /// <summary>
     /// The date and time at which this specification becomes effective.
@@ -605,7 +605,7 @@ public class RockSampleAnalysis_1_0_0_Data_RoutineCoreAnalysis_RCAMeasurements_O
 /// <summary>
 /// An array containing narrative remarks pertaining to a rock sample analysis.
 /// </summary>
-public class RockSampleAnalysis_1_0_0_Data_RoutineCoreAnalysis_RCAMeasurements_Remarks
+public class RockSampleAnalysis_1_0_0_RCAMeasurementsRemarks
 {
     /// <summary>
     /// A unique identifier for each remark record.
@@ -630,7 +630,7 @@ public class RockSampleAnalysis_1_0_0_Data_RoutineCoreAnalysis_RCAMeasurements_R
 /// <summary>
 /// An array containing narrative remarks pertaining to a rock sample analysis.
 /// </summary>
-public class RockSampleAnalysis_1_0_0_Data_Remarks
+public class RockSampleAnalysis_1_0_0_Remarks
 {
     /// <summary>
     /// A unique identifier for each remark record.

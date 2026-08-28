@@ -113,7 +113,7 @@ public class ReservoirSimulationRockPhysicsModel_1_0_0_Data : AbstractCommonReso
     /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
     /// </summary>
     [JsonPropertyName("Artefacts")]
-    public List<ReservoirSimulationRockPhysicsModel_1_0_0_Data_Artefacts>? Artefacts { get; set; }
+    public List<ReservoirSimulationRockPhysicsModel_1_0_0_Artefacts>? Artefacts { get; set; }
 
     /// <summary>
     /// A flag that indicates if the work product component is undergoing an extended load.  It reflects the fact that the work product component is in an early stage and may be updated before finalization.
@@ -200,7 +200,7 @@ public class ReservoirSimulationRockPhysicsModel_1_0_0_Data : AbstractCommonReso
     /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
     /// </summary>
     [JsonPropertyName("LineageAssertions")]
-    public List<ReservoirSimulationRockPhysicsModel_1_0_0_Data_LineageAssertions>? LineageAssertions { get; set; }
+    public List<ReservoirSimulationRockPhysicsModel_1_0_0_LineageAssertions>? LineageAssertions { get; set; }
 
     /// <summary>
     /// Identifier of the type of compressibility model used for this rock physics model.
@@ -220,7 +220,7 @@ public class ReservoirSimulationRockPhysicsModel_1_0_0_Data : AbstractCommonReso
     /// This set of attributes represents the context surrounding the processes used in running through model characterization.
     /// </summary>
     [JsonPropertyName("BasisOfModelling")]
-    public ReservoirSimulationRockPhysicsModel_1_0_0_Data_BasisOfModelling? BasisOfModelling { get; set; }
+    public ReservoirSimulationRockPhysicsModel_1_0_0_BasisOfModelling? BasisOfModelling { get; set; }
 
     /// <summary>
     /// This is used, as a form of lineage, to explicitly indicate the model OSDU record from which this model was derived. Only to be used in the case that this model is derived from another.
@@ -250,7 +250,7 @@ public class ReservoirSimulationRockPhysicsModel_1_0_0_Data : AbstractCommonReso
 /// <summary>
 /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
 /// </summary>
-public class ReservoirSimulationRockPhysicsModel_1_0_0_Data_Artefacts
+public class ReservoirSimulationRockPhysicsModel_1_0_0_Artefacts
 {
     /// <summary>
     /// The record id of this artefact's role.
@@ -278,7 +278,7 @@ public class ReservoirSimulationRockPhysicsModel_1_0_0_Data_Artefacts
 /// <summary>
 /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
 /// </summary>
-public class ReservoirSimulationRockPhysicsModel_1_0_0_Data_LineageAssertions
+public class ReservoirSimulationRockPhysicsModel_1_0_0_LineageAssertions
 {
     /// <summary>
     /// The object reference identifying the DIRECT, INDIRECT, REFERENCE dependency.
@@ -299,7 +299,7 @@ public class ReservoirSimulationRockPhysicsModel_1_0_0_Data_LineageAssertions
 /// <summary>
 /// This set of attributes represents the context surrounding the processes used in running through model characterization.
 /// </summary>
-public class ReservoirSimulationRockPhysicsModel_1_0_0_Data_BasisOfModelling
+public class ReservoirSimulationRockPhysicsModel_1_0_0_BasisOfModelling
 {
     /// <summary>
     /// Identifiers of the Samples Analysis records from which this model has been derived.

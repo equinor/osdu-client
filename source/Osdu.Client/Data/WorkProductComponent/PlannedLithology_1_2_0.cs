@@ -113,7 +113,7 @@ public class PlannedLithology_1_2_0_Data : AbstractCommonResources_1_0_0 // Also
     /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
     /// </summary>
     [JsonPropertyName("Artefacts")]
-    public List<PlannedLithology_1_2_0_Data_Artefacts>? Artefacts { get; set; }
+    public List<PlannedLithology_1_2_0_Artefacts>? Artefacts { get; set; }
 
     /// <summary>
     /// A flag that indicates if the work product component is undergoing an extended load.  It reflects the fact that the work product component is in an early stage and may be updated before finalization.
@@ -200,7 +200,7 @@ public class PlannedLithology_1_2_0_Data : AbstractCommonResources_1_0_0 // Also
     /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
     /// </summary>
     [JsonPropertyName("LineageAssertions")]
-    public List<PlannedLithology_1_2_0_Data_LineageAssertions>? LineageAssertions { get; set; }
+    public List<PlannedLithology_1_2_0_LineageAssertions>? LineageAssertions { get; set; }
 
     /// <summary>
     /// Human recognizable context for the well that contains the wellbore.
@@ -244,7 +244,7 @@ public class PlannedLithology_1_2_0_Data : AbstractCommonResources_1_0_0 // Also
     /// Set of geology and drilling information records for the wellbore. This is an API "data-node" query parameter for growing objects. See the relevant API specification for the query behavior related to this element.
     /// </summary>
     [JsonPropertyName("GeologyIntervals")]
-    public List<PlannedLithology_1_2_0_Data_GeologyIntervals>? GeologyIntervals { get; set; }
+    public List<PlannedLithology_1_2_0_GeologyIntervals>? GeologyIntervals { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
@@ -254,7 +254,7 @@ public class PlannedLithology_1_2_0_Data : AbstractCommonResources_1_0_0 // Also
 /// <summary>
 /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
 /// </summary>
-public class PlannedLithology_1_2_0_Data_Artefacts
+public class PlannedLithology_1_2_0_Artefacts
 {
     /// <summary>
     /// The record id of this artefact's role.
@@ -282,7 +282,7 @@ public class PlannedLithology_1_2_0_Data_Artefacts
 /// <summary>
 /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
 /// </summary>
-public class PlannedLithology_1_2_0_Data_LineageAssertions
+public class PlannedLithology_1_2_0_LineageAssertions
 {
     /// <summary>
     /// The object reference identifying the DIRECT, INDIRECT, REFERENCE dependency.
@@ -303,7 +303,7 @@ public class PlannedLithology_1_2_0_Data_LineageAssertions
 /// <summary>
 /// Geology Interval Component Schema
 /// </summary>
-public class PlannedLithology_1_2_0_Data_GeologyIntervals
+public class PlannedLithology_1_2_0_GeologyIntervals
 {
     /// <summary>
     /// Measured depth at top of interval.

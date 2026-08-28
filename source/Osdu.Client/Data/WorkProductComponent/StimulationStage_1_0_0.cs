@@ -113,7 +113,7 @@ public class StimulationStage_1_0_0_Data : AbstractCommonResources_1_0_0 // Also
     /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
     /// </summary>
     [JsonPropertyName("Artefacts")]
-    public List<StimulationStage_1_0_0_Data_Artefacts>? Artefacts { get; set; }
+    public List<StimulationStage_1_0_0_Artefacts>? Artefacts { get; set; }
 
     /// <summary>
     /// A flag that indicates if the work product component is undergoing an extended load.  It reflects the fact that the work product component is in an early stage and may be updated before finalization.
@@ -200,7 +200,7 @@ public class StimulationStage_1_0_0_Data : AbstractCommonResources_1_0_0 // Also
     /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
     /// </summary>
     [JsonPropertyName("LineageAssertions")]
-    public List<StimulationStage_1_0_0_Data_LineageAssertions>? LineageAssertions { get; set; }
+    public List<StimulationStage_1_0_0_LineageAssertions>? LineageAssertions { get; set; }
 
     /// <summary>
     /// A link to the Wellbore in which the stimulation took place.
@@ -284,25 +284,25 @@ public class StimulationStage_1_0_0_Data : AbstractCommonResources_1_0_0 // Also
     /// Timed comments for this job stage of the stim job.
     /// </summary>
     [JsonPropertyName("JobEvent")]
-    public List<StimulationStage_1_0_0_Data_JobEvent>? JobEvent { get; set; }
+    public List<StimulationStage_1_0_0_JobEvent>? JobEvent { get; set; }
 
     /// <summary>
     /// Job Step array
     /// </summary>
     [JsonPropertyName("JobStep")]
-    public List<StimulationStage_1_0_0_Data_JobStep>? JobStep { get; set; }
+    public List<StimulationStage_1_0_0_JobStep>? JobStep { get; set; }
 
     /// <summary>
     /// Diversion details for the stimulated interval.
     /// </summary>
     [JsonPropertyName("Diversion")]
-    public StimulationStage_1_0_0_Data_Diversion? Diversion { get; set; }
+    public StimulationStage_1_0_0_Diversion? Diversion { get; set; }
 
     /// <summary>
     /// Details about the downhole equipment design for this stimulation interval.
     /// </summary>
     [JsonPropertyName("FlowPath")]
-    public StimulationStage_1_0_0_Data_FlowPath? FlowPath { get; set; }
+    public StimulationStage_1_0_0_FlowPath? FlowPath { get; set; }
 
     /// <summary>
     /// Average fluid pumping rate for all job Steps while treating the Stage.
@@ -595,7 +595,7 @@ public class StimulationStage_1_0_0_Data : AbstractCommonResources_1_0_0 // Also
     /// A pumping diagnostics session for this job stage.
     /// </summary>
     [JsonPropertyName("PumpDiagnosticSession")]
-    public List<StimulationStage_1_0_0_Data_PumpDiagnosticSession>? PumpDiagnosticSession { get; set; }
+    public List<StimulationStage_1_0_0_PumpDiagnosticSession>? PumpDiagnosticSession { get; set; }
 
     /// <summary>
     /// Total number of perforation balls used while treating the stage.
@@ -691,7 +691,7 @@ public class StimulationStage_1_0_0_Data : AbstractCommonResources_1_0_0 // Also
     /// Shut in pressure data for this job stage.
     /// </summary>
     [JsonPropertyName("ShutInPressure")]
-    public List<StimulationStage_1_0_0_Data_ShutInPressure>? ShutInPressure { get; set; }
+    public List<StimulationStage_1_0_0_ShutInPressure>? ShutInPressure { get; set; }
 
     /// <summary>
     /// The initial shut-in pressure.
@@ -803,7 +803,7 @@ public class StimulationStage_1_0_0_Data : AbstractCommonResources_1_0_0 // Also
 /// <summary>
 /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
 /// </summary>
-public class StimulationStage_1_0_0_Data_Artefacts
+public class StimulationStage_1_0_0_Artefacts
 {
     /// <summary>
     /// The record id of this artefact's role.
@@ -831,7 +831,7 @@ public class StimulationStage_1_0_0_Data_Artefacts
 /// <summary>
 /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
 /// </summary>
-public class StimulationStage_1_0_0_Data_LineageAssertions
+public class StimulationStage_1_0_0_LineageAssertions
 {
     /// <summary>
     /// The object reference identifying the DIRECT, INDIRECT, REFERENCE dependency.
@@ -852,7 +852,7 @@ public class StimulationStage_1_0_0_Data_LineageAssertions
 /// <summary>
 /// Timed comments for this job stage of the stim job.
 /// </summary>
-public class StimulationStage_1_0_0_Data_JobEvent
+public class StimulationStage_1_0_0_JobEvent
 {
     /// <summary>
     /// Event number.
@@ -885,7 +885,7 @@ public class StimulationStage_1_0_0_Data_JobEvent
 /// Summary of the pumping schedule, also known as 'pumping stages', sub-stages or event level details.
 /// This is where you define pressures, rates, volumes, amount of proppant for the Displacement, Flush, Pad, Ramp, etc steps in the pumping operation for this job stage.
 /// </summary>
-public class StimulationStage_1_0_0_Data_JobStep
+public class StimulationStage_1_0_0_JobStep
 {
     /// <summary>
     /// Step number.
@@ -930,7 +930,7 @@ public class StimulationStage_1_0_0_Data_JobStep
     /// Fluid used for this job step of the stimulated interval.
     /// </summary>
     [JsonPropertyName("Fluid")]
-    public StimulationStage_1_0_0_Data_JobStep_Fluid? Fluid { get; set; }
+    public StimulationStage_1_0_0_Fluid? Fluid { get; set; }
 
     /// <summary>
     /// Fluid Report Identifier of the fluid used for this Job Step
@@ -1292,7 +1292,7 @@ public class StimulationStage_1_0_0_Data_JobStep
 /// <summary>
 /// Fluid used for this job step of the stimulated interval.
 /// </summary>
-public class StimulationStage_1_0_0_Data_JobStep_Fluid
+public class StimulationStage_1_0_0_Fluid
 {
     /// <summary>
     /// The name of the fluid.
@@ -1428,7 +1428,7 @@ public class StimulationStage_1_0_0_Data_JobStep_Fluid
 /// <summary>
 /// Diversion details for the stimulated interval.
 /// </summary>
-public class StimulationStage_1_0_0_Data_Diversion
+public class StimulationStage_1_0_0_Diversion
 {
     /// <summary>
     /// Name of the diversion contractor.
@@ -1466,7 +1466,7 @@ public class StimulationStage_1_0_0_Data_Diversion
 /// <summary>
 /// Details about the downhole equipment design for this stimulation interval.
 /// </summary>
-public class StimulationStage_1_0_0_Data_FlowPath
+public class StimulationStage_1_0_0_FlowPath
 {
     /// <summary>
     /// The downhole pressure at which the formation broke.
@@ -1559,7 +1559,7 @@ public class StimulationStage_1_0_0_Data_FlowPath
 /// <summary>
 /// A pumping diagnostics session for this job stage.
 /// </summary>
-public class StimulationStage_1_0_0_Data_PumpDiagnosticSession
+public class StimulationStage_1_0_0_PumpDiagnosticSession
 {
     /// <summary>
     /// The number of the stage associated with this diagnostics session.
@@ -1589,13 +1589,13 @@ public class StimulationStage_1_0_0_Data_PumpDiagnosticSession
     /// An injection test involving multiple steps of injection rate and pressure, where a curve deflection and change of slope indicates the fracture breakdown pressure. An injection test involving multiple steps of injection rate and pressure, where a curve deflection and change of slope indicates the fracture breakdown pressure.
     /// </summary>
     [JsonPropertyName("StepDownTest")]
-    public List<StimulationStage_1_0_0_Data_PumpDiagnosticSession_StepDownTest>? StepDownTest { get; set; }
+    public List<StimulationStage_1_0_0_StepDownTest>? StepDownTest { get; set; }
 
     /// <summary>
     /// An injection test, plotted pressure against injection rate, where a curve deflection and change of slope indicates the fracture breakdown pressure.
     /// </summary>
     [JsonPropertyName("StepRateTest")]
-    public List<StimulationStage_1_0_0_Data_PumpDiagnosticSession_StepRateTest>? StepRateTest { get; set; }
+    public List<StimulationStage_1_0_0_StepRateTest>? StepRateTest { get; set; }
 
     /// <summary>
     /// Base fluid volume entering the pumping equipment.
@@ -1655,7 +1655,7 @@ public class StimulationStage_1_0_0_Data_PumpDiagnosticSession
     /// A diagnostic test determining fluid efficiency.
     /// </summary>
     [JsonPropertyName("FluidEfficiencyTest")]
-    public List<StimulationStage_1_0_0_Data_PumpDiagnosticSession_FluidEfficiencyTest>? FluidEfficiencyTest { get; set; }
+    public List<StimulationStage_1_0_0_FluidEfficiencyTest>? FluidEfficiencyTest { get; set; }
 
     /// <summary>
     /// The consistency index K is the shear stress or viscosity of the fluid at one sec-1 shear rate. An increasing K raises the effective viscosity.
@@ -1753,7 +1753,7 @@ public class StimulationStage_1_0_0_Data_PumpDiagnosticSession
     /// A diagnostic test involving flowing a well back after treatment.
     /// </summary>
     [JsonPropertyName("PumpFlowBackTest")]
-    public List<StimulationStage_1_0_0_Data_PumpDiagnosticSession_PumpFlowBackTest>? PumpFlowBackTest { get; set; }
+    public List<StimulationStage_1_0_0_PumpFlowBackTest>? PumpFlowBackTest { get; set; }
 
     /// <summary>
     /// The date and time pumping ended.
@@ -1835,13 +1835,13 @@ public class StimulationStage_1_0_0_Data_PumpDiagnosticSession
 /// <summary>
 /// An injection test involving multiple steps of injection rate and pressure, where a curve deflection and change of slope indicates the fracture breakdown pressure.
 /// </summary>
-public class StimulationStage_1_0_0_Data_PumpDiagnosticSession_StepDownTest
+public class StimulationStage_1_0_0_StepDownTest
 {
     /// <summary>
     /// The data related to a particular step in the step-down test.
     /// </summary>
     [JsonPropertyName("FlowBackTestStep")]
-    public List<StimulationStage_1_0_0_Data_PumpDiagnosticSession_StepDownTest_FlowBackTestStep>? FlowBackTestStep { get; set; }
+    public List<StimulationStage_1_0_0_FlowBackTestStep>? FlowBackTestStep { get; set; }
 
     /// <summary>
     /// The density of the fluid at the bottom of the hole adjusting for bottomhole temperature and pressure during the step-down test.
@@ -1890,7 +1890,7 @@ public class StimulationStage_1_0_0_Data_PumpDiagnosticSession_StepDownTest
 /// <summary>
 /// Details about this flowback test step.
 /// </summary>
-public class StimulationStage_1_0_0_Data_PumpDiagnosticSession_StepDownTest_FlowBackTestStep
+public class StimulationStage_1_0_0_FlowBackTestStep
 {
     /// <summary>
     /// The number of the step. Identifies the step within the step down test.
@@ -1964,7 +1964,7 @@ public class StimulationStage_1_0_0_Data_PumpDiagnosticSession_StepDownTest_Flow
 /// <summary>
 /// An injection test, plotted pressure against injection rate, where a curve deflection and change of slope indicates the fracture breakdown pressure.
 /// </summary>
-public class StimulationStage_1_0_0_Data_PumpDiagnosticSession_StepRateTest
+public class StimulationStage_1_0_0_StepRateTest
 {
     /// <summary>
     /// The pressure necessary to extend the fracture once initiated. The fracture extension pressure may rise slightly with increasing fracture length andor height because of friction pressure drop down the length of the fracture.
@@ -1976,14 +1976,14 @@ public class StimulationStage_1_0_0_Data_PumpDiagnosticSession_StepRateTest
     /// A pressure and fluid flow rate data set.
     /// </summary>
     [JsonPropertyName("PressureMeasurement")]
-    public List<StimulationStage_1_0_0_Data_PumpDiagnosticSession_StepRateTest_PressureMeasurement>? PressureMeasurement { get; set; }
+    public List<StimulationStage_1_0_0_PressureMeasurement>? PressureMeasurement { get; set; }
 
 }
 
 /// <summary>
 /// An array of bottom hole flow rates and pressures for this stim step test.
 /// </summary>
-public class StimulationStage_1_0_0_Data_PumpDiagnosticSession_StepRateTest_PressureMeasurement
+public class StimulationStage_1_0_0_PressureMeasurement
 {
     /// <summary>
     /// The bottomhole flow rate of the fluid.
@@ -2002,7 +2002,7 @@ public class StimulationStage_1_0_0_Data_PumpDiagnosticSession_StepRateTest_Pres
 /// <summary>
 /// Fluid Efficiency Test for this pumping diagnostic session.
 /// </summary>
-public class StimulationStage_1_0_0_Data_PumpDiagnosticSession_FluidEfficiencyTest
+public class StimulationStage_1_0_0_FluidEfficiencyTest
 {
     /// <summary>
     /// Start time for the FET.
@@ -2108,7 +2108,7 @@ public class StimulationStage_1_0_0_Data_PumpDiagnosticSession_FluidEfficiencyTe
 /// <summary>
 /// Pump flow back test for this stim job diagnostic session.
 /// </summary>
-public class StimulationStage_1_0_0_Data_PumpDiagnosticSession_PumpFlowBackTest
+public class StimulationStage_1_0_0_PumpFlowBackTest
 {
     /// <summary>
     /// Start time for the test.
@@ -2128,7 +2128,7 @@ public class StimulationStage_1_0_0_Data_PumpDiagnosticSession_PumpFlowBackTest
     /// Step
     /// </summary>
     [JsonPropertyName("Step")]
-    public List<StimulationStage_1_0_0_Data_PumpDiagnosticSession_PumpFlowBackTest_Step>? Step { get; set; }
+    public List<StimulationStage_1_0_0_Step>? Step { get; set; }
 
     /// <summary>
     /// Casing pressure.
@@ -2171,7 +2171,7 @@ public class StimulationStage_1_0_0_Data_PumpDiagnosticSession_PumpFlowBackTest
 /// <summary>
 /// Details about this flowback test step.
 /// </summary>
-public class StimulationStage_1_0_0_Data_PumpDiagnosticSession_PumpFlowBackTest_Step
+public class StimulationStage_1_0_0_Step
 {
     /// <summary>
     /// The number of the step. Identifies the step within the step down test.
@@ -2245,7 +2245,7 @@ public class StimulationStage_1_0_0_Data_PumpDiagnosticSession_PumpFlowBackTest_
 /// <summary>
 /// Shut in pressure data for this job stage.
 /// </summary>
-public class StimulationStage_1_0_0_Data_ShutInPressure
+public class StimulationStage_1_0_0_ShutInPressure
 {
     /// <summary>
     /// The shut-in pressure.

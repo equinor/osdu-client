@@ -15,15 +15,15 @@ using Osdu.Client.Converters;
 namespace Osdu.Client.Data.Abstract;
 
 [JsonPolymorphic(TypeDiscriminatorPropertyName = "type", UnknownDerivedTypeHandling = JsonUnknownDerivedTypeHandling.FallBackToBaseType)]
-[JsonDerivedType(typeof(AbstractMetaItem_1_0_0FrameOfReferenceUOM), "FrameOfReferenceUOM")]
-[JsonDerivedType(typeof(AbstractMetaItem_1_0_0FrameOfReferenceCRS), "FrameOfReferenceCRS")]
-[JsonDerivedType(typeof(AbstractMetaItem_1_0_0FrameOfReferenceDateTime), "FrameOfReferenceDateTime")]
-[JsonDerivedType(typeof(AbstractMetaItem_1_0_0FrameOfReferenceAzimuthReference), "FrameOfReferenceAzimuthReference")]
+[JsonDerivedType(typeof(AbstractMetaItem_1_0_0_FrameOfReferenceUOM), "FrameOfReferenceUOM")]
+[JsonDerivedType(typeof(AbstractMetaItem_1_0_0_FrameOfReferenceCRS), "FrameOfReferenceCRS")]
+[JsonDerivedType(typeof(AbstractMetaItem_1_0_0_FrameOfReferenceDateTime), "FrameOfReferenceDateTime")]
+[JsonDerivedType(typeof(AbstractMetaItem_1_0_0_FrameOfReferenceAzimuthReference), "FrameOfReferenceAzimuthReference")]
 public class AbstractMetaItem_1_0_0
 {
 }
 
-public class AbstractMetaItem_1_0_0FrameOfReferenceUOM : AbstractMetaItem_1_0_0
+public class AbstractMetaItem_1_0_0_FrameOfReferenceUOM : AbstractMetaItem_1_0_0
 {
     /// <summary>
     /// The kind of reference, 'Unit' for FrameOfReferenceUOM.
@@ -60,7 +60,7 @@ public class AbstractMetaItem_1_0_0FrameOfReferenceUOM : AbstractMetaItem_1_0_0
 
 }
 
-public class AbstractMetaItem_1_0_0FrameOfReferenceCRS : AbstractMetaItem_1_0_0
+public class AbstractMetaItem_1_0_0_FrameOfReferenceCRS : AbstractMetaItem_1_0_0
 {
     /// <summary>
     /// The kind of reference, constant 'CRS' for FrameOfReferenceCRS.
@@ -97,7 +97,7 @@ public class AbstractMetaItem_1_0_0FrameOfReferenceCRS : AbstractMetaItem_1_0_0
 
 }
 
-public class AbstractMetaItem_1_0_0FrameOfReferenceDateTime : AbstractMetaItem_1_0_0
+public class AbstractMetaItem_1_0_0_FrameOfReferenceDateTime : AbstractMetaItem_1_0_0
 {
     /// <summary>
     /// The kind of reference, constant 'DateTime', for FrameOfReferenceDateTime.
@@ -127,7 +127,7 @@ public class AbstractMetaItem_1_0_0FrameOfReferenceDateTime : AbstractMetaItem_1
 
 }
 
-public class AbstractMetaItem_1_0_0FrameOfReferenceAzimuthReference : AbstractMetaItem_1_0_0
+public class AbstractMetaItem_1_0_0_FrameOfReferenceAzimuthReference : AbstractMetaItem_1_0_0
 {
     /// <summary>
     /// The kind of reference, constant 'AzimuthReference', for FrameOfReferenceAzimuthReference.

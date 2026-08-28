@@ -163,7 +163,7 @@ public class DowntimeReasonDetailType_1_0_0_Data : AbstractCommonResources_1_0_0
     /// Distinct downtime reason and component combinations for which this downtime reason detail is valid for.
     /// </summary>
     [JsonPropertyName("ComponentReasonIDs")]
-    public List<DowntimeReasonDetailType_1_0_0_Data_ComponentReasonIDs>? ComponentReasonIDs { get; set; }
+    public List<DowntimeReasonDetailType_1_0_0_ComponentReasonIDs>? ComponentReasonIDs { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
@@ -173,7 +173,7 @@ public class DowntimeReasonDetailType_1_0_0_Data : AbstractCommonResources_1_0_0
 /// <summary>
 /// Describes a distinct combination of Reason and Component IDs for a given Reason Detail
 /// </summary>
-public class DowntimeReasonDetailType_1_0_0_Data_ComponentReasonIDs
+public class DowntimeReasonDetailType_1_0_0_ComponentReasonIDs
 {
     /// <summary>
     /// Downtime reasons for which this downtime reason detail is valid for.

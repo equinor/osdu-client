@@ -113,7 +113,7 @@ public class WellPressureTestInterpretation_1_0_0_Data : AbstractCommonResources
     /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
     /// </summary>
     [JsonPropertyName("Artefacts")]
-    public List<WellPressureTestInterpretation_1_0_0_Data_Artefacts>? Artefacts { get; set; }
+    public List<WellPressureTestInterpretation_1_0_0_Artefacts>? Artefacts { get; set; }
 
     /// <summary>
     /// A flag that indicates if the work product component is undergoing an extended load.  It reflects the fact that the work product component is in an early stage and may be updated before finalization.
@@ -200,7 +200,7 @@ public class WellPressureTestInterpretation_1_0_0_Data : AbstractCommonResources
     /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
     /// </summary>
     [JsonPropertyName("LineageAssertions")]
-    public List<WellPressureTestInterpretation_1_0_0_Data_LineageAssertions>? LineageAssertions { get; set; }
+    public List<WellPressureTestInterpretation_1_0_0_LineageAssertions>? LineageAssertions { get; set; }
 
     /// <summary>
     /// Identifier of the related Well Pressure Test Raw Measurement Work Product Component
@@ -258,7 +258,7 @@ public class WellPressureTestInterpretation_1_0_0_Data : AbstractCommonResources
     /// Array of detailed results of the interpretation activity
     /// </summary>
     [JsonPropertyName("InterpretationResults")]
-    public List<WellPressureTestInterpretation_1_0_0_Data_InterpretationResults>? InterpretationResults { get; set; }
+    public List<WellPressureTestInterpretation_1_0_0_InterpretationResults>? InterpretationResults { get; set; }
 
     [JsonPropertyName("InterpretationResultProperties")]
     public AbstractColumnBasedTable_1_2_0? InterpretationResultProperties { get; set; }
@@ -271,7 +271,7 @@ public class WellPressureTestInterpretation_1_0_0_Data : AbstractCommonResources
 /// <summary>
 /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
 /// </summary>
-public class WellPressureTestInterpretation_1_0_0_Data_Artefacts
+public class WellPressureTestInterpretation_1_0_0_Artefacts
 {
     /// <summary>
     /// The record id of this artefact's role.
@@ -299,7 +299,7 @@ public class WellPressureTestInterpretation_1_0_0_Data_Artefacts
 /// <summary>
 /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
 /// </summary>
-public class WellPressureTestInterpretation_1_0_0_Data_LineageAssertions
+public class WellPressureTestInterpretation_1_0_0_LineageAssertions
 {
     /// <summary>
     /// The object reference identifying the DIRECT, INDIRECT, REFERENCE dependency.
@@ -320,7 +320,7 @@ public class WellPressureTestInterpretation_1_0_0_Data_LineageAssertions
 /// <summary>
 /// Contains the reservoir specific results of interpretations carried out on the results of well tests. Also contains the parameter values needed to calculate the pressure at reservoir datum.
 /// </summary>
-public class WellPressureTestInterpretation_1_0_0_Data_InterpretationResults
+public class WellPressureTestInterpretation_1_0_0_InterpretationResults
 {
     /// <summary>
     /// The unique number of the result array member in the data.InterpretationResults[] array.
@@ -357,7 +357,7 @@ public class WellPressureTestInterpretation_1_0_0_Data_InterpretationResults
     /// Segment that contains important reference elements used to support the interpretation activity
     /// </summary>
     [JsonPropertyName("InterpretationInput")]
-    public WellPressureTestInterpretation_1_0_0_Data_InterpretationResults_InterpretationInput? InterpretationInput { get; set; }
+    public WellPressureTestInterpretation_1_0_0_InterpretationInput? InterpretationInput { get; set; }
 
     /// <summary>
     /// Identifier linking to the dominant parent reservoir entity (It could be either a Reservoir or ReservoirSegment). This is the entity whose characteristics such as Reservoir Pressure are interpreted
@@ -395,7 +395,7 @@ public class WellPressureTestInterpretation_1_0_0_Data_InterpretationResults
     /// An array of pressure correction(s) applied when interpreting pressure from the gauge depth to the reservoir pressure datum.
     /// </summary>
     [JsonPropertyName("AppliedPressureCorrections")]
-    public List<WellPressureTestInterpretation_1_0_0_Data_InterpretationResults_AppliedPressureCorrections>? AppliedPressureCorrections { get; set; }
+    public List<WellPressureTestInterpretation_1_0_0_AppliedPressureCorrections>? AppliedPressureCorrections { get; set; }
 
     /// <summary>
     /// The interpreted reservoir pressure at the reservoir datum depth
@@ -414,7 +414,7 @@ public class WellPressureTestInterpretation_1_0_0_Data_InterpretationResults
 /// <summary>
 /// Segment that contains important reference elements used to support the interpretation activity
 /// </summary>
-public class WellPressureTestInterpretation_1_0_0_Data_InterpretationResults_InterpretationInput
+public class WellPressureTestInterpretation_1_0_0_InterpretationInput
 {
     /// <summary>
     /// Optional reference to the WellboreMarkerSet containing the fluid contacts used for pressure test interpretation
@@ -434,7 +434,7 @@ public class WellPressureTestInterpretation_1_0_0_Data_InterpretationResults_Int
     /// This contains the accepted fluid pressure gradients used in well test interpretation for the reservoir element. Fluid context is applied by the use of Facets e.g. what+Gas, what+Oil, qualifier+Total
     /// </summary>
     [JsonPropertyName("PressureGradients")]
-    public List<WellPressureTestInterpretation_1_0_0_Data_InterpretationResults_InterpretationInput_PressureGradients>? PressureGradients { get; set; }
+    public List<WellPressureTestInterpretation_1_0_0_PressureGradients>? PressureGradients { get; set; }
 
     /// <summary>
     /// Provides an array of general parameter values used in the Well Test Interpretation activity.
@@ -453,7 +453,7 @@ public class WellPressureTestInterpretation_1_0_0_Data_InterpretationResults_Int
 /// <summary>
 /// This contains the accepted fluid pressure gradients used in well test interpretation for the reservoir element. Fluid context is applied by the use of Facets e.g. what+Gas, what+Oil, qualifier+Total
 /// </summary>
-public class WellPressureTestInterpretation_1_0_0_Data_InterpretationResults_InterpretationInput_PressureGradients
+public class WellPressureTestInterpretation_1_0_0_PressureGradients
 {
     /// <summary>
     /// The gradient (change in pressure per unit length) value in the borehole, of the element defined by the FacetID, used for calculating the pressure in the perforated interval from pressure at sensor depth.
@@ -503,7 +503,7 @@ public class WellPressureTestInterpretation_1_0_0_Data_InterpretationResults_Int
 /// <summary>
 /// Pressure correction(s) applied when interpreting pressure from the gauge depth to the reservoir pressure datum. Further context can be applied to the Pressure Correction by the use of Facets e.g. what+Gas, what+Oil, qualifier+Total
 /// </summary>
-public class WellPressureTestInterpretation_1_0_0_Data_InterpretationResults_AppliedPressureCorrections
+public class WellPressureTestInterpretation_1_0_0_AppliedPressureCorrections
 {
     /// <summary>
     /// The pressure correction value applied when interpreting pressure from the gauge depth to the reservoir pressure datum.

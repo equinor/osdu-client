@@ -113,7 +113,7 @@ public class SeismicFieldTraceData_1_0_0_Data : AbstractCommonResources_1_0_0 //
     /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
     /// </summary>
     [JsonPropertyName("Artefacts")]
-    public List<SeismicFieldTraceData_1_0_0_Data_Artefacts>? Artefacts { get; set; }
+    public List<SeismicFieldTraceData_1_0_0_Artefacts>? Artefacts { get; set; }
 
     /// <summary>
     /// A flag that indicates if the work product component is undergoing an extended load.  It reflects the fact that the work product component is in an early stage and may be updated before finalization.
@@ -200,7 +200,7 @@ public class SeismicFieldTraceData_1_0_0_Data : AbstractCommonResources_1_0_0 //
     /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
     /// </summary>
     [JsonPropertyName("LineageAssertions")]
-    public List<SeismicFieldTraceData_1_0_0_Data_LineageAssertions>? LineageAssertions { get; set; }
+    public List<SeismicFieldTraceData_1_0_0_LineageAssertions>? LineageAssertions { get; set; }
 
     [JsonPropertyName("LiveTraceOutline")]
     public AbstractSpatialLocation_1_1_0? LiveTraceOutline { get; set; }
@@ -364,13 +364,13 @@ public class SeismicFieldTraceData_1_0_0_Data : AbstractCommonResources_1_0_0 //
     /// Sample data format in terms of sample value precision 8bit Integer, 16bit Floating Point etc.
     /// </summary>
     [JsonPropertyName("Precision")]
-    public SeismicFieldTraceData_1_0_0_Data_Precision? Precision { get; set; }
+    public SeismicFieldTraceData_1_0_0_Precision? Precision { get; set; }
 
     /// <summary>
     /// Processing Parameters to simply capture process history until full provenance model can be implemented.
     /// </summary>
     [JsonPropertyName("ProcessingParameters")]
-    public List<SeismicFieldTraceData_1_0_0_Data_ProcessingParameters>? ProcessingParameters { get; set; }
+    public List<SeismicFieldTraceData_1_0_0_ProcessingParameters>? ProcessingParameters { get; set; }
 
     /// <summary>
     /// Character metadata from headers inside file, such as the EBCDIC header of SEGD.  This is an array to capture each stanza separately.
@@ -419,7 +419,7 @@ public class SeismicFieldTraceData_1_0_0_Data : AbstractCommonResources_1_0_0 //
 /// <summary>
 /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
 /// </summary>
-public class SeismicFieldTraceData_1_0_0_Data_Artefacts
+public class SeismicFieldTraceData_1_0_0_Artefacts
 {
     /// <summary>
     /// The record id of this artefact's role.
@@ -447,7 +447,7 @@ public class SeismicFieldTraceData_1_0_0_Data_Artefacts
 /// <summary>
 /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
 /// </summary>
-public class SeismicFieldTraceData_1_0_0_Data_LineageAssertions
+public class SeismicFieldTraceData_1_0_0_LineageAssertions
 {
     /// <summary>
     /// The object reference identifying the DIRECT, INDIRECT, REFERENCE dependency.
@@ -468,7 +468,7 @@ public class SeismicFieldTraceData_1_0_0_Data_LineageAssertions
 /// <summary>
 /// Sample data format in terms of sample value precision 8bit Integer, 16bit Floating Point etc.
 /// </summary>
-public class SeismicFieldTraceData_1_0_0_Data_Precision
+public class SeismicFieldTraceData_1_0_0_Precision
 {
     /// <summary>
     /// SRN of a reference value for binary data types, such as INT, UINT, FLOAT, IBM_FLOAT, ASCII, EBCDIC.
@@ -488,7 +488,7 @@ public class SeismicFieldTraceData_1_0_0_Data_Precision
 /// <summary>
 /// Processing Parameters to simply capture process history until full provenance model can be implemented.
 /// </summary>
-public class SeismicFieldTraceData_1_0_0_Data_ProcessingParameters
+public class SeismicFieldTraceData_1_0_0_ProcessingParameters
 {
     /// <summary>
     /// Processing Parameter Type

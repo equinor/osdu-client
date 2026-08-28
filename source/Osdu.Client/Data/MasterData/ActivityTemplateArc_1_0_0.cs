@@ -141,13 +141,13 @@ public class ActivityTemplateArc_1_0_0_Data : AbstractCommonResources_1_0_0 // A
     /// The array of arcs, which associate ActivityTemplate outputs to ActivityTemplate inputs.
     /// </summary>
     [JsonPropertyName("OutputInputArcs")]
-    public List<ActivityTemplateArc_1_0_0_Data_OutputInputArcs>? OutputInputArcs { get; set; }
+    public List<ActivityTemplateArc_1_0_0_OutputInputArcs>? OutputInputArcs { get; set; }
 
     /// <summary>
     /// The array of arcs, which link pairs of ActivityTemplate as predecessor and successor.
     /// </summary>
     [JsonPropertyName("ActivityArcs")]
-    public List<ActivityTemplateArc_1_0_0_Data_ActivityArcs>? ActivityArcs { get; set; }
+    public List<ActivityTemplateArc_1_0_0_ActivityArcs>? ActivityArcs { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
@@ -157,7 +157,7 @@ public class ActivityTemplateArc_1_0_0_Data : AbstractCommonResources_1_0_0 // A
 /// <summary>
 /// An 'arc' establishing a link between a single pair of ActivityTemplate input and output parameters.
 /// </summary>
-public class ActivityTemplateArc_1_0_0_Data_OutputInputArcs
+public class ActivityTemplateArc_1_0_0_OutputInputArcs
 {
     /// <summary>
     /// The relationship to the producing ActivityTemplate.
@@ -194,7 +194,7 @@ public class ActivityTemplateArc_1_0_0_Data_OutputInputArcs
 /// <summary>
 /// An 'arc' establishing a link between a single pair of ActivityTemplate input and output parameters.
 /// </summary>
-public class ActivityTemplateArc_1_0_0_Data_ActivityArcs
+public class ActivityTemplateArc_1_0_0_ActivityArcs
 {
     /// <summary>
     /// The relationship to the ActivityTemplate first in a pair of ActivityTemplates in the context of a workflow.

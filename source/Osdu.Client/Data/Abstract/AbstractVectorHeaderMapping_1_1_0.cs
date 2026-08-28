@@ -81,7 +81,7 @@ public class AbstractVectorHeaderMapping_1_1_0_VectorHeaderMapping
     /// Enumerated string indicating whether to use the normal scalar field for scaling this field (STANDARD), no scaling (NOSCALE), or override scalar (OVERRIDE).  Default is current STANDARD (such as SEG-Y rev2).
     /// </summary>
     [JsonPropertyName("ScalarIndicator")]
-    public AbstractVectorHeaderMapping_1_1_0_VectorHeaderMapping_ScalarIndicator? ScalarIndicator { get; set; }
+    public AbstractVectorHeaderMapping_1_1_0_ScalarIndicator? ScalarIndicator { get; set; }
 
     /// <summary>
     /// Scalar value (as defined by standard) when a value present in the header needs to be overwritten for this value.
@@ -95,7 +95,7 @@ public class AbstractVectorHeaderMapping_1_1_0_VectorHeaderMapping
 /// Enumerated string indicating whether to use the normal scalar field for scaling this field (STANDARD), no scaling (NOSCALE), or override scalar (OVERRIDE).  Default is current STANDARD (such as SEG-Y rev2).
 /// </summary>
 [JsonConverter(typeof(JsonStringEnumConverter))]
-public enum AbstractVectorHeaderMapping_1_1_0_VectorHeaderMapping_ScalarIndicator
+public enum AbstractVectorHeaderMapping_1_1_0_ScalarIndicator
 {
     [JsonStringEnumMemberName("STANDARD")]
     STANDARD,
@@ -130,14 +130,14 @@ public class AbstractVectorHeaderMapping_1_1_0_TraceHeaderOverrides
     /// The value to be overridden is computed by evaluating the sequence of expressions. If populated, the OverrideByConstant must be empty.
     /// </summary>
     [JsonPropertyName("OverrideByExpressions")]
-    public List<AbstractVectorHeaderMapping_1_1_0_TraceHeaderOverrides_OverrideByExpressions>? OverrideByExpressions { get; set; }
+    public List<AbstractVectorHeaderMapping_1_1_0_OverrideByExpressions>? OverrideByExpressions { get; set; }
 
 }
 
 /// <summary>
 /// An expression, potentially in a sequence, allowing the computation of a value or intermediate value.
 /// </summary>
-public class AbstractVectorHeaderMapping_1_1_0_TraceHeaderOverrides_OverrideByExpressions
+public class AbstractVectorHeaderMapping_1_1_0_OverrideByExpressions
 {
     /// <summary>
     /// The input variable given by the HeaderKeyName.
@@ -150,7 +150,7 @@ public class AbstractVectorHeaderMapping_1_1_0_TraceHeaderOverrides_OverrideByEx
     /// The operator 1, an enumeration with permitted values of Plus, Minus, DivideBy, DivideByInteger, MultiplyBy,  Modulo, Equals.
     /// </summary>
     [JsonPropertyName("Operator1")]
-    public AbstractVectorHeaderMapping_1_1_0_TraceHeaderOverrides_OverrideByExpressions_Operator1? Operator1 { get; set; }
+    public AbstractVectorHeaderMapping_1_1_0_Operator1? Operator1 { get; set; }
 
     /// <summary>
     /// The constant operand 1 value.  If populated, Operand1Variable must be absent.
@@ -169,7 +169,7 @@ public class AbstractVectorHeaderMapping_1_1_0_TraceHeaderOverrides_OverrideByEx
     /// The operator 2, an enumeration with permitted values of Plus, Minus, DivideBy, DivideByInteger, MultiplyBy,  Modulo, Equals.
     /// </summary>
     [JsonPropertyName("Operator2")]
-    public AbstractVectorHeaderMapping_1_1_0_TraceHeaderOverrides_OverrideByExpressions_Operator2? Operator2 { get; set; }
+    public AbstractVectorHeaderMapping_1_1_0_Operator2? Operator2 { get; set; }
 
     /// <summary>
     /// The constant operand 2 value. If populated, Operand2Variable must be absent.
@@ -196,7 +196,7 @@ public class AbstractVectorHeaderMapping_1_1_0_TraceHeaderOverrides_OverrideByEx
 /// The operator 1, an enumeration with permitted values of Plus, Minus, DivideBy, DivideByInteger, MultiplyBy,  Modulo, Equals.
 /// </summary>
 [JsonConverter(typeof(JsonStringEnumConverter))]
-public enum AbstractVectorHeaderMapping_1_1_0_TraceHeaderOverrides_OverrideByExpressions_Operator1
+public enum AbstractVectorHeaderMapping_1_1_0_Operator1
 {
     [JsonStringEnumMemberName("Plus")]
     Plus,
@@ -225,7 +225,7 @@ public enum AbstractVectorHeaderMapping_1_1_0_TraceHeaderOverrides_OverrideByExp
 /// The operator 2, an enumeration with permitted values of Plus, Minus, DivideBy, DivideByInteger, MultiplyBy,  Modulo, Equals.
 /// </summary>
 [JsonConverter(typeof(JsonStringEnumConverter))]
-public enum AbstractVectorHeaderMapping_1_1_0_TraceHeaderOverrides_OverrideByExpressions_Operator2
+public enum AbstractVectorHeaderMapping_1_1_0_Operator2
 {
     [JsonStringEnumMemberName("Plus")]
     Plus,

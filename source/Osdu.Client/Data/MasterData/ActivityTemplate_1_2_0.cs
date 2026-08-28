@@ -147,7 +147,7 @@ public class ActivityTemplate_1_2_0_Data : AbstractCommonResources_1_0_1 // Also
     /// The parameters that participate in this type of activity.
     /// </summary>
     [JsonPropertyName("Parameters")]
-    public List<ActivityTemplate_1_2_0_Data_Parameters>? Parameters { get; set; }
+    public List<ActivityTemplate_1_2_0_Parameters>? Parameters { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
@@ -157,7 +157,7 @@ public class ActivityTemplate_1_2_0_Data : AbstractCommonResources_1_0_1 // Also
 /// <summary>
 /// Description of one parameter that participates in one type of activity. [Without inheritance, combined specializations.]
 /// </summary>
-public class ActivityTemplate_1_2_0_Data_Parameters
+public class ActivityTemplate_1_2_0_Parameters
 {
     /// <summary>
     /// If no allowed kind is given, then all kind of data types are allowed.

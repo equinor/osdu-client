@@ -113,7 +113,7 @@ public class ProcessedInSAR_1_1_0_Data : AbstractCommonResources_1_0_0 // Also c
     /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
     /// </summary>
     [JsonPropertyName("Artefacts")]
-    public List<ProcessedInSAR_1_1_0_Data_Artefacts>? Artefacts { get; set; }
+    public List<ProcessedInSAR_1_1_0_Artefacts>? Artefacts { get; set; }
 
     /// <summary>
     /// A flag that indicates if the work product component is undergoing an extended load.  It reflects the fact that the work product component is in an early stage and may be updated before finalization.
@@ -200,7 +200,7 @@ public class ProcessedInSAR_1_1_0_Data : AbstractCommonResources_1_0_0 // Also c
     /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
     /// </summary>
     [JsonPropertyName("LineageAssertions")]
-    public List<ProcessedInSAR_1_1_0_Data_LineageAssertions>? LineageAssertions { get; set; }
+    public List<ProcessedInSAR_1_1_0_LineageAssertions>? LineageAssertions { get; set; }
 
     /// <summary>
     /// Acquisition site for the data capture area which is not any of the Country, Field or Basin properties which are all captured within the Geocontext for a work product component. The site should be used as an additional identifier for items such as prominent landmarks, facilities, processing plant or structures that identify the area of interest.
@@ -267,7 +267,7 @@ public class ProcessedInSAR_1_1_0_Data : AbstractCommonResources_1_0_0 // Also c
     /// An array which lists the start and end date of the acquisition data which is used as the input for the processing
     /// </summary>
     [JsonPropertyName("AcquisitionDateRanges")]
-    public List<ProcessedInSAR_1_1_0_Data_AcquisitionDateRanges>? AcquisitionDateRanges { get; set; }
+    public List<ProcessedInSAR_1_1_0_AcquisitionDateRanges>? AcquisitionDateRanges { get; set; }
 
     /// <summary>
     /// Number of Images which have been captured in the time/date range which are used as the input for processing
@@ -353,7 +353,7 @@ public class ProcessedInSAR_1_1_0_Data : AbstractCommonResources_1_0_0 // Also c
 /// <summary>
 /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
 /// </summary>
-public class ProcessedInSAR_1_1_0_Data_Artefacts
+public class ProcessedInSAR_1_1_0_Artefacts
 {
     /// <summary>
     /// The record id of this artefact's role.
@@ -381,7 +381,7 @@ public class ProcessedInSAR_1_1_0_Data_Artefacts
 /// <summary>
 /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
 /// </summary>
-public class ProcessedInSAR_1_1_0_Data_LineageAssertions
+public class ProcessedInSAR_1_1_0_LineageAssertions
 {
     /// <summary>
     /// The object reference identifying the DIRECT, INDIRECT, REFERENCE dependency.
@@ -402,7 +402,7 @@ public class ProcessedInSAR_1_1_0_Data_LineageAssertions
 /// <summary>
 /// Defines the start and end date of the processing completed on the dataset
 /// </summary>
-public class ProcessedInSAR_1_1_0_Data_AcquisitionDateRanges
+public class ProcessedInSAR_1_1_0_AcquisitionDateRanges
 {
     /// <summary>
     /// Start date and time of images used  for processing

@@ -113,7 +113,7 @@ public class SaturationFunctionSet_1_0_0_Data : AbstractCommonResources_1_0_1 //
     /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
     /// </summary>
     [JsonPropertyName("Artefacts")]
-    public List<SaturationFunctionSet_1_0_0_Data_Artefacts>? Artefacts { get; set; }
+    public List<SaturationFunctionSet_1_0_0_Artefacts>? Artefacts { get; set; }
 
     /// <summary>
     /// A flag that indicates if the work product component is undergoing an extended load.  It reflects the fact that the work product component is in an early stage and may be updated before finalization.
@@ -200,7 +200,7 @@ public class SaturationFunctionSet_1_0_0_Data : AbstractCommonResources_1_0_1 //
     /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
     /// </summary>
     [JsonPropertyName("LineageAssertions")]
-    public List<SaturationFunctionSet_1_0_0_Data_LineageAssertions>? LineageAssertions { get; set; }
+    public List<SaturationFunctionSet_1_0_0_LineageAssertions>? LineageAssertions { get; set; }
 
     /// <summary>
     /// Identifies the Relative Permeability Model applied for three-phase fluid models if used.
@@ -213,7 +213,7 @@ public class SaturationFunctionSet_1_0_0_Data : AbstractCommonResources_1_0_1 //
     /// Array of saturation functions
     /// </summary>
     [JsonPropertyName("SaturationFunctions")]
-    public List<SaturationFunctionSet_1_0_0_Data_SaturationFunctions>? SaturationFunctions { get; set; }
+    public List<SaturationFunctionSet_1_0_0_SaturationFunctions>? SaturationFunctions { get; set; }
 
     /// <summary>
     /// Free text remarks about this data
@@ -236,7 +236,7 @@ public class SaturationFunctionSet_1_0_0_Data : AbstractCommonResources_1_0_1 //
 /// <summary>
 /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
 /// </summary>
-public class SaturationFunctionSet_1_0_0_Data_Artefacts
+public class SaturationFunctionSet_1_0_0_Artefacts
 {
     /// <summary>
     /// The record id of this artefact's role.
@@ -264,7 +264,7 @@ public class SaturationFunctionSet_1_0_0_Data_Artefacts
 /// <summary>
 /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
 /// </summary>
-public class SaturationFunctionSet_1_0_0_Data_LineageAssertions
+public class SaturationFunctionSet_1_0_0_LineageAssertions
 {
     /// <summary>
     /// The object reference identifying the DIRECT, INDIRECT, REFERENCE dependency.
@@ -285,7 +285,7 @@ public class SaturationFunctionSet_1_0_0_Data_LineageAssertions
 /// <summary>
 /// Identifies each saturation function composing the set. Usually saturation functions are uniquely identified in a set by their "usage type".
 /// </summary>
-public class SaturationFunctionSet_1_0_0_Data_SaturationFunctions
+public class SaturationFunctionSet_1_0_0_SaturationFunctions
 {
     /// <summary>
     /// Name of the saturation function
@@ -305,7 +305,7 @@ public class SaturationFunctionSet_1_0_0_Data_SaturationFunctions
     /// This set of attributes represents the context surrounding the processes selected and used in computing these saturation functions.
     /// </summary>
     [JsonPropertyName("BasisOfModelling")]
-    public SaturationFunctionSet_1_0_0_Data_SaturationFunctions_BasisOfModelling? BasisOfModelling { get; set; }
+    public SaturationFunctionSet_1_0_0_BasisOfModelling? BasisOfModelling { get; set; }
 
     /// <summary>
     /// This represents the date the saturation function set was published and made available to the consumers or downstream applications.
@@ -347,7 +347,7 @@ public class SaturationFunctionSet_1_0_0_Data_SaturationFunctions
 /// <summary>
 /// This set of attributes represents the context surrounding the processes selected and used in computing these saturation functions.
 /// </summary>
-public class SaturationFunctionSet_1_0_0_Data_SaturationFunctions_BasisOfModelling
+public class SaturationFunctionSet_1_0_0_BasisOfModelling
 {
     /// <summary>
     /// Identifies the Persisted Collection containing relevant data used to derive this Saturation Function Set, except for Samples Analysis, which are identified by CapillaryPressureInputSampleAnalysisIDs. Note that an abbreviation for capillary pressure is "Pc".

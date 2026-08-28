@@ -78,7 +78,7 @@ public class AbstractAnyCrsFeatureCollection_1_0_0_Features
 {
     [Required]
     [JsonPropertyName("type")]
-    public required AbstractAnyCrsFeatureCollection_1_0_0_Features_Type Type { get; set; }
+    public required AbstractAnyCrsFeatureCollection_1_0_0_FeaturesType Type { get; set; }
 
     [Required]
     [JsonPropertyName("properties")]
@@ -86,7 +86,7 @@ public class AbstractAnyCrsFeatureCollection_1_0_0_Features
 
     [Required]
     [JsonPropertyName("geometry")]
-    public required AbstractAnyCrsFeatureCollection_1_0_0_Features_Geometry Geometry { get; set; }
+    public required AbstractAnyCrsFeatureCollection_1_0_0_Geometry Geometry { get; set; }
 
     [MinLength(4)]
     [JsonPropertyName("bbox")]
@@ -95,7 +95,7 @@ public class AbstractAnyCrsFeatureCollection_1_0_0_Features
 }
 
 [JsonConverter(typeof(JsonStringEnumConverter))]
-public enum AbstractAnyCrsFeatureCollection_1_0_0_Features_Type
+public enum AbstractAnyCrsFeatureCollection_1_0_0_FeaturesType
 {
     [JsonStringEnumMemberName("AnyCrsFeature")]
     AnyCrsFeature,
@@ -103,18 +103,18 @@ public enum AbstractAnyCrsFeatureCollection_1_0_0_Features_Type
 }
 
 [JsonPolymorphic(TypeDiscriminatorPropertyName = "type", UnknownDerivedTypeHandling = JsonUnknownDerivedTypeHandling.FallBackToBaseType)]
-[JsonDerivedType(typeof(AbstractAnyCrsFeatureCollection_1_0_0_Features_GeometryAnyCrsGeoJSONPoint), "AnyCrsPoint")]
-[JsonDerivedType(typeof(AbstractAnyCrsFeatureCollection_1_0_0_Features_GeometryAnyCrsGeoJSONLineString), "AnyCrsLineString")]
-[JsonDerivedType(typeof(AbstractAnyCrsFeatureCollection_1_0_0_Features_GeometryAnyCrsGeoJSONPolygon), "AnyCrsPolygon")]
-[JsonDerivedType(typeof(AbstractAnyCrsFeatureCollection_1_0_0_Features_GeometryAnyCrsGeoJSONMultiPoint), "AnyCrsMultiPoint")]
-[JsonDerivedType(typeof(AbstractAnyCrsFeatureCollection_1_0_0_Features_GeometryAnyCrsGeoJSONMultiLineString), "AnyCrsMultiLineString")]
-[JsonDerivedType(typeof(AbstractAnyCrsFeatureCollection_1_0_0_Features_GeometryAnyCrsGeoJSONMultiPolygon), "AnyCrsMultiPolygon")]
-[JsonDerivedType(typeof(AbstractAnyCrsFeatureCollection_1_0_0_Features_GeometryAnyCrsGeoJSONGeometryCollection), "AnyCrsGeometryCollection")]
-public class AbstractAnyCrsFeatureCollection_1_0_0_Features_Geometry
+[JsonDerivedType(typeof(AbstractAnyCrsFeatureCollection_1_0_0_AnyCrsGeoJSONPoint), "AnyCrsPoint")]
+[JsonDerivedType(typeof(AbstractAnyCrsFeatureCollection_1_0_0_AnyCrsGeoJSONLineString), "AnyCrsLineString")]
+[JsonDerivedType(typeof(AbstractAnyCrsFeatureCollection_1_0_0_AnyCrsGeoJSONPolygon), "AnyCrsPolygon")]
+[JsonDerivedType(typeof(AbstractAnyCrsFeatureCollection_1_0_0_AnyCrsGeoJSONMultiPoint), "AnyCrsMultiPoint")]
+[JsonDerivedType(typeof(AbstractAnyCrsFeatureCollection_1_0_0_AnyCrsGeoJSONMultiLineString), "AnyCrsMultiLineString")]
+[JsonDerivedType(typeof(AbstractAnyCrsFeatureCollection_1_0_0_AnyCrsGeoJSONMultiPolygon), "AnyCrsMultiPolygon")]
+[JsonDerivedType(typeof(AbstractAnyCrsFeatureCollection_1_0_0_AnyCrsGeoJSONGeometryCollection), "AnyCrsGeometryCollection")]
+public class AbstractAnyCrsFeatureCollection_1_0_0_Geometry
 {
 }
 
-public class AbstractAnyCrsFeatureCollection_1_0_0_Features_GeometryAnyCrsGeoJSONPoint : AbstractAnyCrsFeatureCollection_1_0_0_Features_Geometry
+public class AbstractAnyCrsFeatureCollection_1_0_0_AnyCrsGeoJSONPoint : AbstractAnyCrsFeatureCollection_1_0_0_Geometry
 {
     /// <summary>
     /// Discriminator property. Value is handled by the JSON serializer's polymorphic
@@ -134,7 +134,7 @@ public class AbstractAnyCrsFeatureCollection_1_0_0_Features_GeometryAnyCrsGeoJSO
 
 }
 
-public class AbstractAnyCrsFeatureCollection_1_0_0_Features_GeometryAnyCrsGeoJSONLineString : AbstractAnyCrsFeatureCollection_1_0_0_Features_Geometry
+public class AbstractAnyCrsFeatureCollection_1_0_0_AnyCrsGeoJSONLineString : AbstractAnyCrsFeatureCollection_1_0_0_Geometry
 {
     /// <summary>
     /// Discriminator property. Value is handled by the JSON serializer's polymorphic
@@ -154,7 +154,7 @@ public class AbstractAnyCrsFeatureCollection_1_0_0_Features_GeometryAnyCrsGeoJSO
 
 }
 
-public class AbstractAnyCrsFeatureCollection_1_0_0_Features_GeometryAnyCrsGeoJSONPolygon : AbstractAnyCrsFeatureCollection_1_0_0_Features_Geometry
+public class AbstractAnyCrsFeatureCollection_1_0_0_AnyCrsGeoJSONPolygon : AbstractAnyCrsFeatureCollection_1_0_0_Geometry
 {
     /// <summary>
     /// Discriminator property. Value is handled by the JSON serializer's polymorphic
@@ -173,7 +173,7 @@ public class AbstractAnyCrsFeatureCollection_1_0_0_Features_GeometryAnyCrsGeoJSO
 
 }
 
-public class AbstractAnyCrsFeatureCollection_1_0_0_Features_GeometryAnyCrsGeoJSONMultiPoint : AbstractAnyCrsFeatureCollection_1_0_0_Features_Geometry
+public class AbstractAnyCrsFeatureCollection_1_0_0_AnyCrsGeoJSONMultiPoint : AbstractAnyCrsFeatureCollection_1_0_0_Geometry
 {
     /// <summary>
     /// Discriminator property. Value is handled by the JSON serializer's polymorphic
@@ -192,7 +192,7 @@ public class AbstractAnyCrsFeatureCollection_1_0_0_Features_GeometryAnyCrsGeoJSO
 
 }
 
-public class AbstractAnyCrsFeatureCollection_1_0_0_Features_GeometryAnyCrsGeoJSONMultiLineString : AbstractAnyCrsFeatureCollection_1_0_0_Features_Geometry
+public class AbstractAnyCrsFeatureCollection_1_0_0_AnyCrsGeoJSONMultiLineString : AbstractAnyCrsFeatureCollection_1_0_0_Geometry
 {
     /// <summary>
     /// Discriminator property. Value is handled by the JSON serializer's polymorphic
@@ -211,7 +211,7 @@ public class AbstractAnyCrsFeatureCollection_1_0_0_Features_GeometryAnyCrsGeoJSO
 
 }
 
-public class AbstractAnyCrsFeatureCollection_1_0_0_Features_GeometryAnyCrsGeoJSONMultiPolygon : AbstractAnyCrsFeatureCollection_1_0_0_Features_Geometry
+public class AbstractAnyCrsFeatureCollection_1_0_0_AnyCrsGeoJSONMultiPolygon : AbstractAnyCrsFeatureCollection_1_0_0_Geometry
 {
     /// <summary>
     /// Discriminator property. Value is handled by the JSON serializer's polymorphic
@@ -230,7 +230,7 @@ public class AbstractAnyCrsFeatureCollection_1_0_0_Features_GeometryAnyCrsGeoJSO
 
 }
 
-public class AbstractAnyCrsFeatureCollection_1_0_0_Features_GeometryAnyCrsGeoJSONGeometryCollection : AbstractAnyCrsFeatureCollection_1_0_0_Features_Geometry
+public class AbstractAnyCrsFeatureCollection_1_0_0_AnyCrsGeoJSONGeometryCollection : AbstractAnyCrsFeatureCollection_1_0_0_Geometry
 {
     /// <summary>
     /// Discriminator property. Value is handled by the JSON serializer's polymorphic
@@ -241,7 +241,7 @@ public class AbstractAnyCrsFeatureCollection_1_0_0_Features_GeometryAnyCrsGeoJSO
 
     [Required]
     [JsonPropertyName("geometries")]
-    public required List<AbstractAnyCrsFeatureCollection_1_0_0_Features_GeometryAnyCrsGeoJSONGeometryCollection_Geometries> Geometries { get; set; }
+    public required List<AbstractAnyCrsFeatureCollection_1_0_0_Geometries> Geometries { get; set; }
 
     [MinLength(4)]
     [JsonPropertyName("bbox")]
@@ -250,17 +250,17 @@ public class AbstractAnyCrsFeatureCollection_1_0_0_Features_GeometryAnyCrsGeoJSO
 }
 
 [JsonPolymorphic(TypeDiscriminatorPropertyName = "type", UnknownDerivedTypeHandling = JsonUnknownDerivedTypeHandling.FallBackToBaseType)]
-[JsonDerivedType(typeof(AbstractAnyCrsFeatureCollection_1_0_0_Features_GeometryAnyCrsGeoJSONGeometryCollection_GeometriesAnyCrsGeoJSONPoint), "AnyCrsPoint")]
-[JsonDerivedType(typeof(AbstractAnyCrsFeatureCollection_1_0_0_Features_GeometryAnyCrsGeoJSONGeometryCollection_GeometriesAnyCrsGeoJSONLineString), "AnyCrsLineString")]
-[JsonDerivedType(typeof(AbstractAnyCrsFeatureCollection_1_0_0_Features_GeometryAnyCrsGeoJSONGeometryCollection_GeometriesAnyCrsGeoJSONPolygon), "AnyCrsPolygon")]
-[JsonDerivedType(typeof(AbstractAnyCrsFeatureCollection_1_0_0_Features_GeometryAnyCrsGeoJSONGeometryCollection_GeometriesAnyCrsGeoJSONMultiPoint), "AnyCrsMultiPoint")]
-[JsonDerivedType(typeof(AbstractAnyCrsFeatureCollection_1_0_0_Features_GeometryAnyCrsGeoJSONGeometryCollection_GeometriesAnyCrsGeoJSONMultiLineString), "AnyCrsMultiLineString")]
-[JsonDerivedType(typeof(AbstractAnyCrsFeatureCollection_1_0_0_Features_GeometryAnyCrsGeoJSONGeometryCollection_GeometriesAnyCrsGeoJSONMultiPolygon), "AnyCrsMultiPolygon")]
-public class AbstractAnyCrsFeatureCollection_1_0_0_Features_GeometryAnyCrsGeoJSONGeometryCollection_Geometries
+[JsonDerivedType(typeof(AbstractAnyCrsFeatureCollection_1_0_0_GeometriesAnyCrsGeoJSONPoint), "AnyCrsPoint")]
+[JsonDerivedType(typeof(AbstractAnyCrsFeatureCollection_1_0_0_GeometriesAnyCrsGeoJSONLineString), "AnyCrsLineString")]
+[JsonDerivedType(typeof(AbstractAnyCrsFeatureCollection_1_0_0_GeometriesAnyCrsGeoJSONPolygon), "AnyCrsPolygon")]
+[JsonDerivedType(typeof(AbstractAnyCrsFeatureCollection_1_0_0_GeometriesAnyCrsGeoJSONMultiPoint), "AnyCrsMultiPoint")]
+[JsonDerivedType(typeof(AbstractAnyCrsFeatureCollection_1_0_0_GeometriesAnyCrsGeoJSONMultiLineString), "AnyCrsMultiLineString")]
+[JsonDerivedType(typeof(AbstractAnyCrsFeatureCollection_1_0_0_GeometriesAnyCrsGeoJSONMultiPolygon), "AnyCrsMultiPolygon")]
+public class AbstractAnyCrsFeatureCollection_1_0_0_Geometries
 {
 }
 
-public class AbstractAnyCrsFeatureCollection_1_0_0_Features_GeometryAnyCrsGeoJSONGeometryCollection_GeometriesAnyCrsGeoJSONPoint : AbstractAnyCrsFeatureCollection_1_0_0_Features_GeometryAnyCrsGeoJSONGeometryCollection_Geometries
+public class AbstractAnyCrsFeatureCollection_1_0_0_GeometriesAnyCrsGeoJSONPoint : AbstractAnyCrsFeatureCollection_1_0_0_Geometries
 {
     /// <summary>
     /// Discriminator property. Value is handled by the JSON serializer's polymorphic
@@ -280,7 +280,7 @@ public class AbstractAnyCrsFeatureCollection_1_0_0_Features_GeometryAnyCrsGeoJSO
 
 }
 
-public class AbstractAnyCrsFeatureCollection_1_0_0_Features_GeometryAnyCrsGeoJSONGeometryCollection_GeometriesAnyCrsGeoJSONLineString : AbstractAnyCrsFeatureCollection_1_0_0_Features_GeometryAnyCrsGeoJSONGeometryCollection_Geometries
+public class AbstractAnyCrsFeatureCollection_1_0_0_GeometriesAnyCrsGeoJSONLineString : AbstractAnyCrsFeatureCollection_1_0_0_Geometries
 {
     /// <summary>
     /// Discriminator property. Value is handled by the JSON serializer's polymorphic
@@ -300,7 +300,7 @@ public class AbstractAnyCrsFeatureCollection_1_0_0_Features_GeometryAnyCrsGeoJSO
 
 }
 
-public class AbstractAnyCrsFeatureCollection_1_0_0_Features_GeometryAnyCrsGeoJSONGeometryCollection_GeometriesAnyCrsGeoJSONPolygon : AbstractAnyCrsFeatureCollection_1_0_0_Features_GeometryAnyCrsGeoJSONGeometryCollection_Geometries
+public class AbstractAnyCrsFeatureCollection_1_0_0_GeometriesAnyCrsGeoJSONPolygon : AbstractAnyCrsFeatureCollection_1_0_0_Geometries
 {
     /// <summary>
     /// Discriminator property. Value is handled by the JSON serializer's polymorphic
@@ -319,7 +319,7 @@ public class AbstractAnyCrsFeatureCollection_1_0_0_Features_GeometryAnyCrsGeoJSO
 
 }
 
-public class AbstractAnyCrsFeatureCollection_1_0_0_Features_GeometryAnyCrsGeoJSONGeometryCollection_GeometriesAnyCrsGeoJSONMultiPoint : AbstractAnyCrsFeatureCollection_1_0_0_Features_GeometryAnyCrsGeoJSONGeometryCollection_Geometries
+public class AbstractAnyCrsFeatureCollection_1_0_0_GeometriesAnyCrsGeoJSONMultiPoint : AbstractAnyCrsFeatureCollection_1_0_0_Geometries
 {
     /// <summary>
     /// Discriminator property. Value is handled by the JSON serializer's polymorphic
@@ -338,7 +338,7 @@ public class AbstractAnyCrsFeatureCollection_1_0_0_Features_GeometryAnyCrsGeoJSO
 
 }
 
-public class AbstractAnyCrsFeatureCollection_1_0_0_Features_GeometryAnyCrsGeoJSONGeometryCollection_GeometriesAnyCrsGeoJSONMultiLineString : AbstractAnyCrsFeatureCollection_1_0_0_Features_GeometryAnyCrsGeoJSONGeometryCollection_Geometries
+public class AbstractAnyCrsFeatureCollection_1_0_0_GeometriesAnyCrsGeoJSONMultiLineString : AbstractAnyCrsFeatureCollection_1_0_0_Geometries
 {
     /// <summary>
     /// Discriminator property. Value is handled by the JSON serializer's polymorphic
@@ -357,7 +357,7 @@ public class AbstractAnyCrsFeatureCollection_1_0_0_Features_GeometryAnyCrsGeoJSO
 
 }
 
-public class AbstractAnyCrsFeatureCollection_1_0_0_Features_GeometryAnyCrsGeoJSONGeometryCollection_GeometriesAnyCrsGeoJSONMultiPolygon : AbstractAnyCrsFeatureCollection_1_0_0_Features_GeometryAnyCrsGeoJSONGeometryCollection_Geometries
+public class AbstractAnyCrsFeatureCollection_1_0_0_GeometriesAnyCrsGeoJSONMultiPolygon : AbstractAnyCrsFeatureCollection_1_0_0_Geometries
 {
     /// <summary>
     /// Discriminator property. Value is handled by the JSON serializer's polymorphic

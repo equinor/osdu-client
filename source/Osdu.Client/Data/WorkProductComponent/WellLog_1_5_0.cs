@@ -113,7 +113,7 @@ public class WellLog_1_5_0_Data : AbstractCommonResources_1_0_0 // Also composes
     /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
     /// </summary>
     [JsonPropertyName("Artefacts")]
-    public List<WellLog_1_5_0_Data_Artefacts>? Artefacts { get; set; }
+    public List<WellLog_1_5_0_Artefacts>? Artefacts { get; set; }
 
     /// <summary>
     /// A flag that indicates if the work product component is undergoing an extended load.  It reflects the fact that the work product component is in an early stage and may be updated before finalization.
@@ -200,7 +200,7 @@ public class WellLog_1_5_0_Data : AbstractCommonResources_1_0_0 // Also composes
     /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
     /// </summary>
     [JsonPropertyName("LineageAssertions")]
-    public List<WellLog_1_5_0_Data_LineageAssertions>? LineageAssertions { get; set; }
+    public List<WellLog_1_5_0_LineageAssertions>? LineageAssertions { get; set; }
 
     /// <summary>
     /// The Wellbore where the Well Log Work Product Component was recorded
@@ -283,7 +283,7 @@ public class WellLog_1_5_0_Data : AbstractCommonResources_1_0_0 // Also composes
     /// An interval built from two nested values : StartDate and EndDate. It applies to the whole log services and may apply to composite logs as [start of the first run job] and [end of the last run job]Log Service Date
     /// </summary>
     [JsonPropertyName("LogServiceDateInterval")]
-    public WellLog_1_5_0_Data_LogServiceDateInterval? LogServiceDateInterval { get; set; }
+    public WellLog_1_5_0_LogServiceDateInterval? LogServiceDateInterval { get; set; }
 
     /// <summary>
     /// DEPRECATED:  Use the Well Log Acquisition schema `LogRun[].GenericToolTypeIDs[]` to capture the generic tool types used in a particular Log Run. Tool mnemonics can also be captured using the `LogRun[].ToolMnemonicIDs[]` reference value list. Tool String Description - a long concatenation of the tools used for logging services such as GammaRay+NeutronPorosity
@@ -346,7 +346,7 @@ public class WellLog_1_5_0_Data : AbstractCommonResources_1_0_0 // Also composes
     public AbstractFacilityVerticalMeasurement_1_0_0? VerticalMeasurement { get; set; }
 
     [JsonPropertyName("Curves")]
-    public List<WellLog_1_5_0_Data_Curves>? Curves { get; set; }
+    public List<WellLog_1_5_0_Curves>? Curves { get; set; }
 
     /// <summary>
     /// Required for complex DLIS format files defined by having multiple Logical Files and/or multiple Frames.  The Frame Identifier is a numerical attribute that represents the interval spacing of the data within the frame.
@@ -431,7 +431,7 @@ public class WellLog_1_5_0_Data : AbstractCommonResources_1_0_0 // Also composes
     /// The Well Log Acquisition details object captures Information relevant to the well log acquisition, such as the specific acquisition job, log runs and log passes that this  well log information derives from.
     /// </summary>
     [JsonPropertyName("WellLogAcquisitionDetails")]
-    public WellLog_1_5_0_Data_WellLogAcquisitionDetails? WellLogAcquisitionDetails { get; set; }
+    public WellLog_1_5_0_WellLogAcquisitionDetails? WellLogAcquisitionDetails { get; set; }
 
     /// <summary>
     /// A remark array for contextual information during the actual log object acquisition. Explains how the measurement in the wellbore is taken on a point in time or depth. Additional information may be included such as bad weather, tool failure, etc. Usually a part of the log header, log remark contains info specific for an acquisition run, specific for a given logging tool (multiple measurements) and/or a specific interval. In essence, log remark represents the external factors and operational environment, directly or indirectly affecting the measurement quality/uncertainty (dynamically over time/depth) - adding both noise and bias to the measurements.
@@ -447,7 +447,7 @@ public class WellLog_1_5_0_Data : AbstractCommonResources_1_0_0 // Also composes
 /// <summary>
 /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
 /// </summary>
-public class WellLog_1_5_0_Data_Artefacts
+public class WellLog_1_5_0_Artefacts
 {
     /// <summary>
     /// The record id of this artefact's role.
@@ -475,7 +475,7 @@ public class WellLog_1_5_0_Data_Artefacts
 /// <summary>
 /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
 /// </summary>
-public class WellLog_1_5_0_Data_LineageAssertions
+public class WellLog_1_5_0_LineageAssertions
 {
     /// <summary>
     /// The object reference identifying the DIRECT, INDIRECT, REFERENCE dependency.
@@ -496,7 +496,7 @@ public class WellLog_1_5_0_Data_LineageAssertions
 /// <summary>
 /// An interval built from two nested values : StartDate and EndDate. It applies to the whole log services and may apply to composite logs as [start of the first run job] and [end of the last run job]Log Service Date
 /// </summary>
-public class WellLog_1_5_0_Data_LogServiceDateInterval
+public class WellLog_1_5_0_LogServiceDateInterval
 {
     /// <summary>
     /// Date of entering the wellbore with logging tools before the first logging run.
@@ -517,7 +517,7 @@ public class WellLog_1_5_0_Data_LogServiceDateInterval
 /// <summary>
 /// A curve is a data type that is represented by a series of digits, and are commonly displayed as a continuous line or a series of points referenced to the WellLog reference curve.   A WellLog commonly contains multiple curves.
 /// </summary>
-public class WellLog_1_5_0_Data_Curves
+public class WellLog_1_5_0_Curves
 {
     /// <summary>
     /// The ID of the Well Log Curve
@@ -681,7 +681,7 @@ public class WellLog_1_5_0_Data_Curves
 /// <summary>
 /// The Well Log Acquisition details object captures Information relevant to the well log acquisition, such as the specific acquisition job, log runs and log passes that this  well log information derives from.
 /// </summary>
-public class WellLog_1_5_0_Data_WellLogAcquisitionDetails
+public class WellLog_1_5_0_WellLogAcquisitionDetails
 {
     /// <summary>
     /// A relationship to the Well Log Acquisition record relevant to this well log and set of log curves.

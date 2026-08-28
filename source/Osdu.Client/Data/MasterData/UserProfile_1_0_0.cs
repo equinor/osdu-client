@@ -213,14 +213,14 @@ public class UserProfile_1_0_0_Data : AbstractCommonResources_1_0_0 // Also comp
     /// A list of Data Governance roles held by this individual, with the ability to qualify and timebox those roles.
     /// </summary>
     [JsonPropertyName("UserDataGovernanceRoles")]
-    public List<UserProfile_1_0_0_Data_UserDataGovernanceRoles>? UserDataGovernanceRoles { get; set; }
+    public List<UserProfile_1_0_0_UserDataGovernanceRoles>? UserDataGovernanceRoles { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
 
 }
 
-public class UserProfile_1_0_0_Data_UserDataGovernanceRoles
+public class UserProfile_1_0_0_UserDataGovernanceRoles
 {
     /// <summary>
     /// Internal, unique identifier for the set of attributes describing and qualifying a specific data governance role.

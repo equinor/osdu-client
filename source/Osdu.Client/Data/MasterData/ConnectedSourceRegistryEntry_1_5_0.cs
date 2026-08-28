@@ -173,7 +173,7 @@ public class ConnectedSourceRegistryEntry_1_5_0_Data : AbstractCommonResources_1
     /// The history of expenditure approvals.
     /// </summary>
     [JsonPropertyName("FundsAuthorizations")]
-    public List<ConnectedSourceRegistryEntry_1_5_0_Data_FundsAuthorizations>? FundsAuthorizations { get; set; }
+    public List<ConnectedSourceRegistryEntry_1_5_0_FundsAuthorizations>? FundsAuthorizations { get; set; }
 
     /// <summary>
     /// References to applicable agreements in external contract database system of record.
@@ -192,25 +192,25 @@ public class ConnectedSourceRegistryEntry_1_5_0_Data : AbstractCommonResources_1
     /// References to organisations which supplied services to the Project.
     /// </summary>
     [JsonPropertyName("Contractors")]
-    public List<ConnectedSourceRegistryEntry_1_5_0_Data_Contractors>? Contractors { get; set; }
+    public List<ConnectedSourceRegistryEntry_1_5_0_Contractors>? Contractors { get; set; }
 
     /// <summary>
     /// List of key individuals supporting the Project.  This could be Abstracted for re-use, and could reference a separate Persons master data object.
     /// </summary>
     [JsonPropertyName("Personnel")]
-    public List<ConnectedSourceRegistryEntry_1_5_0_Data_Personnel>? Personnel { get; set; }
+    public List<ConnectedSourceRegistryEntry_1_5_0_Personnel>? Personnel { get; set; }
 
     /// <summary>
     /// General parameters defining the configuration of the Project.  In the case of a seismic acquisition project it is like receiver interval, source depth, source type.  In the case of a processing project, it is like replacement velocity, reference datum above mean sea level.
     /// </summary>
     [JsonPropertyName("ProjectSpecifications")]
-    public List<ConnectedSourceRegistryEntry_1_5_0_Data_ProjectSpecifications>? ProjectSpecifications { get; set; }
+    public List<ConnectedSourceRegistryEntry_1_5_0_ProjectSpecifications>? ProjectSpecifications { get; set; }
 
     /// <summary>
     /// The history of life cycle states that the Project has been through..
     /// </summary>
     [JsonPropertyName("ProjectStates")]
-    public List<ConnectedSourceRegistryEntry_1_5_0_Data_ProjectStates>? ProjectStates { get; set; }
+    public List<ConnectedSourceRegistryEntry_1_5_0_ProjectStates>? ProjectStates { get; set; }
 
     /// <summary>
     /// The relation to the ActivityTemplate carrying expected parameter definitions and default values.
@@ -270,13 +270,13 @@ public class ConnectedSourceRegistryEntry_1_5_0_Data : AbstractCommonResources_1
     /// List of security schemes available for use in authorizing against OSDU-compliant APIs of a connected data source.
     /// </summary>
     [JsonPropertyName("SecuritySchemes")]
-    public List<ConnectedSourceRegistryEntry_1_5_0_Data_SecuritySchemes>? SecuritySchemes { get; set; }
+    public List<ConnectedSourceRegistryEntry_1_5_0_SecuritySchemes>? SecuritySchemes { get; set; }
 
     /// <summary>
     /// List of SMTP server schemes available for use in mailing the detailed EDS's report.
     /// </summary>
     [JsonPropertyName("SmtpSchemes")]
-    public List<ConnectedSourceRegistryEntry_1_5_0_Data_SmtpSchemes>? SmtpSchemes { get; set; }
+    public List<ConnectedSourceRegistryEntry_1_5_0_SmtpSchemes>? SmtpSchemes { get; set; }
 
     /// <summary>
     /// Connectivity information for Airflow endpoints to get more information of Manifest Ingestion.
@@ -319,7 +319,7 @@ public class ConnectedSourceRegistryEntry_1_5_0_Data : AbstractCommonResources_1
     /// List of Email API schemes available for use in mailing the detailed EDS's report.
     /// </summary>
     [JsonPropertyName("EmailApiSchemes")]
-    public List<ConnectedSourceRegistryEntry_1_5_0_Data_EmailApiSchemes>? EmailApiSchemes { get; set; }
+    public List<ConnectedSourceRegistryEntry_1_5_0_EmailApiSchemes>? EmailApiSchemes { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
@@ -329,7 +329,7 @@ public class ConnectedSourceRegistryEntry_1_5_0_Data : AbstractCommonResources_1
 /// <summary>
 /// The history of expenditure approvals.
 /// </summary>
-public class ConnectedSourceRegistryEntry_1_5_0_Data_FundsAuthorizations
+public class ConnectedSourceRegistryEntry_1_5_0_FundsAuthorizations
 {
     /// <summary>
     /// Internal Company control number which identifies the allocation of funds to the Project.
@@ -362,7 +362,7 @@ public class ConnectedSourceRegistryEntry_1_5_0_Data_FundsAuthorizations
 /// <summary>
 /// References to organisations which supplied services to the Project.
 /// </summary>
-public class ConnectedSourceRegistryEntry_1_5_0_Data_Contractors
+public class ConnectedSourceRegistryEntry_1_5_0_Contractors
 {
     /// <summary>
     /// Reference to a company that provided services.
@@ -389,7 +389,7 @@ public class ConnectedSourceRegistryEntry_1_5_0_Data_Contractors
 /// <summary>
 /// List of key individuals supporting the Project.  This could be Abstracted for re-use, and could reference a separate Persons master data object.
 /// </summary>
-public class ConnectedSourceRegistryEntry_1_5_0_Data_Personnel
+public class ConnectedSourceRegistryEntry_1_5_0_Personnel
 {
     /// <summary>
     /// Name of an individual supporting the Project.
@@ -416,7 +416,7 @@ public class ConnectedSourceRegistryEntry_1_5_0_Data_Personnel
 /// <summary>
 /// General parameters defining the configuration of the Project.  In the case of a seismic acquisition project it is like receiver interval, source depth, source type.  In the case of a processing project, it is like replacement velocity, reference datum above mean sea level.
 /// </summary>
-public class ConnectedSourceRegistryEntry_1_5_0_Data_ProjectSpecifications
+public class ConnectedSourceRegistryEntry_1_5_0_ProjectSpecifications
 {
     /// <summary>
     /// The date and time at which a ProjectSpecification becomes effective.
@@ -477,7 +477,7 @@ public class ConnectedSourceRegistryEntry_1_5_0_Data_ProjectSpecifications
 /// <summary>
 /// The history of life cycle states that the Project has been through..
 /// </summary>
-public class ConnectedSourceRegistryEntry_1_5_0_Data_ProjectStates
+public class ConnectedSourceRegistryEntry_1_5_0_ProjectStates
 {
     /// <summary>
     /// The date and time at which the state becomes effective.
@@ -505,7 +505,7 @@ public class ConnectedSourceRegistryEntry_1_5_0_Data_ProjectStates
 /// <summary>
 /// Metadata used to retrieve or generate credentials needed for authorization.
 /// </summary>
-public class ConnectedSourceRegistryEntry_1_5_0_Data_SecuritySchemes
+public class ConnectedSourceRegistryEntry_1_5_0_SecuritySchemes
 {
     /// <summary>
     /// Unique name given to a security scheme
@@ -618,7 +618,7 @@ public class ConnectedSourceRegistryEntry_1_5_0_Data_SecuritySchemes
 /// <summary>
 /// Metadata used to mail the EDS's Report.
 /// </summary>
-public class ConnectedSourceRegistryEntry_1_5_0_Data_SmtpSchemes
+public class ConnectedSourceRegistryEntry_1_5_0_SmtpSchemes
 {
     /// <summary>
     /// Unique name given to a SMTP scheme.
@@ -720,7 +720,7 @@ public class ConnectedSourceRegistryEntry_1_5_0_Data_SmtpSchemes
 /// <summary>
 /// List of Email API schemes available for use in mailing the detailed EDS's report.
 /// </summary>
-public class ConnectedSourceRegistryEntry_1_5_0_Data_EmailApiSchemes
+public class ConnectedSourceRegistryEntry_1_5_0_EmailApiSchemes
 {
     /// <summary>
     /// Unique name given to an Email API scheme.

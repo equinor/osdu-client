@@ -113,7 +113,7 @@ public class WellFluidsReport_2_0_0_Data : AbstractCommonResources_1_0_0 // Also
     /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
     /// </summary>
     [JsonPropertyName("Artefacts")]
-    public List<WellFluidsReport_2_0_0_Data_Artefacts>? Artefacts { get; set; }
+    public List<WellFluidsReport_2_0_0_Artefacts>? Artefacts { get; set; }
 
     /// <summary>
     /// A flag that indicates if the work product component is undergoing an extended load.  It reflects the fact that the work product component is in an early stage and may be updated before finalization.
@@ -200,7 +200,7 @@ public class WellFluidsReport_2_0_0_Data : AbstractCommonResources_1_0_0 // Also
     /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
     /// </summary>
     [JsonPropertyName("LineageAssertions")]
-    public List<WellFluidsReport_2_0_0_Data_LineageAssertions>? LineageAssertions { get; set; }
+    public List<WellFluidsReport_2_0_0_LineageAssertions>? LineageAssertions { get; set; }
 
     /// <summary>
     /// Start DateTime of the reporting period
@@ -226,7 +226,7 @@ public class WellFluidsReport_2_0_0_Data : AbstractCommonResources_1_0_0 // Also
     /// The drilling fluids that are represented on this report
     /// </summary>
     [JsonPropertyName("Fluid")]
-    public List<WellFluidsReport_2_0_0_Data_Fluid>? Fluid { get; set; }
+    public List<WellFluidsReport_2_0_0_Fluid>? Fluid { get; set; }
 
     /// <summary>
     /// Reference to the wellbore that is the subject of this fluids report
@@ -243,7 +243,7 @@ public class WellFluidsReport_2_0_0_Data : AbstractCommonResources_1_0_0 // Also
 /// <summary>
 /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
 /// </summary>
-public class WellFluidsReport_2_0_0_Data_Artefacts
+public class WellFluidsReport_2_0_0_Artefacts
 {
     /// <summary>
     /// The record id of this artefact's role.
@@ -271,7 +271,7 @@ public class WellFluidsReport_2_0_0_Data_Artefacts
 /// <summary>
 /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
 /// </summary>
-public class WellFluidsReport_2_0_0_Data_LineageAssertions
+public class WellFluidsReport_2_0_0_LineageAssertions
 {
     /// <summary>
     /// The object reference identifying the DIRECT, INDIRECT, REFERENCE dependency.
@@ -292,7 +292,7 @@ public class WellFluidsReport_2_0_0_Data_LineageAssertions
 /// <summary>
 /// Information regarding an individual fluid that is part of the Drilling Report.
 /// </summary>
-public class WellFluidsReport_2_0_0_Data_Fluid
+public class WellFluidsReport_2_0_0_Fluid
 {
     /// <summary>
     /// Description for the type of fluid.
@@ -820,14 +820,14 @@ public class WellFluidsReport_2_0_0_Data_Fluid
     /// Details of the Rheometer tests performed on the fluid sample
     /// </summary>
     [JsonPropertyName("Rheometer")]
-    public List<WellFluidsReport_2_0_0_Data_Fluid_Rheometer>? Rheometer { get; set; }
+    public List<WellFluidsReport_2_0_0_Rheometer>? Rheometer { get; set; }
 
 }
 
 /// <summary>
 /// Rheometer values observed
 /// </summary>
-public class WellFluidsReport_2_0_0_Data_Fluid_Rheometer
+public class WellFluidsReport_2_0_0_Rheometer
 {
     /// <summary>
     /// The temperature at which the rheometer values were measured
@@ -847,14 +847,14 @@ public class WellFluidsReport_2_0_0_Data_Fluid_Rheometer
     /// The viscosities recorder during the Rheometer test
     /// </summary>
     [JsonPropertyName("RheometerViscosities")]
-    public List<WellFluidsReport_2_0_0_Data_Fluid_Rheometer_RheometerViscosities>? RheometerViscosities { get; set; }
+    public List<WellFluidsReport_2_0_0_RheometerViscosities>? RheometerViscosities { get; set; }
 
 }
 
 /// <summary>
 /// Viscosity values observed
 /// </summary>
-public class WellFluidsReport_2_0_0_Data_Fluid_Rheometer_RheometerViscosities
+public class WellFluidsReport_2_0_0_RheometerViscosities
 {
     /// <summary>
     /// Rotational speed of the rheometer, typically in RPM.

@@ -221,7 +221,7 @@ public class Coring_1_1_1_Data : AbstractCommonResources_1_0_0 // Also composes:
     /// An array contains narrative remarks pertaining to a core.
     /// </summary>
     [JsonPropertyName("CoreRemarks")]
-    public List<Coring_1_1_1_Data_CoreRemarks>? CoreRemarks { get; set; }
+    public List<Coring_1_1_1_CoreRemarks>? CoreRemarks { get; set; }
 
     /// <summary>
     /// The WellLog representation carrying the preferred core-depth to logging-depth correction or mapping.
@@ -264,7 +264,7 @@ public class Coring_1_1_1_Data : AbstractCommonResources_1_0_0 // Also composes:
 /// <summary>
 /// An array contains narrative remarks pertaining to a core.
 /// </summary>
-public class Coring_1_1_1_Data_CoreRemarks
+public class Coring_1_1_1_CoreRemarks
 {
     /// <summary>
     /// A unique identifier for each remark record.

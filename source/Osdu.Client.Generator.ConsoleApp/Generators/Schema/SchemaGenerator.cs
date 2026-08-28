@@ -343,6 +343,9 @@ public class SchemaGenerator
 
         CodeGenerator.BuildAutogenComment(sb);
 
+        // Set the root schema name so all inline types are anchored to it
+        _context.RootSchemaName = SchemaHelpers.Sanitize(name);
+
         var referencedNamespaces = CollectExternalNamespaces(schema);
         BuildUsingsAndNamespace(sb, _context.Namespace, referencedNamespaces);
 

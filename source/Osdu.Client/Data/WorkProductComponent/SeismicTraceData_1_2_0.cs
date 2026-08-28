@@ -107,7 +107,7 @@ public class SeismicTraceData_1_2_0_Data : AbstractCommonResources_1_0_0 // Also
     /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
     /// </summary>
     [JsonPropertyName("Artefacts")]
-    public List<SeismicTraceData_1_2_0_Data_Artefacts>? Artefacts { get; set; }
+    public List<SeismicTraceData_1_2_0_Artefacts>? Artefacts { get; set; }
 
     /// <summary>
     /// A flag that indicates if the work product component is undergoing an extended load.  It reflects the fact that the work product component is in an early stage and may be updated before finalization.
@@ -188,7 +188,7 @@ public class SeismicTraceData_1_2_0_Data : AbstractCommonResources_1_0_0 // Also
     /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
     /// </summary>
     [JsonPropertyName("LineageAssertions")]
-    public List<SeismicTraceData_1_2_0_Data_LineageAssertions>? LineageAssertions { get; set; }
+    public List<SeismicTraceData_1_2_0_LineageAssertions>? LineageAssertions { get; set; }
 
     [JsonPropertyName("LiveTraceOutline")]
     public AbstractSpatialLocation_1_1_0? LiveTraceOutline { get; set; }
@@ -467,13 +467,13 @@ public class SeismicTraceData_1_2_0_Data : AbstractCommonResources_1_0_0 // Also
     /// Sample data format in terms of sample value precision 8bit Integer, 16bit Floating Point etc.
     /// </summary>
     [JsonPropertyName("Precision")]
-    public SeismicTraceData_1_2_0_Data_Precision? Precision { get; set; }
+    public SeismicTraceData_1_2_0_Precision? Precision { get; set; }
 
     /// <summary>
     /// Processing Parameters to simply capture process history until full provenance model can be implemented.
     /// </summary>
     [JsonPropertyName("ProcessingParameters")]
-    public List<SeismicTraceData_1_2_0_Data_ProcessingParameters>? ProcessingParameters { get; set; }
+    public List<SeismicTraceData_1_2_0_ProcessingParameters>? ProcessingParameters { get; set; }
 
     /// <summary>
     /// Actual nominal fold of the trace data set as processed, expressed as the mode in percentage points (60 fold = 6000%).
@@ -546,19 +546,19 @@ public class SeismicTraceData_1_2_0_Data : AbstractCommonResources_1_0_0 // Also
     /// Pre-stack: Sets of trace angle ranges contained within this data set.
     /// </summary>
     [JsonPropertyName("StackAngleRanges")]
-    public List<SeismicTraceData_1_2_0_Data_StackAngleRanges>? StackAngleRanges { get; set; }
+    public List<SeismicTraceData_1_2_0_StackAngleRanges>? StackAngleRanges { get; set; }
 
     /// <summary>
     /// Pre-stack: Sets of trace azimuth ranges contained within this data set.
     /// </summary>
     [JsonPropertyName("StackAzimuthRanges")]
-    public List<SeismicTraceData_1_2_0_Data_StackAzimuthRanges>? StackAzimuthRanges { get; set; }
+    public List<SeismicTraceData_1_2_0_StackAzimuthRanges>? StackAzimuthRanges { get; set; }
 
     /// <summary>
     /// Pre-stack: Sets of trace offset ranges contained within this data set.
     /// </summary>
     [JsonPropertyName("StackOffsetRanges")]
-    public List<SeismicTraceData_1_2_0_Data_StackOffsetRanges>? StackOffsetRanges { get; set; }
+    public List<SeismicTraceData_1_2_0_StackOffsetRanges>? StackOffsetRanges { get; set; }
 
     /// <summary>
     /// Pre-stack: Defines the sorting order of the trace data as stored in the file(s).
@@ -578,7 +578,7 @@ public class SeismicTraceData_1_2_0_Data : AbstractCommonResources_1_0_0 // Also
     /// The contents positions the SeismicTraceData record in context of a time series. This is to be used for time lapse or 4D SeismicTraceData. This structure is optional and absent for SeismicTraceData not part of a time series.
     /// </summary>
     [JsonPropertyName("TimeLapse")]
-    public SeismicTraceData_1_2_0_Data_TimeLapse? TimeLapse { get; set; }
+    public SeismicTraceData_1_2_0_TimeLapse? TimeLapse { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
@@ -588,7 +588,7 @@ public class SeismicTraceData_1_2_0_Data : AbstractCommonResources_1_0_0 // Also
 /// <summary>
 /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
 /// </summary>
-public class SeismicTraceData_1_2_0_Data_Artefacts
+public class SeismicTraceData_1_2_0_Artefacts
 {
     /// <summary>
     /// The SRN of this artefact's role.
@@ -616,7 +616,7 @@ public class SeismicTraceData_1_2_0_Data_Artefacts
 /// <summary>
 /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
 /// </summary>
-public class SeismicTraceData_1_2_0_Data_LineageAssertions
+public class SeismicTraceData_1_2_0_LineageAssertions
 {
     /// <summary>
     /// The object reference identifying the DIRECT, INDIRECT, REFERENCE dependency.
@@ -637,7 +637,7 @@ public class SeismicTraceData_1_2_0_Data_LineageAssertions
 /// <summary>
 /// Sample data format in terms of sample value precision 8bit Integer, 16bit Floating Point etc.
 /// </summary>
-public class SeismicTraceData_1_2_0_Data_Precision
+public class SeismicTraceData_1_2_0_Precision
 {
     /// <summary>
     /// SRN of a reference value for binary data types, such as INT, UINT, FLOAT, IBM_FLOAT, ASCII, EBCDIC.
@@ -657,7 +657,7 @@ public class SeismicTraceData_1_2_0_Data_Precision
 /// <summary>
 /// Processing Parameters to simply capture process history until full provenance model can be implemented.
 /// </summary>
-public class SeismicTraceData_1_2_0_Data_ProcessingParameters
+public class SeismicTraceData_1_2_0_ProcessingParameters
 {
     /// <summary>
     /// Processing Parameter Type
@@ -677,7 +677,7 @@ public class SeismicTraceData_1_2_0_Data_ProcessingParameters
 /// <summary>
 /// A range container carrying minimum/maximum angle values.
 /// </summary>
-public class SeismicTraceData_1_2_0_Data_StackAngleRanges
+public class SeismicTraceData_1_2_0_StackAngleRanges
 {
     /// <summary>
     /// The minimum angle value.
@@ -696,7 +696,7 @@ public class SeismicTraceData_1_2_0_Data_StackAngleRanges
 /// <summary>
 /// A range container carrying minimum/maximum angle values.
 /// </summary>
-public class SeismicTraceData_1_2_0_Data_StackAzimuthRanges
+public class SeismicTraceData_1_2_0_StackAzimuthRanges
 {
     /// <summary>
     /// The minimum angle value.
@@ -715,7 +715,7 @@ public class SeismicTraceData_1_2_0_Data_StackAzimuthRanges
 /// <summary>
 /// A range container carrying minimum/maximum angle values.
 /// </summary>
-public class SeismicTraceData_1_2_0_Data_StackOffsetRanges
+public class SeismicTraceData_1_2_0_StackOffsetRanges
 {
     /// <summary>
     /// The minimum length value.
@@ -734,7 +734,7 @@ public class SeismicTraceData_1_2_0_Data_StackOffsetRanges
 /// <summary>
 /// The contents positions the SeismicTraceData record in context of a time series. This is to be used for time lapse or 4D SeismicTraceData. This structure is optional and absent for SeismicTraceData not part of a time series.
 /// </summary>
-public class SeismicTraceData_1_2_0_Data_TimeLapse
+public class SeismicTraceData_1_2_0_TimeLapse
 {
     /// <summary>
     /// The relationship to a TimeSeries work-product-component.

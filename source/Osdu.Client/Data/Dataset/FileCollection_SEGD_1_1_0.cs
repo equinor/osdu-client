@@ -134,7 +134,7 @@ public class FileCollection_SEGD_1_1_0_Data : AbstractCommonResources_1_0_0 // A
     /// Endianness of binary value.  Enumeration: "BIG", "LITTLE".  If absent, applications will need to interpret from context indicators.
     /// </summary>
     [JsonPropertyName("Endian")]
-    public FileCollection_SEGD_1_1_0_Data_Endian? Endian { get; set; }
+    public FileCollection_SEGD_1_1_0_Endian? Endian { get; set; }
 
     /// <summary>
     /// Placeholder for a specialization.
@@ -146,7 +146,7 @@ public class FileCollection_SEGD_1_1_0_Data : AbstractCommonResources_1_0_0 // A
     /// Array of objects which define the meaning and format of a tabular structure used in a binary file as a header.  The initial use case is the trace headers of a SEG-Y file.  Note that some of this information may be repeated in the SEG-Y EBCDIC header.
     /// </summary>
     [JsonPropertyName("VectorHeaderMapping")]
-    public List<FileCollection_SEGD_1_1_0_Data_VectorHeaderMapping>? VectorHeaderMapping { get; set; }
+    public List<FileCollection_SEGD_1_1_0_VectorHeaderMapping>? VectorHeaderMapping { get; set; }
 
     /// <summary>
     /// The SEGD standard revision the SEGD file set is conforming to.
@@ -192,7 +192,7 @@ public class FileCollection_SEGD_1_1_0_Data : AbstractCommonResources_1_0_0 // A
 /// Endianness of binary value.  Enumeration: "BIG", "LITTLE".  If absent, applications will need to interpret from context indicators.
 /// </summary>
 [JsonConverter(typeof(JsonStringEnumConverter))]
-public enum FileCollection_SEGD_1_1_0_Data_Endian
+public enum FileCollection_SEGD_1_1_0_Endian
 {
     [JsonStringEnumMemberName("BIG")]
     BIG,
@@ -205,7 +205,7 @@ public enum FileCollection_SEGD_1_1_0_Data_Endian
 /// <summary>
 /// Array of objects which define the meaning and format of a tabular structure used in a binary file as a header.  The initial use case is the trace headers of a SEG-Y file.  Note that some of this information may be repeated in the SEG-Y EBCDIC header.
 /// </summary>
-public class FileCollection_SEGD_1_1_0_Data_VectorHeaderMapping
+public class FileCollection_SEGD_1_1_0_VectorHeaderMapping
 {
     /// <summary>
     /// Relationship to a reference value for a name of a property header such as INLINE, CDPX.
@@ -244,7 +244,7 @@ public class FileCollection_SEGD_1_1_0_Data_VectorHeaderMapping
     /// Enumerated string indicating whether to use the normal scalar field for scaling this field (STANDARD), no scaling (NOSCALE), or override scalar (OVERRIDE).  Default is current STANDARD (such as SEG-Y rev2).
     /// </summary>
     [JsonPropertyName("ScalarIndicator")]
-    public FileCollection_SEGD_1_1_0_Data_VectorHeaderMapping_ScalarIndicator? ScalarIndicator { get; set; }
+    public FileCollection_SEGD_1_1_0_ScalarIndicator? ScalarIndicator { get; set; }
 
     /// <summary>
     /// Scalar value (as defined by standard) when a value present in the header needs to be overwritten for this value.
@@ -258,7 +258,7 @@ public class FileCollection_SEGD_1_1_0_Data_VectorHeaderMapping
 /// Enumerated string indicating whether to use the normal scalar field for scaling this field (STANDARD), no scaling (NOSCALE), or override scalar (OVERRIDE).  Default is current STANDARD (such as SEG-Y rev2).
 /// </summary>
 [JsonConverter(typeof(JsonStringEnumConverter))]
-public enum FileCollection_SEGD_1_1_0_Data_VectorHeaderMapping_ScalarIndicator
+public enum FileCollection_SEGD_1_1_0_ScalarIndicator
 {
     [JsonStringEnumMemberName("STANDARD")]
     STANDARD,

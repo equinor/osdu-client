@@ -148,7 +148,7 @@ public class WellboreArchitecture_1_1_0_Data : AbstractCommonResources_1_0_0 // 
     /// Description of the Installed tubular associated to this architecture
     /// </summary>
     [JsonPropertyName("InstalledTubulars")]
-    public List<WellboreArchitecture_1_1_0_Data_InstalledTubulars>? InstalledTubulars { get; set; }
+    public List<WellboreArchitecture_1_1_0_InstalledTubulars>? InstalledTubulars { get; set; }
 
     /// <summary>
     /// Name of Wellbore Architecture
@@ -164,7 +164,7 @@ public class WellboreArchitecture_1_1_0_Data : AbstractCommonResources_1_0_0 // 
 /// <summary>
 /// Geometrical Description of tubular assembly as installed in the wellbore
 /// </summary>
-public class WellboreArchitecture_1_1_0_Data_InstalledTubulars
+public class WellboreArchitecture_1_1_0_InstalledTubulars
 {
     /// <summary>
     /// The measured depth at the top of the tubular

@@ -173,7 +173,7 @@ public class BHARun_2_0_0_Data : AbstractCommonResources_1_0_0 // Also composes:
     /// The history of expenditure approvals.
     /// </summary>
     [JsonPropertyName("FundsAuthorizations")]
-    public List<BHARun_2_0_0_Data_FundsAuthorizations>? FundsAuthorizations { get; set; }
+    public List<BHARun_2_0_0_FundsAuthorizations>? FundsAuthorizations { get; set; }
 
     /// <summary>
     /// References to applicable agreements in external contract database system of record.
@@ -192,25 +192,25 @@ public class BHARun_2_0_0_Data : AbstractCommonResources_1_0_0 // Also composes:
     /// References to organisations which supplied services to the Project.
     /// </summary>
     [JsonPropertyName("Contractors")]
-    public List<BHARun_2_0_0_Data_Contractors>? Contractors { get; set; }
+    public List<BHARun_2_0_0_Contractors>? Contractors { get; set; }
 
     /// <summary>
     /// List of key individuals supporting the Project.  This could be Abstracted for re-use, and could reference a separate Persons master data object.
     /// </summary>
     [JsonPropertyName("Personnel")]
-    public List<BHARun_2_0_0_Data_Personnel>? Personnel { get; set; }
+    public List<BHARun_2_0_0_Personnel>? Personnel { get; set; }
 
     /// <summary>
     /// General parameters defining the configuration of the Project.  In the case of a seismic acquisition project it is like receiver interval, source depth, source type.  In the case of a processing project, it is like replacement velocity, reference datum above mean sea level.
     /// </summary>
     [JsonPropertyName("ProjectSpecifications")]
-    public List<BHARun_2_0_0_Data_ProjectSpecifications>? ProjectSpecifications { get; set; }
+    public List<BHARun_2_0_0_ProjectSpecifications>? ProjectSpecifications { get; set; }
 
     /// <summary>
     /// The history of life cycle states that the Project has been through..
     /// </summary>
     [JsonPropertyName("ProjectStates")]
-    public List<BHARun_2_0_0_Data_ProjectStates>? ProjectStates { get; set; }
+    public List<BHARun_2_0_0_ProjectStates>? ProjectStates { get; set; }
 
     /// <summary>
     /// Unique identifier for the wellbore.  This uniquely represents
@@ -319,7 +319,7 @@ public class BHARun_2_0_0_Data : AbstractCommonResources_1_0_0 // Also composes:
     /// Identifiers of the associated run parameter plans.
     /// </summary>
     [JsonPropertyName("RunParameterPlans")]
-    public List<BHARun_2_0_0_Data_RunParameterPlans>? RunParameterPlans { get; set; }
+    public List<BHARun_2_0_0_RunParameterPlans>? RunParameterPlans { get; set; }
 
     /// <summary>
     /// Measured depth at run start. Depth relative to Planned wellbore ZDP. Navigate via WellboreID to the side-car WellPlanningWellbore, which holds the depth reference in data.VerticalMeasurement.
@@ -355,7 +355,7 @@ public class BHARun_2_0_0_Data : AbstractCommonResources_1_0_0 // Also composes:
     /// The parameters that were actually used during the BHA run
     /// </summary>
     [JsonPropertyName("DrillingParams")]
-    public List<BHARun_2_0_0_Data_DrillingParams>? DrillingParams { get; set; }
+    public List<BHARun_2_0_0_DrillingParams>? DrillingParams { get; set; }
 
     /// <summary>
     /// Part or all of the BHA is left in the hole
@@ -415,7 +415,7 @@ public class BHARun_2_0_0_Data : AbstractCommonResources_1_0_0 // Also composes:
 /// <summary>
 /// The history of expenditure approvals.
 /// </summary>
-public class BHARun_2_0_0_Data_FundsAuthorizations
+public class BHARun_2_0_0_FundsAuthorizations
 {
     /// <summary>
     /// Internal Company control number which identifies the allocation of funds to the Project.
@@ -448,7 +448,7 @@ public class BHARun_2_0_0_Data_FundsAuthorizations
 /// <summary>
 /// References to organisations which supplied services to the Project.
 /// </summary>
-public class BHARun_2_0_0_Data_Contractors
+public class BHARun_2_0_0_Contractors
 {
     /// <summary>
     /// Reference to a company that provided services.
@@ -475,7 +475,7 @@ public class BHARun_2_0_0_Data_Contractors
 /// <summary>
 /// List of key individuals supporting the Project.  This could be Abstracted for re-use, and could reference a separate Persons master data object.
 /// </summary>
-public class BHARun_2_0_0_Data_Personnel
+public class BHARun_2_0_0_Personnel
 {
     /// <summary>
     /// Name of an individual supporting the Project.
@@ -502,7 +502,7 @@ public class BHARun_2_0_0_Data_Personnel
 /// <summary>
 /// General parameters defining the configuration of the Project.  In the case of a seismic acquisition project it is like receiver interval, source depth, source type.  In the case of a processing project, it is like replacement velocity, reference datum above mean sea level.
 /// </summary>
-public class BHARun_2_0_0_Data_ProjectSpecifications
+public class BHARun_2_0_0_ProjectSpecifications
 {
     /// <summary>
     /// The date and time at which a ProjectSpecification becomes effective.
@@ -563,7 +563,7 @@ public class BHARun_2_0_0_Data_ProjectSpecifications
 /// <summary>
 /// The history of life cycle states that the Project has been through..
 /// </summary>
-public class BHARun_2_0_0_Data_ProjectStates
+public class BHARun_2_0_0_ProjectStates
 {
     /// <summary>
     /// The date and time at which the state becomes effective.
@@ -591,7 +591,7 @@ public class BHARun_2_0_0_Data_ProjectStates
 /// <summary>
 /// Operating parameters of a drill string run
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans
+public class BHARun_2_0_0_RunParameterPlans
 {
     /// <summary>
     /// The start measured depth of the hole section at the start of the run. Depth relative to Planned wellbore ZDP. Navigate via WellboreID to the side-car WellPlanningWellbore, which holds the depth reference in data.VerticalMeasurement.
@@ -609,14 +609,14 @@ public class BHARun_2_0_0_Data_RunParameterPlans
     /// A series of operating parameters observed during the run
     /// </summary>
     [JsonPropertyName("OperationParameterPlan")]
-    public BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan? OperationParameterPlan { get; set; }
+    public BHARun_2_0_0_OperationParameterPlan? OperationParameterPlan { get; set; }
 
 }
 
 /// <summary>
 /// A series of operating parameters observed during the run
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan
+public class BHARun_2_0_0_OperationParameterPlan
 {
     /// <summary>
     /// The realization strategy utilized in this series of operation parameters
@@ -628,69 +628,69 @@ public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan
     /// A group of parameters that refer to Torque on Bottom
     /// </summary>
     [JsonPropertyName("TorqueOnBottomGroup")]
-    public BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueOnBottomGroup? TorqueOnBottomGroup { get; set; }
+    public BHARun_2_0_0_TorqueOnBottomGroup? TorqueOnBottomGroup { get; set; }
 
     /// <summary>
     /// A group of parameters that refer to RPM (rotations per minute)
     /// </summary>
     [JsonPropertyName("RPMGroup")]
-    public BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup? RPMGroup { get; set; }
+    public BHARun_2_0_0_RPMGroup? RPMGroup { get; set; }
 
     /// <summary>
     /// A group of parameters that refer to ROP (rate of penetration)
     /// </summary>
     [JsonPropertyName("ROPGroup")]
-    public BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup? ROPGroup { get; set; }
+    public BHARun_2_0_0_ROPGroup? ROPGroup { get; set; }
 
     /// <summary>
     /// A group of parameters that refer to WOB (weight on bit)
     /// </summary>
     [JsonPropertyName("WOBGroup")]
-    public BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup? WOBGroup { get; set; }
+    public BHARun_2_0_0_WOBGroup? WOBGroup { get; set; }
 
     /// <summary>
     /// A group of parameters that refer to flowrate
     /// </summary>
     [JsonPropertyName("FlowratePumpGroup")]
-    public BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_FlowratePumpGroup? FlowratePumpGroup { get; set; }
+    public BHARun_2_0_0_FlowratePumpGroup? FlowratePumpGroup { get; set; }
 
     /// <summary>
     /// A group of parameters that refer to anticipated Torque at Surface
     /// </summary>
     [JsonPropertyName("TorqueAtSurfaceGroup")]
-    public BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueAtSurfaceGroup? TorqueAtSurfaceGroup { get; set; }
+    public BHARun_2_0_0_TorqueAtSurfaceGroup? TorqueAtSurfaceGroup { get; set; }
 
 }
 
 /// <summary>
 /// A group of parameters that refer to Torque on Bottom
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueOnBottomGroup
+public class BHARun_2_0_0_TorqueOnBottomGroup
 {
     /// <summary>
     /// The planned maximum value for the considered parameter
     /// </summary>
     [JsonPropertyName("MaximumParameter")]
-    public List<BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueOnBottomGroup_MaximumParameter>? MaximumParameter { get; set; }
+    public List<BHARun_2_0_0_MaximumParameter>? MaximumParameter { get; set; }
 
     /// <summary>
     /// The planned minimum value for the considered parameter
     /// </summary>
     [JsonPropertyName("MinimumParameter")]
-    public List<BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueOnBottomGroup_MinimumParameter>? MinimumParameter { get; set; }
+    public List<BHARun_2_0_0_MinimumParameter>? MinimumParameter { get; set; }
 
     /// <summary>
     /// The planned recommended value for the considered parameter
     /// </summary>
     [JsonPropertyName("RecommendedParameter")]
-    public List<BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueOnBottomGroup_RecommendedParameter>? RecommendedParameter { get; set; }
+    public List<BHARun_2_0_0_RecommendedParameter>? RecommendedParameter { get; set; }
 
 }
 
 /// <summary>
 /// The definition of the point
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueOnBottomGroup_MaximumParameter
+public class BHARun_2_0_0_MaximumParameter
 {
     /// <summary>
     /// The measured depth at which the measurement was observed. Depth relative to Planned wellbore ZDP. Navigate via WellboreID to the side-car WellPlanningWellbore, which holds the depth reference in data.VerticalMeasurement.
@@ -715,14 +715,14 @@ public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueOn
     /// The source indicator associated with this point.
     /// </summary>
     [JsonPropertyName("PointsSources")]
-    public List<BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueOnBottomGroup_MaximumParameter_PointsSources>? PointsSources { get; set; }
+    public List<BHARun_2_0_0_PointsSources>? PointsSources { get; set; }
 
 }
 
 /// <summary>
 /// The definition of the points used as a source for each individual critical point, resulting from parameters set or observed during a BHA run
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueOnBottomGroup_MaximumParameter_PointsSources
+public class BHARun_2_0_0_PointsSources
 {
     /// <summary>
     /// The name of the Source Indicator Type. For example Manual Input
@@ -754,7 +754,7 @@ public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueOn
 /// <summary>
 /// The definition of the point
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueOnBottomGroup_MinimumParameter
+public class BHARun_2_0_0_MinimumParameter
 {
     /// <summary>
     /// The measured depth at which the measurement was observed. Depth relative to Planned wellbore ZDP. Navigate via WellboreID to the side-car WellPlanningWellbore, which holds the depth reference in data.VerticalMeasurement.
@@ -779,14 +779,14 @@ public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueOn
     /// The source indicator associated with this point.
     /// </summary>
     [JsonPropertyName("PointsSources")]
-    public List<BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueOnBottomGroup_MinimumParameter_PointsSources>? PointsSources { get; set; }
+    public List<BHARun_2_0_0_MinimumParameterPointsSources>? PointsSources { get; set; }
 
 }
 
 /// <summary>
 /// The definition of the points used as a source for each individual critical point, resulting from parameters set or observed during a BHA run
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueOnBottomGroup_MinimumParameter_PointsSources
+public class BHARun_2_0_0_MinimumParameterPointsSources
 {
     /// <summary>
     /// The name of the Source Indicator Type. For example Manual Input
@@ -818,7 +818,7 @@ public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueOn
 /// <summary>
 /// The definition of the point
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueOnBottomGroup_RecommendedParameter
+public class BHARun_2_0_0_RecommendedParameter
 {
     /// <summary>
     /// The measured depth at which the measurement was observed. Depth relative to Planned wellbore ZDP. Navigate via WellboreID to the side-car WellPlanningWellbore, which holds the depth reference in data.VerticalMeasurement.
@@ -843,14 +843,14 @@ public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueOn
     /// The source indicator associated with this point.
     /// </summary>
     [JsonPropertyName("PointsSources")]
-    public List<BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueOnBottomGroup_RecommendedParameter_PointsSources>? PointsSources { get; set; }
+    public List<BHARun_2_0_0_RecommendedParameterPointsSources>? PointsSources { get; set; }
 
 }
 
 /// <summary>
 /// The definition of the points used as a source for each individual critical point, resulting from parameters set or observed during a BHA run
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueOnBottomGroup_RecommendedParameter_PointsSources
+public class BHARun_2_0_0_RecommendedParameterPointsSources
 {
     /// <summary>
     /// The name of the Source Indicator Type. For example Manual Input
@@ -882,51 +882,51 @@ public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueOn
 /// <summary>
 /// A group of parameters that refer to RPM (rotations per minute)
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup
+public class BHARun_2_0_0_RPMGroup
 {
     /// <summary>
     /// The planned surface rotary speed values for the BHA run.
     /// </summary>
     [JsonPropertyName("SurfaceRPMGroup")]
-    public BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_SurfaceRPMGroup? SurfaceRPMGroup { get; set; }
+    public BHARun_2_0_0_SurfaceRPMGroup? SurfaceRPMGroup { get; set; }
 
     /// <summary>
     /// The planned downhole rotary speed values for the BHA run.
     /// </summary>
     [JsonPropertyName("DownHoleRPMGroup")]
-    public BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_DownHoleRPMGroup? DownHoleRPMGroup { get; set; }
+    public BHARun_2_0_0_DownHoleRPMGroup? DownHoleRPMGroup { get; set; }
 
 }
 
 /// <summary>
 /// The planned surface rotary speed values for the BHA run.
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_SurfaceRPMGroup
+public class BHARun_2_0_0_SurfaceRPMGroup
 {
     /// <summary>
     /// The planned maximum value for the considered parameter
     /// </summary>
     [JsonPropertyName("MaximumParameter")]
-    public List<BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_SurfaceRPMGroup_MaximumParameter>? MaximumParameter { get; set; }
+    public List<BHARun_2_0_0_SurfaceRPMGroupMaximumParameter>? MaximumParameter { get; set; }
 
     /// <summary>
     /// The planned minimum value for the considered parameter
     /// </summary>
     [JsonPropertyName("MinimumParameter")]
-    public List<BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_SurfaceRPMGroup_MinimumParameter>? MinimumParameter { get; set; }
+    public List<BHARun_2_0_0_SurfaceRPMGroupMinimumParameter>? MinimumParameter { get; set; }
 
     /// <summary>
     /// The planned recommended value for the considered parameter
     /// </summary>
     [JsonPropertyName("RecommendedParameter")]
-    public List<BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_SurfaceRPMGroup_RecommendedParameter>? RecommendedParameter { get; set; }
+    public List<BHARun_2_0_0_SurfaceRPMGroupRecommendedParameter>? RecommendedParameter { get; set; }
 
 }
 
 /// <summary>
 /// The definition of the point
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_SurfaceRPMGroup_MaximumParameter
+public class BHARun_2_0_0_SurfaceRPMGroupMaximumParameter
 {
     /// <summary>
     /// The measured depth at which the measurement was observed. Depth relative to Planned wellbore ZDP. Navigate via WellboreID to the side-car WellPlanningWellbore, which holds the depth reference in data.VerticalMeasurement.
@@ -951,14 +951,14 @@ public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup
     /// The source indicator associated with this point.
     /// </summary>
     [JsonPropertyName("PointsSources")]
-    public List<BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_SurfaceRPMGroup_MaximumParameter_PointsSources>? PointsSources { get; set; }
+    public List<BHARun_2_0_0_SurfaceRPMGroupMaximumParameterPointsSources>? PointsSources { get; set; }
 
 }
 
 /// <summary>
 /// The definition of the points used as a source for each individual critical point, resulting from parameters set or observed during a BHA run
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_SurfaceRPMGroup_MaximumParameter_PointsSources
+public class BHARun_2_0_0_SurfaceRPMGroupMaximumParameterPointsSources
 {
     /// <summary>
     /// The name of the Source Indicator Type. For example Manual Input
@@ -990,7 +990,7 @@ public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup
 /// <summary>
 /// The definition of the point
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_SurfaceRPMGroup_MinimumParameter
+public class BHARun_2_0_0_SurfaceRPMGroupMinimumParameter
 {
     /// <summary>
     /// The measured depth at which the measurement was observed. Depth relative to Planned wellbore ZDP. Navigate via WellboreID to the side-car WellPlanningWellbore, which holds the depth reference in data.VerticalMeasurement.
@@ -1015,14 +1015,14 @@ public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup
     /// The source indicator associated with this point.
     /// </summary>
     [JsonPropertyName("PointsSources")]
-    public List<BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_SurfaceRPMGroup_MinimumParameter_PointsSources>? PointsSources { get; set; }
+    public List<BHARun_2_0_0_SurfaceRPMGroupMinimumParameterPointsSources>? PointsSources { get; set; }
 
 }
 
 /// <summary>
 /// The definition of the points used as a source for each individual critical point, resulting from parameters set or observed during a BHA run
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_SurfaceRPMGroup_MinimumParameter_PointsSources
+public class BHARun_2_0_0_SurfaceRPMGroupMinimumParameterPointsSources
 {
     /// <summary>
     /// The name of the Source Indicator Type. For example Manual Input
@@ -1054,7 +1054,7 @@ public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup
 /// <summary>
 /// The definition of the point
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_SurfaceRPMGroup_RecommendedParameter
+public class BHARun_2_0_0_SurfaceRPMGroupRecommendedParameter
 {
     /// <summary>
     /// The measured depth at which the measurement was observed. Depth relative to Planned wellbore ZDP. Navigate via WellboreID to the side-car WellPlanningWellbore, which holds the depth reference in data.VerticalMeasurement.
@@ -1079,14 +1079,14 @@ public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup
     /// The source indicator associated with this point.
     /// </summary>
     [JsonPropertyName("PointsSources")]
-    public List<BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_SurfaceRPMGroup_RecommendedParameter_PointsSources>? PointsSources { get; set; }
+    public List<BHARun_2_0_0_SurfaceRPMGroupRecommendedParameterPointsSources>? PointsSources { get; set; }
 
 }
 
 /// <summary>
 /// The definition of the points used as a source for each individual critical point, resulting from parameters set or observed during a BHA run
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_SurfaceRPMGroup_RecommendedParameter_PointsSources
+public class BHARun_2_0_0_SurfaceRPMGroupRecommendedParameterPointsSources
 {
     /// <summary>
     /// The name of the Source Indicator Type. For example Manual Input
@@ -1118,32 +1118,32 @@ public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup
 /// <summary>
 /// The planned downhole rotary speed values for the BHA run.
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_DownHoleRPMGroup
+public class BHARun_2_0_0_DownHoleRPMGroup
 {
     /// <summary>
     /// The planned maximum value for the considered parameter
     /// </summary>
     [JsonPropertyName("MaximumParameter")]
-    public List<BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_DownHoleRPMGroup_MaximumParameter>? MaximumParameter { get; set; }
+    public List<BHARun_2_0_0_DownHoleRPMGroupMaximumParameter>? MaximumParameter { get; set; }
 
     /// <summary>
     /// The planned minimum value for the considered parameter
     /// </summary>
     [JsonPropertyName("MinimumParameter")]
-    public List<BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_DownHoleRPMGroup_MinimumParameter>? MinimumParameter { get; set; }
+    public List<BHARun_2_0_0_DownHoleRPMGroupMinimumParameter>? MinimumParameter { get; set; }
 
     /// <summary>
     /// The planned recommended value for the considered parameter
     /// </summary>
     [JsonPropertyName("RecommendedParameter")]
-    public List<BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_DownHoleRPMGroup_RecommendedParameter>? RecommendedParameter { get; set; }
+    public List<BHARun_2_0_0_DownHoleRPMGroupRecommendedParameter>? RecommendedParameter { get; set; }
 
 }
 
 /// <summary>
 /// The definition of the point
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_DownHoleRPMGroup_MaximumParameter
+public class BHARun_2_0_0_DownHoleRPMGroupMaximumParameter
 {
     /// <summary>
     /// The measured depth at which the measurement was observed. Depth relative to Planned wellbore ZDP. Navigate via WellboreID to the side-car WellPlanningWellbore, which holds the depth reference in data.VerticalMeasurement.
@@ -1168,14 +1168,14 @@ public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup
     /// The source indicator associated with this point.
     /// </summary>
     [JsonPropertyName("PointsSources")]
-    public List<BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_DownHoleRPMGroup_MaximumParameter_PointsSources>? PointsSources { get; set; }
+    public List<BHARun_2_0_0_DownHoleRPMGroupMaximumParameterPointsSources>? PointsSources { get; set; }
 
 }
 
 /// <summary>
 /// The definition of the points used as a source for each individual critical point, resulting from parameters set or observed during a BHA run
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_DownHoleRPMGroup_MaximumParameter_PointsSources
+public class BHARun_2_0_0_DownHoleRPMGroupMaximumParameterPointsSources
 {
     /// <summary>
     /// The name of the Source Indicator Type. For example Manual Input
@@ -1207,7 +1207,7 @@ public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup
 /// <summary>
 /// The definition of the point
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_DownHoleRPMGroup_MinimumParameter
+public class BHARun_2_0_0_DownHoleRPMGroupMinimumParameter
 {
     /// <summary>
     /// The measured depth at which the measurement was observed. Depth relative to Planned wellbore ZDP. Navigate via WellboreID to the side-car WellPlanningWellbore, which holds the depth reference in data.VerticalMeasurement.
@@ -1232,14 +1232,14 @@ public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup
     /// The source indicator associated with this point.
     /// </summary>
     [JsonPropertyName("PointsSources")]
-    public List<BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_DownHoleRPMGroup_MinimumParameter_PointsSources>? PointsSources { get; set; }
+    public List<BHARun_2_0_0_DownHoleRPMGroupMinimumParameterPointsSources>? PointsSources { get; set; }
 
 }
 
 /// <summary>
 /// The definition of the points used as a source for each individual critical point, resulting from parameters set or observed during a BHA run
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_DownHoleRPMGroup_MinimumParameter_PointsSources
+public class BHARun_2_0_0_DownHoleRPMGroupMinimumParameterPointsSources
 {
     /// <summary>
     /// The name of the Source Indicator Type. For example Manual Input
@@ -1271,7 +1271,7 @@ public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup
 /// <summary>
 /// The definition of the point
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_DownHoleRPMGroup_RecommendedParameter
+public class BHARun_2_0_0_DownHoleRPMGroupRecommendedParameter
 {
     /// <summary>
     /// The measured depth at which the measurement was observed. Depth relative to Planned wellbore ZDP. Navigate via WellboreID to the side-car WellPlanningWellbore, which holds the depth reference in data.VerticalMeasurement.
@@ -1296,14 +1296,14 @@ public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup
     /// The source indicator associated with this point.
     /// </summary>
     [JsonPropertyName("PointsSources")]
-    public List<BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_DownHoleRPMGroup_RecommendedParameter_PointsSources>? PointsSources { get; set; }
+    public List<BHARun_2_0_0_DownHoleRPMGroupRecommendedParameterPointsSources>? PointsSources { get; set; }
 
 }
 
 /// <summary>
 /// The definition of the points used as a source for each individual critical point, resulting from parameters set or observed during a BHA run
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup_DownHoleRPMGroup_RecommendedParameter_PointsSources
+public class BHARun_2_0_0_DownHoleRPMGroupRecommendedParameterPointsSources
 {
     /// <summary>
     /// The name of the Source Indicator Type. For example Manual Input
@@ -1335,32 +1335,32 @@ public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_RPMGroup
 /// <summary>
 /// A group of parameters that refer to ROP (rate of penetration)
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup
+public class BHARun_2_0_0_ROPGroup
 {
     /// <summary>
     /// The planned maximum value for the considered parameter
     /// </summary>
     [JsonPropertyName("MaximumParameter")]
-    public List<BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup_MaximumParameter>? MaximumParameter { get; set; }
+    public List<BHARun_2_0_0_ROPGroupMaximumParameter>? MaximumParameter { get; set; }
 
     /// <summary>
     /// The planned minimum value for the considered parameter
     /// </summary>
     [JsonPropertyName("MinimumParameter")]
-    public List<BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup_MinimumParameter>? MinimumParameter { get; set; }
+    public List<BHARun_2_0_0_ROPGroupMinimumParameter>? MinimumParameter { get; set; }
 
     /// <summary>
     /// The planned recommended value for the considered parameter
     /// </summary>
     [JsonPropertyName("RecommendedParameter")]
-    public List<BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup_RecommendedParameter>? RecommendedParameter { get; set; }
+    public List<BHARun_2_0_0_ROPGroupRecommendedParameter>? RecommendedParameter { get; set; }
 
 }
 
 /// <summary>
 /// The definition of the point
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup_MaximumParameter
+public class BHARun_2_0_0_ROPGroupMaximumParameter
 {
     /// <summary>
     /// The measured depth at which the measurement was observed. Depth relative to Planned wellbore ZDP. Navigate via WellboreID to the side-car WellPlanningWellbore, which holds the depth reference in data.VerticalMeasurement.
@@ -1385,14 +1385,14 @@ public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup
     /// The source indicator associated with this point.
     /// </summary>
     [JsonPropertyName("PointsSources")]
-    public List<BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup_MaximumParameter_PointsSources>? PointsSources { get; set; }
+    public List<BHARun_2_0_0_ROPGroupMaximumParameterPointsSources>? PointsSources { get; set; }
 
 }
 
 /// <summary>
 /// The definition of the points used as a source for each individual critical point, resulting from parameters set or observed during a BHA run
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup_MaximumParameter_PointsSources
+public class BHARun_2_0_0_ROPGroupMaximumParameterPointsSources
 {
     /// <summary>
     /// The name of the Source Indicator Type. For example Manual Input
@@ -1424,7 +1424,7 @@ public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup
 /// <summary>
 /// The definition of the point
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup_MinimumParameter
+public class BHARun_2_0_0_ROPGroupMinimumParameter
 {
     /// <summary>
     /// The measured depth at which the measurement was observed. Depth relative to Planned wellbore ZDP. Navigate via WellboreID to the side-car WellPlanningWellbore, which holds the depth reference in data.VerticalMeasurement.
@@ -1449,14 +1449,14 @@ public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup
     /// The source indicator associated with this point.
     /// </summary>
     [JsonPropertyName("PointsSources")]
-    public List<BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup_MinimumParameter_PointsSources>? PointsSources { get; set; }
+    public List<BHARun_2_0_0_ROPGroupMinimumParameterPointsSources>? PointsSources { get; set; }
 
 }
 
 /// <summary>
 /// The definition of the points used as a source for each individual critical point, resulting from parameters set or observed during a BHA run
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup_MinimumParameter_PointsSources
+public class BHARun_2_0_0_ROPGroupMinimumParameterPointsSources
 {
     /// <summary>
     /// The name of the Source Indicator Type. For example Manual Input
@@ -1488,7 +1488,7 @@ public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup
 /// <summary>
 /// The definition of the point
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup_RecommendedParameter
+public class BHARun_2_0_0_ROPGroupRecommendedParameter
 {
     /// <summary>
     /// The measured depth at which the measurement was observed. Depth relative to Planned wellbore ZDP. Navigate via WellboreID to the side-car WellPlanningWellbore, which holds the depth reference in data.VerticalMeasurement.
@@ -1513,14 +1513,14 @@ public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup
     /// The source indicator associated with this point.
     /// </summary>
     [JsonPropertyName("PointsSources")]
-    public List<BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup_RecommendedParameter_PointsSources>? PointsSources { get; set; }
+    public List<BHARun_2_0_0_ROPGroupRecommendedParameterPointsSources>? PointsSources { get; set; }
 
 }
 
 /// <summary>
 /// The definition of the points used as a source for each individual critical point, resulting from parameters set or observed during a BHA run
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup_RecommendedParameter_PointsSources
+public class BHARun_2_0_0_ROPGroupRecommendedParameterPointsSources
 {
     /// <summary>
     /// The name of the Source Indicator Type. For example Manual Input
@@ -1552,32 +1552,32 @@ public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_ROPGroup
 /// <summary>
 /// A group of parameters that refer to WOB (weight on bit)
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup
+public class BHARun_2_0_0_WOBGroup
 {
     /// <summary>
     /// The planned maximum value for the considered parameter
     /// </summary>
     [JsonPropertyName("MaximumParameter")]
-    public List<BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup_MaximumParameter>? MaximumParameter { get; set; }
+    public List<BHARun_2_0_0_WOBGroupMaximumParameter>? MaximumParameter { get; set; }
 
     /// <summary>
     /// The planned minimum value for the considered parameter
     /// </summary>
     [JsonPropertyName("MinimumParameter")]
-    public List<BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup_MinimumParameter>? MinimumParameter { get; set; }
+    public List<BHARun_2_0_0_WOBGroupMinimumParameter>? MinimumParameter { get; set; }
 
     /// <summary>
     /// The planned recommended value for the considered parameter
     /// </summary>
     [JsonPropertyName("RecommendedParameter")]
-    public List<BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup_RecommendedParameter>? RecommendedParameter { get; set; }
+    public List<BHARun_2_0_0_WOBGroupRecommendedParameter>? RecommendedParameter { get; set; }
 
 }
 
 /// <summary>
 /// The definition of the point
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup_MaximumParameter
+public class BHARun_2_0_0_WOBGroupMaximumParameter
 {
     /// <summary>
     /// The measured depth at which the measurement was observed. Depth relative to Planned wellbore ZDP. Navigate via WellboreID to the side-car WellPlanningWellbore, which holds the depth reference in data.VerticalMeasurement.
@@ -1602,14 +1602,14 @@ public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup
     /// The source indicator associated with this point.
     /// </summary>
     [JsonPropertyName("PointsSources")]
-    public List<BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup_MaximumParameter_PointsSources>? PointsSources { get; set; }
+    public List<BHARun_2_0_0_WOBGroupMaximumParameterPointsSources>? PointsSources { get; set; }
 
 }
 
 /// <summary>
 /// The definition of the points used as a source for each individual critical point, resulting from parameters set or observed during a BHA run
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup_MaximumParameter_PointsSources
+public class BHARun_2_0_0_WOBGroupMaximumParameterPointsSources
 {
     /// <summary>
     /// The name of the Source Indicator Type. For example Manual Input
@@ -1641,7 +1641,7 @@ public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup
 /// <summary>
 /// The definition of the point
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup_MinimumParameter
+public class BHARun_2_0_0_WOBGroupMinimumParameter
 {
     /// <summary>
     /// The measured depth at which the measurement was observed. Depth relative to Planned wellbore ZDP. Navigate via WellboreID to the side-car WellPlanningWellbore, which holds the depth reference in data.VerticalMeasurement.
@@ -1666,14 +1666,14 @@ public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup
     /// The source indicator associated with this point.
     /// </summary>
     [JsonPropertyName("PointsSources")]
-    public List<BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup_MinimumParameter_PointsSources>? PointsSources { get; set; }
+    public List<BHARun_2_0_0_WOBGroupMinimumParameterPointsSources>? PointsSources { get; set; }
 
 }
 
 /// <summary>
 /// The definition of the points used as a source for each individual critical point, resulting from parameters set or observed during a BHA run
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup_MinimumParameter_PointsSources
+public class BHARun_2_0_0_WOBGroupMinimumParameterPointsSources
 {
     /// <summary>
     /// The name of the Source Indicator Type. For example Manual Input
@@ -1705,7 +1705,7 @@ public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup
 /// <summary>
 /// The definition of the point
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup_RecommendedParameter
+public class BHARun_2_0_0_WOBGroupRecommendedParameter
 {
     /// <summary>
     /// The measured depth at which the measurement was observed. Depth relative to Planned wellbore ZDP. Navigate via WellboreID to the side-car WellPlanningWellbore, which holds the depth reference in data.VerticalMeasurement.
@@ -1730,14 +1730,14 @@ public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup
     /// The source indicator associated with this point.
     /// </summary>
     [JsonPropertyName("PointsSources")]
-    public List<BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup_RecommendedParameter_PointsSources>? PointsSources { get; set; }
+    public List<BHARun_2_0_0_WOBGroupRecommendedParameterPointsSources>? PointsSources { get; set; }
 
 }
 
 /// <summary>
 /// The definition of the points used as a source for each individual critical point, resulting from parameters set or observed during a BHA run
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup_RecommendedParameter_PointsSources
+public class BHARun_2_0_0_WOBGroupRecommendedParameterPointsSources
 {
     /// <summary>
     /// The name of the Source Indicator Type. For example Manual Input
@@ -1769,32 +1769,32 @@ public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_WOBGroup
 /// <summary>
 /// A group of parameters that refer to flowrate
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_FlowratePumpGroup
+public class BHARun_2_0_0_FlowratePumpGroup
 {
     /// <summary>
     /// The planned maximum value for the considered parameter
     /// </summary>
     [JsonPropertyName("MaximumParameter")]
-    public List<BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_FlowratePumpGroup_MaximumParameter>? MaximumParameter { get; set; }
+    public List<BHARun_2_0_0_FlowratePumpGroupMaximumParameter>? MaximumParameter { get; set; }
 
     /// <summary>
     /// The planned minimum value for the considered parameter
     /// </summary>
     [JsonPropertyName("MinimumParameter")]
-    public List<BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_FlowratePumpGroup_MinimumParameter>? MinimumParameter { get; set; }
+    public List<BHARun_2_0_0_FlowratePumpGroupMinimumParameter>? MinimumParameter { get; set; }
 
     /// <summary>
     /// The planned recommended value for the considered parameter
     /// </summary>
     [JsonPropertyName("RecommendedParameter")]
-    public List<BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_FlowratePumpGroup_RecommendedParameter>? RecommendedParameter { get; set; }
+    public List<BHARun_2_0_0_FlowratePumpGroupRecommendedParameter>? RecommendedParameter { get; set; }
 
 }
 
 /// <summary>
 /// The definition of the point
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_FlowratePumpGroup_MaximumParameter
+public class BHARun_2_0_0_FlowratePumpGroupMaximumParameter
 {
     /// <summary>
     /// The measured depth at which the measurement was observed. Depth relative to Planned wellbore ZDP. Navigate via WellboreID to the side-car WellPlanningWellbore, which holds the depth reference in data.VerticalMeasurement.
@@ -1819,14 +1819,14 @@ public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_Flowrate
     /// The source indicator associated with this point.
     /// </summary>
     [JsonPropertyName("PointsSources")]
-    public List<BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_FlowratePumpGroup_MaximumParameter_PointsSources>? PointsSources { get; set; }
+    public List<BHARun_2_0_0_FlowratePumpGroupMaximumParameterPointsSources>? PointsSources { get; set; }
 
 }
 
 /// <summary>
 /// The definition of the points used as a source for each individual critical point, resulting from parameters set or observed during a BHA run
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_FlowratePumpGroup_MaximumParameter_PointsSources
+public class BHARun_2_0_0_FlowratePumpGroupMaximumParameterPointsSources
 {
     /// <summary>
     /// The name of the Source Indicator Type. For example Manual Input
@@ -1858,7 +1858,7 @@ public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_Flowrate
 /// <summary>
 /// The definition of the point
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_FlowratePumpGroup_MinimumParameter
+public class BHARun_2_0_0_FlowratePumpGroupMinimumParameter
 {
     /// <summary>
     /// The measured depth at which the measurement was observed. Depth relative to Planned wellbore ZDP. Navigate via WellboreID to the side-car WellPlanningWellbore, which holds the depth reference in data.VerticalMeasurement.
@@ -1883,14 +1883,14 @@ public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_Flowrate
     /// The source indicator associated with this point.
     /// </summary>
     [JsonPropertyName("PointsSources")]
-    public List<BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_FlowratePumpGroup_MinimumParameter_PointsSources>? PointsSources { get; set; }
+    public List<BHARun_2_0_0_FlowratePumpGroupMinimumParameterPointsSources>? PointsSources { get; set; }
 
 }
 
 /// <summary>
 /// The definition of the points used as a source for each individual critical point, resulting from parameters set or observed during a BHA run
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_FlowratePumpGroup_MinimumParameter_PointsSources
+public class BHARun_2_0_0_FlowratePumpGroupMinimumParameterPointsSources
 {
     /// <summary>
     /// The name of the Source Indicator Type. For example Manual Input
@@ -1922,7 +1922,7 @@ public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_Flowrate
 /// <summary>
 /// The definition of the point
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_FlowratePumpGroup_RecommendedParameter
+public class BHARun_2_0_0_FlowratePumpGroupRecommendedParameter
 {
     /// <summary>
     /// The measured depth at which the measurement was observed. Depth relative to Planned wellbore ZDP. Navigate via WellboreID to the side-car WellPlanningWellbore, which holds the depth reference in data.VerticalMeasurement.
@@ -1947,14 +1947,14 @@ public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_Flowrate
     /// The source indicator associated with this point.
     /// </summary>
     [JsonPropertyName("PointsSources")]
-    public List<BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_FlowratePumpGroup_RecommendedParameter_PointsSources>? PointsSources { get; set; }
+    public List<BHARun_2_0_0_FlowratePumpGroupRecommendedParameterPointsSources>? PointsSources { get; set; }
 
 }
 
 /// <summary>
 /// The definition of the points used as a source for each individual critical point, resulting from parameters set or observed during a BHA run
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_FlowratePumpGroup_RecommendedParameter_PointsSources
+public class BHARun_2_0_0_FlowratePumpGroupRecommendedParameterPointsSources
 {
     /// <summary>
     /// The name of the Source Indicator Type. For example Manual Input
@@ -1986,32 +1986,32 @@ public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_Flowrate
 /// <summary>
 /// A group of parameters that refer to anticipated Torque at Surface
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueAtSurfaceGroup
+public class BHARun_2_0_0_TorqueAtSurfaceGroup
 {
     /// <summary>
     /// The planned maximum value for the considered parameter
     /// </summary>
     [JsonPropertyName("MaximumParameter")]
-    public List<BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueAtSurfaceGroup_MaximumParameter>? MaximumParameter { get; set; }
+    public List<BHARun_2_0_0_TorqueAtSurfaceGroupMaximumParameter>? MaximumParameter { get; set; }
 
     /// <summary>
     /// The planned minimum value for the considered parameter
     /// </summary>
     [JsonPropertyName("MinimumParameter")]
-    public List<BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueAtSurfaceGroup_MinimumParameter>? MinimumParameter { get; set; }
+    public List<BHARun_2_0_0_TorqueAtSurfaceGroupMinimumParameter>? MinimumParameter { get; set; }
 
     /// <summary>
     /// The planned recommended value for the considered parameter
     /// </summary>
     [JsonPropertyName("RecommendedParameter")]
-    public List<BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueAtSurfaceGroup_RecommendedParameter>? RecommendedParameter { get; set; }
+    public List<BHARun_2_0_0_TorqueAtSurfaceGroupRecommendedParameter>? RecommendedParameter { get; set; }
 
 }
 
 /// <summary>
 /// The definition of the point
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueAtSurfaceGroup_MaximumParameter
+public class BHARun_2_0_0_TorqueAtSurfaceGroupMaximumParameter
 {
     /// <summary>
     /// The measured depth at which the measurement was observed. Depth relative to Planned wellbore ZDP. Navigate via WellboreID to the side-car WellPlanningWellbore, which holds the depth reference in data.VerticalMeasurement.
@@ -2036,14 +2036,14 @@ public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueAt
     /// The source indicator associated with this point.
     /// </summary>
     [JsonPropertyName("PointsSources")]
-    public List<BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueAtSurfaceGroup_MaximumParameter_PointsSources>? PointsSources { get; set; }
+    public List<BHARun_2_0_0_TorqueAtSurfaceGroupMaximumParameterPointsSources>? PointsSources { get; set; }
 
 }
 
 /// <summary>
 /// The definition of the points used as a source for each individual critical point, resulting from parameters set or observed during a BHA run
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueAtSurfaceGroup_MaximumParameter_PointsSources
+public class BHARun_2_0_0_TorqueAtSurfaceGroupMaximumParameterPointsSources
 {
     /// <summary>
     /// The name of the Source Indicator Type. For example Manual Input
@@ -2075,7 +2075,7 @@ public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueAt
 /// <summary>
 /// The definition of the point
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueAtSurfaceGroup_MinimumParameter
+public class BHARun_2_0_0_TorqueAtSurfaceGroupMinimumParameter
 {
     /// <summary>
     /// The measured depth at which the measurement was observed. Depth relative to Planned wellbore ZDP. Navigate via WellboreID to the side-car WellPlanningWellbore, which holds the depth reference in data.VerticalMeasurement.
@@ -2100,14 +2100,14 @@ public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueAt
     /// The source indicator associated with this point.
     /// </summary>
     [JsonPropertyName("PointsSources")]
-    public List<BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueAtSurfaceGroup_MinimumParameter_PointsSources>? PointsSources { get; set; }
+    public List<BHARun_2_0_0_TorqueAtSurfaceGroupMinimumParameterPointsSources>? PointsSources { get; set; }
 
 }
 
 /// <summary>
 /// The definition of the points used as a source for each individual critical point, resulting from parameters set or observed during a BHA run
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueAtSurfaceGroup_MinimumParameter_PointsSources
+public class BHARun_2_0_0_TorqueAtSurfaceGroupMinimumParameterPointsSources
 {
     /// <summary>
     /// The name of the Source Indicator Type. For example Manual Input
@@ -2139,7 +2139,7 @@ public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueAt
 /// <summary>
 /// The definition of the point
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueAtSurfaceGroup_RecommendedParameter
+public class BHARun_2_0_0_TorqueAtSurfaceGroupRecommendedParameter
 {
     /// <summary>
     /// The measured depth at which the measurement was observed. Depth relative to Planned wellbore ZDP. Navigate via WellboreID to the side-car WellPlanningWellbore, which holds the depth reference in data.VerticalMeasurement.
@@ -2164,14 +2164,14 @@ public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueAt
     /// The source indicator associated with this point.
     /// </summary>
     [JsonPropertyName("PointsSources")]
-    public List<BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueAtSurfaceGroup_RecommendedParameter_PointsSources>? PointsSources { get; set; }
+    public List<BHARun_2_0_0_TorqueAtSurfaceGroupRecommendedParameterPointsSources>? PointsSources { get; set; }
 
 }
 
 /// <summary>
 /// The definition of the points used as a source for each individual critical point, resulting from parameters set or observed during a BHA run
 /// </summary>
-public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueAtSurfaceGroup_RecommendedParameter_PointsSources
+public class BHARun_2_0_0_TorqueAtSurfaceGroupRecommendedParameterPointsSources
 {
     /// <summary>
     /// The name of the Source Indicator Type. For example Manual Input
@@ -2203,7 +2203,7 @@ public class BHARun_2_0_0_Data_RunParameterPlans_OperationParameterPlan_TorqueAt
 /// <summary>
 /// The bottomhole assembly drilling parameters schema, which contains statistical and calculated operations data for the run, related to depths, activities, temperature, pressure, flow rates, torque, etc.
 /// </summary>
-public class BHARun_2_0_0_Data_DrillingParams
+public class BHARun_2_0_0_DrillingParams
 {
     /// <summary>
     /// Operating time spent by bit for run.

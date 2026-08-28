@@ -113,7 +113,7 @@ public class ReservoirSimulationModel_1_0_0_Data : AbstractCommonResources_1_0_1
     /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
     /// </summary>
     [JsonPropertyName("Artefacts")]
-    public List<ReservoirSimulationModel_1_0_0_Data_Artefacts>? Artefacts { get; set; }
+    public List<ReservoirSimulationModel_1_0_0_Artefacts>? Artefacts { get; set; }
 
     /// <summary>
     /// A flag that indicates if the work product component is undergoing an extended load.  It reflects the fact that the work product component is in an early stage and may be updated before finalization.
@@ -200,7 +200,7 @@ public class ReservoirSimulationModel_1_0_0_Data : AbstractCommonResources_1_0_1
     /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
     /// </summary>
     [JsonPropertyName("LineageAssertions")]
-    public List<ReservoirSimulationModel_1_0_0_Data_LineageAssertions>? LineageAssertions { get; set; }
+    public List<ReservoirSimulationModel_1_0_0_LineageAssertions>? LineageAssertions { get; set; }
 
     /// <summary>
     /// Identifies the specific 3D grid from the earth model/static geologic model, which is used in this reservoir simulation. This grid will define both the horizontal and vertical C.R.S.
@@ -220,25 +220,25 @@ public class ReservoirSimulationModel_1_0_0_Data : AbstractCommonResources_1_0_1
     /// Identifies the grid properties within the associated 3D geologic model that are inputs to the reservoir simulation.
     /// </summary>
     [JsonPropertyName("ReservoirSimulationPropertySets")]
-    public List<ReservoirSimulationModel_1_0_0_Data_ReservoirSimulationPropertySets>? ReservoirSimulationPropertySets { get; set; }
+    public List<ReservoirSimulationModel_1_0_0_ReservoirSimulationPropertySets>? ReservoirSimulationPropertySets { get; set; }
 
     /// <summary>
     /// Identifies the rock model components (e.g. rock physics model, saturation functions) used as inputs to reservoir simulation and mapped to 3D model regions.
     /// </summary>
     [JsonPropertyName("RockModelAssignments")]
-    public List<ReservoirSimulationModel_1_0_0_Data_RockModelAssignments>? RockModelAssignments { get; set; }
+    public List<ReservoirSimulationModel_1_0_0_RockModelAssignments>? RockModelAssignments { get; set; }
 
     /// <summary>
     /// Identifies the fluid models (e.g. black oil, compositional) used as inputs to reservoir simulation and mapped to 3D model regions.
     /// </summary>
     [JsonPropertyName("FluidModelAssignments")]
-    public List<ReservoirSimulationModel_1_0_0_Data_FluidModelAssignments>? FluidModelAssignments { get; set; }
+    public List<ReservoirSimulationModel_1_0_0_FluidModelAssignments>? FluidModelAssignments { get; set; }
 
     /// <summary>
     /// Identifies the reservoir equilibrium models used as inputs to reservoir simulation and mapped to 3D model regions.
     /// </summary>
     [JsonPropertyName("EquilibriumModelAssignments")]
-    public List<ReservoirSimulationModel_1_0_0_Data_EquilibriumModelAssignments>? EquilibriumModelAssignments { get; set; }
+    public List<ReservoirSimulationModel_1_0_0_EquilibriumModelAssignments>? EquilibriumModelAssignments { get; set; }
 
     /// <summary>
     /// Identifies the Earth Model Interpretation holding the geological model and its whole set of representations. This direct relationship to Earth Model is not always necessary, but may be useful in rare cases where a gridless model is used or to more quickly navigate to a version of the 3D Grid at a different resolution.
@@ -257,7 +257,7 @@ public class ReservoirSimulationModel_1_0_0_Data : AbstractCommonResources_1_0_1
     /// This set of attributes represents the context surrounding the processes used in running through model characterization.
     /// </summary>
     [JsonPropertyName("BasisOfModelling")]
-    public ReservoirSimulationModel_1_0_0_Data_BasisOfModelling? BasisOfModelling { get; set; }
+    public ReservoirSimulationModel_1_0_0_BasisOfModelling? BasisOfModelling { get; set; }
 
     [JsonPropertyName("ExtensionProperties")]
     public object? ExtensionProperties { get; set; }
@@ -267,7 +267,7 @@ public class ReservoirSimulationModel_1_0_0_Data : AbstractCommonResources_1_0_1
 /// <summary>
 /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
 /// </summary>
-public class ReservoirSimulationModel_1_0_0_Data_Artefacts
+public class ReservoirSimulationModel_1_0_0_Artefacts
 {
     /// <summary>
     /// The record id of this artefact's role.
@@ -295,7 +295,7 @@ public class ReservoirSimulationModel_1_0_0_Data_Artefacts
 /// <summary>
 /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
 /// </summary>
-public class ReservoirSimulationModel_1_0_0_Data_LineageAssertions
+public class ReservoirSimulationModel_1_0_0_LineageAssertions
 {
     /// <summary>
     /// The object reference identifying the DIRECT, INDIRECT, REFERENCE dependency.
@@ -316,7 +316,7 @@ public class ReservoirSimulationModel_1_0_0_Data_LineageAssertions
 /// <summary>
 /// Identifies a grid property from the associated 3D geologic model that is an input to the reservoir simulation.
 /// </summary>
-public class ReservoirSimulationModel_1_0_0_Data_ReservoirSimulationPropertySets
+public class ReservoirSimulationModel_1_0_0_ReservoirSimulationPropertySets
 {
     /// <summary>
     /// Incremental Number identifying the property in this specific Simulation Model Array
@@ -346,7 +346,7 @@ public class ReservoirSimulationModel_1_0_0_Data_ReservoirSimulationPropertySets
 /// <summary>
 /// Describes the association between one rock model component (e.g. rock physics model, saturation functions) and its corresponding allocated region(s) in the 3D static model.
 /// </summary>
-public class ReservoirSimulationModel_1_0_0_Data_RockModelAssignments
+public class ReservoirSimulationModel_1_0_0_RockModelAssignments
 {
     /// <summary>
     /// Index of the property, in the property array, this assignment is describing.
@@ -384,7 +384,7 @@ public class ReservoirSimulationModel_1_0_0_Data_RockModelAssignments
 /// <summary>
 /// Describes the association between one fluid model and its corresponding allocated region(s) in the 3D static model.
 /// </summary>
-public class ReservoirSimulationModel_1_0_0_Data_FluidModelAssignments
+public class ReservoirSimulationModel_1_0_0_FluidModelAssignments
 {
     /// <summary>
     /// Index of the property, in the property array, this assignment is describing.
@@ -414,7 +414,7 @@ public class ReservoirSimulationModel_1_0_0_Data_FluidModelAssignments
 /// <summary>
 /// Describes the association between one equilibrium model and its corresponding allocated region(s) in the 3D static model.
 /// </summary>
-public class ReservoirSimulationModel_1_0_0_Data_EquilibriumModelAssignments
+public class ReservoirSimulationModel_1_0_0_EquilibriumModelAssignments
 {
     /// <summary>
     /// Index of the property, in the property array, this assignment is describing.
@@ -444,7 +444,7 @@ public class ReservoirSimulationModel_1_0_0_Data_EquilibriumModelAssignments
 /// <summary>
 /// This set of attributes represents the context surrounding the processes used in running through model characterization.
 /// </summary>
-public class ReservoirSimulationModel_1_0_0_Data_BasisOfModelling
+public class ReservoirSimulationModel_1_0_0_BasisOfModelling
 {
     /// <summary>
     /// Identifies the Persisted Collection containing relevant data used to derive this model.

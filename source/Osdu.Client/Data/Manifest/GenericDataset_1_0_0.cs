@@ -134,7 +134,7 @@ public class GenericDataset_1_0_0_Data : AbstractCommonResources_1_0_0
     /// Endianness of binary value.  Enumeration: "BIG", "LITTLE".  If absent, applications will need to interpret from context indicators.
     /// </summary>
     [JsonPropertyName("Endian")]
-    public GenericDataset_1_0_0_Data_Endian? Endian { get; set; }
+    public GenericDataset_1_0_0_Endian? Endian { get; set; }
 
     /// <summary>
     /// Placeholder for a specialization.
@@ -148,7 +148,7 @@ public class GenericDataset_1_0_0_Data : AbstractCommonResources_1_0_0
 /// Endianness of binary value.  Enumeration: "BIG", "LITTLE".  If absent, applications will need to interpret from context indicators.
 /// </summary>
 [JsonConverter(typeof(JsonStringEnumConverter))]
-public enum GenericDataset_1_0_0_Data_Endian
+public enum GenericDataset_1_0_0_Endian
 {
     [JsonStringEnumMemberName("BIG")]
     BIG,

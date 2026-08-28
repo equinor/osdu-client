@@ -94,14 +94,14 @@ public class DdmsFootprint_1_0_0_AuthorityToContentTypes
     /// The array of content type-documentation URL pairs for schemas served by the DDMS, governed by the Authority. The association to OSDU well-known schemas WKS is done via CoveredItems[].
     /// </summary>
     [JsonPropertyName("ContentTypeURLs")]
-    public List<DdmsFootprint_1_0_0_AuthorityToContentTypes_ContentTypeURLs>? ContentTypeURLs { get; set; }
+    public List<DdmsFootprint_1_0_0_ContentTypeURLs>? ContentTypeURLs { get; set; }
 
 }
 
 /// <summary>
 /// A DDMS content type paired with a URL for further documentation.
 /// </summary>
-public class DdmsFootprint_1_0_0_AuthorityToContentTypes_ContentTypeURLs
+public class DdmsFootprint_1_0_0_ContentTypeURLs
 {
     /// <summary>
     /// The content type or schema served by the DDMS.

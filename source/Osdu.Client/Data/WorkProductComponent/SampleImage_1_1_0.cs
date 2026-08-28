@@ -113,7 +113,7 @@ public class SampleImage_1_1_0_Data : AbstractCommonResources_1_0_1 // Also comp
     /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
     /// </summary>
     [JsonPropertyName("Artefacts")]
-    public List<SampleImage_1_1_0_Data_Artefacts>? Artefacts { get; set; }
+    public List<SampleImage_1_1_0_Artefacts>? Artefacts { get; set; }
 
     /// <summary>
     /// A flag that indicates if the work product component is undergoing an extended load.  It reflects the fact that the work product component is in an early stage and may be updated before finalization.
@@ -200,7 +200,7 @@ public class SampleImage_1_1_0_Data : AbstractCommonResources_1_0_1 // Also comp
     /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
     /// </summary>
     [JsonPropertyName("LineageAssertions")]
-    public List<SampleImage_1_1_0_Data_LineageAssertions>? LineageAssertions { get; set; }
+    public List<SampleImage_1_1_0_LineageAssertions>? LineageAssertions { get; set; }
 
     /// <summary>
     /// The samples that the image relates to. One or many Sample relationships are permitted. The Sample object captures attributes of a sample/ specimen (rock or fluid) acquired either through an original acquisition event, sub-sampling event, generated from recombination of other samples / specimens or derived through the application of some laboratory process on the parent sample.
@@ -300,13 +300,13 @@ public class SampleImage_1_1_0_Data : AbstractCommonResources_1_0_1 // Also comp
     /// The type of parameters under which the image was acquired
     /// </summary>
     [JsonPropertyName("ImageParameters")]
-    public List<SampleImage_1_1_0_Data_ImageParameters>? ImageParameters { get; set; }
+    public List<SampleImage_1_1_0_ImageParameters>? ImageParameters { get; set; }
 
     /// <summary>
     /// Similar to ImageParameters, but reference-data relationships describing reference-value list controlled image properties.
     /// </summary>
     [JsonPropertyName("ImageReferenceParameters")]
-    public SampleImage_1_1_0_Data_ImageReferenceParameters? ImageReferenceParameters { get; set; }
+    public SampleImage_1_1_0_ImageReferenceParameters? ImageReferenceParameters { get; set; }
 
     /// <summary>
     /// Remarks regarding the image acquisition and or processing environment or parameters.  One or many remarks can be captured.
@@ -322,7 +322,7 @@ public class SampleImage_1_1_0_Data : AbstractCommonResources_1_0_1 // Also comp
 /// <summary>
 /// An array of Artefacts - each artefact has a Role, Resource tuple. An artefact is distinct from the file, in the sense certain valuable information is generated during loading process (Artefact generation process). Examples include retrieving location data, performing an OCR which may result in the generation of artefacts which need to be preserved distinctly
 /// </summary>
-public class SampleImage_1_1_0_Data_Artefacts
+public class SampleImage_1_1_0_Artefacts
 {
     /// <summary>
     /// The record id of this artefact's role.
@@ -350,7 +350,7 @@ public class SampleImage_1_1_0_Data_Artefacts
 /// <summary>
 /// Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file. They should be recorded in the data.Artefacts[] array.
 /// </summary>
-public class SampleImage_1_1_0_Data_LineageAssertions
+public class SampleImage_1_1_0_LineageAssertions
 {
     /// <summary>
     /// The object reference identifying the DIRECT, INDIRECT, REFERENCE dependency.
@@ -368,7 +368,7 @@ public class SampleImage_1_1_0_Data_LineageAssertions
 
 }
 
-public class SampleImage_1_1_0_Data_ImageParameters
+public class SampleImage_1_1_0_ImageParameters
 {
     /// <summary>
     /// The type of parameter under which the image was acquired. In the array of data.ImageParameters[] objects, a particular ImageParameterTypeID value should appear at most once.
@@ -401,7 +401,7 @@ public class SampleImage_1_1_0_Data_ImageParameters
 /// <summary>
 /// Similar to ImageParameters, but reference-data relationships describing reference-value list controlled image properties.
 /// </summary>
-public class SampleImage_1_1_0_Data_ImageReferenceParameters
+public class SampleImage_1_1_0_ImageReferenceParameters
 {
     /// <summary>
     /// The source of the pixel resolution for this sample image, for example, it may be inferred from a scale bar or a known reference.

@@ -185,13 +185,13 @@ public class BusinessAssociate_1_0_0_Data : AbstractCommonResources_1_0_0 // Als
     /// The current status of the Business Associate, such as Active, In Receivership, Sold, Merged. Main sheet
     /// </summary>
     [JsonPropertyName("CurrentStatus")]
-    public BusinessAssociate_1_0_0_Data_CurrentStatus? CurrentStatus { get; set; }
+    public BusinessAssociate_1_0_0_CurrentStatus? CurrentStatus { get; set; }
 
     /// <summary>
     /// The array of historical business associate status together with the time interval of validity and a remark.
     /// </summary>
     [JsonPropertyName("PreviousStates")]
-    public List<BusinessAssociate_1_0_0_Data_PreviousStates>? PreviousStates { get; set; }
+    public List<BusinessAssociate_1_0_0_PreviousStates>? PreviousStates { get; set; }
 
     /// <summary>
     /// Narrative remarks about this Business Associate.
@@ -210,13 +210,13 @@ public class BusinessAssociate_1_0_0_Data : AbstractCommonResources_1_0_0 // Als
     /// The Addresses array contains information on the address, phone numbers, primary contacts, and location of the business associate, allowing clients to have multiple addresses. For example, companies that have a headquarters and various satellite offices.
     /// </summary>
     [JsonPropertyName("Addresses")]
-    public List<BusinessAssociate_1_0_0_Data_Addresses>? Addresses { get; set; }
+    public List<BusinessAssociate_1_0_0_Addresses>? Addresses { get; set; }
 
     /// <summary>
     /// Describes the set of authorities held by a business associate to make payments, sign contracts etc. Considered as business context.
     /// </summary>
     [JsonPropertyName("Authorities")]
-    public List<BusinessAssociate_1_0_0_Data_Authorities>? Authorities { get; set; }
+    public List<BusinessAssociate_1_0_0_Authorities>? Authorities { get; set; }
 
     /// <summary>
     /// Represents the contact information for a company. May be a phone number, fax number, EMail address, Web URL etc.
@@ -228,7 +228,7 @@ public class BusinessAssociate_1_0_0_Data : AbstractCommonResources_1_0_0 // Als
     /// Describes the set of primary services provided by a business associate. For example drilling contractor, logging com pany, seismic broker etc.
     /// </summary>
     [JsonPropertyName("Services")]
-    public List<BusinessAssociate_1_0_0_Data_Services>? Services { get; set; }
+    public List<BusinessAssociate_1_0_0_Services>? Services { get; set; }
 
     [JsonPropertyName("Person")]
     public AbstractContactUserProfile_1_0_0? Person { get; set; }
@@ -248,7 +248,7 @@ public class BusinessAssociate_1_0_0_Data : AbstractCommonResources_1_0_0 // Als
 /// <summary>
 /// The current status of the Business Associate, such as Active, In Receivership, Sold, Merged. Main sheet
 /// </summary>
-public class BusinessAssociate_1_0_0_Data_CurrentStatus
+public class BusinessAssociate_1_0_0_CurrentStatus
 {
     /// <summary>
     /// The current status of the Business Associate, such as Active, In Receivership, Sold, Merged. Property #1
@@ -280,7 +280,7 @@ public class BusinessAssociate_1_0_0_Data_CurrentStatus
 /// <summary>
 /// Describes a BusinessAssociate's status in time.
 /// </summary>
-public class BusinessAssociate_1_0_0_Data_PreviousStates
+public class BusinessAssociate_1_0_0_PreviousStates
 {
     /// <summary>
     /// The current status of the Business Associate, such as Active, In Receivership, Sold, Merged. Property #1
@@ -312,7 +312,7 @@ public class BusinessAssociate_1_0_0_Data_PreviousStates
 /// <summary>
 /// An array of many addresses displayed as table. Organisation Address table contains information on the address, phone numbers, primary contacts, and location of the business associate, allowing clients to have multiple addresses. For example, compan ies that have a headquarters and various satellite offices.
 /// </summary>
-public class BusinessAssociate_1_0_0_Data_Addresses
+public class BusinessAssociate_1_0_0_Addresses
 {
     /// <summary>
     /// A Y/N flag indicating whether this Organisation Address is currently either active / valid (Y) or inactive / invalid (N).
@@ -377,7 +377,7 @@ public class BusinessAssociate_1_0_0_Data_Addresses
 /// <summary>
 /// Describes the authority held by a business associate to make payments, sign contracts etc. Considered in a business context. Application or database authorities are held in ENTITLEMENTS.
 /// </summary>
-public class BusinessAssociate_1_0_0_Data_Authorities
+public class BusinessAssociate_1_0_0_Authorities
 {
     /// <summary>
     /// Unique identifier for the row that describes the authority that a business associate has over business objects.
@@ -436,7 +436,7 @@ public class BusinessAssociate_1_0_0_Data_Authorities
 /// <summary>
 /// Describes the primary services provided by a business associate. For example drilling contractor, logging company, seismic broker etc.
 /// </summary>
-public class BusinessAssociate_1_0_0_Data_Services
+public class BusinessAssociate_1_0_0_Services
 {
     /// <summary>
     /// The service that a business associate provides. For example well logging, drilling, application development.
