@@ -17,6 +17,15 @@ updates:
     prefix: ci(github-actions)
 - package-ecosystem: nuget
   directory: /
+  groups:
+    aspnetcore:
+      patterns:
+      - Microsoft.AspNetCore.*
+      - Microsoft.EntityFrameworkCore*
+    skiasharp:
+      patterns:
+      - SkiaSharp
+      - SkiaSharp.*
   schedule:
     interval: weekly
     day: sunday
